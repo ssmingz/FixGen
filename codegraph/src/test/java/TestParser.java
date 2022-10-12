@@ -19,14 +19,14 @@ public class TestParser {
 
     @Test
     public void testParse() {
-        ArrayList<File> files = getPaths(new String[] {"D:\\expdata\\code\\FixGen\\codegraph\\src"});
+        ArrayList<File> files = getPaths(new String[] {System.getProperty("user.dir")});
         parse(files);
         parse(files);
     }
 
     @Test
     public void testParseSource() {
-        String srcpath = "D:\\expdata\\code\\FixGen\\codegraph\\src\\main\\java\\utils\\FileIO.java";
+        String srcpath = System.getProperty("user.dir") + "\\codegraph\\src\\main\\java\\utils\\FileIO.java";
         ASTNode cu = JavaASTUtil.parseSource(FileIO.readStringFromFile(srcpath), srcpath, "FileIO.java", null);
         assertTrue(cu instanceof CompilationUnit);
     }

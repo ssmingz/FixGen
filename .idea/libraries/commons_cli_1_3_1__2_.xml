@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="commons-cli-1.3.1 (2)">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/commons-cli-1.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-lang-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/google-java-format-1.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.core.contenttype_3.5.0.v20150421-2214.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.core.resources_3.10.1.v20150725-1910.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.core.jobs_3.7.0.v20150330-2103.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.core.runtime_3.11.1.v20150903-1804.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.equinox.common_3.7.0.v20150402-1709.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.equinox.preferences_3.5.300.v20150408-1437.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.jdt.core_3.11.2.v20160128-0629.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.osgi_3.10.102.v20160118-1700.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.eclipse.text_3.5.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

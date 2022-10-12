@@ -11,12 +11,21 @@ import utils.JavaASTUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class GraphBuilder {
     private final GraphConfiguration configuration;
+
     public GraphBuilder(GraphConfiguration configuration) {
         this.configuration = configuration;
     }
+
+    public Collection<CodeGraph> build(String source, String basePath, String projectName, String[] classpath) {
+        return new GraphBuilder(configuration).buildGraphs(source, basePath, projectName, classpath)
+                .stream().collect(Collectors.toList());
+    }
+
     public ArrayList<CodeGraph> buildGraphs(File file, String[] classpaths) {
         ArrayList<CodeGraph> graphs = new ArrayList<>();
         if (file.isDirectory()) {

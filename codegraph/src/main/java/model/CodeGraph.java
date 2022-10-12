@@ -3,6 +3,7 @@ package model;
 import org.eclipse.jdt.core.dom.*;
 import utils.JavaASTUtil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class CodeGraph {
         context.addLocalVariable(name.getIdentifier(), "" + name.getStartPosition(), type);
         DataNode node = new DataNode(name, type, name.getIdentifier());
         CodeGraph pdg = new CodeGraph(context, configuration);
+        pdg.mergeNode(node);
         return pdg;
     }
 
@@ -68,42 +70,44 @@ public class CodeGraph {
             if (s instanceof EmptyStatement) continue;
             CodeGraph pdg = buildPDG(control, (ASTNode) s);
             if (!pdg.isEmpty()) {
-                g.mergeSequential(pdg);
-            }
-            if (s instanceof ReturnStatement || s instanceof ThrowStatement) {
-                g.clearDefStore();
-                return g;
+                g.mergeGraph(pdg);
             }
         }
         return g;
     }
 
-    private void mergeSequential(CodeGraph pdg) {
+    private CodeGraph buildPDG(BaseNode control, ASTNode node) {
+        if (node instanceof VariableDeclarationStatement) {
+            return buildPDG(control, (VariableDeclarationStatement) node);
+        } else if (node instanceof SimpleName) {
+            return buildPDG(control, (SimpleName) node);
+        } else if (node instanceof VariableDeclarationFragment) {
+            return buildPDG(control, (VariableDeclarationFragment) node);
+        } else if (node instanceof NumberLiteral) {
+            return buildPDG(control, (NumberLiteral) node);
+        } else {
+            return new CodeGraph(context, configuration);
+        }
+    }
+
+    private void mergeNode(BaseNode next) {
+        nodes.add(next);
+        statementNodes.add(next);
+    }
+
+    private void mergeGraph(CodeGraph pdg) {
         if (pdg.statementNodes.isEmpty())
             return;
-        if (this.isEmpty()) {
-            // if the left side of the join is empty, the entire right side becomes the result, since there are not
-            // sinks to connect to the sources of the right side.
-            this.statementSources.addAll(pdg.statementSources);
-        }
-        connectSinksToSourcesOf(pdg);
-        for (BaseNode sink : pdg.sinks)
-            sink.consumeDefStore(this);
-        for (BaseNode sink : statementSinks) {
-            for (BaseNode source : pdg.statementSources) {
-                new BaseEdge(sink, source, DEPENDENCE);
-            }
-        }
-        this.dataSources.addAll(pdg.dataSources);
-        this.sinks.clear();
-        this.sinks.addAll(pdg.sinks);
-        this.statementSinks.clear();
-        this.statementSinks.addAll(pdg.statementSinks);
+        // if the left side of the join is empty, the entire right side becomes the result, since there are not
+        // sinks to connect to the sources of the right side.
         this.nodes.addAll(pdg.nodes);
         this.statementNodes.addAll(pdg.statementNodes);
-        this.breaks.addAll(pdg.breaks);
-        this.returns.addAll(pdg.returns);
         pdg.clear();
+    }
+
+    private void clear() {
+        nodes.clear();
+        statementNodes.clear();
     }
 
 

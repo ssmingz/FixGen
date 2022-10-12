@@ -11,6 +11,7 @@ public class GraphBuildingContext {
     private String type = "this", superType = "Object";
     private Stack<HashMap<String, String>> localVariables = new Stack<>(), localVariableTypes = new Stack<>();
     private HashMap<String, String> fieldTypes = new HashMap<>();
+
     public void setMethod(MethodDeclaration method) {
         this.method = method;
         ASTNode p = this.method.getParent();
