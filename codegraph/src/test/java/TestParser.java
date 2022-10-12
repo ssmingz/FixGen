@@ -95,7 +95,7 @@ public class TestParser {
         options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
         options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
         options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
-        parser = ASTParser.newParser(AST.JLS8);
+        ASTParser parser = ASTParser.newParser(AST.JLS8);
         parser.setCompilerOptions(options);
         parser.setResolveBindings(true);
         parser.setBindingsRecovery(true);

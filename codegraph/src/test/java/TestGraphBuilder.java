@@ -17,6 +17,14 @@ public class TestGraphBuilder {
         System.out.println(cg);
     }
 
+    @Test
+    public void testBuildForFile() {
+        String srcPath = System.getProperty("user.dir") + "/codegraph/src/test/res/input4test.java";
+        GraphBuilder builder = new GraphBuilder(new GraphConfiguration());
+        Collection<CodeGraph> cgs = builder.build(srcPath, null);
+        System.out.println(cgs.size());
+    }
+
     public static CodeGraph buildCGForMethod(String code) {
         return buildCGForMethod(code, new GraphConfiguration());
     }

@@ -2,6 +2,7 @@ package utils;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.core.JavaCore;
@@ -30,7 +31,7 @@ public class JavaASTUtil {
     }
 
     @SuppressWarnings("rawtypes")
-    public static ASTNode parseSource(String source) {
+    public static ASTNode parseSource(String source, String[] classpaths) {
         Map options = JavaCore.getOptions();
         options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
         options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
@@ -38,6 +39,13 @@ public class JavaASTUtil {
         ASTParser parser = ASTParser.newParser(AST.JLS8);
         parser.setCompilerOptions(options);
         parser.setSource(source.toCharArray());
+        parser.setResolveBindings(true);
+        parser.setBindingsRecovery(true);
+        parser.setEnvironment(
+                classpaths == null ? new String[0] : classpaths,
+                new String[]{},
+                new String[]{},
+                true);
         ASTNode ast = parser.createAST(null);
         return ast;
     }
@@ -129,6 +137,20 @@ public class JavaASTUtil {
         return null;
     }
 
+    public static String getSimpleType(VariableDeclarationFragment f) {
+        String dimensions = "";
+        for (int i = 0; i < f.getExtraDimensions(); i++)
+            dimensions += "[]";
+        ASTNode p = f.getParent();
+        if (p instanceof FieldDeclaration)
+            return getSimpleType(((FieldDeclaration) p).getType()) + dimensions;
+        if (p instanceof VariableDeclarationStatement)
+            return getSimpleType(((VariableDeclarationStatement) p).getType()) + dimensions;
+        if (p instanceof VariableDeclarationExpression)
+            return getSimpleType(((VariableDeclarationExpression) p).getType()) + dimensions;
+        throw new UnsupportedOperationException("Get type of a declaration!!!");
+    }
+
     public static String getSimpleName(Name name) {
         if (name.isSimpleName()) {
             SimpleName sn = (SimpleName) name;
@@ -143,6 +165,13 @@ public class JavaASTUtil {
         if (sqn.isEmpty())
             return getSimpleName(qn.getName());
         return sqn + "." + qn.getName().getIdentifier();
+    }
+
+    public static boolean isConstant(IVariableBinding vb) {
+        if (vb.isEnumConstant())
+            return true;
+        int modifiers = vb.getModifiers();
+        return Modifier.isFinal(modifiers) && Modifier.isStatic(modifiers);
     }
 
 }

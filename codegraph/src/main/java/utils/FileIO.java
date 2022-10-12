@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
+import java.util.ArrayList;
 
 public class FileIO {
     public static String readStringFromFile(String inputFile) {
@@ -33,5 +34,19 @@ public class FileIO {
         }
     }
 
+    public static String getSimpleClassName(String className) {
+        String name = className.substring(className.lastIndexOf('.') + 1);
+        return name;
+    }
+
+    public static ArrayList<File> getPaths(File dir) {
+        ArrayList<File> files = new ArrayList<>();
+        if (dir.isDirectory())
+            for (File sub : dir.listFiles())
+                files.addAll(getPaths(sub));
+        else if (dir.getName().endsWith(".java"))
+            files.add(dir);
+        return files;
+    }
 }
 

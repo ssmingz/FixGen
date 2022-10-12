@@ -18,6 +18,11 @@ public class DataNode extends BaseNode{
         this.dataName = dataName;
     }
 
+    public DataNode(ASTNode astNode, String dataType, String dataName, String dataValue) {
+        this(astNode, dataType, dataName);
+        this.dataValue = dataValue;
+    }
+
     @Override
     public String getDataName() {
         return dataName;
