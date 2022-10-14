@@ -1,10 +1,12 @@
 package model;
 
+import model.graph.edge.Edge;
 import model.graph.node.Node;
 import model.graph.node.bodyDecl.MethodDecl;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.SimpName;
-import model.graph.node.stmt.BlockStmt;
+import model.graph.node.stmt.*;
+import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.*;
 import utils.JavaASTUtil;
 
@@ -169,8 +171,8 @@ public class CodeGraph {
         methodDecl.setModifiers(modifiers);
         // return type
         if (astNode.getReturnType2() != null) {
-            Type type = astNode.getReturnType2();
-            String typeStr = JavaASTUtil.getSimpleType(type);
+            TypeNode type = (TypeNode) buildNode(astNode.getReturnType2(), methodDecl);
+            String typeStr = JavaASTUtil.getSimpleType(astNode.getReturnType2());
             methodDecl.setRetType(type, typeStr);
         }
         // method name
@@ -199,6 +201,61 @@ public class CodeGraph {
         }
 
         return methodDecl;
+    }
+
+    private Node visit(AssertStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AssertStmt assertStmt = new AssertStmt(astNode, filePath, start, end);
+        // expression
+        Expression expression = astNode.getExpression();
+        ExprNode expr = (ExprNode) buildNode(expression, assertStmt);
+        assertStmt.setExpr(expr);
+        // message
+        if (astNode.getMessage() != null) {
+            ExprNode message = (ExprNode) buildNode(astNode.getMessage(), assertStmt);
+            assertStmt.setMessage(message);
+        }
+
+        return assertStmt;
+    }
+
+    private Node visit(Block astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        BlockStmt blk = new BlockStmt(astNode, filePath, start, end);
+        // stmt list
+        List<StmtNode> stmts = new ArrayList<>();
+        for (Object object : astNode.statements()) {
+            StmtNode stmt = (StmtNode) buildNode((ASTNode) object, blk);
+            stmts.add(stmt);
+        }
+        blk.setStatement(stmts);
+        return blk;
+    }
+
+    private Node visit(BreakStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        BreakStmt brk = new BreakStmt(astNode, filePath, start, end);
+        // identifier
+        if (astNode.getLabel() != null) {
+            SimpName sName = (SimpName) buildNode(astNode.getLabel(), brk);
+            brk.setIdentifier(sName);
+        }
+        return brk;
+    }
+
+    private Node visit(SwitchCase astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        CaseStmt swCase = new CaseStmt(astNode, filePath, start, end);
+        // case expression
+        if (astNode.getExpression() != null) {
+            ExprNode expression = (ExprNode) buildNode(astNode.getExpression(), swCase);
+            swCase.setExpression(expression);
+        }
+        return swCase;
     }
 
     public void setName(String name) {

@@ -1,6 +1,9 @@
 package model.graph.node;
 
+import model.graph.edge.Edge;
 import org.eclipse.jdt.core.dom.ASTNode;
+
+import java.util.ArrayList;
 
 public abstract class Node {
     protected String _fileName;
@@ -15,6 +18,9 @@ public abstract class Node {
      * parent node in the abstract syntax tree
      */
     protected Node _parent;
+
+    public ArrayList<Edge> inEdges = new ArrayList<>();
+    public ArrayList<Edge> outEdges = new ArrayList<>();
 
     /**
      * @param oriNode   : original abstract syntax tree node in the JDT model
@@ -40,4 +46,14 @@ public abstract class Node {
         _astNode = oriNode;
         _parent = parent;
     }
+
+    public void addOutEdge(Edge edge) {
+        outEdges.add(edge);
+    }
+
+    public void addInEdge(Edge edge) {
+        inEdges.add(edge);
+    }
+
+
 }

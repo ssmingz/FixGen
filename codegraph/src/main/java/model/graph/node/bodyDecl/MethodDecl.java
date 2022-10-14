@@ -1,9 +1,12 @@
 package model.graph.node.bodyDecl;
 
+import model.graph.edge.ASTEdge;
+import model.graph.edge.Edge;
 import model.graph.node.Node;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.SimpName;
 import model.graph.node.stmt.BlockStmt;
+import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.Type;
 
@@ -14,7 +17,7 @@ public class MethodDecl extends Node {
     /**
      * return type
      */
-    private transient Type _retType;
+    private TypeNode _retType;
     private String _retTypeStr;
 
     private List<String> _modifiers = new ArrayList<>();
@@ -35,17 +38,22 @@ public class MethodDecl extends Node {
         _modifiers = modifiers;
     }
 
-    public void setRetType(Type type, String typeStr) {
+    public void setRetType(TypeNode type, String typeStr) {
         _retType = type;
+        Edge.createEdge(this, type, new ASTEdge(this, type));
         _retTypeStr = typeStr;
     }
 
     public void setName(SimpName name) {
         _name = name;
+        Edge.createEdge(this, name, new ASTEdge(this, name));
     }
 
     public void setParameters(List<ExprNode> parameters) {
         _parameters = parameters;
+        for (Object obj : parameters) {
+            Edge.createEdge(this, (ExprNode) obj, new ASTEdge(this, (ExprNode) obj));
+        }
     }
 
     public void setThrows(List<String> throwTypes) {
@@ -54,5 +62,6 @@ public class MethodDecl extends Node {
 
     public void setBody(BlockStmt blk) {
         _body = blk;
+        Edge.createEdge(this, blk, new ASTEdge(this, blk));
     }
 }
