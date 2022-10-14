@@ -1,9 +1,14 @@
 package model;
 
+import model.graph.node.Node;
+import model.graph.node.bodyDecl.MethodDecl;
+import model.graph.node.expr.ExprNode;
+import model.graph.node.expr.SimpName;
+import model.graph.node.stmt.BlockStmt;
 import org.eclipse.jdt.core.dom.*;
 import utils.JavaASTUtil;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -15,35 +20,14 @@ public class CodeGraph {
     protected BaseNode entryNode;
     protected HashSet<BaseNode> nodes = new HashSet<>();
 
-    public CodeGraph(MethodDeclaration md, GraphBuildingContext context, GraphConfiguration configuration) {
-        this(context, configuration);
-        if (isTooSmall(md))
-            return;
-        context.setMethod(md);
-        entryNode = new EntryNode(md, "START");
-        nodes.add(entryNode);
-        // parameters
-        for (int i = 0; i < md.parameters().size(); i++) {
-            SingleVariableDeclaration d = (SingleVariableDeclaration) md.parameters().get(i);
-            CodeGraph pg = buildPDG(entryNode, d);
-            mergeGraph(pg);
-        }
-        // body
-        if (md.getBody() != null) {
-            Block block = md.getBody();
-            if (!block.statements().isEmpty()) {
-                CodeGraph pdg = buildPDG(entryNode, block);
-                mergeGraph(pdg);
-            }
-        }
-    }
+    protected CompilationUnit cu = null;
 
     public CodeGraph(GraphBuildingContext context, GraphConfiguration configuration) {
         this.context = context;
         this.configuration = configuration;
     }
 
-    public CodeGraph buildCG(ASTNode astNode, ASTNode parent) {
+    public Node buildNode(ASTNode astNode, Node parent) {
         if (astNode == null) {
             return null;
         }
@@ -173,142 +157,48 @@ public class CodeGraph {
         }
     }
 
-    private CodeGraph buildPDG(BaseNode control, SingleVariableDeclaration astNode) {
-        SimpleName name = astNode.getName();
-        String type = JavaASTUtil.getSimpleType(astNode.getType());
-        DataNode node = new DataNode(name, type, name.getIdentifier());
-        CodeGraph pdg = new CodeGraph(context, configuration);
-        pdg.mergeNode(node);
-        return pdg;
-    }
+    private Node visit(MethodDeclaration astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        MethodDecl methodDecl = new MethodDecl(astNode, filePath, start, end);
+        // modifiers
+        List<String> modifiers = new ArrayList<>();
+        for (Object obj : astNode.modifiers()) {
+            modifiers.add(obj.toString());
+        }
+        methodDecl.setModifiers(modifiers);
+        // return type
+        if (astNode.getReturnType2() != null) {
+            Type type = astNode.getReturnType2();
+            String typeStr = JavaASTUtil.getSimpleType(type);
+            methodDecl.setRetType(type, typeStr);
+        }
+        // method name
+        SimpName mname = (SimpName) buildNode(astNode.getName(), methodDecl);
+        methodDecl.setName(mname);
+        // arguments
+        List<ExprNode> paras = new ArrayList<>();
+        for (Object obj : astNode.parameters()) {
+            ExprNode para = (ExprNode) buildNode((ASTNode) obj, methodDecl);
+            paras.add(para);
+        }
+        methodDecl.setParameters(paras);
+        // throws types
+        List<String> throwTypes = new ArrayList<>();
+        for (Object obj : astNode.thrownExceptionTypes()) {
+            Type throwType = (Type) obj;
+            String throwTypeStr = JavaASTUtil.getSimpleType(throwType);
+            throwTypes.add(throwTypeStr);
+        }
+        methodDecl.setThrows(throwTypes);
+        // method body
+        Block body = astNode.getBody();
+        if (body != null) {
+            BlockStmt blk = (BlockStmt) buildNode(body, methodDecl);
+            methodDecl.setBody(blk);
+        }
 
-    private CodeGraph buildPDG(BaseNode control, Block astNode) {
-        if (astNode.statements().size() > 0) {
-            CodeGraph pdg = buildPDG(control, astNode.statements());
-            return pdg;
-        }
-        return new CodeGraph(context, configuration);
-    }
-
-    private CodeGraph buildPDG(BaseNode control, List<?> list) {
-        CodeGraph g = new CodeGraph(context, configuration);
-        for (Object s : list) {
-            if (s instanceof EmptyStatement) continue;
-            CodeGraph pdg = buildPDG(control, (ASTNode) s);
-            if (!pdg.isEmpty()) {
-                g.mergeGraph(pdg);
-            }
-        }
-        return g;
-    }
-
-    private CodeGraph buildPDG(BaseNode control, ASTNode node) {
-        if (node instanceof VariableDeclarationStatement) {
-            return buildPDG(control, (VariableDeclarationStatement) node);
-        } else if (node instanceof VariableDeclarationFragment) {
-            return buildPDG(control, (VariableDeclarationFragment) node);
-        } else if (node instanceof SimpleName) {
-            return buildPDG(control, (SimpleName) node);
-        } else if (node instanceof NumberLiteral) {
-            return buildPDG(control, (NumberLiteral) node);
-        } else {
-            return new CodeGraph(context, configuration);
-        }
-    }
-
-    private CodeGraph buildPDG(BaseNode control, NumberLiteral astNode) {
-        String type = "number";
-        if (astNode.resolveTypeBinding() != null)
-            type = astNode.resolveTypeBinding().getName();
-        CodeGraph pdg = new CodeGraph(context, new DataNode(astNode, type, null, astNode.getToken()), configuration);
-        return pdg;
-    }
-
-    private CodeGraph buildPDG(BaseNode control, VariableDeclarationStatement astNode) {
-        CodeGraph pdg = buildPDG(control, (ASTNode) astNode.fragments().get(0));
-        for (int i = 1; i < astNode.fragments().size(); i++)
-            pdg.mergeGraph(buildPDG(control, (ASTNode) astNode.fragments().get(i)));
-        return pdg;
-    }
-
-    private CodeGraph buildPDG(BaseNode control, VariableDeclarationFragment astNode) {
-        SimpleName name = astNode.getName();
-        String type = JavaASTUtil.getSimpleType(astNode);
-        DataNode node = new DataNode(name, type, name.getIdentifier());
-        CodeGraph pdg = buildPDG(control, astNode.getInitializer());
-        pdg.mergeNode(node);
-        return pdg;
-    }
-
-    private CodeGraph buildPDG(BaseNode control, SimpleName astNode) {
-        String constantName = null, constantValue = null, type = null;
-        int astNodeType = ASTNode.SIMPLE_NAME;
-        IBinding b = astNode.resolveBinding();
-        if (b instanceof IVariableBinding) {
-            IVariableBinding vb = (IVariableBinding) b;
-            vb = vb.getVariableDeclaration();
-            if (vb.getType().getTypeDeclaration() != null) {
-                type = vb.getType().getTypeDeclaration().getName();
-            } else {
-                type = vb.getType().getName();
-            }
-            if (JavaASTUtil.isConstant(vb)) {
-                if (vb.getDeclaringClass().getTypeDeclaration() != null) {
-                    constantName = vb.getDeclaringClass().getTypeDeclaration().getName() + "." + vb.getName();
-                } else {
-                    constantName = vb.getName();
-                }
-                if (vb.getConstantValue() != null) {
-                    ITypeBinding tb = vb.getType();
-                    if (tb.isPrimitive()) {
-                        constantValue = vb.getConstantValue().toString();
-                        astNodeType = getPrimitiveConstantType(tb);
-                    } else if (tb.getName().equals("String")) {
-                        constantValue = vb.getConstantValue().toString();
-                        astNodeType = ASTNode.STRING_LITERAL;
-                    } else if (tb.getName().equals("Boolean")) {
-                        constantValue = vb.getConstantValue().toString();
-                        astNodeType = ASTNode.BOOLEAN_LITERAL;
-                    } else if (tb.getName().equals("Character")) {
-                        constantValue = vb.getConstantValue().toString();
-                        astNodeType = ASTNode.CHARACTER_LITERAL;
-                    } else if (tb.getSuperclass() != null && tb.getSuperclass().getName().equals("Number")) {
-                        constantValue = vb.getConstantValue().toString();
-                        astNodeType = ASTNode.NUMBER_LITERAL;
-                    }
-                }
-            }
-        }
-        if (constantName != null) {
-            DataNode node = new DataNode(astNode, type, constantName, constantValue);
-            return new CodeGraph(context, node, configuration);
-        }
-        String name = astNode.getIdentifier();
-        if (astNode.resolveTypeBinding() != null) {
-            type = astNode.resolveTypeBinding().getTypeDeclaration().getName();
-        }
-        String[] info = context.getLocalVariableInfo(name);
-        if (info != null) {
-            CodeGraph pdg = new CodeGraph(context, new DataNode(
-                    astNode, type == null ? info[1] : type, astNode.getIdentifier()), configuration);
-            return pdg;
-        }
-        if (type == null)
-            type = context.getFieldType(astNode);
-        if (type != null) {
-            CodeGraph pdg = new CodeGraph(context, new DataNode(astNode, type, name), configuration);
-            return pdg;
-        }
-        if (name.equals(name.toUpperCase()))
-            return new CodeGraph(context, new DataNode(astNode, name, name, null), configuration);
-        if (astNodeType == -1) {
-            CodeGraph pdg = new CodeGraph(context, new DataNode(null, context.getType(), "this"), configuration);
-            pdg.mergeNode(new DataNode(astNode, "UNKNOWN", name));
-            return pdg;
-        } else {
-            CodeGraph pdg = new CodeGraph(context, new DataNode(astNode, "UNKNOWN", name), configuration);
-            return pdg;
-        }
+        return methodDecl;
     }
 
     public void setName(String name) {
@@ -349,5 +239,9 @@ public class CodeGraph {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public void setCompilationUnit(CompilationUnit currentCU) {
+        this.cu = currentCU;
     }
 }

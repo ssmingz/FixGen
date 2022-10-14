@@ -137,20 +137,6 @@ public class JavaASTUtil {
         return null;
     }
 
-    public static String getSimpleType(VariableDeclarationFragment f) {
-        String dimensions = "";
-        for (int i = 0; i < f.getExtraDimensions(); i++)
-            dimensions += "[]";
-        ASTNode p = f.getParent();
-        if (p instanceof FieldDeclaration)
-            return getSimpleType(((FieldDeclaration) p).getType()) + dimensions;
-        if (p instanceof VariableDeclarationStatement)
-            return getSimpleType(((VariableDeclarationStatement) p).getType()) + dimensions;
-        if (p instanceof VariableDeclarationExpression)
-            return getSimpleType(((VariableDeclarationExpression) p).getType()) + dimensions;
-        throw new UnsupportedOperationException("Get type of a declaration!!!");
-    }
-
     public static String getSimpleName(Name name) {
         if (name.isSimpleName()) {
             SimpleName sn = (SimpleName) name;

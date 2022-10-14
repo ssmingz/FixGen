@@ -22,6 +22,8 @@ import static com.sun.org.apache.bcel.internal.Const.T_UNKNOWN;
 public class GraphBuilder {
     private final GraphConfiguration configuration;
 
+    private CompilationUnit currentCU = null;
+
     public GraphBuilder(GraphConfiguration configuration) {
         this.configuration = configuration;
     }
@@ -78,9 +80,11 @@ public class GraphBuilder {
         ArrayList<CodeGraph> graphs = new ArrayList<>();
         for (String path : cus.keySet()) {
             CompilationUnit cu = cus.get(path);
-            for (int i = 0 ; i < cu.types().size(); i++)
+            for (int i = 0 ; i < cu.types().size(); i++) {
+                currentCU = cu;
                 if (cu.types().get(i) instanceof TypeDeclaration)
                     graphs.addAll(buildGraphs((TypeDeclaration) cu.types().get(i), path, ""));
+            }
         }
         for (CodeGraph g : graphs) {
             g.setProjectName(dir.getAbsolutePath());
@@ -316,6 +320,7 @@ public class GraphBuilder {
         CodeGraph g = new CodeGraph(method, new GraphBuildingContext(), configuration);
         g.setFilePath(filepath);
         g.setName(name + sig);
+        g.setCompilationUnit(currentCU);
         return g;
     }
 
