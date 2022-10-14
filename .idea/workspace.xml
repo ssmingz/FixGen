@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add 'node' part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/DataNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/DataNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphBuildingContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphBuildingContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestParser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -34,6 +31,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
   <component name="ProjectId" id="2FvTDewHGlOcW22t04vr1nf9sf8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -42,28 +42,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/expdata/code/FixGen/lib/org.eclipse.core.runtime_3.11.1.v20150903-1804.jar",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.33793104",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
-  }
-}]]></component>
-  <component name="RunManager" selected="JUnit.TestGraphBuilder.testBuildForFile">
-    <configuration name="TestGraphBuilder.testBuildForFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="FixGen" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGraphBuilder" />
-      <option name="METHOD_NAME" value="testBuildForFile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.39586028" />
+  </component>
+  <component name="RunManager" selected="JUnit.TestGraphBuilder.testBuildForMethod">
     <configuration name="TestGraphBuilder.testBuildForMethod" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FixGen" />
       <option name="PACKAGE_NAME" value="" />
@@ -79,6 +65,16 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestParser" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestParser.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FixGen" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestParser" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -105,8 +101,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestGraphBuilder.testBuildForFile" />
         <item itemvalue="JUnit.TestGraphBuilder.testBuildForMethod" />
+        <item itemvalue="JUnit.TestParser.test" />
         <item itemvalue="JUnit.TestParser.testParseSource" />
         <item itemvalue="JUnit.TestParser.testParse" />
         <item itemvalue="JUnit.TestParser" />
@@ -159,11 +155,6 @@
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java</url>
           <line>16</line>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

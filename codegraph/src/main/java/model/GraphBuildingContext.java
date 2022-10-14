@@ -85,21 +85,6 @@ public class GraphBuildingContext {
             this.fieldTypes.put(name, type);
     }
 
-    public void addLocalVariable(String identifier, String key, String type) {
-        this.localVariables.peek().put(identifier, key);
-        this.localVariableTypes.peek().put(identifier, type);
-    }
-
-    public void addScope() {
-        this.localVariables.push(new HashMap<String, String>());
-        this.localVariableTypes.push(new HashMap<String, String>());
-    }
-
-    public void removeScope() {
-        this.localVariables.pop();
-        this.localVariableTypes.pop();
-    }
-
     public String[] getLocalVariableInfo(String identifier) {
         for (int i = localVariables.size() - 1; i >= 0; i--) {
             HashMap<String, String> variables = this.localVariables.get(i);

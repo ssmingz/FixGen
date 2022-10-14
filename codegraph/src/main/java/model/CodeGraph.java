@@ -14,17 +14,14 @@ public class CodeGraph {
     private GraphBuildingContext context;
     protected BaseNode entryNode;
     protected HashSet<BaseNode> nodes = new HashSet<>();
-    protected HashSet<BaseNode> statementNodes = new HashSet<>();
 
     public CodeGraph(MethodDeclaration md, GraphBuildingContext context, GraphConfiguration configuration) {
         this(context, configuration);
         if (isTooSmall(md))
             return;
-        context.addScope();
         context.setMethod(md);
         entryNode = new EntryNode(md, "START");
         nodes.add(entryNode);
-        statementNodes.add(entryNode);
         // parameters
         for (int i = 0; i < md.parameters().size(); i++) {
             SingleVariableDeclaration d = (SingleVariableDeclaration) md.parameters().get(i);
@@ -46,20 +43,139 @@ public class CodeGraph {
         this.configuration = configuration;
     }
 
-    public CodeGraph(GraphBuildingContext context, BaseNode node, GraphConfiguration configuration) {
-        this(context, configuration);
-        init(node);
-    }
-
-    private void init(BaseNode node) {
-        nodes.add(node);
-        statementNodes.add(node);
+    public CodeGraph buildCG(ASTNode astNode, ASTNode parent) {
+        if (astNode == null) {
+            return null;
+        }
+        if (astNode instanceof MethodDeclaration) {
+            return visit((MethodDeclaration) astNode, parent);
+        } else if (astNode instanceof AssertStatement) {
+            return visit((AssertStatement) astNode, parent);
+        } else if (astNode instanceof Block) {
+            return visit((Block) astNode, parent);
+        } else if (astNode instanceof BreakStatement) {
+            return visit((BreakStatement) astNode, parent);
+        } else if (astNode instanceof SwitchCase) {
+            return visit((SwitchCase) astNode, parent);
+        } else if (astNode instanceof ConstructorInvocation) {
+            return visit((ConstructorInvocation) astNode, parent);
+        } else if (astNode instanceof ContinueStatement) {
+            return visit((ContinueStatement) astNode, parent);
+        } else if (astNode instanceof DoStatement) {
+            return visit((DoStatement) astNode, parent);
+        } else if (astNode instanceof EmptyStatement) {
+            return visit((EmptyStatement) astNode, parent);
+        } else if (astNode instanceof EnhancedForStatement) {
+            return visit((EnhancedForStatement) astNode, parent);
+        } else if (astNode instanceof ExpressionStatement) {
+            return visit((ExpressionStatement) astNode, parent);
+        } else if (astNode instanceof ForStatement) {
+            return visit((ForStatement) astNode, parent);
+        } else if (astNode instanceof IfStatement) {
+            return visit((IfStatement) astNode, parent);
+        } else if (astNode instanceof LabeledStatement) {
+            return visit((LabeledStatement) astNode, parent);
+        } else if (astNode instanceof ReturnStatement) {
+            return  visit((ReturnStatement) astNode, parent);
+        } else if (astNode instanceof SuperConstructorInvocation) {
+            return visit((SuperConstructorInvocation) astNode, parent);
+        } else if (astNode instanceof SwitchStatement) {
+            return visit((SwitchStatement) astNode, parent);
+        } else if (astNode instanceof SynchronizedStatement) {
+            return visit((SynchronizedStatement) astNode, parent);
+        } else if (astNode instanceof ThrowStatement) {
+            return visit((ThrowStatement) astNode, parent);
+        } else if (astNode instanceof TryStatement) {
+            return visit((TryStatement) astNode, parent);
+        } else if (astNode instanceof TypeDeclarationStatement) {
+            return visit((TypeDeclarationStatement) astNode, parent);
+        } else if (astNode instanceof VariableDeclarationStatement) {
+            return visit((VariableDeclarationStatement) astNode, parent);
+        } else if (astNode instanceof WhileStatement) {
+            return visit((WhileStatement) astNode, parent);
+        } else if (astNode instanceof Annotation) {
+            return visit((Annotation) astNode, parent);
+        } else if (astNode instanceof ArrayAccess) {
+            return visit((ArrayAccess) astNode, parent);
+        } else if (astNode instanceof ArrayCreation) {
+            return visit((ArrayCreation) astNode, parent);
+        } else if (astNode instanceof ArrayInitializer) {
+            return visit((ArrayInitializer) astNode, parent);
+        } else if (astNode instanceof Assignment) {
+            return visit((Assignment) astNode, parent);
+        } else if (astNode instanceof BooleanLiteral) {
+            return visit((BooleanLiteral)astNode, parent);
+        } else if (astNode instanceof CastExpression) {
+            return visit((CastExpression) astNode, parent);
+        } else if (astNode instanceof CharacterLiteral) {
+            return visit((CharacterLiteral) astNode, parent);
+        } else if (astNode instanceof ClassInstanceCreation) {
+            return visit((ClassInstanceCreation) astNode, parent);
+        } else if (astNode instanceof ConditionalExpression) {
+            return visit((ConditionalExpression) astNode, parent);
+        } else if (astNode instanceof CreationReference) {
+            return visit((CreationReference) astNode, parent);
+        } else if (astNode instanceof ExpressionMethodReference) {
+            return visit((ExpressionMethodReference) astNode, parent);
+        } else if (astNode instanceof FieldAccess) {
+            return visit((FieldAccess) astNode, parent);
+        } else if (astNode instanceof InfixExpression) {
+            return visit((InfixExpression) astNode, parent);
+        } else if (astNode instanceof LambdaExpression) {
+            return visit((LambdaExpression) astNode, parent);
+        } else if (astNode instanceof MethodInvocation) {
+            return visit((MethodInvocation) astNode, parent);
+        } else if (astNode instanceof MethodReference) {
+            return visit((MethodReference) astNode, parent);
+        } else if (astNode instanceof Name) {
+            return visit((Name) astNode, parent);
+        } else if (astNode instanceof NullLiteral) {
+            return visit((NullLiteral) astNode, parent);
+        } else if (astNode instanceof NumberLiteral) {
+            return visit((NumberLiteral) astNode, parent);
+        } else if (astNode instanceof ParenthesizedExpression) {
+            return visit((ParenthesizedExpression) astNode, parent);
+        } else if (astNode instanceof PostfixExpression) {
+            return visit((PostfixExpression) astNode, parent);
+        } else if (astNode instanceof PrefixExpression) {
+            return visit((PrefixExpression) astNode, parent);
+        } else if (astNode instanceof QualifiedName) {
+            return visit((QualifiedName) astNode, parent);
+        } else if (astNode instanceof SimpleName) {
+            return visit((SimpleName) astNode, parent);
+        } else if (astNode instanceof StringLiteral) {
+            return visit((StringLiteral) astNode, parent);
+        } else if (astNode instanceof SuperFieldAccess) {
+            return visit((SuperFieldAccess) astNode, parent);
+        } else if (astNode instanceof SuperMethodInvocation) {
+            return visit((SuperMethodInvocation) astNode, parent);
+        } else if (astNode instanceof SuperMethodReference) {
+            return visit((SuperMethodReference) astNode, parent);
+        } else if (astNode instanceof ThisExpression) {
+            return visit((ThisExpression) astNode, parent);
+        } else if (astNode instanceof TypeMethodReference) {
+            return visit((TypeMethodReference) astNode, parent);
+        } else if (astNode instanceof TypeLiteral) {
+            return visit((TypeLiteral) astNode, parent);
+        } else if (astNode instanceof VariableDeclarationExpression) {
+            return visit((VariableDeclarationExpression) astNode, parent);
+        } else if (astNode instanceof Type) {
+            return visit((Type) astNode, parent);
+        } else if (astNode instanceof VariableDeclaration) {
+            return visit((VariableDeclaration) astNode, parent);
+        } else if (astNode instanceof SingleVariableDeclaration) {
+            return visit((SingleVariableDeclaration) astNode, parent);
+        } else if (astNode instanceof VariableDeclarationFragment) {
+            return visit((VariableDeclarationFragment) astNode, parent);
+        } else {
+            System.out.println("UNKNOWN ASTNode type : " + astNode.toString());
+            return null;
+        }
     }
 
     private CodeGraph buildPDG(BaseNode control, SingleVariableDeclaration astNode) {
         SimpleName name = astNode.getName();
         String type = JavaASTUtil.getSimpleType(astNode.getType());
-        context.addLocalVariable(name.getIdentifier(), "" + name.getStartPosition(), type);
         DataNode node = new DataNode(name, type, name.getIdentifier());
         CodeGraph pdg = new CodeGraph(context, configuration);
         pdg.mergeNode(node);
@@ -68,9 +184,7 @@ public class CodeGraph {
 
     private CodeGraph buildPDG(BaseNode control, Block astNode) {
         if (astNode.statements().size() > 0) {
-            context.addScope();
             CodeGraph pdg = buildPDG(control, astNode.statements());
-            context.removeScope();
             return pdg;
         }
         return new CodeGraph(context, configuration);
@@ -120,7 +234,6 @@ public class CodeGraph {
     private CodeGraph buildPDG(BaseNode control, VariableDeclarationFragment astNode) {
         SimpleName name = astNode.getName();
         String type = JavaASTUtil.getSimpleType(astNode);
-        context.addLocalVariable(name.getIdentifier(), "" + name.getStartPosition(), type);
         DataNode node = new DataNode(name, type, name.getIdentifier());
         CodeGraph pdg = buildPDG(control, astNode.getInitializer());
         pdg.mergeNode(node);
@@ -197,27 +310,6 @@ public class CodeGraph {
             return pdg;
         }
     }
-
-    private void mergeNode(BaseNode next) {
-        nodes.add(next);
-        statementNodes.add(next);
-    }
-
-    private void mergeGraph(CodeGraph pdg) {
-        if (pdg.statementNodes.isEmpty())
-            return;
-        // if the left side of the join is empty, the entire right side becomes the result, since there are not
-        // sinks to connect to the sources of the right side.
-        this.nodes.addAll(pdg.nodes);
-        this.statementNodes.addAll(pdg.statementNodes);
-        pdg.clear();
-    }
-
-    private void clear() {
-        nodes.clear();
-        statementNodes.clear();
-    }
-
 
     public void setName(String name) {
         this.name = name;
