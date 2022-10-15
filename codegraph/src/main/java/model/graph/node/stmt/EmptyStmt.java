@@ -1,4 +1,9 @@
 package model.graph.node.stmt;
 
-public class EmptyStmt {
+import org.eclipse.jdt.core.dom.ASTNode;
+
+public class EmptyStmt extends StmtNode{
+    public EmptyStmt(ASTNode oriNode, String fileName, int startLine, int endLine) {
+        super(oriNode, fileName, startLine, endLine);
+    }
 }

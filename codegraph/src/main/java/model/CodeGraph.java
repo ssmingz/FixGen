@@ -1,12 +1,16 @@
 package model;
 
-import model.graph.edge.Edge;
+import model.graph.node.CatClause;
 import model.graph.node.Node;
 import model.graph.node.bodyDecl.MethodDecl;
+import model.graph.node.expr.ExprList;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.SimpName;
+import model.graph.node.expr.VarDeclExpr;
 import model.graph.node.stmt.*;
 import model.graph.node.type.TypeNode;
+import model.graph.node.varDecl.SingleVarDecl;
+import model.graph.node.varDecl.VarDeclFrag;
 import org.eclipse.jdt.core.dom.*;
 import utils.JavaASTUtil;
 
@@ -19,8 +23,7 @@ public class CodeGraph {
 
     private String filePath, name, projectName;
     private GraphBuildingContext context;
-    protected BaseNode entryNode;
-    protected HashSet<BaseNode> nodes = new HashSet<>();
+    protected HashSet<Node> nodes = new HashSet<>();
 
     protected CompilationUnit cu = null;
 
@@ -35,6 +38,8 @@ public class CodeGraph {
         }
         if (astNode instanceof MethodDeclaration) {
             return visit((MethodDeclaration) astNode, parent);
+        } else if (astNode instanceof CatchClause) {
+            return visit((CatchClause) astNode, parent);
         } else if (astNode instanceof AssertStatement) {
             return visit((AssertStatement) astNode, parent);
         } else if (astNode instanceof Block) {
@@ -258,6 +263,331 @@ public class CodeGraph {
         return swCase;
     }
 
+    private Node visit(ConstructorInvocation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ConstructorInvoc consInv = new ConstructorInvoc(astNode, filePath, start, end);
+        // arguments
+        ExprList exprList = new ExprList(null, filePath, start, end);
+        List<ExprNode> argulist = new ArrayList<>();
+        for (Object object : astNode.arguments()) {
+            ExprNode expr = (ExprNode) buildNode((ASTNode) object, exprList);
+            argulist.add(expr);
+        }
+        exprList.setExprs(argulist);
+        consInv.setArguments(exprList);
+
+        return consInv;
+    }
+
+    private Node visit(ContinueStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ContinueStmt conti = new ContinueStmt(astNode, filePath, start, end);
+        // identifier
+        if (astNode.getLabel() != null) {
+            SimpName sName = (SimpName) buildNode(astNode.getLabel(), conti);
+            conti.setIdentifier(sName);
+        }
+        return conti;
+    }
+
+    private Node visit(DoStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        DoStmt doStmt = new DoStmt(astNode, filePath, start, end);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), doStmt);
+        doStmt.setExpr(expr);
+        // body
+        StmtNode body = wrapBlock(astNode.getBody(), doStmt);
+        doStmt.setBody(body);
+
+        return doStmt;
+    }
+
+    private Node visit(EmptyStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        EmptyStmt ept = new EmptyStmt(astNode, filePath, start, end);
+        return ept;
+    }
+
+    private Node visit(EnhancedForStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        EnhancedForStmt efor = new EnhancedForStmt(astNode, filePath, start, end);
+        // formal parameter
+        SingleVarDecl svd =  (SingleVarDecl) buildNode(astNode.getParameter(), efor);
+        efor.setSVD(svd);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), efor);
+        efor.setExpr(expr);
+        // body
+        StmtNode stmt = wrapBlock(astNode.getBody(), efor);
+        efor.setBody(stmt);
+
+        return efor;
+    }
+
+    private Node visit(ExpressionStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ExprStmt exprStmt = new ExprStmt(astNode, filePath, start, end);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), exprStmt);
+        exprStmt.setExpr(expr);
+
+        return exprStmt;
+    }
+
+    private Node visit(ForStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ForStmt forStmt = new ForStmt(astNode, filePath, start, end);
+        // initializers
+        ExprList initExprList = new ExprList(null, filePath, start, end);
+        List<ExprNode> initializers = new ArrayList<>();
+        if (!astNode.initializers().isEmpty()) {
+            for (Object object : astNode.initializers()) {
+                ExprNode initializer = (ExprNode) buildNode((ASTNode) object, initExprList);
+                initializers.add(initializer);
+            }
+        }
+        initExprList.setExprs(initializers);
+        forStmt.setInitializer(initExprList);
+        // expression
+        if (astNode.getExpression() != null) {
+            ExprNode condition = (ExprNode) buildNode(astNode.getExpression(), forStmt);
+            forStmt.setCondition(condition);
+        }
+        // updaters
+        ExprList exprList = new ExprList(null, filePath, start, end);
+        List<ExprNode> updaters = new ArrayList<>();
+        if (!astNode.updaters().isEmpty()) {
+            for (Object object : astNode.updaters()) {
+                ExprNode update = (ExprNode) buildNode((ASTNode) object, exprList);
+                updaters.add(update);
+            }
+        }
+        exprList.setExprs(updaters);
+        forStmt.setUpdaters(exprList);
+        // body
+        StmtNode body = wrapBlock(astNode.getBody(), forStmt);
+        forStmt.setBody(body);
+
+        return forStmt;
+    }
+
+    private Node visit(IfStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        IfStmt ifstmt = new IfStmt(astNode, filePath, start, end);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), ifstmt);
+        ifstmt.setExpression(expr);
+        // then statement
+        StmtNode then = wrapBlock(astNode.getThenStatement(), ifstmt);
+        ifstmt.setThen(then);
+        // else statement
+        if (astNode.getElseStatement() != null) {
+            StmtNode els = wrapBlock(astNode.getElseStatement(), ifstmt);
+            ifstmt.setElse(els);
+        }
+        return ifstmt;
+    }
+
+    private Node visit(LabeledStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        LabeledStmt labStmt = new LabeledStmt(astNode, filePath, start, end);
+        // label
+        SimpName lab = (SimpName) buildNode(astNode.getLabel(), labStmt);
+        labStmt.setLabel(lab);
+        // body
+        StmtNode body = wrapBlock(astNode.getBody(), labStmt);
+        labStmt.setBody(body);
+        return labStmt;
+    }
+
+    private Node visit(ReturnStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ReturnStmt ret = new ReturnStmt(astNode, filePath, start, end);
+        if (astNode.getExpression() != null) {
+            ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), ret);
+            ret.setExpr(expr);
+        }
+        return ret;
+    }
+
+    private Node visit(SuperConstructorInvocation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SuperConstructorInvoc spi = new SuperConstructorInvoc(astNode, filePath, start, end);
+        // expression
+        if (astNode.getExpression() != null) {
+            ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), spi);
+            spi.setExpr(expr);
+        }
+        // parameters
+        ExprList arguList = new ExprList(null, filePath, start, end);
+        List<ExprNode> argus = new ArrayList<>();
+        for (Object obj : astNode.arguments()) {
+            ExprNode para = (ExprNode) buildNode((ASTNode) obj, arguList);
+            argus.add(para);
+        }
+        arguList.setExprs(argus);
+        spi.setArguments(arguList);
+
+        return spi;
+    }
+
+    private Node visit(SwitchStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SwitchStmt swi = new SwitchStmt(astNode, filePath, start, end);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), swi);
+        swi.setExpr(expr);
+        // stmt list
+        List<StmtNode> stmts = new ArrayList<>();
+        Node swiCase = null;
+        for (Object obj : astNode.statements()) {
+            StmtNode stmt = (StmtNode) buildNode((ASTNode) obj, swi);
+            // TODO: set variable scope for each switch case
+            stmts.add(stmt);
+            if (stmt instanceof CaseStmt) {
+                swiCase = stmt;
+            }
+        }
+        swi.setStatements(stmts);
+        return swi;
+    }
+
+    private Node visit(SynchronizedStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SynchronizedStmt syn = new SynchronizedStmt(astNode, filePath, start, end);
+        // expression
+        if (astNode.getExpression() != null) {
+            ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), syn);
+            syn.setExpr(expr);
+        }
+        // body
+        BlockStmt body = (BlockStmt) buildNode(astNode.getBody(), syn);
+        syn.setBody(body);
+
+        return syn;
+    }
+
+    private Node visit(ThrowStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ThrowStmt throwStmt = new ThrowStmt(astNode, filePath, start, end);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), throwStmt);
+        throwStmt.setExpr(expr);
+
+        return throwStmt;
+    }
+
+    private Node visit(TryStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        TryStmt tryStmt = new TryStmt(astNode, filePath, start, end);
+        // resources
+        if (astNode.resources() != null) {
+            List<VarDeclExpr> resourceList = new ArrayList<>();
+            for (Object obj : astNode.resources()) {
+                VariableDeclarationExpression resource = (VariableDeclarationExpression) obj;
+                VarDeclExpr vdExpr = (VarDeclExpr) buildNode(resource, tryStmt);
+                resourceList.add(vdExpr);
+            }
+            tryStmt.setResources(resourceList);
+        }
+        BlockStmt blk = (BlockStmt) buildNode(astNode.getBody(), tryStmt);
+        tryStmt.setBody(blk);
+        // catch
+        List<CatClause> catches = new ArrayList<>(astNode.catchClauses().size());
+        for (Object obj : astNode.catchClauses()) {
+            CatchClause catchClause = (CatchClause) obj;
+            CatClause catClause = (CatClause) buildNode(catchClause, tryStmt);
+            catches.add(catClause);
+        }
+        tryStmt.setCatchClause(catches);
+        // finally
+        if (astNode.getFinally() != null ){
+            BlockStmt finallyBlk = (BlockStmt) buildNode(astNode.getFinally(), tryStmt);
+            tryStmt.setFinallyBlock(finallyBlk);
+        }
+
+        return tryStmt;
+    }
+
+    private CatClause visit(CatchClause astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        CatClause cat = new CatClause(astNode, filePath, start, end);
+
+        SingleVarDecl svd = (SingleVarDecl) buildNode(astNode.getException(), cat);
+        cat.setException(svd);
+
+        BlockStmt body = (BlockStmt) buildNode(astNode.getBody(), cat);
+        cat.setBody(body);
+
+        return cat;
+    }
+
+    private Node visit(TypeDeclarationStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        TypeDeclStmt td = new TypeDeclStmt(astNode, filePath, start, end);
+        return td;
+    }
+
+    private Node visit(VariableDeclarationStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        VarDeclStmt vdStmt = new VarDeclStmt(astNode, filePath, start, end);
+        // modifiers
+        String modifier = "";
+        if (astNode.modifiers() != null && astNode.modifiers().size() > 0) {
+            for (Object obj : astNode.modifiers()) {
+                modifier += " " + obj.toString();
+            }
+        }
+        vdStmt.setModifier(modifier);
+        // type
+        TypeNode type = (TypeNode) buildNode(astNode.getType(), vdStmt);
+        String typeStr = JavaASTUtil.getSimpleType(astNode.getType());
+        vdStmt.setDeclType(type, typeStr);
+        // fragments
+        List<VarDeclFrag> fragments = new ArrayList<>();
+        for (Object obj : astNode.fragments()) {
+            VarDeclFrag vdf = (VarDeclFrag) buildNode((ASTNode) obj, vdStmt);
+            vdf.setType(type, typeStr);
+            fragments.add(vdf);
+        }
+        vdStmt.setFragments(fragments);
+
+        return vdStmt;
+    }
+
+    private Node visit(WhileStatement astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        WhileStmt whi = new WhileStmt(astNode, filePath, start, end);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), whi);
+        whi.setExpr(expr);
+        // body
+        StmtNode body = wrapBlock(astNode.getBody(), whi);
+        whi.setBody(body);
+
+        return whi;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
@@ -300,5 +630,21 @@ public class CodeGraph {
 
     public void setCompilationUnit(CompilationUnit currentCU) {
         this.cu = currentCU;
+    }
+
+    private BlockStmt wrapBlock(Statement node, Node parent) {
+        BlockStmt blk;
+        if(node instanceof Block) {
+            blk = (BlockStmt) buildNode(node, parent);
+        } else {
+            int startLine = cu.getLineNumber(node.getStartPosition());
+            int endLine = cu.getLineNumber(node.getStartPosition() + node.getLength());
+            blk = new BlockStmt(node, filePath, startLine, endLine);
+            List<StmtNode> stmts = new ArrayList<>();
+            StmtNode stmt = (StmtNode) buildNode(node, blk);
+            stmts.add(stmt);
+            blk.setStatement(stmts);
+        }
+        return blk;
     }
 }

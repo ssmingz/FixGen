@@ -317,7 +317,8 @@ public class GraphBuilder {
     public CodeGraph buildGraph(MethodDeclaration method, String filepath, String name) {
         String sig = JavaASTUtil.buildSignature(method);
         System.out.println(filepath + " " + name + sig);
-        CodeGraph g = new CodeGraph(method, new GraphBuildingContext(), configuration);
+        CodeGraph g = new CodeGraph(new GraphBuildingContext(), configuration);
+        g.buildNode(method, null);
         g.setFilePath(filepath);
         g.setName(name + sig);
         g.setCompilationUnit(currentCU);
