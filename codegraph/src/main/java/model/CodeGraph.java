@@ -1,12 +1,11 @@
 package model;
 
+import model.graph.node.AnonymousClassDecl;
 import model.graph.node.CatClause;
 import model.graph.node.Node;
 import model.graph.node.bodyDecl.MethodDecl;
-import model.graph.node.expr.ExprList;
-import model.graph.node.expr.ExprNode;
-import model.graph.node.expr.SimpName;
-import model.graph.node.expr.VarDeclExpr;
+import model.graph.node.expr.*;
+import model.graph.node.expr.MethodRef;
 import model.graph.node.stmt.*;
 import model.graph.node.type.TypeNode;
 import model.graph.node.varDecl.SingleVarDecl;
@@ -26,6 +25,8 @@ public class CodeGraph {
     protected HashSet<Node> nodes = new HashSet<>();
 
     protected CompilationUnit cu = null;
+
+    public Node entryNode = null;
 
     public CodeGraph(GraphBuildingContext context, GraphConfiguration configuration) {
         this.context = context;
@@ -118,8 +119,6 @@ public class CodeGraph {
             return visit((MethodInvocation) astNode, parent);
         } else if (astNode instanceof MethodReference) {
             return visit((MethodReference) astNode, parent);
-        } else if (astNode instanceof Name) {
-            return visit((Name) astNode, parent);
         } else if (astNode instanceof NullLiteral) {
             return visit((NullLiteral) astNode, parent);
         } else if (astNode instanceof NumberLiteral) {
@@ -152,8 +151,6 @@ public class CodeGraph {
             return visit((VariableDeclarationExpression) astNode, parent);
         } else if (astNode instanceof Type) {
             return visit((Type) astNode, parent);
-        } else if (astNode instanceof VariableDeclaration) {
-            return visit((VariableDeclaration) astNode, parent);
         } else if (astNode instanceof SingleVariableDeclaration) {
             return visit((SingleVariableDeclaration) astNode, parent);
         } else if (astNode instanceof VariableDeclarationFragment) {
@@ -566,7 +563,7 @@ public class CodeGraph {
         List<VarDeclFrag> fragments = new ArrayList<>();
         for (Object obj : astNode.fragments()) {
             VarDeclFrag vdf = (VarDeclFrag) buildNode((ASTNode) obj, vdStmt);
-            vdf.setType(type, typeStr);
+            vdf.setDeclType(type);
             fragments.add(vdf);
         }
         vdStmt.setFragments(fragments);
@@ -586,6 +583,556 @@ public class CodeGraph {
         whi.setBody(body);
 
         return whi;
+    }
+
+    private Node visit(Annotation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AnnotationExpr anno = new AnnotationExpr(astNode, filePath, start, end);
+        return anno;
+    }
+
+    private Node visit(ArrayAccess astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AryAcc aryAcc = new AryAcc(astNode, filePath, start, end);
+        // array
+        ExprNode array = (ExprNode) buildNode(astNode.getArray(), aryAcc);
+        aryAcc.setArray(array);
+        // index
+        ExprNode index = (ExprNode) buildNode(astNode.getIndex(), aryAcc);
+        aryAcc.setIndex(index);
+        // type
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
+        String typeStr = JavaASTUtil.getSimpleType(type);
+        TypeNode typ = (TypeNode) buildNode(type, aryAcc);
+        aryAcc.setType(typ, typeStr);
+
+        return aryAcc;
+    }
+
+    private Node visit(ArrayCreation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AryCreation arycr = new AryCreation(astNode, filePath, start, end);
+        // type
+        Type type = typeFromBinding(astNode.getAST(), astNode.getType().getElementType().resolveBinding());
+        if (type == null || type instanceof WildcardType) {
+            type = astNode.getType().getElementType();
+        }
+        TypeNode typ = (TypeNode) buildNode(astNode.getType().getElementType(), arycr);
+        String typStr = JavaASTUtil.getSimpleType(type);
+        arycr.setArrayType(typ, typStr);
+        arycr.setType(astNode.getType());
+        // dimension
+        ExprList dimlist = new ExprList(null, filePath, start, end);
+        List<ExprNode> dimension = new ArrayList<>();
+        for (Object obj : astNode.dimensions()) {
+            ExprNode dim = (ExprNode) buildNode((ASTNode) obj, arycr);
+            dimension.add(dim);
+        }
+        dimlist.setExprs(dimension);
+        arycr.setDimension(dimlist);
+        // initializer
+        if (astNode.getInitializer() != null) {
+            AryInitializer aryinit = (AryInitializer) buildNode(astNode.getInitializer(), arycr);
+            arycr.setInitializer(aryinit);
+        }
+
+        return arycr;
+    }
+
+    private AryInitializer visit(ArrayInitializer astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AryInitializer aryinit = new AryInitializer(astNode, filePath, start, end);
+        List<ExprNode> exprs = new ArrayList<>();
+        for (Object obj : astNode.expressions()) {
+            ExprNode expr = (ExprNode) buildNode((ASTNode) obj, aryinit);
+            exprs.add(expr);
+        }
+        aryinit.setExpressions(exprs);
+
+        return aryinit;
+    }
+
+    private AssignExpr visit(Assignment astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AssignExpr assign = new AssignExpr(astNode, filePath, start, end);
+        // left
+        ExprNode lhs = (ExprNode) buildNode(astNode.getLeftHandSide(), assign);
+        assign.setLeftHandSide(lhs);
+        // right
+        ExprNode rhs = (ExprNode) buildNode(astNode.getRightHandSide(), assign);
+        assign.setRightHandSide(rhs);
+        // operator
+        AssignOpr assignOpr = new AssignOpr(null, filePath, start, end);
+        assignOpr.setOperator(astNode.getOperator());
+        assignOpr.setParent(assign);
+        assign.setOperator(assignOpr);
+
+        return assign;
+    }
+
+    private BoolLiteral visit(BooleanLiteral astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        BoolLiteral literal = new BoolLiteral(astNode, filePath, start, end);
+        literal.setValue(astNode.booleanValue());
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
+        literal.setType(type);
+
+        return literal;
+    }
+
+    private CastExpr visit(CastExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        CastExpr cast = new CastExpr(astNode, filePath, start, end);
+        // type
+        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), cast);
+        cast.setCastType(typeNode);
+        // expression
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), cast);
+        cast.setExpression(expr);
+        cast.setType(astNode.getType());
+
+        return cast;
+    }
+
+    private CharLiteral visit(CharacterLiteral astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        CharLiteral literal = new CharLiteral(astNode, filePath, start, end);
+        literal.setValue(astNode.charValue());
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
+        literal.setType(type);
+
+        return literal;
+    }
+
+    private ClassInstanceCreationExpr visit(ClassInstanceCreation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ClassInstanceCreationExpr classCreation = new ClassInstanceCreationExpr(astNode, filePath, start, end);
+
+        if (astNode.getExpression() != null) {
+            ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), classCreation);
+            classCreation.setExpression(expr);
+        }
+
+        if (astNode.getAnonymousClassDeclaration() != null) {
+            AnonymousClassDecl anony = (AnonymousClassDecl) buildNode(astNode.getAnonymousClassDeclaration(), classCreation);
+            classCreation.setAnonymousClassDecl(anony);
+        }
+
+        ExprList exprList = new ExprList(null, filePath, start, end);
+        List<ExprNode> argus = new ArrayList<>();
+        for (Object obj : astNode.arguments()) {
+            ExprNode arg = (ExprNode) buildNode((ASTNode) obj, exprList);
+            argus.add(arg);
+        }
+        exprList.setExprs(argus);
+        classCreation.setArguments(exprList);
+
+        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), classCreation);
+        classCreation.setClassType(typeNode);
+        classCreation.setType(astNode.getType());
+
+        return classCreation;
+    }
+
+    private AnonymousClassDecl visit(AnonymousClassDeclaration astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        AnonymousClassDecl anony = new AnonymousClassDecl(astNode, filePath, start, end);
+        return anony;
+    }
+
+    private ConditionalExpr visit(ConditionalExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ConditionalExpr condExpr = new ConditionalExpr(astNode, filePath, start, end);
+
+        ExprNode condition = (ExprNode) buildNode(astNode.getExpression(), condExpr);
+        condExpr.setCondition(condition);
+
+        ExprNode thenExpr = (ExprNode) buildNode(astNode.getThenExpression(), condExpr);
+        condExpr.setThenExpr(thenExpr);
+
+        ExprNode elseExpr = (ExprNode) buildNode(astNode.getElseExpression(), condExpr);
+        condExpr.setElseExpr(elseExpr);
+
+        return condExpr;
+    }
+
+    private CreationRef visit(CreationReference astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        CreationRef cref = new CreationRef(astNode, filePath, start, end);
+        // TODO: parse nodes for CreationReference
+        return cref;
+    }
+
+    private ExprMethodRef visit(ExpressionMethodReference astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ExprMethodRef exprMethodRef = new ExprMethodRef(astNode, filePath, start, end);
+        // TODO: parse nodes for ExpressionMethodReference
+        return exprMethodRef;
+    }
+
+    private FieldAcc visit(FieldAccess astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        FieldAcc fieldAcc = new FieldAcc(astNode, filePath, start, end);
+
+        ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), fieldAcc);
+        fieldAcc.setExpression(expr);
+
+        SimpName iden = (SimpName) buildNode(astNode.getName(), fieldAcc);
+        fieldAcc.setIdentifier(iden);
+
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
+        fieldAcc.setType(type);
+
+        return fieldAcc;
+    }
+
+    private InfixExpr visit(InfixExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        InfixExpr infixExpr = new InfixExpr(astNode, filePath, start, end);
+
+        ExprNode lhs = (ExprNode) buildNode(astNode.getLeftOperand(), infixExpr);
+        infixExpr.setLeftHandSide(lhs);
+
+        ExprNode rhs = (ExprNode) buildNode(astNode.getRightOperand(), infixExpr);
+        infixExpr.setRightHandSide(rhs);
+
+        InfixOpr infixOpr = new InfixOpr(null, filePath, start, end);
+        infixOpr.setOperator(astNode.getOperator());
+        infixExpr.setOperatior(infixOpr);
+
+        if (astNode.hasExtendedOperands()) {
+            lhs = infixExpr;
+            for (Object obj : astNode.extendedOperands()) {
+                rhs = (ExprNode) buildNode((Expression) obj, infixExpr);
+                infixExpr = new InfixExpr((ASTNode) obj, filePath, start, end);
+                infixExpr.setLeftHandSide(lhs);
+                infixExpr.setRightHandSide(rhs);
+
+                infixOpr = new InfixOpr(null, filePath, start, end);
+                infixOpr.setOperator(astNode.getOperator());
+
+                lhs = infixExpr;
+            }
+        }
+
+        return infixExpr;
+    }
+
+    private InstanceofExpr visit(InstanceofExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        InstanceofExpr instanceofExpr = new InstanceofExpr(astNode, filePath, start, end);
+
+        ExprNode expr = (ExprNode) buildNode(astNode.getLeftOperand(), instanceofExpr);
+        instanceofExpr.setExpression(expr);
+
+        TypeNode instType = (TypeNode) buildNode(astNode.getRightOperand(), instanceofExpr);
+        instanceofExpr.setInstanceType(instType);
+
+        return instanceofExpr;
+    }
+
+    private LambdaExpr visit(LambdaExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        LambdaExpr lambdaExpr = new LambdaExpr(astNode, filePath, start, end);
+        // TODO: parse nodes for lambda expression
+        return lambdaExpr;
+    }
+
+    private MethodInvoc visit(MethodInvocation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        MethodInvoc methodInvoc = new MethodInvoc(astNode, filePath, start, end);
+
+        ExprNode expr = null;
+        if (astNode.getExpression() != null) {
+            expr = (ExprNode) buildNode(astNode.getExpression(), methodInvoc);
+            methodInvoc.setExpression(expr);
+        }
+
+        SimpName iden = (SimpName) buildNode(astNode.getName(), methodInvoc);
+        methodInvoc.setName(iden);
+
+        ExprList exprList = new ExprList(null, filePath, start, end);
+        List<ExprNode> args = new ArrayList<>();
+        for (Object obj : astNode.arguments()) {
+            ExprNode arg = (ExprNode) buildNode((ASTNode) obj, exprList);
+            args.add(arg);
+        }
+        exprList.setExprs(args);
+        methodInvoc.setArguments(exprList);
+
+        return methodInvoc;
+    }
+
+    private MethodRef visit(MethodReference astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        MethodRef mref = new MethodRef(astNode, filePath, start, end);
+        return mref;
+    }
+
+    private SimpName visit(SimpleName astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SimpName sname = new SimpName(astNode, filePath, start, end);
+
+        String name = astNode.getFullyQualifiedName();
+        sname.setName(name);
+
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
+        sname.setType(type);
+
+        return sname;
+    }
+
+    private QuaName visit(QualifiedName astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        QuaName qname = new QuaName(astNode, filePath, start, end);
+        // Name . SimpleName
+        SimpName sname = (SimpName) buildNode(astNode.getName(), qname);
+        qname.setName(sname);
+
+        NameExpr name = (NameExpr) buildNode(astNode.getQualifier(), qname);
+        qname.setQualifier(name);
+
+        return qname;
+    }
+
+    private NulLiteral visit(NullLiteral astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        NulLiteral literal = new NulLiteral(astNode, filePath, start, end);
+        return literal;
+    }
+
+    private NumLiteral visit(NumberLiteral astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        NumLiteral literal = new NumLiteral(astNode, filePath, start, end);
+
+        String value = astNode.getToken();
+        literal.setValue(value);
+
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
+        literal.setType(type);
+
+        return literal;
+    }
+
+    private ParenExpr visit(ParenthesizedExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ParenExpr parenthesiszedExpr = new ParenExpr(astNode, filePath, start, end);
+
+        ExprNode expression = (ExprNode) buildNode(astNode.getExpression(), parenthesiszedExpr);
+        parenthesiszedExpr.setExpr(expression);
+
+        return parenthesiszedExpr;
+    }
+
+    private PostfixExpr visit(PostfixExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        PostfixExpr postfixExpr = new PostfixExpr(astNode, filePath, start, end);
+
+        ExprNode expr = (ExprNode) buildNode(astNode.getOperand(), postfixExpr);
+        postfixExpr.setExpr(expr);
+
+        PostfixOpr postfixOpr = new PostfixOpr(null, filePath, start, end);
+        postfixOpr.setOperator(astNode.getOperator());
+        postfixExpr.setOpr(postfixOpr);
+
+        return postfixExpr;
+    }
+
+    private PrefixExpr visit(PrefixExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        PrefixExpr prefixExpr = new PrefixExpr(astNode, filePath, start, end);
+
+        ExprNode expr = (ExprNode) buildNode(astNode.getOperand(), prefixExpr);
+        prefixExpr.setExpr(expr);
+
+        PrefixOpr prefixOpr = new PrefixOpr(null, filePath, start, end);
+        prefixOpr.setOperator(astNode.getOperator());
+        prefixExpr.setOpr(prefixOpr);
+
+        return prefixExpr;
+    }
+
+    private StrLiteral visit(StringLiteral astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        StrLiteral literal = new StrLiteral(astNode, filePath, start, end);
+
+        literal.setLiteralValue(astNode.getLiteralValue());
+        literal.setEscapedValue(astNode.getEscapedValue());
+
+        return literal;
+    }
+
+    private SuperFieldAcc visit(SuperFieldAccess astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SuperFieldAcc superFieldAcc = new SuperFieldAcc(astNode, filePath, start, end);
+
+        SimpName iden = (SimpName) buildNode(astNode.getName(), superFieldAcc);
+        superFieldAcc.setIdentifier(iden);
+
+        if (astNode.getQualifier() != null) {
+            QuaName qname = (QuaName) buildNode(astNode.getQualifier(), superFieldAcc);
+            superFieldAcc.setQualifier(qname);
+        }
+
+        return superFieldAcc;
+    }
+
+    private SuperMethodInvoc visit(SuperMethodInvocation astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SuperMethodInvoc superMethodInvoc = new SuperMethodInvoc(astNode, filePath, start, end);
+
+        SimpName name = (SimpName) buildNode(astNode.getName(), superMethodInvoc);
+        superMethodInvoc.setName(name);
+
+        if (astNode.getQualifier() != null) {
+            QuaName qualifier = (QuaName) buildNode(astNode.getQualifier(), superMethodInvoc);
+            superMethodInvoc.setQualifier(qualifier);
+        }
+
+        ExprList exprList = new ExprList(null, filePath, start, end);
+        List<ExprNode> args = new ArrayList<>();
+        for (Object obj : astNode.arguments()) {
+            ExprNode arg = (ExprNode) buildNode((ASTNode) obj, exprList);
+            args.add(arg);
+        }
+        exprList.setExprs(args);
+        superMethodInvoc.setArguments(exprList);
+
+        return superMethodInvoc;
+    }
+
+    private SuperMethodRef visit(SuperMethodReference astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SuperMethodRef superMethodRef = new SuperMethodRef(astNode, filePath, start, end);
+        // TODO: parse nodes for SuperMethodReference
+        return superMethodRef;
+    }
+
+    private ThisExpr visit(ThisExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        ThisExpr thisExpr = new ThisExpr(astNode, filePath, start, end);
+        return thisExpr;
+    }
+
+    private TypLiteral visit(TypeLiteral astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        TypLiteral literal = new TypLiteral(astNode, filePath, start, end);
+
+        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), literal);
+        literal.setValue(typeNode);
+
+        return literal;
+    }
+
+    private TypeMethodRef visit(TypeMethodReference astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        TypeMethodRef typeMethodRef = new TypeMethodRef(astNode, filePath, start, end);
+        // TODO: parse nodes for TypeMethodReference
+        return typeMethodRef;
+    }
+
+    private VarDeclExpr visit(VariableDeclarationExpression astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        VarDeclExpr varDeclExpr = new VarDeclExpr(astNode, filePath, start, end);
+
+        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), varDeclExpr);
+        varDeclExpr.setDeclType(typeNode);
+
+        List<VarDeclFrag> fragments = new ArrayList<>();
+        for (Object obj : astNode.fragments()) {
+            VarDeclFrag vdf = (VarDeclFrag) buildNode((ASTNode) obj, varDeclExpr);
+            vdf.setDeclType(typeNode);
+            fragments.add(vdf);
+        }
+        varDeclExpr.setFragments(fragments);
+
+
+        return varDeclExpr;
+    }
+
+    private VarDeclFrag visit(VariableDeclarationFragment astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        VarDeclFrag vdf = new VarDeclFrag(astNode, filePath, start, end);
+
+        SimpName iden = (SimpName) buildNode(astNode.getName(), vdf);
+        vdf.setName(iden);
+
+        vdf.setDimensions(astNode.getExtraDimensions());
+
+        if (astNode.getInitializer() != null) {
+            ExprNode expr = (ExprNode) buildNode(astNode.getInitializer(), vdf);
+            vdf.setExpr(expr);
+        }
+
+        return vdf;
+    }
+
+    private SingleVarDecl visit(SingleVariableDeclaration astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        SingleVarDecl svd = new SingleVarDecl(astNode, filePath, start, end);
+
+        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), svd);
+        svd.setDeclType(typeNode);
+
+        if (astNode.getInitializer() != null) {
+            ExprNode init = (ExprNode) buildNode(astNode.getInitializer(), svd);
+            svd.setInitializer(init);
+        }
+
+        SimpName name = (SimpName) buildNode(astNode.getName(), svd);
+        svd.setName(name);
+
+        return svd;
+    }
+
+    private TypeNode visit(Type astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        TypeNode typeNode = new TypeNode(astNode, filePath, start, end);
+
+        Type type = typeFromBinding(astNode.getAST(), astNode.resolveBinding());
+        if (type == null || type instanceof WildcardType) {
+            type = astNode;
+        }
+        typeNode.setType(type);
+
+        return typeNode;
     }
 
     public void setName(String name) {
@@ -646,5 +1193,64 @@ public class CodeGraph {
             blk.setStatement(stmts);
         }
         return blk;
+    }
+
+    private static Type typeFromBinding(AST ast, ITypeBinding typeBinding) {
+        if (typeBinding == null) {
+            return ast.newWildcardType();
+        }
+
+        if (typeBinding.isPrimitive()) {
+            return ast.newPrimitiveType(
+                    PrimitiveType.toCode(typeBinding.getName()));
+        }
+
+        if (typeBinding.isCapture()) {
+            ITypeBinding wildCard = typeBinding.getWildcard();
+            WildcardType capType = ast.newWildcardType();
+            ITypeBinding bound = wildCard.getBound();
+            if (bound != null) {
+                capType.setBound(typeFromBinding(ast, bound),
+                        wildCard.isUpperbound());
+            }
+            return capType;
+        }
+
+        if (typeBinding.isArray()) {
+            Type elType = typeFromBinding(ast, typeBinding.getElementType());
+            return ast.newArrayType(elType, typeBinding.getDimensions());
+        }
+
+        if (typeBinding.isParameterizedType()) {
+            ParameterizedType type = ast.newParameterizedType(
+                    typeFromBinding(ast, typeBinding.getErasure()));
+
+            @SuppressWarnings("unchecked")
+            List<Type> newTypeArgs = type.typeArguments();
+            for (ITypeBinding typeArg : typeBinding.getTypeArguments()) {
+                newTypeArgs.add(typeFromBinding(ast, typeArg));
+            }
+
+            return type;
+        }
+
+        if (typeBinding.isWildcardType()) {
+            WildcardType type = ast.newWildcardType();
+            if (typeBinding.getBound() != null) {
+                type.setBound(typeFromBinding(ast, typeBinding.getBound()));
+            }
+            return type;
+        }
+
+        // simple or raw type
+        String qualName = typeBinding.getName();
+        if ("".equals(qualName)) {
+            return ast.newWildcardType();
+        }
+        try {
+            return ast.newSimpleType(ast.newName(qualName));
+        } catch (Exception e) {
+            return ast.newWildcardType();
+        }
     }
 }

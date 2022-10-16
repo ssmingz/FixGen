@@ -4,33 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="refactor CodeGraph">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add parsing statement node part">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/BaseEdge.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/BaseNode.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/DataNode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/EntryNode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AnnotationExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AnnotationExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryAcc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AssignExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AssignExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/BoolLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/BoolLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CastExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CastExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CharLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CharLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ClassInstanceCreationExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ClassInstanceCreationExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ConditionalExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ConditionalExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CreationRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CreationRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprMethodRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprMethodRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/FieldAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/FieldAcc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/InfixExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/InfixExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/InstanceofExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/InstanceofExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/LambdaExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/LambdaExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/MethodInvoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/MethodInvoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/MethodRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/MethodRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NameExpr.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NulLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NulLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NumLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NumLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ParenExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ParenExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PostfixExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PostfixExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PrefixExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PrefixExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/QuaName.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/QuaName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SimpName.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SimpName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/StrLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/StrLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SuperFieldAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SuperFieldAcc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SuperMethodInvoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SuperMethodInvoc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SuperMethodRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SuperMethodRef.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ThisExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ThisExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/TypLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/TypLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/TypeMethodRef.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/TypeMethodRef.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/VarDeclExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/VarDeclExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ConstructorInvoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ConstructorInvoc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ContinueStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ContinueStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/DoStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/DoStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/EmptyStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/EmptyStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/EnhancedForStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/EnhancedForStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ExprStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ExprStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ForStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ForStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/IfStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/IfStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/LabeledStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/LabeledStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ReturnStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ReturnStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/SuperConstructorInvoc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/SuperConstructorInvoc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/SwitchStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/SwitchStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/SynchronizedStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/SynchronizedStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ThrowStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/ThrowStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/TryStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/TryStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/TypeDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/TypeDeclStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/VarDeclStmt.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/WhileStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/WhileStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/type/TypeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/type/TypeNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/SingleVarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/SingleVarDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/VarDeclFrag.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/VarDeclFrag.java" afterDir="false" />
     </list>
@@ -150,7 +164,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665470163186</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add parsing statement node part">
+      <created>1665824859778</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1665824859778</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -166,7 +187,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init codegraph" />
-    <option name="LAST_COMMIT_MESSAGE" value="init codegraph" />
+    <MESSAGE value="add parsing statement node part" />
+    <option name="LAST_COMMIT_MESSAGE" value="add parsing statement node part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

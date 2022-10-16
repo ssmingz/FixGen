@@ -55,5 +55,7 @@ public abstract class Node {
         inEdges.add(edge);
     }
 
-
+    public void setParent(Node node) {
+        _parent = node;
+    }
 }

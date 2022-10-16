@@ -294,6 +294,7 @@ public class GraphBuilder {
     public ArrayList<CodeGraph> buildGraphs(String srcCode, String path, String name, String[] classpaths) {
         ArrayList<CodeGraph> graphs = new ArrayList<>();
         CompilationUnit cu = (CompilationUnit) JavaASTUtil.parseSource(srcCode, path, name, classpaths);
+        currentCU = cu;
         for (int i = 0; i < cu.types().size(); i++) {
             if (cu.types().get(i) instanceof TypeDeclaration) {
                 graphs.addAll(buildGraphs((TypeDeclaration) cu.types().get(i), path, ""));
@@ -318,10 +319,10 @@ public class GraphBuilder {
         String sig = JavaASTUtil.buildSignature(method);
         System.out.println(filepath + " " + name + sig);
         CodeGraph g = new CodeGraph(new GraphBuildingContext(), configuration);
-        g.buildNode(method, null);
         g.setFilePath(filepath);
         g.setName(name + sig);
         g.setCompilationUnit(currentCU);
+        g.entryNode = g.buildNode(method, null);
         return g;
     }
 
