@@ -3,6 +3,7 @@ package model;
 import model.graph.node.AnonymousClassDecl;
 import model.graph.node.CatClause;
 import model.graph.node.Node;
+import model.graph.node.bodyDecl.FieldDecl;
 import model.graph.node.bodyDecl.MethodDecl;
 import model.graph.node.expr.*;
 import model.graph.node.expr.MethodRef;
@@ -33,11 +34,37 @@ public class CodeGraph {
         this.configuration = configuration;
     }
 
+    public void buildFieldNode(TypeDeclaration astNode, Node parent) {
+        for (FieldDeclaration f : astNode.getFields()) {
+            String fieldType = JavaASTUtil.getSimpleType(f.getType());
+            for (int i = 0; i < f.fragments().size(); i++) {
+                VariableDeclarationFragment vdf = (VariableDeclarationFragment) f.fragments().get(i);
+                String fieldName = vdf.getName().getIdentifier();
+                for (int j = 0; j < vdf.getExtraDimensions(); j++)
+                    fieldType += "[]";
+
+                FieldDecl fieldNode = (FieldDecl) buildNode(f, parent);
+                if (parent instanceof MethodDecl) {
+                    ((MethodDecl) parent).setFieldDecl(fieldNode);
+                }
+            }
+        }
+        ASTNode p = astNode.getParent();
+        if (p != null) {
+            if (p instanceof TypeDeclaration) {
+                buildFieldNode((TypeDeclaration) p, parent);
+            }
+        }
+    }
+
     public Node buildNode(ASTNode astNode, Node parent) {
         if (astNode == null) {
             return null;
         }
-        if (astNode instanceof MethodDeclaration) {
+
+        if (astNode instanceof FieldDeclaration) {
+            return visit((FieldDeclaration) astNode, parent);
+        } else if (astNode instanceof MethodDeclaration) {
             return visit((MethodDeclaration) astNode, parent);
         } else if (astNode instanceof CatchClause) {
             return visit((CatchClause) astNode, parent);
@@ -113,6 +140,8 @@ public class CodeGraph {
             return visit((FieldAccess) astNode, parent);
         } else if (astNode instanceof InfixExpression) {
             return visit((InfixExpression) astNode, parent);
+        } else if (astNode instanceof InstanceofExpression) {
+            return visit((InstanceofExpression) astNode, parent);
         } else if (astNode instanceof LambdaExpression) {
             return visit((LambdaExpression) astNode, parent);
         } else if (astNode instanceof MethodInvocation) {
@@ -159,6 +188,24 @@ public class CodeGraph {
             System.out.println("UNKNOWN ASTNode type : " + astNode.toString());
             return null;
         }
+    }
+
+    private FieldDecl visit(FieldDeclaration astNode, Node parent) {
+        int start = cu.getLineNumber(astNode.getStartPosition());
+        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+        FieldDecl fieldDecl = new FieldDecl(astNode, filePath, start, end);
+
+        TypeNode declType = (TypeNode) buildNode(astNode.getType(), fieldDecl);
+        fieldDecl.setDeclType(declType);
+
+        List<VarDeclFrag> frags = new ArrayList<>();
+        for (Object obj : astNode.fragments()) {
+            VarDeclFrag vdf = (VarDeclFrag) buildNode((ASTNode) obj, fieldDecl);
+            frags.add(vdf);
+        }
+        fieldDecl.setFrags(frags);
+
+        return fieldDecl;
     }
 
     private Node visit(MethodDeclaration astNode, Node parent) {

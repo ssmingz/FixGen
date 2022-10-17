@@ -2,7 +2,6 @@ package utils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.jdt.core.JavaCore;
@@ -83,6 +82,16 @@ public class JavaASTUtil {
             sb.append(JavaASTUtil.getSimpleType(svd.getType()) + "#");
         }
         return sb.toString();
+    }
+
+    public static String buildSignature(AbstractTypeDeclaration type) {
+        if (type.getRoot() instanceof CompilationUnit) {
+            CompilationUnit cu = (CompilationUnit) type.getRoot();
+            String prefix = cu.getPackage() == null ? "" : cu.getPackage().getName().getFullyQualifiedName() + ".";
+            String classname = prefix + type.getName().getIdentifier();
+            return classname;
+        }
+        return null;
     }
 
     public static String getSimpleType(Type type) {

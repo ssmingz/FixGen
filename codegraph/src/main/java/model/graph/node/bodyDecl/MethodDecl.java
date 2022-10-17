@@ -29,6 +29,8 @@ public class MethodDecl extends Node {
     private List<String> _throws;
 
     private BlockStmt _body;
+
+    private List<FieldDecl> _fieldVariables = new ArrayList<>();
     public MethodDecl(ASTNode astNode, String fileName, int startLine, int endLine) {
         super(astNode, fileName, startLine, endLine);
         _retType = null;
@@ -63,5 +65,10 @@ public class MethodDecl extends Node {
     public void setBody(BlockStmt blk) {
         _body = blk;
         Edge.createEdge(this, blk, new ASTEdge(this, blk));
+    }
+
+    public void setFieldDecl(FieldDecl fieldNode) {
+        _fieldVariables.add(fieldNode);
+        Edge.createEdge(this, fieldNode, new ASTEdge(this, fieldNode));
     }
 }
