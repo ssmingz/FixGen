@@ -15,11 +15,11 @@ public class InstanceofExpr extends ExprNode {
 
     public void setExpression(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setInstanceType(TypeNode instType) {
         _instanceType = instType;
-        Edge.createEdge(this, instType, new ASTEdge(this, instType));
+        new ASTEdge(this, instType);
     }
 }

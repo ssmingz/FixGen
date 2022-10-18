@@ -26,13 +26,13 @@ public class VarDeclStmt extends StmtNode{
     public void setDeclType(TypeNode type, String typeStr) {
         _declType = type;
         _typeStr = typeStr;
-        Edge.createEdge(this, type, new ASTEdge(this, type));
+        new ASTEdge(this, type);
     }
 
     public void setFragments(List<VarDeclFrag> fragments) {
         _fragments = fragments;
         for (VarDeclFrag obj : fragments) {
-            Edge.createEdge(this, obj, new ASTEdge(this, obj));
+            new ASTEdge(this, obj);
         }
     }
 }

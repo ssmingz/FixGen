@@ -18,21 +18,25 @@ public class ForStmt extends StmtNode{
 
     public void setInitializer(ExprList initExprList) {
         _initializer = initExprList;
-        Edge.createEdge(this, initExprList, new ASTEdge(this, initExprList));
+        new ASTEdge(this, initExprList);
     }
 
     public void setCondition(ExprNode condition) {
         _condition = condition;
-        Edge.createEdge(this, condition, new ASTEdge(this, condition));
+        new ASTEdge(this, condition);
     }
 
     public void setUpdaters(ExprList exprList) {
         _updater = exprList;
-        Edge.createEdge(this, exprList, new ASTEdge(this, exprList));
+        new ASTEdge(this, exprList);
     }
 
     public void setBody(StmtNode body) {
         _body = body;
-        Edge.createEdge(this, body, new ASTEdge(this, body));
+        new ASTEdge(this, body);
+    }
+
+    public ExprNode getCondition() {
+        return _condition;
     }
 }

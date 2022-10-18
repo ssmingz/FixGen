@@ -24,6 +24,7 @@ public class GraphBuilder {
     private final GraphConfiguration configuration;
 
     private CompilationUnit currentCU = null;
+    private TypeDeclaration currentType = null;
 
     public GraphBuilder(GraphConfiguration configuration) {
         this.configuration = configuration;
@@ -129,9 +130,9 @@ public class GraphBuilder {
      */
     public ArrayList<CodeGraph> buildGraphs(TypeDeclaration type, String path, String prefix) {
         ArrayList<CodeGraph> graphs = new ArrayList<>();
+        currentType = type;
         for (MethodDeclaration method : type.getMethods()) {
             CodeGraph g = buildGraph(method, path, prefix + type.getName().getIdentifier() + ".");
-            g.buildFieldNode(type, g.entryNode);
             graphs.add(g);
         }
         for (TypeDeclaration inner : type.getTypes()) {
@@ -150,7 +151,8 @@ public class GraphBuilder {
         g.setFilePath(filepath);
         g.setName(name + sig);
         g.setCompilationUnit(currentCU);
-        g.entryNode = g.buildNode(method, null);
+        g.buildFieldNode(currentType);
+        g.entryNode = g.buildNode(method, null, null);
         return g;
     }
 

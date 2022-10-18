@@ -16,7 +16,7 @@ public class BlockStmt extends StmtNode {
     public void setStatement(List<StmtNode> stmts) {
         _stmtlist = stmts;
         for (StmtNode obj : stmts) {
-            Edge.createEdge(this, obj, new ASTEdge(this, obj));
+            new ASTEdge(this, obj);
         }
     }
 }

@@ -19,16 +19,16 @@ public class SingleVarDecl extends ExprNode {
 
     public void setDeclType(TypeNode typeNode) {
         _declType = typeNode;
-        Edge.createEdge(this, typeNode, new ASTEdge(this, typeNode));
+        new ASTEdge(this, typeNode);
     }
 
     public void setInitializer(ExprNode init) {
         _initializer = init;
-        Edge.createEdge(this, init, new ASTEdge(this, init));
+        new ASTEdge(this, init);
     }
 
     public void setName(SimpName name) {
         _name = name;
-        Edge.createEdge(this, name, new ASTEdge(this, name));
+        new ASTEdge(this, name);
     }
 }

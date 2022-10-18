@@ -14,6 +14,6 @@ public class ContinueStmt extends StmtNode{
 
     public void setIdentifier(SimpName sName) {
         _identifier = sName;
-        Edge.createEdge(this, sName, new ASTEdge(this, sName));
+        new ASTEdge(this, sName);
     }
 }

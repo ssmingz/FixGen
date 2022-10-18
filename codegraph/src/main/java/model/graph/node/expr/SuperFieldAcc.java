@@ -14,11 +14,11 @@ public class SuperFieldAcc extends ExprNode {
 
     public void setIdentifier(SimpName iden) {
         _identifier = iden;
-        Edge.createEdge(this, iden, new ASTEdge(this, iden));
+        new ASTEdge(this, iden);
     }
 
     public void setQualifier(QuaName qname) {
         _qualifier = qname;
-        Edge.createEdge(this, qname, new ASTEdge(this, qname));
+        new ASTEdge(this, qname);
     }
 }

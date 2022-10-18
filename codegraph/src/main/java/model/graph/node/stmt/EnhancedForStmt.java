@@ -17,16 +17,16 @@ public class EnhancedForStmt extends StmtNode{
 
     public void setSVD(SingleVarDecl svd) {
         _singleVariableDeclaration = svd;
-        Edge.createEdge(this, svd, new ASTEdge(this, svd));
+        new ASTEdge(this, svd);
     }
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setBody(StmtNode stmt) {
         _statement = stmt;
-        Edge.createEdge(this, stmt, new ASTEdge(this, stmt));
+        new ASTEdge(this, stmt);
     }
 }

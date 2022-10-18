@@ -2,18 +2,17 @@ package model.graph.edge;
 
 import model.graph.node.Node;
 
-public class ASTEdge extends Edge{
+public class ControlEdge extends Edge{
 
-    public ASTEdge(Node source, Node target) {
+    public ControlEdge(Node source, Node target) {
         super(source, target);
-        this.type = EdgeType.AST;
+        this.type = EdgeType.CONTROL_DEP;
         this.source.addOutEdge(this);
         this.target.addInEdge(this);
     }
 
     @Override
     public String getLabel() {
-        return "ASTEdge";
+        return "Control Dep";
     }
-
 }

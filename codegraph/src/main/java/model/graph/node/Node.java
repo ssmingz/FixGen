@@ -1,5 +1,7 @@
 package model.graph.node;
 
+import model.CodeGraph;
+import model.graph.edge.ControlEdge;
 import model.graph.edge.Edge;
 import org.eclipse.jdt.core.dom.ASTNode;
 
@@ -18,10 +20,14 @@ public abstract class Node {
      * parent node in the abstract syntax tree
      */
     protected Node _parent;
+    /**
+     * control dependency
+     */
+    protected Node _controlDependency;
 
     public ArrayList<Edge> inEdges = new ArrayList<>();
     public ArrayList<Edge> outEdges = new ArrayList<>();
-
+    
     /**
      * @param oriNode   : original abstract syntax tree node in the JDT model
      * @param fileName  : source file name
@@ -57,5 +63,12 @@ public abstract class Node {
 
     public void setParent(Node node) {
         _parent = node;
+    }
+
+    public void setControlDependency(Node controller) {
+        _controlDependency = controller;
+        if (controller != null) {
+            new ControlEdge(controller, this);
+        }
     }
 }

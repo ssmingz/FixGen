@@ -15,11 +15,11 @@ public class LabeledStmt extends StmtNode{
 
     public void setLabel(SimpName lab) {
         _label = lab;
-        Edge.createEdge(this, lab, new ASTEdge(this, lab));
+        new ASTEdge(this, lab);
     }
 
     public void setBody(StmtNode body) {
         _body = body;
-        Edge.createEdge(this, body, new ASTEdge(this, body));
+        new ASTEdge(this, body);
     }
 }

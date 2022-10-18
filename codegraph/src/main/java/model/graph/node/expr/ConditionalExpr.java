@@ -15,16 +15,16 @@ public class ConditionalExpr extends ExprNode {
 
     public void setCondition(ExprNode condition) {
         _expression = condition;
-        Edge.createEdge(this, condition, new ASTEdge(this, condition));
+        new ASTEdge(this, condition);
     }
 
     public void setThenExpr(ExprNode thenExpr) {
         _thenExpression = thenExpr;
-        Edge.createEdge(this, thenExpr, new ASTEdge(this, thenExpr));
+        new ASTEdge(this, thenExpr);
     }
 
     public void setElseExpr(ExprNode elseExpr) {
         _elseExpression = elseExpr;
-        Edge.createEdge(this, elseExpr, new ASTEdge(this, elseExpr));
+        new ASTEdge(this, elseExpr);
     }
 }

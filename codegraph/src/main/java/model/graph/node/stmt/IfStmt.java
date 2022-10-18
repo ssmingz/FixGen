@@ -16,16 +16,16 @@ public class IfStmt extends StmtNode{
 
     public void setExpression(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setThen(StmtNode then) {
         _then = then;
-        Edge.createEdge(this, then, new ASTEdge(this, then));
+        new ASTEdge(this, then);
     }
 
     public void setElse(StmtNode els) {
         _else = els;
-        Edge.createEdge(this, els, new ASTEdge(this, els));
+        new ASTEdge(this, els);
     }
 }

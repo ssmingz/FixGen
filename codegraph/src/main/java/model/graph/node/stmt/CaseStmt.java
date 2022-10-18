@@ -13,6 +13,6 @@ public class CaseStmt extends StmtNode{
 
     public void setExpression(ExprNode expression) {
         _expression = expression;
-        Edge.createEdge(this, expression, new ASTEdge(this, expression));
+        new ASTEdge(this, expression);
     }
 }

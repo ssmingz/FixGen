@@ -17,7 +17,7 @@ public class ExprList extends Node {
     public void setExprs(List<ExprNode> exprs) {
         _exprs = exprs;
         for (ExprNode expr : exprs) {
-            Edge.createEdge(this, expr, new ASTEdge(this, expr));
+            new ASTEdge(this, expr);
         }
     }
 }

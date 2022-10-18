@@ -22,13 +22,13 @@ public class VarDeclFrag extends ExprNode {
 
     public void setDeclType(TypeNode type) {
         _type = type;
-        Edge.createEdge(this, type, new ASTEdge(this, type));
+        new ASTEdge(this, type);
 
     }
 
     public void setName(SimpName iden) {
         _name = iden;
-        Edge.createEdge(this, iden, new ASTEdge(this, iden));
+        new ASTEdge(this, iden);
     }
 
     public void setDimensions(int extraDimensions) {
@@ -37,6 +37,6 @@ public class VarDeclFrag extends ExprNode {
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 }

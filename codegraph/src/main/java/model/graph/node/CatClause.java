@@ -16,11 +16,11 @@ public class CatClause extends Node{
 
     public void setException(SingleVarDecl svd) {
         _exception = svd;
-        Edge.createEdge(this, svd, new ASTEdge(this, svd));
+        new ASTEdge(this, svd);
     }
 
     public void setBody(BlockStmt body) {
         _body = body;
-        Edge.createEdge(this, body, new ASTEdge(this, body));
+        new ASTEdge(this, body);
     }
 }

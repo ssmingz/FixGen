@@ -18,13 +18,13 @@ public class SwitchStmt extends StmtNode {
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setStatements(List<StmtNode> stmts) {
         _statements = stmts;
         for (StmtNode obj : stmts) {
-            Edge.createEdge(this, obj, new ASTEdge(this, obj));
+            new ASTEdge(this, obj);
         }
     }
 }

@@ -16,7 +16,7 @@ public class AryInitializer extends ExprNode {
     public void setExpressions(List<ExprNode> exprs) {
         _expressions = exprs;
         for (ExprNode expr : exprs) {
-            Edge.createEdge(this, expr, new ASTEdge(this, expr));
+            new ASTEdge(this, expr);
         }
     }
 }

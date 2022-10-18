@@ -14,11 +14,11 @@ public class PostfixExpr extends ExprNode {
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setOpr(PostfixOpr postfixOpr) {
         _operator = postfixOpr;
-        Edge.createEdge(this, postfixOpr, new ASTEdge(this, postfixOpr));
+        new ASTEdge(this, postfixOpr);
     }
 }

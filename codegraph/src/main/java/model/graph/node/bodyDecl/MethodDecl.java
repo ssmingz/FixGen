@@ -42,19 +42,19 @@ public class MethodDecl extends Node {
 
     public void setRetType(TypeNode type, String typeStr) {
         _retType = type;
-        Edge.createEdge(this, type, new ASTEdge(this, type));
+        new ASTEdge(this, type);
         _retTypeStr = typeStr;
     }
 
     public void setName(SimpName name) {
         _name = name;
-        Edge.createEdge(this, name, new ASTEdge(this, name));
+        new ASTEdge(this, name);
     }
 
     public void setParameters(List<ExprNode> parameters) {
         _parameters = parameters;
         for (Object obj : parameters) {
-            Edge.createEdge(this, (ExprNode) obj, new ASTEdge(this, (ExprNode) obj));
+            new ASTEdge(this, (ExprNode) obj);
         }
     }
 
@@ -64,11 +64,11 @@ public class MethodDecl extends Node {
 
     public void setBody(BlockStmt blk) {
         _body = blk;
-        Edge.createEdge(this, blk, new ASTEdge(this, blk));
+        new ASTEdge(this, blk);
     }
 
     public void setFieldDecl(FieldDecl fieldNode) {
         _fieldVariables.add(fieldNode);
-        Edge.createEdge(this, fieldNode, new ASTEdge(this, fieldNode));
+        new ASTEdge(this, fieldNode);
     }
 }

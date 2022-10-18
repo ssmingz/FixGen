@@ -18,21 +18,21 @@ public class ClassInstanceCreationExpr extends ExprNode {
 
     public void setExpression(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setAnonymousClassDecl(AnonymousClassDecl anony) {
         _anonymousClassDeclaration = anony;
-        Edge.createEdge(this, anony, new ASTEdge(this, anony));
+        new ASTEdge(this, anony);
     }
 
     public void setArguments(ExprList exprList) {
         _arguments = exprList;
-        Edge.createEdge(this, exprList, new ASTEdge(this, exprList));
+        new ASTEdge(this, exprList);
     }
 
     public void setClassType(TypeNode typeNode) {
         _classType = typeNode;
-        Edge.createEdge(this, typeNode, new ASTEdge(this, typeNode));
+        new ASTEdge(this, typeNode);
     }
 }

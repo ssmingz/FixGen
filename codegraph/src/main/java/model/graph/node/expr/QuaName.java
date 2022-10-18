@@ -14,11 +14,11 @@ public class QuaName extends NameExpr {
 
     public void setName(SimpName sname) {
         _name = sname;
-        Edge.createEdge(this, sname, new ASTEdge(this, sname));
+        new ASTEdge(this, sname);
     }
 
     public void setQualifier(NameExpr name) {
         _qualifier = name;
-        Edge.createEdge(this, name, new ASTEdge(this, name));
+        new ASTEdge(this, name);
     }
 }

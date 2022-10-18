@@ -15,16 +15,16 @@ public class AssignExpr extends ExprNode {
 
     public void setLeftHandSide(ExprNode lhs) {
         _lhs = lhs;
-        Edge.createEdge(this, lhs, new ASTEdge(this, lhs));
+        new ASTEdge(this, lhs);
     }
 
     public void setRightHandSide(ExprNode rhs) {
         _rhs = rhs;
-        Edge.createEdge(this, rhs, new ASTEdge(this, rhs));
+        new ASTEdge(this, rhs);
     }
 
     public void setOperator(AssignOpr assignOpr) {
         _opr = assignOpr;
-        Edge.createEdge(this, assignOpr, new ASTEdge(this, assignOpr));
+        new ASTEdge(this, assignOpr);
     }
 }

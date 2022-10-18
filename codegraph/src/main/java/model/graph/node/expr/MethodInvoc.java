@@ -15,16 +15,16 @@ public class MethodInvoc extends ExprNode{
 
     public void setExpression(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setName(SimpName iden) {
         _name = iden;
-        Edge.createEdge(this, iden, new ASTEdge(this, iden));
+        new ASTEdge(this, iden);
     }
 
     public void setArguments(ExprList exprList) {
         _arguments = exprList;
-        Edge.createEdge(this, exprList, new ASTEdge(this, exprList));
+        new ASTEdge(this, exprList);
     }
 }

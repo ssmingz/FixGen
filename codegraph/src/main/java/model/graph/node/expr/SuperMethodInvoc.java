@@ -15,16 +15,16 @@ public class SuperMethodInvoc extends ExprNode {
 
     public void setName(SimpName name) {
         _name = name;
-        Edge.createEdge(this, name, new ASTEdge(this, name));
+        new ASTEdge(this, name);
     }
 
     public void setQualifier(QuaName qualifier) {
         _qualifier = qualifier;
-        Edge.createEdge(this, qualifier, new ASTEdge(this, qualifier));
+        new ASTEdge(this, qualifier);
     }
 
     public void setArguments(ExprList exprList) {
         _arguments = exprList;
-        Edge.createEdge(this, exprList, new ASTEdge(this, exprList));
+        new ASTEdge(this, exprList);
     }
 }

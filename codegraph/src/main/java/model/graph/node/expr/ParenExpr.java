@@ -13,6 +13,6 @@ public class ParenExpr extends ExprNode {
 
     public void setExpr(ExprNode expression) {
         _expression = expression;
-        Edge.createEdge(this, expression, new ASTEdge(this, expression));
+        new ASTEdge(this, expression);
     }
 }

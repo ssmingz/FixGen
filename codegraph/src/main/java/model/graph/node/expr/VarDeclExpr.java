@@ -18,13 +18,13 @@ public class VarDeclExpr extends ExprNode {
 
     public void setDeclType(TypeNode typeNode) {
         _declType = typeNode;
-        Edge.createEdge(this, typeNode, new ASTEdge(this, typeNode));
+        new ASTEdge(this, typeNode);
     }
 
     public void setFragments(List<VarDeclFrag> fragments) {
         _fragments = fragments;
         for (VarDeclFrag frag : fragments) {
-            Edge.createEdge(this, frag, new ASTEdge(this, frag));
+            new ASTEdge(this, frag);
         }
     }
 }

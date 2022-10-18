@@ -15,11 +15,11 @@ public class AssertStmt extends StmtNode{
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setMessage(ExprNode message) {
         _message = message;
-        Edge.createEdge(this, message, new ASTEdge(this, message));
+        new ASTEdge(this, message);
     }
 }

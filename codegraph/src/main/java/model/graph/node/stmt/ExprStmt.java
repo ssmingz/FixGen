@@ -14,6 +14,6 @@ public class ExprStmt extends StmtNode{
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 }

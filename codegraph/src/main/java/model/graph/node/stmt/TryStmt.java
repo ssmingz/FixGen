@@ -21,24 +21,24 @@ public class TryStmt extends StmtNode{
     public void setResources(List<VarDeclExpr> resourceList) {
         _resources = resourceList;
         for (VarDeclExpr obj : resourceList) {
-            Edge.createEdge(this, obj, new ASTEdge(this, obj));
+            new ASTEdge(this, obj);
         }
     }
 
     public void setBody(BlockStmt blk) {
         _body = blk;
-        Edge.createEdge(this, blk, new ASTEdge(this, blk));
+        new ASTEdge(this, blk);
     }
 
     public void setCatchClause(List<CatClause> catches) {
         _catches = catches;
         for (CatClause obj : catches) {
-            Edge.createEdge(this, obj, new ASTEdge(this, obj));
+            new ASTEdge(this, obj);
         }
     }
 
     public void setFinallyBlock(BlockStmt finallyBlk) {
         _finally = finallyBlk;
-        Edge.createEdge(this, finallyBlk, new ASTEdge(this, finallyBlk));
+        new ASTEdge(this, finallyBlk);
     }
 }

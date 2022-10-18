@@ -15,12 +15,12 @@ public class InfixExpr extends ExprNode {
 
     public void setLeftHandSide(ExprNode lhs) {
         _lhs = lhs;
-        Edge.createEdge(this, lhs, new ASTEdge(this, lhs));
+        new ASTEdge(this, lhs);
     }
 
     public void setRightHandSide(ExprNode rhs) {
         _rhs = rhs;
-        Edge.createEdge(this, rhs, new ASTEdge(this, rhs));
+        new ASTEdge(this, rhs);
     }
 
     public void setOperatior(InfixOpr infixOpr) {

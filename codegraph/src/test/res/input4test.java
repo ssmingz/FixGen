@@ -34,10 +34,12 @@ public abstract class Node {
      * @param parent    : parent node in the abstract syntax tree
      */
     public Node(ASTNode oriNode, String fileName, int startLine, int endLine, Node parent) {
-        _fileName = fileName;
-        _startLine = startLine;
-        _endLine = endLine;
-        _astNode = oriNode;
-        _parent = parent;
+        if (oriNode != null) {
+            _fileName = fileName;
+            _startLine = startLine;
+            _endLine = endLine;
+            _astNode = oriNode;
+            _parent = parent;
+        }
     }
 }

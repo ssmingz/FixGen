@@ -15,11 +15,11 @@ public class CastExpr extends ExprNode {
 
     public void setCastType(TypeNode typeNode) {
         _castType = typeNode;
-        Edge.createEdge(this, typeNode, new ASTEdge(this, typeNode));
+        new ASTEdge(this, typeNode);
     }
 
     public void setExpression(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 }

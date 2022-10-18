@@ -20,13 +20,13 @@ public class FieldDecl extends ExprNode {
 
     public void setDeclType(TypeNode declType) {
         _declType = declType;
-        Edge.createEdge(this, declType, new ASTEdge(this, declType));
+        new ASTEdge(this, declType);
     }
 
     public void setFrags(List<VarDeclFrag> frags) {
         _fragments = frags;
         for (VarDeclFrag frag : frags) {
-            Edge.createEdge(this, frag, new ASTEdge(this, frag));
+            new ASTEdge(this, frag);
         }
     }
 }

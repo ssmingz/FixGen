@@ -17,6 +17,6 @@ public class ConstructorInvoc extends StmtNode {
 
     public void setArguments(ExprList argulist) {
         _argulist = argulist;
-        Edge.createEdge(this, argulist, new ASTEdge(this, argulist));
+        new ASTEdge(this, argulist);
     }
 }

@@ -22,16 +22,16 @@ public class AryCreation extends ExprNode{
     public void setArrayType(TypeNode typ, String typStr) {
         _elementType = typ;
         _elementTypeStr = typStr;
-        Edge.createEdge(this, typ, new ASTEdge(this, typ));
+        new ASTEdge(this, typ);
     }
 
     public void setDimension(ExprList dimension) {
         _dimension = dimension;
-        Edge.createEdge(this, dimension, new ASTEdge(this, dimension));
+        new ASTEdge(this, dimension);
     }
 
     public void setInitializer(AryInitializer aryinit) {
         _initializer = aryinit;
-        Edge.createEdge(this, aryinit, new ASTEdge(this, aryinit));
+        new ASTEdge(this, aryinit);
     }
 }

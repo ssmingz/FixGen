@@ -2,6 +2,7 @@ package model.graph.node.stmt;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.expr.ExprNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
@@ -15,11 +16,15 @@ public class SynchronizedStmt extends StmtNode {
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setBody(BlockStmt body) {
         _body = body;
-        Edge.createEdge(this, body, new ASTEdge(this, body));
+        new ASTEdge(this, body);
+    }
+
+    public ExprNode getExpression() {
+        return _expression;
     }
 }

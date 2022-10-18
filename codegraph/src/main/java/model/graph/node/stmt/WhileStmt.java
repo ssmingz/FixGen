@@ -15,11 +15,11 @@ public class WhileStmt extends StmtNode {
 
     public void setExpr(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setBody(StmtNode body) {
         _body = body;
-        Edge.createEdge(this, body, new ASTEdge(this, body));
+        new ASTEdge(this, body);
     }
 }

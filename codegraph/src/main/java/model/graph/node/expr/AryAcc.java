@@ -17,17 +17,17 @@ public class AryAcc extends ExprNode{
 
     public void setArray(ExprNode array) {
         _array = array;
-        Edge.createEdge(this, array, new ASTEdge(this, array));
+        new ASTEdge(this, array);
     }
 
     public void setIndex(ExprNode index) {
         _index = index;
-        Edge.createEdge(this, index, new ASTEdge(this, index));
+        new ASTEdge(this, index);
     }
 
     public void setType(TypeNode typ, String typeStr) {
         _type = typ;
         _typeStr = typeStr;
-        Edge.createEdge(this, typ, new ASTEdge(this, typ));
+        new ASTEdge(this, typ);
     }
 }

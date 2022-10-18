@@ -14,6 +14,6 @@ public class TypLiteral extends ExprNode {
 
     public void setValue(TypeNode typeNode) {
         _value = typeNode;
-        Edge.createEdge(this, typeNode, new ASTEdge(this, typeNode));
+        new ASTEdge(this, typeNode);
     }
 }

@@ -14,11 +14,11 @@ public class FieldAcc extends ExprNode {
 
     public void setExpression(ExprNode expr) {
         _expression = expr;
-        Edge.createEdge(this, expr, new ASTEdge(this, expr));
+        new ASTEdge(this, expr);
     }
 
     public void setIdentifier(SimpName iden) {
         _identifier = iden;
-        Edge.createEdge(this, iden, new ASTEdge(this, iden));
+        new ASTEdge(this, iden);
     }
 }

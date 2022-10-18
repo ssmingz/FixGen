@@ -3,8 +3,8 @@ package model.graph.edge;
 import model.graph.node.Node;
 
 public abstract class Edge {
-    public enum Type {AST};
-    public Type type;
+    public enum EdgeType {AST, CONTROL_DEP};
+    public EdgeType type;
     protected Node source;
     protected Node target;
     protected String label;
@@ -15,12 +15,6 @@ public abstract class Edge {
     }
 
     public abstract String getLabel();
-
-    public static void createEdge(Node source, Node target, Edge edge) {
-        if (edge instanceof ASTEdge) {
-            new ASTEdge(source, target);
-        }
-    }
 
     public Node getSource() {
         return source;
