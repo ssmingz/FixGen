@@ -35,11 +35,9 @@ public abstract class Node {
      */
     public Node(ASTNode oriNode, String fileName, int startLine, int endLine, Node parent) {
         if (oriNode != null) {
-            _fileName = fileName;
             _startLine = startLine;
-            _endLine = endLine;
-            _astNode = oriNode;
-            _parent = parent;
+            _endLine = endLine + _startLine;
+            testvar = _endLine + _startLine;
         }
     }
 }

@@ -15,6 +15,11 @@ public class AryAcc extends ExprNode{
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return _array.toNameString();
+    }
+
     public void setArray(ExprNode array) {
         _array = array;
         new ASTEdge(this, array);

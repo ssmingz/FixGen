@@ -5,17 +5,14 @@ import com.sun.org.apache.bcel.internal.generic.Type;
 import model.CodeGraph;
 import model.GraphBuildingContext;
 import model.GraphConfiguration;
-import model.graph.node.expr.SimpName;
+import model.graph.Scope;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
 import utils.FileIO;
 import utils.JavaASTUtil;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 import java.util.stream.Collectors;
 
 import static com.sun.org.apache.bcel.internal.Const.T_UNKNOWN;
@@ -152,7 +149,7 @@ public class GraphBuilder {
         g.setName(name + sig);
         g.setCompilationUnit(currentCU);
         g.buildFieldNode(currentType);
-        g.entryNode = g.buildNode(method, null, null);
+        g.entryNode = g.buildNode(method, null, new Scope(null));
         return g;
     }
 

@@ -10,6 +10,11 @@ public class InfixOpr extends ExprNode{
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setOperator(InfixExpression.Operator operator) {
         _operator = operator;
     }

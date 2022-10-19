@@ -9,7 +9,7 @@ import org.eclipse.jdt.core.dom.Type;
 
 import java.util.List;
 
-public class AryCreation extends ExprNode{
+public class AryCreation extends ExprNode {
     private TypeNode _elementType;
     private String _elementTypeStr;
     private ExprList _dimension;
@@ -17,6 +17,11 @@ public class AryCreation extends ExprNode{
 
     public AryCreation(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
+    }
+
+    @Override
+    public String toNameString() {
+        return null;
     }
 
     public void setArrayType(TypeNode typ, String typStr) {

@@ -18,6 +18,11 @@ public class FieldDecl extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setDeclType(TypeNode declType) {
         _declType = declType;
         new ASTEdge(this, declType);

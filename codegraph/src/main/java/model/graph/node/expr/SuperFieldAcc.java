@@ -12,6 +12,11 @@ public class SuperFieldAcc extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return _identifier.getName();
+    }
+
     public void setIdentifier(SimpName iden) {
         _identifier = iden;
         new ASTEdge(this, iden);

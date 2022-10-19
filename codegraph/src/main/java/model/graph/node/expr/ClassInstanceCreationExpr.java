@@ -16,6 +16,11 @@ public class ClassInstanceCreationExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setExpression(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

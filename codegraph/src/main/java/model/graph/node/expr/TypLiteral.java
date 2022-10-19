@@ -12,6 +12,11 @@ public class TypLiteral extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setValue(TypeNode typeNode) {
         _value = typeNode;
         new ASTEdge(this, typeNode);

@@ -6,4 +6,9 @@ public class SuperMethodRef extends ExprNode {
     public SuperMethodRef(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
     }
+
+    @Override
+    public String toNameString() {
+        return null;
+    }
 }

@@ -1,7 +1,6 @@
 package model.graph.node.varDecl;
 
 import model.graph.edge.ASTEdge;
-import model.graph.edge.Edge;
 import model.graph.node.Node;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.SimpName;
@@ -15,6 +14,11 @@ public class SingleVarDecl extends ExprNode {
 
     public SingleVarDecl(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
+    }
+
+    @Override
+    public String toNameString() {
+        return _name.getName();
     }
 
     public void setDeclType(TypeNode typeNode) {
@@ -31,4 +35,9 @@ public class SingleVarDecl extends ExprNode {
         _name = name;
         new ASTEdge(this, name);
     }
+
+    public Node getName() {
+        return _name;
+    }
+
 }

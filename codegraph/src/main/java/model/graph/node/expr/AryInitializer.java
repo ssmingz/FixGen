@@ -13,6 +13,11 @@ public class AryInitializer extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setExpressions(List<ExprNode> exprs) {
         _expressions = exprs;
         for (ExprNode expr : exprs) {

@@ -12,4 +12,11 @@ public class SimpName extends NameExpr {
     public void setName(String name) {
         _name = name;
     }
+
+    public String getName() { return _name; }
+
+    @Override
+    public String toNameString() {
+        return _name;
+    }
 }

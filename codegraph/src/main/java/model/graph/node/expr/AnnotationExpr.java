@@ -9,4 +9,9 @@ public class AnnotationExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
         _comment = oriNode.toString();
     }
+
+    @Override
+    public String toNameString() {
+        return null;
+    }
 }

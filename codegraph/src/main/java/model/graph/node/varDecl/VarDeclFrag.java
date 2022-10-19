@@ -20,6 +20,11 @@ public class VarDeclFrag extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return _name.getName();
+    }
+
     public void setDeclType(TypeNode type) {
         _type = type;
         new ASTEdge(this, type);
@@ -29,6 +34,10 @@ public class VarDeclFrag extends ExprNode {
     public void setName(SimpName iden) {
         _name = iden;
         new ASTEdge(this, iden);
+    }
+
+    public Node getName() {
+        return _name;
     }
 
     public void setDimensions(int extraDimensions) {

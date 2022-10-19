@@ -10,6 +10,11 @@ public class AssignOpr extends ExprNode{
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setOperator(Assignment.Operator operator) {
         _operator = operator;
     }

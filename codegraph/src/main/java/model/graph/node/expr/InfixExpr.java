@@ -13,6 +13,11 @@ public class InfixExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setLeftHandSide(ExprNode lhs) {
         _lhs = lhs;
         new ASTEdge(this, lhs);

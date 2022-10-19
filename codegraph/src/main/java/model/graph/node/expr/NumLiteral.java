@@ -9,6 +9,11 @@ public class NumLiteral extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setValue(String value) {
         _value = value;
     }

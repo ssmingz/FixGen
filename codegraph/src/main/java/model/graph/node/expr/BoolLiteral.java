@@ -9,6 +9,11 @@ public class BoolLiteral extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setValue(boolean booleanValue) {
         _value = booleanValue;
     }

@@ -13,6 +13,11 @@ public class ConditionalExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setCondition(ExprNode condition) {
         _expression = condition;
         new ASTEdge(this, condition);

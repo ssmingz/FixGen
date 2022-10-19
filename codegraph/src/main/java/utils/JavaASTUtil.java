@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
+import model.graph.node.Node;
+import model.graph.node.expr.AssignExpr;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
 
@@ -168,6 +170,5 @@ public class JavaASTUtil {
         int modifiers = vb.getModifiers();
         return Modifier.isFinal(modifiers) && Modifier.isStatic(modifiers);
     }
-
 }
 

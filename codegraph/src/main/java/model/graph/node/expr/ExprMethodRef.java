@@ -6,4 +6,9 @@ public class ExprMethodRef extends ExprNode {
     public ExprMethodRef(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
     }
+
+    @Override
+    public String toNameString() {
+        return null;
+    }
 }

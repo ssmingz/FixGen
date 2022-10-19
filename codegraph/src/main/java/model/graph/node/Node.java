@@ -1,11 +1,17 @@
 package model.graph.node;
 
-import model.CodeGraph;
+import model.graph.Scope;
+import model.graph.edge.ASTEdge;
 import model.graph.edge.ControlEdge;
+import model.graph.edge.DataEdge;
 import model.graph.edge.Edge;
+import model.graph.node.expr.NameExpr;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public abstract class Node {
     protected String _fileName;
@@ -23,10 +29,16 @@ public abstract class Node {
     /**
      * control dependency
      */
-    protected Node _controlDependency;
+    protected Node _controlDependency = null;
+    /**
+     * data dependency
+     */
+    protected Set<Node> _dataDependency = new HashSet<>();
 
     public ArrayList<Edge> inEdges = new ArrayList<>();
     public ArrayList<Edge> outEdges = new ArrayList<>();
+
+    private Scope _scope;
     
     /**
      * @param oriNode   : original abstract syntax tree node in the JDT model
@@ -70,5 +82,85 @@ public abstract class Node {
         if (controller != null) {
             new ControlEdge(controller, this);
         }
+    }
+
+    public void setDataDependency(Node controller) {
+        if (controller != null) {
+            if (controller.hasASTChildren()) {
+                for (Edge out : controller.outEdges) {
+                    if (out instanceof ASTEdge && out.getTarget() instanceof NameExpr) {
+                        // only for direct children
+                        new DataEdge(out.getTarget(), this);
+                    }
+                }
+            } else {
+                new DataEdge(controller, this);
+            }
+        }
+    }
+
+    public void addDataDepNode(Node controller) {
+        if (controller != null) {
+            if (controller.hasASTChildren()) {
+                for (Edge out : controller.outEdges) {
+                    if (out instanceof ASTEdge && out.getTarget() instanceof NameExpr) {
+                        // only for direct children
+                        _dataDependency.add(controller);
+                    }
+                }
+            } else {
+                _dataDependency.add(controller);
+            }
+        }
+    }
+
+    public void setScope(Scope scope) { _scope = scope; }
+
+    public boolean hasASTChildren() {
+        for (Edge out : outEdges) {
+            if (out instanceof ASTEdge)
+                return true;
+        }
+        return false;
+    }
+
+    public Node getDirectControlNode() {
+        return _controlDependency;
+    }
+
+    public List<Node> getRecursiveControlNodes() {
+        List<Node> all = new ArrayList<>();
+        if (_controlDependency != null) {
+            all.add(_controlDependency);
+            all.addAll(_controlDependency.getRecursiveControlNodes());
+        }
+        return all;
+    }
+
+    public Set<Node> getDirectDataDependentNodes() {
+        Set<Node> all = new HashSet<>();
+        all.addAll(_dataDependency);
+        for (Node ch : getDirectASTChildren()) {
+            all.addAll(ch.getDirectDataDependentNodes());
+        }
+        return all;
+    }
+
+    public List<Node> getRecursiveDataDependentNodes() {
+        List<Node> all = new ArrayList<>();
+        for (Node ch : getDirectDataDependentNodes()) {
+            all.add(ch);
+            all.addAll(ch.getRecursiveDataDependentNodes());
+        }
+        return all;
+    }
+
+    public List<Node> getDirectASTChildren() {
+        List<Node> ch = new ArrayList<>();
+        for (Edge e : outEdges) {
+            if (e instanceof ASTEdge)
+                ch.add(e.getTarget());
+        }
+        return ch;
     }
 }

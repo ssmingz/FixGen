@@ -8,4 +8,9 @@ public class TypeNode extends ExprNode {
     public TypeNode(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
     }
+
+    @Override
+    public String toNameString() {
+        return null;
+    }
 }

@@ -9,6 +9,11 @@ public class CharLiteral extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setValue(char charValue) {
         _value = charValue;
     }

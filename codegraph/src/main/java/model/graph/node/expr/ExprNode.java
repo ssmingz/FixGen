@@ -20,4 +20,6 @@ public abstract class ExprNode extends Node {
             _exprTypeStr = exprType.toString();
         }
     }
+
+    public abstract String toNameString();
 }

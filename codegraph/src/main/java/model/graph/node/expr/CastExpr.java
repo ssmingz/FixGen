@@ -13,6 +13,11 @@ public class CastExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toNameString() {
+        return null;
+    }
+
     public void setCastType(TypeNode typeNode) {
         _castType = typeNode;
         new ASTEdge(this, typeNode);
