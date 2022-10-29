@@ -26,7 +26,6 @@ public class CodeGraph {
 
     public Node entryNode = null;
     protected List<Node> fieldNodes = new ArrayList<>();
-    protected List<Node> statementNodes = new ArrayList<>();
     protected List<Node> allNodes = new ArrayList<>();
 
     protected CompilationUnit cu = null;
@@ -275,7 +274,6 @@ public class CodeGraph {
         }
 
         assertStmt.setScope(scope);
-        statementNodes.add(assertStmt);
         return assertStmt;
     }
 
@@ -293,7 +291,6 @@ public class CodeGraph {
         blk.setStatement(stmts);
 
         blk.setScope(scope);
-        statementNodes.add(blk);
         return blk;
     }
 
@@ -309,7 +306,6 @@ public class CodeGraph {
         }
 
         brk.setScope(scope);
-        statementNodes.add(brk);
         return brk;
     }
 
@@ -325,7 +321,6 @@ public class CodeGraph {
         }
 
         swCase.setScope(scope);
-        statementNodes.add(swCase);
         return swCase;
     }
 
@@ -345,7 +340,6 @@ public class CodeGraph {
         consInv.setArguments(exprList);
 
         consInv.setScope(scope);
-        statementNodes.add(consInv);
         return consInv;
     }
 
@@ -361,7 +355,6 @@ public class CodeGraph {
         }
 
         conti.setScope(scope);
-        statementNodes.add(conti);
         return conti;
     }
 
@@ -381,7 +374,6 @@ public class CodeGraph {
         doStmt.setBody(body);
 
         doStmt.setScope(scope);
-        statementNodes.add(doStmt);
         return doStmt;
     }
 
@@ -392,7 +384,6 @@ public class CodeGraph {
         ept.setControlDependency(control);
 
         ept.setScope(scope);
-        statementNodes.add(ept);
         return ept;
     }
 
@@ -413,7 +404,6 @@ public class CodeGraph {
         efor.setBody(stmt);
 
         efor.setScope(scope);
-        statementNodes.add(efor);
         return efor;
     }
 
@@ -427,7 +417,6 @@ public class CodeGraph {
         exprStmt.setExpr(expr);
 
         exprStmt.setScope(scope);
-        statementNodes.add(exprStmt);
         return exprStmt;
     }
 
@@ -469,7 +458,6 @@ public class CodeGraph {
         // TODO: relation between initializers and body
 
         forStmt.setScope(scope);
-        statementNodes.add(forStmt);
         return forStmt;
     }
 
@@ -491,7 +479,6 @@ public class CodeGraph {
         }
 
         ifstmt.setScope(scope);
-        statementNodes.add(ifstmt);
         return ifstmt;
     }
 
@@ -508,7 +495,6 @@ public class CodeGraph {
         labStmt.setBody(body);
 
         labStmt.setScope(scope);
-        statementNodes.add(labStmt);
         return labStmt;
     }
 
@@ -523,7 +509,6 @@ public class CodeGraph {
         }
 
         ret.setScope(scope);
-        statementNodes.add(ret);
         return ret;
     }
 
@@ -548,7 +533,6 @@ public class CodeGraph {
         spi.setArguments(arguList);
 
         spi.setScope(scope);
-        statementNodes.add(spi);
         return spi;
     }
 
@@ -574,7 +558,6 @@ public class CodeGraph {
         swi.setStatements(stmts);
 
         swi.setScope(scope);
-        statementNodes.add(swi);
         return swi;
     }
 
@@ -593,7 +576,6 @@ public class CodeGraph {
         syn.setBody(body);
 
         syn.setScope(scope);
-        statementNodes.add(syn);
         return syn;
     }
 
@@ -607,7 +589,6 @@ public class CodeGraph {
         throwStmt.setExpr(expr);
 
         throwStmt.setScope(scope);
-        statementNodes.add(throwStmt);
         return throwStmt;
     }
 
@@ -643,7 +624,6 @@ public class CodeGraph {
         }
 
         tryStmt.setScope(scope);
-        statementNodes.add(tryStmt);
         return tryStmt;
     }
 
@@ -660,7 +640,6 @@ public class CodeGraph {
         cat.setBody(body);
 
         cat.setScope(scope);
-        statementNodes.add(cat);
         return cat;
     }
 
@@ -700,7 +679,6 @@ public class CodeGraph {
         vdStmt.setFragments(fragments);
 
         vdStmt.setScope(scope);
-        statementNodes.add(vdStmt);
         return vdStmt;
     }
 
@@ -717,7 +695,6 @@ public class CodeGraph {
         whi.setBody(body);
 
         whi.setScope(scope);
-        statementNodes.add(whi);
         return whi;
     }
 
