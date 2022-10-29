@@ -5,13 +5,11 @@ import model.graph.edge.ASTEdge;
 import model.graph.edge.ControlEdge;
 import model.graph.edge.DataEdge;
 import model.graph.edge.Edge;
+import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.NameExpr;
 import org.eclipse.jdt.core.dom.ASTNode;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public abstract class Node {
     protected String _fileName;
@@ -128,13 +126,17 @@ public abstract class Node {
         return _controlDependency;
     }
 
-    public List<Node> getRecursiveControlNodes() {
-        List<Node> all = new ArrayList<>();
+    public LinkedHashSet<Node> getRecursiveControlNodes() {
+        LinkedHashSet<Node> all = new LinkedHashSet<>();
         if (_controlDependency != null) {
             all.add(_controlDependency);
             all.addAll(_controlDependency.getRecursiveControlNodes());
         }
         return all;
+    }
+
+    public Scope getScope() {
+        return _scope;
     }
 
     public Set<Node> getDirectDataDependentNodes() {
@@ -146,14 +148,15 @@ public abstract class Node {
         return all;
     }
 
-    public List<Node> getRecursiveDataDependentNodes() {
-        List<Node> all = new ArrayList<>();
+    public LinkedHashSet<Node> getRecursiveDataDependentNodes() {
+        LinkedHashSet<Node> all = new LinkedHashSet<>();
         for (Node ch : getDirectDataDependentNodes()) {
             all.add(ch);
             all.addAll(ch.getRecursiveDataDependentNodes());
         }
         return all;
     }
+
 
     public List<Node> getDirectASTChildren() {
         List<Node> ch = new ArrayList<>();
@@ -162,5 +165,13 @@ public abstract class Node {
                 ch.add(e.getTarget());
         }
         return ch;
+    }
+
+    public ASTNode getASTNode() {
+        return _astNode;
+    }
+
+    public int getStartSourceLine() {
+        return _startLine;
     }
 }

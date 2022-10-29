@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Map;
 
+import model.CodeGraph;
 import model.graph.node.Node;
 import model.graph.node.expr.AssignExpr;
 import org.eclipse.jdt.core.JavaCore;
@@ -169,6 +170,12 @@ public class JavaASTUtil {
             return true;
         int modifiers = vb.getModifiers();
         return Modifier.isFinal(modifiers) && Modifier.isStatic(modifiers);
+    }
+
+    public static String buildGraphSignature(CodeGraph cg) {
+        String filename = cg.getFilePath();
+        String methodname = cg.getGraphName();
+        return filename + " " + methodname;
     }
 }
 

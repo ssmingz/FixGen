@@ -27,6 +27,7 @@ public class CodeGraph {
     public Node entryNode = null;
     protected List<Node> fieldNodes = new ArrayList<>();
     protected List<Node> statementNodes = new ArrayList<>();
+    protected List<Node> allNodes = new ArrayList<>();
 
     protected CompilationUnit cu = null;
 
@@ -61,132 +62,135 @@ public class CodeGraph {
             return null;
         }
 
+        Node node = null;
         if (astNode instanceof FieldDeclaration) {
-            return visit((FieldDeclaration) astNode, control, scope);
+            node = visit((FieldDeclaration) astNode, control, scope);
         } else if (astNode instanceof MethodDeclaration) {
-            return visit((MethodDeclaration) astNode, control, scope);
+            node = visit((MethodDeclaration) astNode, control, scope);
         } else if (astNode instanceof CatchClause) {
-            return visit((CatchClause) astNode, control, scope);
+            node = visit((CatchClause) astNode, control, scope);
         } else if (astNode instanceof AssertStatement) {
-            return visit((AssertStatement) astNode, control, scope);
+            node = visit((AssertStatement) astNode, control, scope);
         } else if (astNode instanceof Block) {
-            return visit((Block) astNode, control, scope);
+            node = visit((Block) astNode, control, scope);
         } else if (astNode instanceof BreakStatement) {
-            return visit((BreakStatement) astNode, control, scope);
+            node = visit((BreakStatement) astNode, control, scope);
         } else if (astNode instanceof SwitchCase) {
-            return visit((SwitchCase) astNode, control, scope);
+            node = visit((SwitchCase) astNode, control, scope);
         } else if (astNode instanceof ConstructorInvocation) {
-            return visit((ConstructorInvocation) astNode, control, scope);
+            node = visit((ConstructorInvocation) astNode, control, scope);
         } else if (astNode instanceof ContinueStatement) {
-            return visit((ContinueStatement) astNode, control, scope);
+            node = visit((ContinueStatement) astNode, control, scope);
         } else if (astNode instanceof DoStatement) {
-            return visit((DoStatement) astNode, control, scope);
+            node = visit((DoStatement) astNode, control, scope);
         } else if (astNode instanceof EmptyStatement) {
-            return visit((EmptyStatement) astNode, control, scope);
+            node = visit((EmptyStatement) astNode, control, scope);
         } else if (astNode instanceof EnhancedForStatement) {
-            return visit((EnhancedForStatement) astNode, control, scope);
+            node = visit((EnhancedForStatement) astNode, control, scope);
         } else if (astNode instanceof ExpressionStatement) {
-            return visit((ExpressionStatement) astNode, control, scope);
+            node = visit((ExpressionStatement) astNode, control, scope);
         } else if (astNode instanceof ForStatement) {
-            return visit((ForStatement) astNode, control, scope);
+            node = visit((ForStatement) astNode, control, scope);
         } else if (astNode instanceof IfStatement) {
-            return visit((IfStatement) astNode, control, scope);
+            node = visit((IfStatement) astNode, control, scope);
         } else if (astNode instanceof LabeledStatement) {
-            return visit((LabeledStatement) astNode, control, scope);
+            node = visit((LabeledStatement) astNode, control, scope);
         } else if (astNode instanceof ReturnStatement) {
-            return  visit((ReturnStatement) astNode, control, scope);
+            node =  visit((ReturnStatement) astNode, control, scope);
         } else if (astNode instanceof SuperConstructorInvocation) {
-            return visit((SuperConstructorInvocation) astNode, control, scope);
+            node = visit((SuperConstructorInvocation) astNode, control, scope);
         } else if (astNode instanceof SwitchStatement) {
-            return visit((SwitchStatement) astNode, control, scope);
+            node = visit((SwitchStatement) astNode, control, scope);
         } else if (astNode instanceof SynchronizedStatement) {
-            return visit((SynchronizedStatement) astNode, control, scope);
+            node = visit((SynchronizedStatement) astNode, control, scope);
         } else if (astNode instanceof ThrowStatement) {
-            return visit((ThrowStatement) astNode, control, scope);
+            node = visit((ThrowStatement) astNode, control, scope);
         } else if (astNode instanceof TryStatement) {
-            return visit((TryStatement) astNode, control, scope);
+            node = visit((TryStatement) astNode, control, scope);
         } else if (astNode instanceof TypeDeclarationStatement) {
-            return visit((TypeDeclarationStatement) astNode, control, scope);
+            node = visit((TypeDeclarationStatement) astNode, control, scope);
         } else if (astNode instanceof VariableDeclarationStatement) {
-            return visit((VariableDeclarationStatement) astNode, control, scope);
+            node = visit((VariableDeclarationStatement) astNode, control, scope);
         } else if (astNode instanceof WhileStatement) {
-            return visit((WhileStatement) astNode, control, scope);
+            node = visit((WhileStatement) astNode, control, scope);
         } else if (astNode instanceof Annotation) {
-            return visit((Annotation) astNode, control, scope);
+            node = visit((Annotation) astNode, control, scope);
         } else if (astNode instanceof ArrayAccess) {
-            return visit((ArrayAccess) astNode, control, scope);
+            node = visit((ArrayAccess) astNode, control, scope);
         } else if (astNode instanceof ArrayCreation) {
-            return visit((ArrayCreation) astNode, control, scope);
+            node = visit((ArrayCreation) astNode, control, scope);
         } else if (astNode instanceof ArrayInitializer) {
-            return visit((ArrayInitializer) astNode, control, scope);
+            node = visit((ArrayInitializer) astNode, control, scope);
         } else if (astNode instanceof Assignment) {
-            return visit((Assignment) astNode, control, scope);
+            node = visit((Assignment) astNode, control, scope);
         } else if (astNode instanceof BooleanLiteral) {
-            return visit((BooleanLiteral) astNode, control, scope);
+            node = visit((BooleanLiteral) astNode, control, scope);
         } else if (astNode instanceof CastExpression) {
-            return visit((CastExpression) astNode, control, scope);
+            node = visit((CastExpression) astNode, control, scope);
         } else if (astNode instanceof CharacterLiteral) {
-            return visit((CharacterLiteral) astNode, control, scope);
+            node = visit((CharacterLiteral) astNode, control, scope);
         } else if (astNode instanceof ClassInstanceCreation) {
-            return visit((ClassInstanceCreation) astNode, control, scope);
+            node = visit((ClassInstanceCreation) astNode, control, scope);
         } else if (astNode instanceof ConditionalExpression) {
-            return visit((ConditionalExpression) astNode, control, scope);
+            node = visit((ConditionalExpression) astNode, control, scope);
         } else if (astNode instanceof CreationReference) {
-            return visit((CreationReference) astNode, control, scope);
+            node = visit((CreationReference) astNode, control, scope);
         } else if (astNode instanceof ExpressionMethodReference) {
-            return visit((ExpressionMethodReference) astNode, control, scope);
+            node = visit((ExpressionMethodReference) astNode, control, scope);
         } else if (astNode instanceof FieldAccess) {
-            return visit((FieldAccess) astNode, control, scope);
+            node = visit((FieldAccess) astNode, control, scope);
         } else if (astNode instanceof InfixExpression) {
-            return visit((InfixExpression) astNode, control, scope);
+            node = visit((InfixExpression) astNode, control, scope);
         } else if (astNode instanceof InstanceofExpression) {
-            return visit((InstanceofExpression) astNode, control, scope);
+            node = visit((InstanceofExpression) astNode, control, scope);
         } else if (astNode instanceof LambdaExpression) {
-            return visit((LambdaExpression) astNode, control, scope);
+            node = visit((LambdaExpression) astNode, control, scope);
         } else if (astNode instanceof MethodInvocation) {
-            return visit((MethodInvocation) astNode, control, scope);
+            node = visit((MethodInvocation) astNode, control, scope);
         } else if (astNode instanceof MethodReference) {
-            return visit((MethodReference) astNode, control, scope);
+            node = visit((MethodReference) astNode, control, scope);
         } else if (astNode instanceof NullLiteral) {
-            return visit((NullLiteral) astNode, control, scope);
+            node = visit((NullLiteral) astNode, control, scope);
         } else if (astNode instanceof NumberLiteral) {
-            return visit((NumberLiteral) astNode, control, scope);
+            node = visit((NumberLiteral) astNode, control, scope);
         } else if (astNode instanceof ParenthesizedExpression) {
-            return visit((ParenthesizedExpression) astNode, control, scope);
+            node = visit((ParenthesizedExpression) astNode, control, scope);
         } else if (astNode instanceof PostfixExpression) {
-            return visit((PostfixExpression) astNode, control, scope);
+            node = visit((PostfixExpression) astNode, control, scope);
         } else if (astNode instanceof PrefixExpression) {
-            return visit((PrefixExpression) astNode, control, scope);
+            node = visit((PrefixExpression) astNode, control, scope);
         } else if (astNode instanceof QualifiedName) {
-            return visit((QualifiedName) astNode, control, scope);
+            node = visit((QualifiedName) astNode, control, scope);
         } else if (astNode instanceof SimpleName) {
-            return visit((SimpleName) astNode, control, scope);
+            node = visit((SimpleName) astNode, control, scope);
         } else if (astNode instanceof StringLiteral) {
-            return visit((StringLiteral) astNode, control, scope);
+            node = visit((StringLiteral) astNode, control, scope);
         } else if (astNode instanceof SuperFieldAccess) {
-            return visit((SuperFieldAccess) astNode, control, scope);
+            node = visit((SuperFieldAccess) astNode, control, scope);
         } else if (astNode instanceof SuperMethodInvocation) {
-            return visit((SuperMethodInvocation) astNode, control, scope);
+            node = visit((SuperMethodInvocation) astNode, control, scope);
         } else if (astNode instanceof SuperMethodReference) {
-            return visit((SuperMethodReference) astNode, control, scope);
+            node = visit((SuperMethodReference) astNode, control, scope);
         } else if (astNode instanceof ThisExpression) {
-            return visit((ThisExpression) astNode, control, scope);
+            node = visit((ThisExpression) astNode, control, scope);
         } else if (astNode instanceof TypeMethodReference) {
-            return visit((TypeMethodReference) astNode, control, scope);
+            node = visit((TypeMethodReference) astNode, control, scope);
         } else if (astNode instanceof TypeLiteral) {
-            return visit((TypeLiteral) astNode, control, scope);
+            node = visit((TypeLiteral) astNode, control, scope);
         } else if (astNode instanceof VariableDeclarationExpression) {
-            return visit((VariableDeclarationExpression) astNode, control, scope);
+            node = visit((VariableDeclarationExpression) astNode, control, scope);
         } else if (astNode instanceof Type) {
-            return visit((Type) astNode, control, scope);
+            node = visit((Type) astNode, control, scope);
         } else if (astNode instanceof SingleVariableDeclaration) {
-            return visit((SingleVariableDeclaration) astNode, control, scope);
+            node = visit((SingleVariableDeclaration) astNode, control, scope);
         } else if (astNode instanceof VariableDeclarationFragment) {
-            return visit((VariableDeclarationFragment) astNode, control, scope);
+            node = visit((VariableDeclarationFragment) astNode, control, scope);
         } else {
             System.out.println("UNKNOWN ASTNode type : " + astNode.toString());
-            return null;
+            node = null;
         }
+        allNodes.add(node);
+        return node;
     }
 
     private FieldDecl visit(FieldDeclaration astNode, Node control, Scope scope) {
@@ -1477,5 +1481,17 @@ public class CodeGraph {
         } catch (Exception e) {
             return ast.newWildcardType();
         }
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public String getGraphName() {
+        return name;
+    }
+
+    public List<Node> getNodes() {
+        return allNodes;
     }
 }
