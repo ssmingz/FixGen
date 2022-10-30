@@ -2,6 +2,7 @@ package model.graph.node.expr;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
@@ -36,5 +37,16 @@ public class AryAcc extends ExprNode{
 
     public void setType(String typeStr) {
         _type = typeStr;
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof AryAcc) {
+            match = _array.compare(((AryAcc) other)._array)
+                    && _index.compare(((AryAcc) other)._index)
+                    && _type.equals(((AryAcc) other)._type);
+        }
+        return match;
     }
 }

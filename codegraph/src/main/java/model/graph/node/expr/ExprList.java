@@ -33,4 +33,22 @@ public class ExprList extends Node {
         }
         return buf.toString();
     }
+
+    @Override
+    public boolean compare(Node other) {
+        if (other != null && other instanceof ExprList) {
+            ExprList exprList = (ExprList) other;
+            if (_exprs.size() == exprList._exprs.size()) {
+                for (int i = 0; i < _exprs.size(); i++) {
+                    if (!_exprs.get(i).compare(exprList._exprs.get(i))) {
+                        return false;
+                    }
+                }
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
+    }
 }

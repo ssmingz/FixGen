@@ -34,4 +34,20 @@ public class SingleVarDecl extends ExprNode {
         return _name;
     }
 
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof SingleVarDecl) {
+            SingleVarDecl svd = (SingleVarDecl) other;
+            match = _declType.equals(svd._declType);
+            match = match && _name.compare(svd._name);
+            if (_initializer == null) {
+                match = match && (svd._initializer == null);
+            } else {
+                match = match && _initializer.compare(svd._initializer);
+            }
+        }
+
+        return match;
+    }
 }

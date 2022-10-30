@@ -2,6 +2,7 @@ package model.graph.node.expr;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
@@ -25,5 +26,16 @@ public class CastExpr extends ExprNode {
     public void setExpression(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof CastExpr) {
+            CastExpr castExpr = (CastExpr) other;
+            match = _castType.equals(castExpr._castType);
+            match = match && _expression.compare(castExpr._expression);
+        }
+        return match;
     }
 }

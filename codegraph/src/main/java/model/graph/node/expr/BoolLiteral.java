@@ -1,6 +1,7 @@
 package model.graph.node.expr;
 
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class BoolLiteral extends ExprNode {
@@ -20,4 +21,12 @@ public class BoolLiteral extends ExprNode {
     }
 
     public void setType(String typeStr) { _type = typeStr; }
+
+    @Override
+    public boolean compare(Node other) {
+        if (other != null && other instanceof BoolLiteral) {
+            return (_value == ((BoolLiteral) other)._value) && (_type == ((BoolLiteral) other)._type);
+        }
+        return false;
+    }
 }

@@ -1,5 +1,7 @@
 package model.graph.node.expr;
 
+import model.graph.node.Node;
+import model.graph.node.bodyDecl.MethodDecl;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class AnnotationExpr extends ExprNode {
@@ -13,5 +15,15 @@ public class AnnotationExpr extends ExprNode {
     @Override
     public String toLabelString() {
         return null;
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof AnnotationExpr) {
+            AnnotationExpr annotationExpr = (AnnotationExpr) other;
+            match = _comment.equals(annotationExpr._comment);
+        }
+        return match;
     }
 }

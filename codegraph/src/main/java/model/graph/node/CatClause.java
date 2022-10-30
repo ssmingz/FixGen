@@ -6,7 +6,7 @@ import model.graph.node.stmt.BlockStmt;
 import model.graph.node.varDecl.SingleVarDecl;
 import org.eclipse.jdt.core.dom.ASTNode;
 
-public class CatClause extends Node{
+public class CatClause extends Node {
     private SingleVarDecl _exception;
     private BlockStmt _body;
 
@@ -32,5 +32,14 @@ public class CatClause extends Node{
     public void setBody(BlockStmt body) {
         _body = body;
         new ASTEdge(this, body);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        if(other != null && other instanceof CatClause) {
+            CatClause catClause = (CatClause) other;
+            return _exception.compare(catClause._exception) && _body.compare(catClause._body);
+        }
+        return false;
     }
 }

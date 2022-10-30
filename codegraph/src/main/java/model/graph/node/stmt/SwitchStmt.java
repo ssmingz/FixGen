@@ -27,4 +27,18 @@ public class SwitchStmt extends StmtNode {
             new ASTEdge(this, obj);
         }
     }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if(other != null && other instanceof SwitchStmt) {
+            SwitchStmt switchStmt = (SwitchStmt) other;
+            match = _expression.compare(switchStmt._expression)
+                    && (_statements.size() == switchStmt._statements.size());
+            for (int i = 0; match && i < _statements.size(); i++) {
+                match = match && _statements.get(i).compare(switchStmt._statements.get(i));
+            }
+        }
+        return match;
+    }
 }

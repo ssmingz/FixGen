@@ -5,7 +5,7 @@ import model.graph.edge.Edge;
 import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
-public class PrefixExpr extends ExprNode{
+public class PrefixExpr extends ExprNode {
     private ExprNode _expression;
     private PrefixOpr _operator;
 
@@ -25,5 +25,15 @@ public class PrefixExpr extends ExprNode{
     public void setOpr(PrefixOpr postfixOpr) {
         _operator = postfixOpr;
         new ASTEdge(this, postfixOpr);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        if (other != null && other instanceof PrefixExpr) {
+            PrefixExpr prefixExpr = (PrefixExpr) other;
+            return _operator.compare(prefixExpr._operator)
+                    && _expression.compare(prefixExpr._expression);
+        }
+        return false;
     }
 }

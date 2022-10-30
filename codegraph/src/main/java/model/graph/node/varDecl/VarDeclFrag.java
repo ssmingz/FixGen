@@ -40,4 +40,20 @@ public class VarDeclFrag extends ExprNode {
         _expression = expr;
         new ASTEdge(this, expr);
     }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof VarDeclFrag) {
+            VarDeclFrag vdf = (VarDeclFrag) other;
+            match = (_dimensions == vdf._dimensions) && _name.compare(vdf._name);
+            match = match && _type.equals(vdf._type);
+            if (_expression == null) {
+                match = match && (vdf._expression == null);
+            } else {
+                match = match && _expression.compare(vdf._expression);
+            }
+        }
+        return match;
+    }
 }

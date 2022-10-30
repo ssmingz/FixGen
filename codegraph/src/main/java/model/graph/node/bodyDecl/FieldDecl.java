@@ -2,6 +2,7 @@ package model.graph.node.bodyDecl;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.type.TypeNode;
 import model.graph.node.varDecl.VarDeclFrag;
@@ -32,5 +33,19 @@ public class FieldDecl extends ExprNode {
         for (VarDeclFrag frag : frags) {
             new ASTEdge(this, frag);
         }
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof FieldDecl) {
+            FieldDecl fieldDecl = (FieldDecl) other;
+            match = _declType.equals(fieldDecl._declType);
+            match = match && (_fragments.size() == fieldDecl._fragments.size());
+            for (int i=0; match && i<_fragments.size(); i++) {
+                match = match && _fragments.get(i).compare(fieldDecl._fragments.get(i));
+            }
+        }
+        return match;
     }
 }

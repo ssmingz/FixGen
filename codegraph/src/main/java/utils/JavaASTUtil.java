@@ -1,6 +1,6 @@
 package utils;
 
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -180,6 +180,17 @@ public class JavaASTUtil {
         String filename = cg.getFilePath();
         String methodname = cg.getGraphName();
         return filename + " " + methodname;
+    }
+
+    public static TypeDeclaration getTypeDecl(MethodDeclaration first) {
+        ASTNode parent = first;
+        while (parent != null) {
+            if (parent instanceof TypeDeclaration) {
+                return (TypeDeclaration) parent;
+            }
+            parent = parent.getParent();
+        }
+        return null;
     }
 }
 

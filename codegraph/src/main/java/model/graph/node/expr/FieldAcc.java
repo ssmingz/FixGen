@@ -2,6 +2,7 @@ package model.graph.node.expr;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class FieldAcc extends ExprNode {
@@ -24,4 +25,16 @@ public class FieldAcc extends ExprNode {
     }
 
     public void setType(String typeStr) { _type = typeStr; }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if(other != null && other instanceof FieldAcc) {
+            FieldAcc fieldAcc = (FieldAcc) other;
+            match = _expression.compare(fieldAcc._expression);
+            match = match && _identifier.compare(fieldAcc._identifier);
+            match = match && _type.equals(fieldAcc._type);
+        }
+        return match;
+    }
 }

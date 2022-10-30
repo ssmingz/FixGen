@@ -2,6 +2,7 @@ package model.graph.node.expr;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class SuperMethodInvoc extends ExprNode {
@@ -26,5 +27,16 @@ public class SuperMethodInvoc extends ExprNode {
     public void setArguments(ExprList exprList) {
         _arguments = exprList;
         new ASTEdge(this, exprList);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof SuperMethodInvoc) {
+            SuperMethodInvoc superMethodInv = (SuperMethodInvoc) other;
+            match = (_qualifier == null) ? (superMethodInv._qualifier == null) : _qualifier.compare(superMethodInv._qualifier);
+            match = match && _name.compare(superMethodInv._name) && _arguments.compare(superMethodInv._arguments);
+        }
+        return match;
     }
 }

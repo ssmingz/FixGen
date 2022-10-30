@@ -1,5 +1,6 @@
 package model.graph.node.expr;
 
+import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class SimpName extends NameExpr {
@@ -22,4 +23,13 @@ public class SimpName extends NameExpr {
     }
 
     public void setType(String typeStr) { _type = typeStr; }
+
+    @Override
+    public boolean compare(Node other) {
+        if (other != null && other instanceof SimpName) {
+            SimpName sName = (SimpName) other;
+            return _name.equals(sName._name) && _type.equals(sName._type);
+        }
+        return false;
+    }
 }

@@ -2,11 +2,12 @@ package model.graph.node.stmt;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.expr.ExprList;
 import model.graph.node.expr.ExprNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
-public class ForStmt extends StmtNode{
+public class ForStmt extends StmtNode {
     private ExprList _initializer;
     private ExprNode _condition;
     private ExprList _updater;
@@ -38,5 +39,22 @@ public class ForStmt extends StmtNode{
 
     public ExprNode getCondition() {
         return _condition;
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof ForStmt) {
+            ForStmt forStmt = (ForStmt) other;
+            match = _initializer.compare(forStmt._initializer);
+            if (_condition != null) {
+                match = match && _condition.compare(forStmt._condition);
+            } else {
+                match = match && (forStmt._condition == null);
+            }
+            match = match && _updater.compare(forStmt._updater);
+            match = match && _body.compare(forStmt._body);
+        }
+        return match;
     }
 }

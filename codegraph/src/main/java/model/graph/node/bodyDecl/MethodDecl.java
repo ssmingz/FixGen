@@ -95,4 +95,20 @@ public class MethodDecl extends Node {
         _fieldVariables.add(fieldNode);
         new ASTEdge(this, fieldNode);
     }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof MethodDecl) {
+            MethodDecl methodDecl = (MethodDecl) other;
+            match = _name.compare(methodDecl._name) && (_parameters.size() == methodDecl._parameters.size());
+            for (int i=0; match && i<_parameters.size(); i++) {
+                match = match && _parameters.get(i).compare(methodDecl._parameters.get(i));
+            }
+            if (_body != null && methodDecl._body != null) {
+                _body.compare(methodDecl._body);
+            }
+        }
+        return match;
+    }
 }

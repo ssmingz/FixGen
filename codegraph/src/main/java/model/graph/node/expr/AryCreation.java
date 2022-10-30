@@ -2,6 +2,7 @@ package model.graph.node.expr;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 import org.eclipse.jdt.core.dom.ArrayType;
@@ -35,5 +36,23 @@ public class AryCreation extends ExprNode {
     public void setInitializer(AryInitializer aryinit) {
         _initializer = aryinit;
         new ASTEdge(this, aryinit);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof AryCreation) {
+            AryCreation aryCreation = (AryCreation) other;
+            match = _elementType.equals(aryCreation._elementType);
+            if (match) {
+                match = match && (_dimension.compare(aryCreation._dimension));
+                if (_initializer != null) {
+                    match = match && (aryCreation._initializer == null);
+                } else {
+                    match = match && _initializer.compare(aryCreation._initializer);
+                }
+            }
+        }
+        return match;
     }
 }

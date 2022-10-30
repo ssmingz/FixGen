@@ -13,4 +13,12 @@ public class TypeNode extends ExprNode {
     public String toLabelString() {
         return _exprTypeStr;
     }
+
+    @Override
+    public boolean compare(Node other) {
+        if (other != null && other instanceof TypeNode) {
+            return toLabelString().equals(((TypeNode) other).toLabelString());
+        }
+        return false;
+    }
 }

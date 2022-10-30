@@ -7,8 +7,8 @@ import java.util.Set;
 public class TestPatternExtractor {
     @Test
     public void testModificationExtract() {
-        String bugCommit = System.getProperty("user.dir") + "\\src\\test\\res\\0b20e4026c_d87861eb35\\buggy_version\\DashboardCommand.java";
-        String fixCommit = System.getProperty("user.dir") + "\\src\\test\\res\\0b20e4026c_d87861eb35\\fixed_version\\DashboardCommand.java";
+        String bugCommit = System.getProperty("user.dir") + "\\codegraph\\src\\test\\res\\0b20e4026c_d87861eb35\\buggy_version\\DashboardCommand.java";
+        String fixCommit = System.getProperty("user.dir") + "\\codegraph\\src\\test\\res\\0b20e4026c_d87861eb35\\fixed_version\\DashboardCommand.java";
 
         PatternExtractor extractor = new PatternExtractor();
         Set<Pattern> patterns = extractor.extractPattern(bugCommit, fixCommit);

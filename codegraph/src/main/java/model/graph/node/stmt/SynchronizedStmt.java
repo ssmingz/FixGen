@@ -27,4 +27,14 @@ public class SynchronizedStmt extends StmtNode {
     public ExprNode getExpression() {
         return _expression;
     }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof SynchronizedStmt) {
+            SynchronizedStmt synchronizedStmt = (SynchronizedStmt) other;
+            match = _expression.compare(synchronizedStmt._expression) && _body.compare(synchronizedStmt._body);
+        }
+        return match;
+    }
 }

@@ -184,6 +184,8 @@ public class CodeGraph {
             node = visit((SingleVariableDeclaration) astNode, control, scope);
         } else if (astNode instanceof VariableDeclarationFragment) {
             node = visit((VariableDeclarationFragment) astNode, control, scope);
+        } else if (astNode instanceof AnonymousClassDeclaration) {
+            node = visit((AnonymousClassDeclaration) astNode, control, scope);
         } else {
             System.out.println("UNKNOWN ASTNode type : " + astNode.toString());
             node = null;
@@ -1465,6 +1467,20 @@ public class CodeGraph {
 
     public List<Node> getNodes() {
         return allNodes;
+    }
+
+    public String toSrcString() {
+        return entryNode.getASTNode().toString();
+    }
+
+    public List<StmtNode> getAllStmtNodes() {
+        List<StmtNode> stmts = new ArrayList<>();
+        for (Node node : allNodes) {
+            if (node instanceof StmtNode) {
+                stmts.add((StmtNode) node);
+            }
+        }
+        return stmts;
     }
 
 }

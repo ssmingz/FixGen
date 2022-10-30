@@ -41,4 +41,14 @@ public class AssignExpr extends ExprNode {
         _opr = assignOpr;
         new ASTEdge(this, assignOpr);
     }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof AssignExpr) {
+            AssignExpr assign = (AssignExpr) other;
+            match = _opr.compare(assign._opr) && _lhs.compare(assign._lhs) && _rhs.compare(assign._rhs);
+        }
+        return match;
+    }
 }

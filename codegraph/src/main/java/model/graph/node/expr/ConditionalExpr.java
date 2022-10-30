@@ -2,6 +2,7 @@ package model.graph.node.expr;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class ConditionalExpr extends ExprNode {
@@ -31,5 +32,17 @@ public class ConditionalExpr extends ExprNode {
     public void setElseExpr(ExprNode elseExpr) {
         _elseExpression = elseExpr;
         new ASTEdge(this, elseExpr);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if (other != null && other instanceof ConditionalExpr) {
+            ConditionalExpr conditionalExpr = (ConditionalExpr) other;
+            match = _expression.compare(conditionalExpr._expression)
+                    && _thenExpression.compare(conditionalExpr._thenExpression)
+                    && _elseExpression.compare(conditionalExpr._elseExpression);
+        }
+        return match;
     }
 }

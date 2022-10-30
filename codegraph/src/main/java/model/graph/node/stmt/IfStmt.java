@@ -2,10 +2,11 @@ package model.graph.node.stmt;
 
 import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
+import model.graph.node.Node;
 import model.graph.node.expr.ExprNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
-public class IfStmt extends StmtNode{
+public class IfStmt extends StmtNode {
     private ExprNode _expression;
     private StmtNode _then;
     private StmtNode _else;
@@ -27,5 +28,20 @@ public class IfStmt extends StmtNode{
     public void setElse(StmtNode els) {
         _else = els;
         new ASTEdge(this, els);
+    }
+
+    @Override
+    public boolean compare(Node other) {
+        boolean match = false;
+        if(other != null && other instanceof IfStmt) {
+            IfStmt ifStmt = (IfStmt) other;
+            match = _expression.compare(ifStmt._expression) && _then.compare(ifStmt._then);
+            if(_else == null) {
+                match = match && (ifStmt._else == null);
+            } else {
+                match = match && _else.compare(ifStmt._else);
+            }
+        }
+        return match;
     }
 }

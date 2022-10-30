@@ -1,5 +1,6 @@
 package model.graph.node;
 
+import model.NodeComparator;
 import model.graph.Scope;
 import model.graph.edge.ASTEdge;
 import model.graph.edge.ControlEdge;
@@ -7,11 +8,12 @@ import model.graph.edge.DataEdge;
 import model.graph.edge.Edge;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.NameExpr;
+import model.graph.node.stmt.StmtNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 import java.util.*;
 
-public abstract class Node {
+public abstract class Node implements NodeComparator {
     protected String _fileName;
     protected int _startLine;
     protected int _endLine;
@@ -37,6 +39,14 @@ public abstract class Node {
     public ArrayList<Edge> outEdges = new ArrayList<>();
 
     private Scope _scope;
+
+    /*********************************************************/
+    /******* record matched information for change ***********/
+    /*********************************************************/
+    /**
+     * bind the target node in the fixed version
+     */
+    private Node _bindingNode;
     
     /**
      * @param oriNode   : original abstract syntax tree node in the JDT model
@@ -176,4 +186,19 @@ public abstract class Node {
     }
 
     public abstract String toLabelString();
+
+    public Node getParent() {
+        return _parent;
+    }
+
+    public void setBindingNode(Node binding) {
+        _bindingNode = binding;
+        if (_bindingNode != null) {
+            binding._bindingNode = this;
+        }
+    }
+
+    public Node getBindingNode() {
+        return _bindingNode;
+    }
 }

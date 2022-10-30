@@ -222,4 +222,12 @@ public class GraphBuilder {
         className = className.substring(className.lastIndexOf('.') + 1);
         return className;
     }
+
+    public void setCurrentCU(CompilationUnit cu) {
+        currentCU = cu;
+    }
+
+    public void setCurrentType(TypeDeclaration type) {
+        currentType = type;
+    }
 }
