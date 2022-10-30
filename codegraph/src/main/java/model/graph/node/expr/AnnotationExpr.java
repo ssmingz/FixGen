@@ -11,7 +11,7 @@ public class AnnotationExpr extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
+    public String toLabelString() {
         return null;
     }
 }

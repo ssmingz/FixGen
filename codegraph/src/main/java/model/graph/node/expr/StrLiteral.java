@@ -10,11 +10,6 @@ public class StrLiteral extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return null;
-    }
-
     public void setLiteralValue(String literalValue) {
         _literalValue = literalValue;
     }

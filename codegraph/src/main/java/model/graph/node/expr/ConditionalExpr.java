@@ -14,8 +14,8 @@ public class ConditionalExpr extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return _astNode.toString();
     }
 
     public void setCondition(ExprNode condition) {

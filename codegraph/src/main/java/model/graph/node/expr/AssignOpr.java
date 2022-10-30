@@ -11,8 +11,8 @@ public class AssignOpr extends ExprNode{
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return _operator.toString();
     }
 
     public void setOperator(Assignment.Operator operator) {

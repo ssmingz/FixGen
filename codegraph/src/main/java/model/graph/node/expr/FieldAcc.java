@@ -13,11 +13,6 @@ public class FieldAcc extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return _identifier.getName();
-    }
-
     public void setExpression(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

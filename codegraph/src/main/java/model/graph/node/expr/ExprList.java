@@ -20,4 +20,17 @@ public class ExprList extends Node {
             new ASTEdge(this, expr);
         }
     }
+
+    @Override
+    public String toLabelString() {
+        StringBuffer buf = new StringBuffer();
+        if (_exprs.size() > 0) {
+            buf.append(_exprs.get(0).toLabelString());
+            for (int i = 1; i < _exprs.size(); i++) {
+                buf.append(",");
+                buf.append(_exprs.get(i).toLabelString());
+            }
+        }
+        return buf.toString();
+    }
 }

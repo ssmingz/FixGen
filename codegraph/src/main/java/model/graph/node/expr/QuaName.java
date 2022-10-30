@@ -22,8 +22,4 @@ public class QuaName extends NameExpr {
         new ASTEdge(this, name);
     }
 
-    @Override
-    public String toNameString() {
-        return _astNode.toString();
-    }
 }

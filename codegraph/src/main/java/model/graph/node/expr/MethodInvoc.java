@@ -13,11 +13,6 @@ public class MethodInvoc extends ExprNode{
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return _name.getName();
-    }
-
     public void setExpression(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

@@ -11,11 +11,6 @@ public class PostfixOpr extends ExprNode{
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return _operator.toString();
-    }
-
     public void setOperator(PostfixExpression.Operator operator) {
         _operator = operator;
     }

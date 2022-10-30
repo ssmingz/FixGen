@@ -11,8 +11,8 @@ public class BoolLiteral extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return String.valueOf(_value);
     }
 
     public void setValue(boolean booleanValue) {

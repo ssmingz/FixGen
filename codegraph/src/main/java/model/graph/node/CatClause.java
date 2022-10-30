@@ -14,6 +14,16 @@ public class CatClause extends Node{
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append("catch(");
+        buf.append(_exception.toLabelString());
+        buf.append(")");
+        buf.append(_body.toLabelString());
+        return buf.toString();
+    }
+
     public void setException(SingleVarDecl svd) {
         _exception = svd;
         new ASTEdge(this, svd);

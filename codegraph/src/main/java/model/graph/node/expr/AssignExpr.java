@@ -15,8 +15,12 @@ public class AssignExpr extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append(_lhs.toLabelString());
+        buf.append(_opr.toLabelString());
+        buf.append(_rhs.toLabelString());
+        return buf.toString();
     }
 
     public void setLeftHandSide(ExprNode lhs) {

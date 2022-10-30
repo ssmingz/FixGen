@@ -14,8 +14,8 @@ public class CastExpr extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return _astNode.toString();
     }
 
     public void setCastType(String typeStr) {

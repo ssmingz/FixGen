@@ -19,5 +19,8 @@ public abstract class ExprNode extends Node {
         }
     }
 
-    public abstract String toNameString();
+    @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
 }

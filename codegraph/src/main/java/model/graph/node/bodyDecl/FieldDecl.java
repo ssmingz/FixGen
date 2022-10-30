@@ -19,7 +19,7 @@ public class FieldDecl extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
+    public String toLabelString() {
         return null;
     }
 

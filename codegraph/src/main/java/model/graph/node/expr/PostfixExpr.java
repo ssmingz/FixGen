@@ -13,11 +13,6 @@ public class PostfixExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return null;
-    }
-
     public void setExpr(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

@@ -16,11 +16,6 @@ public class SingleVarDecl extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return _name.getName();
-    }
-
     public void setDeclType(String type) {
         _declType = type;
     }

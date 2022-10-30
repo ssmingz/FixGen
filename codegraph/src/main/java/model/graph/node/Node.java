@@ -174,4 +174,6 @@ public abstract class Node {
     public int getStartSourceLine() {
         return _startLine;
     }
+
+    public abstract String toLabelString();
 }

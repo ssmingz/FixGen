@@ -16,11 +16,6 @@ public class VarDeclExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return null;
-    }
-
     public void setDeclType(String type) {
         _declType = type;
     }

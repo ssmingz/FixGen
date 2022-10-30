@@ -35,6 +35,33 @@ public class MethodDecl extends Node {
         _retType = null;
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer buf = new StringBuffer();
+        for (Object modifier : _modifiers) {
+            buf.append(modifier.toString() + " ");
+        }
+        if (_retType != null && !_retType.equals("?")) {
+            buf.append(_retType + " ");
+        }
+        buf.append(_name.toLabelString());
+        buf.append("(");
+        if (_parameters != null && _parameters.size() > 0) {
+            buf.append(_parameters.get(0).toLabelString());
+            for (int i = 1; i < _parameters.size(); i++) {
+                buf.append("," + _parameters.get(i).toLabelString());
+            }
+        }
+        buf.append(")");
+        if (_throws != null && _throws.size() > 0) {
+            buf.append(" throws " + _throws.get(0));
+            for (int i = 1; i < _throws.size(); i++) {
+                buf.append("," + _throws.get(i));
+            }
+        }
+        return buf.toString();
+    }
+
     public void setModifiers(List<String> modifiers) {
         _modifiers = modifiers;
     }

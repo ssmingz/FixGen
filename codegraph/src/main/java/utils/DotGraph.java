@@ -32,10 +32,7 @@ public class DotGraph {
         for (Node node : nodes) {
             id++;
             idByNode.put(node, id);
-            String label = "" + node.getStartSourceLine();
-            if (node instanceof NameExpr) {
-                label += ":" + node.getASTNode().toString();
-            }
+            String label = "" + node.getStartSourceLine() + ":" + node.toLabelString();
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
         }
         // add edges

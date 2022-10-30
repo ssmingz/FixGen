@@ -7,8 +7,4 @@ public class TypeMethodRef extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return null;
-    }
 }

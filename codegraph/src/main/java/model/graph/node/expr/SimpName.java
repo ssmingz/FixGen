@@ -17,7 +17,7 @@ public class SimpName extends NameExpr {
     public String getName() { return _name; }
 
     @Override
-    public String toNameString() {
+    public String toLabelString() {
         return _name;
     }
 

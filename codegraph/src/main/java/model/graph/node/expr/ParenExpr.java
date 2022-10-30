@@ -11,11 +11,6 @@ public class ParenExpr extends ExprNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
-    @Override
-    public String toNameString() {
-        return null;
-    }
-
     public void setExpr(ExprNode expression) {
         _expression = expression;
         new ASTEdge(this, expression);

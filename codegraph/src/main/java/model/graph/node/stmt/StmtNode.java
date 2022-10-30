@@ -7,4 +7,11 @@ public abstract class StmtNode extends Node {
     public StmtNode(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
     }
+
+    @Override
+    public String toLabelString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append(ASTNode.nodeClassForType(_astNode.getNodeType()).toString());
+        return buf.toString();
+    }
 }

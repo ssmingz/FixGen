@@ -789,7 +789,7 @@ public class CodeGraph {
         assignOpr.setOperator(astNode.getOperator());
         assign.setOperator(assignOpr);
 
-        scope.addDefine(lhs.toNameString(), assign);
+        scope.addDefine(lhs.toLabelString(), assign);
         lhs.setDataDependency(rhs);
         assign.setScope(scope);
         return assign;
@@ -1047,7 +1047,7 @@ public class CodeGraph {
         sname.setType(JavaASTUtil.getSimpleType(type));
 
         sname.setScope(scope);
-        scope.addUse(sname.toNameString(), sname);
+        scope.addUse(sname.toLabelString(), sname);
         return sname;
     }
 
@@ -1064,7 +1064,7 @@ public class CodeGraph {
         qname.setQualifier(name);
 
         qname.setScope(scope);
-        scope.addUse(qname.toNameString(), qname);
+        scope.addUse(qname.toLabelString(), qname);
         return qname;
     }
 
@@ -1122,7 +1122,7 @@ public class CodeGraph {
         switch (postfixOpr.toString()) {
             case "++":
             case "--":
-                scope.addDefine(expr.toNameString(), postfixExpr);
+                scope.addDefine(expr.toLabelString(), postfixExpr);
                 // TODO: build data dependency but can have a loop
                 postfixExpr.setDataDependency(expr);
         }
@@ -1144,10 +1144,10 @@ public class CodeGraph {
         prefixOpr.setOperator(astNode.getOperator());
         prefixExpr.setOpr(prefixOpr);
 
-        switch (prefixExpr.toNameString()) {
+        switch (prefixExpr.toLabelString()) {
             case "++":
             case "--":
-                scope.addDefine(expr.toNameString(), prefixExpr);
+                scope.addDefine(expr.toLabelString(), prefixExpr);
                 // TODO: build data dependency but can have a loop
                 prefixExpr.setDataDependency(expr);
         }
@@ -1294,7 +1294,7 @@ public class CodeGraph {
             iden.setDataDependency(expr);
         }
 
-        scope.addDefine(iden.toNameString(), vdf);
+        scope.addDefine(iden.toLabelString(), vdf);
 
         vdf.setScope(scope);
         return vdf;
@@ -1317,7 +1317,7 @@ public class CodeGraph {
         SimpName name = (SimpName) buildNode(astNode.getName(), control, scope);
         svd.setName(name);
 
-        scope.addDefine(name.toNameString(), svd);
+        scope.addDefine(name.toLabelString(), svd);
 
         svd.setScope(scope);
         return svd;

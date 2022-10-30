@@ -15,8 +15,13 @@ public class AryAcc extends ExprNode{
     }
 
     @Override
-    public String toNameString() {
-        return _array.toNameString();
+    public String toLabelString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append(_array.toLabelString());
+        buf.append("[");
+        buf.append(_index.toLabelString());
+        buf.append("]");
+        return buf.toString();
     }
 
     public void setArray(ExprNode array) {

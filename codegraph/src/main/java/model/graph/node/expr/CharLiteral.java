@@ -11,8 +11,8 @@ public class CharLiteral extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return String.valueOf(_value);
     }
 
     public void setValue(char charValue) {

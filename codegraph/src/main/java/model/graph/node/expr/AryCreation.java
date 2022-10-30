@@ -19,8 +19,8 @@ public class AryCreation extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return _astNode.toString();
     }
 
     public void setArrayType(String typStr) {

@@ -8,7 +8,7 @@ public class ExprMethodRef extends ExprNode {
     }
 
     @Override
-    public String toNameString() {
-        return null;
+    public String toLabelString() {
+        return _astNode.toString();
     }
 }
