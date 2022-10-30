@@ -12,6 +12,8 @@ public abstract class Edge {
     public Edge(Node source, Node target) {
         this.source = source;
         this.target = target;
+        this.source.addOutEdge(this);
+        this.target.addInEdge(this);
     }
 
     public abstract String getLabel();

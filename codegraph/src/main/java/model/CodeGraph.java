@@ -178,8 +178,8 @@ public class CodeGraph {
             node = visit((TypeLiteral) astNode, control, scope);
         } else if (astNode instanceof VariableDeclarationExpression) {
             node = visit((VariableDeclarationExpression) astNode, control, scope);
-        } else if (astNode instanceof Type) {
-            node = visit((Type) astNode, control, scope);
+//        } else if (astNode instanceof Type) {
+//            node = visit((Type) astNode, control, scope);
         } else if (astNode instanceof SingleVariableDeclaration) {
             node = visit((SingleVariableDeclaration) astNode, control, scope);
         } else if (astNode instanceof VariableDeclarationFragment) {
@@ -198,7 +198,7 @@ public class CodeGraph {
         FieldDecl fieldDecl = new FieldDecl(astNode, filePath, start, end);
         fieldDecl.setControlDependency(control);
 
-        TypeNode declType = (TypeNode) buildNode(astNode.getType(), control, scope);
+        String declType = JavaASTUtil.getSimpleType(astNode.getType());
         fieldDecl.setDeclType(declType);
 
         List<VarDeclFrag> frags = new ArrayList<>();
@@ -227,7 +227,7 @@ public class CodeGraph {
         if (astNode.getReturnType2() != null) {
             TypeNode type = (TypeNode) buildNode(astNode.getReturnType2(), control, scope);
             String typeStr = JavaASTUtil.getSimpleType(astNode.getReturnType2());
-            methodDecl.setRetType(type, typeStr);
+            methodDecl.setRetType(typeStr);
         }
         // method name
         SimpName mname = (SimpName) buildNode(astNode.getName(), control, scope);
@@ -666,9 +666,8 @@ public class CodeGraph {
         }
         vdStmt.setModifier(modifier);
         // type
-        TypeNode type = (TypeNode) buildNode(astNode.getType(), control, scope);
-        String typeStr = JavaASTUtil.getSimpleType(astNode.getType());
-        vdStmt.setDeclType(type, typeStr);
+        String type = JavaASTUtil.getSimpleType(astNode.getType());
+        vdStmt.setDeclType(type);
         // fragments
         List<VarDeclFrag> fragments = new ArrayList<>();
         for (Object obj : astNode.fragments()) {
@@ -721,8 +720,7 @@ public class CodeGraph {
         // type
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
         String typeStr = JavaASTUtil.getSimpleType(type);
-        TypeNode typ = (TypeNode) buildNode(type, control, scope);
-        aryAcc.setType(typ, typeStr);
+        aryAcc.setType(typeStr);
 
         aryAcc.setScope(scope);
         return aryAcc;
@@ -738,10 +736,8 @@ public class CodeGraph {
         if (type == null || type instanceof WildcardType) {
             type = astNode.getType().getElementType();
         }
-        TypeNode typ = (TypeNode) buildNode(astNode.getType().getElementType(), control, scope);
         String typStr = JavaASTUtil.getSimpleType(type);
-        arycr.setArrayType(typ, typStr);
-        arycr.setType(astNode.getType());
+        arycr.setArrayType(typStr);
         // dimension
         ExprList dimlist = new ExprList(null, filePath, start, end);
         List<ExprNode> dimension = new ArrayList<>();
@@ -806,7 +802,7 @@ public class CodeGraph {
         literal.setControlDependency(control);
         literal.setValue(astNode.booleanValue());
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
-        literal.setType(type);
+        literal.setType(JavaASTUtil.getSimpleType(type));
 
         literal.setScope(scope);
         return literal;
@@ -818,12 +814,11 @@ public class CodeGraph {
         CastExpr cast = new CastExpr(astNode, filePath, start, end);
         cast.setControlDependency(control);
         // type
-        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), control, scope);
-        cast.setCastType(typeNode);
+        String typeStr = JavaASTUtil.getSimpleType(astNode.getType());
+        cast.setCastType(typeStr);
         // expression
         ExprNode expr = (ExprNode) buildNode(astNode.getExpression(), control, scope);
         cast.setExpression(expr);
-        cast.setType(astNode.getType());
 
         cast.setScope(scope);
         return cast;
@@ -836,7 +831,7 @@ public class CodeGraph {
         literal.setControlDependency(control);
         literal.setValue(astNode.charValue());
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
-        literal.setType(type);
+        literal.setType(JavaASTUtil.getSimpleType(type));
 
         literal.setScope(scope);
         return literal;
@@ -867,9 +862,8 @@ public class CodeGraph {
         exprList.setExprs(argus);
         classCreation.setArguments(exprList);
 
-        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), control, scope);
-        classCreation.setClassType(typeNode);
-        classCreation.setType(astNode.getType());
+        String typeStr = JavaASTUtil.getSimpleType(astNode.getType());
+        classCreation.setClassType(typeStr);
 
         classCreation.setScope(scope);
         return classCreation;
@@ -936,7 +930,7 @@ public class CodeGraph {
         fieldAcc.setIdentifier(iden);
 
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
-        fieldAcc.setType(type);
+        fieldAcc.setType(JavaASTUtil.getSimpleType(type));
 
         fieldAcc.setScope(scope);
         return fieldAcc;
@@ -986,7 +980,7 @@ public class CodeGraph {
         ExprNode expr = (ExprNode) buildNode(astNode.getLeftOperand(), control, scope);
         instanceofExpr.setExpression(expr);
 
-        TypeNode instType = (TypeNode) buildNode(astNode.getRightOperand(), control, scope);
+        String instType = JavaASTUtil.getSimpleType(astNode.getRightOperand());
         instanceofExpr.setInstanceType(instType);
 
         instanceofExpr.setScope(scope);
@@ -1050,7 +1044,7 @@ public class CodeGraph {
         sname.setName(name);
 
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
-        sname.setType(type);
+        sname.setType(JavaASTUtil.getSimpleType(type));
 
         sname.setScope(scope);
         scope.addUse(sname.toNameString(), sname);
@@ -1093,7 +1087,7 @@ public class CodeGraph {
         literal.setValue(value);
 
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
-        literal.setType(type);
+        literal.setType(JavaASTUtil.getSimpleType(type));
 
         literal.setScope(scope);
         return literal;
@@ -1245,8 +1239,8 @@ public class CodeGraph {
         TypLiteral literal = new TypLiteral(astNode, filePath, start, end);
         literal.setControlDependency(control);
 
-        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), control, scope);
-        literal.setValue(typeNode);
+        String type = JavaASTUtil.getSimpleType(astNode.getType());
+        literal.setValue(type);
 
         literal.setScope(scope);
         return literal;
@@ -1268,13 +1262,13 @@ public class CodeGraph {
         VarDeclExpr varDeclExpr = new VarDeclExpr(astNode, filePath, start, end);
         varDeclExpr.setControlDependency(control);
 
-        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), control, scope);
-        varDeclExpr.setDeclType(typeNode);
+        String type = JavaASTUtil.getSimpleType(astNode.getType());
+        varDeclExpr.setDeclType(type);
 
         List<VarDeclFrag> fragments = new ArrayList<>();
         for (Object obj : astNode.fragments()) {
             VarDeclFrag vdf = (VarDeclFrag) buildNode((ASTNode) obj, control, scope);
-            vdf.setDeclType(typeNode);
+            vdf.setDeclType(type);
             fragments.add(vdf);
         }
         varDeclExpr.setFragments(fragments);
@@ -1312,8 +1306,8 @@ public class CodeGraph {
         SingleVarDecl svd = new SingleVarDecl(astNode, filePath, start, end);
         svd.setControlDependency(control);
 
-        TypeNode typeNode = (TypeNode) buildNode(astNode.getType(), control, scope);
-        svd.setDeclType(typeNode);
+        String type = JavaASTUtil.getSimpleType(astNode.getType());
+        svd.setDeclType(type);
 
         if (astNode.getInitializer() != null) {
             ExprNode init = (ExprNode) buildNode(astNode.getInitializer(), control, scope);
@@ -1329,21 +1323,22 @@ public class CodeGraph {
         return svd;
     }
 
-    private TypeNode visit(Type astNode, Node control, Scope scope) {
-        int start = cu.getLineNumber(astNode.getStartPosition());
-        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
-        TypeNode typeNode = new TypeNode(astNode, filePath, start, end);
-        typeNode.setControlDependency(control);
 
-        Type type = typeFromBinding(astNode.getAST(), astNode.resolveBinding());
-        if (type == null || type instanceof WildcardType) {
-            type = astNode;
-        }
-        typeNode.setType(type);
-
-        typeNode.setScope(scope);
-        return typeNode;
-    }
+//    private TypeNode visit(Type astNode, Node control, Scope scope) {
+//        int start = cu.getLineNumber(astNode.getStartPosition());
+//        int end = cu.getLineNumber(astNode.getStartPosition() + astNode.getLength());
+//        TypeNode typeNode = new TypeNode(astNode, filePath, start, end);
+//        typeNode.setControlDependency(control);
+//
+//        Type type = typeFromBinding(astNode.getAST(), astNode.resolveBinding());
+//        if (type == null || type instanceof WildcardType) {
+//            type = astNode;
+//        }
+//        typeNode.setType(type);
+//
+//        typeNode.setScope(scope);
+//        return typeNode;
+//    }
 
     public void setName(String name) {
         this.name = name;
@@ -1471,4 +1466,5 @@ public class CodeGraph {
     public List<Node> getNodes() {
         return allNodes;
     }
+
 }

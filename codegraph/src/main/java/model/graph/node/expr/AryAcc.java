@@ -8,8 +8,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 public class AryAcc extends ExprNode{
     private ExprNode _array;
     private ExprNode _index;
-    private TypeNode _type;
-    private String _typeStr;
+    private String _type;
 
     public AryAcc(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
@@ -30,9 +29,7 @@ public class AryAcc extends ExprNode{
         new ASTEdge(this, index);
     }
 
-    public void setType(TypeNode typ, String typeStr) {
-        _type = typ;
-        _typeStr = typeStr;
-        new ASTEdge(this, typ);
+    public void setType(String typeStr) {
+        _type = typeStr;
     }
 }

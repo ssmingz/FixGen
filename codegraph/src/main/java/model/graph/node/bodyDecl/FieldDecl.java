@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FieldDecl extends ExprNode {
-    private TypeNode _declType = null;
+    private String _declType = null;
     private List<VarDeclFrag> _fragments = new ArrayList<>();
 
     public FieldDecl(ASTNode oriNode, String fileName, int startLine, int endLine) {
@@ -23,9 +23,8 @@ public class FieldDecl extends ExprNode {
         return null;
     }
 
-    public void setDeclType(TypeNode declType) {
+    public void setDeclType(String declType) {
         _declType = declType;
-        new ASTEdge(this, declType);
     }
 
     public void setFrags(List<VarDeclFrag> frags) {

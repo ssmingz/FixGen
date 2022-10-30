@@ -10,7 +10,7 @@ public class ClassInstanceCreationExpr extends ExprNode {
     private ExprNode _expression;
     private AnonymousClassDecl _anonymousClassDeclaration;
     private ExprList _arguments;
-    private TypeNode _classType;
+    private String _classType;
 
     public ClassInstanceCreationExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
@@ -36,8 +36,7 @@ public class ClassInstanceCreationExpr extends ExprNode {
         new ASTEdge(this, exprList);
     }
 
-    public void setClassType(TypeNode typeNode) {
-        _classType = typeNode;
-        new ASTEdge(this, typeNode);
+    public void setClassType(String typeStr) {
+        _classType = typeStr;
     }
 }

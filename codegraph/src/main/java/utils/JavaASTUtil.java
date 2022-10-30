@@ -98,6 +98,10 @@ public class JavaASTUtil {
     }
 
     public static String getSimpleType(Type type) {
+        if ( type == null ){
+            System.err.println("ERROR: Couldn't find a variable type!!!");
+            return "";
+        }
         if (type.isArrayType()) {
             ArrayType t = (ArrayType) type;
             String pt = getSimpleType(t.getElementType());

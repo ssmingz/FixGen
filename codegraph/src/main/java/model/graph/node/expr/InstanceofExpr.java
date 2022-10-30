@@ -7,7 +7,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 
 public class InstanceofExpr extends ExprNode {
     private ExprNode _expression;
-    private TypeNode _instanceType;
+    private String _instanceType;
 
     public InstanceofExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
@@ -23,8 +23,7 @@ public class InstanceofExpr extends ExprNode {
         new ASTEdge(this, expr);
     }
 
-    public void setInstanceType(TypeNode instType) {
+    public void setInstanceType(String instType) {
         _instanceType = instType;
-        new ASTEdge(this, instType);
     }
 }

@@ -1,8 +1,11 @@
 package utils;
 
 import model.CodeGraph;
-import model.graph.edge.Edge;
+import model.GraphConfiguration;
+import model.graph.edge.*;
 import model.graph.node.Node;
+import model.graph.node.expr.ExprNode;
+import model.graph.node.expr.NameExpr;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -15,8 +18,10 @@ public class DotGraph {
     public static final String SHAPE_ELLIPSE = "ellipse";
 
     private StringBuilder graph = new StringBuilder();
+    private GraphConfiguration configuration;
 
-    public DotGraph(CodeGraph cg) {
+    public DotGraph(CodeGraph cg, GraphConfiguration config) {
+        configuration = config;
         // start
         graph.append(addStart(cg.getGraphName()));
 
@@ -28,6 +33,9 @@ public class DotGraph {
             id++;
             idByNode.put(node, id);
             String label = "" + node.getStartSourceLine();
+            if (node instanceof NameExpr) {
+                label += ":" + node.getASTNode().toString();
+            }
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
         }
         // add edges
@@ -37,12 +45,26 @@ public class DotGraph {
             for (Edge e : node.outEdges) {
                 if (!idByNode.containsKey(e.getTarget())) continue;
                 int tId = idByNode.get(e.getTarget());
-                String label = e.getLabel();
+                String label = addEdgeLabel(e);
                 graph.append(addEdge(sId, tId, null, null, label));
             }
         }
         // end
         graph.append(addEnd());
+    }
+
+    private String addEdgeLabel(Edge e) {
+        String label = "";
+        if (e instanceof ASTEdge && configuration.showASTEdge) {
+            label = e.getLabel();
+        } else if (e instanceof ControlEdge && configuration.showControlEdge) {
+            label = e.getLabel();
+        } else if (e instanceof DataEdge && configuration.showDataEdge) {
+            label = e.getLabel();
+        } else if (e instanceof DefUseEdge && configuration.showDefUseEdge) {
+            label = e.getLabel();
+        }
+        return label;
     }
 
     public String addStart(String name) {

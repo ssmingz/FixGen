@@ -6,7 +6,7 @@ import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class TypLiteral extends ExprNode {
-    private TypeNode _value;
+    private String _value;
 
     public TypLiteral(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
@@ -17,8 +17,7 @@ public class TypLiteral extends ExprNode {
         return null;
     }
 
-    public void setValue(TypeNode typeNode) {
-        _value = typeNode;
-        new ASTEdge(this, typeNode);
+    public void setValue(String type) {
+        _value = type;
     }
 }

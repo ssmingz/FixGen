@@ -9,7 +9,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 import java.util.List;
 
 public class VarDeclExpr extends ExprNode {
-    private TypeNode _declType;
+    private String _declType;
     private List<VarDeclFrag> _fragments;
 
     public VarDeclExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
@@ -21,9 +21,8 @@ public class VarDeclExpr extends ExprNode {
         return null;
     }
 
-    public void setDeclType(TypeNode typeNode) {
-        _declType = typeNode;
-        new ASTEdge(this, typeNode);
+    public void setDeclType(String type) {
+        _declType = type;
     }
 
     public void setFragments(List<VarDeclFrag> fragments) {

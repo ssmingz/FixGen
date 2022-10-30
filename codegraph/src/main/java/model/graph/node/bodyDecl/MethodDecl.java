@@ -17,8 +17,7 @@ public class MethodDecl extends Node {
     /**
      * return type
      */
-    private TypeNode _retType;
-    private String _retTypeStr;
+    private String _retType;
 
     private List<String> _modifiers = new ArrayList<>();
 
@@ -40,10 +39,8 @@ public class MethodDecl extends Node {
         _modifiers = modifiers;
     }
 
-    public void setRetType(TypeNode type, String typeStr) {
-        _retType = type;
-        new ASTEdge(this, type);
-        _retTypeStr = typeStr;
+    public void setRetType(String typeStr) {
+        _retType = typeStr;
     }
 
     public void setName(SimpName name) {

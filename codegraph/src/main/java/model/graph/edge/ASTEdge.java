@@ -8,13 +8,11 @@ public class ASTEdge extends Edge{
         super(source, target);
         this.type = EdgeType.AST;
         this.target.setParent(this.source);
-        this.source.addOutEdge(this);
-        this.target.addInEdge(this);
     }
 
     @Override
     public String getLabel() {
-        return "ASTEdge";
+        return "AST";
     }
 
 }

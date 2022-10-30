@@ -23,9 +23,10 @@ public class TestGraphBuilder {
     @Test
     public void testBuildForFile() {
         String srcPath = System.getProperty("user.dir") + "/codegraph/src/test/res/input4test.java";
-        GraphBuilder builder = new GraphBuilder(new GraphConfiguration());
+        GraphConfiguration config = new GraphConfiguration();
+        GraphBuilder builder = new GraphBuilder(config);
         Collection<CodeGraph> cgs = builder.build(srcPath, null);
-        DotGraph dg = new DotGraph((CodeGraph) cgs.toArray()[1]);
+        DotGraph dg = new DotGraph((CodeGraph) cgs.toArray()[1], config);
         File dir = new File(System.getProperty("user.dir") + "/codegraph/src/test/res/2.dot");
         dg.toDotFile(dir);
     }

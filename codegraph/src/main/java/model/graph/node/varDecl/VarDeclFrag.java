@@ -9,8 +9,7 @@ import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class VarDeclFrag extends ExprNode {
-    private TypeNode _type;
-    private String _typeStr;
+    private String _type;
     private SimpName _name;
     private int _dimensions;
     private ExprNode _expression;
@@ -25,10 +24,8 @@ public class VarDeclFrag extends ExprNode {
         return _name.getName();
     }
 
-    public void setDeclType(TypeNode type) {
+    public void setDeclType(String type) {
         _type = type;
-        new ASTEdge(this, type);
-
     }
 
     public void setName(SimpName iden) {

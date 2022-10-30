@@ -6,7 +6,7 @@ import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class CastExpr extends ExprNode {
-    private TypeNode _castType;
+    private String _castType;
     private ExprNode _expression;
 
     public CastExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
@@ -18,9 +18,8 @@ public class CastExpr extends ExprNode {
         return null;
     }
 
-    public void setCastType(TypeNode typeNode) {
-        _castType = typeNode;
-        new ASTEdge(this, typeNode);
+    public void setCastType(String typeStr) {
+        _castType = typeStr;
     }
 
     public void setExpression(ExprNode expr) {

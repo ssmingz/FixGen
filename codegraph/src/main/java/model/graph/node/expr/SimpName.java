@@ -4,6 +4,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 
 public class SimpName extends NameExpr {
     private String _name;
+    private String _type;
 
     public SimpName(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
@@ -19,4 +20,6 @@ public class SimpName extends NameExpr {
     public String toNameString() {
         return _name;
     }
+
+    public void setType(String typeStr) { _type = typeStr; }
 }

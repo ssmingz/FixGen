@@ -8,7 +8,7 @@ import model.graph.node.type.TypeNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class SingleVarDecl extends ExprNode {
-    private TypeNode _declType;
+    private String _declType;
     private ExprNode _initializer;
     private SimpName _name;
 
@@ -21,9 +21,8 @@ public class SingleVarDecl extends ExprNode {
         return _name.getName();
     }
 
-    public void setDeclType(TypeNode typeNode) {
-        _declType = typeNode;
-        new ASTEdge(this, typeNode);
+    public void setDeclType(String type) {
+        _declType = type;
     }
 
     public void setInitializer(ExprNode init) {

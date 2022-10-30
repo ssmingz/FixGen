@@ -11,6 +11,6 @@ public class TypeNode extends ExprNode {
 
     @Override
     public String toNameString() {
-        return null;
+        return _exprTypeStr;
     }
 }

@@ -10,8 +10,7 @@ import org.eclipse.jdt.core.dom.Type;
 import java.util.List;
 
 public class AryCreation extends ExprNode {
-    private TypeNode _elementType;
-    private String _elementTypeStr;
+    private String _elementType;
     private ExprList _dimension;
     private AryInitializer _initializer;
 
@@ -24,10 +23,8 @@ public class AryCreation extends ExprNode {
         return null;
     }
 
-    public void setArrayType(TypeNode typ, String typStr) {
-        _elementType = typ;
-        _elementTypeStr = typStr;
-        new ASTEdge(this, typ);
+    public void setArrayType(String typStr) {
+        _elementType = typStr;
     }
 
     public void setDimension(ExprList dimension) {

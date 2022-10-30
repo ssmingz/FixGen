@@ -11,8 +11,7 @@ import java.util.List;
 
 public class VarDeclStmt extends StmtNode{
     private String _modifier;
-    private String _typeStr;
-    private TypeNode _declType;
+    private String _declType;
     private List<VarDeclFrag> _fragments;
 
     public VarDeclStmt(ASTNode oriNode, String fileName, int startLine, int endLine) {
@@ -23,10 +22,8 @@ public class VarDeclStmt extends StmtNode{
         _modifier = modifier;
     }
 
-    public void setDeclType(TypeNode type, String typeStr) {
+    public void setDeclType(String type) {
         _declType = type;
-        _typeStr = typeStr;
-        new ASTEdge(this, type);
     }
 
     public void setFragments(List<VarDeclFrag> fragments) {

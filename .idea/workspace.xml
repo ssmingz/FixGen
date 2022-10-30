@@ -4,17 +4,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add DotGraph">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/ASTEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/ASTEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/ControlEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/ControlEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/DataEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/DataEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/DefUseEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/DefUseEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/bodyDecl/FieldDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/bodyDecl/FieldDecl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/bodyDecl/MethodDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/bodyDecl/MethodDecl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryAcc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryCreation.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/AryCreation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/BoolLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/BoolLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CastExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CastExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CharLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/CharLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ClassInstanceCreationExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ClassInstanceCreationExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/FieldAcc.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/FieldAcc.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/InstanceofExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/InstanceofExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NumLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/NumLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SimpName.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SimpName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/TypLiteral.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/TypLiteral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/VarDeclExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/VarDeclExpr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/VarDeclStmt.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/stmt/VarDeclStmt.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/type/TypeNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/type/TypeNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/SingleVarDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/SingleVarDecl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/VarDeclFrag.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/varDecl/VarDeclFrag.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/2.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/res/2.dot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="CodeStyleSettingsInfer">
-    <option name="done" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -27,19 +53,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectCodeStyleSettingsMigration">
-    <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2FvTDewHGlOcW22t04vr1nf9sf8" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -49,14 +64,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.39586028" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/expdata/code/FixGen/codegraph/src/test/res",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.33793104",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
+  }
+}]]></component>
   <component name="RunManager" selected="JUnit.TestGraphBuilder.testBuildForFile">
     <configuration name="TestGraphBuilder.testBuildForFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FixGen" />
@@ -78,12 +96,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestParser.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestParser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FixGen" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestParser" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -112,9 +129,9 @@
       <list>
         <item itemvalue="JUnit.TestGraphBuilder.testBuildForFile" />
         <item itemvalue="JUnit.TestGraphBuilder.testBuildForMethod" />
-        <item itemvalue="JUnit.TestParser.test" />
         <item itemvalue="JUnit.TestParser.testParseSource" />
         <item itemvalue="JUnit.TestParser.testParse" />
+        <item itemvalue="JUnit.TestParser" />
       </list>
     </recent_temporary>
   </component>
@@ -134,35 +151,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665470163186</updated>
     </task>
-    <task id="LOCAL-00002" summary="add parsing statement node part">
-      <created>1665824859778</created>
+    <task id="LOCAL-00002" summary="add buildNode() for MethodDeclaration">
+      <created>1665720033273</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1665824859778</updated>
+      <updated>1665720033273</updated>
     </task>
-    <task id="LOCAL-00003" summary="refactor ASTEdge and add control dependency analysis">
-      <created>1666074714756</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1666074714756</updated>
-    </task>
-    <task id="LOCAL-00004" summary="add data dependency analysis">
-      <created>1666207210915</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1666207210915</updated>
-    </task>
-    <task id="LOCAL-00005" summary="add DotGraph">
-      <created>1667057589018</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1667057589018</updated>
-    </task>
-    <option name="localTasksCounter" value="6" />
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -178,11 +174,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init codegraph" />
-    <MESSAGE value="add parsing statement node part" />
-    <MESSAGE value="refactor ASTEdge and add control dependency analysis" />
-    <MESSAGE value="add data dependency analysis" />
-    <MESSAGE value="add DotGraph" />
-    <option name="LAST_COMMIT_MESSAGE" value="add DotGraph" />
+    <MESSAGE value="add buildNode() for MethodDeclaration" />
+    <option name="LAST_COMMIT_MESSAGE" value="add buildNode() for MethodDeclaration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -192,8 +185,23 @@
           <line>30</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java</url>
+          <line>28</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="15" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((MethodDecl)((CodeGraph)((ArrayList)cgs).get(0)).entryNode)._astNode" custom="model.CodeGraph,java.util.ArrayList,model.graph.node.bodyDecl.MethodDecl" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
