@@ -82,6 +82,7 @@ public class Matcher {
         List<StmtNode> bugNotMatched = new ArrayList<>();
         List<StmtNode> fixNotMatched = new ArrayList<>();
         Set<Integer> fixMatched = new HashSet<>();
+        // complete match
         for (int i=0; i< bugStmts.size(); i++) {
             boolean notMatched = true;
             if (anyAncestorMatch(bugStmts.get(i))) {
@@ -112,10 +113,22 @@ public class Matcher {
         }
 
         // TODO: match sub-expressions
-        System.out.println("stop");
+        // similar match to extract actions
+        similarMatch(bugNotMatched, fixNotMatched);
+
 
         return true;
     }
+
+    private static <T extends Node> void similarMatch(List<T> first, List<T> second) {
+        if (first.isEmpty() || second.isEmpty())
+            return;
+        double[][] valueMat = new double[first.size()][second.size()];
+        for (int i=0; i<first.size(); i++) {
+
+        }
+    }
+
 
     private static boolean anyAncestorMatch(Node node) {
         while (node.getParent() != null) {

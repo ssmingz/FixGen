@@ -4,8 +4,6 @@ import model.CodeGraph;
 import model.GraphConfiguration;
 import model.graph.edge.*;
 import model.graph.node.Node;
-import model.graph.node.expr.ExprNode;
-import model.graph.node.expr.NameExpr;
 
 import java.io.BufferedWriter;
 import java.io.File;
