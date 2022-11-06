@@ -21,6 +21,20 @@ public class BlockStmt extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("{");
+        if(_stmtlist.size() > 0){
+            stringBuffer.append(_stmtlist.get(0).getClass().toString());
+        }
+        for(int i = 1; i < _stmtlist.size(); ++i){
+            stringBuffer.append("," + _stmtlist.get(i).getClass().toString());
+        }
+        stringBuffer.append("}");
+        return stringBuffer.toString();
+    }
+
+    @Override
     public boolean compare(Node other) {
         boolean match = false;
         if (other != null && other instanceof BlockStmt) {

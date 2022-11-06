@@ -19,6 +19,11 @@ public class ThrowStmt extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
+    @Override
     public boolean compare(Node other) {
         boolean match = false;
         if(other != null && other instanceof ThrowStmt) {

@@ -9,6 +9,8 @@ import utils.JavaASTUtil;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
@@ -16,7 +18,13 @@ import static org.junit.Assert.assertThat;
 public class TestGraphBuilder {
     @Test
     public void testBuildForMethod() {
-        CodeGraph cg = buildCGForMethod("void m(int i) { int i = 0; } }");
+        CodeGraph cg = buildCGForMethod(" void m(int i) { do {i = 1;}while(true); }");
+        Set<Node> set = cg.entryNode.getDirectDataDependentNodes();
+        Iterator<Node> iterator = set.iterator();
+        while(iterator.hasNext()){
+            Node node = iterator.next();
+            System.out.println(node.toLabelString());
+        }
         System.out.println(cg);
     }
 

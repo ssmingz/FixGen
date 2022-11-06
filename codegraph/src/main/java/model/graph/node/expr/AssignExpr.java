@@ -20,6 +20,7 @@ public class AssignExpr extends ExprNode {
         buf.append(_lhs.toLabelString());
         buf.append(_opr.toLabelString());
         buf.append(_rhs.toLabelString());
+        //return _astNode.toString();
         return buf.toString();
     }
 

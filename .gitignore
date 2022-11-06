@@ -6,6 +6,7 @@ target/
 ### IntelliJ IDEA ###
 *.iws
 *.ipr
+.idea/*
 
 ### Eclipse ###
 .apt_generated

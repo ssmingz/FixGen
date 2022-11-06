@@ -14,6 +14,16 @@ public class DoStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("do ");
+        stringBuffer.append(_stmt.toLabelString());
+        stringBuffer.append(" while(");
+        stringBuffer.append(_expression.toLabelString() + ");");
+        return stringBuffer.toString();
+    }
+
     public void setExpr(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

@@ -14,6 +14,14 @@ public class WhileStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("while(" + _expression.toLabelString() + ")");
+        stringBuffer.append(_body.toLabelString());
+        return stringBuffer.toString();
+    }
+
     public void setExpr(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

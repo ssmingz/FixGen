@@ -22,6 +22,26 @@ public class ForStmt extends StmtNode {
         new ASTEdge(this, initExprList);
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("for(");
+        if(_initializer != null){
+            stringBuffer.append(_initializer.toLabelString());
+        }
+        stringBuffer.append(";");
+        if(_condition!= null){
+            stringBuffer.append(_condition.toLabelString());
+        }
+        stringBuffer.append(";");
+        if(_updater != null){
+            stringBuffer.append(_updater.toLabelString());
+        }
+        stringBuffer.append(")");
+        stringBuffer.append(_body.toLabelString());
+        return stringBuffer.toString();
+    }
+
     public void setCondition(ExprNode condition) {
         _condition = condition;
         new ASTEdge(this, condition);

@@ -15,6 +15,11 @@ public class IfStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
     public void setExpression(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);

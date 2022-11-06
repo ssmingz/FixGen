@@ -19,6 +19,11 @@ public class ExprStmt extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        return _expression.toLabelString();
+    }
+
+    @Override
     public boolean compare(Node other) {
         if (other != null && other instanceof ExprStmt) {
             ExprStmt expressionStmt = (ExprStmt) other;

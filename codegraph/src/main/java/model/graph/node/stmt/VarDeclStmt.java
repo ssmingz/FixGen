@@ -19,6 +19,11 @@ public class VarDeclStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
     public void setModifier(String modifier) {
         _modifier = modifier;
     }

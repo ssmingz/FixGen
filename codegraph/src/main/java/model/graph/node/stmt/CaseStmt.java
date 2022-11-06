@@ -18,6 +18,11 @@ public class CaseStmt extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
+    @Override
     public boolean compare(Node other) {
         if(other != null && other instanceof CaseStmt) {
             CaseStmt swCase = (CaseStmt) other;

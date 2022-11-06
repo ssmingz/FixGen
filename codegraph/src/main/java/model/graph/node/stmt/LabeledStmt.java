@@ -14,6 +14,14 @@ public class LabeledStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append(_label.toLabelString());
+        stringBuffer.append(" : " + _body.toLabelString());
+        return stringBuffer.toString();
+    }
+
     public void setLabel(SimpName lab) {
         _label = lab;
         new ASTEdge(this, lab);

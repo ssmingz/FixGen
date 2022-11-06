@@ -22,6 +22,15 @@ public class ConstructorInvoc extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("this(");
+        stringBuffer.append(_argulist.toLabelString());
+        stringBuffer.append(");");
+        return stringBuffer.toString();
+    }
+
+    @Override
     public boolean compare(Node other) {
         boolean match = false;
         if (other != null && other instanceof ConstructorInvoc) {

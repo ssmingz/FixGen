@@ -14,7 +14,7 @@ public class AnnotationExpr extends ExprNode {
 
     @Override
     public String toLabelString() {
-        return null;
+        return _astNode.toString();
     }
 
     @Override

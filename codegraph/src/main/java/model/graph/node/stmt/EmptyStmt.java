@@ -9,6 +9,11 @@ public class EmptyStmt extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        return null;
+    }
+
+    @Override
     public boolean compare(Node other) {
         if(other != null && other instanceof EmptyStmt) {
             return true;

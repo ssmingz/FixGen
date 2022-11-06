@@ -16,6 +16,18 @@ public class EnhancedForStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        StringBuffer stringBuffer = new StringBuffer();
+        stringBuffer.append("for(");
+        stringBuffer.append(_singleVariableDeclaration.toLabelString());
+        stringBuffer.append(" : ");
+        stringBuffer.append(_expression.toLabelString());
+        stringBuffer.append(") ");
+        stringBuffer.append(_statement.toLabelString());
+        return stringBuffer.toString();
+    }
+
     public void setSVD(SingleVarDecl svd) {
         _singleVariableDeclaration = svd;
         new ASTEdge(this, svd);

@@ -19,6 +19,11 @@ public class ContinueStmt extends StmtNode {
     }
 
     @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
+    @Override
     public boolean compare(Node other) {
         boolean match = false;
         if (other != null && other instanceof ContinueStmt) {

@@ -15,7 +15,7 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.sun.org.apache.bcel.internal.Const.T_UNKNOWN;
+import static com.sun.org.apache.bcel.internal.Constants.T_UNKNOWN;
 
 public class GraphBuilder {
     private final GraphConfiguration configuration;

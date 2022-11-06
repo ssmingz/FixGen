@@ -26,6 +26,11 @@ public class TryStmt extends StmtNode {
         }
     }
 
+    @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
     public void setBody(BlockStmt blk) {
         _body = blk;
         new ASTEdge(this, blk);

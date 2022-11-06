@@ -24,6 +24,7 @@ public class AssertStmt extends StmtNode {
         new ASTEdge(this, message);
     }
 
+
     @Override
     public boolean compare(Node other) {
         if (other != null && other instanceof AssertStmt) {

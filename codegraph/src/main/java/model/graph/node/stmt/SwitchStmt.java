@@ -16,6 +16,11 @@ public class SwitchStmt extends StmtNode {
         super(oriNode, fileName, startLine, endLine);
     }
 
+    @Override
+    public String toLabelString() {
+        return _astNode.toString();
+    }
+
     public void setExpr(ExprNode expr) {
         _expression = expr;
         new ASTEdge(this, expr);
