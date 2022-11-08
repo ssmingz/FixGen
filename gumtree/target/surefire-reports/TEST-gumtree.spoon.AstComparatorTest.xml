@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="gumtree.spoon.AstComparatorTest" time="18.21" tests="79" errors="1" skipped="0" failures="1">
+  <properties>
+    <property name="idea.version" value="2021.3.2"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib"/>
+    <property name="java.vm.version" value="25.291-b10"/>
+    <property name="gopherProxySet" value="false"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/Users/yumeng/JavaProjects/FixGen"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="CN"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/Users/yumeng/JavaProjects/FixGen"/>
+    <property name="java.runtime.version" value="1.8.0_291-b10"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/endorsed"/>
+    <property name="os.arch" value="x86_64"/>
+    <property name="java.io.tmpdir" value="/var/folders/yk/h7q1_drn55qdh7vxk_ljlmq80000gn/T/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="socksProxyPort" value="7890"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="https.proxyHost" value="127.0.0.1"/>
+    <property name="os.name" value="Mac OS X"/>
+    <property name="maven.ext.class.path" value="/Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven-event-listener.jar"/>
+    <property name="classworlds.conf" value="/Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven3/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/Users/yumeng/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:."/>
+    <property name="http.proxyPort" value="7890"/>
+    <property name="maven.conf" value="/Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven3/conf"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="10.16"/>
+    <property name="http.nonProxyHosts" value="192.168.0.0/16|*.192.168.0.0/16|10.0.0.0/8|*.10.0.0.0/8|172.16.0.0/12|*.172.16.0.0/12|127.0.0.1|localhost|*.localhost|local|*.local|timestamp.apple.com|*.timestamp.apple.com"/>
+    <property name="user.home" value="/Users/yumeng"/>
+    <property name="user.timezone" value="Asia/Shanghai"/>
+    <property name="java.awt.printerjob" value="sun.lwawt.macosx.CPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="yumeng"/>
+    <property name="java.class.path" value="/Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds.license:/Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven3/boot/plexus-classworlds-2.6.0.jar"/>
+    <property name="socksProxyHost" value="127.0.0.1"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre"/>
+    <property name="sun.java.command" value="org.codehaus.classworlds.Launcher -Didea.version=2021.3.2 install"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="zh"/>
+    <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_291"/>
+    <property name="java.ext.dirs" value="/Users/yumeng/Library/Java/Extensions:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/ext:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java"/>
+    <property name="http.proxyHost" value="127.0.0.1"/>
+    <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_291.jdk/Contents/Home/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/Applications/IntelliJ IDEA CE.app/Contents/plugins/maven/lib/maven3"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeBig"/>
+    <property name="https.proxyPort" value="7890"/>
+    <property name="socksNonProxyHosts" value="192.168.0.0/16|*.192.168.0.0/16|10.0.0.0/8|*.10.0.0.0/8|172.16.0.0/12|*.172.16.0.0/12|127.0.0.1|localhost|*.localhost|local|*.local|timestamp.apple.com|*.timestamp.apple.com"/>
+    <property name="ftp.nonProxyHosts" value="192.168.0.0/16|*.192.168.0.0/16|10.0.0.0/8|*.10.0.0.0/8|172.16.0.0/12|*.172.16.0.0/12|127.0.0.1|localhost|*.localhost|local|*.local|timestamp.apple.com|*.timestamp.apple.com"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase name="exampleInsertAndUpdate" classname="gumtree.spoon.AstComparatorTest" time="0.104"/>
+  <testcase name="testMain" classname="gumtree.spoon.AstComparatorTest" time="0.007">
+    <error message="/Users/Jiajun/Code/Java/tmpspace/CommitExtractorByKeyWords/diffile/ant/0a51af299e_a8b79fd315/0a51af299e871318ffb6241565dfbf771fa503ec/locator.java does not exist" type="java.io.FileNotFoundException">java.io.FileNotFoundException: /Users/Jiajun/Code/Java/tmpspace/CommitExtractorByKeyWords/diffile/ant/0a51af299e_a8b79fd315/0a51af299e871318ffb6241565dfbf771fa503ec/locator.java does not exist
+	at spoon.compiler.SpoonResourceHelper.createFolder(SpoonResourceHelper.java:91)
+	at spoon.compiler.SpoonResourceHelper.createResource(SpoonResourceHelper.java:83)
+	at gumtree.spoon.AstComparator.getCtType(AstComparator.java:88)
+	at gumtree.spoon.AstComparator.compare(AstComparator.java:67)
+	at gumtree.spoon.AstComparator.main(AstComparator.java:117)
+	at gumtree.spoon.AstComparatorTest.testMain(AstComparatorTest.java:189)
+</error>
+  </testcase>
+  <testcase name="test_000" classname="gumtree.spoon.AstComparatorTest" time="0.089"/>
+  <testcase name="test_t_202564" classname="gumtree.spoon.AstComparatorTest" time="0.153"/>
+  <testcase name="test_t_204225" classname="gumtree.spoon.AstComparatorTest" time="0.09"/>
+  <testcase name="test_t_208618" classname="gumtree.spoon.AstComparatorTest" time="0.127"/>
+  <testcase name="test_t_209184" classname="gumtree.spoon.AstComparatorTest" time="0.097"/>
+  <testcase name="test_t_211903" classname="gumtree.spoon.AstComparatorTest" time="0.1"/>
+  <testcase name="test_t_212496" classname="gumtree.spoon.AstComparatorTest" time="0.714"/>
+  <testcase name="test_t_213712" classname="gumtree.spoon.AstComparatorTest" time="0.106"/>
+  <testcase name="test_t_214116" classname="gumtree.spoon.AstComparatorTest" time="0.331"/>
+  <testcase name="test_t_214614" classname="gumtree.spoon.AstComparatorTest" time="0.143"/>
+  <testcase name="test_t_220985" classname="gumtree.spoon.AstComparatorTest" time="0.625"/>
+  <testcase name="test_t_221070" classname="gumtree.spoon.AstComparatorTest" time="0.61"/>
+  <testcase name="test_t_221295" classname="gumtree.spoon.AstComparatorTest" time="0.155"/>
+  <testcase name="test_t_221343" classname="gumtree.spoon.AstComparatorTest" time="0.798"/>
+  <testcase name="test_t_221345" classname="gumtree.spoon.AstComparatorTest" time="0.678"/>
+  <testcase name="test_t_221422" classname="gumtree.spoon.AstComparatorTest" time="0.852"/>
+  <testcase name="test_t_221958" classname="gumtree.spoon.AstComparatorTest" time="0.12"/>
+  <testcase name="test_t_221966" classname="gumtree.spoon.AstComparatorTest" time="0.093"/>
+  <testcase name="test_t_222361" classname="gumtree.spoon.AstComparatorTest" time="0.146"/>
+  <testcase name="test_t_222399" classname="gumtree.spoon.AstComparatorTest" time="0.173"/>
+  <testcase name="test_t_222884" classname="gumtree.spoon.AstComparatorTest" time="0.108"/>
+  <testcase name="test_t_222894" classname="gumtree.spoon.AstComparatorTest" time="0.19"/>
+  <testcase name="test_t_223054" classname="gumtree.spoon.AstComparatorTest" time="0.076"/>
+  <testcase name="test_t_223056" classname="gumtree.spoon.AstComparatorTest" time="2.098"/>
+  <testcase name="test_t_223118" classname="gumtree.spoon.AstComparatorTest" time="0.259"/>
+  <testcase name="test_t_223454" classname="gumtree.spoon.AstComparatorTest" time="0.11"/>
+  <testcase name="test_t_223542" classname="gumtree.spoon.AstComparatorTest" time="0.83"/>
+  <testcase name="test_t_224512" classname="gumtree.spoon.AstComparatorTest" time="3.305"/>
+  <testcase name="test_t_224542" classname="gumtree.spoon.AstComparatorTest" time="0.271"/>
+  <testcase name="test_t_224766" classname="gumtree.spoon.AstComparatorTest" time="0.074"/>
+  <testcase name="test_t_224771" classname="gumtree.spoon.AstComparatorTest" time="0.096"/>
+  <testcase name="test_t_224798" classname="gumtree.spoon.AstComparatorTest" time="0.089"/>
+  <testcase name="test_t_224834" classname="gumtree.spoon.AstComparatorTest" time="0.075"/>
+  <testcase name="test_t_224863" classname="gumtree.spoon.AstComparatorTest" time="0.081"/>
+  <testcase name="test_t_224882" classname="gumtree.spoon.AstComparatorTest" time="0.07"/>
+  <testcase name="test_t_224890" classname="gumtree.spoon.AstComparatorTest" time="0.069"/>
+  <testcase name="test_t_225008" classname="gumtree.spoon.AstComparatorTest" time="0.076"/>
+  <testcase name="test_t_225073" classname="gumtree.spoon.AstComparatorTest" time="0.098"/>
+  <testcase name="test_t_225106" classname="gumtree.spoon.AstComparatorTest" time="0.115"/>
+  <testcase name="test_t_225225" classname="gumtree.spoon.AstComparatorTest" time="0.085"/>
+  <testcase name="test_t_225247" classname="gumtree.spoon.AstComparatorTest" time="0.088"/>
+  <testcase name="test_t_225262" classname="gumtree.spoon.AstComparatorTest" time="0.081"/>
+  <testcase name="test_t_225391" classname="gumtree.spoon.AstComparatorTest" time="0.078"/>
+  <testcase name="test_t_225414" classname="gumtree.spoon.AstComparatorTest" time="0.109"/>
+  <testcase name="test_t_225434" classname="gumtree.spoon.AstComparatorTest" time="0.072"/>
+  <testcase name="test_t_225525" classname="gumtree.spoon.AstComparatorTest" time="0.072"/>
+  <testcase name="test_t_225724" classname="gumtree.spoon.AstComparatorTest" time="0.098"/>
+  <testcase name="test_t_225893" classname="gumtree.spoon.AstComparatorTest" time="0.071"/>
+  <testcase name="test_t_226145" classname="gumtree.spoon.AstComparatorTest" time="0.124"/>
+  <testcase name="test_t_226330" classname="gumtree.spoon.AstComparatorTest" time="0.074"/>
+  <testcase name="test_t_226480" classname="gumtree.spoon.AstComparatorTest" time="0.136"/>
+  <testcase name="test_t_226555" classname="gumtree.spoon.AstComparatorTest" time="0.081"/>
+  <testcase name="test_t_226622" classname="gumtree.spoon.AstComparatorTest" time="0.11"/>
+  <testcase name="test_t_226685" classname="gumtree.spoon.AstComparatorTest" time="0.082"/>
+  <testcase name="test_t_226926" classname="gumtree.spoon.AstComparatorTest" time="0.074"/>
+  <testcase name="test_t_226963" classname="gumtree.spoon.AstComparatorTest" time="0.237"/>
+  <testcase name="test_t_227005" classname="gumtree.spoon.AstComparatorTest" time="0.103"/>
+  <testcase name="test_t_227130" classname="gumtree.spoon.AstComparatorTest" time="0.074"/>
+  <testcase name="test_t_227368" classname="gumtree.spoon.AstComparatorTest" time="0.075"/>
+  <testcase name="test_t_227811" classname="gumtree.spoon.AstComparatorTest" time="0.106"/>
+  <testcase name="test_t_227985" classname="gumtree.spoon.AstComparatorTest" time="0.313"/>
+  <testcase name="test_t_228064" classname="gumtree.spoon.AstComparatorTest" time="0.109"/>
+  <testcase name="test_t_228325" classname="gumtree.spoon.AstComparatorTest" time="0.101"/>
+  <testcase name="test_t_228643" classname="gumtree.spoon.AstComparatorTest" time="0.091"/>
+  <testcase name="test_t_286696" classname="gumtree.spoon.AstComparatorTest" time="0.098"/>
+  <testcase name="test_t_286700" classname="gumtree.spoon.AstComparatorTest" time="0.112"/>
+  <testcase name="testgetCtType" classname="gumtree.spoon.AstComparatorTest" time="0.064"/>
+  <testcase name="testAnalyzeStringString" classname="gumtree.spoon.AstComparatorTest" time="0.09"/>
+  <testcase name="test5" classname="gumtree.spoon.AstComparatorTest" time="0.157"/>
+  <testcase name="test6" classname="gumtree.spoon.AstComparatorTest" time="0.085"/>
+  <testcase name="test7" classname="gumtree.spoon.AstComparatorTest" time="0.123"/>
+  <testcase name="exampleSingleUpdate" classname="gumtree.spoon.AstComparatorTest" time="0.115"/>
+  <testcase name="testContent" classname="gumtree.spoon.AstComparatorTest" time="0.042"/>
+  <testcase name="exampleInsert" classname="gumtree.spoon.AstComparatorTest" time="0.085"/>
+  <testcase name="testJDTBasedSpoonCompiler" classname="gumtree.spoon.AstComparatorTest" time="0.032"/>
+  <testcase name="exampleRemoveMethod" classname="gumtree.spoon.AstComparatorTest" time="0.089"/>
+  <testcase name="test_example" classname="gumtree.spoon.AstComparatorTest" time="0.073">
+    <failure type="java.lang.AssertionError:">java.lang.AssertionError: null
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertTrue(Assert.java:52)
+	at gumtree.spoon.AstComparatorTest.test_example(AstComparatorTest.java:121)
+</failure>
+    <system-out><![CDATA[INS 					-562801488@@a#isEmpty()
+						-1025867376@@a
+ to 2365@@ at 0
+gumtree.spoon.diff.operations.InsertOperation@67fce6ed
+MOV 							-1025867376@@a
+ to -562801488@@a#isEmpty() at 0
+gumtree.spoon.diff.operations.MoveOperation@10460b17
+DEL -562801488@@a#size()
+gumtree.spoon.diff.operations.DeleteOperation@266915f0
+DEL 1847113871@@0
+gumtree.spoon.diff.operations.DeleteOperation@37b7410c
+DEL -1963338779@@EQ
+gumtree.spoon.diff.operations.DeleteOperation@37fc1299
+Delete BinaryOperator at X:1
+	(a.size()) == 0
+Insert Invocation at X:1
+	a.isEmpty()
+Move FieldRead from X:1 to X:1
+	a
+
+]]></system-out>
+  </testcase>
+</testsuite>
