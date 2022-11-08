@@ -8,10 +8,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FixGen" />
-        <module name="gumtree-spoon-ast-diff" />
-        <module name="codegraph" />
+        <module name="gumtree" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="gumtree-spoon-ast-diff" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
