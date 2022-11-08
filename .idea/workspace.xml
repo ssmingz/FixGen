@@ -20,9 +20,6 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeStyleSettingsInfer">
-    <option name="done" value="true" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -34,14 +31,6 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
-  </component>
-  <component name="GitSEFilterConfiguration">
-    <file-type-list>
-      <filtered-out-file-type name="LOCAL_BRANCH" />
-      <filtered-out-file-type name="REMOTE_BRANCH" />
-      <filtered-out-file-type name="TAG" />
-      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
-    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -79,8 +68,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/codegraph/src/test/res" />
-      <recent name="$PROJECT_DIR$/codegraph/src/test/java/gumtree" />
+      <recent name="D:\expdata\code\FixGen\codegraph\src\test\res" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\expdata\code\FixGen\codegraph\src\test\res\0b20e4026c_d87861eb35" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -187,33 +178,33 @@
       <option name="project" value="LOCAL" />
       <updated>1665470163186</updated>
     </task>
-    <task id="LOCAL-00002" summary="add parsing statement node part">
-      <created>1665824859778</created>
+    <task id="LOCAL-00002" summary="add buildNode() for MethodDeclaration">
+      <created>1665720033273</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1665824859778</updated>
+      <updated>1665720033273</updated>
     </task>
-    <task id="LOCAL-00003" summary="refactor ASTEdge and add control dependency analysis">
-      <created>1666074714756</created>
+    <task id="LOCAL-00003" summary="replace TypeNode with a String-type field variable in each node and remove duplicate edges in dotgraph">
+      <created>1667098610523</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1666074714756</updated>
+      <updated>1667098610523</updated>
     </task>
-    <task id="LOCAL-00004" summary="add data dependency analysis">
-      <created>1666207210915</created>
+    <task id="LOCAL-00004" summary="add toLabelString() for Node">
+      <created>1667101918321</created>
       <option name="number" value="00004" />
       <option name="presentableId" value="LOCAL-00004" />
       <option name="project" value="LOCAL" />
-      <updated>1666207210915</updated>
+      <updated>1667101918321</updated>
     </task>
-    <task id="LOCAL-00005" summary="add DotGraph">
-      <created>1667057589018</created>
+    <task id="LOCAL-00005" summary="first add pattern part">
+      <created>1667105187285</created>
       <option name="number" value="00005" />
       <option name="presentableId" value="LOCAL-00005" />
       <option name="project" value="LOCAL" />
-      <updated>1667057589018</updated>
+      <updated>1667105187285</updated>
     </task>
     <option name="localTasksCounter" value="6" />
     <servers />
@@ -231,11 +222,11 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init codegraph" />
-    <MESSAGE value="add parsing statement node part" />
-    <MESSAGE value="refactor ASTEdge and add control dependency analysis" />
-    <MESSAGE value="add data dependency analysis" />
-    <MESSAGE value="add DotGraph" />
-    <option name="LAST_COMMIT_MESSAGE" value="add DotGraph" />
+    <MESSAGE value="add buildNode() for MethodDeclaration" />
+    <MESSAGE value="replace TypeNode with a String-type field variable in each node and remove duplicate edges in dotgraph" />
+    <MESSAGE value="add toLabelString() for Node" />
+    <MESSAGE value="first add pattern part" />
+    <option name="LAST_COMMIT_MESSAGE" value="first add pattern part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -247,6 +238,11 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="JUnit">
+        <watch expression="((MethodDecl)((CodeGraph)((ArrayList)cgs).get(0)).entryNode)._astNode" custom="model.CodeGraph,java.util.ArrayList,model.graph.node.bodyDecl.MethodDecl" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
