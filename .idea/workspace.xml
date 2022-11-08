@@ -4,23 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add DotGraph">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/bcel_6_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/commons_cli_1_3_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/commons_cli_1_3_1__2_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/org_eclipse_core_resources_3_10_1_v20150725_1910.xml" beforeDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add gumtree-spoon-ast-diff">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/lib.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/0b20e4026c_d87861eb35/0b20e4026c_d87861eb35.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/0b20e4026c_d87861eb35/0b20e4026c_d87861eb35.diff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/0b20e4026c_d87861eb35/buggy_version/DashboardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/0b20e4026c_d87861eb35/buggy_version/DashboardCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/0b20e4026c_d87861eb35/fixed_version/DashboardCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/0b20e4026c_d87861eb35/fixed_version/DashboardCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/2.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/2.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/res/input4test.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/input4test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/gumtree/AstComparatorTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/gumtree/DiffTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/gumtree/TestGumTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,6 +32,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitSEFilterConfiguration">
@@ -52,6 +45,13 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
   </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
@@ -72,7 +72,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/codegraph/src/test/res" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39586028" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -82,45 +82,70 @@
       <recent name="$PROJECT_DIR$/codegraph/src/test/res" />
       <recent name="$PROJECT_DIR$/codegraph/src/test/java/gumtree" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.AstComparatorTest.exampleRemoveMethod">
-    <configuration name="AstComparatorTest.exampleRemoveMethod" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.DiffTest.testToString (1)">
+    <configuration name="AstComparatorTest.test_000" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FixGen" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gumtree.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="gumtree" />
       <option name="MAIN_CLASS_NAME" value="gumtree.AstComparatorTest" />
-      <option name="METHOD_NAME" value="exampleRemoveMethod" />
+      <option name="METHOD_NAME" value="test_000" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AstComparatorTest.exampleSingleUpdate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AstComparatorTest.testgetCtType" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gumtree" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gumtree.spoon.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gumtree.spoon" />
+      <option name="MAIN_CLASS_NAME" value="gumtree.spoon.AstComparatorTest" />
+      <option name="METHOD_NAME" value="testgetCtType" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiffTest.testToString (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="gumtree" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="gumtree.spoon.diff.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="gumtree.spoon.diff" />
+      <option name="MAIN_CLASS_NAME" value="gumtree.spoon.diff.DiffTest" />
+      <option name="METHOD_NAME" value="testToString" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiffTest.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FixGen" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gumtree.*" />
+          <option name="PATTERN" value=".*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="gumtree" />
-      <option name="MAIN_CLASS_NAME" value="gumtree.AstComparatorTest" />
-      <option name="METHOD_NAME" value="exampleSingleUpdate" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGraphBuilder.testBuildForFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="FixGen" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGraphBuilder" />
-      <option name="METHOD_NAME" value="testBuildForFile" />
+      <option name="MAIN_CLASS_NAME" value="gumtree.DiffTest" />
+      <option name="METHOD_NAME" value="testToString" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -128,19 +153,9 @@
     </configuration>
     <configuration name="TestGumTree.testGumTreeDiff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FixGen" />
-      <option name="PACKAGE_NAME" value="gumtree" />
-      <option name="MAIN_CLASS_NAME" value="gumtree.TestGumTree" />
-      <option name="METHOD_NAME" value="testGumTreeDiff" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPatternExtractor.testModificationExtract" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="FixGen" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
-      <option name="METHOD_NAME" value="testModificationExtract" />
+      <option name="MAIN_CLASS_NAME" value="TestGumTree" />
+      <option name="METHOD_NAME" value="testGumTreeDiff" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,11 +163,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AstComparatorTest.exampleRemoveMethod" />
-        <item itemvalue="JUnit.AstComparatorTest.exampleSingleUpdate" />
+        <item itemvalue="JUnit.DiffTest.testToString (1)" />
+        <item itemvalue="JUnit.DiffTest.testToString" />
+        <item itemvalue="JUnit.AstComparatorTest.testgetCtType" />
         <item itemvalue="JUnit.TestGumTree.testGumTreeDiff" />
-        <item itemvalue="JUnit.TestPatternExtractor.testModificationExtract" />
-        <item itemvalue="JUnit.TestGraphBuilder.testBuildForFile" />
+        <item itemvalue="JUnit.AstComparatorTest.test_000" />
       </list>
     </recent_temporary>
   </component>
@@ -229,11 +244,6 @@
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestParser.java</url>
           <line>30</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/gumtree/TestGumTree.java</url>
-          <line>17</line>
-          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

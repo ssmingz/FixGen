@@ -1,10 +1,7 @@
-package gumtree;
-
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import org.junit.Test;
 import utils.FileIO;
-import utils.JavaASTUtil;
 
 import static org.junit.Assert.assertTrue;
 
@@ -18,6 +15,5 @@ public class TestGumTree {
         Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
 
         System.out.println(editScript.toString());
-        assertTrue(editScript.getRootOperations().size() == 1);
     }
 }

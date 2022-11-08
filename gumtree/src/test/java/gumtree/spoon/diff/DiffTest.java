@@ -1,7 +1,6 @@
-package gumtree;
+package gumtree.spoon.diff;
 
 import gumtree.spoon.AstComparator;
-import gumtree.spoon.diff.Diff;
 import gumtree.spoon.diff.operations.Operation;
 import gumtree.spoon.diff.operations.OperationKind;
 import org.junit.Test;
@@ -22,8 +21,8 @@ public class DiffTest {
 
 	@Test
 	public void testToString() throws Exception {
-		File fl = new File("codegraph/src/test/resources/examples/test1/TypeHandler1.java");
-		File fr = new File("codegraph/src/test/resources/examples/test1/TypeHandler2.java");
+		File fl = new File("src/test/resources/examples/test1/TypeHandler1.java");
+		File fr = new File("src/test/resources/examples/test1/TypeHandler2.java");
 
 		AstComparator diff = new AstComparator();
 		Diff result = diff.compare(fl,fr);
@@ -32,15 +31,15 @@ public class DiffTest {
 				+ "Insert Invocation at org.apache.commons.cli.TypeHandler:118" + newline
 				+ "\tjava.lang.System.out.println(\"Hola\")" + newline, result.toString());
 
-		fl = new File("codegraph/src/test/resources/examples/test2/CommandLine1.java");
-		fr = new File("codegraph/src/test/resources/examples/test2/CommandLine2.java");
+		fl = new File("src/test/resources/examples/test2/CommandLine1.java");
+		fr = new File("src/test/resources/examples/test2/CommandLine2.java");
 
 		result = diff.compare(fl,fr);
 		assertEquals("Update Literal at org.apache.commons.cli.CommandLine:275" + newline
 				+ "\t1 to 1000000" + newline, result.toString());
 
-		fl = new File("codegraph/src/test/resources/examples/test3/CommandLine1.java");
-		fr = new File("codegraph/src/test/resources/examples/test3/CommandLine2.java");
+		fl = new File("src/test/resources/examples/test3/CommandLine1.java");
+		fr = new File("src/test/resources/examples/test3/CommandLine2.java");
 
 		result = diff.compare(fl,fr);
 		assertTrue(result.toString().endsWith("Delete Method at org.apache.commons.cli.CommandLine:161" + newline
@@ -62,8 +61,8 @@ public class DiffTest {
 	@Test
 	public void test_actionClassifier_1() throws Exception{
 		AstComparator diff = new AstComparator();
-		File fl = new File("codegraph/src/test/resources/examples/roots/test8/left_QuickNotepad_1.13.java");
-		File fr = new File("codegraph/src/test/resources/examples/roots/test8/right_QuickNotepad_1.14.java");
+		File fl = new File("src/test/resources/examples/roots/test8/left_QuickNotepad_1.13.java");
+		File fr = new File("src/test/resources/examples/roots/test8/right_QuickNotepad_1.14.java");
 		Diff result = diff.compare(fl,fr);
 
 		List<Operation> actionsRoot = result.getRootOperations();
@@ -79,8 +78,8 @@ public class DiffTest {
 	@Test
 	public void test_actionClassifier_2() throws Exception{
 		AstComparator diff = new AstComparator();
-		File fl = new File("codegraph/src/test/resources/examples/roots/test9/left_QuickNotepad_1.13.java");
-		File fr = new File("codegraph/src/test/resources/examples/roots/test9/right_QuickNotepad_1.14.java");
+		File fl = new File("src/test/resources/examples/roots/test9/left_QuickNotepad_1.13.java");
+		File fr = new File("src/test/resources/examples/roots/test9/right_QuickNotepad_1.14.java");
 		Diff result = diff.compare(fl,fr);
 
 		List<Operation> actionsRoot = result.getRootOperations();
@@ -98,8 +97,8 @@ public class DiffTest {
 	@Test
 	public void test_actionClassifier_3() throws Exception{
 		AstComparator diff = new AstComparator();
-		File fl = new File("codegraph/src/test/resources/examples/roots/test10/left_QuickNotepad_1.13.java");
-		File fr = new File("codegraph/src/test/resources/examples/roots/test10/right_QuickNotepad_1.14.java");
+		File fl = new File("src/test/resources/examples/roots/test10/left_QuickNotepad_1.13.java");
+		File fr = new File("src/test/resources/examples/roots/test10/right_QuickNotepad_1.14.java");
 		Diff result = diff.compare(fl,fr);
 
 		List<Operation> actionsRoot = result.getRootOperations();
@@ -117,8 +116,8 @@ public class DiffTest {
 	@Test
 	public void test_actionClassifier_4() throws Exception{
 		AstComparator diff = new AstComparator();
-		File fl = new File("codegraph/src/test/resources/examples/roots/test11/left_QuickNotepad_1.13.java");
-		File fr = new File("codegraph/src/test/resources/examples/roots/test11/right_QuickNotepad_1.14.java");
+		File fl = new File("src/test/resources/examples/roots/test11/left_QuickNotepad_1.13.java");
+		File fr = new File("src/test/resources/examples/roots/test11/right_QuickNotepad_1.14.java");
 		Diff result = diff.compare(fl,fr);
 
 		List<Operation> actionsRoot = result.getRootOperations();
@@ -136,8 +135,8 @@ public class DiffTest {
 	@Test
 	public void test_actionClassifier_5() throws Exception{
 		AstComparator diff = new AstComparator();
-		File fl = new File("codegraph/src/test/resources/examples/roots/test12/left_QuickNotepad_1.13.java");
-		File fr = new File("codegraph/src/test/resources/examples/roots/test12/right_QuickNotepad_1.14.java");
+		File fl = new File("src/test/resources/examples/roots/test12/left_QuickNotepad_1.13.java");
+		File fr = new File("src/test/resources/examples/roots/test12/right_QuickNotepad_1.14.java");
 		Diff result = diff.compare(fl,fr);
 
 		List<Operation> actionsRoot = result.getRootOperations();
