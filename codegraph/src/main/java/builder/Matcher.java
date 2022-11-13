@@ -1,134 +1,40 @@
 package builder;
 
+import gumtree.spoon.diff.operations.*;
 import model.CodeGraph;
 import model.graph.node.Node;
+import model.graph.node.actions.*;
 import model.graph.node.stmt.StmtNode;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.MethodDeclaration;
 import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
 import pattern.Pair;
+import spoon.reflect.declaration.CtElement;
 import utils.JavaASTUtil;
 import visitor.MethodDeclCollector;
 
 import java.util.*;
 
 public class Matcher {
-    public static List<Pair<MethodDeclaration, MethodDeclaration>> match(CompilationUnit bug, CompilationUnit fix) {
-        List<Pair<MethodDeclaration, MethodDeclaration>> pairs = new LinkedList<>();
 
-        MethodDeclCollector methodDeclCollector = new MethodDeclCollector();
-        methodDeclCollector.init();
-        bug.accept(methodDeclCollector);
-        List<MethodDeclaration> bugMethods = methodDeclCollector.getAllMethodDecl();
-        methodDeclCollector.init();
-        fix.accept(methodDeclCollector);
-        List<MethodDeclaration> fixMethods = methodDeclCollector.getAllMethodDecl();
-
-        for (MethodDeclaration bugm : bugMethods) {
-            boolean notMatch = true;
-            for (int i=0; i< fixMethods.size(); i++) {
-                MethodDeclaration fixm = fixMethods.get(i);
-                DiffType diff = compareSignature(bugm, fixm);
-                switch (diff) {
-                    case SAME:
-                        pairs.add(new Pair<>(bugm, fixm));
-                        fixMethods.remove(fixm);
-                        notMatch = false;
-                        break;
-                    default:
-                }
-            }
-            if (notMatch) {
-                System.out.println("No match for method declaration : " + JavaASTUtil.buildSignature(bugm));
-                return pairs;
-            }
-        }
-        return pairs;
-    }
-
-    @SuppressWarnings("unchecked")
-    private static DiffType compareSignature(MethodDeclaration sm, MethodDeclaration tm) {
-        // modifier
-        int smdf = sm.getModifiers();
-        int tmdf = tm.getModifiers();
-        if ((smdf & tmdf) != smdf)
-            return DiffType.DIFF_MODIFIER;
-        // name
-        if (!sm.getName().getFullyQualifiedName().equals(tm.getName().getFullyQualifiedName()))
-            return DiffType.DIFF_NAME;
-        // return type
-        String sType = sm.getReturnType2() == null ? "?" : sm.getReturnType2().toString();
-        String tType = tm.getReturnType2() == null ? "?" : tm.getReturnType2().toString();
-        if (!sType.equals(tType))
-            return DiffType.DIFF_RETURN;
-        // parameters
-        List<SingleVariableDeclaration> sp = sm.parameters();
-        List<SingleVariableDeclaration> tp = tm.parameters();
-        if (sp.size() != tp.size())
-            return DiffType.DIFF_PARAM;
-        for (int i = 0; i < sp.size(); i++) {
-            if (!sp.get(i).getType().toString().equals(tp.get(i).getType().toString())) {
-                return DiffType.DIFF_PARAM;
-            }
-        }
-        // otherwise, same
-        return DiffType.SAME;
-    }
-
-    public static boolean match(CodeGraph bugGraph, CodeGraph fixGraph) {
-        List<StmtNode> bugStmts = bugGraph.getAllStmtNodes();
-        List<StmtNode> fixStmts = fixGraph.getAllStmtNodes();
-
-        List<StmtNode> bugNotMatched = new ArrayList<>();
-        List<StmtNode> fixNotMatched = new ArrayList<>();
-        Set<Integer> fixMatched = new HashSet<>();
-        // complete match
-        for (int i=0; i< bugStmts.size(); i++) {
-            boolean notMatched = true;
-            if (anyAncestorMatch(bugStmts.get(i))) {
-                notMatched = false;
-            } else {
-                for (int j=0; j< fixStmts.size(); j++) {
-                    if (!fixMatched.contains(j) && fixStmts.get(j).getBindingNode() == null
-                            && bugStmts.get(i).compare(fixStmts.get(j))) {
-                        bugStmts.get(i).setBindingNode(fixStmts.get(j));
-                        fixMatched.add(j);
-                        notMatched = false;
+    public static Map<CtElement, Node> mapSpoonToCodeGraph(List<Node> cgNodes, List<CtElement> spoonNodes) {
+        Map<CtElement, Node> mappings = new LinkedHashMap<>();
+        for (CtElement cte : spoonNodes) {
+            int ctLine = cte.getPosition().getLine();
+            int ctLength = cte.getPosition().getSourceEnd() - cte.getPosition().getSourceStart() + 1;
+            for (Node cge : cgNodes) {
+                if (cge != null) {
+                    int cgLine = cge.getStartSourceLine();
+                    int cgLength = cge.getASTNode().getLength();
+                    if (ctLine == cgLine && ctLength == cgLength) {
+                        mappings.put(cte, cge);
                         break;
                     }
                 }
             }
-            if (notMatched) {
-                bugNotMatched.add(bugStmts.get(i));
-            }
         }
-        for (int i=0; i< fixStmts.size(); i++) {
-            if (fixStmts.get(i).getBindingNode() == null) {
-                fixNotMatched.add(fixStmts.get(i));
-            }
-        }
-
-        if (bugNotMatched.isEmpty() && fixNotMatched.isEmpty()) {
-            return false;
-        }
-
-        // TODO: match sub-expressions
-        // similar match to extract actions
-        similarMatch(bugNotMatched, fixNotMatched);
-
-
-        return true;
+        return mappings;
     }
-
-    private static <T extends Node> void similarMatch(List<T> first, List<T> second) {
-        if (first.isEmpty() || second.isEmpty())
-            return;
-        double[][] valueMat = new double[first.size()][second.size()];
-        for (int i=0; i<first.size(); i++) {
-
-        }
-    }
-
 
     private static boolean anyAncestorMatch(Node node) {
         while (node.getParent() != null) {
@@ -140,21 +46,91 @@ public class Matcher {
         return false;
     }
 
-    enum DiffType {
-        DIFF_MODIFIER("different modifiers"),
-        DIFF_NAME("different names"),
-        DIFF_RETURN("different return types"),
-        DIFF_PARAM("different parameters"),
-        SAME("same");
-
-        private String message;
-
-        DiffType(String msg) {
-            message = msg;
+    public static Map<Node, Node> mapSrcToDst(Map<CtElement, Node> src_matcher, Map<CtElement, Node> dst_matcher, Map<CtElement, CtElement> mappings) {
+        Map<Node, Node> src_to_dst = new LinkedHashMap<>();
+        for (Map.Entry<CtElement, CtElement> entry : mappings.entrySet()) {
+            CtElement ctSrc = entry.getKey();
+            CtElement ctDst = entry.getValue();
+            if (src_matcher.containsKey(ctSrc) && dst_matcher.containsKey(ctDst)) {
+                src_to_dst.put(src_matcher.get(ctSrc), dst_matcher.get(ctDst));
+            }
         }
+        return src_to_dst;
+    }
 
-        public String toString() {
-            return message;
+    public static List<Node> mapOperationToCodeGraph(InsertOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
+        List<Node> changedNodes = new ArrayList<>();
+        CtElement ctParent = operation.getParent();
+        CtElement ctInsert = operation.getNode();
+        if (src_matcher.containsKey(ctParent)) {
+            Node cgParent = src_matcher.get(ctParent);
+            Node insertNode = rebuild(ctInsert);
+            Insert insertAction = new Insert(cgParent, insertNode);
+            changedNodes.add(insertAction);
+            src_matcher.putAll(mapStructure(ctInsert, insertNode)); // also need to map their children and so on
+        } else {
+            System.err.println("No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
         }
+        return changedNodes;
+    }
+
+    public static List<Node> mapOperationToCodeGraph(MoveOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
+        List<Node> changedNodes = new ArrayList<>();
+        CtElement ctParent = operation.getParent();
+        if (src_matcher.containsKey(ctParent)) {
+            CtElement ctMove = operation.getNode();
+            if (src_matcher.containsKey(ctMove)) {
+                Node cgParent = src_matcher.get(ctParent);
+                Node moveNode = src_matcher.get(ctMove);
+                Move moveAction = new Move(cgParent, moveNode);
+                changedNodes.add(moveAction);
+            } else {
+                System.err.println("No mapped move node " + ctMove.getClass() + " : " + ctMove.getPosition().getLine());
+            }
+        } else {
+            System.err.println("No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
+        }
+        return changedNodes;
+    }
+
+    public static List<Node> mapOperationToCodeGraph(DeleteOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
+        List<Node> changedNodes = new ArrayList<>();
+        CtElement ctDelete = operation.getNode();
+        if (src_matcher.containsKey(ctDelete)) {
+            Node delNode = src_matcher.get(ctDelete);
+            Delete delAction = new Delete(null, delNode);
+            changedNodes.add(delAction);
+        } else {
+            System.err.println("No mapped delete node " + ctDelete.getClass() + " : " + ctDelete.getPosition().getLine());
+        }
+        return changedNodes;
+    }
+
+    public static List<Node> mapOperationToCodeGraph(UpdateOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
+        List<Node> changedNodes = new ArrayList<>();
+        CtElement ctBefore = operation.getNode();
+        CtElement ctAfter = operation.getDestElement();
+        if (src_matcher.containsKey(ctBefore)) {
+            Node cgBefore = src_matcher.get(ctBefore);
+            Node cgAfter = rebuild(ctAfter);
+            Update updateAction = new Update(cgBefore, cgAfter);
+            changedNodes.add(updateAction);
+            src_matcher.putAll(mapStructure(ctAfter, cgAfter));
+        } else {
+            System.err.println("No mapped parent " + ctBefore.getClass() + " : " + ctBefore.getPosition().getLine());
+        }
+        return changedNodes;
+    }
+
+    private static Map<CtElement, Node> mapStructure(CtElement ctNode, Node cgNode) {
+        Map<CtElement, Node> newMappings = new LinkedHashMap<>();
+        newMappings.put(ctNode, cgNode);
+        // TODO: recursion for their children
+        return newMappings;
+    }
+
+    private static Node rebuild(CtElement destElement) {
+        // TODO: consider for different types
+        return null;
     }
 }

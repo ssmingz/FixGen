@@ -24,11 +24,13 @@ public class CodeGraph {
     private String filePath, name, projectName;
     private GraphBuildingContext context;
 
-    public Node entryNode = null;
+    private Node entryNode = null;
     protected List<Node> fieldNodes = new ArrayList<>();
     protected List<Node> allNodes = new ArrayList<>();
 
     protected CompilationUnit cu = null;
+
+    private int startLine, endLine;
 
     public CodeGraph(GraphBuildingContext context, GraphConfiguration configuration) {
         this.context = context;
@@ -1483,4 +1485,19 @@ public class CodeGraph {
         return stmts;
     }
 
+    public int getStartLine() {
+        return entryNode.getStartSourceLine();
+    }
+
+    public int getEndLine() {
+        return entryNode.getEndSourceLine();
+    }
+
+    public void setEntryNode(Node buildNode) {
+        entryNode = buildNode;
+    }
+
+    public Node getEntryNode() {
+        return entryNode;
+    }
 }

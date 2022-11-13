@@ -45,7 +45,7 @@ public class DiffImpl implements Diff {
 	/**
 	 * the mapping of this diff
 	 */
-	private final MappingStore _mappingsComp;
+	public final MappingStore _mappingsComp; // change to public
 	/**
 	 * Context of the spoon diff.
 	 */

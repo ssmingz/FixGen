@@ -11,7 +11,7 @@ public class TestPatternExtractor {
         String fixCommit = System.getProperty("user.dir") + "/codegraph/src/test/res/0b20e4026c_d87861eb35/fixed_version/DashboardCommand.java";
 
         PatternExtractor extractor = new PatternExtractor();
-        Set<Pattern> patterns = extractor.extractPattern(bugCommit, fixCommit);
-        System.out.println("Extract pattern: " + patterns.size());
+//        Set<Pattern> patterns = extractor.extractPattern(bugCommit, fixCommit);
+//        System.out.println("Extract pattern: " + patterns.size());
     }
 }

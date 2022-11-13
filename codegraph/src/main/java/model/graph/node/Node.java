@@ -184,6 +184,9 @@ public abstract class Node implements NodeComparator {
     public int getStartSourceLine() {
         return _startLine;
     }
+    public int getEndSourceLine() {
+        return _endLine;
+    }
 
     public abstract String toLabelString();
 

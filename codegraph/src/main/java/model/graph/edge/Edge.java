@@ -3,7 +3,7 @@ package model.graph.edge;
 import model.graph.node.Node;
 
 public abstract class Edge {
-    public enum EdgeType {AST, CONTROL_DEP, DATA_DEP, DEF_USE};
+    public enum EdgeType {AST, CONTROL_DEP, DATA_DEP, DEF_USE, ACTION};
     public EdgeType type;
     protected Node source;
     protected Node target;

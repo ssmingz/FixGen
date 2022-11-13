@@ -149,7 +149,7 @@ public class GraphBuilder {
         g.setName(name + sig);
         g.setCompilationUnit(currentCU);
         g.buildFieldNode(currentType);
-        g.entryNode = g.buildNode(method, null, new Scope(null));
+        g.setEntryNode(g.buildNode(method, null, new Scope(null)));
         return g;
     }
 

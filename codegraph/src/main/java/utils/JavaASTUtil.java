@@ -2,6 +2,8 @@ package utils;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import model.CodeGraph;
@@ -79,10 +81,10 @@ public class JavaASTUtil {
 
     public static String buildSignature(MethodDeclaration method) {
         StringBuilder sb = new StringBuilder();
-        sb.append(method.getName().getIdentifier() + "#");
+        sb.append(method.getName().getIdentifier() + "#?");
         for (int i = 0; i < method.parameters().size(); i++) {
             SingleVariableDeclaration svd = (SingleVariableDeclaration) method.parameters().get(i);
-            sb.append(JavaASTUtil.getSimpleType(svd.getType()) + "#");
+            sb.append("," + JavaASTUtil.getSimpleType(svd.getType()));
         }
         return sb.toString();
     }
@@ -191,6 +193,53 @@ public class JavaASTUtil {
             parent = parent.getParent();
         }
         return null;
+    }
+
+    /**
+     * Parse a git diff file
+     * @param diffpath : .diff file path
+     * @return : line number list by source file path
+     */
+    public static Map<String, List<Integer>> getDiffLinesInBuggyFile(String diffpath) {
+        Map<String, List<Integer>> result = new LinkedHashMap<>();
+        File diff = new File(diffpath);
+        if (diff.exists()) {
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(diff));
+                String line = null;
+                int lineNo = 0;
+                String file = "";
+                List<Integer> linelist = null;
+                while ((line = reader.readLine()) != null) {
+                    if (line.startsWith("--- ")) {
+                        if (linelist != null) {
+                            result.put(file, linelist);
+                        }
+                        file = line.split(" ")[1].replaceFirst("a", "");
+                        linelist = new ArrayList<>();
+                        continue;
+                    }
+                    if (line.startsWith("@@ ")) {
+                        lineNo = Integer.parseInt(line.split(" ")[1].split(",")[0].replace("-",""));
+                        continue;
+                    }
+                    if (line.startsWith("-") && !line.equals("--------")) {
+                        linelist.add(lineNo);
+                    }
+                    lineNo++;
+                }
+                if (linelist != null) {
+                    result.put(file, linelist);
+                }
+                reader.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 }
 
