@@ -1,0 +1,2503 @@
+{
+  "label": "",
+  "type": "root",
+  "children": [
+    {
+      "label": "QuickNotepad",
+      "type": "Class",
+      "children": [
+        {
+          "label": "",
+          "type": "SUPER_INTERFACES",
+          "children": [
+            {
+              "label": "org.gjt.sp.jedit.EBComponent",
+              "type": "INTERFACE",
+              "children": []
+            },
+            {
+              "label": "QuickNotepadActions",
+              "type": "INTERFACE",
+              "children": []
+            },
+            {
+              "label": "org.gjt.sp.jedit.gui.DefaultFocusComponent",
+              "type": "INTERFACE",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "",
+          "type": "Modifiers_Class",
+          "children": [
+            {
+              "label": "public",
+              "type": "Modifier",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "javax.swing.JPanel",
+          "type": "SUPER_TYPE",
+          "children": [
+            {
+              "label": "",
+              "type": "SUPER_INTERFACES",
+              "children": [
+                {
+                  "label": "javax.accessibility.Accessible",
+                  "type": "INTERFACE",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "serialVersionUID",
+          "type": "Field",
+          "children": [
+            {
+              "label": "long",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "final",
+                  "type": "Modifier",
+                  "children": []
+                },
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                },
+                {
+                  "label": "static",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "6412255692894321789L",
+              "type": "Literal",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "filename",
+          "type": "Field",
+          "children": [
+            {
+              "label": "java.lang.String",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "defaultFilename",
+          "type": "Field",
+          "children": [
+            {
+              "label": "java.lang.String",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "view",
+          "type": "Field",
+          "children": [
+            {
+              "label": "org.gjt.sp.jedit.View",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "floating",
+          "type": "Field",
+          "children": [
+            {
+              "label": "boolean",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "textArea",
+          "type": "Field",
+          "children": [
+            {
+              "label": "QuickNotepadTextArea",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "toolPanel",
+          "type": "Field",
+          "children": [
+            {
+              "label": "QuickNotepadToolPanel",
+              "type": "VARIABLE_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Field",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "\u003cinit\u003e",
+          "type": "Constructor",
+          "children": [
+            {
+              "label": "",
+              "type": "Modifiers_Constructor",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "view",
+              "type": "Parameter",
+              "children": [
+                {
+                  "label": "org.gjt.sp.jedit.View",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "position",
+              "type": "Parameter",
+              "children": [
+                {
+                  "label": "java.lang.String",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "super",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "java.awt.BorderLayout()",
+                  "type": "ConstructorCall",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "\u003d",
+              "type": "Assignment",
+              "children": [
+                {
+                  "label": "view",
+                  "type": "FieldWrite",
+                  "children": [
+                    {
+                      "label": "this",
+                      "type": "ThisAccess",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "view",
+                  "type": "VariableRead",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "\u003d",
+              "type": "Assignment",
+              "children": [
+                {
+                  "label": "floating",
+                  "type": "FieldWrite",
+                  "children": [
+                    {
+                      "label": "this",
+                      "type": "ThisAccess",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "equals",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "position",
+                      "type": "VariableRead",
+                      "children": []
+                    },
+                    {
+                      "label": "DockableWindowManager.FLOATING",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "NE",
+                  "type": "BinaryOperator",
+                  "children": [
+                    {
+                      "label": "getSettingsDirectory",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "jEdit",
+                          "type": "FieldRead",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "null",
+                      "type": "Literal",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "\u003d",
+                      "type": "Assignment",
+                      "children": [
+                        {
+                          "label": "filename",
+                          "type": "FieldWrite",
+                          "children": [
+                            {
+                              "label": "this",
+                              "type": "ThisAccess",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "getProperty",
+                          "type": "Invocation",
+                          "children": [
+                            {
+                              "label": "jEdit",
+                              "type": "FieldRead",
+                              "children": []
+                            },
+                            {
+                              "label": "PLUS",
+                              "type": "BinaryOperator",
+                              "children": [
+                                {
+                                  "label": "OPTION_PREFIX",
+                                  "type": "FieldRead",
+                                  "children": [
+                                    {
+                                      "label": "QuickNotepadPlugin",
+                                      "type": "TypeAccess",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "label": "\"filepath\"",
+                                  "type": "Literal",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "label": "if",
+                      "type": "If",
+                      "children": [
+                        {
+                          "label": "OR",
+                          "type": "BinaryOperator",
+                          "children": [
+                            {
+                              "label": "EQ",
+                              "type": "BinaryOperator",
+                              "children": [
+                                {
+                                  "label": "filename",
+                                  "type": "FieldRead",
+                                  "children": [
+                                    {
+                                      "label": "this",
+                                      "type": "ThisAccess",
+                                      "children": [
+                                        {
+                                          "label": "QuickNotepad",
+                                          "type": "TypeAccess",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "label": "null",
+                                  "type": "Literal",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "label": "EQ",
+                              "type": "BinaryOperator",
+                              "children": [
+                                {
+                                  "label": "length",
+                                  "type": "Invocation",
+                                  "children": [
+                                    {
+                                      "label": "filename",
+                                      "type": "FieldRead",
+                                      "children": [
+                                        {
+                                          "label": "this",
+                                          "type": "ThisAccess",
+                                          "children": [
+                                            {
+                                              "label": "QuickNotepad",
+                                              "type": "TypeAccess",
+                                              "children": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "label": "0",
+                                  "type": "Literal",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "THEN",
+                          "type": "then",
+                          "children": [
+                            {
+                              "label": "\u003d",
+                              "type": "Assignment",
+                              "children": [
+                                {
+                                  "label": "filename",
+                                  "type": "FieldWrite",
+                                  "children": [
+                                    {
+                                      "label": "this",
+                                      "type": "ThisAccess",
+                                      "children": [
+                                        {
+                                          "label": "QuickNotepad",
+                                          "type": "TypeAccess",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                },
+                                {
+                                  "label": "java.lang.String(java.lang.String)",
+                                  "type": "ConstructorCall",
+                                  "children": [
+                                    {
+                                      "label": "PLUS",
+                                      "type": "BinaryOperator",
+                                      "children": [
+                                        {
+                                          "label": "PLUS",
+                                          "type": "BinaryOperator",
+                                          "children": [
+                                            {
+                                              "label": "getSettingsDirectory",
+                                              "type": "Invocation",
+                                              "children": [
+                                                {
+                                                  "label": "jEdit",
+                                                  "type": "FieldRead",
+                                                  "children": []
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "label": "separator",
+                                              "type": "FieldRead",
+                                              "children": [
+                                                {
+                                                  "label": "java.io.File",
+                                                  "type": "TypeAccess",
+                                                  "children": []
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "label": "\"qn.txt\"",
+                                          "type": "Literal",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "label": "setProperty",
+                              "type": "Invocation",
+                              "children": [
+                                {
+                                  "label": "jEdit",
+                                  "type": "FieldRead",
+                                  "children": []
+                                },
+                                {
+                                  "label": "PLUS",
+                                  "type": "BinaryOperator",
+                                  "children": [
+                                    {
+                                      "label": "OPTION_PREFIX",
+                                      "type": "FieldRead",
+                                      "children": [
+                                        {
+                                          "label": "QuickNotepadPlugin",
+                                          "type": "TypeAccess",
+                                          "children": []
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "label": "\"filepath\"",
+                                      "type": "Literal",
+                                      "children": []
+                                    }
+                                  ]
+                                },
+                                {
+                                  "label": "filename",
+                                  "type": "FieldRead",
+                                  "children": [
+                                    {
+                                      "label": "this",
+                                      "type": "ThisAccess",
+                                      "children": [
+                                        {
+                                          "label": "QuickNotepad",
+                                          "type": "TypeAccess",
+                                          "children": []
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "label": "\u003d",
+                      "type": "Assignment",
+                      "children": [
+                        {
+                          "label": "defaultFilename",
+                          "type": "FieldWrite",
+                          "children": [
+                            {
+                              "label": "this",
+                              "type": "ThisAccess",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "filename",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "this",
+                              "type": "ThisAccess",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "\u003d",
+              "type": "Assignment",
+              "children": [
+                {
+                  "label": "toolPanel",
+                  "type": "FieldWrite",
+                  "children": [
+                    {
+                      "label": "this",
+                      "type": "ThisAccess",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "QuickNotepadToolPanel(QuickNotepad)",
+                  "type": "ConstructorCall",
+                  "children": [
+                    {
+                      "label": "this",
+                      "type": "ThisAccess",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "add",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "QuickNotepad",
+                  "type": "TypeAccess",
+                  "children": []
+                },
+                {
+                  "label": "NORTH",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "java.awt.BorderLayout",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "toolPanel",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "this",
+                      "type": "ThisAccess",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "floating",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "setPreferredSize",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "this",
+                          "type": "ThisAccess",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "java.awt.Dimension(int,int)",
+                          "type": "ConstructorCall",
+                          "children": [
+                            {
+                              "label": "500",
+                              "type": "Literal",
+                              "children": []
+                            },
+                            {
+                              "label": "250",
+                              "type": "Literal",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "\u003d",
+              "type": "Assignment",
+              "children": [
+                {
+                  "label": "textArea",
+                  "type": "FieldWrite",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "QuickNotepadTextArea()",
+                  "type": "ConstructorCall",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "setFont",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "textArea",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "makeFont",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "QuickNotepadOptionPane",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "true",
+                  "type": "Literal",
+                  "children": []
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "println",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "out",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "java.lang.System",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "\"test\"",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "pane",
+              "type": "LocalVariable",
+              "children": [
+                {
+                  "label": "javax.swing.JScrollPane",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                },
+                {
+                  "label": "javax.swing.JScrollPane(java.awt.Component)",
+                  "type": "ConstructorCall",
+                  "children": [
+                    {
+                      "label": "textArea",
+                      "type": "FieldRead",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "add",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "QuickNotepad",
+                  "type": "TypeAccess",
+                  "children": []
+                },
+                {
+                  "label": "CENTER",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "java.awt.BorderLayout",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "pane",
+                  "type": "VariableRead",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "readFile",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "QuickNotepad",
+                  "type": "TypeAccess",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "focusOnDefaultComponent",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "requestFocus",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "textArea",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "getFilename",
+          "type": "Method",
+          "children": [
+            {
+              "label": "java.lang.String",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "return",
+              "type": "Return",
+              "children": [
+                {
+                  "label": "filename",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "handleMessage",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "message",
+              "type": "Parameter",
+              "children": [
+                {
+                  "label": "org.gjt.sp.jedit.EBMessage",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "INSTANCEOF",
+                  "type": "BinaryOperator",
+                  "children": [
+                    {
+                      "label": "message",
+                      "type": "VariableRead",
+                      "children": []
+                    },
+                    {
+                      "label": "org.gjt.sp.jedit.msg.PropertiesChanged",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "propertiesChanged",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "propertiesChanged",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "propertyFilename",
+              "type": "LocalVariable",
+              "children": [
+                {
+                  "label": "java.lang.String",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                },
+                {
+                  "label": "getProperty",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "jEdit",
+                      "type": "FieldRead",
+                      "children": []
+                    },
+                    {
+                      "label": "PLUS",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "OPTION_PREFIX",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepadPlugin",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "\"filepath\"",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "NOT",
+                  "type": "UnaryOperator",
+                  "children": [
+                    {
+                      "label": "objectsEqual",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "org.gjt.sp.jedit.MiscUtilities",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "defaultFilename",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "propertyFilename",
+                          "type": "VariableRead",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "saveFile",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "propertiesChanged",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "toolPanel",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "label": "\u003d",
+                      "type": "Assignment",
+                      "children": [
+                        {
+                          "label": "defaultFilename",
+                          "type": "FieldWrite",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "propertyFilename",
+                          "type": "VariableRead",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "\u003d",
+                      "type": "Assignment",
+                      "children": [
+                        {
+                          "label": "filename",
+                          "type": "FieldWrite",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "defaultFilename",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "label": "readFile",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "newFont",
+              "type": "LocalVariable",
+              "children": [
+                {
+                  "label": "java.awt.Font",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                },
+                {
+                  "label": "makeFont",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "QuickNotepadOptionPane",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "NOT",
+                  "type": "UnaryOperator",
+                  "children": [
+                    {
+                      "label": "equals",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "newFont",
+                          "type": "VariableRead",
+                          "children": []
+                        },
+                        {
+                          "label": "getFont",
+                          "type": "Invocation",
+                          "children": [
+                            {
+                              "label": "textArea",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "setFont",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "textArea",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "newFont",
+                          "type": "VariableRead",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "addNotify",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "addNotify",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "super",
+                  "type": "SuperAccess",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "addToBus",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "org.gjt.sp.jedit.EditBus",
+                  "type": "TypeAccess",
+                  "children": []
+                },
+                {
+                  "label": "this",
+                  "type": "ThisAccess",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "removeNotify",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "saveFile",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "QuickNotepad",
+                  "type": "TypeAccess",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "removeNotify",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "super",
+                  "type": "SuperAccess",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "removeFromBus",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "org.gjt.sp.jedit.EditBus",
+                  "type": "TypeAccess",
+                  "children": []
+                },
+                {
+                  "label": "this",
+                  "type": "ThisAccess",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "saveFile",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "OR",
+                  "type": "BinaryOperator",
+                  "children": [
+                    {
+                      "label": "EQ",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "filename",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "null",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "EQ",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "length",
+                          "type": "Invocation",
+                          "children": [
+                            {
+                              "label": "filename",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "0",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "return",
+                      "type": "Return",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "",
+              "type": "Try",
+              "children": [
+                {
+                  "label": "out",
+                  "type": "LocalVariable",
+                  "children": [
+                    {
+                      "label": "java.io.FileWriter",
+                      "type": "VARIABLE_TYPE",
+                      "children": []
+                    },
+                    {
+                      "label": "java.io.FileWriter(java.lang.String)",
+                      "type": "ConstructorCall",
+                      "children": [
+                        {
+                          "label": "filename",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "write",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "out",
+                      "type": "VariableRead",
+                      "children": []
+                    },
+                    {
+                      "label": "getText",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "textArea",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "close",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "out",
+                      "type": "VariableRead",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "",
+                  "type": "Catch",
+                  "children": [
+                    {
+                      "label": "ioe",
+                      "type": "CatchVariable",
+                      "children": [
+                        {
+                          "label": "java.io.IOException",
+                          "type": "VARIABLE_TYPE",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "log",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "org.gjt.sp.util.Log",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "Log.ERROR",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "class",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "PLUS",
+                          "type": "BinaryOperator",
+                          "children": [
+                            {
+                              "label": "\"Could not write notepad text to \"",
+                              "type": "Literal",
+                              "children": []
+                            },
+                            {
+                              "label": "filename",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "chooseFile",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "paths",
+              "type": "LocalVariable",
+              "children": [
+                {
+                  "label": "java.lang.String[]",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                },
+                {
+                  "label": "showVFSFileDialog",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "org.gjt.sp.jedit.GUIUtilities",
+                      "type": "TypeAccess",
+                      "children": []
+                    },
+                    {
+                      "label": "view",
+                      "type": "FieldRead",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "null",
+                      "type": "Literal",
+                      "children": []
+                    },
+                    {
+                      "label": "OPEN_DIALOG",
+                      "type": "FieldRead",
+                      "children": [
+                        {
+                          "label": "javax.swing.JFileChooser",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "false",
+                      "type": "Literal",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "AND",
+                  "type": "BinaryOperator",
+                  "children": [
+                    {
+                      "label": "NE",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "paths",
+                          "type": "VariableRead",
+                          "children": []
+                        },
+                        {
+                          "label": "null",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "NOT",
+                      "type": "UnaryOperator",
+                      "children": [
+                        {
+                          "label": "equals",
+                          "type": "Invocation",
+                          "children": [
+                            {
+                              "label": "",
+                              "type": "ArrayRead",
+                              "children": [
+                                {
+                                  "label": "paths",
+                                  "type": "VariableRead",
+                                  "children": []
+                                },
+                                {
+                                  "label": "0",
+                                  "type": "Literal",
+                                  "children": []
+                                }
+                              ]
+                            },
+                            {
+                              "label": "filename",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "saveFile",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "\u003d",
+                      "type": "Assignment",
+                      "children": [
+                        {
+                          "label": "filename",
+                          "type": "FieldWrite",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "",
+                          "type": "ArrayRead",
+                          "children": [
+                            {
+                              "label": "paths",
+                              "type": "VariableRead",
+                              "children": []
+                            },
+                            {
+                              "label": "0",
+                              "type": "Literal",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "label": "propertiesChanged",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "toolPanel",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "label": "readFile",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "copyToBuffer",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "public",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "newFile",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "jEdit",
+                  "type": "FieldRead",
+                  "children": []
+                },
+                {
+                  "label": "view",
+                  "type": "FieldRead",
+                  "children": [
+                    {
+                      "label": "QuickNotepad",
+                      "type": "TypeAccess",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "setText",
+              "type": "Invocation",
+              "children": [
+                {
+                  "label": "getTextArea",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "getEditPane",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "view",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "getText",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "textArea",
+                      "type": "FieldRead",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "readFile",
+          "type": "Method",
+          "children": [
+            {
+              "label": "void",
+              "type": "RETURN_TYPE",
+              "children": []
+            },
+            {
+              "label": "",
+              "type": "Modifiers_Method",
+              "children": [
+                {
+                  "label": "private",
+                  "type": "Modifier",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "if",
+              "type": "If",
+              "children": [
+                {
+                  "label": "OR",
+                  "type": "BinaryOperator",
+                  "children": [
+                    {
+                      "label": "EQ",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "filename",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "null",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "EQ",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "length",
+                          "type": "Invocation",
+                          "children": [
+                            {
+                              "label": "filename",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "0",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "THEN",
+                  "type": "then",
+                  "children": [
+                    {
+                      "label": "return",
+                      "type": "Return",
+                      "children": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "bf",
+              "type": "LocalVariable",
+              "children": [
+                {
+                  "label": "java.io.BufferedReader",
+                  "type": "VARIABLE_TYPE",
+                  "children": []
+                },
+                {
+                  "label": "null",
+                  "type": "Literal",
+                  "children": []
+                }
+              ]
+            },
+            {
+              "label": "",
+              "type": "Try",
+              "children": [
+                {
+                  "label": "\u003d",
+                  "type": "Assignment",
+                  "children": [
+                    {
+                      "label": "bf",
+                      "type": "VariableWrite",
+                      "children": []
+                    },
+                    {
+                      "label": "java.io.BufferedReader(java.io.Reader)",
+                      "type": "ConstructorCall",
+                      "children": [
+                        {
+                          "label": "java.io.FileReader(java.lang.String)",
+                          "type": "ConstructorCall",
+                          "children": [
+                            {
+                              "label": "filename",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "sb",
+                  "type": "LocalVariable",
+                  "children": [
+                    {
+                      "label": "java.lang.StringBuffer",
+                      "type": "VARIABLE_TYPE",
+                      "children": []
+                    },
+                    {
+                      "label": "java.lang.StringBuffer(int)",
+                      "type": "ConstructorCall",
+                      "children": [
+                        {
+                          "label": "2048",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "str",
+                  "type": "LocalVariable",
+                  "children": [
+                    {
+                      "label": "java.lang.String",
+                      "type": "VARIABLE_TYPE",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "while",
+                  "type": "While",
+                  "children": [
+                    {
+                      "label": "NE",
+                      "type": "BinaryOperator",
+                      "children": [
+                        {
+                          "label": "\u003d",
+                          "type": "Assignment",
+                          "children": [
+                            {
+                              "label": "str",
+                              "type": "VariableWrite",
+                              "children": []
+                            },
+                            {
+                              "label": "readLine",
+                              "type": "Invocation",
+                              "children": [
+                                {
+                                  "label": "bf",
+                                  "type": "VariableRead",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "label": "null",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "append",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "append",
+                          "type": "Invocation",
+                          "children": [
+                            {
+                              "label": "sb",
+                              "type": "VariableRead",
+                              "children": []
+                            },
+                            {
+                              "label": "str",
+                              "type": "VariableRead",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "\u0027\\n\u0027",
+                          "type": "Literal",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "close",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "bf",
+                      "type": "VariableRead",
+                      "children": []
+                    }
+                  ]
+                },
+                {
+                  "label": "setText",
+                  "type": "Invocation",
+                  "children": [
+                    {
+                      "label": "textArea",
+                      "type": "FieldRead",
+                      "children": [
+                        {
+                          "label": "QuickNotepad",
+                          "type": "TypeAccess",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "toString",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "sb",
+                          "type": "VariableRead",
+                          "children": []
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "",
+                  "type": "Catch",
+                  "children": [
+                    {
+                      "label": "fnf",
+                      "type": "CatchVariable",
+                      "children": [
+                        {
+                          "label": "java.io.FileNotFoundException",
+                          "type": "VARIABLE_TYPE",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "log",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "org.gjt.sp.util.Log",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "Log.ERROR",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "class",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "PLUS",
+                          "type": "BinaryOperator",
+                          "children": [
+                            {
+                              "label": "PLUS",
+                              "type": "BinaryOperator",
+                              "children": [
+                                {
+                                  "label": "\"notepad file \"",
+                                  "type": "Literal",
+                                  "children": []
+                                },
+                                {
+                                  "label": "filename",
+                                  "type": "FieldRead",
+                                  "children": [
+                                    {
+                                      "label": "QuickNotepad",
+                                      "type": "TypeAccess",
+                                      "children": []
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "label": "\" does not exist\"",
+                              "type": "Literal",
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "label": "",
+                  "type": "Catch",
+                  "children": [
+                    {
+                      "label": "ioe",
+                      "type": "CatchVariable",
+                      "children": [
+                        {
+                          "label": "java.io.IOException",
+                          "type": "VARIABLE_TYPE",
+                          "children": []
+                        }
+                      ]
+                    },
+                    {
+                      "label": "log",
+                      "type": "Invocation",
+                      "children": [
+                        {
+                          "label": "org.gjt.sp.util.Log",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "Log.ERROR",
+                          "type": "TypeAccess",
+                          "children": []
+                        },
+                        {
+                          "label": "class",
+                          "type": "FieldRead",
+                          "children": [
+                            {
+                              "label": "QuickNotepad",
+                              "type": "TypeAccess",
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "label": "PLUS",
+                          "type": "BinaryOperator",
+                          "children": [
+                            {
+                              "label": "\"could not read notepad file \"",
+                              "type": "Literal",
+                              "children": []
+                            },
+                            {
+                              "label": "filename",
+                              "type": "FieldRead",
+                              "children": [
+                                {
+                                  "label": "QuickNotepad",
+                                  "type": "TypeAccess",
+                                  "children": []
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

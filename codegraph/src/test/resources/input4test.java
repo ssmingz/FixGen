@@ -1,43 +1,18 @@
-import org.eclipse.jdt.core.dom.ASTNode;
-
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
 
-public abstract class Node {
-    protected String _fileName;
-    protected int _startLine;
-    protected int _endLine;
-    /**
-     * original AST node in the JDT abstract tree model
-     * NOTE: AST node does not support serialization
-     */
-    protected transient ASTNode _astNode;
-    /**
-     * parent node in the abstract syntax tree
-     */
-    protected Node _parent;
+public class DashboardTimerTask {
+    private static void addGcInfo(DashboardModel dashboardModel) {
+        List<GcInfoVO> gcInfos = new ArrayList<GcInfoVO>();
+        dashboardModel.setGcInfos(gcInfos);
 
-    /**
-     * @param oriNode   : original abstract syntax tree node in the JDT model
-     * @param fileName  : source file name
-     * @param startLine : start line number of the node in the original source file
-     * @param endLine   : end line number of the node in the original source file
-     */
-    public Node(ASTNode oriNode, String fileName, int startLine, int endLine) {
-        this(oriNode, fileName, startLine, endLine, null);
-    }
-
-    /**
-     * @param oriNode   : original abstract syntax tree node in the JDT model
-     * @param fileName  : source file name (with absolute path)
-     * @param startLine : start line number of the node in the original source file
-     * @param endLine   : end line number of the node in the original source file
-     * @param parent    : parent node in the abstract syntax tree
-     */
-    public Node(ASTNode oriNode, String fileName, int startLine, int endLine, Node parent) {
-        if (oriNode != null) {
-            _startLine = startLine;
-            _endLine = endLine + _startLine;
-            testvar = _endLine + _startLine;
+        List<GarbageCollectorMXBean> garbageCollectorMxBeans = ManagementFactory.getGarbageCollectorMXBeans();
+        for (GarbageCollectorMXBean gcMXBean : garbageCollectorMxBeans) {
+            String name = gcMXBean.getName();
+            gcInfos.add(new GcInfoVO(beautifyName(name), gcMXBean.getCollectionCount(), gcMXBean.getCollectionTime()));
         }
     }
 }

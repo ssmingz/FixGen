@@ -20,8 +20,12 @@ import java.util.*;
 public class TestGumTree {
     @Test
     public void testGumTreeDiff() throws Exception {
-        String srcFile = "src/test/resources/0b20e4026c_d87861eb35/buggy_version/DashboardCommand.java";
-        String dstFile = "src/test/resources/0b20e4026c_d87861eb35/fixed_version/DashboardCommand.java";
+        // String srcFile =
+        // "src/test/resources/0b20e4026c_d87861eb35/buggy_version/DashboardCommand.java";
+        // String dstFile =
+        // "src/test/resources/0b20e4026c_d87861eb35/fixed_version/DashboardCommand.java";
+        String srcFile = "/Users/yumeng/Workspace/BUGs/FixBench/WithinSingleMethod/Genesis-NP/Genesis#178/old/FixedPointLongCodec.java";
+        String dstFile = "/Users/yumeng/Workspace/BUGs/FixBench/WithinSingleMethod/Genesis-NP/Genesis#178/new/FixedPointLongCodec.java";
         AstComparator diff = new AstComparator();
         Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
         System.out.println("debug");
@@ -43,7 +47,7 @@ public class TestGumTree {
         Map<String, List<Integer>> map = JavaASTUtil.getDiffLinesInBuggyFile(diffFile);
         for (Map.Entry<String, List<Integer>> entry : map.entrySet()) {
             String fPath = entry.getKey();
-            String fName = fPath.split("/")[fPath.split("/").length-1];
+            String fName = fPath.split("/")[fPath.split("/").length - 1];
             if (srcFile.endsWith(fName)) {
                 lineList = entry.getValue();
             }
@@ -77,9 +81,9 @@ public class TestGumTree {
             AstComparator diff = new AstComparator();
             Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
             Map<CtElement, CtElement> mappings = new LinkedHashMap<>();
-            for (Mapping mapping : ((DiffImpl) editScript)._mappingsComp.asSet()) {
-                Tree srcTree = (Tree) mapping.getFirst();
-                Tree dstTree = (Tree) mapping.getSecond();
+            for (Mapping mapping : editScript.getMappingsComp().asSet()) {
+                Tree srcTree = mapping.first;
+                Tree dstTree = mapping.second;
                 CtElement srcElement = (CtElement) srcTree.getMetadata("spoon_object");
                 CtElement dstElement = (CtElement) dstTree.getMetadata("spoon_object");
                 if (srcElement == null || srcElement.getPosition() == null) {
@@ -90,8 +94,10 @@ public class TestGumTree {
                     mappings.put(srcElement, dstElement);
                 }
             }
-            Map<CtElement, Node> src_matcher = Matcher.mapSpoonToCodeGraph(srcGraph.getNodes(), new ArrayList<>(mappings.keySet()));
-            Map<CtElement, Node> dst_matcher = Matcher.mapSpoonToCodeGraph(dstGraph.getNodes(), new ArrayList<>(mappings.values()));
+            Map<CtElement, Node> src_matcher = Matcher.mapSpoonToCodeGraph(srcGraph.getNodes(),
+                    new ArrayList<>(mappings.keySet()));
+            Map<CtElement, Node> dst_matcher = Matcher.mapSpoonToCodeGraph(dstGraph.getNodes(),
+                    new ArrayList<>(mappings.values()));
             Map<Node, Node> src_to_dst = Matcher.mapSrcToDst(src_matcher, dst_matcher, mappings);
 
             // add modifications
@@ -99,19 +105,22 @@ public class TestGumTree {
             List<Node> changedNodes = new ArrayList<>();
             for (Operation operation : operations) {
                 if (operation instanceof InsertOperation) {
-                    changedNodes.addAll(Matcher.mapOperationToCodeGraph((InsertOperation) operation, srcGraph, src_matcher));
+                    changedNodes.addAll(
+                            Matcher.mapOperationToCodeGraph((InsertOperation) operation, srcGraph, src_matcher));
                 } else if (operation instanceof MoveOperation) {
-                    changedNodes.addAll(Matcher.mapOperationToCodeGraph((MoveOperation) operation, srcGraph, src_matcher));
+                    changedNodes
+                            .addAll(Matcher.mapOperationToCodeGraph((MoveOperation) operation, srcGraph, src_matcher));
                 } else if (operation instanceof DeleteOperation) {
-                    changedNodes.addAll(Matcher.mapOperationToCodeGraph((DeleteOperation) operation, srcGraph, src_matcher));
+                    changedNodes.addAll(
+                            Matcher.mapOperationToCodeGraph((DeleteOperation) operation, srcGraph, src_matcher));
                 } else if (operation instanceof UpdateOperation) {
-                    changedNodes.addAll(Matcher.mapOperationToCodeGraph((UpdateOperation) operation, srcGraph, src_matcher));
+                    changedNodes.addAll(
+                            Matcher.mapOperationToCodeGraph((UpdateOperation) operation, srcGraph, src_matcher));
                 }
             }
 
             System.out.println("debug");
         }
-
 
     }
 

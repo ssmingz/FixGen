@@ -14,6 +14,11 @@
     <remote-repository>
       <option name="id" value="gforge.inria.fr-release" />
       <option name="name" value="Maven Repository for Spoon Release" />
+      <option name="url" value="http://maven.inria.fr/artifactory/spoon-public-snapshot/" />
+    </remote-repository>
+    <remote-repository>
+      <option name="id" value="gforge.inria.fr-release" />
+      <option name="name" value="Maven Repository for Spoon Release" />
       <option name="url" value="http://spoon.gforge.inria.fr/repositories/releases/" />
     </remote-repository>
     <remote-repository>

@@ -1,0 +1,118 @@
+digraph "DashboardTimerTask.addGcInfo#?,DashboardModel" {
+1 [label="8:addGcInfo" shape=ellipse]
+2 [label="8:dashboardModel" shape=ellipse]
+3 [label="8:DashboardModel dashboardModel" shape=ellipse]
+4 [label="9:gcInfos" shape=ellipse]
+5 [label="9:new ArrayList<GcInfoVO>()" shape=ellipse]
+6 [label="9:gcInfos=new ArrayList<GcInfoVO>()" shape=ellipse]
+7 [label="9:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+8 [label="10:dashboardModel" shape=ellipse]
+9 [label="10:setGcInfos" shape=ellipse]
+10 [label="10:gcInfos" shape=ellipse]
+11 [label="10:dashboardModel.setGcInfos(gcInfos)" shape=ellipse]
+12 [label="10:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+13 [label="12:garbageCollectorMxBeans" shape=ellipse]
+14 [label="12:ManagementFactory" shape=ellipse]
+15 [label="12:getGarbageCollectorMXBeans" shape=ellipse]
+16 [label="12:ManagementFactory.getGarbageCollectorMXBeans()" shape=ellipse]
+17 [label="12:garbageCollectorMxBeans=ManagementFactory.getGarbageCollectorMXBeans()" shape=ellipse]
+18 [label="12:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+19 [label="13:gcMXBean" shape=ellipse]
+20 [label="13:GarbageCollectorMXBean gcMXBean" shape=ellipse]
+21 [label="13:garbageCollectorMxBeans" shape=ellipse]
+22 [label="14:name" shape=ellipse]
+23 [label="14:gcMXBean" shape=ellipse]
+24 [label="14:getName" shape=ellipse]
+25 [label="14:gcMXBean.getName()" shape=ellipse]
+26 [label="14:name=gcMXBean.getName()" shape=ellipse]
+27 [label="14:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+28 [label="15:gcInfos" shape=ellipse]
+29 [label="15:add" shape=ellipse]
+30 [label="15:beautifyName" shape=ellipse]
+31 [label="15:name" shape=ellipse]
+32 [label="15:beautifyName(name)" shape=ellipse]
+33 [label="15:gcMXBean" shape=ellipse]
+34 [label="15:getCollectionCount" shape=ellipse]
+35 [label="15:gcMXBean.getCollectionCount()" shape=ellipse]
+36 [label="15:gcMXBean" shape=ellipse]
+37 [label="15:getCollectionTime" shape=ellipse]
+38 [label="15:gcMXBean.getCollectionTime()" shape=ellipse]
+39 [label="15:new GcInfoVO(beautifyName(name),gcMXBean.getCollectionCount(),gcMXBean.getCollectionTime())" shape=ellipse]
+40 [label="15:gcInfos.add(new GcInfoVO(beautifyName(name),gcMXBean.getCollectionCount(),gcMXBean.getCollectionTime()))" shape=ellipse]
+41 [label="15:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+42 [label="13:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+43 [label="13:class org.eclipse.jdt.core.dom.EnhancedForStatement" shape=ellipse]
+44 [label="8:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+45 [label="8:private static void addGcInfo(DashboardModel dashboardModel)" shape=ellipse]
+2 -> 8 [label="Define-Use"];
+3 -> 2 [label=""];
+4 -> 10 [label="Define-Use"];
+4 -> 28 [label="Define-Use"];
+6 -> 4 [label=""];
+6 -> 5 [label=""];
+7 -> 6 [label=""];
+11 -> 8 [label=""];
+11 -> 9 [label=""];
+12 -> 11 [label=""];
+13 -> 21 [label="Define-Use"];
+14 -> 13 [label="Data Dep"];
+15 -> 13 [label="Data Dep"];
+16 -> 14 [label=""];
+16 -> 15 [label=""];
+17 -> 13 [label=""];
+17 -> 16 [label=""];
+18 -> 17 [label=""];
+19 -> 23 [label="Define-Use"];
+19 -> 33 [label="Define-Use"];
+19 -> 36 [label="Define-Use"];
+20 -> 19 [label=""];
+21 -> 42 [label="Control Dep"];
+21 -> 27 [label="Control Dep"];
+21 -> 26 [label="Control Dep"];
+21 -> 22 [label="Control Dep"];
+21 -> 25 [label="Control Dep"];
+21 -> 23 [label="Control Dep"];
+21 -> 24 [label="Control Dep"];
+21 -> 41 [label="Control Dep"];
+21 -> 40 [label="Control Dep"];
+21 -> 28 [label="Control Dep"];
+21 -> 29 [label="Control Dep"];
+21 -> 39 [label="Control Dep"];
+21 -> 32 [label="Control Dep"];
+21 -> 30 [label="Control Dep"];
+21 -> 31 [label="Control Dep"];
+21 -> 35 [label="Control Dep"];
+21 -> 33 [label="Control Dep"];
+21 -> 34 [label="Control Dep"];
+21 -> 38 [label="Control Dep"];
+21 -> 36 [label="Control Dep"];
+21 -> 37 [label="Control Dep"];
+22 -> 31 [label="Define-Use"];
+23 -> 22 [label="Data Dep"];
+24 -> 22 [label="Data Dep"];
+25 -> 23 [label=""];
+25 -> 24 [label=""];
+26 -> 22 [label=""];
+26 -> 25 [label=""];
+27 -> 26 [label=""];
+32 -> 30 [label=""];
+35 -> 33 [label=""];
+35 -> 34 [label=""];
+38 -> 36 [label=""];
+38 -> 37 [label=""];
+40 -> 28 [label=""];
+40 -> 29 [label=""];
+41 -> 40 [label=""];
+42 -> 27 [label=""];
+42 -> 41 [label=""];
+43 -> 20 [label=""];
+43 -> 21 [label=""];
+43 -> 42 [label=""];
+44 -> 7 [label=""];
+44 -> 12 [label=""];
+44 -> 18 [label=""];
+44 -> 43 [label=""];
+45 -> 1 [label=""];
+45 -> 3 [label=""];
+45 -> 44 [label=""];
+}

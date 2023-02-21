@@ -1,13 +1,12 @@
 package builder;
 
-import com.sun.org.apache.bcel.internal.classfile.*;
-import com.sun.org.apache.bcel.internal.generic.Type;
 import model.CodeGraph;
 import model.GraphBuildingContext;
 import model.GraphConfiguration;
 import model.graph.Scope;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.dom.*;
+import org.eclipse.jdt.core.util.ClassFormatException;
 import utils.FileIO;
 import utils.JavaASTUtil;
 
@@ -15,7 +14,6 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.sun.org.apache.bcel.internal.Const.T_UNKNOWN;
 
 public class GraphBuilder {
     private final GraphConfiguration configuration;
@@ -153,17 +151,10 @@ public class GraphBuilder {
         return g;
     }
 
-    /**
-     * Transform Type to String
-     */
-    private String getSimpleType(Type type) {
-        return ((type.equals(Type.NULL) || (type.getType() >= T_UNKNOWN)))? type.getSignature() : signatureToString(type.getSignature());
-    }
-
     /*
      * Modify com.sun.org.apache.bcel.internal.classfile.Utility.signatureToString(signature, false)
      */
-    private String signatureToString(String signature) {
+    private String signatureToString(String signature) throws ClassFormatException {
         try {
             switch(signature.charAt(0)) {
                 case 'B' : return "byte";

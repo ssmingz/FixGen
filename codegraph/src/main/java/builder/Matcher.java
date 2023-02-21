@@ -108,8 +108,8 @@ public class Matcher {
 
     public static List<Node> mapOperationToCodeGraph(UpdateOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
         List<Node> changedNodes = new ArrayList<>();
-        CtElement ctBefore = operation.getNode();
-        CtElement ctAfter = operation.getDestElement();
+        CtElement ctBefore = operation.getSrcNode();
+        CtElement ctAfter = operation.getDstNode();
         if (src_matcher.containsKey(ctBefore)) {
             Node cgBefore = src_matcher.get(ctBefore);
             Node cgAfter = rebuild(ctAfter);

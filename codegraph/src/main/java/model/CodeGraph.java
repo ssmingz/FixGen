@@ -192,7 +192,9 @@ public class CodeGraph {
             System.out.println("UNKNOWN ASTNode type : " + astNode.toString());
             node = null;
         }
-        allNodes.add(node);
+        if (node != null) {
+            allNodes.add(node);
+        }
         return node;
     }
 

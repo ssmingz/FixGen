@@ -1,0 +1,246 @@
+digraph "Node.run#?" {
+2 [label="7:run" shape=ellipse]
+3 [label="9:count" shape=ellipse]
+4 [label="9:getNumOfExecutions" shape=ellipse]
+5 [label="9:getNumOfExecutions()" shape=ellipse]
+6 [label="9:count >= getNumOfExecutions()" shape=ellipse]
+7 [label="11:timer" shape=ellipse]
+8 [label="11:cancel" shape=ellipse]
+9 [label="11:timer.cancel()" shape=ellipse]
+10 [label="11:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+11 [label="12:timer" shape=ellipse]
+12 [label="12:purge" shape=ellipse]
+13 [label="12:timer.purge()" shape=ellipse]
+14 [label="12:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+15 [label="13:process" shape=ellipse]
+16 [label="13:end" shape=ellipse]
+17 [label="13:0" shape=ellipse]
+18 [label="13:\"Process ends after \"" shape=ellipse]
+19 [label="13:getNumOfExecutions" shape=ellipse]
+20 [label="13:getNumOfExecutions()" shape=ellipse]
+21 [label="13:\" time(s).\"" shape=ellipse]
+22 [label="13:\" time(s).\"" shape=ellipse]
+23 [label="13:process.end(0,\"Process ends after \" + getNumOfExecutions() + \" time(s).\")" shape=ellipse]
+24 [label="13:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+25 [label="14:class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+26 [label="9:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+27 [label="9:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+28 [label="17:dashboardModel" shape=ellipse]
+29 [label="17:new DashboardModel()" shape=ellipse]
+30 [label="17:dashboardModel=new DashboardModel()" shape=ellipse]
+31 [label="17:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+32 [label="20:threads" shape=ellipse]
+33 [label="20:ThreadUtil" shape=ellipse]
+34 [label="20:getThreads" shape=ellipse]
+35 [label="20:ThreadUtil.getThreads()" shape=ellipse]
+36 [label="20:threads=ThreadUtil.getThreads()" shape=ellipse]
+37 [label="20:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+38 [label="21:dashboardModel" shape=ellipse]
+39 [label="21:setThreads" shape=ellipse]
+40 [label="21:threadSampler" shape=ellipse]
+41 [label="21:sample" shape=ellipse]
+42 [label="21:threads" shape=ellipse]
+43 [label="21:threadSampler.sample(threads)" shape=ellipse]
+44 [label="21:dashboardModel.setThreads(threadSampler.sample(threads))" shape=ellipse]
+45 [label="21:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+46 [label="24:addMemoryInfo" shape=ellipse]
+47 [label="24:dashboardModel" shape=ellipse]
+48 [label="24:addMemoryInfo(dashboardModel)" shape=ellipse]
+49 [label="24:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+50 [label="27:addGcInfo" shape=ellipse]
+51 [label="27:dashboardModel" shape=ellipse]
+52 [label="27:addGcInfo(dashboardModel)" shape=ellipse]
+53 [label="27:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+54 [label="30:addRuntimeInfo" shape=ellipse]
+55 [label="30:dashboardModel" shape=ellipse]
+56 [label="30:addRuntimeInfo(dashboardModel)" shape=ellipse]
+57 [label="30:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+58 [label="33:addTomcatInfo" shape=ellipse]
+59 [label="33:dashboardModel" shape=ellipse]
+60 [label="33:addTomcatInfo(dashboardModel)" shape=ellipse]
+61 [label="33:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+62 [label="35:process" shape=ellipse]
+63 [label="35:appendResult" shape=ellipse]
+64 [label="35:dashboardModel" shape=ellipse]
+65 [label="35:process.appendResult(dashboardModel)" shape=ellipse]
+66 [label="35:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+67 [label="37:count" shape=ellipse]
+68 [label="37:count++" shape=ellipse]
+69 [label="37:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+70 [label="38:process" shape=ellipse]
+71 [label="38:times" shape=ellipse]
+72 [label="38:process.times()" shape=ellipse]
+73 [label="38:incrementAndGet" shape=ellipse]
+74 [label="38:process.times().incrementAndGet()" shape=ellipse]
+75 [label="38:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+76 [label="8:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+77 [label="39:e" shape=ellipse]
+78 [label="39:Throwable e" shape=ellipse]
+79 [label="40:msg" shape=ellipse]
+80 [label="40:\"process dashboard failed: \"" shape=ellipse]
+81 [label="40:e" shape=ellipse]
+82 [label="40:getMessage" shape=ellipse]
+83 [label="40:e.getMessage()" shape=ellipse]
+84 [label="40:\"process dashboard failed: \" + e.getMessage()" shape=ellipse]
+85 [label="40:msg=\"process dashboard failed: \" + e.getMessage()" shape=ellipse]
+86 [label="40:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+87 [label="41:logger" shape=ellipse]
+88 [label="41:error" shape=ellipse]
+89 [label="41:msg" shape=ellipse]
+90 [label="41:e" shape=ellipse]
+91 [label="41:logger.error(msg,e)" shape=ellipse]
+92 [label="41:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+93 [label="42:process" shape=ellipse]
+94 [label="42:end" shape=ellipse]
+95 [label="42:1" shape=ellipse]
+96 [label="42:-1" shape=ellipse]
+97 [label="42:msg" shape=ellipse]
+98 [label="42:process.end(-1,msg)" shape=ellipse]
+99 [label="42:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+100 [label="39:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+101 [label="39:catch(Throwable e)class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+102 [label="8:class org.eclipse.jdt.core.dom.TryStatement" shape=ellipse]
+103 [label="7:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+104 [label="7:public void run()" shape=ellipse]
+5 -> 4 [label=""];
+6 -> 3 [label=""];
+6 -> 5 [label=""];
+6 -> 26 [label="Control Dep"];
+6 -> 10 [label="Control Dep"];
+6 -> 9 [label="Control Dep"];
+6 -> 7 [label="Control Dep"];
+6 -> 8 [label="Control Dep"];
+6 -> 14 [label="Control Dep"];
+6 -> 13 [label="Control Dep"];
+6 -> 11 [label="Control Dep"];
+6 -> 12 [label="Control Dep"];
+6 -> 24 [label="Control Dep"];
+6 -> 23 [label="Control Dep"];
+6 -> 15 [label="Control Dep"];
+6 -> 16 [label="Control Dep"];
+6 -> 17 [label="Control Dep"];
+6 -> 18 [label="Control Dep"];
+6 -> 20 [label="Control Dep"];
+6 -> 19 [label="Control Dep"];
+6 -> 21 [label="Control Dep"];
+6 -> 25 [label="Control Dep"];
+9 -> 7 [label=""];
+9 -> 8 [label=""];
+10 -> 9 [label=""];
+13 -> 11 [label=""];
+13 -> 12 [label=""];
+14 -> 13 [label=""];
+20 -> 19 [label=""];
+22 -> 21 [label=""];
+23 -> 15 [label=""];
+23 -> 16 [label=""];
+24 -> 23 [label=""];
+26 -> 10 [label=""];
+26 -> 14 [label=""];
+26 -> 24 [label=""];
+26 -> 25 [label=""];
+27 -> 6 [label=""];
+27 -> 26 [label=""];
+28 -> 38 [label="Define-Use"];
+28 -> 47 [label="Define-Use"];
+28 -> 51 [label="Define-Use"];
+28 -> 55 [label="Define-Use"];
+28 -> 59 [label="Define-Use"];
+28 -> 64 [label="Define-Use"];
+30 -> 28 [label=""];
+30 -> 29 [label=""];
+31 -> 30 [label=""];
+32 -> 42 [label="Define-Use"];
+33 -> 32 [label="Data Dep"];
+34 -> 32 [label="Data Dep"];
+35 -> 33 [label=""];
+35 -> 34 [label=""];
+36 -> 32 [label=""];
+36 -> 35 [label=""];
+37 -> 36 [label=""];
+43 -> 40 [label=""];
+43 -> 41 [label=""];
+44 -> 38 [label=""];
+44 -> 39 [label=""];
+45 -> 44 [label=""];
+48 -> 46 [label=""];
+49 -> 48 [label=""];
+52 -> 50 [label=""];
+53 -> 52 [label=""];
+56 -> 54 [label=""];
+57 -> 56 [label=""];
+60 -> 58 [label=""];
+61 -> 60 [label=""];
+65 -> 62 [label=""];
+65 -> 63 [label=""];
+66 -> 65 [label=""];
+68 -> 67 [label=""];
+69 -> 68 [label=""];
+72 -> 70 [label=""];
+72 -> 71 [label=""];
+74 -> 72 [label=""];
+74 -> 73 [label=""];
+75 -> 74 [label=""];
+76 -> 27 [label=""];
+76 -> 31 [label=""];
+76 -> 37 [label=""];
+76 -> 45 [label=""];
+76 -> 49 [label=""];
+76 -> 53 [label=""];
+76 -> 57 [label=""];
+76 -> 61 [label=""];
+76 -> 66 [label=""];
+76 -> 69 [label=""];
+76 -> 75 [label=""];
+77 -> 81 [label="Define-Use"];
+77 -> 90 [label="Define-Use"];
+78 -> 77 [label=""];
+78 -> 100 [label="Control Dep"];
+78 -> 86 [label="Control Dep"];
+78 -> 85 [label="Control Dep"];
+78 -> 79 [label="Control Dep"];
+78 -> 84 [label="Control Dep"];
+78 -> 80 [label="Control Dep"];
+78 -> 83 [label="Control Dep"];
+78 -> 81 [label="Control Dep"];
+78 -> 82 [label="Control Dep"];
+78 -> 92 [label="Control Dep"];
+78 -> 91 [label="Control Dep"];
+78 -> 87 [label="Control Dep"];
+78 -> 88 [label="Control Dep"];
+78 -> 89 [label="Control Dep"];
+78 -> 90 [label="Control Dep"];
+78 -> 99 [label="Control Dep"];
+78 -> 98 [label="Control Dep"];
+78 -> 93 [label="Control Dep"];
+78 -> 94 [label="Control Dep"];
+78 -> 96 [label="Control Dep"];
+78 -> 95 [label="Control Dep"];
+78 -> 97 [label="Control Dep"];
+79 -> 89 [label="Define-Use"];
+79 -> 97 [label="Define-Use"];
+83 -> 81 [label=""];
+83 -> 82 [label=""];
+84 -> 80 [label=""];
+84 -> 83 [label=""];
+85 -> 79 [label=""];
+85 -> 84 [label=""];
+86 -> 85 [label=""];
+91 -> 87 [label=""];
+91 -> 88 [label=""];
+92 -> 91 [label=""];
+96 -> 95 [label=""];
+98 -> 93 [label=""];
+98 -> 94 [label=""];
+99 -> 98 [label=""];
+100 -> 86 [label=""];
+100 -> 92 [label=""];
+100 -> 99 [label=""];
+101 -> 78 [label=""];
+101 -> 100 [label=""];
+102 -> 76 [label=""];
+102 -> 101 [label=""];
+103 -> 102 [label=""];
+104 -> 2 [label=""];
+104 -> 103 [label=""];
+}
