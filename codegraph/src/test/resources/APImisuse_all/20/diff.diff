@@ -1,0 +1,46 @@
+diff --git a/components/camel-docker/src/main/java/org/apache/camel/component/docker/consumer/DockerEventsConsumer.java b/components/camel-docker/src/main/java/org/apache/camel/component/docker/consumer/DockerEventsConsumer.java
+index ad3153a609da..50c9689b661b 100644
+--- a/components/camel-docker/src/main/java/org/apache/camel/component/docker/consumer/DockerEventsConsumer.java
++++ b/components/camel-docker/src/main/java/org/apache/camel/component/docker/consumer/DockerEventsConsumer.java
+@@ -54,7 +54,7 @@ public DockerEndpoint getEndpoint() {
+      * Determine the point in time to begin streaming events
+      */
+     private long processInitialEvent() {
+-        long currentTime = new Date().getTime();
++        long currentTime = System.currentTimeMillis();
+         Long initialRange = DockerHelper.getProperty(DockerConstants.DOCKER_INITIAL_RANGE, endpoint.getConfiguration(), null, Long.class);
+         if (initialRange != null) {
+             currentTime = currentTime - initialRange;
+diff --git a/components/camel-ftp/src/main/java/org/apache/camel/component/file/remote/strategy/SftpChangedExclusiveReadLockStrategy.java b/components/camel-ftp/src/main/java/org/apache/camel/component/file/remote/strategy/SftpChangedExclusiveReadLockStrategy.java
+index f80d7cf1d688..dab27fcc6d01 100644
+--- a/components/camel-ftp/src/main/java/org/apache/camel/component/file/remote/strategy/SftpChangedExclusiveReadLockStrategy.java
++++ b/components/camel-ftp/src/main/java/org/apache/camel/component/file/remote/strategy/SftpChangedExclusiveReadLockStrategy.java
+@@ -54,7 +54,7 @@ public boolean acquireExclusiveReadLock(GenericFileOperations<ChannelSftp.LsEntr
+         long lastModified = Long.MIN_VALUE;
+         long length = Long.MIN_VALUE;
+         StopWatch watch = new StopWatch();
+-        long startTime = new Date().getTime();
++        long startTime = System.currentTimeMillis();
+ 
+         while (!exclusive) {
+             // timeout check
+@@ -216,4 +216,4 @@ public void setMarkerFiler(boolean markerFiler) {
+     public void setDeleteOrphanLockFiles(boolean deleteOrphanLockFiles) {
+         // noop - not supported by ftp
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/components/camel-mail/src/main/java/org/apache/camel/component/mail/NowSearchTerm.java b/components/camel-mail/src/main/java/org/apache/camel/component/mail/NowSearchTerm.java
+index f0f31758ce5f..37d94d57b64e 100644
+--- a/components/camel-mail/src/main/java/org/apache/camel/component/mail/NowSearchTerm.java
++++ b/components/camel-mail/src/main/java/org/apache/camel/component/mail/NowSearchTerm.java
+@@ -51,7 +51,7 @@ public NowSearchTerm(int comparison, boolean sentDate, long offset) {
+     }
+ 
+     private Date getDate() {
+-        long now = new Date().getTime();
++        long now = System.currentTimeMillis();
+         return new Date(now + offset);
+     }
+ 

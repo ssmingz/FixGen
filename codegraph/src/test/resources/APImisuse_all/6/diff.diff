@@ -1,0 +1,158 @@
+diff --git a/airavata-services/profile-service/profile-service-client-sdks/java-client-samples/src/main/java/org/apache/airavata/service/profile/client/samples/UserProfileSample.java b/airavata-services/profile-service/profile-service-client-sdks/java-client-samples/src/main/java/org/apache/airavata/service/profile/client/samples/UserProfileSample.java
+index d2660d0b43..76c4ea773c 100644
+--- a/airavata-services/profile-service/profile-service-client-sdks/java-client-samples/src/main/java/org/apache/airavata/service/profile/client/samples/UserProfileSample.java
++++ b/airavata-services/profile-service/profile-service-client-sdks/java-client-samples/src/main/java/org/apache/airavata/service/profile/client/samples/UserProfileSample.java
+@@ -103,9 +103,9 @@ private static UserProfile getUserProfile(String userId) {
+         userProfile.setGatewayId(testGatewayId);
+         userProfile.addToEmails("test-user-" + userIdValue + "@domain1.com");
+         userProfile.addToEmails("test-user-" + userIdValue + "@domain2.com");
+-        userProfile.setCreationTime(new Date().getTime());
+-        userProfile.setLastAccessTime(new Date().getTime());
+-        userProfile.setValidUntil(new Date().getTime());
++        userProfile.setCreationTime(System.currentTimeMillis());
++        userProfile.setLastAccessTime(System.currentTimeMillis());
++        userProfile.setValidUntil(System.currentTimeMillis());
+         userProfile.setState(Status.ACTIVE);
+         userProfile.setNsfDemographics(getNSFDemographics(userIdValue));
+         return userProfile;
+diff --git a/airavata-services/profile-service/profile-service-commons/src/main/java/org/apache/airavata/service/profile/commons/tenant/entities/GatewayEntity.java b/airavata-services/profile-service/profile-service-commons/src/main/java/org/apache/airavata/service/profile/commons/tenant/entities/GatewayEntity.java
+index 876d12fb3a..b9e7d3b398 100644
+--- a/airavata-services/profile-service/profile-service-commons/src/main/java/org/apache/airavata/service/profile/commons/tenant/entities/GatewayEntity.java
++++ b/airavata-services/profile-service/profile-service-commons/src/main/java/org/apache/airavata/service/profile/commons/tenant/entities/GatewayEntity.java
+@@ -240,7 +240,7 @@ public void setOauthClientSecret(String oauthClientSecret) {
+ 
+     @PrePersist
+     void createdAt() {
+-        this.requestCreationTime = new Date().getTime();
++        this.requestCreationTime = System.currentTimeMillis();
+     }
+ 
+     @Override
+@@ -283,4 +283,4 @@ public String toString() {
+                 ", requesterUsername='" + requesterUsername + '\'' +
+                 '}';
+     }
+-}
+\ No newline at end of file
++}
+diff --git a/modules/credential-store/credential-store-service/src/main/java/org/apache/airavata/credential/store/store/impl/db/CredentialsDAO.java b/modules/credential-store/credential-store-service/src/main/java/org/apache/airavata/credential/store/store/impl/db/CredentialsDAO.java
+index 0f31a08dac..d701b7710b 100644
+--- a/modules/credential-store/credential-store-service/src/main/java/org/apache/airavata/credential/store/store/impl/db/CredentialsDAO.java
++++ b/modules/credential-store/credential-store-service/src/main/java/org/apache/airavata/credential/store/store/impl/db/CredentialsDAO.java
+@@ -101,9 +101,8 @@ public void addCredentials(String gatewayId, Credential credential, Connection c
+             preparedStatement.setBinaryStream(3, isCert);
+ 
+             preparedStatement.setString(4, credential.getPortalUserName());
+-
+-            java.util.Date date = new java.util.Date();
+-            Timestamp timestamp = new Timestamp(date.getTime());
++            
++            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+ 
+             preparedStatement.setTimestamp(5, timestamp);
+ 
+@@ -178,7 +177,7 @@ public void updateCredentials(String gatewayId, Credential credential, Connectio
+ 
+             preparedStatement.setString(2, credential.getPortalUserName());
+ 
+-            preparedStatement.setTimestamp(3, new Timestamp(new java.util.Date().getTime()));
++            preparedStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+             preparedStatement.setString(4, credential.getDescription());
+             preparedStatement.setString(5, credential.getCredentialOwnerType().toString());
+             preparedStatement.setString(6, gatewayId);
+diff --git a/modules/gfac/gfac-bes/src/main/java/org/apache/airavata/gfac/bes/security/X509SecurityContext.java b/modules/gfac/gfac-bes/src/main/java/org/apache/airavata/gfac/bes/security/X509SecurityContext.java
+index 233981a5de..a0ce4e43b1 100644
+--- a/modules/gfac/gfac-bes/src/main/java/org/apache/airavata/gfac/bes/security/X509SecurityContext.java
++++ b/modules/gfac/gfac-bes/src/main/java/org/apache/airavata/gfac/bes/security/X509SecurityContext.java
+@@ -166,7 +166,7 @@ public X509Credential getX509Credentials() throws GFacException, ApplicationSett
+         } else {
+             try {
+             	
+-            	final long remainingTime = x509Credentials.getCertificate().getNotAfter().getTime() - new Date().getTime();
++            	final long remainingTime = x509Credentials.getCertificate().getNotAfter().getTime() - System.currentTimeMillis();
+             	
+                 if (remainingTime < CREDENTIAL_RENEWING_THRESH_HOLD) {
+                 	//                    return renewCredentials();
+diff --git a/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/GFacEngineImpl.java b/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/GFacEngineImpl.java
+index 496706a597..5433b3b2e0 100644
+--- a/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/GFacEngineImpl.java
++++ b/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/GFacEngineImpl.java
+@@ -847,7 +847,7 @@ private TaskContext getJobSubmissionTaskContext(ProcessContext processContext) t
+ 
+         TaskModel taskModel = new TaskModel();
+         taskModel.setParentProcessId(processContext.getProcessId());
+-        taskModel.setCreationTime(new Date().getTime());
++        taskModel.setCreationTime(System.currentTimeMillis());
+         taskModel.setLastUpdateTime(taskModel.getCreationTime());
+         TaskStatus taskStatus = new TaskStatus(TaskState.CREATED);
+         taskStatus.setTimeOfStateChange(AiravataUtils.getCurrentTimestamp().getTime());
+diff --git a/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/task/utils/bes/X509SecurityContext.java b/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/task/utils/bes/X509SecurityContext.java
+index 4bb95ef70d..f94154c600 100644
+--- a/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/task/utils/bes/X509SecurityContext.java
++++ b/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/impl/task/utils/bes/X509SecurityContext.java
+@@ -162,7 +162,7 @@ public X509Credential getX509Credentials() throws GFacException, ApplicationSett
+         } else {
+             try {
+             	
+-            	final long remainingTime = x509Credentials.getCertificate().getNotAfter().getTime() - new Date().getTime();
++            	final long remainingTime = x509Credentials.getCertificate().getNotAfter().getTime() - System.currentTimeMillis();
+             	
+                 if (remainingTime < CREDENTIAL_RENEWING_THRESH_HOLD) {
+                 	//                    return renewCredentials();
+diff --git a/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/monitor/email/EmailBasedMonitor.java b/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/monitor/email/EmailBasedMonitor.java
+index b60f7053d2..76a487ecaa 100644
+--- a/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/monitor/email/EmailBasedMonitor.java
++++ b/modules/gfac/gfac-impl/src/main/java/org/apache/airavata/gfac/monitor/email/EmailBasedMonitor.java
+@@ -309,7 +309,7 @@ private void processMessages(RegistryService.Client registryClient, Message[] se
+                     processedMessages.add(message);
+ 
+                 } else if (!jobStatusResult.isAuthoritative()
+-                        && (new Date()).getTime() - message.getSentDate().getTime() > 1000 * 60 * 5) {
++                        && (System.currentTimeMillis() - message.getSentDate().getTime() > 1000 * 60 * 5) {
+                     //marking old custom Airavata emails as read
+                     processedMessages.add(message);
+                     log.info("Marking old Airavata custom emails as read, message subject --> {}", message.getSubject());
+diff --git a/modules/orchestrator/orchestrator-core/src/main/java/org/apache/airavata/orchestrator/cpi/impl/SimpleOrchestratorImpl.java b/modules/orchestrator/orchestrator-core/src/main/java/org/apache/airavata/orchestrator/cpi/impl/SimpleOrchestratorImpl.java
+index 2e690247b7..c633dbd67e 100644
+--- a/modules/orchestrator/orchestrator-core/src/main/java/org/apache/airavata/orchestrator/cpi/impl/SimpleOrchestratorImpl.java
++++ b/modules/orchestrator/orchestrator-core/src/main/java/org/apache/airavata/orchestrator/cpi/impl/SimpleOrchestratorImpl.java
+@@ -551,7 +551,7 @@ private List<String> createAndSaveSubmissionTasks(RegistryService.Client registr
+         List<String> submissionTaskIds = new ArrayList<>();
+         TaskModel taskModel = new TaskModel();
+         taskModel.setParentProcessId(processModel.getProcessId());
+-        taskModel.setCreationTime(new Date().getTime());
++        taskModel.setCreationTime(System.currentTimeMillis());
+         taskModel.setLastUpdateTime(taskModel.getCreationTime());
+         TaskStatus taskStatus = new TaskStatus(TaskState.CREATED);
+         taskStatus.setTimeOfStateChange(AiravataUtils.getCurrentTimestamp().getTime());
+@@ -572,7 +572,7 @@ private List<String> createAndSaveSubmissionTasks(RegistryService.Client registr
+                 || monitorMode == MonitorMode.CLOUD_JOB_MONITOR) {
+             TaskModel monitorTaskModel = new TaskModel();
+             monitorTaskModel.setParentProcessId(processModel.getProcessId());
+-            monitorTaskModel.setCreationTime(new Date().getTime());
++            monitorTaskModel.setCreationTime(System.currentTimeMillis());
+             monitorTaskModel.setLastUpdateTime(monitorTaskModel.getCreationTime());
+             TaskStatus monitorTaskStatus = new TaskStatus(TaskState.CREATED);
+             monitorTaskStatus.setTimeOfStateChange(AiravataUtils.getCurrentTimestamp().getTime());
+diff --git a/modules/user-profile-migration/src/main/java/org/apache/airavata/MigrationManager.java b/modules/user-profile-migration/src/main/java/org/apache/airavata/MigrationManager.java
+index 422a290c6f..0d43430250 100644
+--- a/modules/user-profile-migration/src/main/java/org/apache/airavata/MigrationManager.java
++++ b/modules/user-profile-migration/src/main/java/org/apache/airavata/MigrationManager.java
+@@ -307,8 +307,8 @@ private boolean migrateUserProfilesToAiravata(List<UserProfileDAO> ISProfileList
+             airavataUserProfile.setHomeOrganization(ISProfile.getOrganization());
+             airavataUserProfile.setPhones(ISProfile.getPhones());
+             airavataUserProfile.setCountry(ISProfile.getCountry());
+-            airavataUserProfile.setCreationTime(new Date().getTime());
+-            airavataUserProfile.setLastAccessTime(new Date().getTime());
++            airavataUserProfile.setCreationTime(System.currentTimeMillis());
++            airavataUserProfile.setLastAccessTime(System.currentTimeMillis());
+             airavataUserProfile.setValidUntil(-1);
+             airavataUserProfile.setState(Status.ACTIVE);
+             //TODO: fix authtzToken, for now we are using empty token, but need to properly populate claims map
+@@ -388,4 +388,4 @@ public static void main(String[] args) {
+             throw new RuntimeException(e);
+         }
+     }
+-}
+\ No newline at end of file
++}

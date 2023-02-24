@@ -1,0 +1,24 @@
+diff --git a/maven/jarstxt-maven-plugin/src/main/java/org/apache/openejb/maven/jarstxt/JarsTxtMojo.java b/maven/jarstxt-maven-plugin/src/main/java/org/apache/openejb/maven/jarstxt/JarsTxtMojo.java
+index 3603b001afd..8d76499251a 100644
+--- a/maven/jarstxt-maven-plugin/src/main/java/org/apache/openejb/maven/jarstxt/JarsTxtMojo.java
++++ b/maven/jarstxt-maven-plugin/src/main/java/org/apache/openejb/maven/jarstxt/JarsTxtMojo.java
+@@ -40,6 +40,7 @@
+ import org.codehaus.plexus.util.FileUtils;
+ 
+ import java.io.File;
++import java.io.BufferedWriter;
+ import java.io.FileWriter;
+ import java.io.IOException;
+ import java.net.MalformedURLException;
+@@ -91,9 +92,9 @@ public void execute() throws MojoExecutionException, MojoFailureException {
+             FileUtils.mkdir(outputFile.getParentFile().getAbsolutePath());
+         }
+ 
+-        FileWriter writer = null;
++        BufferedWriter writer = null;
+         try {
+-            writer = new FileWriter(outputFile);
++            writer = new BufferedWriter(new FileWriter(outputFile));
+ 
+             final TreeSet<String> set = new TreeSet<>();
+ 

@@ -1,0 +1,13 @@
+diff --git a/server/src/main/java/com/cloud/server/ConfigurationServerImpl.java b/server/src/main/java/com/cloud/server/ConfigurationServerImpl.java
+index 1ad36b936d42..68c12333c5e3 100644
+--- a/server/src/main/java/com/cloud/server/ConfigurationServerImpl.java
++++ b/server/src/main/java/com/cloud/server/ConfigurationServerImpl.java
+@@ -730,7 +730,7 @@ private void updateKeyPairsOnDisk(String homeDir) {
+         Boolean devel = Boolean.valueOf(_configDao.getValue("developer"));
+         if (!keyDir.isDirectory()) {
+             s_logger.warn("Failed to create " + homeDir + "/.ssh for storing the SSH keypars");
+-            keyDir.mkdir();
++            keyDir.mkdirs();
+         }
+         String pubKey = _configDao.getValue("ssh.publickey");
+         String prvKey = _configDao.getValue("ssh.privatekey");

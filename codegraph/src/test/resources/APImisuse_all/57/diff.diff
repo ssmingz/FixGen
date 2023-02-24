@@ -1,0 +1,33 @@
+diff --git a/pinot-common/src/main/java/org/apache/pinot/pql/parsers/Pql2AstListener.java b/pinot-common/src/main/java/org/apache/pinot/pql/parsers/Pql2AstListener.java
+index bfcbae4c4a9..2a617e554e5 100644
+--- a/pinot-common/src/main/java/org/apache/pinot/pql/parsers/Pql2AstListener.java
++++ b/pinot-common/src/main/java/org/apache/pinot/pql/parsers/Pql2AstListener.java
+@@ -310,13 +310,13 @@ public void enterStringLiteral(@NotNull PQL2Parser.StringLiteralContext ctx) {
+     String literalWithoutQuotes = text.substring(1, textLength - 1);
+     if (text.charAt(0) == '\'') {
+       if (literalWithoutQuotes.contains("''")) {
+-        literalWithoutQuotes = literalWithoutQuotes.replaceAll("''", "'");
++        literalWithoutQuotes = literalWithoutQuotes.replace("''", "'");
+       }
+ 
+       pushNode(new StringLiteralAstNode(literalWithoutQuotes));
+     } else if (text.charAt(0) == '"') {
+       if (literalWithoutQuotes.contains("\"\"")) {
+-        literalWithoutQuotes = literalWithoutQuotes.replaceAll("\"\"", "\"");
++        literalWithoutQuotes = literalWithoutQuotes.replace("\"\"", "\"");
+       }
+ 
+       pushNode(new StringLiteralAstNode(literalWithoutQuotes));
+diff --git a/thirdeye/thirdeye-hadoop/src/main/java/org/apache/pinot/thirdeye/hadoop/push/DeleteOverlappingSegmentsInPinot.java b/thirdeye/thirdeye-hadoop/src/main/java/org/apache/pinot/thirdeye/hadoop/push/DeleteOverlappingSegmentsInPinot.java
+index df99b4e5a17..9d9f3fdaec1 100644
+--- a/thirdeye/thirdeye-hadoop/src/main/java/org/apache/pinot/thirdeye/hadoop/push/DeleteOverlappingSegmentsInPinot.java
++++ b/thirdeye/thirdeye-hadoop/src/main/java/org/apache/pinot/thirdeye/hadoop/push/DeleteOverlappingSegmentsInPinot.java
+@@ -79,7 +79,7 @@ private static IdealState computeNewIdealStateAfterDeletingOverlappingSegments(H
+       }
+     }
+     LOG.info("HOURLY segments that can be deleted: {}", hourlySegmentsToDelete.size());
+-    LOG.info("Hourly segments to delete {}", hourlySegmentsToDelete.toString().replaceAll(",", "\n"));
++    LOG.info("Hourly segments to delete {}", hourlySegmentsToDelete.toString().replace(',', '\n'));
+     IdealState newIdealState = new IdealState(is.getRecord());
+     for (String hourlySegmentToDelete : hourlySegmentsToDelete) {
+       newIdealState.getRecord().getMapFields().remove(hourlySegmentToDelete);

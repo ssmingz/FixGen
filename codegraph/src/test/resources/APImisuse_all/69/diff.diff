@@ -1,0 +1,13 @@
+diff --git a/utils/common/src/main/java/org/apache/brooklyn/util/net/ReachableSocketFinder.java b/utils/common/src/main/java/org/apache/brooklyn/util/net/ReachableSocketFinder.java
+index c00a6a3ed5..4fe6b101aa 100644
+--- a/utils/common/src/main/java/org/apache/brooklyn/util/net/ReachableSocketFinder.java
++++ b/utils/common/src/main/java/org/apache/brooklyn/util/net/ReachableSocketFinder.java
+@@ -124,7 +124,7 @@ private Iterable<Optional<HostAndPort>> tryReachable(
+         LOG.debug("Blocking on reachable sockets in {} for {}", sockets, timeout);
+         final List<ListenableFuture<Optional<HostAndPort>>> futures = Lists.newArrayList();
+         final AtomicReference<Stopwatch> sinceFirstCompleted = new AtomicReference<>();
+-        final ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newCachedThreadPool());
++        final ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(10));
+ 
+         for (final HostAndPort socket : sockets) {
+             futures.add(executor.submit(new Callable<Optional<HostAndPort>>() {

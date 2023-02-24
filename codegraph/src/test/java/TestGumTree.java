@@ -5,7 +5,7 @@ import model.CodeGraph;
 import model.GraphConfiguration;
 import model.graph.node.actions.ActionNode;
 import org.junit.Test;
-import pattern.Pair;
+import utils.Pair;
 import utils.FileIO;
 import utils.JavaASTUtil;
 

@@ -1,0 +1,39 @@
+diff --git a/flink-examples/flink-examples-batch/src/main/java/org/apache/flink/examples/java/relational/util/WebLogDataGenerator.java b/flink-examples/flink-examples-batch/src/main/java/org/apache/flink/examples/java/relational/util/WebLogDataGenerator.java
+index f68ece1309f6a..7bc7ca9e595a5 100644
+--- a/flink-examples/flink-examples-batch/src/main/java/org/apache/flink/examples/java/relational/util/WebLogDataGenerator.java
++++ b/flink-examples/flink-examples-batch/src/main/java/org/apache/flink/examples/java/relational/util/WebLogDataGenerator.java
+@@ -20,6 +20,7 @@
+ 
+ import org.apache.flink.examples.java.relational.WebLogAnalysis;
+ 
++import java.io.BufferedWriter;
+ import java.io.FileWriter;
+ import java.io.IOException;
+ import java.util.Calendar;
+@@ -98,7 +99,7 @@ private static void genDocs(int noDocs, String[] filterKeyWords, String[] words,
+ 
+ 		Random rand = new Random(Calendar.getInstance().getTimeInMillis());
+ 
+-		try (FileWriter fw = new FileWriter(path)) {
++		try (BufferedWriter fw = new BufferedWriter(new FileWriter(path))) {
+ 			for (int i = 0; i < noDocs; i++) {
+ 
+ 				int wordsInDoc = rand.nextInt(40) + 10;
+@@ -136,7 +137,7 @@ private static void genRanks(int noDocs, String path) {
+ 
+ 		Random rand = new Random(Calendar.getInstance().getTimeInMillis());
+ 
+-		try (FileWriter fw = new FileWriter(path)) {
++		try (BufferedWriter fw = new BufferedWriter(new FileWriter(path))) {
+ 			for (int i = 0; i < noDocs; i++) {
+ 				// Rank
+ 				StringBuilder rank = new StringBuilder(rand.nextInt(100) + "|");
+@@ -168,7 +169,7 @@ private static void genVisits(int noVisits, int noDocs, String path) {
+ 
+ 		Random rand = new Random(Calendar.getInstance().getTimeInMillis());
+ 
+-		try (FileWriter fw = new FileWriter(path)) {
++		try (BufferedWriter fw = new BufferedWriter(new FileWriter(path))) {
+ 			for (int i = 0; i < noVisits; i++) {
+ 
+ 				int year = 2000 + rand.nextInt(10); // yearFilter 3
