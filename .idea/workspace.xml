@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add actions on codegraph">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/pattern/ActionGraph.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/pattern/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/Pair.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/pattern/Pattern.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" />
-    </list>
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="delete some unused files and add APImisuse data" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,12 +85,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestGumTree.testAddActionToCodeGraph">
-    <configuration name="TestClusterCodeChange.test_actionExtractor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.TestGraphBuilder.testBuildForFile">
+    <configuration name="TestGraphBuilder.testBuildForFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestClusterCodeChange" />
-      <option name="METHOD_NAME" value="test_actionExtractor" />
+      <option name="MAIN_CLASS_NAME" value="TestGraphBuilder" />
+      <option name="METHOD_NAME" value="testBuildForFile" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGraphBuilder.testBuildForFile" />
         <item itemvalue="JUnit.TestGumTree.testAddActionToCodeGraph" />
         <item itemvalue="JUnit.TestGumTree.testActionGraph" />
         <item itemvalue="JUnit.TestGumTree.testGumTreeDiff" />
         <item itemvalue="JUnit.TreeTest.test_Path_1" />
-        <item itemvalue="JUnit.TestClusterCodeChange.test_actionExtractor" />
       </list>
     </recent_temporary>
   </component>
@@ -246,7 +238,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677216984670</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="delete some unused files and add APImisuse data">
+      <created>1677230085083</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1677230085083</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -272,7 +271,8 @@
     <MESSAGE value="add .gitignore" />
     <MESSAGE value="change jdk version from 1.8 to 11" />
     <MESSAGE value="add actions on codegraph" />
-    <option name="LAST_COMMIT_MESSAGE" value="add actions on codegraph" />
+    <MESSAGE value="delete some unused files and add APImisuse data" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete some unused files and add APImisuse data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -306,6 +306,11 @@
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestClusterCodeChange.java</url>
           <line>69</line>
           <option name="timeStamp" value="63" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="71" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
