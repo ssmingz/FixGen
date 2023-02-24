@@ -4,14 +4,20 @@ import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
 import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.Expression;
 
 import java.util.List;
 
 public class ExprList extends Node {
     private List<ExprNode> _exprs;
+    private List<ASTNode> _oriNodeList;
 
     public ExprList(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
+    }
+
+    public void setASTNodeList(List<ASTNode> nodeList) {
+        _oriNodeList = nodeList;
     }
 
     public void setExprs(List<ExprNode> exprs) {

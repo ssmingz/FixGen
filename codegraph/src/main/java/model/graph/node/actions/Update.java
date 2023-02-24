@@ -1,5 +1,6 @@
 package model.graph.node.actions;
 
+import com.github.gumtreediff.actions.model.Action;
 import model.graph.edge.ASTEdge;
 import model.graph.edge.ActionEdge;
 import model.graph.node.Node;
@@ -8,15 +9,16 @@ public class Update extends ActionNode {
     protected Node _before;
     protected Node _after;
 
-    protected Update(Node parent) {
+    public Update(Node parent, Action action) {
         super(parent);
+        _action = action;
+        _before = parent;
+        new ActionEdge(parent, this);
     }
 
-    public Update(Node before, Node after) {
-        super(before);
-        _before = before;
+    public void setNewNode(Node after) {
         _after = after;
-        new ActionEdge(before, this);
+        new ActionEdge(this, after);
     }
 
     public Node getBefore() {

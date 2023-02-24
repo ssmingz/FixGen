@@ -4,605 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add .gitignore">
-      <change afterPath="$PROJECT_DIR$/codegraph/codegraph/src/test/resources/2.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/codegraph/src/test/resources/new.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestClusterCodeChange.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/new.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/AstComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/CtVirtualElement.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/CtWrapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/Json4SpoonGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/LabelFinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/NodeCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/TreeScanner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/jsonsupport/NodePainter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/jsonsupport/OperationNodePainter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/ActionClassifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/DiffConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/DiffImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/AdditionOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/DeleteTreeOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/InsertTreeOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/MoveOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/Operation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/TreeAdditionOperation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/support/SpoonSupport.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/java/gumtree/spoon/AstComparatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/java/gumtree/spoon/FixBenchTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/java/gumtree/spoon/TreeTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/java/gumtree/spoon/diff/DiffTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/java/gumtree/spoon/diff/support/SpoonSupportTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/FileCleaner1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/FileCleaner2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/1185675/ReadResponse/1185675_ReadResponse_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/1185675/ReadResponse/1185675_ReadResponse_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/919148/ReplicationRun/919148_ReplicationRun_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/919148/ReplicationRun/919148_ReplicationRun_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/NestedReturnType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotationValues/firstInsert/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotationValues/firstInsert/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotationValues/insert/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotationValues/insert/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotationValues/updateMethod/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotationValues/updateMethod/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotations/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/annotations/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/chart18/DefaultKeyedValues2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/chart18/new_DefaultKeyedValues2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/d4j/Lang_57/LocaleUtils/Lang_57_LocaleUtils_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/d4j/Lang_57/LocaleUtils/Lang_57_LocaleUtils_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/d4j/Math_34/ListPopulation/Math_34_ListPopulation_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/d4j/Math_34/ListPopulation/Math_34_ListPopulation_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/builtInTypeToBuiltInType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/builtInTypeToBuiltInType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/builtInTypeToTypeParameter/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/builtInTypeToTypeParameter/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/multipleNesting/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/multipleNesting/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/typeParameterToBuiltInType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffOfGenericTypeReferences/typeParameterToBuiltInType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffcomment1/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffcomment1/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffcomment2/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffcomment2/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffcomment3/RectangularCholeskyDecomposition_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/diffcomment3/RectangularCholeskyDecomposition_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/differror5/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/differror5/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/issue31/original.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/issue31/patched.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/issue84_1/file_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/issue84_1/file_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/issue84_2/file_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/issue84_2/file_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/patch1-Math-20-Elixir-plausible/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/patch1-Math-20-Elixir-plausible/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/position/VirtualElementLeft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/position/VirtualElementRight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/position/WrapperLeft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/position/WrapperRight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roleInParent/final/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roleInParent/final/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roleInParent/modifiers/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roleInParent/modifiers/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/spoon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/superInterfaces/class/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/superInterfaces/class/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/superInterfaces/insertion/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/superInterfaces/insertion/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/superInterfaces/interface/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/superInterfaces/interface/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_1205753/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_1205753/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_nolabel1/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_nolabel1/right_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_nolabel2/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_nolabel2/right_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_nolabel3/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_nolabel3/right_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test8/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test8/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test9/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test9/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/testDuplicateOperations/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/testDuplicateOperations/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/thrownTypes/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/thrownTypes/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/typeCast/genericType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/typeCast/genericType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/typeCast/primitiveType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/typeCast/primitiveType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/AuthorizationHelper/AuthorizationHelper_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/AuthorizationHelper/AuthorizationHelper_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/TestUtilityService/TestUtilityService_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/TestUtilityService/TestUtilityService_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/UtilityService/UtilityService_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/UtilityService/UtilityService_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/VerificationHost/VerificationHost_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/vs/06b994/VerificationHost/VerificationHost_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/AstComparator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/CtVirtualElement.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/CtWrapper.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/Json4SpoonGenerator$JSON_PROPERTIES.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/Json4SpoonGenerator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/LabelFinder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/NodeCreator.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/SpoonGumTreeBuilder.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/TreeScanner.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/jsonsupport/NodePainter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/jsonsupport/OperationNodePainter.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/ActionClassifier.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/Diff.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/DiffConfiguration.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/DiffImpl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/AdditionOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/DeleteOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/DeleteTreeOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/InsertOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/InsertTreeOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/MoveOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/Operation$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/Operation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/OperationKind.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/TreeAdditionOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/UpdateOperation.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/support/SpoonSupport.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/FileCleaner1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/FileCleaner2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/1185675/ReadResponse/1185675_ReadResponse_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/1185675/ReadResponse/1185675_ReadResponse_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/919148/ReplicationRun/919148_ReplicationRun_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/919148/ReplicationRun/919148_ReplicationRun_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/NestedReturnType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotationValues/firstInsert/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotationValues/firstInsert/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotationValues/insert/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotationValues/insert/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotationValues/updateMethod/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotationValues/updateMethod/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotations/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/annotations/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/chart18/DefaultKeyedValues2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/chart18/new_DefaultKeyedValues2D.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/d4j/Lang_57/LocaleUtils/Lang_57_LocaleUtils_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/d4j/Lang_57/LocaleUtils/Lang_57_LocaleUtils_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/d4j/Math_34/ListPopulation/Math_34_ListPopulation_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/d4j/Math_34/ListPopulation/Math_34_ListPopulation_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/builtInTypeToBuiltInType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/builtInTypeToBuiltInType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/builtInTypeToTypeParameter/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/builtInTypeToTypeParameter/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/multipleNesting/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/multipleNesting/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/typeParameterToBuiltInType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffOfGenericTypeReferences/typeParameterToBuiltInType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffcomment1/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffcomment1/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffcomment2/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffcomment2/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffcomment3/RectangularCholeskyDecomposition_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/diffcomment3/RectangularCholeskyDecomposition_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/differror5/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/differror5/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/issue31/original.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/issue31/patched.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/issue84_1/file_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/issue84_1/file_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/issue84_2/file_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/issue84_2/file_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/patch1-Math-20-Elixir-plausible/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/patch1-Math-20-Elixir-plausible/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/position/VirtualElementLeft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/position/VirtualElementRight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/position/WrapperLeft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/position/WrapperRight.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roleInParent/final/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roleInParent/final/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roleInParent/modifiers/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roleInParent/modifiers/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test10/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test10/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test11/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test11/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test12/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test12/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test8/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test8/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test9/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/roots/test9/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/spoon.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/superInterfaces/class/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/superInterfaces/class/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/superInterfaces/insertion/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/superInterfaces/insertion/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/superInterfaces/interface/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/superInterfaces/interface/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_1205753/1205753_EmbedPooledConnection_0_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_1205753/1205753_EmbedPooledConnection_0_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_202564/left_PropPanelModelElement_1.9.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_202564/right_PropPanelModelElement_1.10.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_204225/left_UMLModelElementStereotypeComboBoxModel_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_204225/right_UMLModelElementStereotypeComboBoxModel_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_208618/left_PropPanelUseCase_1.39.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_208618/right_PropPanelUseCase_1.40.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_209184/left_ActionCollaborationDiagram_1.28.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_209184/right_ActionCollaborationDiagram_1.29.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_211903/left_MemberFilePersister_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_211903/right_MemberFilePersister_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_212496/left_CoreHelperImpl_1.29.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_212496/right_CoreHelperImpl_1.30.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_213712/left_ActionAddSignalsToSignalEvent_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_213712/right_ActionAddSignalsToSignalEvent_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_214116/left_Modeller_1.134.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_214116/right_Modeller_1.135.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_214614/left_JXButtonGroupPanel_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_214614/right_JXButtonGroupPanel_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_220985/left_Server_1.20.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_220985/right_Server_1.21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221070/left_Server_1.68.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221070/right_Server_1.69.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221295/left_Board_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221295/right_Board_1.6.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221343/left_Server_1.186.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221343/right_Server_1.187.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221345/left_Server_1.187.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221345/right_Server_1.188.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221422/left_Server_1.227.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221422/right_Server_1.228.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221958/left_TilesetManager_1.22.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221958/right_TilesetManager_1.23.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221966/left_TurnOrdered_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_221966/right_TurnOrdered_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222361/left_CommonSettingsDialog_1.22.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222361/right_CommonSettingsDialog_1.23.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222399/left_TdbFile_1.7.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222399/right_TdbFile_1.8.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222884/left_MechView_1.21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222884/right_MechView_1.22.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222894/left_Client_1.150.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_222894/right_Client_1.151.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223054/left_GameEvent_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223054/right_GameEvent_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223056/left_Server_1.646.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223056/right_Server_1.647.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223118/left_TestBot_1.48.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223118/right_TestBot_1.49.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223454/left_EntityListFile_1.17.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223454/right_EntityListFile_1.18.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223542/left_BoardView1_1.214.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_223542/right_BoardView1_1.215.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224512/left_Server_1.925.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224512/right_Server_1.926.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224542/left_TestBot_1.75.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224542/right_TestBot_1.76.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224766/left_SegmentTermEnum_1.1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224766/right_SegmentTermEnum_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224771/left_IndexWriter_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224771/right_IndexWriter_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224798/left_SegmentsReader_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224798/right_SegmentsReader_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224834/left_TestPriorityQueue_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224834/right_TestPriorityQueue_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224863/left_PhraseQuery_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224863/right_PhraseQuery_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224882/left_Token_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224882/right_Token_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224890/left_DateField_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_224890/right_DateField_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225008/left_Similarity_1.9.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225008/right_Similarity_1.10.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225073/left_IndexWriter_1.21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225073/right_IndexWriter_1.22.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225106/left_SegmentTermDocs_1.6.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225106/right_SegmentTermDocs_1.7.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225225/left_TestSpans_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225225/right_TestSpans_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225247/left_BooleanScorer_1.10.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225247/right_BooleanScorer_1.11.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225262/left_FieldInfos_1.9.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225262/right_FieldInfos_1.10.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225391/left_IndexHTML_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225391/right_IndexHTML_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225414/left_IndexWriter_1.41.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225414/right_IndexWriter_1.42.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225434/left_BufferedIndexInput_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225434/right_BufferedIndexInput_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225525/left_Module_1.6.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225525/right_Module_1.7.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225724/left_ScarabRequestTool_1.36.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225724/right_ScarabRequestTool_1.37.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225893/left_RQueryUser_1.1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_225893/right_RQueryUser_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226145/left_ScarabRequestTool_1.90.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226145/right_ScarabRequestTool_1.91.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226330/left_ActivityRule_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226330/right_ActivityRule_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226480/left_ScarabRequestTool_1.113.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226480/right_ScarabRequestTool_1.114.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226555/left_Attachment_1.24.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226555/right_Attachment_1.25.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226622/left_AttributeValue_1.49.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226622/right_AttributeValue_1.50.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226685/left_ResetCacheValve_1.1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226685/right_ResetCacheValve_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226926/left_ScarabUserManager_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226926/right_ScarabUserManager_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226963/left_Issue_1.140.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_226963/right_Issue_1.141.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227005/left_AttributeValue_1.56.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227005/right_AttributeValue_1.57.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227130/left_Transaction_1.37.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227130/right_Transaction_1.38.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227368/left_IssueTemplateInfo_1.12.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227368/right_IssueTemplateInfo_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227811/left_RModuleIssueType_1.24.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227811/right_RModuleIssueType_1.25.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227985/left_IssueSearch_1.65.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_227985/right_IssueSearch_1.66.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_228064/left_ModuleManager_1.21.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_228064/right_ModuleManager_1.22.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_228325/left_ForgotPassword_1.10.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_228325/right_ForgotPassword_1.11.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_228643/left_ScopePeer_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_228643/right_ScopePeer_1.4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_286696/left_IrmiPRODelegate_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_286696/right_IrmiPRODelegate_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_286700/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_286700/right_CmiContext_1.3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_nolabel1/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_nolabel1/right_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_nolabel2/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_nolabel2/right_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_nolabel3/left_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/t_nolabel3/right_CmiContext_1.2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test1/TypeHandler1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test1/TypeHandler2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test2/CommandLine1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test2/CommandLine2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test3/CommandLine1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test3/CommandLine2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test3/TypeHandler1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test3/TypeHandler2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test4/CommandLine1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test4/CommandLine2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test5/left_LmiInitialContext_1.5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test5/right_LmiInitialContext_1.6.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test6/A.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test6/B.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test7/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test7/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test8/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test8/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test9/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/test9/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/testDuplicateOperations/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/testDuplicateOperations/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/thrownTypes/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/thrownTypes/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/typeCast/genericType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/typeCast/genericType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/typeCast/primitiveType/left.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/typeCast/primitiveType/right.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/AuthorizationHelper/AuthorizationHelper_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/AuthorizationHelper/AuthorizationHelper_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/TestUtilityService/TestUtilityService_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/TestUtilityService/TestUtilityService_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/UtilityService/UtilityService_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/UtilityService/UtilityService_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/VerificationHost/VerificationHost_s.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/examples/vs/06b994/VerificationHost/VerificationHost_t.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/gumtree/spoon/AstComparatorTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/gumtree/spoon/FixBenchTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/gumtree/spoon/TreeTest$PathScanner.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/gumtree/spoon/TreeTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/gumtree/spoon/diff/DiffTest.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/test-classes/gumtree/spoon/diff/support/SpoonSupportTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_10_30,_22_03_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_10_30_9_22_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_10_30_9_22__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_10_30__22_03__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_11_3,_17_12_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_11_3_14_26_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_11_3_14_26__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_11_3__17_12__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_11_8,_10_50_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2022_11_8__10_50__Changes_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="change jdk version from 1.8 to 11">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FixGen.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FixGen.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/ActionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/ActionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Delete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Insert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Update.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprList.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/input4test.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/input4test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/checkstyle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/checkstyle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/AstComparator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/builder/NodeCreator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/builder/SpoonGumTreeBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/SpoonGumTreeBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/builder/TreeScanner.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/ActionClassifier.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/Diff.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/Diff.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/DiffImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/AdditionOperation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/DeleteOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/DeleteOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/InsertOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/InsertOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/MoveOperation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/Operation.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/OperationKind.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/OperationKind.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/main/java/gumtree/spoon/diff/operations/UpdateOperation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/UpdateOperation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/java/gumtree/spoon/AstComparatorTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/java/gumtree/spoon/diff/DiffTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test10/left_QuickNotepad_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test10/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test10/right_QuickNotepad_1.14.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test10/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test11/left_QuickNotepad_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test11/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test11/right_QuickNotepad_1.14.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test11/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test12/left_QuickNotepad_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test12/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test12/right_QuickNotepad_1.14.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test12/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test8/left_QuickNotepad_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test8/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test8/right_QuickNotepad_1.14.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test8/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test9/left_QuickNotepad_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test9/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/roots/test9/right_QuickNotepad_1.14.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/roots/test9/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_202564/left_PropPanelModelElement_1.9.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_202564/left_PropPanelModelElement_1.9.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_202564/right_PropPanelModelElement_1.10.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_202564/right_PropPanelModelElement_1.10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_204225/left_UMLModelElementStereotypeComboBoxModel_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_204225/left_UMLModelElementStereotypeComboBoxModel_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_204225/right_UMLModelElementStereotypeComboBoxModel_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_204225/right_UMLModelElementStereotypeComboBoxModel_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_208618/left_PropPanelUseCase_1.39.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_208618/left_PropPanelUseCase_1.39.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_208618/right_PropPanelUseCase_1.40.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_208618/right_PropPanelUseCase_1.40.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_209184/left_ActionCollaborationDiagram_1.28.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_209184/left_ActionCollaborationDiagram_1.28.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_209184/right_ActionCollaborationDiagram_1.29.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_209184/right_ActionCollaborationDiagram_1.29.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_211903/left_MemberFilePersister_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_211903/left_MemberFilePersister_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_211903/right_MemberFilePersister_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_211903/right_MemberFilePersister_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_212496/left_CoreHelperImpl_1.29.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_212496/left_CoreHelperImpl_1.29.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_212496/right_CoreHelperImpl_1.30.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_212496/right_CoreHelperImpl_1.30.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_213712/left_ActionAddSignalsToSignalEvent_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_213712/left_ActionAddSignalsToSignalEvent_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_213712/right_ActionAddSignalsToSignalEvent_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_213712/right_ActionAddSignalsToSignalEvent_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_214116/left_Modeller_1.134.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_214116/left_Modeller_1.134.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_214116/right_Modeller_1.135.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_214116/right_Modeller_1.135.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_214614/left_JXButtonGroupPanel_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_214614/left_JXButtonGroupPanel_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_214614/right_JXButtonGroupPanel_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_214614/right_JXButtonGroupPanel_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_220985/left_Server_1.20.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_220985/left_Server_1.20.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_220985/right_Server_1.21.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_220985/right_Server_1.21.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221070/left_Server_1.68.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221070/left_Server_1.68.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221070/right_Server_1.69.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221070/right_Server_1.69.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221295/left_Board_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221295/left_Board_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221295/right_Board_1.6.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221295/right_Board_1.6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221343/left_Server_1.186.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221343/left_Server_1.186.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221343/right_Server_1.187.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221343/right_Server_1.187.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221345/left_Server_1.187.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221345/left_Server_1.187.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221345/right_Server_1.188.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221345/right_Server_1.188.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221422/left_Server_1.227.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221422/left_Server_1.227.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221422/right_Server_1.228.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221422/right_Server_1.228.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221958/left_TilesetManager_1.22.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221958/left_TilesetManager_1.22.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221958/right_TilesetManager_1.23.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221958/right_TilesetManager_1.23.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221966/left_TurnOrdered_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221966/left_TurnOrdered_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_221966/right_TurnOrdered_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_221966/right_TurnOrdered_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222361/left_CommonSettingsDialog_1.22.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222361/left_CommonSettingsDialog_1.22.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222361/right_CommonSettingsDialog_1.23.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222361/right_CommonSettingsDialog_1.23.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222399/left_TdbFile_1.7.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222399/left_TdbFile_1.7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222399/right_TdbFile_1.8.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222399/right_TdbFile_1.8.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222884/left_MechView_1.21.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222884/left_MechView_1.21.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222884/right_MechView_1.22.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222884/right_MechView_1.22.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222894/left_Client_1.150.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222894/left_Client_1.150.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_222894/right_Client_1.151.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_222894/right_Client_1.151.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223054/left_GameEvent_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223054/left_GameEvent_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223054/right_GameEvent_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223054/right_GameEvent_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223056/left_Server_1.646.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223056/left_Server_1.646.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223056/right_Server_1.647.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223056/right_Server_1.647.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223118/left_TestBot_1.48.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223118/left_TestBot_1.48.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223118/right_TestBot_1.49.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223118/right_TestBot_1.49.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223454/left_EntityListFile_1.17.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223454/left_EntityListFile_1.17.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223454/right_EntityListFile_1.18.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223454/right_EntityListFile_1.18.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223542/left_BoardView1_1.214.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223542/left_BoardView1_1.214.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_223542/right_BoardView1_1.215.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_223542/right_BoardView1_1.215.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224512/left_Server_1.925.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224512/left_Server_1.925.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224512/right_Server_1.926.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224512/right_Server_1.926.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224542/left_TestBot_1.75.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224542/left_TestBot_1.75.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224542/right_TestBot_1.76.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224542/right_TestBot_1.76.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224766/left_SegmentTermEnum_1.1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224766/left_SegmentTermEnum_1.1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224766/right_SegmentTermEnum_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224766/right_SegmentTermEnum_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224771/left_IndexWriter_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224771/left_IndexWriter_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224771/right_IndexWriter_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224771/right_IndexWriter_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224798/left_SegmentsReader_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224798/left_SegmentsReader_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224798/right_SegmentsReader_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224798/right_SegmentsReader_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224834/left_TestPriorityQueue_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224834/left_TestPriorityQueue_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224834/right_TestPriorityQueue_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224834/right_TestPriorityQueue_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224863/left_PhraseQuery_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224863/left_PhraseQuery_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224863/right_PhraseQuery_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224863/right_PhraseQuery_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224882/left_Token_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224882/left_Token_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224882/right_Token_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224882/right_Token_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224890/left_DateField_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224890/left_DateField_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_224890/right_DateField_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_224890/right_DateField_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225008/left_Similarity_1.9.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225008/left_Similarity_1.9.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225008/right_Similarity_1.10.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225008/right_Similarity_1.10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225073/left_IndexWriter_1.21.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225073/left_IndexWriter_1.21.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225073/right_IndexWriter_1.22.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225073/right_IndexWriter_1.22.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225106/left_SegmentTermDocs_1.6.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225106/left_SegmentTermDocs_1.6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225106/right_SegmentTermDocs_1.7.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225106/right_SegmentTermDocs_1.7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225225/left_TestSpans_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225225/left_TestSpans_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225225/right_TestSpans_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225225/right_TestSpans_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225247/left_BooleanScorer_1.10.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225247/left_BooleanScorer_1.10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225247/right_BooleanScorer_1.11.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225247/right_BooleanScorer_1.11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225262/left_FieldInfos_1.9.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225262/left_FieldInfos_1.9.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225262/right_FieldInfos_1.10.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225262/right_FieldInfos_1.10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225391/left_IndexHTML_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225391/left_IndexHTML_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225391/right_IndexHTML_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225391/right_IndexHTML_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225414/left_IndexWriter_1.41.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225414/left_IndexWriter_1.41.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225414/right_IndexWriter_1.42.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225414/right_IndexWriter_1.42.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225434/left_BufferedIndexInput_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225434/left_BufferedIndexInput_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225434/right_BufferedIndexInput_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225434/right_BufferedIndexInput_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225525/left_Module_1.6.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225525/left_Module_1.6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225525/right_Module_1.7.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225525/right_Module_1.7.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225724/left_ScarabRequestTool_1.36.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225724/left_ScarabRequestTool_1.36.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225724/right_ScarabRequestTool_1.37.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225724/right_ScarabRequestTool_1.37.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225893/left_RQueryUser_1.1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225893/left_RQueryUser_1.1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_225893/right_RQueryUser_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_225893/right_RQueryUser_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226145/left_ScarabRequestTool_1.90.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226145/left_ScarabRequestTool_1.90.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226145/right_ScarabRequestTool_1.91.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226145/right_ScarabRequestTool_1.91.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226330/left_ActivityRule_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226330/left_ActivityRule_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226330/right_ActivityRule_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226330/right_ActivityRule_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226480/left_ScarabRequestTool_1.113.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226480/left_ScarabRequestTool_1.113.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226480/right_ScarabRequestTool_1.114.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226480/right_ScarabRequestTool_1.114.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226555/left_Attachment_1.24.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226555/left_Attachment_1.24.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226555/right_Attachment_1.25.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226555/right_Attachment_1.25.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226622/left_AttributeValue_1.49.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226622/left_AttributeValue_1.49.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226622/right_AttributeValue_1.50.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226622/right_AttributeValue_1.50.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226685/left_ResetCacheValve_1.1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226685/left_ResetCacheValve_1.1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226685/right_ResetCacheValve_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226685/right_ResetCacheValve_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226926/left_ScarabUserManager_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226926/left_ScarabUserManager_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226926/right_ScarabUserManager_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226926/right_ScarabUserManager_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226963/left_Issue_1.140.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226963/left_Issue_1.140.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_226963/right_Issue_1.141.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_226963/right_Issue_1.141.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227005/left_AttributeValue_1.56.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227005/left_AttributeValue_1.56.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227005/right_AttributeValue_1.57.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227005/right_AttributeValue_1.57.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227130/left_Transaction_1.37.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227130/left_Transaction_1.37.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227130/right_Transaction_1.38.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227130/right_Transaction_1.38.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227368/left_IssueTemplateInfo_1.12.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227368/left_IssueTemplateInfo_1.12.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227368/right_IssueTemplateInfo_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227368/right_IssueTemplateInfo_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227811/left_RModuleIssueType_1.24.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227811/left_RModuleIssueType_1.24.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227811/right_RModuleIssueType_1.25.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227811/right_RModuleIssueType_1.25.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227985/left_IssueSearch_1.65.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227985/left_IssueSearch_1.65.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_227985/right_IssueSearch_1.66.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_227985/right_IssueSearch_1.66.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_228064/left_ModuleManager_1.21.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_228064/left_ModuleManager_1.21.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_228064/right_ModuleManager_1.22.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_228064/right_ModuleManager_1.22.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_228325/left_ForgotPassword_1.10.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_228325/left_ForgotPassword_1.10.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_228325/right_ForgotPassword_1.11.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_228325/right_ForgotPassword_1.11.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_228643/left_ScopePeer_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_228643/left_ScopePeer_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_228643/right_ScopePeer_1.4.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_228643/right_ScopePeer_1.4.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_286696/left_IrmiPRODelegate_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_286696/left_IrmiPRODelegate_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_286696/right_IrmiPRODelegate_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_286696/right_IrmiPRODelegate_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_286700/left_CmiContext_1.2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_286700/left_CmiContext_1.2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/t_286700/right_CmiContext_1.3.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/t_286700/right_CmiContext_1.3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test1/TypeHandler1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test1/TypeHandler1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test1/TypeHandler2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test1/TypeHandler2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test2/CommandLine1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test2/CommandLine1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test2/CommandLine2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test2/CommandLine2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test3/CommandLine1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test3/CommandLine1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test3/CommandLine2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test3/CommandLine2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test3/TypeHandler1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test3/TypeHandler1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test3/TypeHandler2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test3/TypeHandler2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test4/CommandLine1.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test4/CommandLine1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test4/CommandLine2.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test4/CommandLine2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test5/left_LmiInitialContext_1.5.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test5/left_LmiInitialContext_1.5.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test5/right_LmiInitialContext_1.6.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test5/right_LmiInitialContext_1.6.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test6/A.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test6/A.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test6/B.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test6/B.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test7/left_QuickNotepad_1.13.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test7/left_QuickNotepad_1.13.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree/src/test/resources/examples/test7/right_QuickNotepad_1.14.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/test/resources/examples/test7/right_QuickNotepad_1.14.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/org.eclipse.jdt.core_3.11.2.v20160128-0629.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -645,6 +57,9 @@
       </MavenGeneralSettings>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -681,44 +96,32 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestGumTree.testGumTreeDiff">
-    <configuration name="DiffTest.testToString" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gumtree" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gumtree.spoon.diff.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="gumtree.spoon.diff" />
-      <option name="MAIN_CLASS_NAME" value="gumtree.spoon.diff.DiffTest" />
-      <option name="METHOD_NAME" value="testToString" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DiffTest.test_actionClassifier_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gumtree" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gumtree.spoon.diff.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="gumtree.spoon.diff" />
-      <option name="MAIN_CLASS_NAME" value="gumtree.spoon.diff.DiffTest" />
-      <option name="METHOD_NAME" value="test_actionClassifier_1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.TestGumTree.testAddActionToCodeGraph">
     <configuration name="TestClusterCodeChange.test_actionExtractor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestClusterCodeChange" />
       <option name="METHOD_NAME" value="test_actionExtractor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGumTree.testActionGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGumTree" />
+      <option name="METHOD_NAME" value="testActionGraph" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestGumTree.testAddActionToCodeGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestGumTree" />
+      <option name="METHOD_NAME" value="testAddActionToCodeGraph" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -752,11 +155,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestGumTree.testAddActionToCodeGraph" />
+        <item itemvalue="JUnit.TestGumTree.testActionGraph" />
         <item itemvalue="JUnit.TestGumTree.testGumTreeDiff" />
         <item itemvalue="JUnit.TreeTest.test_Path_1" />
         <item itemvalue="JUnit.TestClusterCodeChange.test_actionExtractor" />
-        <item itemvalue="JUnit.DiffTest.test_actionClassifier_1" />
-        <item itemvalue="JUnit.DiffTest.testToString" />
       </list>
     </recent_temporary>
   </component>
@@ -832,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668362255879</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="change jdk version from 1.8 to 11">
+      <created>1676947302989</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1676947302990</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -856,7 +266,8 @@
     <MESSAGE value="combine gumtree mappings and actions" />
     <MESSAGE value="remove target files" />
     <MESSAGE value="add .gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="add .gitignore" />
+    <MESSAGE value="change jdk version from 1.8 to 11" />
+    <option name="LAST_COMMIT_MESSAGE" value="change jdk version from 1.8 to 11" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -868,18 +279,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java</url>
-          <line>30</line>
+          <line>27</line>
           <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java</url>
-          <line>121</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="48" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestClusterCodeChange.java</url>

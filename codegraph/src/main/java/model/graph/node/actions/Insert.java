@@ -1,19 +1,21 @@
 package model.graph.node.actions;
 
+import com.github.gumtreediff.actions.model.Action;
 import model.graph.edge.ActionEdge;
 import model.graph.node.Node;
 
 public class Insert extends ActionNode {
     protected Node _insert;
 
-    protected Insert(Node parent) {
+    public Insert(Node parent, Action action) {
         super(parent);
+        _action = action;
+        new ActionEdge(parent, this);
     }
 
-    public Insert(Node parent, Node insert) {
-        super(parent);
+    public void setNode(Node insert) {
         _insert = insert;
-        new ActionEdge(parent, this);
+        new ActionEdge(this, insert);
     }
 
     public Node getInsert() {

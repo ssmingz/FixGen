@@ -3,15 +3,9 @@ package builder;
 import gumtree.spoon.diff.operations.*;
 import model.CodeGraph;
 import model.graph.node.Node;
+import model.graph.node.PatchNode;
 import model.graph.node.actions.*;
-import model.graph.node.stmt.StmtNode;
-import org.eclipse.jdt.core.dom.CompilationUnit;
-import org.eclipse.jdt.core.dom.MethodDeclaration;
-import org.eclipse.jdt.core.dom.SingleVariableDeclaration;
-import pattern.Pair;
 import spoon.reflect.declaration.CtElement;
-import utils.JavaASTUtil;
-import visitor.MethodDeclCollector;
 
 import java.util.*;
 
@@ -19,19 +13,24 @@ public class Matcher {
 
     public static Map<CtElement, Node> mapSpoonToCodeGraph(List<Node> cgNodes, List<CtElement> spoonNodes) {
         Map<CtElement, Node> mappings = new LinkedHashMap<>();
+        List<CtElement> notmapped = new ArrayList<>();
         for (CtElement cte : spoonNodes) {
             int ctLine = cte.getPosition().getLine();
             int ctLength = cte.getPosition().getSourceEnd() - cte.getPosition().getSourceStart() + 1;
+            boolean mapped = false;
             for (Node cge : cgNodes) {
                 if (cge != null) {
                     int cgLine = cge.getStartSourceLine();
                     int cgLength = cge.getASTNode().getLength();
                     if (ctLine == cgLine && ctLength == cgLength) {
                         mappings.put(cte, cge);
+                        mapped = true;
                         break;
                     }
                 }
             }
+            if (!mapped)
+                notmapped.add(cte);
         }
         return mappings;
     }
@@ -64,12 +63,14 @@ public class Matcher {
         CtElement ctInsert = operation.getNode();
         if (src_matcher.containsKey(ctParent)) {
             Node cgParent = src_matcher.get(ctParent);
-            Node insertNode = rebuild(ctInsert);
-            Insert insertAction = new Insert(cgParent, insertNode);
+            Insert insertAction = new Insert(cgParent, operation.getAction());
+            srcGraph.addActionNode(insertAction);
+            Node insertNode = rebuild(ctInsert, srcGraph, insertAction);
+            insertAction.setNode(insertNode);
             changedNodes.add(insertAction);
             src_matcher.putAll(mapStructure(ctInsert, insertNode)); // also need to map their children and so on
         } else {
-            System.err.println("No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
+            System.err.println("[builder.Matcher.mapOperationToCodeGraph(InsertOperation)]No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
         }
         return changedNodes;
     }
@@ -81,14 +82,16 @@ public class Matcher {
             CtElement ctMove = operation.getNode();
             if (src_matcher.containsKey(ctMove)) {
                 Node cgParent = src_matcher.get(ctParent);
+                Move moveAction = new Move(cgParent, operation.getAction());
+                srcGraph.addActionNode(moveAction);
                 Node moveNode = src_matcher.get(ctMove);
-                Move moveAction = new Move(cgParent, moveNode);
+                moveAction.setNode(moveNode);
                 changedNodes.add(moveAction);
             } else {
-                System.err.println("No mapped move node " + ctMove.getClass() + " : " + ctMove.getPosition().getLine());
+                System.err.println("[builder.Matcher.mapOperationToCodeGraph(MoveOperation)]No mapped move node " + ctMove.getClass() + " : " + ctMove.getPosition().getLine());
             }
         } else {
-            System.err.println("No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
+            System.err.println("[builder.Matcher.mapOperationToCodeGraph(MoveOperation)]No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
         }
         return changedNodes;
     }
@@ -98,10 +101,11 @@ public class Matcher {
         CtElement ctDelete = operation.getNode();
         if (src_matcher.containsKey(ctDelete)) {
             Node delNode = src_matcher.get(ctDelete);
-            Delete delAction = new Delete(null, delNode);
+            Delete delAction = new Delete(delNode, operation.getAction());
+            srcGraph.addActionNode(delAction);
             changedNodes.add(delAction);
         } else {
-            System.err.println("No mapped delete node " + ctDelete.getClass() + " : " + ctDelete.getPosition().getLine());
+            System.err.println("[builder.Matcher.mapOperationToCodeGraph(DeleteOperation)]No mapped delete node " + ctDelete.getClass() + " : " + ctDelete.getPosition().getLine());
         }
         return changedNodes;
     }
@@ -112,12 +116,14 @@ public class Matcher {
         CtElement ctAfter = operation.getDstNode();
         if (src_matcher.containsKey(ctBefore)) {
             Node cgBefore = src_matcher.get(ctBefore);
-            Node cgAfter = rebuild(ctAfter);
-            Update updateAction = new Update(cgBefore, cgAfter);
+            Update updateAction = new Update(cgBefore, operation.getAction());
+            srcGraph.addActionNode(updateAction);
+            Node cgAfter = rebuild(ctAfter, srcGraph, updateAction);
+            updateAction.setNewNode(cgAfter);
             changedNodes.add(updateAction);
             src_matcher.putAll(mapStructure(ctAfter, cgAfter));
         } else {
-            System.err.println("No mapped parent " + ctBefore.getClass() + " : " + ctBefore.getPosition().getLine());
+            System.err.println("[builder.Matcher.mapOperationToCodeGraph(UpdateOperation)]No mapped parent " + ctBefore.getClass() + " : " + ctBefore.getPosition().getLine());
         }
         return changedNodes;
     }
@@ -129,8 +135,10 @@ public class Matcher {
         return newMappings;
     }
 
-    private static Node rebuild(CtElement destElement) {
+    private static Node rebuild(CtElement destElement, CodeGraph codeGraph, Node parent) {
         // TODO: consider for different types
-        return null;
+        PatchNode pn = new PatchNode(destElement, parent);
+        codeGraph.addSpoonNode(pn);
+        return pn;
     }
 }

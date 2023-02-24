@@ -1,9 +1,17 @@
 package model;
 
+import builder.Matcher;
+import com.github.gumtreediff.matchers.Mapping;
+import com.github.gumtreediff.tree.Tree;
+import gumtree.spoon.AstComparator;
+import gumtree.spoon.diff.Diff;
+import gumtree.spoon.diff.operations.*;
 import model.graph.Scope;
 import model.graph.node.AnonymousClassDecl;
 import model.graph.node.CatClause;
 import model.graph.node.Node;
+import model.graph.node.PatchNode;
+import model.graph.node.actions.ActionNode;
 import model.graph.node.bodyDecl.FieldDecl;
 import model.graph.node.bodyDecl.MethodDecl;
 import model.graph.node.expr.*;
@@ -13,10 +21,14 @@ import model.graph.node.type.TypeNode;
 import model.graph.node.varDecl.SingleVarDecl;
 import model.graph.node.varDecl.VarDeclFrag;
 import org.eclipse.jdt.core.dom.*;
+import spoon.reflect.declaration.CtElement;
+import utils.FileIO;
 import utils.JavaASTUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CodeGraph {
     private final GraphConfiguration configuration;
@@ -58,7 +70,59 @@ public class CodeGraph {
         }
     }
 
-    public Node buildNode(ASTNode astNode, Node control, Scope scope) {
+    public void addActionByFilePair(Diff edits) {
+        int method_start = this.getStartLine();
+        int method_end = this.getEndLine();
+        AstComparator diff = new AstComparator();
+        Map<CtElement, CtElement> mappings = new LinkedHashMap<>();
+        for (Mapping mapping : edits.getMappingsComp().asSet()) {
+            Tree srcTree = mapping.first;
+            Tree dstTree = mapping.second;
+            CtElement srcElement = (CtElement) srcTree.getMetadata("spoon_object");
+            CtElement dstElement = (CtElement) dstTree.getMetadata("spoon_object");
+            if (srcElement == null || srcElement.getPosition() == null) {
+                continue;
+            }
+            if (!srcElement.getPosition().isValidPosition()) {
+                continue;
+            }
+            int spoon_start = srcElement.getPosition().getLine();
+            if (spoon_start >= method_start && spoon_start <= method_end) {
+                mappings.put(srcElement, dstElement);
+            }
+        }
+        Map<CtElement, Node> src_matcher = Matcher.mapSpoonToCodeGraph(this.getNodes(),
+                new ArrayList<>(mappings.keySet()));
+
+        // add modifications
+        List<Operation> operations = edits.getRootOperations();
+        List<Node> changedNodes = new ArrayList<>();
+        for (Operation operation : operations) {
+            if (operation instanceof InsertOperation) {
+                changedNodes.addAll(
+                        Matcher.mapOperationToCodeGraph((InsertOperation) operation, this, src_matcher));
+            } else if (operation instanceof MoveOperation) {
+                changedNodes
+                        .addAll(Matcher.mapOperationToCodeGraph((MoveOperation) operation, this, src_matcher));
+            } else if (operation instanceof DeleteOperation) {
+                changedNodes.addAll(
+                        Matcher.mapOperationToCodeGraph((DeleteOperation) operation, this, src_matcher));
+            } else if (operation instanceof UpdateOperation) {
+                changedNodes.addAll(
+                        Matcher.mapOperationToCodeGraph((UpdateOperation) operation, this, src_matcher));
+            }
+        }
+    }
+
+    public void addSpoonNode(PatchNode patchNode) {
+        allNodes.add(patchNode);
+    }
+
+    public void addActionNode(ActionNode actionNode) {
+        allNodes.add(actionNode);
+    }
+
+    public Node buildNode(Object astNode, Node control, Scope scope) {
         if (astNode == null) {
             return null;
         }
@@ -970,7 +1034,7 @@ public class CodeGraph {
                 infixOpr.setOperator(astNode.getOperator());
 
                 lhs = infixExpr;
-            }
+           }
         }
 
         infixExpr.setScope(scope);

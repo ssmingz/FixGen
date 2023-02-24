@@ -1,19 +1,21 @@
 package model.graph.node.actions;
 
+import com.github.gumtreediff.actions.model.Action;
 import model.graph.edge.ActionEdge;
 import model.graph.node.Node;
 
 public class Move extends ActionNode {
     protected Node _move;
 
-    protected Move(Node parent) {
+    public Move(Node parent, Action action) {
         super(parent);
+        _action = action;
+        new ActionEdge(parent, this);
     }
 
-    public Move(Node parent, Node move) {
-        super(parent);
+    public void setNode(Node move) {
         _move = move;
-        new ActionEdge(move, this);
+        new ActionEdge(this, move);
     }
 
     public Node getMove() {

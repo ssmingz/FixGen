@@ -1,19 +1,17 @@
 package model.graph.node.actions;
 
+import com.github.gumtreediff.actions.model.Action;
 import model.graph.edge.ActionEdge;
 import model.graph.node.Node;
 
 public class Delete extends ActionNode {
     protected Node _delete;
 
-    protected Delete(Node parent) {
+    public Delete(Node parent, Action action) {
         super(parent);
-    }
-
-    public Delete(Node parent, Node delete) {
-        super(parent);
-        _delete = delete;
-        new ActionEdge(delete, this);
+        _action = action;
+        _delete = parent;
+        new ActionEdge(parent, this);
     }
 
     public Node getDelete() {
