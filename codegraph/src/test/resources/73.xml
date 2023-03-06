@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PDG>
+  <CLASS Name="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String">
+    <Method Name="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String">
+      <nodes>
+        <Statement no="s1" nodelabel="1" statement="728:updateKeyPairsOnDisk"/>
+        <Statement no="s2" nodelabel="2" statement="728:homeDir"/>
+        <Statement no="s3" nodelabel="3" statement="728:String homeDir"/>
+        <Statement no="s4" nodelabel="4" statement="729:keyDir"/>
+        <Statement no="s5" nodelabel="5" statement="729:homeDir"/>
+        <Statement no="s6" nodelabel="6" statement="729:&quot;/.ssh&quot;"/>
+        <Statement no="s7" nodelabel="7" statement="729:homeDir + &quot;/.ssh&quot;"/>
+        <Statement no="s8" nodelabel="8" statement="729:new File(homeDir + &quot;/.ssh&quot;)"/>
+        <Statement no="s9" nodelabel="9" statement="729:keyDir=new File(homeDir + &quot;/.ssh&quot;)"/>
+        <Statement no="s10" nodelabel="10" statement="729:class org.eclipse.jdt.core.dom.VariableDeclarationStatement"/>
+        <Statement no="s11" nodelabel="11" statement="730:devel"/>
+        <Statement no="s12" nodelabel="12" statement="730:Boolean"/>
+        <Statement no="s13" nodelabel="13" statement="730:valueOf"/>
+        <Statement no="s14" nodelabel="14" statement="730:_configDao"/>
+        <Statement no="s15" nodelabel="15" statement="730:getValue"/>
+        <Statement no="s16" nodelabel="16" statement="730:&quot;developer&quot;"/>
+        <Statement no="s17" nodelabel="17" statement="730:&quot;developer&quot;"/>
+        <Statement no="s18" nodelabel="18" statement="730:_configDao.getValue(&quot;developer&quot;)"/>
+        <Statement no="s19" nodelabel="19" statement="730:_configDao.getValue(&quot;developer&quot;)"/>
+        <Statement no="s20" nodelabel="20" statement="730:Boolean.valueOf(_configDao.getValue(&quot;developer&quot;))"/>
+        <Statement no="s21" nodelabel="21" statement="730:devel=Boolean.valueOf(_configDao.getValue(&quot;developer&quot;))"/>
+        <Statement no="s22" nodelabel="22" statement="730:class org.eclipse.jdt.core.dom.VariableDeclarationStatement"/>
+        <Statement no="s23" nodelabel="23" statement="731:keyDir"/>
+        <Statement no="s24" nodelabel="24" statement="731:isDirectory"/>
+        <Statement no="s25" nodelabel="25" statement="731:keyDir.isDirectory()"/>
+        <Statement no="s26" nodelabel="26" statement="731:!keyDir.isDirectory()"/>
+        <Statement no="s27" nodelabel="27" statement="732:s_logger"/>
+        <Statement no="s28" nodelabel="28" statement="732:warn"/>
+        <Statement no="s29" nodelabel="29" statement="732:&quot;Failed to create &quot;"/>
+        <Statement no="s30" nodelabel="30" statement="732:homeDir"/>
+        <Statement no="s31" nodelabel="31" statement="732:&quot;/.ssh for storing the SSH keypars&quot;"/>
+        <Statement no="s32" nodelabel="32" statement="732:&quot;/.ssh for storing the SSH keypars&quot;"/>
+        <Statement no="s33" nodelabel="33" statement="732:&quot;/.ssh for storing the SSH keypars&quot;"/>
+        <Statement no="s34" nodelabel="34" statement="732:s_logger.warn(&quot;Failed to create &quot; + homeDir + &quot;/.ssh for storing the SSH keypars&quot;)"/>
+        <Statement no="s35" nodelabel="35" statement="732:class org.eclipse.jdt.core.dom.ExpressionStatement"/>
+        <Statement no="s36" nodelabel="36" statement="733:keyDir"/>
+        <Statement no="s37" nodelabel="37" statement="733:mkdir"/>
+        <Statement no="s38" nodelabel="38" statement="733:keyDir.mkdir()"/>
+        <Statement no="s39" nodelabel="39" statement="733:class org.eclipse.jdt.core.dom.ExpressionStatement"/>
+        <Statement no="s40" nodelabel="40" statement="731:class org.eclipse.jdt.core.dom.Block"/>
+        <Statement no="s41" nodelabel="41" statement="731:class org.eclipse.jdt.core.dom.IfStatement"/>
+        <Statement no="s42" nodelabel="42" statement="735:pubKey"/>
+        <Statement no="s43" nodelabel="43" statement="735:_configDao"/>
+        <Statement no="s44" nodelabel="44" statement="735:getValue"/>
+        <Statement no="s45" nodelabel="45" statement="735:&quot;ssh.publickey&quot;"/>
+        <Statement no="s46" nodelabel="46" statement="735:&quot;ssh.publickey&quot;"/>
+        <Statement no="s47" nodelabel="47" statement="735:_configDao.getValue(&quot;ssh.publickey&quot;)"/>
+        <Statement no="s48" nodelabel="48" statement="735:pubKey=_configDao.getValue(&quot;ssh.publickey&quot;)"/>
+        <Statement no="s49" nodelabel="49" statement="735:class org.eclipse.jdt.core.dom.VariableDeclarationStatement"/>
+        <Statement no="s50" nodelabel="50" statement="736:prvKey"/>
+        <Statement no="s51" nodelabel="51" statement="736:_configDao"/>
+        <Statement no="s52" nodelabel="52" statement="736:getValue"/>
+        <Statement no="s53" nodelabel="53" statement="736:&quot;ssh.privatekey&quot;"/>
+        <Statement no="s54" nodelabel="54" statement="736:&quot;ssh.privatekey&quot;"/>
+        <Statement no="s55" nodelabel="55" statement="736:_configDao.getValue(&quot;ssh.privatekey&quot;)"/>
+        <Statement no="s56" nodelabel="56" statement="736:prvKey=_configDao.getValue(&quot;ssh.privatekey&quot;)"/>
+        <Statement no="s57" nodelabel="57" statement="736:class org.eclipse.jdt.core.dom.VariableDeclarationStatement"/>
+        <Statement no="s58" nodelabel="58" statement="739:devel"/>
+        <Statement no="s59" nodelabel="59" statement="740:writeKeyToDisk"/>
+        <Statement no="s60" nodelabel="60" statement="740:prvKey"/>
+        <Statement no="s61" nodelabel="61" statement="740:homeDir"/>
+        <Statement no="s62" nodelabel="62" statement="740:&quot;/.ssh/id_rsa.cloud&quot;"/>
+        <Statement no="s63" nodelabel="63" statement="740:homeDir + &quot;/.ssh/id_rsa.cloud&quot;"/>
+        <Statement no="s64" nodelabel="64" statement="740:prvKey,homeDir + &quot;/.ssh/id_rsa.cloud&quot;"/>
+        <Statement no="s65" nodelabel="65" statement="740:writeKeyToDisk(prvKey,homeDir + &quot;/.ssh/id_rsa.cloud&quot;)"/>
+        <Statement no="s66" nodelabel="66" statement="740:class org.eclipse.jdt.core.dom.ExpressionStatement"/>
+        <Statement no="s67" nodelabel="67" statement="741:writeKeyToDisk"/>
+        <Statement no="s68" nodelabel="68" statement="741:pubKey"/>
+        <Statement no="s69" nodelabel="69" statement="741:homeDir"/>
+        <Statement no="s70" nodelabel="70" statement="741:&quot;/.ssh/id_rsa.cloud.pub&quot;"/>
+        <Statement no="s71" nodelabel="71" statement="741:homeDir + &quot;/.ssh/id_rsa.cloud.pub&quot;"/>
+        <Statement no="s72" nodelabel="72" statement="741:pubKey,homeDir + &quot;/.ssh/id_rsa.cloud.pub&quot;"/>
+        <Statement no="s73" nodelabel="73" statement="741:writeKeyToDisk(pubKey,homeDir + &quot;/.ssh/id_rsa.cloud.pub&quot;)"/>
+        <Statement no="s74" nodelabel="74" statement="741:class org.eclipse.jdt.core.dom.ExpressionStatement"/>
+        <Statement no="s75" nodelabel="75" statement="739:class org.eclipse.jdt.core.dom.Block"/>
+        <Statement no="s76" nodelabel="76" statement="743:writeKeyToDisk"/>
+        <Statement no="s77" nodelabel="77" statement="743:prvKey"/>
+        <Statement no="s78" nodelabel="78" statement="743:homeDir"/>
+        <Statement no="s79" nodelabel="79" statement="743:&quot;/.ssh/id_rsa&quot;"/>
+        <Statement no="s80" nodelabel="80" statement="743:homeDir + &quot;/.ssh/id_rsa&quot;"/>
+        <Statement no="s81" nodelabel="81" statement="743:prvKey,homeDir + &quot;/.ssh/id_rsa&quot;"/>
+        <Statement no="s82" nodelabel="82" statement="743:writeKeyToDisk(prvKey,homeDir + &quot;/.ssh/id_rsa&quot;)"/>
+        <Statement no="s83" nodelabel="83" statement="743:class org.eclipse.jdt.core.dom.ExpressionStatement"/>
+        <Statement no="s84" nodelabel="84" statement="744:writeKeyToDisk"/>
+        <Statement no="s85" nodelabel="85" statement="744:pubKey"/>
+        <Statement no="s86" nodelabel="86" statement="744:homeDir"/>
+        <Statement no="s87" nodelabel="87" statement="744:&quot;/.ssh/id_rsa.pub&quot;"/>
+        <Statement no="s88" nodelabel="88" statement="744:homeDir + &quot;/.ssh/id_rsa.pub&quot;"/>
+        <Statement no="s89" nodelabel="89" statement="744:pubKey,homeDir + &quot;/.ssh/id_rsa.pub&quot;"/>
+        <Statement no="s90" nodelabel="90" statement="744:writeKeyToDisk(pubKey,homeDir + &quot;/.ssh/id_rsa.pub&quot;)"/>
+        <Statement no="s91" nodelabel="91" statement="744:class org.eclipse.jdt.core.dom.ExpressionStatement"/>
+        <Statement no="s92" nodelabel="92" statement="742:class org.eclipse.jdt.core.dom.Block"/>
+        <Statement no="s93" nodelabel="93" statement="739:class org.eclipse.jdt.core.dom.IfStatement"/>
+        <Statement no="s94" nodelabel="94" statement="728:class org.eclipse.jdt.core.dom.Block"/>
+        <Statement no="s95" nodelabel="95" statement="728:private void updateKeyPairsOnDisk(String homeDir)"/>
+        <Statement no="s96" nodelabel="96" statement="-1:UPDATE"/>
+        <Statement no="s97" nodelabel="97" statement="-1:keyDir.mkdirs()"/>
+      </nodes>
+      <control_dependence>
+        <dependee no="s26">
+          <depender no="s40"/>
+          <depender no="s35"/>
+          <depender no="s34"/>
+          <depender no="s27"/>
+          <depender no="s28"/>
+          <depender no="s29"/>
+          <depender no="s30"/>
+          <depender no="s31"/>
+          <depender no="s39"/>
+          <depender no="s38"/>
+          <depender no="s36"/>
+          <depender no="s37"/>
+        </dependee>
+        <dependee no="s58">
+          <depender no="s75"/>
+          <depender no="s66"/>
+          <depender no="s65"/>
+          <depender no="s59"/>
+          <depender no="s60"/>
+          <depender no="s63"/>
+          <depender no="s61"/>
+          <depender no="s62"/>
+          <depender no="s74"/>
+          <depender no="s73"/>
+          <depender no="s67"/>
+          <depender no="s68"/>
+          <depender no="s71"/>
+          <depender no="s69"/>
+          <depender no="s70"/>
+          <depender no="s92"/>
+          <depender no="s83"/>
+          <depender no="s82"/>
+          <depender no="s76"/>
+          <depender no="s77"/>
+          <depender no="s80"/>
+          <depender no="s78"/>
+          <depender no="s79"/>
+          <depender no="s91"/>
+          <depender no="s90"/>
+          <depender no="s84"/>
+          <depender no="s85"/>
+          <depender no="s88"/>
+          <depender no="s86"/>
+          <depender no="s87"/>
+        </dependee>
+      </control_dependence>
+      <data_dependence>
+        <dependee no="s2">
+          <depender no="s5"/>
+          <depender no="s30"/>
+          <depender no="s61"/>
+          <depender no="s69"/>
+          <depender no="s78"/>
+          <depender no="s86"/>
+        </dependee>
+        <dependee no="s4">
+          <depender no="s23"/>
+          <depender no="s36"/>
+        </dependee>
+        <dependee no="s11">
+          <depender no="s58"/>
+        </dependee>
+        <dependee no="s12">
+          <depender no="s11"/>
+        </dependee>
+        <dependee no="s13">
+          <depender no="s11"/>
+        </dependee>
+        <dependee no="s42">
+          <depender no="s68"/>
+          <depender no="s85"/>
+        </dependee>
+        <dependee no="s43">
+          <depender no="s42"/>
+        </dependee>
+        <dependee no="s44">
+          <depender no="s42"/>
+        </dependee>
+        <dependee no="s50">
+          <depender no="s60"/>
+          <depender no="s77"/>
+        </dependee>
+        <dependee no="s51">
+          <depender no="s50"/>
+        </dependee>
+        <dependee no="s52">
+          <depender no="s50"/>
+        </dependee>
+      </data_dependence>
+      <action_relation>
+        <dependee no="s39">
+          <depender no="s96"/>
+        </dependee>
+        <dependee no="s96">
+          <depender no="s97"/>
+        </dependee>
+      </action_relation>
+      <ast_relation>
+        <dependee no="s3">
+          <depender no="s2"/>
+        </dependee>
+        <dependee no="s7">
+          <depender no="s5"/>
+          <depender no="s6"/>
+        </dependee>
+        <dependee no="s9">
+          <depender no="s4"/>
+          <depender no="s8"/>
+        </dependee>
+        <dependee no="s10">
+          <depender no="s9"/>
+        </dependee>
+        <dependee no="s17">
+          <depender no="s16"/>
+        </dependee>
+        <dependee no="s18">
+          <depender no="s14"/>
+          <depender no="s15"/>
+          <depender no="s17"/>
+        </dependee>
+        <dependee no="s19">
+          <depender no="s18"/>
+        </dependee>
+        <dependee no="s20">
+          <depender no="s12"/>
+          <depender no="s13"/>
+          <depender no="s19"/>
+        </dependee>
+        <dependee no="s21">
+          <depender no="s11"/>
+          <depender no="s20"/>
+        </dependee>
+        <dependee no="s22">
+          <depender no="s21"/>
+        </dependee>
+        <dependee no="s25">
+          <depender no="s23"/>
+          <depender no="s24"/>
+        </dependee>
+        <dependee no="s26">
+          <depender no="s25"/>
+        </dependee>
+        <dependee no="s32">
+          <depender no="s31"/>
+        </dependee>
+        <dependee no="s33">
+          <depender no="s32"/>
+        </dependee>
+        <dependee no="s34">
+          <depender no="s27"/>
+          <depender no="s28"/>
+          <depender no="s33"/>
+        </dependee>
+        <dependee no="s35">
+          <depender no="s34"/>
+        </dependee>
+        <dependee no="s38">
+          <depender no="s36"/>
+          <depender no="s37"/>
+        </dependee>
+        <dependee no="s39">
+          <depender no="s38"/>
+        </dependee>
+        <dependee no="s40">
+          <depender no="s35"/>
+          <depender no="s39"/>
+        </dependee>
+        <dependee no="s41">
+          <depender no="s26"/>
+          <depender no="s40"/>
+        </dependee>
+        <dependee no="s46">
+          <depender no="s45"/>
+        </dependee>
+        <dependee no="s47">
+          <depender no="s43"/>
+          <depender no="s44"/>
+          <depender no="s46"/>
+        </dependee>
+        <dependee no="s48">
+          <depender no="s42"/>
+          <depender no="s47"/>
+        </dependee>
+        <dependee no="s49">
+          <depender no="s48"/>
+        </dependee>
+        <dependee no="s54">
+          <depender no="s53"/>
+        </dependee>
+        <dependee no="s55">
+          <depender no="s51"/>
+          <depender no="s52"/>
+          <depender no="s54"/>
+        </dependee>
+        <dependee no="s56">
+          <depender no="s50"/>
+          <depender no="s55"/>
+        </dependee>
+        <dependee no="s57">
+          <depender no="s56"/>
+        </dependee>
+        <dependee no="s63">
+          <depender no="s61"/>
+          <depender no="s62"/>
+        </dependee>
+        <dependee no="s64">
+          <depender no="s60"/>
+          <depender no="s63"/>
+        </dependee>
+        <dependee no="s65">
+          <depender no="s59"/>
+          <depender no="s64"/>
+        </dependee>
+        <dependee no="s66">
+          <depender no="s65"/>
+        </dependee>
+        <dependee no="s71">
+          <depender no="s69"/>
+          <depender no="s70"/>
+        </dependee>
+        <dependee no="s72">
+          <depender no="s68"/>
+          <depender no="s71"/>
+        </dependee>
+        <dependee no="s73">
+          <depender no="s67"/>
+          <depender no="s72"/>
+        </dependee>
+        <dependee no="s74">
+          <depender no="s73"/>
+        </dependee>
+        <dependee no="s75">
+          <depender no="s66"/>
+          <depender no="s74"/>
+        </dependee>
+        <dependee no="s80">
+          <depender no="s78"/>
+          <depender no="s79"/>
+        </dependee>
+        <dependee no="s81">
+          <depender no="s77"/>
+          <depender no="s80"/>
+        </dependee>
+        <dependee no="s82">
+          <depender no="s76"/>
+          <depender no="s81"/>
+        </dependee>
+        <dependee no="s83">
+          <depender no="s82"/>
+        </dependee>
+        <dependee no="s88">
+          <depender no="s86"/>
+          <depender no="s87"/>
+        </dependee>
+        <dependee no="s89">
+          <depender no="s85"/>
+          <depender no="s88"/>
+        </dependee>
+        <dependee no="s90">
+          <depender no="s84"/>
+          <depender no="s89"/>
+        </dependee>
+        <dependee no="s91">
+          <depender no="s90"/>
+        </dependee>
+        <dependee no="s92">
+          <depender no="s83"/>
+          <depender no="s91"/>
+        </dependee>
+        <dependee no="s93">
+          <depender no="s58"/>
+          <depender no="s75"/>
+          <depender no="s92"/>
+        </dependee>
+        <dependee no="s94">
+          <depender no="s10"/>
+          <depender no="s22"/>
+          <depender no="s41"/>
+          <depender no="s49"/>
+          <depender no="s57"/>
+          <depender no="s93"/>
+        </dependee>
+        <dependee no="s95">
+          <depender no="s1"/>
+          <depender no="s3"/>
+          <depender no="s94"/>
+        </dependee>
+      </ast_relation>
+    </Method>
+  </CLASS>
+</PDG>

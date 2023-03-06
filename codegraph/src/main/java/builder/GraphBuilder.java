@@ -146,7 +146,9 @@ public class GraphBuilder {
         g.setFilePath(filepath);
         g.setName(name + sig);
         g.setCompilationUnit(currentCU);
-        g.buildFieldNode(currentType);
+        if (this.configuration.parseFieldNode) {
+            g.buildFieldNode(currentType);
+        }
         g.setEntryNode(g.buildNode(method, null, new Scope(null)));
         return g;
     }

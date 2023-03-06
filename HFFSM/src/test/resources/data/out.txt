@@ -1,0 +1,122 @@
+costTime:503 ms
+
+the number of input graph:703
+the number of frequent subgraph:5
+
+--------------------------------------------------------
+子图编号：22740
+结点编号：0     结点标签：1600004            语句：
+int exactMatch
+int result
+int paramCount
+int endColumn
+int maxSize
+int size
+int nonMatchIndex
+int endLine
+int curPos
+结点编号：1     结点标签：1000001            语句：
+if(@parameter0: java.util.Properties!=null)
+if(@parameter1: java.lang.String==null)
+if(@parameter0: java.lang.String[]==null)
+if(@parameter2: java.lang.Class[]==null)
+if(@parameter0: javax.el.ELResolver==null)
+if(@parameter1: java.lang.Class==java.lang.Short.TYPE)
+if(@parameter0: java.lang.Class[]==null)
+if(@parameter1: java.lang.Class==java.lang.Character.TYPE)
+if(@parameter1: java.lang.Class==java.lang.Long.TYPE)
+边编号：0     边标签：c     结点A：1     结点B：0     边类型：控制依赖边
+ =>  [16.0] [javax.el.ArrayELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),org.apache.el.lang.ExpressionBuilder.createNodeInternal(java.lang.String expr),org.apache.el.parser.ELParser.jj_add_error_token(int kind,int pos),javax.el.ArrayELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ListELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),org.apache.el.util.ReflectionUtil.toTypeArray(java.lang.String[] s),javax.el.BeanELResolver.getFeatureDescriptors(javax.el.ELContext context,java.lang.Object base),org.apache.el.util.ReflectionUtil.toTypeNameArray(java.lang.Class[] c),org.apache.el.util.ReflectionUtil.paramString(java.lang.Class[] types),javax.el.ListELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ArrayELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ListELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),org.apache.el.parser.AstValue.getTypesFromValues(java.lang.Object[] values),javax.el.BeanELResolver.invoke(javax.el.ELContext context,java.lang.Object base,java.lang.Object method,java.lang.Class[] paramTypes,java.lang.Object[] params),javax.el.ListELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property)]
+--------------------------------------------------------
+子图编号：22701
+结点编号：0     结点标签：1100002            语句：
+@parameter0: org.apache.el.lang.EvaluationContext.setPropertyResolved([false])
+@parameter0: javax.el.ELContext.setPropertyResolved([false])
+结点编号：1     结点标签：1000001            语句：
+if(@parameter0: java.util.Properties!=null)
+if(@parameter1: java.lang.String==null)
+if(@parameter0: java.lang.String[]==null)
+if(@parameter2: java.lang.Class[]==null)
+if(@parameter0: javax.el.ELResolver==null)
+if(@parameter1: java.lang.Class==java.lang.Short.TYPE)
+if(@parameter0: java.lang.Class[]==null)
+if(@parameter1: java.lang.Class==java.lang.Character.TYPE)
+if(@parameter1: java.lang.Class==java.lang.Long.TYPE)
+边编号：0     边标签：c     结点A：1     结点B：0     边类型：控制依赖边
+ =>  [21.0] [javax.el.ArrayELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ResourceBundleELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.MapELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.MapELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ResourceBundleELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ResourceBundleELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ListELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.MapELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ListELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.MapELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ListELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.BeanELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ListELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.invoke(javax.el.ELContext context,java.lang.Object base,java.lang.Object method,java.lang.Class[] paramTypes,java.lang.Object[] params),javax.el.ResourceBundleELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property)]
+--------------------------------------------------------
+子图编号：23426
+结点编号：0     结点标签：1100002            语句：
+@parameter0: org.apache.el.lang.EvaluationContext.setPropertyResolved([false])
+@parameter0: javax.el.ELContext.setPropertyResolved([false])
+结点编号：1     结点标签：1000001            语句：
+if(@parameter0: java.util.Properties!=null)
+if(@parameter1: java.lang.String==null)
+if(@parameter0: java.lang.String[]==null)
+if(@parameter2: java.lang.Class[]==null)
+if(@parameter0: javax.el.ELResolver==null)
+if(@parameter1: java.lang.Class==java.lang.Short.TYPE)
+if(@parameter0: java.lang.Class[]==null)
+if(@parameter1: java.lang.Class==java.lang.Character.TYPE)
+if(@parameter1: java.lang.Class==java.lang.Long.TYPE)
+结点编号：2     结点标签：1000002            语句：
+if(c==tdcs.ir.CharConstant@2d150f&&i+1<size)
+if(java.lang.Byte.TYPE==@parameter1: java.lang.Class||equals([@parameter1: java.lang.Class]))
+if(@parameter1: java.lang.Class==null||equals([@parameter1: java.lang.Class])||@parameter0: java.lang.Object!=null&&@parameter1: java.lang.Class.isAssignableFrom([@parameter0: java.lang.Object.getClass([])]))
+if(@parameter0: java.lang.Object==null||"".equals([@parameter0: java.lang.Object]))
+if(java.lang.Short.TYPE==@parameter1: java.lang.Class||equals([@parameter1: java.lang.Class]))
+if(@parameter0: java.lang.Object!=null&&@parameter1: java.lang.Class.isInstance([@parameter0: java.lang.Object])!)
+if(this.children!=null&&this.children.length>0)
+if(unknownError<32||ch>126)
+if(base==null||property==null)
+边编号：0     边标签：c     结点A：1     结点B：0     边类型：控制依赖边
+边编号：1     边标签：c     结点A：2     结点B：1     边类型：控制依赖边
+ =>  [12.0] [javax.el.ArrayELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ArrayELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ListELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ListELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.invoke(javax.el.ELContext context,java.lang.Object base,java.lang.Object method,java.lang.Class[] paramTypes,java.lang.Object[] params),javax.el.ListELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property)]
+--------------------------------------------------------
+子图编号：21976
+结点编号：0     结点标签：1000002            语句：
+if(c==tdcs.ir.CharConstant@2d150f&&i+1<size)
+if(java.lang.Byte.TYPE==@parameter1: java.lang.Class||equals([@parameter1: java.lang.Class]))
+if(@parameter1: java.lang.Class==null||equals([@parameter1: java.lang.Class])||@parameter0: java.lang.Object!=null&&@parameter1: java.lang.Class.isAssignableFrom([@parameter0: java.lang.Object.getClass([])]))
+if(@parameter0: java.lang.Object==null||"".equals([@parameter0: java.lang.Object]))
+if(java.lang.Short.TYPE==@parameter1: java.lang.Class||equals([@parameter1: java.lang.Class]))
+if(@parameter0: java.lang.Object!=null&&@parameter1: java.lang.Class.isInstance([@parameter0: java.lang.Object])!)
+if(this.children!=null&&this.children.length>0)
+if(unknownError<32||ch>126)
+if(base==null||property==null)
+结点编号：1     结点标签：1000001            语句：
+if(@parameter0: java.util.Properties!=null)
+if(@parameter1: java.lang.String==null)
+if(@parameter0: java.lang.String[]==null)
+if(@parameter2: java.lang.Class[]==null)
+if(@parameter0: javax.el.ELResolver==null)
+if(@parameter1: java.lang.Class==java.lang.Short.TYPE)
+if(@parameter0: java.lang.Class[]==null)
+if(@parameter1: java.lang.Class==java.lang.Character.TYPE)
+if(@parameter1: java.lang.Class==java.lang.Long.TYPE)
+边编号：0     边标签：c     结点A：1     结点B：0     边类型：控制依赖边
+ =>  [13.0] [javax.el.ArrayELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),org.apache.el.parser.AstValue.isAssignable(java.lang.Object value,java.lang.Class targetClass),javax.el.ArrayELResolver.setValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property,java.lang.Object value),javax.el.ListELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.isReadOnly(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ListELResolver.getValue(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.BeanELResolver.invoke(javax.el.ELContext context,java.lang.Object base,java.lang.Object method,java.lang.Class[] paramTypes,java.lang.Object[] params),javax.el.ListELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property),javax.el.ArrayELResolver.getType(javax.el.ELContext context,java.lang.Object base,java.lang.Object property)]
+--------------------------------------------------------
+子图编号：21666
+结点编号：0     结点标签：1000012            语句：
+if(varMapper!=null)
+if(property==null)
+if(mp!=null)
+if(expr!=null)
+if(locale==null)
+if(m==null)
+if(constructor==null)
+if(tccl==null)
+if(suffix==null)
+结点编号：1     结点标签：1000012            语句：
+if(varMapper!=null)
+if(property==null)
+if(mp!=null)
+if(expr!=null)
+if(locale==null)
+if(m==null)
+if(constructor==null)
+if(tccl==null)
+if(suffix==null)
+边编号：0     边标签：c     结点A：1     结点B：0     边类型：控制依赖边
+ =>  [16.0] [org.apache.el.lang.ExpressionBuilder.createNodeInternal(java.lang.String expr),javax.el.BeanELResolver.getMethod(java.lang.Class type,java.lang.reflect.Method m),org.apache.el.parser.AstIdentifier.setValue(org.apache.el.lang.EvaluationContext ctx,java.lang.Object value),org.apache.el.parser.AstFunction.getType(org.apache.el.lang.EvaluationContext ctx),org.apache.el.parser.AstIdentifier.isReadOnly(org.apache.el.lang.EvaluationContext ctx),org.apache.el.parser.AstValue.getTarget(org.apache.el.lang.EvaluationContext ctx),javax.el.BeanELResolver$ConcurrentCache.get(java.lang.String key),javax.el.ExpressionFactory.getClassNameServices(java.lang.ClassLoader tccl),org.apache.el.parser.AstGreaterThan.getValue(org.apache.el.lang.EvaluationContext ctx),javax.el.ELResolver.message(javax.el.ELContext context,java.lang.String name,java.lang.Object[] props),org.apache.el.parser.AstFunction.getValue(org.apache.el.lang.EvaluationContext ctx),org.apache.el.parser.AstIdentifier.getType(org.apache.el.lang.EvaluationContext ctx),org.apache.el.parser.AstIdentifier.getMethodExpression(org.apache.el.lang.EvaluationContext ctx),org.apache.el.parser.AstLessThan.getValue(org.apache.el.lang.EvaluationContext ctx),org.apache.el.parser.AstIdentifier.getValue(org.apache.el.lang.EvaluationContext ctx),javax.el.ExpressionFactory.getClassNameJreDir()]

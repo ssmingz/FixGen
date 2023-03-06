@@ -70,6 +70,7 @@ public class TestGumTree {
             }
         }
 
+        List<CodeGraph> actionGraphs = new ArrayList<>();
         for (Pair<CodeGraph, CodeGraph> pair : changedCG) {
             CodeGraph srcGraph = pair.getFirst();
             CodeGraph dstGraph = pair.getSecond();
@@ -77,6 +78,7 @@ public class TestGumTree {
             Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
             srcGraph.addActionByFilePair(editScript);
             assertEquals(2, srcGraph.getNodes().stream().filter(p->p instanceof ActionNode).collect(Collectors.toList()).size());
+            actionGraphs.add(srcGraph);
         }
     }
 

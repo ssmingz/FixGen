@@ -19,4 +19,8 @@ public abstract class ActionNode extends Node {
     public Node getParent() {
         return _parent;
     }
+
+    public Action getCtAction() {
+        return _action;
+    }
 }

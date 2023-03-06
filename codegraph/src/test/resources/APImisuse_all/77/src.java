@@ -370,7 +370,7 @@ public class MpackManager {
   private void createServicesDirectory(Path extractedMpackDirectory, Mpack mpack) throws IOException {
     File servicesDir = new File(extractedMpackDirectory.toAbsolutePath() + File.separator + MODULES_DIRECTORY);
     if (!servicesDir.exists()) {
-      servicesDir.mkdir();
+      servicesDir.mkdirs();
     }
     List<Module> modules = mpack.getModules();
 
@@ -447,7 +447,7 @@ public class MpackManager {
     URL url = new URL(mpackTarURI);
 
     if (!stagingDir.exists()) {
-      stagingDir.mkdirs();
+      stagingDir.mkdir();
     }
 
     Files.copy(url.openStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);

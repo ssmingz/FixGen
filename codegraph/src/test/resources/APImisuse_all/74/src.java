@@ -231,7 +231,7 @@ public class MpackManager {
     LOG.debug("Download mpack.json and store in :" + targetPath);
 
     if (!stagingDir.exists()) {
-      stagingDir.mkdirs();
+      stagingDir.mkdir();
     }
 
     Files.copy(url.openStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
@@ -405,7 +405,7 @@ public class MpackManager {
           File mpackDirectory = new File(mpackStaging + File.separator + mpack.getName());
 
           if (!mpackDirectory.exists()) {
-            mpackDirectory.mkdir();
+            mpackDirectory.mkdirs();
           }
           return true;
         } else {

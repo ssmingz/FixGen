@@ -1090,6 +1090,9 @@ public class CodeGraph {
         }
         exprList.setExprs(args);
         methodInvoc.setArguments(exprList);
+        if (args.size() > 0) {
+            this.allNodes.add(exprList);  // since no ExprList type in jdt
+        }
 
         methodInvoc.setScope(scope);
         return methodInvoc;

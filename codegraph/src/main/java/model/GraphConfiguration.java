@@ -12,4 +12,9 @@ public class GraphConfiguration {
     public boolean showControlEdge = true;
     public boolean showDataEdge = true;
     public boolean showDefUseEdge = true;
+    public boolean showActionEdge = true;
+    /**
+     * parsing config
+     */
+    public boolean parseFieldNode = false;
 }

@@ -4,7 +4,171 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="delete some unused files and add APImisuse data" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="delete some unused files">
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/HFFSM.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/data/out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/data/outputfile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/lib/antlr.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/lib/core.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/lib/jdom-2.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/AbstractMiner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Demo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Embedding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/EmbeddingList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/FFSMDFSSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/FFSMSearchTreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/GraphEdge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/JoinerAndExtender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Matrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Miner.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/GraphView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Settings.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Statistics.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedDirectedListGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedDirectedMatrixGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedGraphFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedUndirectedListGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedUndirectedMatrixGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/CompleteEmbedding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DefaultGraphClassifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DirectedGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DirectedListGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DirectedMatrixGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/EdgeOnlyEmbedding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/EmbeddingList.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/Graph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphClassifier.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphEdgeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphEmbedding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphNodeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphSearcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/IDEmbedding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/LabelRegistry.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ListGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/MatrixGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/MaximumClique.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/MutableGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/NodeEmbedding.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/NodeLabelDegreeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleEdgeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleGraphComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleNodeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleSubgraphComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SubgraphEdgeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SubgraphNodeComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/UndirectedGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/UndirectedListGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/UndirectedMatrixGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/DotGraphParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/GraphParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/LineGraphParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/NeatoParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SDFParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SLNParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SimpleDirectedGraphParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SimpleUndirectedGraphParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SmilesParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/Dot.g" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotLexer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotLexerTokenTypes.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotLexerTokenTypes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/DFSSearchable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/SearchManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/SearchTreeNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/SearchTreeNodeStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/ThreadedDFSSearch.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/BitMatrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/Debug.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/DefaultGraphSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/DefaultObjectPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/EmbeddingSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ExtendedComparator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FileConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FilteredFragmentSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FragmentSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FrequentFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FullIntMatrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/GraphGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/GraphSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/HalfIntMatrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/IntMatrix.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/IntQueue.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/IntStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/Math.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/MutableInteger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/MutableWeighter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ObjectPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ObjectStack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ThreadedObjectPool.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/FFSM/FFSMTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/GraphSearcherTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/ListGraphTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/MatrixGraphTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/SimpleGraphComparatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/SimpleGraphParserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/SimpleSubgraphComparatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/UtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/parsers/DotParserTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/parsers/SLNParserTestCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/parsers/SmilesParserTestCase.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/search/ThreadedBFSSearchTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/73_78.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/data/LabelStatementMap.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/data/ParserOutput.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/data/out.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/el.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/t.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/t.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/test.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/Pattern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtract.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/73.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/73.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/73.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/74.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/74.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/75.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/75.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/76.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/76.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/77.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/77.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/78.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/78.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/graphs.zip" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/spmf.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/spmf0.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lib/junit-3.8.2.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/ActionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/ActionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/src.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,17 +225,17 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/codegraph/src/test/res" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39586028" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.DirectoryMappings" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -85,70 +249,84 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestGraphBuilder.testBuildForFile">
-    <configuration name="TestGraphBuilder.testBuildForFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGraphBuilder" />
-      <option name="METHOD_NAME" value="testBuildForFile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGumTree.testActionGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGumTree" />
-      <option name="METHOD_NAME" value="testActionGraph" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGumTree.testAddActionToCodeGraph" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGumTree" />
-      <option name="METHOD_NAME" value="testAddActionToCodeGraph" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestGumTree.testGumTreeDiff" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestGumTree" />
-      <option name="METHOD_NAME" value="testGumTreeDiff" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TreeTest.test_Path_1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="gumtree-spoon-ast-diff" />
+  <component name="RunManager" selected="Application.Miner">
+    <configuration name="FileConverter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.parmol.util.FileConverter" />
+      <module name="HFFSM" />
+      <option name="PROGRAM_PARAMETERS" value="-parser=de.parmol.parsers.DotGraphParser -serializer=de.parmol.parsers.PDGParser HFFSM/src/test/resources/graphs/73.dot HFFSM/src/test/resources/graphs/73.xml" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="gumtree.spoon.*" />
+          <option name="PATTERN" value="de.parmol.util.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="gumtree.spoon" />
-      <option name="MAIN_CLASS_NAME" value="gumtree.spoon.TreeTest" />
-      <option name="METHOD_NAME" value="test_Path_1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
+      <module name="HFFSM" />
+      <option name="PROGRAM_PARAMETERS" value="-minimumFrequencies=6 -graphFile=&quot;$PROJECT_DIR$/HFFSM/src/test/resources/73_78.xml&quot; -debug=1" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.parmol.FFSM.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PDGParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.parmol.parsers.PDGParser" />
+      <module name="HFFSM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.parmol.parsers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PDGParser2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="de.parmol.parsers.PDGParser2" />
+      <module name="HFFSM" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.parmol.parsers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPatternExtract.testPatternExtract" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtract" />
+      <option name="METHOD_NAME" value="testPatternExtract" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Miner" />
+      <item itemvalue="Application.FileConverter" />
+      <item itemvalue="Application.PDGParser" />
+      <item itemvalue="Application.PDGParser2" />
+      <item itemvalue="JUnit.TestPatternExtract.testPatternExtract" />
+    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestGraphBuilder.testBuildForFile" />
-        <item itemvalue="JUnit.TestGumTree.testAddActionToCodeGraph" />
-        <item itemvalue="JUnit.TestGumTree.testActionGraph" />
-        <item itemvalue="JUnit.TestGumTree.testGumTreeDiff" />
-        <item itemvalue="JUnit.TreeTest.test_Path_1" />
+        <item itemvalue="JUnit.TestPatternExtract.testPatternExtract" />
+        <item itemvalue="Application.PDGParser" />
+        <item itemvalue="Application.FileConverter" />
+        <item itemvalue="Application.PDGParser2" />
       </list>
     </recent_temporary>
   </component>
@@ -245,7 +423,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677230085083</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="delete some unused files">
+      <created>1677230482377</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1677230482377</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -272,7 +457,8 @@
     <MESSAGE value="change jdk version from 1.8 to 11" />
     <MESSAGE value="add actions on codegraph" />
     <MESSAGE value="delete some unused files and add APImisuse data" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete some unused files and add APImisuse data" />
+    <MESSAGE value="delete some unused files" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete some unused files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -311,6 +497,86 @@
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java</url>
           <line>29</line>
           <option name="timeStamp" value="71" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtract.java</url>
+          <line>69</line>
+          <option name="timeStamp" value="78" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gspan/src/mining/GSpanTool.java</url>
+          <line>278</line>
+          <option name="timeStamp" value="82" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spmf/src/ca/pfv/spmf/test/MainTestGSPAN.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/spmf/src/ca/pfv/spmf/algorithms/graph_mining/tkg/AlgoCGSPANAbstract.java</url>
+          <line>550</line>
+          <option name="timeStamp" value="86" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java</url>
+          <line>120</line>
+          <option name="timeStamp" value="88" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java</url>
+          <line>82</line>
+          <option name="timeStamp" value="89" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Settings.java</url>
+          <line>529</line>
+          <option name="timeStamp" value="93" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Miner.java</url>
+          <line>239</line>
+          <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Miner.java</url>
+          <line>98</line>
+          <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Miner.java</url>
+          <line>124</line>
+          <option name="timeStamp" value="96" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Miner.java</url>
+          <line>151</line>
+          <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SmilesParser.java</url>
+          <line>1265</line>
+          <option name="timeStamp" value="100" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FileConverter.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java</url>
+          <line>472</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java</url>
+          <line>456</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java</url>
+          <line>166</line>
+          <option name="timeStamp" value="110" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

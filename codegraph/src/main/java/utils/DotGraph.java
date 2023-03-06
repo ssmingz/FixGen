@@ -4,22 +4,29 @@ import model.CodeGraph;
 import model.GraphConfiguration;
 import model.graph.edge.*;
 import model.graph.node.Node;
+import org.dom4j.Document;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.Entity;
+import org.dom4j.io.OutputFormat;
+import org.dom4j.io.XMLWriter;
+import org.eclipse.jdt.core.dom.PrimitiveType;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class DotGraph {
     public static final String SHAPE_ELLIPSE = "ellipse";
 
     private StringBuilder graph = new StringBuilder();
     private GraphConfiguration configuration;
+    private CodeGraph codeGraph;
+    private int nodeLabel = 0;
 
-    public DotGraph(CodeGraph cg, GraphConfiguration config) {
+    public DotGraph(CodeGraph cg, GraphConfiguration config, int nodeIndexStart) {
         configuration = config;
+        codeGraph = cg;
+        nodeLabel = nodeIndexStart;
         // start
         graph.append(addStart(cg.getGraphName()));
 
@@ -57,6 +64,8 @@ public class DotGraph {
         } else if (e instanceof DataEdge && configuration.showDataEdge) {
             label = e.getLabel();
         } else if (e instanceof DefUseEdge && configuration.showDefUseEdge) {
+            label = e.getLabel();
+        } else if (e instanceof ActionEdge && configuration.showActionEdge) {
             label = e.getLabel();
         }
         return label;
@@ -128,5 +137,156 @@ public class DotGraph {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void toXmlFile(File file) {
+        ensureDirectory(file.getParentFile());
+
+        //创建document对象
+        Document document = DocumentHelper.createDocument();
+        //定义根节点
+        Element rootGen = document.addElement("PDG");
+        //定义根节点ROOT的子节点们
+        Element clazz = rootGen.addElement("CLASS");
+        Element method = clazz.addElement("Method");
+        Element nodesList = method.addElement("nodes");
+        Element controlDep = method.addElement("control_dependence");
+        Element dataDep = method.addElement("data_dependence");
+        Element actionRelation = method.addElement("action_relation");
+        Element astRelation = method.addElement("ast_relation");
+
+        clazz.addAttribute("Name", codeGraph.getGraphName());
+        method.addAttribute("Name", codeGraph.getGraphName());
+
+        List<Node> nodes = codeGraph.getNodes();
+        HashMap<Node, Integer> idByNode = new HashMap<>();
+        // add nodes
+        for (Node node : nodes) {
+            nodeLabel++;
+            idByNode.put(node, nodeLabel);
+            String label = "" + node.getStartSourceLine() + ":" + node.toLabelString();
+            Element e = nodesList.addElement("Statement");
+            e.addAttribute("no", "s"+nodeLabel);
+            e.addAttribute("nodelabel", ""+nodeLabel);
+            e.addAttribute("statement", label);
+        }
+
+        // add edges
+        Map<String, List<String>> cd = new LinkedHashMap<>();
+        Map<String, List<String>> dd = new LinkedHashMap<>();
+        Map<String, List<String>> actr = new LinkedHashMap<>();
+        Map<String, List<String>> astr = new LinkedHashMap<>();
+        for (Node node : nodes) {
+            if (!idByNode.containsKey(node)) continue;
+            int sId = idByNode.get(node);
+            for (Edge e : node.outEdges) {
+                if (!idByNode.containsKey(e.getTarget())) continue;
+                int tId = idByNode.get(e.getTarget());
+                String label = addEdgeLabel(e);
+                if (label.equals("Action")) {
+                    if (actr.containsKey("s"+sId)) {
+                        List<String> ns = new ArrayList<>(actr.get("s"+sId));
+                        ns.add("s"+tId);
+                        actr.put("s"+sId, ns);
+                    } else {
+                        List<String> ns = new ArrayList<>();
+                        ns.add("s"+tId);
+                        actr.put("s"+sId, ns);
+                    }
+                } else if (label.equals("Define-Use")) {
+                    if (dd.containsKey("s"+sId)) {
+                        List<String> ns = new ArrayList<>(dd.get("s"+sId));
+                        ns.add("s"+tId);
+                        dd.put("s"+sId, ns);
+                    } else {
+                        List<String> ns = new ArrayList<>();
+                        ns.add("s"+tId);
+                        dd.put("s"+sId, ns);
+                    }
+                } else if (label.equals("Control Dep")) {
+                    if (cd.containsKey("s"+sId)) {
+                        List<String> ns = new ArrayList<>(cd.get("s"+sId));
+                        ns.add("s"+tId);
+                        cd.put("s"+sId, ns);
+                    } else {
+                        List<String> ns = new ArrayList<>();
+                        ns.add("s"+tId);
+                        cd.put("s"+sId, ns);
+                    }
+                } else if (label.equals("Data Dep")) {
+                    if (dd.containsKey("s"+sId)) {
+                        List<String> ns = new ArrayList<>(dd.get("s"+sId));
+                        ns.add("s"+tId);
+                        dd.put("s"+sId, ns);
+                    } else {
+                        List<String> ns = new ArrayList<>();
+                        ns.add("s"+tId);
+                        dd.put("s"+sId, ns);
+                    }
+                } else if (label.equals("")) {
+                    if (astr.containsKey("s"+sId)) {
+                        List<String> ns = new ArrayList<>(astr.get("s"+sId));
+                        ns.add("s"+tId);
+                        astr.put("s"+sId, ns);
+                    } else {
+                        List<String> ns = new ArrayList<>();
+                        ns.add("s"+tId);
+                        astr.put("s"+sId, ns);
+                    }
+                } else {
+                    continue;
+                }
+
+            }
+        }
+        for (Map.Entry<String, List<String>> entry : cd.entrySet()) {
+            Element ek = controlDep.addElement("dependee");
+            ek.addAttribute("no", entry.getKey());
+            for (String v : entry.getValue()) {
+                Element ev = ek.addElement("depender");
+                ev.addAttribute("no", v);
+            }
+        }
+        for (Map.Entry<String, List<String>> entry : dd.entrySet()) {
+            Element ek = dataDep.addElement("dependee");
+            ek.addAttribute("no", entry.getKey());
+            for (String v : entry.getValue()) {
+                Element ev = ek.addElement("depender");
+                ev.addAttribute("no", v);
+            }
+        }
+        for (Map.Entry<String, List<String>> entry : actr.entrySet()) {
+            Element ek = actionRelation.addElement("dependee");
+            ek.addAttribute("no", entry.getKey());
+            for (String v : entry.getValue()) {
+                Element ev = ek.addElement("depender");
+                ev.addAttribute("no", v);
+            }
+        }
+        for (Map.Entry<String, List<String>> entry : astr.entrySet()) {
+            Element ek = astRelation.addElement("dependee");
+            ek.addAttribute("no", entry.getKey());
+            for (String v : entry.getValue()) {
+                Element ev = ek.addElement("depender");
+                ev.addAttribute("no", v);
+            }
+        }
+
+        //将定义好的内容写入xml文件中
+        OutputFormat format = null;
+        XMLWriter xmlwriter = null;
+        try {
+            //进行格式化
+            format = OutputFormat.createPrettyPrint();
+            //设定编码
+            format.setEncoding("UTF-8");
+            xmlwriter = new XMLWriter(new FileOutputStream(file.getAbsolutePath()), format);
+            xmlwriter.write(document); xmlwriter.flush(); xmlwriter.close();
+            System.out.println("----------- Xml file successfully created -------------");
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("----------- Exception occurred during of create Xml file -------");
+        }
+
     }
 }

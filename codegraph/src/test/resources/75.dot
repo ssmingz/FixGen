@@ -1,0 +1,337 @@
+digraph "MpackManager.createServicesDirectory#?,Path,Mpack" {
+1 [label="370:createServicesDirectory" shape=ellipse]
+2 [label="370:extractedMpackDirectory" shape=ellipse]
+3 [label="370:Path extractedMpackDirectory" shape=ellipse]
+4 [label="370:mpack" shape=ellipse]
+5 [label="370:Mpack mpack" shape=ellipse]
+6 [label="371:servicesDir" shape=ellipse]
+7 [label="371:extractedMpackDirectory" shape=ellipse]
+8 [label="371:toAbsolutePath" shape=ellipse]
+9 [label="371:extractedMpackDirectory.toAbsolutePath()" shape=ellipse]
+10 [label="371:separator" shape=ellipse]
+11 [label="371:File" shape=ellipse]
+12 [label="371:File.separator" shape=ellipse]
+13 [label="371:MODULES_DIRECTORY" shape=ellipse]
+14 [label="371:MODULES_DIRECTORY" shape=ellipse]
+15 [label="371:new File(extractedMpackDirectory.toAbsolutePath() + File.separator + MODULES_DIRECTORY)" shape=ellipse]
+16 [label="371:servicesDir=new File(extractedMpackDirectory.toAbsolutePath() + File.separator + MODULES_DIRECTORY)" shape=ellipse]
+17 [label="371:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+18 [label="372:servicesDir" shape=ellipse]
+19 [label="372:exists" shape=ellipse]
+20 [label="372:servicesDir.exists()" shape=ellipse]
+21 [label="372:!servicesDir.exists()" shape=ellipse]
+22 [label="373:servicesDir" shape=ellipse]
+23 [label="373:mkdir" shape=ellipse]
+24 [label="373:servicesDir.mkdir()" shape=ellipse]
+25 [label="373:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+26 [label="372:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+27 [label="372:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+28 [label="375:modules" shape=ellipse]
+29 [label="375:mpack" shape=ellipse]
+30 [label="375:getModules" shape=ellipse]
+31 [label="375:mpack.getModules()" shape=ellipse]
+32 [label="375:modules=mpack.getModules()" shape=ellipse]
+33 [label="375:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+34 [label="377:LOG" shape=ellipse]
+35 [label="377:info" shape=ellipse]
+36 [label="377:\"Creating services directory for mpack :\"" shape=ellipse]
+37 [label="377:mpack" shape=ellipse]
+38 [label="377:getName" shape=ellipse]
+39 [label="377:mpack.getName()" shape=ellipse]
+40 [label="377:\"Creating services directory for mpack :\" + mpack.getName()" shape=ellipse]
+41 [label="377:\"Creating services directory for mpack :\" + mpack.getName()" shape=ellipse]
+42 [label="377:LOG.info(\"Creating services directory for mpack :\" + mpack.getName())" shape=ellipse]
+43 [label="377:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+44 [label="379:module" shape=ellipse]
+45 [label="379:Module module" shape=ellipse]
+46 [label="379:modules" shape=ellipse]
+47 [label="381:moduleDefinitionLocation" shape=ellipse]
+48 [label="381:module" shape=ellipse]
+49 [label="381:getDefinition" shape=ellipse]
+50 [label="381:module.getDefinition()" shape=ellipse]
+51 [label="381:moduleDefinitionLocation=module.getDefinition()" shape=ellipse]
+52 [label="381:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+53 [label="382:serviceTargetDir" shape=ellipse]
+54 [label="382:servicesDir" shape=ellipse]
+55 [label="382:separator" shape=ellipse]
+56 [label="382:File" shape=ellipse]
+57 [label="382:File.separator" shape=ellipse]
+58 [label="382:module" shape=ellipse]
+59 [label="382:getName" shape=ellipse]
+60 [label="382:module.getName()" shape=ellipse]
+61 [label="382:module.getName()" shape=ellipse]
+62 [label="382:new File(servicesDir + File.separator + module.getName())" shape=ellipse]
+63 [label="382:serviceTargetDir=new File(servicesDir + File.separator + module.getName())" shape=ellipse]
+64 [label="382:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+65 [label="383:extractTar" shape=ellipse]
+66 [label="383:Paths" shape=ellipse]
+67 [label="383:get" shape=ellipse]
+68 [label="383:extractedMpackDirectory" shape=ellipse]
+69 [label="383:separator" shape=ellipse]
+70 [label="383:File" shape=ellipse]
+71 [label="383:File.separator" shape=ellipse]
+72 [label="383:\"modules\"" shape=ellipse]
+73 [label="383:separator" shape=ellipse]
+74 [label="383:File" shape=ellipse]
+75 [label="383:File.separator" shape=ellipse]
+76 [label="383:moduleDefinitionLocation" shape=ellipse]
+77 [label="383:moduleDefinitionLocation" shape=ellipse]
+78 [label="383:moduleDefinitionLocation" shape=ellipse]
+79 [label="383:Paths.get(extractedMpackDirectory + File.separator + \"modules\"+ File.separator+ moduleDefinitionLocation)" shape=ellipse]
+80 [label="383:servicesDir" shape=ellipse]
+81 [label="383:Paths.get(extractedMpackDirectory + File.separator + \"modules\"+ File.separator+ moduleDefinitionLocation),servicesDir" shape=ellipse]
+82 [label="383:extractTar(Paths.get(extractedMpackDirectory + File.separator + \"modules\"+ File.separator+ moduleDefinitionLocation),servicesDir)" shape=ellipse]
+83 [label="383:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+84 [label="384:extractedServiceDirectory" shape=ellipse]
+85 [label="384:Files" shape=ellipse]
+86 [label="384:move" shape=ellipse]
+87 [label="384:Paths" shape=ellipse]
+88 [label="384:get" shape=ellipse]
+89 [label="384:servicesDir" shape=ellipse]
+90 [label="384:separator" shape=ellipse]
+91 [label="384:File" shape=ellipse]
+92 [label="384:File.separator" shape=ellipse]
+93 [label="384:moduleDefinitionLocation" shape=ellipse]
+94 [label="385:substring" shape=ellipse]
+95 [label="385:moduleDefinitionLocation" shape=ellipse]
+96 [label="385:indexOf" shape=ellipse]
+97 [label="385:\"/\"" shape=ellipse]
+98 [label="385:\"/\"" shape=ellipse]
+99 [label="385:moduleDefinitionLocation.indexOf(\"/\")" shape=ellipse]
+100 [label="385:1" shape=ellipse]
+101 [label="385:moduleDefinitionLocation.indexOf(\"/\") + 1" shape=ellipse]
+102 [label="385:moduleDefinitionLocation" shape=ellipse]
+103 [label="385:indexOf" shape=ellipse]
+104 [label="385:\".tar.gz\"" shape=ellipse]
+105 [label="385:\".tar.gz\"" shape=ellipse]
+106 [label="385:moduleDefinitionLocation.indexOf(\".tar.gz\")" shape=ellipse]
+107 [label="384:moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\")" shape=ellipse]
+108 [label="384:moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\"))" shape=ellipse]
+109 [label="384:moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\"))" shape=ellipse]
+110 [label="384:moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\"))" shape=ellipse]
+111 [label="384:Paths.get(servicesDir + File.separator + moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\")))" shape=ellipse]
+112 [label="386:serviceTargetDir" shape=ellipse]
+113 [label="386:toPath" shape=ellipse]
+114 [label="386:serviceTargetDir.toPath()" shape=ellipse]
+115 [label="386:REPLACE_EXISTING" shape=ellipse]
+116 [label="386:StandardCopyOption" shape=ellipse]
+117 [label="386:StandardCopyOption.REPLACE_EXISTING" shape=ellipse]
+118 [label="384:Paths.get(servicesDir + File.separator + moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\"))),serviceTargetDir.toPath(),StandardCopyOption.REPLACE_EXISTING" shape=ellipse]
+119 [label="384:Files.move(Paths.get(servicesDir + File.separator + moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\"))),serviceTargetDir.toPath(),StandardCopyOption.REPLACE_EXISTING)" shape=ellipse]
+120 [label="384:extractedServiceDirectory=Files.move(Paths.get(servicesDir + File.separator + moduleDefinitionLocation.substring(moduleDefinitionLocation.indexOf(\"/\") + 1,moduleDefinitionLocation.indexOf(\".tar.gz\"))),serviceTargetDir.toPath(),StandardCopyOption.REPLACE_EXISTING)" shape=ellipse]
+121 [label="384:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+122 [label="379:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+123 [label="379:class org.eclipse.jdt.core.dom.EnhancedForStatement" shape=ellipse]
+124 [label="370:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+125 [label="363:private void createServicesDirectory(Path extractedMpackDirectory,Mpack mpack) throws IOException" shape=ellipse]
+126 [label="-1:UPDATE" shape=ellipse]
+127 [label="-1:servicesDir.mkdirs()" shape=ellipse]
+2 -> 7 [label="Define-Use"];
+2 -> 68 [label="Define-Use"];
+3 -> 2 [label=""];
+4 -> 29 [label="Define-Use"];
+4 -> 37 [label="Define-Use"];
+5 -> 4 [label=""];
+6 -> 18 [label="Define-Use"];
+6 -> 22 [label="Define-Use"];
+6 -> 54 [label="Define-Use"];
+6 -> 80 [label="Define-Use"];
+6 -> 89 [label="Define-Use"];
+9 -> 7 [label=""];
+9 -> 8 [label=""];
+12 -> 10 [label=""];
+12 -> 11 [label=""];
+14 -> 13 [label=""];
+16 -> 6 [label=""];
+16 -> 15 [label=""];
+17 -> 16 [label=""];
+20 -> 18 [label=""];
+20 -> 19 [label=""];
+21 -> 20 [label=""];
+21 -> 26 [label="Control Dep"];
+21 -> 25 [label="Control Dep"];
+21 -> 24 [label="Control Dep"];
+21 -> 22 [label="Control Dep"];
+21 -> 23 [label="Control Dep"];
+24 -> 22 [label=""];
+24 -> 23 [label=""];
+25 -> 24 [label=""];
+25 -> 126 [label="Action"];
+26 -> 25 [label=""];
+27 -> 21 [label=""];
+27 -> 26 [label=""];
+28 -> 46 [label="Define-Use"];
+29 -> 28 [label="Data Dep"];
+30 -> 28 [label="Data Dep"];
+31 -> 29 [label=""];
+31 -> 30 [label=""];
+32 -> 28 [label=""];
+32 -> 31 [label=""];
+33 -> 32 [label=""];
+39 -> 37 [label=""];
+39 -> 38 [label=""];
+40 -> 36 [label=""];
+40 -> 39 [label=""];
+41 -> 40 [label=""];
+42 -> 34 [label=""];
+42 -> 35 [label=""];
+42 -> 41 [label=""];
+43 -> 42 [label=""];
+44 -> 48 [label="Define-Use"];
+44 -> 58 [label="Define-Use"];
+45 -> 44 [label=""];
+46 -> 122 [label="Control Dep"];
+46 -> 52 [label="Control Dep"];
+46 -> 51 [label="Control Dep"];
+46 -> 47 [label="Control Dep"];
+46 -> 50 [label="Control Dep"];
+46 -> 48 [label="Control Dep"];
+46 -> 49 [label="Control Dep"];
+46 -> 64 [label="Control Dep"];
+46 -> 63 [label="Control Dep"];
+46 -> 53 [label="Control Dep"];
+46 -> 62 [label="Control Dep"];
+46 -> 54 [label="Control Dep"];
+46 -> 57 [label="Control Dep"];
+46 -> 55 [label="Control Dep"];
+46 -> 56 [label="Control Dep"];
+46 -> 60 [label="Control Dep"];
+46 -> 58 [label="Control Dep"];
+46 -> 59 [label="Control Dep"];
+46 -> 83 [label="Control Dep"];
+46 -> 82 [label="Control Dep"];
+46 -> 65 [label="Control Dep"];
+46 -> 79 [label="Control Dep"];
+46 -> 66 [label="Control Dep"];
+46 -> 67 [label="Control Dep"];
+46 -> 68 [label="Control Dep"];
+46 -> 71 [label="Control Dep"];
+46 -> 69 [label="Control Dep"];
+46 -> 70 [label="Control Dep"];
+46 -> 72 [label="Control Dep"];
+46 -> 75 [label="Control Dep"];
+46 -> 73 [label="Control Dep"];
+46 -> 74 [label="Control Dep"];
+46 -> 76 [label="Control Dep"];
+46 -> 80 [label="Control Dep"];
+46 -> 121 [label="Control Dep"];
+46 -> 120 [label="Control Dep"];
+46 -> 84 [label="Control Dep"];
+46 -> 119 [label="Control Dep"];
+46 -> 85 [label="Control Dep"];
+46 -> 86 [label="Control Dep"];
+46 -> 111 [label="Control Dep"];
+46 -> 87 [label="Control Dep"];
+46 -> 88 [label="Control Dep"];
+46 -> 89 [label="Control Dep"];
+46 -> 92 [label="Control Dep"];
+46 -> 90 [label="Control Dep"];
+46 -> 91 [label="Control Dep"];
+46 -> 108 [label="Control Dep"];
+46 -> 93 [label="Control Dep"];
+46 -> 94 [label="Control Dep"];
+46 -> 101 [label="Control Dep"];
+46 -> 99 [label="Control Dep"];
+46 -> 95 [label="Control Dep"];
+46 -> 96 [label="Control Dep"];
+46 -> 97 [label="Control Dep"];
+46 -> 100 [label="Control Dep"];
+46 -> 106 [label="Control Dep"];
+46 -> 102 [label="Control Dep"];
+46 -> 103 [label="Control Dep"];
+46 -> 104 [label="Control Dep"];
+46 -> 114 [label="Control Dep"];
+46 -> 112 [label="Control Dep"];
+46 -> 113 [label="Control Dep"];
+46 -> 117 [label="Control Dep"];
+46 -> 115 [label="Control Dep"];
+46 -> 116 [label="Control Dep"];
+47 -> 76 [label="Define-Use"];
+47 -> 93 [label="Define-Use"];
+47 -> 95 [label="Define-Use"];
+47 -> 102 [label="Define-Use"];
+48 -> 47 [label="Data Dep"];
+49 -> 47 [label="Data Dep"];
+50 -> 48 [label=""];
+50 -> 49 [label=""];
+51 -> 47 [label=""];
+51 -> 50 [label=""];
+52 -> 51 [label=""];
+53 -> 112 [label="Define-Use"];
+57 -> 55 [label=""];
+57 -> 56 [label=""];
+60 -> 58 [label=""];
+60 -> 59 [label=""];
+61 -> 60 [label=""];
+63 -> 53 [label=""];
+63 -> 62 [label=""];
+64 -> 63 [label=""];
+71 -> 69 [label=""];
+71 -> 70 [label=""];
+75 -> 73 [label=""];
+75 -> 74 [label=""];
+77 -> 76 [label=""];
+78 -> 77 [label=""];
+79 -> 66 [label=""];
+79 -> 67 [label=""];
+79 -> 78 [label=""];
+81 -> 79 [label=""];
+81 -> 80 [label=""];
+82 -> 65 [label=""];
+82 -> 81 [label=""];
+83 -> 82 [label=""];
+85 -> 84 [label="Data Dep"];
+86 -> 84 [label="Data Dep"];
+92 -> 90 [label=""];
+92 -> 91 [label=""];
+98 -> 97 [label=""];
+99 -> 95 [label=""];
+99 -> 96 [label=""];
+99 -> 98 [label=""];
+101 -> 99 [label=""];
+101 -> 100 [label=""];
+105 -> 104 [label=""];
+106 -> 102 [label=""];
+106 -> 103 [label=""];
+106 -> 105 [label=""];
+107 -> 101 [label=""];
+107 -> 106 [label=""];
+108 -> 93 [label=""];
+108 -> 94 [label=""];
+108 -> 107 [label=""];
+109 -> 108 [label=""];
+110 -> 109 [label=""];
+111 -> 87 [label=""];
+111 -> 88 [label=""];
+111 -> 110 [label=""];
+114 -> 112 [label=""];
+114 -> 113 [label=""];
+117 -> 115 [label=""];
+117 -> 116 [label=""];
+118 -> 111 [label=""];
+118 -> 114 [label=""];
+118 -> 117 [label=""];
+119 -> 85 [label=""];
+119 -> 86 [label=""];
+119 -> 118 [label=""];
+120 -> 84 [label=""];
+120 -> 119 [label=""];
+121 -> 120 [label=""];
+122 -> 52 [label=""];
+122 -> 64 [label=""];
+122 -> 83 [label=""];
+122 -> 121 [label=""];
+123 -> 45 [label=""];
+123 -> 46 [label=""];
+123 -> 122 [label=""];
+124 -> 17 [label=""];
+124 -> 27 [label=""];
+124 -> 33 [label=""];
+124 -> 43 [label=""];
+124 -> 123 [label=""];
+125 -> 1 [label=""];
+125 -> 3 [label=""];
+125 -> 5 [label=""];
+125 -> 124 [label=""];
+126 -> 127 [label="Action"];
+}

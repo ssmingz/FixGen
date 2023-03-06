@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PDG>
+  <CLASS Name="Fortest1">
+    <Method Name="divide(int a,int b)">
+      <nodes>
+        <Statement no="s1" nodelabel="1200001" statement="return @parameter0: int/@parameter1: int" />
+        <Statement no="s2" nodelabel="1700000" statement="end" />
+      </nodes>
+      <control_dependece />
+    </Method>
+    <Method Name="mod(int a,int b)">
+      <nodes>
+        <Statement no="s1" nodelabel="1200002" statement="return @parameter0: int%@parameter1: int" />
+        <Statement no="s2" nodelabel="1700000" statement="end" />
+      </nodes>
+      <control_dependece />
+    </Method>
+    <Method Name="laps(int a,int b)">
+      <nodes>
+        <Statement no="s1" nodelabel="1600001" statement="int l" />
+        <Statement no="s2" nodelabel="100001" statement="l=0" />
+        <Statement no="s3" nodelabel="1000001" statement="if(@parameter1: int!=0)" />
+        <Statement no="s4" nodelabel="100002" statement="l=this.divide([@parameter0: int, @parameter1: int])" />
+        <Statement no="s5" nodelabel="1200003" statement="return -1" />
+        <Statement no="s6" nodelabel="1200004" statement="return l" />
+        <Statement no="s7" nodelabel="1700000" statement="end" />
+      </nodes>
+      <control_dependece>
+        <dependee no="s3">
+          <depender no="s4" />
+          <depender no="s5" />
+          <depender no="s6" />
+        </dependee>
+      </control_dependece>
+    </Method>
+    <Method Name="timediv(int a,int b,int c)">
+      <nodes>
+        <Statement no="s1" nodelabel="1600001" statement="int h" />
+        <Statement no="s2" nodelabel="100003" statement="h=60*@parameter0: int" />
+        <Statement no="s3" nodelabel="1600001" statement="int m" />
+        <Statement no="s4" nodelabel="100003" statement="m=h+@parameter1: int" />
+        <Statement no="s5" nodelabel="1600001" statement="int t" />
+        <Statement no="s6" nodelabel="100001" statement="t=0" />
+        <Statement no="s7" nodelabel="1000001" statement="if(@parameter2: int!=0)" />
+        <Statement no="s8" nodelabel="100002" statement="t=this.divide([m, @parameter2: int])" />
+        <Statement no="s9" nodelabel="1200005" statement="return -1" />
+        <Statement no="s10" nodelabel="1200004" statement="return t" />
+        <Statement no="s11" nodelabel="1700000" statement="end" />
+      </nodes>
+      <control_dependece>
+        <dependee no="s7">
+          <depender no="s8" />
+          <depender no="s9" />
+          <depender no="s10" />
+        </dependee>
+      </control_dependece>
+      <data_dependece>
+        <dependee no="s2">
+          <depender no="s4" />
+        </dependee>
+        <dependee no="s4">
+          <depender no="s8" />
+        </dependee>
+      </data_dependece>
+    </Method>
+    <Method Name="colnum(int a,int b)">
+      <nodes>
+        <Statement no="s1" nodelabel="1600001" statement="int col" />
+        <Statement no="s2" nodelabel="100002" statement="col=this.divide([@parameter0: int, @parameter1: int])" />
+        <Statement no="s3" nodelabel="1600001" statement="int c" />
+        <Statement no="s4" nodelabel="100004" statement="c=this.mod([@parameter0: int, @parameter1: int])" />
+        <Statement no="s5" nodelabel="1000002" statement="if(c!=0)" />
+        <Statement no="s6" nodelabel="900001" statement="col++" />
+        <Statement no="s7" nodelabel="1200004" statement="return col" />
+        <Statement no="s8" nodelabel="1700000" statement="end" />
+      </nodes>
+      <control_dependece>
+        <dependee no="s5">
+          <depender no="s6" />
+        </dependee>
+      </control_dependece>
+      <data_dependece>
+        <dependee no="s2">
+          <depender no="s6" />
+        </dependee>
+        <dependee no="s4">
+          <depender no="s5" />
+        </dependee>
+      </data_dependece>
+    </Method>
+    <Method Name="main(java.lang.String[] argv)">
+      <nodes>
+        <Statement no="s1" nodelabel="1600002" statement="Fortest1 t" />
+        <Statement no="s2" nodelabel="100004" statement="t=new Fortest1()" />
+        <Statement no="s3" nodelabel="1100001" statement="t.laps([500, 400])" />
+        <Statement no="s4" nodelabel="1100002" statement="t.timediv([9, 30, 30])" />
+        <Statement no="s5" nodelabel="1100003" statement="t.colnum([100, 9])" />
+        <Statement no="s6" nodelabel="1700000" statement="end" />
+      </nodes>
+      <control_dependece />
+      <data_dependece>
+        <dependee no="s2">
+          <depender no="s3" />
+          <depender no="s4" />
+          <depender no="s5" />
+        </dependee>
+      </data_dependece>
+    </Method>
+    <Method Name="Fortest1()">
+      <nodes />
+      <control_dependece />
+    </Method>
+  </CLASS>
+</PDG>
+

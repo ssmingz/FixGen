@@ -1,0 +1,97 @@
+88	744:homeDir + "/.ssh/id_rsa.pub"
+89	744:pubKey,homeDir + "/.ssh/id_rsa.pub"
+90	744:writeKeyToDisk(pubKey,homeDir + "/.ssh/id_rsa.pub")
+91	744:class org.eclipse.jdt.core.dom.ExpressionStatement
+92	742:class org.eclipse.jdt.core.dom.Block
+93	739:class org.eclipse.jdt.core.dom.IfStatement
+94	728:class org.eclipse.jdt.core.dom.Block
+95	728:private void updateKeyPairsOnDisk(String homeDir)
+96	-1:UPDATE
+97	-1:keyDir.mkdirs()
+10	729:class org.eclipse.jdt.core.dom.VariableDeclarationStatement
+11	730:devel
+12	730:Boolean
+13	730:valueOf
+14	730:_configDao
+15	730:getValue
+16	730:"developer"
+17	730:"developer"
+18	730:_configDao.getValue("developer")
+19	730:_configDao.getValue("developer")
+1	728:updateKeyPairsOnDisk
+2	728:homeDir
+3	728:String homeDir
+4	729:keyDir
+5	729:homeDir
+6	729:"/.ssh"
+7	729:homeDir + "/.ssh"
+8	729:new File(homeDir + "/.ssh")
+9	729:keyDir=new File(homeDir + "/.ssh")
+20	730:Boolean.valueOf(_configDao.getValue("developer"))
+21	730:devel=Boolean.valueOf(_configDao.getValue("developer"))
+22	730:class org.eclipse.jdt.core.dom.VariableDeclarationStatement
+23	731:keyDir
+24	731:isDirectory
+25	731:keyDir.isDirectory()
+26	731:!keyDir.isDirectory()
+27	732:s_logger
+28	732:warn
+29	732:"Failed to create "
+30	732:homeDir
+31	732:"/.ssh for storing the SSH keypars"
+32	732:"/.ssh for storing the SSH keypars"
+33	732:"/.ssh for storing the SSH keypars"
+34	732:s_logger.warn("Failed to create " + homeDir + "/.ssh for storing the SSH keypars")
+35	732:class org.eclipse.jdt.core.dom.ExpressionStatement
+36	733:keyDir
+37	733:mkdir
+38	733:keyDir.mkdir()
+39	733:class org.eclipse.jdt.core.dom.ExpressionStatement
+40	731:class org.eclipse.jdt.core.dom.Block
+41	731:class org.eclipse.jdt.core.dom.IfStatement
+42	735:pubKey
+43	735:_configDao
+44	735:getValue
+45	735:"ssh.publickey"
+46	735:"ssh.publickey"
+47	735:_configDao.getValue("ssh.publickey")
+48	735:pubKey=_configDao.getValue("ssh.publickey")
+49	735:class org.eclipse.jdt.core.dom.VariableDeclarationStatement
+50	736:prvKey
+51	736:_configDao
+52	736:getValue
+53	736:"ssh.privatekey"
+54	736:"ssh.privatekey"
+55	736:_configDao.getValue("ssh.privatekey")
+56	736:prvKey=_configDao.getValue("ssh.privatekey")
+57	736:class org.eclipse.jdt.core.dom.VariableDeclarationStatement
+58	739:devel
+59	740:writeKeyToDisk
+60	740:prvKey
+61	740:homeDir
+62	740:"/.ssh/id_rsa.cloud"
+63	740:homeDir + "/.ssh/id_rsa.cloud"
+64	740:prvKey,homeDir + "/.ssh/id_rsa.cloud"
+65	740:writeKeyToDisk(prvKey,homeDir + "/.ssh/id_rsa.cloud")
+66	740:class org.eclipse.jdt.core.dom.ExpressionStatement
+67	741:writeKeyToDisk
+68	741:pubKey
+69	741:homeDir
+70	741:"/.ssh/id_rsa.cloud.pub"
+71	741:homeDir + "/.ssh/id_rsa.cloud.pub"
+72	741:pubKey,homeDir + "/.ssh/id_rsa.cloud.pub"
+73	741:writeKeyToDisk(pubKey,homeDir + "/.ssh/id_rsa.cloud.pub")
+74	741:class org.eclipse.jdt.core.dom.ExpressionStatement
+75	739:class org.eclipse.jdt.core.dom.Block
+76	743:writeKeyToDisk
+77	743:prvKey
+78	743:homeDir
+79	743:"/.ssh/id_rsa"
+80	743:homeDir + "/.ssh/id_rsa"
+81	743:prvKey,homeDir + "/.ssh/id_rsa"
+82	743:writeKeyToDisk(prvKey,homeDir + "/.ssh/id_rsa")
+83	743:class org.eclipse.jdt.core.dom.ExpressionStatement
+84	744:writeKeyToDisk
+85	744:pubKey
+86	744:homeDir
+87	744:"/.ssh/id_rsa.pub"

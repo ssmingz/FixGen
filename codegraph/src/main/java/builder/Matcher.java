@@ -19,7 +19,7 @@ public class Matcher {
             int ctLength = cte.getPosition().getSourceEnd() - cte.getPosition().getSourceStart() + 1;
             boolean mapped = false;
             for (Node cge : cgNodes) {
-                if (cge != null) {
+                if (cge != null && cge.getASTNode() != null) {
                     int cgLine = cge.getStartSourceLine();
                     int cgLength = cge.getASTNode().getLength();
                     if (ctLine == cgLine && ctLength == cgLength) {

@@ -231,7 +231,7 @@ public class MpackManager {
     LOG.debug("Download mpack.json and store in :" + targetPath);
 
     if (!stagingDir.exists()) {
-      stagingDir.mkdir();
+      stagingDir.mkdirs();
     }
 
     Files.copy(url.openStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
@@ -370,7 +370,7 @@ public class MpackManager {
   private void createServicesDirectory(Path extractedMpackDirectory, Mpack mpack) throws IOException {
     File servicesDir = new File(extractedMpackDirectory.toAbsolutePath() + File.separator + MODULES_DIRECTORY);
     if (!servicesDir.exists()) {
-      servicesDir.mkdirs();
+      servicesDir.mkdir();
     }
     List<Module> modules = mpack.getModules();
 

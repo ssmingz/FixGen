@@ -2,24 +2,6 @@ diff --git a/ambari-server/src/main/java/org/apache/ambari/server/mpack/MpackMan
 index 6bfacee85e0..a60e460ab23 100644
 --- a/ambari-server/src/main/java/org/apache/ambari/server/mpack/MpackManager.java
 +++ b/ambari-server/src/main/java/org/apache/ambari/server/mpack/MpackManager.java
-@@ -231,7 +231,7 @@ private Mpack downloadMpackMetadata(String mpackURI) throws IOException  {
-     LOG.debug("Download mpack.json and store in :" + targetPath);
- 
-     if (!stagingDir.exists()) {
--      stagingDir.mkdir();
-+      stagingDir.mkdirs();
-     }
- 
-     Files.copy(url.openStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
-@@ -370,7 +370,7 @@ private void generateMetainfo(File metainfoFile, Mpack mpack) throws IOException
-   private void createServicesDirectory(Path extractedMpackDirectory, Mpack mpack) throws IOException {
-     File servicesDir = new File(extractedMpackDirectory.toAbsolutePath() + File.separator + MODULES_DIRECTORY);
-     if (!servicesDir.exists()) {
--      servicesDir.mkdir();
-+      servicesDir.mkdirs();
-     }
-     List<Module> modules = mpack.getModules();
- 
 @@ -405,7 +405,7 @@ private Boolean createMpackDirectory(Mpack mpack)
            File mpackDirectory = new File(mpackStaging + File.separator + mpack.getName());
  
@@ -29,12 +11,3 @@ index 6bfacee85e0..a60e460ab23 100644
            }
            return true;
          } else {
-@@ -447,7 +447,7 @@ public Path downloadMpack(String mpackURI, String mpackDefinitionLocation) throw
-     URL url = new URL(mpackTarURI);
- 
-     if (!stagingDir.exists()) {
--      stagingDir.mkdir();
-+      stagingDir.mkdirs();
-     }
- 
-     Files.copy(url.openStream(), targetPath, StandardCopyOption.REPLACE_EXISTING);
