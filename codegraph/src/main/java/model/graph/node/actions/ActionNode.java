@@ -2,9 +2,9 @@ package model.graph.node.actions;
 
 import com.github.gumtreediff.actions.model.Action;
 import model.graph.node.Node;
-import org.eclipse.jdt.core.dom.ASTNode;
 
 public abstract class ActionNode extends Node {
+    public enum ActionType {UPDATE, INSERT, DELETE, MOVE};
     protected Action _action;
 
     protected ActionNode(Node parent) {
@@ -23,4 +23,6 @@ public abstract class ActionNode extends Node {
     public Action getCtAction() {
         return _action;
     }
+
+    public abstract ActionType getType();
 }

@@ -5,7 +5,10 @@ import model.CodeGraph;
 import model.graph.node.Node;
 import model.graph.node.PatchNode;
 import model.graph.node.actions.*;
+import model.graph.node.bodyDecl.MethodDecl;
 import spoon.reflect.declaration.CtElement;
+import spoon.support.reflect.code.CtBlockImpl;
+import spoon.support.reflect.declaration.CtMethodImpl;
 
 import java.util.*;
 
@@ -22,7 +25,12 @@ public class Matcher {
                 if (cge != null && cge.getASTNode() != null) {
                     int cgLine = cge.getStartSourceLine();
                     int cgLength = cge.getASTNode().getLength();
-                    if (ctLine == cgLine && ctLength == cgLength) {
+                    if (ctLine == cgLine && ctLength == cgLength) {  // TODO: accurate lineNo matched and gumtree-spoon/CodeGraph nodeType matched
+                        mappings.put(cte, cge);
+                        mapped = true;
+                        break;
+                    } else if (cte instanceof CtMethodImpl && cge instanceof MethodDecl && ctLine == cgLine) {
+                        // handle special case like same lineNo but different length
                         mappings.put(cte, cge);
                         mapped = true;
                         break;
@@ -91,6 +99,7 @@ public class Matcher {
                 System.err.println("[builder.Matcher.mapOperationToCodeGraph(MoveOperation)]No mapped move node " + ctMove.getClass() + " : " + ctMove.getPosition().getLine());
             }
         } else {
+            // TODO: handle cases like 'move to' a newly created PatchNode
             System.err.println("[builder.Matcher.mapOperationToCodeGraph(MoveOperation)]No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
         }
         return changedNodes;

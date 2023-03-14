@@ -22,7 +22,9 @@ import model.graph.node.varDecl.SingleVarDecl;
 import model.graph.node.varDecl.VarDeclFrag;
 import org.eclipse.jdt.core.dom.*;
 import spoon.reflect.declaration.CtElement;
-import utils.FileIO;
+import spoon.support.reflect.code.CtBlockImpl;
+import spoon.support.reflect.declaration.CtCompilationUnitImpl;
+import spoon.support.reflect.declaration.CtMethodImpl;
 import utils.JavaASTUtil;
 
 import java.util.ArrayList;
@@ -89,6 +91,9 @@ public class CodeGraph {
             int spoon_start = srcElement.getPosition().getLine();
             if (spoon_start >= method_start && spoon_start <= method_end) {
                 mappings.put(srcElement, dstElement);
+                // TODO: if two nodes matched, their children also matched
+                if (!(srcElement instanceof CtCompilationUnitImpl))
+                    mapChildren(srcElement, dstElement, mappings);
             }
         }
         Map<CtElement, Node> src_matcher = Matcher.mapSpoonToCodeGraph(this.getNodes(),
@@ -112,6 +117,18 @@ public class CodeGraph {
                         Matcher.mapOperationToCodeGraph((UpdateOperation) operation, this, src_matcher));
             }
         }
+    }
+
+    private void mapChildren(CtElement srcElement, CtElement dstElement, Map<CtElement, CtElement> mappings) {
+        if (srcElement.getDirectChildren().size() == dstElement.getDirectChildren().size()) {
+            for (int i=0; i<srcElement.getDirectChildren().size(); i++) {
+                CtElement srcChild = srcElement.getDirectChildren().get(i);
+                CtElement dstChild = srcElement.getDirectChildren().get(i);
+                if (srcChild.getPosition().isValidPosition() && dstChild.getPosition().isValidPosition())
+                    mappings.put(srcChild, dstChild);
+            }
+        }
+        // do not use recursion since statements may not match in two blocks
     }
 
     public void addSpoonNode(PatchNode patchNode) {
@@ -945,6 +962,14 @@ public class CodeGraph {
         AnonymousClassDecl anony = new AnonymousClassDecl(astNode, filePath, start, end);
         anony.setControlDependency(control);
         anony.setScope(scope);
+        // bodyDeclarations
+        if (astNode.bodyDeclarations() != null) {
+            for (Object bd : astNode.bodyDeclarations()) {
+                if (bd instanceof MethodDeclaration) {
+                    anony.setMethodDecl((MethodDecl) buildNode(bd, control, scope));
+                }
+            }
+        }
         return anony;
     }
 
@@ -1564,9 +1589,20 @@ public class CodeGraph {
 
     public void setEntryNode(Node buildNode) {
         entryNode = buildNode;
+        startLine = buildNode.getStartSourceLine();
+        endLine = buildNode.getEndSourceLine();
     }
 
     public Node getEntryNode() {
         return entryNode;
+    }
+
+    public List<ActionNode> getActions() {
+        List<ActionNode> al = new ArrayList<>();
+        for (Node an : allNodes) {
+            if (an instanceof ActionNode)
+                al.add((ActionNode) an);
+        }
+        return al;
     }
 }

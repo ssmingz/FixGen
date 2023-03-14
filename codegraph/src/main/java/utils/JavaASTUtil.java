@@ -1,10 +1,7 @@
 package utils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import model.CodeGraph;
 import model.graph.node.Node;
@@ -208,29 +205,37 @@ public class JavaASTUtil {
             try {
                 reader = new BufferedReader(new FileReader(diff));
                 String line = null;
-                int lineNo = 0;
+                int lineNoDel = 0, lineNoIns = 0;
                 String file = "";
-                List<Integer> linelist = null;
+                Set<Integer> linelist = null;
                 while ((line = reader.readLine()) != null) {
                     if (line.startsWith("--- ")) {
-                        if (linelist != null) {
-                            result.put(file, linelist);
+                        if (linelist != null && !linelist.isEmpty()) {
+                            result.put(file, new ArrayList<>(linelist));
+                            linelist.clear();
                         }
                         file = line.split(" ")[1].replaceFirst("a", "");
-                        linelist = new ArrayList<>();
+                        linelist = new LinkedHashSet<>();
                         continue;
                     }
                     if (line.startsWith("@@ ")) {
-                        lineNo = Integer.parseInt(line.split(" ")[1].split(",")[0].replace("-",""));
+                        lineNoDel = Integer.parseInt(line.split(" ")[1].split(",")[0].replace("-",""));
+                        lineNoIns = Integer.parseInt(line.split(" ")[2].split(",")[0].replace("+",""));
                         continue;
                     }
-                    if (line.startsWith("-") && !line.equals("--------")) {
-                        linelist.add(lineNo);
+                    if (line.startsWith("-") && !line.startsWith("---") && !line.equals("--------")) {
+                        linelist.add(lineNoDel);
+                    } else if (line.startsWith("+") && !line.startsWith("+++")) {
+                        linelist.add(lineNoIns);
                     }
-                    lineNo++;
+                    if (!line.startsWith("+"))
+                        lineNoDel++;
+                    if (!line.startsWith("-"))
+                        lineNoIns++;
                 }
-                if (linelist != null) {
-                    result.put(file, linelist);
+                if (linelist != null && !linelist.isEmpty()) {
+                    result.put(file, new ArrayList<>(linelist));
+                    linelist.clear();
                 }
                 reader.close();
             } catch (FileNotFoundException e) {

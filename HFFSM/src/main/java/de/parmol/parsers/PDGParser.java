@@ -520,7 +520,7 @@ public class PDGParser implements GraphParser {
 		Graph[] output;
 
 		//FileInputStream in = new FileInputStream(new File("HFFSM/src/test/resources/test.xml"));
-		FileInputStream in = new FileInputStream(new File("/Users/yumeng/JavaProjects/FixGen/codegraph/src/test/resources/73.xml"));
+		FileInputStream in = new FileInputStream(new File("./out/73.xml"));
 		output = new PDGParser().parse(in, UndirectedListGraph.Factory.instance);
 
 		instance.serialize(output, new FileOutputStream(new File("HFFSM/src/test/resources/data/ParserOutput.txt")) );

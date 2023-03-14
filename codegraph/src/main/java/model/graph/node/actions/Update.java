@@ -42,4 +42,9 @@ public class Update extends ActionNode {
     public String toLabelString() {
         return "UPDATE";
     }
+
+    @Override
+    public ActionType getType() {
+        return ActionType.UPDATE;
+    }
 }

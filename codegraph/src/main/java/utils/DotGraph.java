@@ -4,13 +4,14 @@ import model.CodeGraph;
 import model.GraphConfiguration;
 import model.graph.edge.*;
 import model.graph.node.Node;
+import model.pattern.Pattern;
+import model.pattern.PatternEdge;
+import model.pattern.PatternNode;
 import org.dom4j.Document;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
-import org.dom4j.Entity;
 import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
-import org.eclipse.jdt.core.dom.PrimitiveType;
 
 import java.io.*;
 import java.util.*;
@@ -21,24 +22,24 @@ public class DotGraph {
     private StringBuilder graph = new StringBuilder();
     private GraphConfiguration configuration;
     private CodeGraph codeGraph;
+    private Pattern pattern;
     private int nodeLabel = 0;
 
     public DotGraph(CodeGraph cg, GraphConfiguration config, int nodeIndexStart) {
         configuration = config;
         codeGraph = cg;
-        nodeLabel = nodeIndexStart;
         // start
         graph.append(addStart(cg.getGraphName()));
 
         List<Node> nodes = cg.getNodes();
         HashMap<Node, Integer> idByNode = new HashMap<>();
         // add nodes
-        int id = 0;
+        int id = nodeIndexStart;
         for (Node node : nodes) {
-            id++;
             idByNode.put(node, id);
             String label = "" + node.getStartSourceLine() + ":" + node.toLabelString();
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
+            id++;
         }
         // add edges
         for (Node node : nodes) {
@@ -48,6 +49,36 @@ public class DotGraph {
                 if (!idByNode.containsKey(e.getTarget())) continue;
                 int tId = idByNode.get(e.getTarget());
                 String label = addEdgeLabel(e);
+                graph.append(addEdge(sId, tId, null, null, label));
+            }
+        }
+        // end
+        graph.append(addEnd());
+    }
+
+    public DotGraph(Pattern pat, int nodeIndexStart) {
+        pattern = pat;
+        // start
+        graph.append(addStart(pat.getPatternName()));
+
+        List<PatternNode> nodes = pat.getNodes();
+        HashMap<PatternNode, Integer> idByNode = new HashMap<>();
+        // add nodes
+        int id = nodeIndexStart;
+        for (PatternNode node : nodes) {
+            idByNode.put(node, id);
+            String label = node.toLabel();
+            graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
+            id++;
+        }
+        // add edges
+        for (PatternNode node : nodes) {
+            if (!idByNode.containsKey(node)) continue;
+            int sId = idByNode.get(node);
+            for (PatternEdge e : node.outEdges()) {
+                if (!idByNode.containsKey(e.getTarget())) continue;
+                int tId = idByNode.get(e.getTarget());
+                String label = e.getLabel();
                 graph.append(addEdge(sId, tId, null, null, label));
             }
         }

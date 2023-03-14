@@ -59,10 +59,10 @@ public class GraphBuilder {
         };
         @SuppressWarnings("rawtypes")
         Map<String, String> options = JavaCore.getOptions();
-        options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_1_8);
-        options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_1_8);
-        options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_1_8);
-        ASTParser parser = ASTParser.newParser(AST.JLS8);
+        options.put(JavaCore.COMPILER_COMPLIANCE, JavaCore.VERSION_11);
+        options.put(JavaCore.COMPILER_CODEGEN_TARGET_PLATFORM, JavaCore.VERSION_11);
+        options.put(JavaCore.COMPILER_SOURCE, JavaCore.VERSION_11);
+        ASTParser parser = ASTParser.newParser(AST.JLS11);
         parser.setCompilerOptions(options);
         parser.setEnvironment(
                 classpaths == null ? new String[0] : classpaths,

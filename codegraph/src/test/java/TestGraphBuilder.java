@@ -27,7 +27,7 @@ public class TestGraphBuilder {
         GraphBuilder builder = new GraphBuilder(config);
         Collection<CodeGraph> cgs = builder.build(srcPath, null);
         DotGraph dg = new DotGraph((CodeGraph) cgs.toArray()[0], config, 0);
-        File dir = new File(System.getProperty("user.dir") + "/src/test/resources/new.dot");
+        File dir = new File(System.getProperty("user.dir") + "/out/new.dot");
         dg.toDotFile(dir);
     }
 

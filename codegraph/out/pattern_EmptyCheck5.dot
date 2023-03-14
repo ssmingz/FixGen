@@ -1,0 +1,3 @@
+digraph "Pattern" {
+0 [label="##MethodDeclaration in TypeDeclaration as bodyDeclarations####ActionPoint##\nAllEntries.boost#?,int#147:public float boost(int startOffset)" shape=ellipse]
+}

@@ -31,4 +31,9 @@ public class Delete extends ActionNode {
         }
         return false;
     }
+
+    @Override
+    public ActionType getType() {
+        return ActionType.DELETE;
+    }
 }

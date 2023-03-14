@@ -4,170 +4,315 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="delete some unused files">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/HFFSM.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/data/out.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/data/outputfile.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/lib/antlr.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/lib/core.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/lib/jdom-2.0.0.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/AbstractMiner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Embedding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/EmbeddingList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/FFSMDFSSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/FFSMSearchTreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/GraphEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/JoinerAndExtender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Matrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/FFSM/Miner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/GraphView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Settings.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Statistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedDirectedListGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedDirectedMatrixGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedGraphFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedUndirectedListGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ClassifiedUndirectedMatrixGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/CompleteEmbedding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DefaultGraphClassifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DirectedGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DirectedListGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/DirectedMatrixGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/EdgeOnlyEmbedding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/EmbeddingList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/Graph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphClassifier.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphEdgeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphEmbedding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphNodeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/GraphSearcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/IDEmbedding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/LabelRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/ListGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/MatrixGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/MaximumClique.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/MutableGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/NodeEmbedding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/NodeLabelDegreeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleEdgeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleGraphComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleNodeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SimpleSubgraphComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SubgraphEdgeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/SubgraphNodeComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/UndirectedGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/UndirectedListGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/UndirectedMatrixGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/graph/Util.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/DotGraphParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/GraphParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/LineGraphParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/NeatoParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SDFParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SLNParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SimpleDirectedGraphParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SimpleUndirectedGraphParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/SmilesParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/Dot.g" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotLexer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotLexerTokenTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotLexerTokenTypes.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/antlr/DotParser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/DFSSearchable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/SearchManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/SearchTreeNode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/SearchTreeNodeStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/search/ThreadedDFSSearch.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/BitMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/Debug.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/DefaultGraphSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/DefaultObjectPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/EmbeddingSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ExtendedComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FileConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FilteredFragmentSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FragmentSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FrequentFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/FullIntMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/GraphGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/GraphSet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/HalfIntMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/IntMatrix.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/IntQueue.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/IntStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/Math.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/MutableInteger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/MutableWeighter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ObjectPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ObjectStack.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/util/ThreadedObjectPool.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/FFSM/FFSMTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/GraphSearcherTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/ListGraphTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/MatrixGraphTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/SimpleGraphComparatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/SimpleGraphParserTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/SimpleSubgraphComparatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/graph/UtilTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/parsers/DotParserTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/parsers/SLNParserTestCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/parsers/SmilesParserTestCase.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/java/de/parmol/search/ThreadedBFSSearchTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/73_78.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/data/LabelStatementMap.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/data/ParserOutput.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/data/out.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/el.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/t.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/t.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/HFFSM/src/test/resources/test.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/Pattern.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/73.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/73.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/73.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/74.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/74.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/75.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/75.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/76.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/76.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/77.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/77.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/78.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/78.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/graphs.zip" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/spmf.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/spmf0.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/junit-3.8.2.jar" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="1. fix a bug 'unconnected nodes in CodeGraph', caused by field-parsing and ArgumentList-ExprList(since no ExprList in JDT)&#10;2. using HFFSM algorithm to extract pattern">
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern73-74.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck1.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck10.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck11.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck12.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck2.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck3.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck4.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck5.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck6.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck7.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck8.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck9.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Pattern.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternEdge.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestActionGraph.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#101/diff.diff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#101/new/KeePassFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#101/old/KeePassFile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#161/diff.diff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#161/new/AllEntries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#161/old/AllEntries.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#26/diff.diff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#26/new/Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#26/old/Util.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#69/diff.diff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#69/new/KeysDAORedisImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck/Genesis#69/old/KeysDAORedisImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HFFSM/data/outputfile.xml" beforeDir="false" afterPath="$PROJECT_DIR$/HFFSM/data/outputfile.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/HFFSM/src/main/java/de/parmol/parsers/PDGParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/GraphBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/GraphConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/Pattern.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/AnonymousClassDecl.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/AnonymousClassDecl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/ActionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/ActionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Delete.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Insert.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Move.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/actions/Update.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/JavaASTUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/diff.diff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/src.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/diff.diff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/src.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/diff.diff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/src.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/diff.diff" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtract.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/2.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/73.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/73.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/73.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/73.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/74.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/74.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/74.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/75.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/75.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/75.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/76.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/76.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/76.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/77.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/77.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/77.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/78.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/78.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/78.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/1/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/1/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/1/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/10/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/10/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/10/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/11/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/11/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/11/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/12/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/12/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/12/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/13/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/13/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/13/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/14/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/14/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/14/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/15/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/15/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/15/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/16/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/16/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/16/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/17/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/17/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/17/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/18/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/18/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/18/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/19/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/19/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/19/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/2/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/2/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/2/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/20/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/20/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/20/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/21/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/21/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/21/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/22/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/22/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/22/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/23/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/23/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/23/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/24/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/24/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/24/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/25/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/25/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/25/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/26/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/26/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/26/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/27/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/27/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/27/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/28/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/28/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/28/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/29/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/29/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/29/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/3/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/3/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/3/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/30/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/30/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/30/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/31/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/31/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/31/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/32/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/32/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/32/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/33/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/33/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/33/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/34/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/34/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/34/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/35/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/35/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/35/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/36/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/36/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/36/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/37/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/37/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/37/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/38/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/38/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/38/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/39/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/39/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/39/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/4/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/4/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/4/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/40/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/40/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/40/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/41/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/41/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/41/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/42/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/42/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/42/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/43/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/43/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/43/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/44/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/44/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/44/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/45/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/45/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/45/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/46/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/46/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/46/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/47/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/47/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/47/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/48/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/48/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/48/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/49/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/49/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/49/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/5/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/5/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/5/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/50/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/50/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/50/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/51/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/51/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/51/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/52/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/52/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/52/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/53/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/53/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/53/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/54/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/54/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/54/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/55/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/55/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/55/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/56/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/56/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/56/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/57/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/57/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/57/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/58/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/58/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/58/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/59/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/59/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/59/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/6/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/6/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/6/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/60/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/60/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/60/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/61/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/61/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/61/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/62/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/62/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/62/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/63/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/63/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/63/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/64/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/64/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/64/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/65/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/65/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/65/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/66/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/66/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/66/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/67/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/67/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/67/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/68/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/68/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/68/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/69/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/69/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/69/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/7/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/7/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/7/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/70/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/70/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/70/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/71/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/71/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/71/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/72/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/72/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/72/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/73/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/73/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/73/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/73/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/73/tar.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/73/tar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/74/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/74/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/74/tar.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/74/tar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/75/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/75/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/75/tar.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/75/tar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/76/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/76/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/76/tar.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/76/tar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/77/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/77/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/77/tar.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/77/tar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/78/diff.diff" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/78/diff.diff" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/78/src.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/78/src.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/78/tar.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/78/tar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/8/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/8/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/8/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/9/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/9/src.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/9/tar.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse_all/bugs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/resources/APImisuse/bugs.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/graphs.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/input4test.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/new.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/spmf.txt" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/spmf.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/spmf0.txt" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/spmf0.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -232,7 +377,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/codegraph/src/test/res" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39586028" />
     <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
@@ -243,13 +388,14 @@
       <recent name="$PROJECT_DIR$/codegraph/src/test/java/gumtree" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/codegraph/src/test/resources/FixBench" />
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Miner">
+  <component name="RunManager" selected="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2">
     <configuration name="FileConverter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.util.FileConverter" />
       <module name="HFFSM" />
@@ -291,24 +437,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PDGParser2" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.parmol.parsers.PDGParser2" />
-      <module name="HFFSM" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.parmol.parsers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
+      <option name="METHOD_NAME" value="testPatternExtractFromMultiplePairs" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternExtract.testPatternExtract" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternExtract" />
-      <option name="METHOD_NAME" value="testPatternExtract" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
+      <option name="METHOD_NAME" value="testPatternExtractFromMultiplePairs2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPatternExtractor.testPatternExtractFromSinglePair" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
+      <option name="METHOD_NAME" value="testPatternExtractFromSinglePair" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -318,15 +471,17 @@
       <item itemvalue="Application.Miner" />
       <item itemvalue="Application.FileConverter" />
       <item itemvalue="Application.PDGParser" />
-      <item itemvalue="Application.PDGParser2" />
-      <item itemvalue="JUnit.TestPatternExtract.testPatternExtract" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternExtract.testPatternExtract" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
         <item itemvalue="Application.PDGParser" />
         <item itemvalue="Application.FileConverter" />
-        <item itemvalue="Application.PDGParser2" />
       </list>
     </recent_temporary>
   </component>
@@ -430,7 +585,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677230482377</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="1. fix a bug 'unconnected nodes in CodeGraph', caused by field-parsing and ArgumentList-ExprList(since no ExprList in JDT)&#10;2. using HFFSM algorithm to extract pattern">
+      <created>1678071845638</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1678071845638</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -458,7 +620,8 @@
     <MESSAGE value="add actions on codegraph" />
     <MESSAGE value="delete some unused files and add APImisuse data" />
     <MESSAGE value="delete some unused files" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete some unused files" />
+    <MESSAGE value="1. fix a bug 'unconnected nodes in CodeGraph', caused by field-parsing and ArgumentList-ExprList(since no ExprList in JDT)&#10;2. using HFFSM algorithm to extract pattern" />
+    <option name="LAST_COMMIT_MESSAGE" value="1. fix a bug 'unconnected nodes in CodeGraph', caused by field-parsing and ArgumentList-ExprList(since no ExprList in JDT)&#10;2. using HFFSM algorithm to extract pattern" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -497,11 +660,6 @@
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGraphBuilder.java</url>
           <line>29</line>
           <option name="timeStamp" value="71" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtract.java</url>
-          <line>69</line>
-          <option name="timeStamp" value="78" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/gspan/src/mining/GSpanTool.java</url>
@@ -578,6 +736,36 @@
           <line>166</line>
           <option name="timeStamp" value="110" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java</url>
+          <line>32</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
+          <line>39</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java</url>
+          <line>80</line>
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
+          <line>279</line>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -586,6 +774,7 @@
     <select />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/FixGen$TestPatternExtractor_testPatternExtractFromMultiplePairs.ic" NAME="TestPatternExtractor.testPatternExtractFromMultiplePairs Coverage Results" MODIFIED="1678520699302" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
     <SUITE FILE_PATH="coverage/FixGen$TestGumTree_testGumTreeDiff__1_.ic" NAME="TestGumTree.testGumTreeDiff (1) Coverage Results" MODIFIED="1668321329194" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

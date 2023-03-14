@@ -1,0 +1,40 @@
+digraph "Pattern" {
+0 [label="##IfStatement in Block as statement 0####ActionPoint##\nUtil.pickRandomElement#?,List#2138:class org.eclipse.jdt.core.dom.IfStatement\nKeysDAORedisImpl.getRedisInfo#?#122:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+1 [label="##Block in MethodDeclaration as body##\nUtil.pickRandomElement#?,List#2137:class org.eclipse.jdt.core.dom.Block\nKeysDAORedisImpl.getRedisInfo#?#121:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+2 [label="##MethodDeclaration in TypeDeclaration as bodyDeclarations##\nUtil.pickRandomElement#?,List#2137:public static T pickRandomElement(List<T> list)\nKeysDAORedisImpl.getRedisInfo#?#121:class org.eclipse.jdt.core.dom.EnhancedForStatement" shape=ellipse]
+3 [label="##SimpleName in MethodDeclaration as name##\nUtil.pickRandomElement#?,List#2137:pickRandomElement" shape=ellipse]
+4 [label="##SingleVariableDeclaration in MethodDeclaration as parameters##\nUtil.pickRandomElement#?,List#2137:List<T> list" shape=ellipse]
+5 [label="##VariableDeclarationStatement in Block as statement 1##\nUtil.pickRandomElement#?,List#2139:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+6 [label="##VariableDeclarationStatement in Block as statement 2##\nUtil.pickRandomElement#?,List#2140:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+7 [label="##ReturnStatement in Block as statement 3##\nUtil.pickRandomElement#?,List#2141:class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+8 [label="##InfixExpression in IfStatement as expression##\nUtil.pickRandomElement#?,List#2138:list == null\nKeysDAORedisImpl.getRedisInfo#?#122:keyValueStr.charAt(0) != '#'" shape=ellipse]
+9 [label="##SimpleName in InfixExpression as leftOperand##\nUtil.pickRandomElement#?,List#2138:list" shape=ellipse]
+10 [label="##NullLiteral in InfixExpression as rightOperand##\nUtil.pickRandomElement#?,List#2138:null" shape=ellipse]
+11 [label="##ReturnStatement in IfStatement as thenStatement##\nUtil.pickRandomElement#?,List#2138:class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+12 [label="##Block in MethodDeclaration as body##\nKeysDAORedisImpl.getRedisInfo#?#117:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+13 [label="##SingleVariableDeclaration in EnhancedForStatement as parameter##\nKeysDAORedisImpl.getRedisInfo#?#121:final String keyValueStr" shape=ellipse]
+14 [label="##SimpleName in EnhancedForStatement as expression##\nKeysDAORedisImpl.getRedisInfo#?#121:keyValueStrs" shape=ellipse]
+15 [label="##MethodInvocation in InfixExpression as leftOperand##\nKeysDAORedisImpl.getRedisInfo#?#122:keyValueStr.charAt(0)" shape=ellipse]
+16 [label="##CharacterLiteral in InfixExpression as rightOperand##\nKeysDAORedisImpl.getRedisInfo#?#122:#" shape=ellipse]
+17 [label="##Block in IfStatement as thenStatement##\nKeysDAORedisImpl.getRedisInfo#?#122:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+0 -> 8 [label="AST"];
+0 -> 11 [label="AST"];
+0 -> 17 [label="AST"];
+1 -> 0 [label="AST"];
+1 -> 5 [label="AST"];
+1 -> 6 [label="AST"];
+1 -> 7 [label="AST"];
+2 -> 1 [label="AST"];
+2 -> 3 [label="AST"];
+2 -> 4 [label="AST"];
+2 -> 13 [label="AST"];
+2 -> 14 [label="AST"];
+8 -> 9 [label="AST"];
+8 -> 10 [label="AST"];
+8 -> 15 [label="AST"];
+8 -> 16 [label="AST"];
+12 -> 2 [label="AST"];
+14 -> 1 [label="Control Dep"];
+14 -> 8 [label="Control Dep"];
+14 -> 0 [label="Control Dep"];
+}

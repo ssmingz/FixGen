@@ -35,4 +35,9 @@ public class Move extends ActionNode {
     public String toLabelString() {
         return "MOVE";
     }
+
+    @Override
+    public ActionType getType() {
+        return ActionType.MOVE;
+    }
 }

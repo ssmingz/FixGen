@@ -35,4 +35,9 @@ public class Insert extends ActionNode {
     public String toLabelString() {
         return "INSERT";
     }
+
+    @Override
+    public ActionType getType() {
+        return ActionType.INSERT;
+    }
 }
