@@ -21,6 +21,8 @@ public abstract class ExprNode extends Node {
 
     @Override
     public String toLabelString() {
+        if (_astNode == null)
+            return "";
         return _astNode.toString();
     }
 }

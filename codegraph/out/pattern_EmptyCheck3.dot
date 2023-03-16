@@ -1,3 +1,3 @@
 digraph "Pattern" {
-0 [label="##IfStatement in Block as statement 1####ActionPoint##\nKeePassFile.getEntryByTitle#?,String#109:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+0 [label="##IfStatement####ActionPoint##\nKeePassFile.getEntryByTitle#?,String#109:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
 }

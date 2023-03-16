@@ -1,3 +1,12 @@
 digraph "Pattern" {
-0 [label="##InfixExpression in IfStatement as expression####ActionPoint##\nKeePassFile.getEntryByTitle#?,String#109:entries != null" shape=ellipse]
+0 [label="##InfixExpression####ActionPoint##\nKeePassFile.getEntryByTitle#?,String#109:entries != null" shape=ellipse]
+1 [label="##SimpleName##\nKeePassFile.getEntryByTitle#?,String#109:entries\nKeePassFile.getEntryByTitle#?,String#110:get" shape=ellipse]
+2 [label="##MethodInvocation##\nKeePassFile.getEntryByTitle#?,String#110:entries.get(0)" shape=ellipse]
+3 [label="KeePassFile.getEntryByTitle#?,String#-1:DELETE" shape=ellipse]
+0 -> 1 [label="AST"];
+0 -> 2 [label="Control Dep"];
+0 -> 1 [label="Control Dep"];
+0 -> 3 [label="Action"];
+1 -> 1 [label="Define Use"];
+2 -> 1 [label="AST"];
 }

@@ -3,7 +3,7 @@ package model.pattern;
 import model.graph.edge.Edge;
 
 public class PatternEdge {
-    public enum EdgeType {AST, DATA_DEP, CONTROL_DEP, DEF_USE, NULL};
+    public enum EdgeType {AST, DATA_DEP, CONTROL_DEP, DEF_USE, ACTION, NULL};
     public PatternEdge.EdgeType type;
     private PatternNode source;
     private PatternNode target;
@@ -23,6 +23,10 @@ public class PatternEdge {
             return EdgeType.DEF_USE;
         else if (cgEdgeType == Edge.EdgeType.CONTROL_DEP)
             return EdgeType.CONTROL_DEP;
+        else if (cgEdgeType == Edge.EdgeType.AST)
+            return EdgeType.AST;
+        else if (cgEdgeType == Edge.EdgeType.ACTION)
+            return EdgeType.ACTION;
         else
             return EdgeType.NULL;
     }
@@ -45,6 +49,8 @@ public class PatternEdge {
                 return "Data Dep";
             case DEF_USE:
                 return "Define Use";
+            case ACTION:
+                return "Action";
             case NULL:
                 return "null";
         }

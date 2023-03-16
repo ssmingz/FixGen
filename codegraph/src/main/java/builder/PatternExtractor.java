@@ -1,7 +1,6 @@
 package builder;
 
 import model.CodeGraph;
-import model.graph.edge.ASTEdge;
 import model.graph.edge.Edge;
 import model.graph.node.Node;
 import model.graph.node.PatchNode;
@@ -10,7 +9,6 @@ import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.eclipse.jdt.core.dom.*;
-import java.lang.reflect.*;
 
 import java.lang.reflect.Type;
 import java.util.*;
@@ -19,6 +17,7 @@ import java.util.stream.Collectors;
 public class PatternExtractor {
     int MAX_NODE_SIZE;
     static int MAX_EXTEND_LEVEL = 3;  // default is 3
+    static Map<Node, PatternNode>  _nodeMap = new LinkedHashMap<>();
 
     public static List<Pattern> extractPattern(CodeGraph refer, CodeGraph compared) {
         List<Pattern> patternList = new ArrayList<>();
@@ -48,33 +47,56 @@ public class PatternExtractor {
         return "";
     }
 
+    /**
+     * return the node according to the nodeLabel around root node, return null if not exist
+     */
+    public static PatternNode findNeighbor(PatternNode root, PatternEdge.EdgeType edgeType, String nodeLabel, String direction) {
+        List<PatternEdge> edges;
+        if (direction.equals("in")) {
+            edges = root.inEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
+            edges = edges.stream().filter(s -> s.getSource().getASTType().equals(nodeLabel)).collect(Collectors.toList());
+            if (edges.size() == 1)
+                return edges.get(0).getSource();
+        } else if (direction.equals("out")) {
+            edges = root.outEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
+            edges = edges.stream().filter(s -> s.getTarget().getASTType().equals(nodeLabel)).collect(Collectors.toList());
+            if (edges.size() == 1)
+                return edges.get(0).getTarget();
+        } else {
+            System.out.println("[ERROR]more than one matched patternNode");
+        }
+        return null;
+    }
+
     public static void extendPattern(Node aNode, CodeGraph aGraph, PatternNode extendPoint, Pattern pattern, int extendLevel, Set<Edge> ignore) {
         if (extendLevel > MAX_EXTEND_LEVEL)
             return;
+        Set<PatternNode> candidates = new LinkedHashSet<>();
         // in edges of aNode
         for (Edge ai : aNode.inEdges) {
             if (ignore.contains(ai))
                 continue;
             Node pre = ai.getSource();
-            // same AST structure into one PatternNode
-            if (ai instanceof ASTEdge) {
-                List<PatternEdge> astPE = extendPoint.inEdges().stream().filter(p -> p.type == PatternEdge.EdgeType.AST).collect(Collectors.toList());
-                if (astPE.size() > 1) {  // there must be only on in-AST edge
-                    System.out.println("[WARN]there are more than one AST edge for pattern");
-                } else if (astPE.size() == 1) {  // same type PatternNode already exists
-                    PatternNode astPN = astPE.get(0).getSource();
-                    astPN.addInstance(pre, aGraph);
-                    // extend recursively
+            // TODO: check node type or location in parent
+            String nodeLabel = getASTNodeType(pre);
+            PatternNode prePN = findNode(pre);
+            if (prePN != null) {  // by early traversing, node exists but edge not
+                if (!pattern.hasEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type)))
+                    pattern.addEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type));
+            } else {
+                prePN = findNeighbor(extendPoint, PatternEdge.getEdgeType(ai.type), nodeLabel, "in");
+                if (prePN != null) {  // same type already exists
+                    prePN.addInstance(pre, aGraph);
                     ignore.add(ai);
-                    extendPattern(pre, aGraph, astPN, pattern, ++extendLevel, ignore);
-                } else {  // create new PatterNode
-                    PatternNode extendPN = new PatternNode(pre, aGraph, loc(pre), getASTNodeType(pre));
+                    candidates.add(prePN);
+                } else {
+                    PatternNode extendPN = new PatternNode(pre, aGraph, getASTNodeType(pre), getASTNodeType(pre));
+                    _nodeMap.put(pre, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, pre);
-                    pattern.addEdge(extendPN, extendPoint, PatternEdge.EdgeType.AST);
-                    // extend recursively
+                    pattern.addEdge(extendPN, extendPoint, PatternEdge.getEdgeType(ai.type));
                     ignore.add(ai);
-                    extendPattern(pre, aGraph, extendPN, pattern, ++extendLevel, ignore);
+                    candidates.add(extendPN);
                 }
             }
         }
@@ -83,56 +105,50 @@ public class PatternExtractor {
             if (ignore.contains(ao))
                 continue;
             Node post = ao.getTarget();
-            // same AST structure into one PatternNode
-            if (ao instanceof ASTEdge) {
-                List<PatternEdge> astPE = extendPoint.outEdges().stream().filter(p -> p.type == PatternEdge.EdgeType.AST).collect(Collectors.toList());
-                List<PatternEdge> exist = astPE.stream().filter(p -> loc(post).equals(p.getTarget().getLocationInParent())).collect(Collectors.toList());
-                if (!exist.isEmpty()) {  // same type PatternNode already exists
-                    if (exist.size() == 1) {
-                        PatternNode pn = exist.get(0).getTarget();  // same type PatternNode already exists
-                        pn.addInstance(post, aGraph);
-                        // extend recursively
-                        ignore.add(ao);
-                        extendPattern(post, aGraph, pn, pattern, ++extendLevel, ignore);
-                    } else {
-                        System.out.println("[WARN]more than one same location pattern node exist");
-                    }
-                } else {  // create new PatterNode
-                    PatternNode extendPN = new PatternNode(post, aGraph, loc(post), getASTNodeType(post));
+            // TODO: check node type or location in parent
+            String nodeLabel = getASTNodeType(post);
+            PatternNode postPN = findNode(post);
+            if (postPN != null) {  // by early traversing, node exists but edge not
+                if (!pattern.hasEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type)))
+                    pattern.addEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type));
+            } else {
+                postPN = findNeighbor(extendPoint, PatternEdge.getEdgeType(ao.type), nodeLabel, "out");
+                if (postPN != null) {  // same type already exists
+                    postPN.addInstance(post, aGraph);
+                    ignore.add(ao);
+                    candidates.add(postPN);
+                } else {
+                    PatternNode extendPN = new PatternNode(post, aGraph, getASTNodeType(post), getASTNodeType(post));
+                    _nodeMap.put(post, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, post);
-                    pattern.addEdge(extendPoint, extendPN, PatternEdge.EdgeType.AST);
-                    // extend recursively
+                    pattern.addEdge(extendPoint, extendPN, PatternEdge.getEdgeType(ao.type));
                     ignore.add(ao);
-                    extendPattern(post, aGraph, extendPN, pattern, ++extendLevel, ignore);
+                    candidates.add(extendPN);
                 }
             }
         }
-        // add edges other than AST
-        List<Edge> otherIn = aNode.inEdges.stream().filter(p -> !(p instanceof ASTEdge)).collect(Collectors.toList());
-        List<Edge> otherOut = aNode.outEdges.stream().filter(p -> !(p instanceof ASTEdge)).collect(Collectors.toList());
-        for (Edge oi : otherIn) {
-            if (ignore.contains(oi))
-                continue;
-            Node pre = oi.getSource();
-            if (pattern.getNodeMapping().containsKey(pre)) {  // node already in the pattern
-                if (!pattern.hasEdge(pattern.getNodeMapping().get(pre), extendPoint, PatternEdge.getEdgeType(oi.type)))
-                    pattern.addEdge(pattern.getNodeMapping().get(pre), extendPoint, PatternEdge.getEdgeType(oi.type));
-            } else {
-                // if not mapped in current pattern, skip
+        // extend recursively
+        for (PatternNode c : candidates) {
+            for (Node n : _nodeMap.keySet()) {
+                if (_nodeMap.get(n).equals(c)) {
+                    extendPattern(n, aGraph, c, pattern,extendLevel+1, ignore);
+                    break;
+                }
             }
         }
-        for (Edge oo : otherOut) {
-            if (ignore.contains(oo))
-                continue;
-            Node post = oo.getTarget();
-            if (pattern.getNodeMapping().containsKey(post)) {  // node already in the pattern
-                if (!pattern.hasEdge(extendPoint, pattern.getNodeMapping().get(post), PatternEdge.getEdgeType(oo.type)))
-                    pattern.addEdge(extendPoint, pattern.getNodeMapping().get(post), PatternEdge.getEdgeType(oo.type));
-            } else {
-                // if not mapped in current pattern, skip
+    }
+
+    private static PatternNode findNode(Node post) {
+        if (_nodeMap.containsKey(post))
+            return _nodeMap.get(post);
+        else {
+            for (Map.Entry<Node, PatternNode> entry : _nodeMap.entrySet()) {
+                if (entry.getKey().toLabelString().equals(post.toLabelString()))
+                    return entry.getValue();
             }
         }
+        return null;
     }
 
     /**
@@ -254,26 +270,28 @@ public class PatternExtractor {
 
     public static List<Pattern> combineGraphs(List<CodeGraph> cgs) {
         List<Pattern> patternList = new ArrayList<>();
-        Set<ActionNode> traversedSet = new LinkedHashSet<>();
+        Map<ActionNode, Pattern> traversedMap = new LinkedHashMap<>();
         for (CodeGraph cg : cgs) {
             for (ActionNode ap1 : cg.getActions()) {
-                if (traversedSet.contains(ap1)) continue;
-                PatternNode start = new PatternNode(ap1.getParent(), cg, loc(ap1.getParent()), getASTNodeType(ap1.getParent()));
-                Pattern pattern = new Pattern(start);
-                start.setPattern(pattern);
-                patternList.add(pattern);
-                traversedSet.add(ap1);
-                for (CodeGraph compared : cgs) {
-                    if (compared == cg) continue;
-                    for (ActionNode ap2 : compared.getActions()) {
-                        if (similar(ap1, ap2)) {
-                            traversedSet.add(ap2);
-                            pattern.getStart().addInstance(ap2.getParent(), compared);
-                            // extending process
-                            extendPattern(ap1.getParent(), cg, start, pattern, 1, new HashSet<>());
-                            extendPattern(ap2.getParent(), compared, start, pattern, 1, new HashSet<>());
-                        }
+                boolean find = false;
+                for (Map.Entry<ActionNode, Pattern> entry : traversedMap.entrySet()) {
+                    if (similar(ap1, entry.getKey())) {
+                        traversedMap.put(ap1, entry.getValue());
+                        entry.getValue().getStart().addInstance(ap1.getParent(), cg);
+                        _nodeMap.put(ap1.getParent(), entry.getValue().getStart());
+                        extendPattern(ap1.getParent(), cg, entry.getValue().getStart(), entry.getValue(), 1, new HashSet<>());
+                        find = true;
+                        break;
                     }
+                }
+                if (!find) {
+                    PatternNode start = new PatternNode(ap1.getParent(), cg, getASTNodeType(ap1.getParent()), getASTNodeType(ap1.getParent()));
+                    Pattern pattern = new Pattern(start);
+                    start.setPattern(pattern);
+                    patternList.add(pattern);
+                    traversedMap.put(ap1, pattern);
+                    _nodeMap.put(ap1.getParent(), start);
+                    extendPattern(ap1.getParent(), cg, start, pattern, 1, new HashSet<>());
                 }
             }
         }

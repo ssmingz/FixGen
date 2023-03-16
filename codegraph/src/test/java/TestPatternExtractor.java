@@ -2,6 +2,7 @@ import builder.PatternExtractor;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import model.CodeGraph;
+import model.GraphConfiguration;
 import model.graph.node.actions.ActionNode;
 import model.pattern.Pattern;
 import org.junit.Test;
@@ -67,6 +68,8 @@ public class TestPatternExtractor {
     public void testPatternExtractFromMultiplePairs2() {
         CodeGraph change1 = constructActionGraph2("EmptyCheck/Genesis#26");
         CodeGraph change2 = constructActionGraph2("EmptyCheck/Genesis#69");
+        //DotGraph dot2 = new DotGraph(change2, new GraphConfiguration(), 0);
+        //dot2.toDotFile(new File(System.getProperty("user.dir") + "/out/69.dot"));
         CodeGraph change3 = constructActionGraph2("EmptyCheck/Genesis#101");
         CodeGraph change4 = constructActionGraph2("EmptyCheck/Genesis#161");
 
