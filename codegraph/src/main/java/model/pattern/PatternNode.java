@@ -10,7 +10,6 @@ public class PatternNode {
     Set<String> _comparedAttrs = new LinkedHashSet<>();
     int _freq = 0;
     private Map<Node, CodeGraph> _nodeGraphInstances = new LinkedHashMap<>();
-    private Map<Edge, CodeGraph> _edgeGraphInstances = new LinkedHashMap<>();
 
     private Set<PatternEdge> _inEdges = new LinkedHashSet<>();
     private Set<PatternEdge> _outEdges = new LinkedHashSet<>();

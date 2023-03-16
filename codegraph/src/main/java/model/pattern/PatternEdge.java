@@ -1,12 +1,17 @@
 package model.pattern;
 
+import model.CodeGraph;
 import model.graph.edge.Edge;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class PatternEdge {
     public enum EdgeType {AST, DATA_DEP, CONTROL_DEP, DEF_USE, ACTION, NULL};
     public PatternEdge.EdgeType type;
     private PatternNode source;
     private PatternNode target;
+    private Map<Edge, CodeGraph> _edgeGraphInstances = new LinkedHashMap<>();
 
     public PatternEdge(PatternNode source, PatternNode target, EdgeType type) {
         this.source = source;
@@ -14,6 +19,10 @@ public class PatternEdge {
         this.type = type;
         this.source.addOutEdge(this);
         this.target.addInEdge(this);
+    }
+
+    public void addInstance(Edge edge, CodeGraph cg) {
+        _edgeGraphInstances.put(edge, cg);
     }
 
     public static EdgeType getEdgeType(Edge.EdgeType cgEdgeType) {
@@ -55,5 +64,9 @@ public class PatternEdge {
                 return "null";
         }
         return "";
+    }
+
+    public int getInstanceNumber() {
+        return _edgeGraphInstances.size();
     }
 }

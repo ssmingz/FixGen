@@ -1,3 +1,0 @@
-digraph "Pattern" {
-0 [label="##ActionPoint##\nUtil.pickRandomElement#?,List#-1:(list == null) || list.isEmpty()\nKeysDAORedisImpl.getRedisInfo#?#-1:(!keyValueStr.isEmpty()) && (keyValueStr.charAt(0) != '#')" shape=ellipse]
-}

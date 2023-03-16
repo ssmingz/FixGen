@@ -79,14 +79,15 @@ public class PatternExtractor {
             Node pre = ai.getSource();
             // TODO: check node type or location in parent
             String nodeLabel = getASTNodeType(pre);
-            PatternNode prePN = findNode(pre);
+            PatternNode prePN = findNode(pre, aGraph);
             if (prePN != null) {  // by early traversing, node exists but edge not
-                if (!pattern.hasEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type)))
-                    pattern.addEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type));
+                pattern.addEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type), ai, aGraph);
             } else {
                 prePN = findNeighbor(extendPoint, PatternEdge.getEdgeType(ai.type), nodeLabel, "in");
                 if (prePN != null) {  // same type already exists
                     prePN.addInstance(pre, aGraph);
+                    pattern.addEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type), ai, aGraph);
+                    _nodeMap.put(pre, prePN);
                     ignore.add(ai);
                     candidates.add(prePN);
                 } else {
@@ -94,7 +95,7 @@ public class PatternExtractor {
                     _nodeMap.put(pre, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, pre);
-                    pattern.addEdge(extendPN, extendPoint, PatternEdge.getEdgeType(ai.type));
+                    pattern.addEdge(extendPN, extendPoint, PatternEdge.getEdgeType(ai.type), ai, aGraph);
                     ignore.add(ai);
                     candidates.add(extendPN);
                 }
@@ -107,14 +108,15 @@ public class PatternExtractor {
             Node post = ao.getTarget();
             // TODO: check node type or location in parent
             String nodeLabel = getASTNodeType(post);
-            PatternNode postPN = findNode(post);
+            PatternNode postPN = findNode(post, aGraph);
             if (postPN != null) {  // by early traversing, node exists but edge not
-                if (!pattern.hasEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type)))
-                    pattern.addEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type));
+                pattern.addEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type), ao, aGraph);
             } else {
                 postPN = findNeighbor(extendPoint, PatternEdge.getEdgeType(ao.type), nodeLabel, "out");
                 if (postPN != null) {  // same type already exists
                     postPN.addInstance(post, aGraph);
+                    pattern.addEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type), ao, aGraph);
+                    _nodeMap.put(post, postPN);
                     ignore.add(ao);
                     candidates.add(postPN);
                 } else {
@@ -122,7 +124,7 @@ public class PatternExtractor {
                     _nodeMap.put(post, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, post);
-                    pattern.addEdge(extendPoint, extendPN, PatternEdge.getEdgeType(ao.type));
+                    pattern.addEdge(extendPoint, extendPN, PatternEdge.getEdgeType(ao.type), ao, aGraph);
                     ignore.add(ao);
                     candidates.add(extendPN);
                 }
@@ -131,7 +133,7 @@ public class PatternExtractor {
         // extend recursively
         for (PatternNode c : candidates) {
             for (Node n : _nodeMap.keySet()) {
-                if (_nodeMap.get(n).equals(c)) {
+                if (_nodeMap.get(n).equals(c) && _nodeMap.get(n).getInstance().get(n).getGraphName().equals(aGraph.getGraphName())) {
                     extendPattern(n, aGraph, c, pattern,extendLevel+1, ignore);
                     break;
                 }
@@ -139,13 +141,17 @@ public class PatternExtractor {
         }
     }
 
-    private static PatternNode findNode(Node post) {
+    private static PatternNode findNode(Node post, CodeGraph cg) {
         if (_nodeMap.containsKey(post))
             return _nodeMap.get(post);
         else {
             for (Map.Entry<Node, PatternNode> entry : _nodeMap.entrySet()) {
-                if (entry.getKey().toLabelString().equals(post.toLabelString()))
-                    return entry.getValue();
+                for (Node ins : entry.getValue().getInstance().keySet()) {
+                    String label1 = entry.getValue().getInstance().get(ins) + "#" + entry.getKey().getStartSourceLine() + ":" + entry.getKey().toLabelString();
+                    String label2 = cg.getGraphName() + "#" + post.getStartSourceLine() + ":" + post.toLabelString();
+                    if (label1.equals(label2))
+                        return entry.getValue();
+                }
             }
         }
         return null;
@@ -272,26 +278,28 @@ public class PatternExtractor {
         List<Pattern> patternList = new ArrayList<>();
         Map<ActionNode, Pattern> traversedMap = new LinkedHashMap<>();
         for (CodeGraph cg : cgs) {
-            for (ActionNode ap1 : cg.getActions()) {
+            for (ActionNode ap : cg.getActions()) {
+                if (_nodeMap.containsKey(ap))
+                    continue;
                 boolean find = false;
                 for (Map.Entry<ActionNode, Pattern> entry : traversedMap.entrySet()) {
-                    if (similar(ap1, entry.getKey())) {
-                        traversedMap.put(ap1, entry.getValue());
-                        entry.getValue().getStart().addInstance(ap1.getParent(), cg);
-                        _nodeMap.put(ap1.getParent(), entry.getValue().getStart());
-                        extendPattern(ap1.getParent(), cg, entry.getValue().getStart(), entry.getValue(), 1, new HashSet<>());
+                    if (similar(ap, entry.getKey())) {
+                        traversedMap.put(ap, entry.getValue());
+                        entry.getValue().getStart().addInstance(ap.getParent(), cg);
+                        _nodeMap.put(ap.getParent(), entry.getValue().getStart());
+                        extendPattern(ap.getParent(), cg, entry.getValue().getStart(), entry.getValue(), 1, new HashSet<>());
                         find = true;
                         break;
                     }
                 }
                 if (!find) {
-                    PatternNode start = new PatternNode(ap1.getParent(), cg, getASTNodeType(ap1.getParent()), getASTNodeType(ap1.getParent()));
+                    PatternNode start = new PatternNode(ap.getParent(), cg, getASTNodeType(ap.getParent()), getASTNodeType(ap.getParent()));
                     Pattern pattern = new Pattern(start);
                     start.setPattern(pattern);
                     patternList.add(pattern);
-                    traversedMap.put(ap1, pattern);
-                    _nodeMap.put(ap1.getParent(), start);
-                    extendPattern(ap1.getParent(), cg, start, pattern, 1, new HashSet<>());
+                    traversedMap.put(ap, pattern);
+                    _nodeMap.put(ap.getParent(), start);
+                    extendPattern(ap.getParent(), cg, start, pattern, 1, new HashSet<>());
                 }
             }
         }

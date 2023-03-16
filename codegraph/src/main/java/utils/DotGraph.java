@@ -78,7 +78,7 @@ public class DotGraph {
             for (PatternEdge e : node.outEdges()) {
                 if (!idByNode.containsKey(e.getTarget())) continue;
                 int tId = idByNode.get(e.getTarget());
-                String label = e.getLabel();
+                String label = e.getLabel() + ":" + e.getInstanceNumber();
                 graph.append(addEdge(sId, tId, null, null, label));
             }
         }

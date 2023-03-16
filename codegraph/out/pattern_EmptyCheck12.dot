@@ -1,3 +1,0 @@
-digraph "Pattern" {
-0 [label="##Block####ActionPoint##\nAllEntries.boost#?,int#147:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
-}

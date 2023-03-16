@@ -76,8 +76,8 @@ public class TestPatternExtractor {
         List<CodeGraph> cgs = new ArrayList<>();
         cgs.add(change1);
         cgs.add(change2);
-        cgs.add(change3);
-        cgs.add(change4);
+        //cgs.add(change3);
+        //cgs.add(change4);
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(cgs);
         for (Pattern pat : combinedGraphs) {

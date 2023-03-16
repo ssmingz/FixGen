@@ -5,24 +5,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="1. change pattern extraction algorithm to extend from ActionPoint with 1)AST in/out edges to determine PatternNodes, group by node type and location in parent(as a label) 2)other-kind in/out edges&#10;2. fix some mapping bugs when using gumtree">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck10.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck10.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck11.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck11.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck12.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck12.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck2.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck2.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck3.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck3.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck4.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck4.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck5.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck5.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck6.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck6.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck7.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck7.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck8.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck8.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck9.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck9.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck1.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck10.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck11.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck12.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck2.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck3.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck4.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck5.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck6.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck7.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck8.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck9.dot" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Pattern.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternEdge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +110,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2">
+  <component name="RunManager" selected="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -184,8 +188,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
         <item itemvalue="Application.PDGParser" />
@@ -348,7 +352,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java</url>
-          <line>27</line>
+          <line>24</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -452,11 +456,6 @@
           <option name="timeStamp" value="110" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java</url>
-          <line>33</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
           <line>38</line>
           <option name="timeStamp" value="118" />
@@ -467,14 +466,9 @@
           <option name="timeStamp" value="130" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java</url>
-          <line>54</line>
-          <option name="timeStamp" value="173" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="194" />
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
+          <line>280</line>
+          <option name="timeStamp" value="211" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

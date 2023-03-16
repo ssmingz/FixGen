@@ -1,5 +1,7 @@
 package model.pattern;
 
+import model.CodeGraph;
+import model.graph.edge.Edge;
 import model.graph.node.Node;
 
 import java.util.*;
@@ -28,9 +30,15 @@ public class Pattern {
         return _patternNodeByNode;
     }
 
-    public void addEdge(PatternNode src, PatternNode target, PatternEdge.EdgeType type) {
-        PatternEdge anEdge = new PatternEdge(src, target, type);
-        _patternEdges.add(anEdge);
+    public void addEdge(PatternNode src, PatternNode target, PatternEdge.EdgeType type, Edge e, CodeGraph cg) {
+        PatternEdge edge = findEdge(src, target, type);
+        if (edge == null) {
+            PatternEdge anEdge = new PatternEdge(src, target, type);
+            anEdge.addInstance(e, cg);
+            _patternEdges.add(anEdge);
+        } else {
+            edge.addInstance(e, cg);
+        }
     }
 
     public PatternNode getStart() {
@@ -52,5 +60,13 @@ public class Pattern {
                 return true;
         }
         return false;
+    }
+
+    public PatternEdge findEdge(PatternNode src, PatternNode tar, PatternEdge.EdgeType type) {
+        for (PatternEdge e : _patternEdges) {
+            if (e.getSource().equals(src) && e.getTarget().equals(tar) && e.type == type)
+                return e;
+        }
+        return null;
     }
 }
