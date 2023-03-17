@@ -11,6 +11,7 @@ import model.graph.node.expr.NameExpr;
 import model.graph.node.stmt.StmtNode;
 import org.eclipse.jdt.core.dom.ASTNode;
 
+import java.io.Serializable;
 import java.util.*;
 
 public abstract class Node implements NodeComparator {

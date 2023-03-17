@@ -3,6 +3,7 @@ package model.pattern;
 import model.CodeGraph;
 import model.graph.edge.Edge;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

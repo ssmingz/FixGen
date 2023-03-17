@@ -10,6 +10,7 @@ import model.graph.node.varDecl.SingleVarDecl;
 import model.graph.node.varDecl.VarDeclFrag;
 import utils.JavaASTUtil;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

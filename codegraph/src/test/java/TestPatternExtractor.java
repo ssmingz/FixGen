@@ -117,7 +117,7 @@ public class TestPatternExtractor {
     /**
      * special for APImisuse dataset
      */
-    public CodeGraph constructActionGraph(String id) {
+    public static CodeGraph constructActionGraph(String id) {
         String rootDir = "./src/test/resources/APImisuse/";
         String srcFile = rootDir + id + "/src.java";
         String dstFile = rootDir + id + "/tar.java";

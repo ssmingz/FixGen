@@ -4,6 +4,7 @@ import model.CodeGraph;
 import model.graph.edge.Edge;
 import model.graph.node.Node;
 
+import java.io.*;
 import java.util.*;
 
 public class Pattern {

@@ -2,6 +2,8 @@ package model.graph.edge;
 
 import model.graph.node.Node;
 
+import java.io.Serializable;
+
 public abstract class Edge {
     public enum EdgeType {AST, CONTROL_DEP, DATA_DEP, DEF_USE, ACTION};
     public EdgeType type;

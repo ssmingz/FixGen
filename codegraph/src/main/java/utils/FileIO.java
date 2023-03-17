@@ -3,12 +3,9 @@ package utils;
 import model.CodeGraph;
 import model.graph.edge.Edge;
 import model.graph.node.Node;
+import model.pattern.Pattern;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
+import java.io.*;
 import java.util.*;
 
 public class FileIO {
@@ -132,6 +129,61 @@ public class FileIO {
             default:
                 return "5";
         }
+    }
+
+    /**
+     * deep copy object by Serialization and Deserialization
+     */
+    public static <T extends Serializable> T deepCloneObject(T object) {
+        T deepClone = null;
+        ByteArrayOutputStream baos = null;
+        ObjectOutputStream oos = null;
+        ByteArrayInputStream bais = null;
+        ObjectInputStream ois = null;
+        try {
+            baos = new ByteArrayOutputStream();
+            oos = new ObjectOutputStream(baos);
+            oos.writeObject(object);
+            bais = new ByteArrayInputStream(baos
+                    .toByteArray());
+            ois = new ObjectInputStream(bais);
+            deepClone = (T)ois.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(baos != null) {
+                    baos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try {
+                if(oos != null) {
+                    oos.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try{
+                if(bais != null) {
+                    bais.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            try{
+                if(ois != null) {
+                    ois.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return deepClone;
     }
 }
 

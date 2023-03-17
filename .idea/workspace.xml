@@ -4,29 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="1. change pattern extraction algorithm to extend from ActionPoint with 1)AST in/out edges to determine PatternNodes, group by node type and location in parent(as a label) 2)other-kind in/out edges&#10;2. fix some mapping bugs when using gumtree">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck10.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck11.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck12.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck2.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck3.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck4.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck5.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck6.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck7.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck8.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck9.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/Scope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/Edge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Pattern.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternEdge.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -84,19 +70,11 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="true" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/codegraph/src/test/res" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.39586028" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "settings.editor.selected.configurable": "Errors"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/codegraph/src/test/res" />
@@ -110,7 +88,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1">
+  <component name="RunManager" selected="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -125,15 +103,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PDGParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="de.parmol.parsers.PDGParser" />
-      <module name="HFFSM" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="de.parmol.parsers.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+    <configuration name="TestPatternAbstract.testPatternAbstractFromSinglePair" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternAbstract" />
+      <option name="METHOD_NAME" value="testPatternAbstractFromSinglePair" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -180,7 +155,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="Application.PDGParser" />
+      <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
@@ -188,11 +163,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
-        <item itemvalue="Application.PDGParser" />
       </list>
     </recent_temporary>
   </component>
@@ -310,7 +285,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678774836933</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="finish group part">
+      <created>1678962152516</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1678962152516</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -340,7 +322,8 @@
     <MESSAGE value="delete some unused files" />
     <MESSAGE value="1. fix a bug 'unconnected nodes in CodeGraph', caused by field-parsing and ArgumentList-ExprList(since no ExprList in JDT)&#10;2. using HFFSM algorithm to extract pattern" />
     <MESSAGE value="1. change pattern extraction algorithm to extend from ActionPoint with 1)AST in/out edges to determine PatternNodes, group by node type and location in parent(as a label) 2)other-kind in/out edges&#10;2. fix some mapping bugs when using gumtree" />
-    <option name="LAST_COMMIT_MESSAGE" value="1. change pattern extraction algorithm to extend from ActionPoint with 1)AST in/out edges to determine PatternNodes, group by node type and location in parent(as a label) 2)other-kind in/out edges&#10;2. fix some mapping bugs when using gumtree" />
+    <MESSAGE value="finish group part" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish group part" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -397,12 +380,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java</url>
-          <line>120</line>
+          <line>117</line>
           <option name="timeStamp" value="88" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java</url>
-          <line>82</line>
+          <line>79</line>
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -457,18 +440,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
-          <line>38</line>
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="130" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
           <line>280</line>
           <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java</url>
+          <line>13</line>
+          <option name="timeStamp" value="229" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
