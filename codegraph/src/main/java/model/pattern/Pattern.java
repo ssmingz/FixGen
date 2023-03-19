@@ -4,7 +4,6 @@ import model.CodeGraph;
 import model.graph.edge.Edge;
 import model.graph.node.Node;
 
-import java.io.*;
 import java.util.*;
 
 public class Pattern {
@@ -12,11 +11,18 @@ public class Pattern {
     private Set<PatternEdge> _patternEdges = new LinkedHashSet<>();
     private PatternNode _start;
     private Map<Node, PatternNode> _patternNodeByNode = new LinkedHashMap<>();
+    private Set<String> _attributes = new LinkedHashSet<>();
 
     public Pattern(PatternNode aNode) {
         _start = aNode;
         _patternNodes.add(aNode);
     }
+
+    public Set<String> getAttributeSet() {
+        return _attributes;
+    }
+
+    public void addAttribute(String attr) { _attributes.add(attr); }
 
     public void addNode(PatternNode aNode) {
         _patternNodes.add(aNode);
@@ -54,6 +60,10 @@ public class Pattern {
     public List<PatternNode> getNodes() {
         return new ArrayList<>(_patternNodes);
     }
+
+    public Set<PatternNode> getNodeSet() { return _patternNodes; }
+
+    public Set<PatternEdge> getEdgeSet() { return _patternEdges; }
 
     public boolean hasEdge(PatternNode src, PatternNode tar, PatternEdge.EdgeType type) {
         for (PatternEdge e : _patternEdges) {

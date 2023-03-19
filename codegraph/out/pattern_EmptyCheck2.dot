@@ -1,0 +1,41 @@
+digraph "Pattern" {
+0 [label="##MethodDeclaration####ActionPoint##\nAllEntries.boost#?,int#147:public float boost(int startOffset)" shape=ellipse]
+1 [label="##SimpleName##\nAllEntries.boost#?,int#147:boost" shape=ellipse]
+2 [label="##SingleVariableDeclaration##\nAllEntries.boost#?,int#147:int startOffset" shape=ellipse]
+3 [label="##Block##\nAllEntries.boost#?,int#147:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+4 [label="AllEntries.boost#?,int#-1:INSERT\nAllEntries.boost#?,int#-1:INSERT" shape=ellipse]
+5 [label="##SimpleName##\nAllEntries.boost#?,int#147:startOffset" shape=ellipse]
+6 [label="##SimpleName##\nAllEntries.boost#?,int#151:startOffset\nAllEntries.boost#?,int#152:startOffset\nAllEntries.boost#?,int#159:startOffset\nAllEntries.boost#?,int#159:startOffset\nAllEntries.boost#?,int#160:startOffset\nAllEntries.boost#?,int#160:startOffset" shape=ellipse]
+7 [label="##VariableDeclarationStatement##\nAllEntries.boost#?,int#148:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nAllEntries.boost#?,int#158:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+8 [label="##WhileStatement##\nAllEntries.boost#?,int#149:class org.eclipse.jdt.core.dom.WhileStatement" shape=ellipse]
+9 [label="##AssertStatement##\nAllEntries.boost#?,int#159:class org.eclipse.jdt.core.dom.AssertStatement\nAllEntries.boost#?,int#160:class org.eclipse.jdt.core.dom.AssertStatement" shape=ellipse]
+10 [label="##ReturnStatement##\nAllEntries.boost#?,int#161:class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+11 [label="AllEntries.boost#?,int#-1:MOVE\nAllEntries.boost#?,int#-1:MOVE\nAllEntries.boost#?,int#-1:MOVE\nAllEntries.boost#?,int#-1:MOVE\nAllEntries.boost#?,int#-1:MOVE\nAllEntries.boost#?,int#-1:MOVE\nAllEntries.boost#?,int#-1:MOVE" shape=ellipse]
+12 [label="##VariableDeclarationFragment##\nAllEntries.boost#?,int#148:lo=0\nAllEntries.boost#?,int#148:hi=entries.size() - 1" shape=ellipse]
+13 [label="##InfixExpression##\nAllEntries.boost#?,int#149:lo <= hi" shape=ellipse]
+14 [label="##Block##\nAllEntries.boost#?,int#149:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+15 [label="##InfixExpression##\nAllEntries.boost#?,int#159:entries.get(index).startOffset() <= startOffset" shape=ellipse]
+16 [label="##MethodInvocation##\nAllEntries.boost#?,int#161:entries.get(index).boost()" shape=ellipse]
+17 [label="AllEntries.boost#?,int#-1:if (!entries.isEmpty()) {\n    int lo = 0;\n    int hi = entries.size() - 1;\n    while (lo <= hi) {\n        final int mid = (lo + hi) >>> 1;\n        final int midOffset = entries.get(mid).startOffset();\n        if (startOffset < midOffset) {\n            hi = mid - 1;\n        } else {\n            lo = mid + 1;\n        }\n    } \n    final int index = java.lang.Math.max(0, hi);\n    assert entries.get(index).startOffset() <= startOffset;\n    assert (index == (entries.size() - 1)) || (entries.get(index + 1).startOffset() > startOffset);\n    return entries.get(index).boost();\n}" shape=ellipse]
+0 -> 1 [label="AST:1"];
+0 -> 2 [label="AST:1"];
+0 -> 3 [label="AST:1"];
+0 -> 4 [label="Action:2"];
+2 -> 5 [label="AST:1"];
+3 -> 7 [label="AST:2"];
+3 -> 8 [label="AST:1"];
+3 -> 9 [label="AST:2"];
+3 -> 10 [label="AST:1"];
+3 -> 11 [label="Action:7"];
+4 -> 17 [label="Action:1"];
+5 -> 6 [label="Define Use:6"];
+7 -> 12 [label="AST:2"];
+8 -> 13 [label="AST:1"];
+8 -> 14 [label="AST:1"];
+9 -> 15 [label="AST:1"];
+10 -> 16 [label="AST:1"];
+11 -> 7 [label="Action:2"];
+11 -> 8 [label="Action:1"];
+11 -> 9 [label="Action:1"];
+11 -> 10 [label="Action:1"];
+}

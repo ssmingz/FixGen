@@ -15,15 +15,15 @@ import static org.junit.Assert.assertEquals;
 public class TestPatternAbstract {
     @Test
     public void testPatternAbstractFromSinglePair() {
-        CodeGraph change1 = TestPatternExtractor.constructActionGraph("73");
-        CodeGraph change2 = TestPatternExtractor.constructActionGraph("74");
+        CodeGraph change1 = TestPatternExtractor.constructActionGraph("74");
+        CodeGraph change2 = TestPatternExtractor.constructActionGraph("75");
 
         List<Pattern> combinedGraphs = PatternExtractor.extractPattern(change1, change2);
         for (Pattern pat : combinedGraphs) {
             PatternAbstracter abstracter = new PatternAbstracter(2);
-            Pattern patAbs = abstracter.abstractPattern(pat);
-            DotGraph dot = new DotGraph(patAbs, 0);
-            File dir1 = new File(System.getProperty("user.dir") + "/out/pattern73-74_abstract.dot");
+            Pattern patAbs = abstracter.abstractPattern(pat, abstracter.getThreshold());
+            DotGraph dot = new DotGraph(patAbs, 0, true);
+            File dir1 = new File(System.getProperty("user.dir") + "/out/pattern74-75_abstract.dot");
             dot.toDotFile(dir1);
         }
 

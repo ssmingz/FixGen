@@ -22,9 +22,7 @@ import model.graph.node.varDecl.SingleVarDecl;
 import model.graph.node.varDecl.VarDeclFrag;
 import org.eclipse.jdt.core.dom.*;
 import spoon.reflect.declaration.CtElement;
-import spoon.support.reflect.code.CtBlockImpl;
 import spoon.support.reflect.declaration.CtCompilationUnitImpl;
-import spoon.support.reflect.declaration.CtMethodImpl;
 import utils.JavaASTUtil;
 
 import java.util.ArrayList;
@@ -41,6 +39,7 @@ public class CodeGraph {
     private Node entryNode = null;
     protected List<Node> fieldNodes = new ArrayList<>();
     protected List<Node> allNodes = new ArrayList<>();
+    protected Map<String, String> typeByName = new LinkedHashMap<>();
 
     protected CompilationUnit cu = null;
 
@@ -1144,6 +1143,9 @@ public class CodeGraph {
         Type type = typeFromBinding(astNode.getAST(), astNode.resolveTypeBinding());
         sname.setType(JavaASTUtil.getSimpleType(type));
 
+        if (astNode.getLocationInParent().getId().equals("expression"))
+            typeByName.put(name, JavaASTUtil.getSimpleType(type));
+
         sname.setScope(scope);
         scope.addUse(sname.toLabelString(), sname);
         return sname;
@@ -1604,5 +1606,15 @@ public class CodeGraph {
                 al.add((ActionNode) an);
         }
         return al;
+    }
+
+    public String getTypeByName(String name) {
+        if (typeByName.containsKey(name))
+            return typeByName.get(name);
+        return "?";
+    }
+
+    public Map<String, String> getTypeByNameMap() {
+        return typeByName;
     }
 }

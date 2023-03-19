@@ -1,14 +1,13 @@
 package model.pattern;
 
 import model.CodeGraph;
-import model.graph.edge.Edge;
 import model.graph.node.Node;
 
-import java.io.Serializable;
 import java.util.*;
 
 public class PatternNode {
-    Set<String> _comparedAttrs = new LinkedHashSet<>();
+    Set<Attribute> _comparedAttrs = new LinkedHashSet<>();
+
     int _freq = 0;
     private Map<Node, CodeGraph> _nodeGraphInstances = new LinkedHashMap<>();
 
@@ -24,6 +23,10 @@ public class PatternNode {
         _locationInParent = loc;
     }
 
+    public Set<Attribute> getComparedAttributes() {
+        return _comparedAttrs;
+    }
+
     public String getLocationInParent() {
         return _locationInParent;
     }
@@ -32,8 +35,16 @@ public class PatternNode {
         return _astType;
     }
 
-    public void setComparedAttribute(String attr) {
+    public void setComparedAttribute(Attribute attr) {
         _comparedAttrs.add(attr);
+    }
+
+    public Attribute getAttribute(String name) {
+        for (Attribute a : _comparedAttrs) {
+            if (a.getName().equals(name))
+                return a;
+        }
+        return null;
     }
 
     public void addOutEdge(PatternEdge anEdge) {
@@ -89,5 +100,20 @@ public class PatternNode {
             return _pattern.getStart() == this;
         }
         return false;
+    }
+
+    public String toLabelAfterAbstract() {
+        StringBuilder label = new StringBuilder();
+        if (isPatternStart()) {
+            label.append("##ActionPoint##");
+        }
+        if(_comparedAttrs.size()==0)
+            _comparedAttrs.size();
+        for (Attribute a : _comparedAttrs) {
+            if (label.length() != 0)
+                label.append("\n");
+            label.append(a.getName()).append(":").append(a.getTag());
+        }
+        return label.toString();
     }
 }

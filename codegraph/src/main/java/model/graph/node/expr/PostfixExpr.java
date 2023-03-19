@@ -7,7 +7,7 @@ import org.eclipse.jdt.core.dom.ASTNode;
 
 public class PostfixExpr extends ExprNode {
     private ExprNode _expression;
-    private PostfixOpr _operator;
+    private PostfixOpr _postfixOperator;
 
     public PostfixExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
@@ -23,7 +23,7 @@ public class PostfixExpr extends ExprNode {
     }
 
     public void setOpr(PostfixOpr postfixOpr) {
-        _operator = postfixOpr;
+        _postfixOperator = postfixOpr;
         new ASTEdge(this, postfixOpr);
     }
 
@@ -32,7 +32,7 @@ public class PostfixExpr extends ExprNode {
         boolean match = false;
         if (other != null && other instanceof PostfixExpr) {
             PostfixExpr postfixExpr = (PostfixExpr) other;
-            match = _operator.compare(postfixExpr._operator)
+            match = _postfixOperator.compare(postfixExpr._postfixOperator)
                     && _expression.compare(postfixExpr._expression);
         }
         return match;

@@ -25,6 +25,38 @@ public class DotGraph {
     private Pattern pattern;
     private int nodeLabel = 0;
 
+    public DotGraph(Pattern pat, int nodeIndexStart, boolean isAbstract) {
+        pattern = pat;
+        // start
+        graph.append(addStart(pat.getPatternName()));
+
+        List<PatternNode> nodes = pat.getNodes();
+        HashMap<PatternNode, Integer> idByNode = new HashMap<>();
+        if (isAbstract) {
+            // add nodes
+            int id = nodeIndexStart;
+            for (PatternNode node : nodes) {
+                idByNode.put(node, id);
+                String label = node.toLabelAfterAbstract();
+                graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
+                id++;
+            }
+            // add edges
+            for (PatternNode node : nodes) {
+                if (!idByNode.containsKey(node)) continue;
+                int sId = idByNode.get(node);
+                for (PatternEdge e : node.outEdges()) {
+                    if (!idByNode.containsKey(e.getTarget())) continue;
+                    int tId = idByNode.get(e.getTarget());
+                    String label = e.getLabel() + ":" + e.getInstanceNumber();
+                    graph.append(addEdge(sId, tId, null, null, label));
+                }
+            }
+        }
+        // end
+        graph.append(addEnd());
+    }
+
     public DotGraph(CodeGraph cg, GraphConfiguration config, int nodeIndexStart) {
         configuration = config;
         codeGraph = cg;

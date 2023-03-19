@@ -1,55 +1,27 @@
 digraph "Pattern" {
-0 [label="##ExpressionStatement in Block as statement 1####ActionPoint##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.downloadMpackMetadata#?,String#234:class org.eclipse.jdt.core.dom.ExpressionStatement\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
-1 [label="##PrefixExpression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!keyDir.isDirectory()\nMpackManager.downloadMpackMetadata#?,String#233:!stagingDir.exists()" shape=ellipse]
-2 [label="##Block##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.Block\nMpackManager.downloadMpackMetadata#?,String#233:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
-3 [label="##MethodInvocation##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir.mkdir()" shape=ellipse]
-4 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:UPDATE\nMpackManager.downloadMpackMetadata#?,String#-1:UPDATE" shape=ellipse]
-5 [label="##IfStatement##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.downloadMpackMetadata#?,String#233:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
-6 [label="##MethodInvocation##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:keyDir.isDirectory()\nMpackManager.downloadMpackMetadata#?,String#233:stagingDir.exists()" shape=ellipse]
-7 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:\nMpackManager.downloadMpackMetadata#?,String#233:" shape=ellipse]
-8 [label="##MethodInvocation##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger.warn(\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\")" shape=ellipse]
-9 [label="##SimpleName##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:warn\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:homeDir\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:mkdir\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir\nMpackManager.downloadMpackMetadata#?,String#234:mkdir" shape=ellipse]
-10 [label="##InfixExpression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\"" shape=ellipse]
-11 [label="##StringLiteral##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \"\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
-12 [label="##Block##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#728:class org.eclipse.jdt.core.dom.Block\nMpackManager.downloadMpackMetadata#?,String#226:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
-13 [label="##SimpleName##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:keyDir\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:isDirectory\nMpackManager.downloadMpackMetadata#?,String#233:stagingDir\nMpackManager.downloadMpackMetadata#?,String#233:exists" shape=ellipse]
-14 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:\nMpackManager.downloadMpackMetadata#?,String#233:" shape=ellipse]
-15 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
-16 [label="##StringLiteral##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
-17 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:" shape=ellipse]
-18 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:keyDir.mkdirs()\nMpackManager.downloadMpackMetadata#?,String#-1:stagingDir.mkdirs()" shape=ellipse]
-19 [label="##MethodInvocation##\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir.mkdir()" shape=ellipse]
-20 [label="##SimpleName##\nMpackManager.downloadMpackMetadata#?,String#228:stagingDir" shape=ellipse]
-21 [label="MpackManager.downloadMpackMetadata#?,String#234:" shape=ellipse]
-0 -> 3 [label="AST:1"];
-0 -> 4 [label="Action:2"];
-0 -> 8 [label="AST:1"];
-0 -> 19 [label="AST:1"];
+0 [label="##ActionPoint##\nlocationInParent:statements\nnodeTypeHighLevel:statement\nnodeType:ExpressionStatement" shape=ellipse]
+1 [label="locationInParent:expression\nnodeTypeHighLevel:expression\nnodeType:PrefixExpression" shape=ellipse]
+2 [label="locationInParent:thenstatement\nnodeTypeHighLevel:statement\nnodeType:Block" shape=ellipse]
+3 [label="locationInParent:action\nnodeType:UPDATE" shape=ellipse]
+4 [label="locationInParent:statements\nnodeTypeHighLevel:statement\nnodeType:IfStatement" shape=ellipse]
+5 [label="locationInParent:operand\nnodeTypeHighLevel:expression\nnodeType:MethodInvocation" shape=ellipse]
+6 [label="locationInParent:_operator\nnodeType:PrefixOpr\nvalueName:!" shape=ellipse]
+7 [label="locationInParent:expression\nnodeTypeHighLevel:expression\nnodeType:SimpleName\nvalueName:File" shape=ellipse]
+8 [label="locationInParent:body\nnodeTypeHighLevel:statement\nnodeType:Block" shape=ellipse]
+9 [label="locationInParent:expression\nnodeTypeHighLevel:expression\nnodeType:SimpleName\nvalueName:File\nvalueType:File" shape=ellipse]
+10 [label="locationInParent:_arguments\nnodeType:ExprList" shape=ellipse]
+11 [label="locationInParent:statement\nnodeTypeHighLevel:expression\nnodeType:CtInvocationImpl\nvalueName:File.mkdirs()\nvalueType:boolean" shape=ellipse]
+0 -> 3 [label="Action:2"];
 1 -> 0 [label="Control Dep:3"];
+1 -> 5 [label="AST:2"];
 1 -> 6 [label="AST:2"];
-1 -> 7 [label="AST:2"];
 1 -> 2 [label="Control Dep:2"];
-1 -> 8 [label="Control Dep:1"];
-1 -> 9 [label="Control Dep:7"];
-1 -> 10 [label="Control Dep:1"];
-1 -> 11 [label="Control Dep:2"];
-1 -> 3 [label="Control Dep:1"];
-1 -> 19 [label="Control Dep:1"];
+1 -> 7 [label="Control Dep:7"];
 2 -> 0 [label="AST:3"];
-3 -> 9 [label="AST:2"];
-3 -> 17 [label="AST:1"];
-4 -> 18 [label="Action:2"];
-5 -> 1 [label="AST:2"];
-5 -> 2 [label="AST:2"];
-6 -> 13 [label="AST:4"];
-6 -> 14 [label="AST:2"];
-8 -> 9 [label="AST:2"];
-8 -> 15 [label="AST:1"];
-10 -> 11 [label="AST:1"];
-10 -> 9 [label="AST:1"];
-12 -> 5 [label="AST:2"];
-16 -> 10 [label="AST:1"];
-19 -> 9 [label="AST:2"];
-19 -> 21 [label="AST:1"];
-20 -> 9 [label="Define Use:1"];
+3 -> 11 [label="Action:2"];
+4 -> 1 [label="AST:2"];
+4 -> 2 [label="AST:2"];
+5 -> 9 [label="AST:4"];
+5 -> 10 [label="AST:2"];
+8 -> 4 [label="AST:2"];
 }

@@ -22,6 +22,11 @@ public class PatternEdge {
         this.target.addInEdge(this);
     }
 
+    public void remove() {
+        this.source.outEdges().remove(this);
+        this.target.inEdges().remove(this);
+    }
+
     public void addInstance(Edge edge, CodeGraph cg) {
         _edgeGraphInstances.put(edge, cg);
     }

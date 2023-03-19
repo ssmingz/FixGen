@@ -22,7 +22,7 @@ public class PatternExtractor {
     public static List<Pattern> extractPattern(CodeGraph refer, CodeGraph compared) {
         List<Pattern> patternList = new ArrayList<>();
         for (ActionNode ap1 : refer.getActions()) {
-            PatternNode start = new PatternNode(ap1.getParent(), refer, loc(ap1.getParent()), getASTNodeType(ap1.getParent()));
+            PatternNode start = new PatternNode(ap1.getParent(), refer, getASTNodeType(ap1.getParent()), getASTNodeType(ap1.getParent()));
             Pattern pattern = new Pattern(start);
             start.setPattern(pattern);
             pattern.getNodeMapping().put(ap1.getParent(), start);
