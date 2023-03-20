@@ -5,6 +5,7 @@ import model.graph.edge.Edge;
 import model.graph.node.Node;
 import model.graph.node.PatchNode;
 import model.graph.node.actions.*;
+import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
@@ -22,7 +23,7 @@ public class PatternExtractor {
     public static List<Pattern> extractPattern(CodeGraph refer, CodeGraph compared) {
         List<Pattern> patternList = new ArrayList<>();
         for (ActionNode ap1 : refer.getActions()) {
-            PatternNode start = new PatternNode(ap1.getParent(), refer, getASTNodeType(ap1.getParent()));
+            PatternNode start = new PatternNode(ap1.getParent(), refer, getLocationInParent(ap1.getParent()), getNodeType(ap1.getParent()));
             Pattern pattern = new Pattern(start);
             start.setPattern(pattern);
             pattern.getNodeMapping().put(ap1.getParent(), start);
@@ -39,12 +40,41 @@ public class PatternExtractor {
         return patternList;
     }
 
-    private static String getASTNodeType(Node n) {
-        ASTNode an = n.getASTNode();
-        if (an != null) {
-            return ASTNode.nodeClassForType(an.getNodeType()).getSimpleName();
+    private static String getNodeType(Node n) {
+        String type = "";
+        if (n.getASTNode() != null) {
+            type = n.getASTNode().getClass().getSimpleName();
+        } else if (n instanceof PatchNode) {
+            type = ((PatchNode)n).getSpoonNode().getClass().getSimpleName();
+        } else if (n instanceof ActionNode) {
+            type = ((ActionNode) n).getType().name();
+        } else {
+            type = Attribute.getType(n);
+            if (type.equals("")) {
+                System.out.println("not attached AST node or spoon node: " + n.toLabelString());
+            }
         }
-        return "";
+        return type;
+    }
+
+    private static String getLocationInParent(Node n) {
+        String loc = "";
+        if (n.getASTNode() != null) {
+            loc = n.getASTNode().getLocationInParent().getId();
+        } else if (n instanceof PatchNode) {
+            loc = ((PatchNode)n).getSpoonNode().getRoleInParent().getCamelCaseName();
+        } else if (n instanceof ActionNode) {
+            loc = "action";
+        } else {
+            loc = Attribute.getRoleInParent(n);
+            if (!loc.equals("")) {
+                if (loc.startsWith("_"))
+                    loc = loc.substring(1);
+            } else {
+                System.out.println("not attached AST node or spoon node: " + n.toLabelString());
+            }
+        }
+        return loc;
     }
 
     /**
@@ -54,12 +84,12 @@ public class PatternExtractor {
         List<PatternEdge> edges;
         if (direction.equals("in")) {
             edges = root.inEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
-            edges = edges.stream().filter(s -> s.getSource().getASTType().equals(nodeLabel)).collect(Collectors.toList());
+            edges = edges.stream().filter(s -> s.getSource().getLocationInParent().equals(nodeLabel)).collect(Collectors.toList());
             if (edges.size() == 1)
                 return edges.get(0).getSource();
         } else if (direction.equals("out")) {
             edges = root.outEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
-            edges = edges.stream().filter(s -> s.getTarget().getASTType().equals(nodeLabel)).collect(Collectors.toList());
+            edges = edges.stream().filter(s -> s.getTarget().getLocationInParent().equals(nodeLabel)).collect(Collectors.toList());
             if (edges.size() == 1)
                 return edges.get(0).getTarget();
         } else {
@@ -78,7 +108,8 @@ public class PatternExtractor {
                 continue;
             Node pre = ai.getSource();
             // TODO: check node type or location in parent
-            String nodeLabel = getASTNodeType(pre);
+            //String nodeLabel = getASTNodeType(pre);
+            String nodeLabel = getLocationInParent(pre);
             PatternNode prePN = findNode(pre, aGraph);
             if (prePN != null) {  // by early traversing, node exists but edge not
                 pattern.addEdge(prePN, extendPoint, PatternEdge.getEdgeType(ai.type), ai, aGraph);
@@ -91,7 +122,7 @@ public class PatternExtractor {
                     ignore.add(ai);
                     candidates.add(prePN);
                 } else {
-                    PatternNode extendPN = new PatternNode(pre, aGraph, getASTNodeType(pre));
+                    PatternNode extendPN = new PatternNode(pre, aGraph, getLocationInParent(pre), getNodeType(pre));
                     _nodeMap.put(pre, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, pre);
@@ -107,7 +138,8 @@ public class PatternExtractor {
                 continue;
             Node post = ao.getTarget();
             // TODO: check node type or location in parent
-            String nodeLabel = getASTNodeType(post);
+            //String nodeLabel = getASTNodeType(post);
+            String nodeLabel = getLocationInParent(post);
             PatternNode postPN = findNode(post, aGraph);
             if (postPN != null) {  // by early traversing, node exists but edge not
                 pattern.addEdge(extendPoint, postPN, PatternEdge.getEdgeType(ao.type), ao, aGraph);
@@ -120,7 +152,7 @@ public class PatternExtractor {
                     ignore.add(ao);
                     candidates.add(postPN);
                 } else {
-                    PatternNode extendPN = new PatternNode(post, aGraph, getASTNodeType(post));
+                    PatternNode extendPN = new PatternNode(post, aGraph, getLocationInParent(post), getNodeType(post));
                     _nodeMap.put(post, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, post);
@@ -293,7 +325,7 @@ public class PatternExtractor {
                     }
                 }
                 if (!find) {
-                    PatternNode start = new PatternNode(ap.getParent(), cg, getASTNodeType(ap.getParent()));
+                    PatternNode start = new PatternNode(ap.getParent(), cg, getLocationInParent(ap.getParent()), getNodeType(ap.getParent()));
                     Pattern pattern = new Pattern(start);
                     start.setPattern(pattern);
                     patternList.add(pattern);

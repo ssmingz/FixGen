@@ -14,19 +14,25 @@ public class PatternNode {
     private Set<PatternEdge> _inEdges = new LinkedHashSet<>();
     private Set<PatternEdge> _outEdges = new LinkedHashSet<>();
     private Pattern _pattern = null;
-    private String _astType = "";
+    private String _nodeType = "";
+    private String _locationInParent = "";
 
-    public PatternNode(Node aNode, CodeGraph aGraph, String astType) {
+    public PatternNode(Node aNode, CodeGraph aGraph, String loc, String astType) {
         _nodeGraphInstances.put(aNode, aGraph);
-        _astType = astType;
+        _nodeType = astType;
+        _locationInParent = loc;
     }
 
     public Set<Attribute> getComparedAttributes() {
         return _comparedAttrs;
     }
 
-    public String getASTType() {
-        return _astType;
+    public String getType() {
+        return _nodeType;
+    }
+
+    public String getLocationInParent() {
+        return _locationInParent;
     }
 
     public void setComparedAttribute(Attribute attr) {
@@ -71,11 +77,18 @@ public class PatternNode {
 
     public String toLabel() {
         StringBuilder label = new StringBuilder();
-        if (!_astType.equals("")) {
-            label.append("##").append(_astType).append("##");
+        if (!_nodeType.equals("")) {
+            label.append(_nodeType).append("##");
+        } else {
+            label.append("NOT_PARSED_AST_TYPE##");
+        }
+        if (!_locationInParent.equals("")) {
+            label.append(_locationInParent).append("##");
+        } else {
+            label.append("NOT_PARSED_LOCATION_IN_PARENT##");
         }
         if (isPatternStart()) {
-            label.append("##ActionPoint##");
+            label.append("ActionPoint##");
         }
         for (Map.Entry<Node, CodeGraph> entry : _nodeGraphInstances.entrySet()) {
             if (label.length() != 0)

@@ -55,7 +55,7 @@ public class PatternAbstracter {
         // 2. when no valueName if it is expression
         if (pn.getAttribute("nodeTypeHighLevel") != null) {
             if (pn.getAttribute("nodeTypeHighLevel").getTag().equals("expression")
-                    && pn.getAttribute("valueName") == null) {
+                    && pn.getAttribute("valueName") == null && pn.getAttribute("valueType") == null) {
                 return true;
             }
         }

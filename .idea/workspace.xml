@@ -4,18 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="finish the framework of pattern abstraction">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="refactor PatternAbstracter">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern73-74.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern73-74.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/out/pattern74-75_abstract.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern74-75_abstract.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck1.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck2.dot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract0.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract1.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract1.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract2.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract2.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PostfixExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PostfixExpr.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PrefixExpr.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/PrefixExpr.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Attribute.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +100,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair">
+  <component name="RunManager" selected="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -133,16 +135,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
-      <option name="METHOD_NAME" value="testPatternExtractFromMultiplePairs" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph" />
       <option name="PACKAGE_NAME" value="" />
@@ -163,21 +155,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestPatternExtractor.testPatternExtractFromSinglePair" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
+      <option name="METHOD_NAME" value="testPatternExtractFromSinglePair" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
       <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
       <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
         <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2" />
+        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
-        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
       </list>
     </recent_temporary>
   </component>
@@ -302,7 +304,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679246106061</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="refactor PatternAbstracter">
+      <created>1679285613110</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1679285613110</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,7 +342,8 @@
     <MESSAGE value="1. fix a bug 'unconnected nodes in CodeGraph', caused by field-parsing and ArgumentList-ExprList(since no ExprList in JDT)&#10;2. using HFFSM algorithm to extract pattern" />
     <MESSAGE value="1. change pattern extraction algorithm to extend from ActionPoint with 1)AST in/out edges to determine PatternNodes, group by node type and location in parent(as a label) 2)other-kind in/out edges&#10;2. fix some mapping bugs when using gumtree" />
     <MESSAGE value="finish the framework of pattern abstraction" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish the framework of pattern abstraction" />
+    <MESSAGE value="refactor PatternAbstracter" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor PatternAbstracter" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -5,12 +5,15 @@ import model.graph.node.Node;
 import model.graph.node.PatchNode;
 import model.graph.node.actions.ActionNode;
 import model.graph.node.expr.ExprNode;
+import model.graph.node.expr.SimpName;
 import org.eclipse.jdt.core.dom.*;
 import spoon.reflect.declaration.CtElement;
 import spoon.reflect.reference.CtTypeReference;
 import spoon.support.reflect.code.CtExpressionImpl;
 import spoon.support.reflect.code.CtStatementImpl;
+import spoon.support.reflect.code.CtVariableAccessImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
+import spoon.support.reflect.declaration.CtNamedElementImpl;
 import spoon.support.reflect.declaration.CtTypeImpl;
 
 import java.lang.reflect.Field;
@@ -67,7 +70,7 @@ public class Attribute {
         return _name;
     }
 
-    private static String getRoleInParent(Node n) {
+    public static String getRoleInParent(Node n) {
         Field[] fields = n.getParent().getClass().getDeclaredFields();
         for(Field field: fields) {
             //设置是否允许访问，不是修改原来的访问权限修饰词
@@ -85,7 +88,7 @@ public class Attribute {
         return "";
     }
 
-    private static String getType(Node n) {
+    public static String getType(Node n) {
         Field[] fields = n.getParent().getClass().getDeclaredFields();
         for(Field field: fields) {
             field.setAccessible(true);
@@ -122,8 +125,9 @@ public class Attribute {
         if (n instanceof ExprNode) {
             String name = n.toLabelString();
             // replace variable name with type name
-            for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet()) {
-                name = name.replaceAll(entry.getKey(), entry.getValue());
+            if (!(n instanceof SimpName)) {
+                for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet())
+                    name = name.replaceAll(entry.getKey(), entry.getValue());
             }
             addValue(name);
         } else if (n instanceof PatchNode) {
@@ -131,8 +135,9 @@ public class Attribute {
             if (cte instanceof CtExpressionImpl) {
                 String name = cte.toString();
                 // replace variable name with type name
-                for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet()) {
-                    name = name.replaceAll(entry.getKey(), entry.getValue());
+                if (!(cte instanceof CtVariableAccessImpl)) {
+                    for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet())
+                        name = name.replaceAll(entry.getKey(), entry.getValue());
                 }
                 addValue(name);
             }
@@ -158,7 +163,7 @@ public class Attribute {
     public void computeLocationInParent(Node n) {
         // only for node
         if (n.getASTNode() != null) {
-            String loc = getCamelCaseName(n.getASTNode().getLocationInParent().getId());
+            String loc = n.getASTNode().getLocationInParent().getId();
             addValue(loc);
         } else if (n instanceof PatchNode) {
             String loc = ((PatchNode)n).getSpoonNode().getRoleInParent().getCamelCaseName();
