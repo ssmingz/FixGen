@@ -1,0 +1,11 @@
+digraph "Pattern" {
+0 [label="locationInParent:action\nnodeType:INSERT" shape=ellipse]
+1 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:startOffset" shape=ellipse]
+2 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+3 [label="locationInParent:statements\nnodeType:AssertStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+4 [label="locationInParent:action\nnodeType:MOVE" shape=ellipse]
+5 [label="locationInParent:fragments\nnodeType:VariableDeclarationFragment" shape=ellipse]
+2 -> 5 [label="AST:2"];
+4 -> 2 [label="Action:2"];
+4 -> 3 [label="Action:1"];
+}

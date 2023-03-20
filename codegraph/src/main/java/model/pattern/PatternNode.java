@@ -14,21 +14,15 @@ public class PatternNode {
     private Set<PatternEdge> _inEdges = new LinkedHashSet<>();
     private Set<PatternEdge> _outEdges = new LinkedHashSet<>();
     private Pattern _pattern = null;
-    private String _locationInParent = "";
     private String _astType = "";
 
-    public PatternNode(Node aNode, CodeGraph aGraph, String loc, String astType) {
+    public PatternNode(Node aNode, CodeGraph aGraph, String astType) {
         _nodeGraphInstances.put(aNode, aGraph);
         _astType = astType;
-        _locationInParent = loc;
     }
 
     public Set<Attribute> getComparedAttributes() {
         return _comparedAttrs;
-    }
-
-    public String getLocationInParent() {
-        return _locationInParent;
     }
 
     public String getASTType() {
@@ -36,7 +30,8 @@ public class PatternNode {
     }
 
     public void setComparedAttribute(Attribute attr) {
-        _comparedAttrs.add(attr);
+        if (attr.getValueSet().size() > 0)
+            _comparedAttrs.add(attr);
     }
 
     public Attribute getAttribute(String name) {
@@ -76,8 +71,8 @@ public class PatternNode {
 
     public String toLabel() {
         StringBuilder label = new StringBuilder();
-        if (!_locationInParent.equals("")) {
-            label.append("##" + _locationInParent + "##");
+        if (!_astType.equals("")) {
+            label.append("##").append(_astType).append("##");
         }
         if (isPatternStart()) {
             label.append("##ActionPoint##");
@@ -107,8 +102,6 @@ public class PatternNode {
         if (isPatternStart()) {
             label.append("##ActionPoint##");
         }
-        if(_comparedAttrs.size()==0)
-            _comparedAttrs.size();
         for (Attribute a : _comparedAttrs) {
             if (label.length() != 0)
                 label.append("\n");

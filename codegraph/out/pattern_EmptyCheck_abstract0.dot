@@ -1,0 +1,18 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##\nlocationInParent:statements\nnodeType:IfStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+1 [label="locationInParent:body\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
+2 [label="locationInParent:action\nnodeType:INSERT" shape=ellipse]
+3 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+4 [label="locationInParent:action\nnodeType:MOVE" shape=ellipse]
+5 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+6 [label="locationInParent:fragments\nnodeType:VariableDeclarationFragment" shape=ellipse]
+7 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:keyAndValue" shape=ellipse]
+8 [label="locationInParent:index\nnodeType:NumberLiteral\nnodeTypeHighLevel:expression\nvalueName:1" shape=ellipse]
+0 -> 2 [label="Action:2"];
+1 -> 0 [label="AST:2"];
+1 -> 3 [label="AST:2"];
+5 -> 6 [label="AST:1"];
+6 -> 7 [label="AST:1"];
+7 -> 7 [label="Data Dep:2"];
+7 -> 7 [label="Define Use:3"];
+}

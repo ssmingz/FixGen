@@ -6,24 +6,24 @@ import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class PostfixExpr extends ExprNode {
-    private ExprNode _expression;
-    private PostfixOpr _postfixOperator;
+    private ExprNode _operand;
+    private PostfixOpr _operator;
 
     public PostfixExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
         super(oriNode, fileName, startLine, endLine);
     }
 
     public void setExpr(ExprNode expr) {
-        _expression = expr;
+        _operand = expr;
         new ASTEdge(this, expr);
     }
 
     public Node getExpression() {
-        return _expression;
+        return _operand;
     }
 
     public void setOpr(PostfixOpr postfixOpr) {
-        _postfixOperator = postfixOpr;
+        _operator = postfixOpr;
         new ASTEdge(this, postfixOpr);
     }
 
@@ -32,8 +32,8 @@ public class PostfixExpr extends ExprNode {
         boolean match = false;
         if (other != null && other instanceof PostfixExpr) {
             PostfixExpr postfixExpr = (PostfixExpr) other;
-            match = _postfixOperator.compare(postfixExpr._postfixOperator)
-                    && _expression.compare(postfixExpr._expression);
+            match = _operator.compare(postfixExpr._operator)
+                    && _operand.compare(postfixExpr._operand);
         }
         return match;
     }

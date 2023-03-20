@@ -1,21 +1,20 @@
 package model.pattern;
 
+import model.CodeGraph;
 import model.graph.node.Node;
 import model.graph.node.PatchNode;
 import model.graph.node.actions.ActionNode;
 import model.graph.node.expr.ExprNode;
 import org.eclipse.jdt.core.dom.*;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.reference.CtTypeReference;
 import spoon.support.reflect.code.CtExpressionImpl;
 import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 import spoon.support.reflect.declaration.CtTypeImpl;
 
 import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Map.Entry.comparingByValue;
 import static java.util.stream.Collectors.toMap;
@@ -41,6 +40,10 @@ public class Attribute {
         return _numByValues.getOrDefault(aValue, 0);
     }
 
+    public Set<String> getValueSet() {
+        return _numByValues.keySet();
+    }
+
     public Map<String, Integer> sort() {
         return  _numByValues
                 .entrySet()
@@ -62,85 +65,6 @@ public class Attribute {
 
     public String getName() {
         return _name;
-    }
-
-    public static void computeValueName(Pattern pat) {
-        // only for expression node
-        for (PatternNode pn : pat.getNodes()) {
-            Attribute attr = new Attribute("valueName");
-            for (Node n : pn.getInstance().keySet()) {
-                if (n instanceof ExprNode) {
-                    String name = n.toLabelString();
-                    // replace variable name with type name
-                    for (Map.Entry<String, String> entry : pn.getInstance().get(n).getTypeByNameMap().entrySet()) {
-                        name = name.replaceAll(entry.getKey(), entry.getValue());
-                    }
-                    attr.addValue(name);
-                } else if (n instanceof PatchNode) {
-                    CtElement cte = ((PatchNode)n).getSpoonNode();
-                    if (cte instanceof CtExpressionImpl) {
-                        String name = cte.toString();
-                        // replace variable name with type name
-                        for (Map.Entry<String, String> entry : pn.getInstance().get(n).getTypeByNameMap().entrySet()) {
-                            name = name.replaceAll(entry.getKey(), entry.getValue());
-                        }
-                        attr.addValue(name);
-                    }
-                } else {
-                    continue;
-                }
-                pn.setComparedAttribute(attr);
-            }
-        }
-    }
-
-    public static void computeValueType(Pattern pat) {
-        // only for expression node
-        for (PatternNode pn : pat.getNodes()) {
-            Attribute attr = new Attribute("valueType");
-            for (Node n : pn.getInstance().keySet()) {
-                if (n instanceof ExprNode) {
-                    String type = pn.getInstance().get(n).getTypeByName(n.toLabelString());
-                    attr.addValue(type);
-                } else if (n instanceof PatchNode) {
-                    CtElement cte = ((PatchNode)n).getSpoonNode();
-                    if (cte instanceof CtExpressionImpl) {
-                        String type = ((CtExpressionImpl<?>) cte).getType().getSimpleName();
-                        attr.addValue(type);
-                    }
-                } else {
-                    continue;
-                }
-                pn.setComparedAttribute(attr);
-            }
-        }
-    }
-
-    public static void computeLocationInParent(Pattern pat) {
-        // only for node
-        for (PatternNode pn : pat.getNodes()) {
-            Attribute attr = new Attribute("locationInParent");
-            for (Node n : pn.getInstance().keySet()) {
-                if (n.getASTNode() != null) {
-                    String loc = n.getASTNode().getLocationInParent().getId().toLowerCase(Locale.ROOT);
-                    attr.addValue(loc);
-                } else if (n instanceof PatchNode) {
-                    String loc = ((PatchNode)n).getSpoonNode().getRoleInParent().getCamelCaseName();
-                    attr.addValue(loc);
-                } else if (n instanceof ActionNode) {
-                    String loc = "action";
-                    attr.addValue(loc);
-                } else {
-                    String loc = getRoleInParent(n);
-                    if (!loc.equals("")) {
-                        attr.addValue(loc);
-                    } else {
-                        System.out.println("not attached AST node or spoon node: " + n.toLabelString());
-                    }
-                }
-                pn.setComparedAttribute(attr);
-            }
-        }
     }
 
     private static String getRoleInParent(Node n) {
@@ -177,55 +101,128 @@ public class Attribute {
         return "";
     }
 
-    public static void computeType(Pattern pat) {
-        // only for node
-        for (PatternNode pn : pat.getNodes()) {
-            Attribute attr = new Attribute("nodeType");
-            Attribute attr2 = new Attribute("nodeTypeHighLevel");
-            for (Node n : pn.getInstance().keySet()) {
-                if (n.getASTNode() != null) {
-                    String type = n.getASTNode().getClass().getSimpleName();
-                    attr.addValue(type);
-                    if (n.getASTNode() instanceof Expression) {
-                        attr2.addValue("expression");
-                    } else if (n.getASTNode() instanceof Statement) {
-                        attr2.addValue("statement");
-                    } else if (n.getASTNode() instanceof MethodDeclaration) {
-                        attr2.addValue("methodDeclaration");
-                    } else if (n.getASTNode() instanceof TypeDeclaration) {
-                        attr2.addValue("typeDeclaration");
-                    } else {
-                        continue;
-                    }
-                    pn.setComparedAttribute(attr2);
-                } else if (n instanceof PatchNode) {
-                    String type = ((PatchNode)n).getSpoonNode().getClass().getSimpleName();
-                    attr.addValue(type);
-                    if (((PatchNode)n).getSpoonNode() instanceof CtExpressionImpl) {
-                        attr2.addValue("expression");
-                    } else if (((PatchNode)n).getSpoonNode() instanceof CtStatementImpl) {
-                        attr2.addValue("statement");
-                    } else if (((PatchNode)n).getSpoonNode() instanceof CtMethodImpl) {
-                        attr2.addValue("methodDeclaration");
-                    } else if (((PatchNode)n).getSpoonNode() instanceof CtTypeImpl) {
-                        attr2.addValue("typeDeclaration");
-                    } else {
-                        continue;
-                    }
-                    pn.setComparedAttribute(attr2);
-                } else if (n instanceof ActionNode) {
-                    String type = ((ActionNode) n).getType().name();
-                    attr.addValue(type);
-                } else {
-                    String type = getType(n);
-                    if (!type.equals("")) {
-                        attr.addValue(type);
-                    } else {
-                        System.out.println("not attached AST node or spoon node: " + n.toLabelString());
-                    }
+    public static String getCamelCaseName(String name) {
+        String s = name.toLowerCase();
+        String[] tokens = s.split("_");
+        if (tokens.length == 1) {
+            return s;
+        } else {
+            StringBuilder buffer = new StringBuilder(tokens[0]);
+            for (int i = 1; i < tokens.length; i++) {
+                String t = tokens[i];
+                buffer.append(Character.toUpperCase(t.charAt(0)));
+                buffer.append(t.substring(1));
+            }
+            return buffer.toString();
+        }
+    }
+
+    public void computeValueName(Node n, CodeGraph cg) {
+        // only for expression node
+        if (n instanceof ExprNode) {
+            String name = n.toLabelString();
+            // replace variable name with type name
+            for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet()) {
+                name = name.replaceAll(entry.getKey(), entry.getValue());
+            }
+            addValue(name);
+        } else if (n instanceof PatchNode) {
+            CtElement cte = ((PatchNode)n).getSpoonNode();
+            if (cte instanceof CtExpressionImpl) {
+                String name = cte.toString();
+                // replace variable name with type name
+                for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet()) {
+                    name = name.replaceAll(entry.getKey(), entry.getValue());
+                }
+                addValue(name);
+            }
+        }
+    }
+
+    public void computeValueType(Node n, CodeGraph cg) {
+        // only for expression node
+        if (n instanceof ExprNode) {
+            String type = cg.getTypeByName(n.toLabelString());
+            addValue(type);
+        } else if (n instanceof PatchNode) {
+            CtElement cte = ((PatchNode)n).getSpoonNode();
+            if (cte instanceof CtExpressionImpl) {
+                CtTypeReference<?> ctype = ((CtExpressionImpl<?>) cte).getType();
+                if (ctype != null) {
+                    addValue(ctype.getSimpleName());
                 }
             }
-            pn.setComparedAttribute(attr);
+        }
+    }
+
+    public void computeLocationInParent(Node n) {
+        // only for node
+        if (n.getASTNode() != null) {
+            String loc = getCamelCaseName(n.getASTNode().getLocationInParent().getId());
+            addValue(loc);
+        } else if (n instanceof PatchNode) {
+            String loc = ((PatchNode)n).getSpoonNode().getRoleInParent().getCamelCaseName();
+            addValue(loc);
+        } else if (n instanceof ActionNode) {
+            String loc = "action";
+            addValue(loc);
+        } else {
+            String loc = getRoleInParent(n);
+            if (!loc.equals("")) {
+                if (loc.startsWith("_"))
+                    loc = loc.substring(1);
+                addValue(loc);
+            } else {
+                System.out.println("not attached AST node or spoon node: " + n.toLabelString());
+            }
+        }
+    }
+
+    public void computeNodeType(Node n) {
+        // only for node
+        if (n.getASTNode() != null) {
+            // nodeType
+            String type = n.getASTNode().getClass().getSimpleName();
+            addValue(type);
+        } else if (n instanceof PatchNode) {
+            // nodeType
+            String type = ((PatchNode)n).getSpoonNode().getClass().getSimpleName();
+            addValue(type);
+        } else if (n instanceof ActionNode) {
+            String type = ((ActionNode) n).getType().name();
+            addValue(type);
+        } else {
+            String type = getType(n);
+            if (!type.equals("")) {
+                addValue(type);
+            } else {
+                System.out.println("not attached AST node or spoon node: " + n.toLabelString());
+            }
+        }
+    }
+
+    public void computeNodeTypeHighLevel(Node n) {
+        // only for node
+        if (n.getASTNode() != null) {
+            if (n.getASTNode() instanceof Expression) {
+                addValue("expression");
+            } else if (n.getASTNode() instanceof Statement) {
+                addValue("statement");
+            } else if (n.getASTNode() instanceof MethodDeclaration) {
+                addValue("methodDeclaration");
+            } else if (n.getASTNode() instanceof TypeDeclaration) {
+                addValue("typeDeclaration");
+            }
+        } else if (n instanceof PatchNode) {
+            if (((PatchNode)n).getSpoonNode() instanceof CtExpressionImpl) {
+                addValue("expression");
+            } else if (((PatchNode)n).getSpoonNode() instanceof CtStatementImpl) {
+                addValue("statement");
+            } else if (((PatchNode)n).getSpoonNode() instanceof CtMethodImpl) {
+                addValue("methodDeclaration");
+            } else if (((PatchNode)n).getSpoonNode() instanceof CtTypeImpl) {
+                addValue("typeDeclaration");
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ public class PatternExtractor {
     public static List<Pattern> extractPattern(CodeGraph refer, CodeGraph compared) {
         List<Pattern> patternList = new ArrayList<>();
         for (ActionNode ap1 : refer.getActions()) {
-            PatternNode start = new PatternNode(ap1.getParent(), refer, getASTNodeType(ap1.getParent()), getASTNodeType(ap1.getParent()));
+            PatternNode start = new PatternNode(ap1.getParent(), refer, getASTNodeType(ap1.getParent()));
             Pattern pattern = new Pattern(start);
             start.setPattern(pattern);
             pattern.getNodeMapping().put(ap1.getParent(), start);
@@ -91,7 +91,7 @@ public class PatternExtractor {
                     ignore.add(ai);
                     candidates.add(prePN);
                 } else {
-                    PatternNode extendPN = new PatternNode(pre, aGraph, getASTNodeType(pre), getASTNodeType(pre));
+                    PatternNode extendPN = new PatternNode(pre, aGraph, getASTNodeType(pre));
                     _nodeMap.put(pre, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, pre);
@@ -120,7 +120,7 @@ public class PatternExtractor {
                     ignore.add(ao);
                     candidates.add(postPN);
                 } else {
-                    PatternNode extendPN = new PatternNode(post, aGraph, getASTNodeType(post), getASTNodeType(post));
+                    PatternNode extendPN = new PatternNode(post, aGraph, getASTNodeType(post));
                     _nodeMap.put(post, extendPN);
                     extendPN.setPattern(pattern);
                     pattern.addNode(extendPN, post);
@@ -293,7 +293,7 @@ public class PatternExtractor {
                     }
                 }
                 if (!find) {
-                    PatternNode start = new PatternNode(ap.getParent(), cg, getASTNodeType(ap.getParent()), getASTNodeType(ap.getParent()));
+                    PatternNode start = new PatternNode(ap.getParent(), cg, getASTNodeType(ap.getParent()));
                     Pattern pattern = new Pattern(start);
                     start.setPattern(pattern);
                     patternList.add(pattern);

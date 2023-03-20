@@ -2,7 +2,6 @@ import builder.PatternExtractor;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import model.CodeGraph;
-import model.GraphConfiguration;
 import model.graph.node.actions.ActionNode;
 import model.pattern.Pattern;
 import org.junit.Test;
@@ -68,16 +67,10 @@ public class TestPatternExtractor {
     public void testPatternExtractFromMultiplePairs2() {
         CodeGraph change1 = constructActionGraph2("EmptyCheck/Genesis#26");
         CodeGraph change2 = constructActionGraph2("EmptyCheck/Genesis#69");
-        //DotGraph dot2 = new DotGraph(change2, new GraphConfiguration(), 0);
-        //dot2.toDotFile(new File(System.getProperty("user.dir") + "/out/69.dot"));
-        CodeGraph change3 = constructActionGraph2("EmptyCheck/Genesis#101");
-        CodeGraph change4 = constructActionGraph2("EmptyCheck/Genesis#161");
 
         List<CodeGraph> cgs = new ArrayList<>();
         cgs.add(change1);
         cgs.add(change2);
-        cgs.add(change3);
-        cgs.add(change4);
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(cgs);
         for (Pattern pat : combinedGraphs) {
@@ -91,7 +84,7 @@ public class TestPatternExtractor {
     /**
      * special for FixBench dataset
      */
-    public CodeGraph constructActionGraph2(String id) {
+    public static CodeGraph constructActionGraph2(String id) {
         String rootDir = "src/test/resources/FixBench/";
         File srcDir = new File(rootDir + id + "/new");
         assertEquals("src file directory should have one java file", 1, srcDir.listFiles().length);

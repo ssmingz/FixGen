@@ -1,5 +1,7 @@
 package builder;
 
+import model.CodeGraph;
+import model.graph.node.Node;
 import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternNode;
@@ -66,10 +68,29 @@ public class PatternAbstracter {
      */
     private void collectAttributes(Pattern pat) {
         // node attributes
-        Attribute.computeLocationInParent(pat);
-        Attribute.computeType(pat);
-        Attribute.computeValueName(pat);
-        Attribute.computeValueType(pat);
+        for (PatternNode pn : pat.getNodes()) {
+            Attribute attr1 = new Attribute("locationInParent");
+            Attribute attr2 = new Attribute("nodeType");
+            Attribute attr3 = new Attribute("nodeTypeHighLevel");
+            Attribute attr4 = new Attribute("valueName");
+            Attribute attr5 = new Attribute("valueType");
+            for (Map.Entry<Node,CodeGraph> entry : pn.getInstance().entrySet()) {
+                Node n = entry.getKey();
+                CodeGraph cg = entry.getValue();
+
+                attr1.computeLocationInParent(n);
+                attr2.computeNodeType(n);
+                attr3.computeNodeTypeHighLevel(n);
+                attr4.computeValueName(n, cg);
+                attr5.computeValueType(n, cg);
+            }
+            pn.setComparedAttribute(attr1);
+            pn.setComparedAttribute(attr2);
+            pn.setComparedAttribute(attr3);
+            pn.setComparedAttribute(attr4);
+            pn.setComparedAttribute(attr5);
+
+        }
         // edge attributes
     }
 
@@ -81,7 +102,10 @@ public class PatternAbstracter {
         for (PatternNode pn : pat.getNodes()) {
             for (Attribute a : pn.getComparedAttributes()) {
                 List<Map.Entry<String, Integer>> sorted = new ArrayList<>(a.sort().entrySet());
-                a.setTag(sorted.get(0).getKey());
+                if (sorted.size() == 0)
+                    continue;
+                else
+                    a.setTag(sorted.get(0).getKey());
             }
         }
         // edge

@@ -6,7 +6,7 @@ import model.graph.node.Node;
 import org.eclipse.jdt.core.dom.ASTNode;
 
 public class PrefixExpr extends ExprNode {
-    private ExprNode _expression;
+    private ExprNode _operand;
     private PrefixOpr _operator;
 
     public PrefixExpr(ASTNode oriNode, String fileName, int startLine, int endLine) {
@@ -14,12 +14,12 @@ public class PrefixExpr extends ExprNode {
     }
 
     public void setExpr(ExprNode expr) {
-        _expression = expr;
+        _operand = expr;
         new ASTEdge(this, expr);
     }
 
     public Node getExpression() {
-        return _expression;
+        return _operand;
     }
 
     public void setOpr(PrefixOpr postfixOpr) {
@@ -32,7 +32,7 @@ public class PrefixExpr extends ExprNode {
         if (other != null && other instanceof PrefixExpr) {
             PrefixExpr prefixExpr = (PrefixExpr) other;
             return _operator.compare(prefixExpr._operator)
-                    && _expression.compare(prefixExpr._expression);
+                    && _operand.compare(prefixExpr._operand);
         }
         return false;
     }
