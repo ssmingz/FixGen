@@ -133,6 +133,20 @@ public abstract class Node implements NodeComparator {
         return false;
     }
 
+    public Set<Node> getDependNodes() {
+        Set<Node> all = new LinkedHashSet<>();
+        for (Edge e : this.inEdges) {
+            if (e.type == Edge.EdgeType.CONTROL_DEP
+                    || e.type == Edge.EdgeType.DATA_DEP || e.type == Edge.EdgeType.DEF_USE)
+                all.add(e.getSource());
+        }
+        return all;
+    }
+
+    public boolean isDependOn(Node node) {
+        return this.getDependNodes().contains(node);
+    }
+
     public Node getDirectControlNode() {
         return _controlDependency;
     }
@@ -204,6 +218,13 @@ public abstract class Node implements NodeComparator {
 
     public Node getBindingNode() {
         return _bindingNode;
+    }
+
+    public Set<Edge> getEdges() {
+        Set<Edge> allEdges = new LinkedHashSet<>();
+        allEdges.addAll(inEdges);
+        allEdges.addAll(outEdges);
+        return allEdges;
     }
 }
 

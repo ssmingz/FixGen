@@ -35,6 +35,8 @@ public class PatternAbstracter {
         Iterator<PatternNode> it = pat.getNodeSet().iterator();
         while(it.hasNext()){
             PatternNode pn = it.next();
+            if(pn.getAttribute("nodeType").getTag().equals("VariableDeclarationStatement"))
+                pn.getType();
             // remove the attribute
             pn.getComparedAttributes().removeIf(a -> a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"));
             if (pn.getComparedAttributes().size() == 0 || isNoMeaningful(pn)) {

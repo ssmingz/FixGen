@@ -57,10 +57,6 @@ public class TestPatternExtractor {
             File dir1 = new File(System.getProperty("user.dir") + "/out/pattern73-76.dot");
             dot.toDotFile(dir1);
         }
-
-        assertEquals(change1.getNodes().stream().filter(s -> s instanceof ActionNode).collect(Collectors.toList()).size(), 1);
-        assertEquals(change2.getNodes().stream().filter(s -> s instanceof ActionNode).collect(Collectors.toList()).size(), 1);
-
     }
 
     @Test

@@ -1,0 +1,33 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##\nlocationInParent:statements\nnodeType:ExpressionStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+1 [label="locationInParent:expression\nnodeType:PrefixExpression\nnodeTypeHighLevel:expression\nvalueName:mpack" shape=ellipse]
+2 [label="locationInParent:thenStatement\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
+3 [label="locationInParent:action\nnodeType:UPDATE" shape=ellipse]
+4 [label="locationInParent:statements\nnodeType:IfStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+5 [label="locationInParent:operand\nnodeType:MethodInvocation\nnodeTypeHighLevel:expression\nvalueName:File.exists()" shape=ellipse]
+6 [label="locationInParent:operator\nnodeType:PrefixOpr\nvalueName:!" shape=ellipse]
+7 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:mkdir" shape=ellipse]
+8 [label="locationInParent:body\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
+9 [label="locationInParent:expression\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueType:File" shape=ellipse]
+10 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:exists" shape=ellipse]
+11 [label="locationInParent:arguments\nnodeType:ExprList" shape=ellipse]
+12 [label="locationInParent:statement\nnodeType:CtInvocationImpl\nnodeTypeHighLevel:expression\nvalueName:File.mkdirs()\nvalueType:boolean" shape=ellipse]
+13 [label="locationInParent:fragments\nnodeType:VariableDeclarationFragment" shape=ellipse]
+14 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:getName" shape=ellipse]
+0 -> 3 [label="Action:4"];
+1 -> 0 [label="Control Dep:5"];
+1 -> 5 [label="AST:4"];
+1 -> 6 [label="AST:4"];
+1 -> 2 [label="Control Dep:4"];
+1 -> 7 [label="Control Dep:5"];
+2 -> 0 [label="AST:5"];
+3 -> 12 [label="Action:4"];
+4 -> 1 [label="AST:4"];
+4 -> 2 [label="AST:4"];
+5 -> 9 [label="AST:3"];
+5 -> 10 [label="AST:3"];
+5 -> 11 [label="AST:4"];
+5 -> 1 [label="AST:1"];
+5 -> 14 [label="AST:1"];
+8 -> 4 [label="AST:3"];
+}

@@ -1,0 +1,139 @@
+digraph "Pattern" {
+0 [label="ExpressionStatement##statements##ActionPoint##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:class org.eclipse.jdt.core.dom.ExpressionStatement\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.downloadMpackMetadata#?,String#234:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.createServicesDirectory#?,Path,Mpack#373:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.createMpackDirectory#?,Mpack#408:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+1 [label="PrefixExpression##expression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!keyDir.isDirectory()\nMpackManager.downloadMpackMetadata#?,String#233:!stagingDir.exists()\nMpackManager.createServicesDirectory#?,Path,Mpack#372:!servicesDir.exists()\nMpackManager.createMpackDirectory#?,Mpack#407:!mpackDirectory.exists()\nMpackManager.createMpackDirectory#?,Mpack#405:mpack\nMpackManager.createMpackDirectory#?,Mpack#407:mpackDirectory\nMpackManager.createMpackDirectory#?,Mpack#410:true\nMpackManager.createMpackDirectory#?,Mpack#413:mpack\nMpackManager.createMpackDirectory#?,Mpack#413:mpack\nMpackManager.createMpackDirectory#?,Mpack#414:new ResourceAlreadyExistsException(message)" shape=ellipse]
+2 [label="Block##thenStatement##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.Block\nMpackManager.downloadMpackMetadata#?,String#233:class org.eclipse.jdt.core.dom.Block\nMpackManager.createServicesDirectory#?,Path,Mpack#372:class org.eclipse.jdt.core.dom.Block\nMpackManager.createMpackDirectory#?,Mpack#407:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+3 [label="MethodInvocation##expression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir.mkdir()" shape=ellipse]
+4 [label="UPDATE##action##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:UPDATE\nMpackManager.downloadMpackMetadata#?,String#-1:UPDATE\nMpackManager.createServicesDirectory#?,Path,Mpack#-1:UPDATE\nMpackManager.createMpackDirectory#?,Mpack#-1:UPDATE" shape=ellipse]
+5 [label="IfStatement##statements##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.downloadMpackMetadata#?,String#233:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.createServicesDirectory#?,Path,Mpack#372:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.createMpackDirectory#?,Mpack#407:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+6 [label="MethodInvocation##operand##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:keyDir.isDirectory()\nMpackManager.downloadMpackMetadata#?,String#233:stagingDir.exists()\nMpackManager.createServicesDirectory#?,Path,Mpack#372:servicesDir.exists()\nMpackManager.createMpackDirectory#?,Mpack#407:mpackDirectory.exists()" shape=ellipse]
+7 [label="PrefixOpr##operator##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!\nMpackManager.downloadMpackMetadata#?,String#233:!\nMpackManager.createServicesDirectory#?,Path,Mpack#372:!\nMpackManager.createMpackDirectory#?,Mpack#407:!" shape=ellipse]
+8 [label="MethodInvocation##expression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger.warn(\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\")\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger" shape=ellipse]
+9 [label="SimpleName##name##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:warn\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:mkdir\nMpackManager.downloadMpackMetadata#?,String#234:mkdir\nMpackManager.createServicesDirectory#?,Path,Mpack#373:mkdir\nMpackManager.createMpackDirectory#?,Mpack#408:mkdir" shape=ellipse]
+10 [label="InfixExpression##arguments 0##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\"" shape=ellipse]
+11 [label="StringLiteral##leftOperand##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \"" shape=ellipse]
+12 [label="SimpleName##rightOperand##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:homeDir" shape=ellipse]
+13 [label="StringLiteral##extendedOperands 0##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
+14 [label="SimpleName##expression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir" shape=ellipse]
+15 [label="Block##body##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#728:class org.eclipse.jdt.core.dom.Block\nMpackManager.downloadMpackMetadata#?,String#226:class org.eclipse.jdt.core.dom.Block\nMpackManager.createServicesDirectory#?,Path,Mpack#370:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+16 [label="SimpleName##expression##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:keyDir\nMpackManager.downloadMpackMetadata#?,String#233:stagingDir\nMpackManager.createServicesDirectory#?,Path,Mpack#372:servicesDir" shape=ellipse]
+17 [label="SimpleName##name##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:isDirectory\nMpackManager.downloadMpackMetadata#?,String#233:exists\nMpackManager.createServicesDirectory#?,Path,Mpack#372:exists" shape=ellipse]
+18 [label="ExprList##arguments##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:\nMpackManager.downloadMpackMetadata#?,String#233:\nMpackManager.createServicesDirectory#?,Path,Mpack#372:\nMpackManager.createMpackDirectory#?,Mpack#407:" shape=ellipse]
+19 [label="ExprList##arguments##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
+20 [label="StringLiteral##extendedOperands 0##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
+21 [label="SimpleName##name##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#728:homeDir" shape=ellipse]
+22 [label="SimpleName##name##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#729:keyDir" shape=ellipse]
+23 [label="ExprList##arguments##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:" shape=ellipse]
+24 [label="CtInvocationImpl##statement##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:keyDir.mkdirs()\nMpackManager.downloadMpackMetadata#?,String#-1:stagingDir.mkdirs()\nMpackManager.createServicesDirectory#?,Path,Mpack#-1:servicesDir.mkdirs()\nMpackManager.createMpackDirectory#?,Mpack#-1:mpackDirectory.mkdirs()" shape=ellipse]
+25 [label="MethodInvocation##expression##\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir.mkdir()" shape=ellipse]
+26 [label="SimpleName##expression##\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir" shape=ellipse]
+27 [label="SimpleName##name##\nMpackManager.downloadMpackMetadata#?,String#228:stagingDir" shape=ellipse]
+28 [label="ExprList##arguments##\nMpackManager.downloadMpackMetadata#?,String#234:" shape=ellipse]
+29 [label="MethodInvocation##expression##\nMpackManager.createServicesDirectory#?,Path,Mpack#373:servicesDir.mkdir()" shape=ellipse]
+30 [label="SimpleName##expression##\nMpackManager.createServicesDirectory#?,Path,Mpack#373:servicesDir" shape=ellipse]
+31 [label="SimpleName##name##\nMpackManager.createServicesDirectory#?,Path,Mpack#371:servicesDir" shape=ellipse]
+32 [label="ExprList##arguments##\nMpackManager.createServicesDirectory#?,Path,Mpack#373:" shape=ellipse]
+33 [label="MethodInvocation##expression##\nMpackManager.createMpackDirectory#?,Mpack#408:mpackDirectory.mkdir()" shape=ellipse]
+34 [label="InfixExpression##expression##\nMpackManager.createMpackDirectory#?,Mpack#404:mpackEntities.size() == 0" shape=ellipse]
+35 [label="SimpleName##expression##\nMpackManager.createMpackDirectory#?,Mpack#408:mpackDirectory" shape=ellipse]
+36 [label="IfStatement##statements##\nMpackManager.createMpackDirectory#?,Mpack#404:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+37 [label="MethodInvocation##leftOperand##\nMpackManager.createMpackDirectory#?,Mpack#404:mpackEntities.size()" shape=ellipse]
+38 [label="NumberLiteral##rightOperand##\nMpackManager.createMpackDirectory#?,Mpack#404:0" shape=ellipse]
+39 [label="Block##thenStatement##\nMpackManager.createMpackDirectory#?,Mpack#404:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+40 [label="VariableDeclarationStatement##statements##\nMpackManager.createMpackDirectory#?,Mpack#405:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+41 [label="VariableDeclarationFragment##fragments -1##\nMpackManager.createMpackDirectory#?,Mpack#405:mpackDirectory=new File(mpackStaging + File.separator + mpack.getName())\nMpackManager.createMpackDirectory#?,Mpack#412:message=\"Mpack: \" + mpack.getName() + \" version: \"+ mpack.getVersion()+ \" already exists in server\"" shape=ellipse]
+42 [label="SimpleName##name##\nMpackManager.createMpackDirectory#?,Mpack#405:mpackDirectory\nMpackManager.createMpackDirectory#?,Mpack#405:separator\nMpackManager.createMpackDirectory#?,Mpack#405:getName\nMpackManager.createMpackDirectory#?,Mpack#407:exists\nMpackManager.createMpackDirectory#?,Mpack#412:message\nMpackManager.createMpackDirectory#?,Mpack#413:getName\nMpackManager.createMpackDirectory#?,Mpack#413:getVersion" shape=ellipse]
+43 [label="ClassInstanceCreation##initializer##\nMpackManager.createMpackDirectory#?,Mpack#405:new File(mpackStaging + File.separator + mpack.getName())\nMpackManager.createMpackDirectory#?,Mpack#413:\"Mpack: \" + mpack.getName() + \" version: \"+ mpack.getVersion()+ \" already exists in server\"" shape=ellipse]
+44 [label="InfixExpression##arguments 0##\nMpackManager.createMpackDirectory#?,Mpack#405:mpackStaging + File.separator + mpack.getName()\nMpackManager.createMpackDirectory#?,Mpack#414:message" shape=ellipse]
+45 [label="SimpleName##leftOperand##\nMpackManager.createMpackDirectory#?,Mpack#405:mpackStaging\nMpackManager.createMpackDirectory#?,Mpack#413:\"Mpack: \"" shape=ellipse]
+46 [label="QualifiedName##rightOperand##\nMpackManager.createMpackDirectory#?,Mpack#405:File.separator\nMpackManager.createMpackDirectory#?,Mpack#413:mpack.getName()" shape=ellipse]
+47 [label="SimpleName##qualifier##\nMpackManager.createMpackDirectory#?,Mpack#405:File" shape=ellipse]
+48 [label="MethodInvocation##extendedOperands 0##\nMpackManager.createMpackDirectory#?,Mpack#405:mpack.getName()\nMpackManager.createMpackDirectory#?,Mpack#413:\" version: \"" shape=ellipse]
+49 [label="ReturnStatement##statements##\nMpackManager.createMpackDirectory#?,Mpack#410:class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+50 [label="Block##elseStatement##\nMpackManager.createMpackDirectory#?,Mpack#411:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+51 [label="VariableDeclarationStatement##statements##\nMpackManager.createMpackDirectory#?,Mpack#412:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+52 [label="MethodInvocation##extendedOperands 1##\nMpackManager.createMpackDirectory#?,Mpack#413:mpack.getVersion()" shape=ellipse]
+53 [label="StringLiteral##extendedOperands 2##\nMpackManager.createMpackDirectory#?,Mpack#413:\" already exists in server\"" shape=ellipse]
+54 [label="ThrowStatement##statements##\nMpackManager.createMpackDirectory#?,Mpack#414:class org.eclipse.jdt.core.dom.ThrowStatement" shape=ellipse]
+55 [label="ExprList##arguments##\nMpackManager.createMpackDirectory#?,Mpack#408:" shape=ellipse]
+0 -> 3 [label="AST:1"];
+0 -> 4 [label="Action:4"];
+0 -> 8 [label="AST:1"];
+0 -> 25 [label="AST:1"];
+0 -> 29 [label="AST:1"];
+0 -> 33 [label="AST:1"];
+1 -> 0 [label="Control Dep:5"];
+1 -> 6 [label="AST:4"];
+1 -> 7 [label="AST:4"];
+1 -> 2 [label="Control Dep:4"];
+1 -> 8 [label="Control Dep:2"];
+1 -> 9 [label="Control Dep:5"];
+1 -> 10 [label="Control Dep:1"];
+1 -> 11 [label="Control Dep:1"];
+1 -> 12 [label="Control Dep:1"];
+1 -> 13 [label="Control Dep:1"];
+1 -> 3 [label="Control Dep:1"];
+1 -> 14 [label="Control Dep:1"];
+1 -> 25 [label="Control Dep:1"];
+1 -> 26 [label="Control Dep:1"];
+1 -> 29 [label="Control Dep:1"];
+1 -> 30 [label="Control Dep:1"];
+1 -> 33 [label="Control Dep:1"];
+1 -> 35 [label="Control Dep:1"];
+2 -> 0 [label="AST:5"];
+3 -> 14 [label="AST:1"];
+3 -> 9 [label="AST:1"];
+3 -> 23 [label="AST:1"];
+4 -> 24 [label="Action:4"];
+5 -> 1 [label="AST:4"];
+5 -> 2 [label="AST:4"];
+6 -> 16 [label="AST:3"];
+6 -> 17 [label="AST:3"];
+6 -> 18 [label="AST:4"];
+6 -> 1 [label="AST:1"];
+6 -> 42 [label="AST:1"];
+8 -> 8 [label="AST:1"];
+8 -> 9 [label="AST:1"];
+8 -> 19 [label="AST:1"];
+10 -> 11 [label="AST:1"];
+10 -> 12 [label="AST:1"];
+15 -> 5 [label="AST:3"];
+20 -> 10 [label="AST:1"];
+20 -> 13 [label="AST:1"];
+21 -> 12 [label="Define Use:1"];
+22 -> 14 [label="Define Use:1"];
+25 -> 26 [label="AST:1"];
+25 -> 9 [label="AST:1"];
+25 -> 28 [label="AST:1"];
+27 -> 26 [label="Define Use:1"];
+29 -> 30 [label="AST:1"];
+29 -> 9 [label="AST:1"];
+29 -> 32 [label="AST:1"];
+31 -> 30 [label="Define Use:1"];
+33 -> 35 [label="AST:1"];
+33 -> 9 [label="AST:1"];
+33 -> 55 [label="AST:1"];
+34 -> 1 [label="Control Dep:7"];
+34 -> 37 [label="AST:1"];
+34 -> 38 [label="AST:1"];
+34 -> 39 [label="Control Dep:1"];
+34 -> 40 [label="Control Dep:1"];
+34 -> 41 [label="Control Dep:2"];
+34 -> 42 [label="Control Dep:7"];
+34 -> 43 [label="Control Dep:2"];
+34 -> 44 [label="Control Dep:2"];
+34 -> 45 [label="Control Dep:2"];
+34 -> 46 [label="Control Dep:2"];
+34 -> 47 [label="Control Dep:1"];
+34 -> 48 [label="Control Dep:2"];
+34 -> 5 [label="Control Dep:1"];
+34 -> 6 [label="Control Dep:1"];
+34 -> 49 [label="Control Dep:1"];
+34 -> 50 [label="Control Dep:1"];
+34 -> 51 [label="Control Dep:1"];
+34 -> 52 [label="Control Dep:1"];
+34 -> 53 [label="Control Dep:1"];
+34 -> 54 [label="Control Dep:1"];
+36 -> 34 [label="AST:1"];
+39 -> 5 [label="AST:1"];
+42 -> 35 [label="Define Use:1"];
+}

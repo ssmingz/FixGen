@@ -27,6 +27,10 @@ public class ExprList extends Node {
         }
     }
 
+    public List<ExprNode> getExprs() {
+        return _exprs;
+    }
+
     @Override
     public String toLabelString() {
         StringBuffer buf = new StringBuffer();

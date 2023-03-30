@@ -23,6 +23,10 @@ public class PatternNode {
         _locationInParent = loc;
     }
 
+    public PatternNode(Node aNode, CodeGraph aGraph) {
+        _nodeGraphInstances.put(aNode, aGraph);
+    }
+
     public Set<Attribute> getComparedAttributes() {
         return _comparedAttrs;
     }

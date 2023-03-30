@@ -5,12 +5,15 @@ import model.graph.edge.Edge;
 import model.graph.node.Node;
 import model.graph.node.PatchNode;
 import model.graph.node.actions.*;
+import model.graph.node.expr.ExprList;
+import model.graph.node.expr.SimpName;
 import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.eclipse.jdt.core.dom.*;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,6 +22,7 @@ public class PatternExtractor {
     int MAX_NODE_SIZE;
     static int MAX_EXTEND_LEVEL = 3;  // default is 3
     static Map<Node, PatternNode>  _nodeMap = new LinkedHashMap<>();
+    static Map<Map<Node, Node>, Double> _mappingsByScore = new LinkedHashMap<>();
 
     public static List<Pattern> extractPattern(CodeGraph refer, CodeGraph compared) {
         List<Pattern> patternList = new ArrayList<>();
@@ -60,7 +64,7 @@ public class PatternExtractor {
     private static String getLocationInParent(Node n) {
         String loc = "";
         if (n.getASTNode() != null) {
-            loc = n.getASTNode().getLocationInParent().getId();
+            loc = loc(n.getASTNode());
         } else if (n instanceof PatchNode) {
             loc = ((PatchNode)n).getSpoonNode().getRoleInParent().getCamelCaseName();
         } else if (n instanceof ActionNode) {
@@ -84,11 +88,13 @@ public class PatternExtractor {
         List<PatternEdge> edges;
         if (direction.equals("in")) {
             edges = root.inEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
+            //edges = edges.stream().filter(s -> s.getSource().getType().equals(nodeLabel)).collect(Collectors.toList());
             edges = edges.stream().filter(s -> s.getSource().getLocationInParent().equals(nodeLabel)).collect(Collectors.toList());
             if (edges.size() == 1)
                 return edges.get(0).getSource();
         } else if (direction.equals("out")) {
             edges = root.outEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
+            //edges = edges.stream().filter(s -> s.getTarget().getType().equals(nodeLabel)).collect(Collectors.toList());
             edges = edges.stream().filter(s -> s.getTarget().getLocationInParent().equals(nodeLabel)).collect(Collectors.toList());
             if (edges.size() == 1)
                 return edges.get(0).getTarget();
@@ -108,7 +114,7 @@ public class PatternExtractor {
                 continue;
             Node pre = ai.getSource();
             // TODO: check node type or location in parent
-            //String nodeLabel = getASTNodeType(pre);
+            //String nodeLabel = getNodeType(pre);
             String nodeLabel = getLocationInParent(pre);
             PatternNode prePN = findNode(pre, aGraph);
             if (prePN != null) {  // by early traversing, node exists but edge not
@@ -137,8 +143,10 @@ public class PatternExtractor {
             if (ignore.contains(ao))
                 continue;
             Node post = ao.getTarget();
+            if(post.getASTNode()!=null && post.getASTNode().getLocationInParent().getId().equals("elseStatement"))
+                post.getASTNode();
             // TODO: check node type or location in parent
-            //String nodeLabel = getASTNodeType(post);
+            //String nodeLabel = getNodeType(post);
             String nodeLabel = getLocationInParent(post);
             PatternNode postPN = findNode(post, aGraph);
             if (postPN != null) {  // by early traversing, node exists but edge not
@@ -190,42 +198,58 @@ public class PatternExtractor {
     }
 
     /**
-     * return the node type and the relation with its parent
+     * return the relation with its parent of an ASTNode
      */
-    public static String loc(Node n) {
-        ASTNode an = n.getASTNode();
+    public static String loc(ASTNode an) {
         if (an != null) {
-            String aType =  ASTNode.nodeClassForType(an.getNodeType()).getSimpleName();
+//            String aType =  ASTNode.nodeClassForType(an.getNodeType()).getSimpleName();
             StructuralPropertyDescriptor rel = an.getLocationInParent();
             String propertyId = rel.getId();
             ASTNode aParent = an.getParent();
-            if (propertyId.equals("arguments")) {
+            if (rel.isChildListProperty() && !propertyId.equals("statements")) {
+                Object listObj =  getFieldValueByObject(aParent, propertyId);
                 int index = -1;
-                if (aParent instanceof MethodInvocation) {
-                    index = ((MethodInvocation) aParent).arguments().indexOf(an);
-                } else if (aParent instanceof ConstructorInvocation) {
-                    index = ((ConstructorInvocation) aParent).arguments().indexOf(an);
-                } else if (aParent instanceof SuperMethodInvocation) {
-                    index = ((SuperMethodInvocation) aParent).arguments().indexOf(an);
-                } else if (aParent instanceof SuperConstructorInvocation) {
-                    index = ((SuperConstructorInvocation) aParent).arguments().indexOf(an);
+                if (listObj instanceof List) {
+                    index = ((List) listObj).indexOf(an);
                 } else {
-                    System.out.println("[WARN]aParent type of arguments not handled in loc(Node n)");
+                    System.out.println("[WARN]couldn't find list property index in loc(Node n)");
                 }
-                propertyId = "argument " + index;
-            } else if (propertyId.equals("statements")) {
-                int index = -1;
-                if (aParent instanceof Block) {
-                    index = ((Block) aParent).statements().indexOf(an);
-                } else {
-                    System.out.println("[WARN]aParent type of statements not handled in loc(Node n)");
-                }
-                propertyId = "statement " + index;
+                propertyId += " " +  index;
             }
-            String parentType = ASTNode.nodeClassForType(aParent.getNodeType()).getSimpleName();
-            return aType + " in " + parentType + " as " + propertyId;
+//            String parentType = ASTNode.nodeClassForType(aParent.getNodeType()).getSimpleName();
+//            return aType + " in " + parentType + " as " + propertyId;
+            return propertyId;
         }
         return "";
+    }
+
+    /**
+     * get field value by given target object and field name
+     */
+    public static Object getFieldValueByObject(Object object, String targetFieldName) {
+        Class<?> objClass = object.getClass();
+        Object result = null;
+        Field[] fields = objClass.getDeclaredFields();
+        for (Field field : fields) {
+            String currentFieldName = field.getName();
+            try {
+                if (currentFieldName.equals(targetFieldName)) {
+                    field.setAccessible(true);
+                    result = field.get(object);
+                    return result;
+                }
+            } catch (SecurityException e) {
+                // 安全性异常
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+                // 非法参数
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                // 无访问权限
+                e.printStackTrace();
+            }
+        }
+        return result;
     }
 
     public static boolean similar(ActionNode an1, ActionNode an2) {
@@ -260,6 +284,8 @@ public class PatternExtractor {
     }
 
     public static boolean sameType(Node nodeA, Node nodeB) {
+        if (!nodeA.getClass().getSimpleName().equals(nodeB.getClass().getSimpleName()))
+            return false;
         if (nodeA instanceof PatchNode && nodeB instanceof PatchNode) {
             String aType = ((PatchNode) nodeA).getSpoonNode().getClass().getTypeName();
             String bType = ((PatchNode) nodeB).getSpoonNode().getClass().getTypeName();
@@ -280,8 +306,24 @@ public class PatternExtractor {
                     return false;
                 }
             }
-        }
-        if (nodeA.getASTNode() == null || nodeB.getASTNode() == null) {
+        } else if (nodeA instanceof ActionNode && nodeB instanceof ActionNode) {
+            String aType = ((ActionNode) nodeA).getType().name();
+            String bType = ((ActionNode) nodeB).getType().name();
+            if (aType.equals(bType))
+                return true;
+        } else if (nodeA instanceof ExprList && nodeB instanceof ExprList) {
+           if(((ExprList) nodeA).getExprs().size() != ((ExprList) nodeB).getExprs().size()) {
+               return false;
+           }
+           for (int i=0; i<((ExprList) nodeA).getExprs().size(); i++) {
+               Node expA = ((ExprList) nodeA).getExprs().get(i);
+               Node expB = ((ExprList) nodeB).getExprs().get(i);
+               if (!sameType(expA, expB)) {
+                   return false;
+               }
+           }
+           return true;
+        } else if (nodeA.getASTNode() == null || nodeB.getASTNode() == null) {
             System.out.println("[WARN]no attached ASTNode");
             return false;
         }
@@ -308,33 +350,231 @@ public class PatternExtractor {
 
     public static List<Pattern> combineGraphs(List<CodeGraph> cgs) {
         List<Pattern> patternList = new ArrayList<>();
-        Map<ActionNode, Pattern> traversedMap = new LinkedHashMap<>();
-        for (CodeGraph cg : cgs) {
-            for (ActionNode ap : cg.getActions()) {
-                if (_nodeMap.containsKey(ap))
-                    continue;
-                boolean find = false;
-                for (Map.Entry<ActionNode, Pattern> entry : traversedMap.entrySet()) {
-                    if (similar(ap, entry.getKey())) {
-                        traversedMap.put(ap, entry.getValue());
-                        entry.getValue().getStart().addInstance(ap.getParent(), cg);
-                        _nodeMap.put(ap.getParent(), entry.getValue().getStart());
-                        extendPattern(ap.getParent(), cg, entry.getValue().getStart(), entry.getValue(), 1, new HashSet<>());
-                        find = true;
-                        break;
+        if (cgs == null || cgs.isEmpty()) {
+            return patternList;
+        }
+        List<List<Node>> nodeLists = getActionLinks(cgs.get(0));
+        // init patterns
+        Map<List<Node>, Pattern> initPatterns = new LinkedHashMap<>();
+        for (List<Node> l : nodeLists) {
+            PatternNode start = new PatternNode(l.get(0), cgs.get(0));
+            Pattern pat = new Pattern(start);
+            pat.addNode(start, l.get(0));
+            start.setPattern(pat);
+            initPatterns.put(l, pat);
+            for (int i=1; i<l.size(); i++) {
+                Node n = l.get(i);
+                PatternNode pn = new PatternNode(n, cgs.get(0));
+                pn.setPattern(pat);
+                pat.addNode(pn, n);
+            }
+            for (Node n : l) {
+                for (Edge e : n.inEdges) {
+                    PatternNode srcPN = pat.getNodeMapping().get(e.getSource());
+                    PatternNode tarPN = pat.getNodeMapping().get(n);
+                    if (srcPN != null && tarPN!=null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
+                        pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, cgs.get(0));
                     }
                 }
-                if (!find) {
-                    PatternNode start = new PatternNode(ap.getParent(), cg, getLocationInParent(ap.getParent()), getNodeType(ap.getParent()));
-                    Pattern pattern = new Pattern(start);
-                    start.setPattern(pattern);
-                    patternList.add(pattern);
-                    traversedMap.put(ap, pattern);
-                    _nodeMap.put(ap.getParent(), start);
-                    extendPattern(ap.getParent(), cg, start, pattern, 1, new HashSet<>());
+                for (Edge e : n.outEdges) {
+                    PatternNode srcPN = pat.getNodeMapping().get(n);
+                    PatternNode tarPN = pat.getNodeMapping().get(e.getTarget());
+                    if (srcPN != null && tarPN!=null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
+                        pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, cgs.get(0));
+                    }
                 }
             }
         }
+
+        Map<Node, List<Node>> nodeGroups = new LinkedHashMap<>();
+        for(int i=1; i<cgs.size(); i++) {
+            CodeGraph aGraph = cgs.get(i);
+            List<List<Node>> nodeListsComps = getActionLinks(aGraph);
+            for (List<Node> nodeList: nodeLists) {
+                for (List<Node> nodeListComp : nodeListsComps) {
+                    _mappingsByScore.clear();
+                    match(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>());
+                    // group by cgs.get(0)
+                    if (_mappingsByScore.size() > 0) {
+                        // sort
+//                        List<Map.Entry<Map<Node, Node>, Double>> temp = new ArrayList<>(_mappingsByScore.entrySet());
+//                        temp.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
+                        double maxScore = 0.0;
+                        Map<Node, Node> result = null;
+                        for (Map.Entry<Map<Node, Node>, Double> entry : _mappingsByScore.entrySet()) {
+                            if (entry.getValue() > maxScore) {
+                                maxScore = entry.getValue();
+                                result = entry.getKey();
+                            }
+                        }
+                        // add to pattern
+                        Pattern pat = initPatterns.get(nodeList);
+                        for (Map.Entry<Node, Node> entry : result.entrySet()) {
+                            Node oNode = entry.getKey();
+                            Node cNode = entry.getValue();
+                            if (nodeGroups.containsKey(oNode)) {
+                                nodeGroups.get(oNode).add(cNode);
+                            } else {
+                                List<Node> tmp = new ArrayList<>();
+                                tmp.add(cNode);
+                                nodeGroups.put(oNode, tmp);
+                            }
+                            pat.getNodeMapping().get(oNode).addInstance(cNode, aGraph);
+                        }
+                    }
+                }
+            }
+        }
+        patternList = new ArrayList<>(initPatterns.values());
         return patternList;
+
+//        for (CodeGraph cg : cgs) {
+//            for (ActionNode ap : cg.getActions()) {
+//                if (_nodeMap.containsKey(ap))
+//                    continue;
+//                boolean find = false;
+//                for (Map.Entry<ActionNode, Pattern> entry : traversedMap.entrySet()) {
+//                    if (similar(ap, entry.getKey())) {
+//                        traversedMap.put(ap, entry.getValue());
+//                        entry.getValue().getStart().addInstance(ap.getParent(), cg);
+//                        _nodeMap.put(ap.getParent(), entry.getValue().getStart());
+//                        extendPattern(ap.getParent(), cg, entry.getValue().getStart(), entry.getValue(), 1, new HashSet<>());
+//                        find = true;
+//                        break;
+//                    }
+//                }
+//                if (!find) {
+//                    PatternNode start = new PatternNode(ap.getParent(), cg, getLocationInParent(ap.getParent()), getNodeType(ap.getParent()));
+//                    Pattern pattern = new Pattern(start);
+//                    start.setPattern(pattern);
+//                    patternList.add(pattern);
+//                    traversedMap.put(ap, pattern);
+//                    _nodeMap.put(ap.getParent(), start);
+//                    extendPattern(ap.getParent(), cg, start, pattern, 1, new HashSet<>());
+//                }
+//            }
+//        }
+//        return patternList;
     }
+
+    private static void match(List<Node> nodeList, int index, List<Node> nodeListComp, double score, Map<Node, Node> mapping) {
+        if (index == nodeList.size()) {
+            _mappingsByScore.put(mapping, score);
+            return;
+        }
+        for (Node nodeComp : nodeListComp) {
+            if (isMatch(nodeList.get(index), nodeComp, mapping)) {
+                List<Node> nodeListCopy = new ArrayList<>(nodeListComp);
+                Map<Node, Node> mappingNew = new LinkedHashMap<>(mapping);
+                nodeListCopy.remove(nodeComp);
+                mappingNew.put(nodeList.get(index), nodeComp);
+                match(nodeList, index+1, nodeListCopy, score + calculate(nodeList.get(index), nodeComp), mappingNew);
+            }
+        }
+        match(nodeList, index+1, nodeListComp, score, mapping);
+    }
+
+    /**
+     * soft rules for matching
+     */
+    private static double calculate(Node node, Node nodeComp) {
+        // compare the similarity between two strings by using "Levenshtein distance"
+        double score = calContextSim(node.toLabelString(), nodeComp.toLabelString());
+        // TODO: other comparing rules
+        return score;
+    }
+
+    public static float levenshtein(String a, String b) {
+        int aLen = a.length();
+        int bLen = b.length();
+
+        if (aLen == 0) return aLen;
+        if (bLen == 0) return bLen;
+
+        int[][] v = new int[aLen + 1][bLen + 1];
+        for (int i = 0; i <= aLen; ++i) {
+            for (int j = 0; j <= bLen; ++j) {
+                if (i == 0) {
+                    v[i][j] = j;
+                } else if (j == 0) {
+                    v[i][j] = i;
+                } else if (a.charAt(i - 1) == b.charAt(j - 1)) {
+                    v[i][j] = v[i - 1][j - 1];
+                } else {
+                    v[i][j] = 1 + Math.min(v[i - 1][j - 1], Math.min(v[i][j - 1], v[i - 1][j]));
+                }
+            }
+        }
+        return v[aLen][bLen];
+    }
+
+    private static double calContextSim(String a, String b) {
+        if (a == null && b == null) {
+            return 1f;
+        }
+        if (a == null || b == null) {
+            return 0F;
+        }
+        if (a.equals(b)) {
+            return 1f;
+        }
+        double editDistance = levenshtein(a, b);
+        return 1 - (editDistance / Math.max(a.length(), b.length()));
+    }
+
+    /**
+     * hard rules for matching
+     */
+    private static boolean isMatch(Node nodeA, Node nodeB, Map<Node, Node> mapping) {
+        // compare type
+        if (!sameType(nodeA, nodeB))
+            return false;
+        if (!getLocationInParent(nodeA).equals(getLocationInParent(nodeB)))
+            return false;
+        // TODO: other comparing rules
+        for (Map.Entry<Node, Node> entry : mapping.entrySet()) {
+            Node key = entry.getKey();
+            Node value = entry.getValue();
+            // key -> nodeA and value -> nodeB
+            if (!mapping.containsKey(nodeA.getParent()))
+                return false;
+            if (nodeA.getParent().equals(key) != nodeB.getParent().equals(value))
+                return false;
+            if (nodeA.isDependOn(key) != nodeB.isDependOn(value))
+                return false;
+        }
+        return true;
+    }
+
+    private static List<List<Node>> getActionLinks(CodeGraph codeGraph) {
+        List<List<Node>> result = new ArrayList<>();
+        Set<Node> traversed = new LinkedHashSet<>();
+        for (ActionNode action : codeGraph.getActions()) {
+            if (traversed.contains(action)) continue;
+            traversed.add(action);
+            List<Node> nodes = extendLinks(action.getParent(), 1, traversed);
+            if (!nodes.isEmpty())
+                result.add(nodes);
+        }
+        return result;
+    }
+
+    private static List<Node> extendLinks(Node node, int extendLevel, Set<Node> traversed) {
+        List<Node> nodes = new ArrayList<>();
+        if (extendLevel > MAX_EXTEND_LEVEL)
+            return nodes;
+        nodes.add(node);
+        traversed.add(node);
+        for (Edge e : node.getEdges()) {
+            if (e.getTarget().equals(node)) {
+                // continue extend source
+                nodes.addAll(extendLinks(e.getSource(), extendLevel+1, traversed).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            } else if (e.getSource().equals(node)) {
+                // continue extend target
+                nodes.addAll(extendLinks(e.getTarget(), extendLevel+1, traversed).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            }
+        }
+        return nodes;
+    }
+
 }
