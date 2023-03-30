@@ -23,7 +23,10 @@ public class TestPatternExtractor {
         CodeGraph change1 = constructActionGraph("73");
         CodeGraph change2 = constructActionGraph("74");
 
-        List<Pattern> combinedGraphs = PatternExtractor.extractPattern(change1, change2);
+        List<CodeGraph> cgs = new ArrayList<>();
+        cgs.add(change1);
+        cgs.add(change2);
+        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(cgs);
         for (Pattern pat : combinedGraphs) {
             DotGraph dot = new DotGraph(pat, 0);
             File dir1 = new File(System.getProperty("user.dir") + "/out/pattern73-74.dot");

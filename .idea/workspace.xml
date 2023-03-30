@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="refactor PatternAbstracter and PatternExtractor">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_17,_18_02_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_17__18_02__Changes_.xml" beforeDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="refactor PatternExtractor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprList.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/ExprList.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
@@ -98,7 +94,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1">
+  <component name="RunManager" selected="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs3">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -133,21 +129,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternAbstract.testPatternAbstractFromSinglePair" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternAbstract" />
-      <option name="METHOD_NAME" value="testPatternAbstractFromSinglePair" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
       <option name="METHOD_NAME" value="testPatternExtractFromMultiplePairs1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
+      <option name="METHOD_NAME" value="testPatternExtractFromMultiplePairs2" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,19 +161,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
       <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
       <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs3" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
-        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
         <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs3" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromSinglePair" />
         <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2" />
-        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromSinglePair" />
       </list>
     </recent_temporary>
   </component>
@@ -316,7 +312,14 @@
       <option name="project" value="LOCAL" />
       <updated>1679296242111</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="refactor PatternExtractor">
+      <created>1680190724146</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1680190724146</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -349,7 +352,8 @@
     <MESSAGE value="finish the framework of pattern abstraction" />
     <MESSAGE value="refactor PatternAbstracter" />
     <MESSAGE value="refactor PatternAbstracter and PatternExtractor" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor PatternAbstracter and PatternExtractor" />
+    <MESSAGE value="refactor PatternExtractor" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor PatternExtractor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -486,13 +490,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
-          <line>146</line>
-          <option name="timeStamp" value="240" />
+          <line>117</line>
+          <option name="timeStamp" value="292" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
-          <line>428</line>
-          <option name="timeStamp" value="247" />
+          <line>326</line>
+          <option name="timeStamp" value="294" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java</url>
+          <line>332</line>
+          <option name="timeStamp" value="295" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

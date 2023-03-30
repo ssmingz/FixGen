@@ -1,30 +1,31 @@
 digraph "Pattern" {
-0 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##ActionPoint##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.downloadMpackMetadata#?,String#234:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.createServicesDirectory#?,Path,Mpack#373:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.createMpackDirectory#?,Mpack#408:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
-1 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!keyDir.isDirectory()" shape=ellipse]
-2 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
-3 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:keyDir.isDirectory()" shape=ellipse]
-4 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!" shape=ellipse]
-5 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
-6 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
-7 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger.warn(\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\")" shape=ellipse]
-8 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger" shape=ellipse]
-9 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:warn" shape=ellipse]
-10 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\"" shape=ellipse]
-11 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \"" shape=ellipse]
-12 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:homeDir" shape=ellipse]
-13 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
-14 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir.mkdir()\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir.mkdir()\nMpackManager.createServicesDirectory#?,Path,Mpack#373:servicesDir.mkdir()\nMpackManager.createMpackDirectory#?,Mpack#408:mpackDirectory.mkdir()" shape=ellipse]
-15 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir\nMpackManager.createServicesDirectory#?,Path,Mpack#373:servicesDir\nMpackManager.createMpackDirectory#?,Mpack#408:mpackDirectory" shape=ellipse]
-16 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:mkdir\nMpackManager.downloadMpackMetadata#?,String#234:mkdir\nMpackManager.createServicesDirectory#?,Path,Mpack#373:mkdir\nMpackManager.createMpackDirectory#?,Mpack#408:mkdir" shape=ellipse]
-17 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:\nMpackManager.downloadMpackMetadata#?,String#234:\nMpackManager.createServicesDirectory#?,Path,Mpack#373:\nMpackManager.createMpackDirectory#?,Mpack#408:" shape=ellipse]
-18 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:UPDATE\nMpackManager.downloadMpackMetadata#?,String#-1:UPDATE\nMpackManager.createServicesDirectory#?,Path,Mpack#-1:UPDATE\nMpackManager.createMpackDirectory#?,Mpack#-1:UPDATE" shape=ellipse]
-19 [label="NOT_PARSED_AST_TYPE##NOT_PARSED_LOCATION_IN_PARENT##\nConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:keyDir.mkdirs()\nMpackManager.downloadMpackMetadata#?,String#-1:stagingDir.mkdirs()\nMpackManager.createServicesDirectory#?,Path,Mpack#-1:servicesDir.mkdirs()\nMpackManager.createMpackDirectory#?,Mpack#-1:mpackDirectory.mkdirs()" shape=ellipse]
-0 -> 14 [label="AST:1"];
-0 -> 18 [label="Action:1"];
-1 -> 0 [label="Control Dep:1"];
-1 -> 3 [label="AST:1"];
-1 -> 4 [label="AST:1"];
-1 -> 5 [label="Control Dep:1"];
+0 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.downloadMpackMetadata#?,String#234:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.createServicesDirectory#?,Path,Mpack#373:class org.eclipse.jdt.core.dom.ExpressionStatement\nMpackManager.createMpackDirectory#?,Mpack#408:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+1 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!keyDir.isDirectory()\nMpackManager.downloadMpackMetadata#?,String#233:!stagingDir.exists()\nMpackManager.createServicesDirectory#?,Path,Mpack#372:!servicesDir.exists()\nMpackManager.createMpackDirectory#?,Mpack#407:!mpackDirectory.exists()" shape=ellipse]
+2 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.downloadMpackMetadata#?,String#233:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.createServicesDirectory#?,Path,Mpack#372:class org.eclipse.jdt.core.dom.IfStatement\nMpackManager.createMpackDirectory#?,Mpack#407:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+3 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:keyDir.isDirectory()\nMpackManager.downloadMpackMetadata#?,String#233:stagingDir.exists()\nMpackManager.createServicesDirectory#?,Path,Mpack#372:servicesDir.exists()\nMpackManager.createMpackDirectory#?,Mpack#407:mpackDirectory.exists()" shape=ellipse]
+4 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:!\nMpackManager.downloadMpackMetadata#?,String#233:!\nMpackManager.createServicesDirectory#?,Path,Mpack#372:!\nMpackManager.createMpackDirectory#?,Mpack#407:!" shape=ellipse]
+5 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#731:class org.eclipse.jdt.core.dom.Block\nMpackManager.downloadMpackMetadata#?,String#233:class org.eclipse.jdt.core.dom.Block\nMpackManager.createServicesDirectory#?,Path,Mpack#372:class org.eclipse.jdt.core.dom.Block\nMpackManager.createMpackDirectory#?,Mpack#407:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+6 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+7 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger.warn(\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\")" shape=ellipse]
+8 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:s_logger" shape=ellipse]
+9 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:warn" shape=ellipse]
+10 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \" + homeDir + \"/.ssh for storing the SSH keypars\"" shape=ellipse]
+11 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"Failed to create \"" shape=ellipse]
+12 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:homeDir" shape=ellipse]
+13 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#732:\"/.ssh for storing the SSH keypars\"" shape=ellipse]
+14 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir.mkdir()\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir.mkdir()\nMpackManager.createServicesDirectory#?,Path,Mpack#373:servicesDir.mkdir()\nMpackManager.createMpackDirectory#?,Mpack#408:mpackDirectory.mkdir()" shape=ellipse]
+15 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:keyDir\nMpackManager.downloadMpackMetadata#?,String#234:stagingDir\nMpackManager.createServicesDirectory#?,Path,Mpack#373:servicesDir\nMpackManager.createMpackDirectory#?,Mpack#408:mpackDirectory" shape=ellipse]
+16 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:mkdir\nMpackManager.downloadMpackMetadata#?,String#234:mkdir\nMpackManager.createServicesDirectory#?,Path,Mpack#373:mkdir\nMpackManager.createMpackDirectory#?,Mpack#408:mkdir" shape=ellipse]
+17 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#733:\nMpackManager.downloadMpackMetadata#?,String#234:\nMpackManager.createServicesDirectory#?,Path,Mpack#373:\nMpackManager.createMpackDirectory#?,Mpack#408:" shape=ellipse]
+18 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:UPDATE\nMpackManager.downloadMpackMetadata#?,String#-1:UPDATE\nMpackManager.createServicesDirectory#?,Path,Mpack#-1:UPDATE\nMpackManager.createMpackDirectory#?,Mpack#-1:UPDATE" shape=ellipse]
+19 [label="ConfigurationServerImpl.updateKeyPairsOnDisk#?,String#-1:keyDir.mkdirs()\nMpackManager.downloadMpackMetadata#?,String#-1:stagingDir.mkdirs()\nMpackManager.createServicesDirectory#?,Path,Mpack#-1:servicesDir.mkdirs()\nMpackManager.createMpackDirectory#?,Mpack#-1:mpackDirectory.mkdirs()" shape=ellipse]
+20 [label="MpackManager.createMpackDirectory#?,Mpack#404:mpackEntities.size() == 0" shape=ellipse]
+0 -> 14 [label="AST:4"];
+0 -> 18 [label="Action:4"];
+1 -> 0 [label="Control Dep:4"];
+1 -> 3 [label="AST:4"];
+1 -> 4 [label="AST:4"];
+1 -> 5 [label="Control Dep:4"];
 1 -> 6 [label="Control Dep:1"];
 1 -> 7 [label="Control Dep:1"];
 1 -> 8 [label="Control Dep:1"];
@@ -33,20 +34,23 @@ digraph "Pattern" {
 1 -> 11 [label="Control Dep:1"];
 1 -> 12 [label="Control Dep:1"];
 1 -> 13 [label="Control Dep:1"];
-1 -> 14 [label="Control Dep:1"];
-1 -> 15 [label="Control Dep:1"];
-1 -> 16 [label="Control Dep:1"];
-2 -> 1 [label="AST:1"];
-2 -> 5 [label="AST:1"];
-5 -> 0 [label="AST:1"];
+1 -> 14 [label="Control Dep:4"];
+1 -> 15 [label="Control Dep:4"];
+1 -> 16 [label="Control Dep:4"];
+2 -> 1 [label="AST:4"];
+2 -> 5 [label="AST:4"];
+5 -> 0 [label="AST:4"];
 5 -> 6 [label="AST:1"];
 6 -> 7 [label="AST:1"];
 7 -> 8 [label="AST:1"];
 7 -> 9 [label="AST:1"];
 10 -> 11 [label="AST:1"];
 10 -> 12 [label="AST:1"];
-14 -> 15 [label="AST:1"];
-14 -> 16 [label="AST:1"];
-14 -> 17 [label="AST:1"];
-18 -> 19 [label="Action:1"];
+14 -> 15 [label="AST:4"];
+14 -> 16 [label="AST:4"];
+14 -> 17 [label="AST:4"];
+18 -> 19 [label="Action:4"];
+20 -> 2 [label="Control Dep:1"];
+20 -> 1 [label="Control Dep:1"];
+20 -> 3 [label="Control Dep:1"];
 }

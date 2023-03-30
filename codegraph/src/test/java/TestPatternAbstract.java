@@ -20,7 +20,10 @@ public class TestPatternAbstract {
         CodeGraph change1 = TestPatternExtractor.constructActionGraph("74");
         CodeGraph change2 = TestPatternExtractor.constructActionGraph("75");
 
-        List<Pattern> combinedGraphs = PatternExtractor.extractPattern(change1, change2);
+        List<CodeGraph> cgs = new ArrayList<>();
+        cgs.add(change1);
+        cgs.add(change2);
+        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(cgs);
         for (Pattern pat : combinedGraphs) {
             PatternAbstracter abstracter = new PatternAbstracter(2);
             Pattern patAbs = abstracter.abstractPattern(pat, abstracter.getThreshold());

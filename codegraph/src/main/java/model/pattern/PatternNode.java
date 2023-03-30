@@ -81,19 +81,19 @@ public class PatternNode {
 
     public String toLabel() {
         StringBuilder label = new StringBuilder();
-        if (!_nodeType.equals("")) {
-            label.append(_nodeType).append("##");
-        } else {
-            label.append("NOT_PARSED_AST_TYPE##");
-        }
-        if (!_locationInParent.equals("")) {
-            label.append(_locationInParent).append("##");
-        } else {
-            label.append("NOT_PARSED_LOCATION_IN_PARENT##");
-        }
-        if (isPatternStart()) {
-            label.append("ActionPoint##");
-        }
+//        if (!_nodeType.equals("")) {
+//            label.append(_nodeType).append("##");
+//        } else {
+//            label.append("NOT_PARSED_AST_TYPE##");
+//        }
+//        if (!_locationInParent.equals("")) {
+//            label.append(_locationInParent).append("##");
+//        } else {
+//            label.append("NOT_PARSED_LOCATION_IN_PARENT##");
+//        }
+//        if (isPatternStart()) {
+//            label.append("ActionPoint##");
+//        }
         for (Map.Entry<Node, CodeGraph> entry : _nodeGraphInstances.entrySet()) {
             if (label.length() != 0)
                 label.append("\n");
