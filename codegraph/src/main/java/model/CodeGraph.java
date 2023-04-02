@@ -22,6 +22,9 @@ import model.graph.node.varDecl.SingleVarDecl;
 import model.graph.node.varDecl.VarDeclFrag;
 import org.eclipse.jdt.core.dom.*;
 import spoon.reflect.declaration.CtElement;
+import spoon.support.reflect.code.CtBinaryOperatorImpl;
+import spoon.support.reflect.code.CtBlockImpl;
+import spoon.support.reflect.code.CtIfImpl;
 import spoon.support.reflect.declaration.CtCompilationUnitImpl;
 import utils.JavaASTUtil;
 
@@ -119,12 +122,15 @@ public class CodeGraph {
     }
 
     private void mapChildren(CtElement srcElement, CtElement dstElement, Map<CtElement, CtElement> mappings) {
+        if (srcElement instanceof CtBlockImpl && dstElement instanceof CtBlockImpl)
+            return;
         if (srcElement.getDirectChildren().size() == dstElement.getDirectChildren().size()) {
             for (int i=0; i<srcElement.getDirectChildren().size(); i++) {
                 CtElement srcChild = srcElement.getDirectChildren().get(i);
-                CtElement dstChild = srcElement.getDirectChildren().get(i);
-                if (srcChild.getPosition().isValidPosition() && dstChild.getPosition().isValidPosition())
+                CtElement dstChild = dstElement.getDirectChildren().get(i);
+                if (srcChild.getPosition().isValidPosition() && dstChild.getPosition().isValidPosition()) {
                     mappings.put(srcChild, dstChild);
+                }
             }
         }
         // do not use recursion since statements may not match in two blocks

@@ -1,0 +1,33 @@
+digraph "Pattern" {
+0 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#-1:INSERT\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#-1:INSERT\nOrientVertexIterator.createGraphElement#?,Object#-1:INSERT" shape=ellipse]
+1 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#52:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#60:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nOrientVertexIterator.createGraphElement#?,Object#53:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+2 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#51:class org.eclipse.jdt.core.dom.Block\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#59:class org.eclipse.jdt.core.dom.Block\nOrientVertexIterator.createGraphElement#?,Object#49:class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+3 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#51:public void validate(FacesContext facesContext,UIComponent uiComponent,Object value) throws ValidatorException\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#59:public void validate(FacesContext facesContext,UIComponent uiComponent,Object value) throws ValidatorException\nOrientVertexIterator.createGraphElement#?,Object#48:@Override public Vertex createGraphElement(final Object iObject)" shape=ellipse]
+4 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#53:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#61:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nOrientVertexIterator.createGraphElement#?,Object#58:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+5 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#54:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#62:class org.eclipse.jdt.core.dom.VariableDeclarationStatement\nOrientVertexIterator.createGraphElement#?,Object#60:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+6 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#56:class org.eclipse.jdt.core.dom.TryStatement\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#64:class org.eclipse.jdt.core.dom.TryStatement" shape=ellipse]
+7 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#52:bundle=resourceBundleFinder.getForCurrentLocale(facesContext)\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#60:bundle=resourceBundleFinder.getForCurrentLocale(facesContext)\nOrientVertexIterator.createGraphElement#?,Object#53:rec=((OIdentifiable)iObject).getRecord()" shape=ellipse]
+8 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#52:bundle\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#60:bundle\nOrientVertexIterator.createGraphElement#?,Object#53:rec" shape=ellipse]
+9 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#52:resourceBundleFinder.getForCurrentLocale(facesContext)\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#60:resourceBundleFinder.getForCurrentLocale(facesContext)\nOrientVertexIterator.createGraphElement#?,Object#53:((OIdentifiable)iObject).getRecord()" shape=ellipse]
+10 [label="StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object#-1:if (value == null) {\n    return;\n}\nStellaCPFValidator.validate#?,FacesContext,UIComponent,Object#-1:if (value == null) {\n    return;\n}\nOrientVertexIterator.createGraphElement#?,Object#-1:if (iObject == null) {\n    return null;\n}" shape=ellipse]
+11 [label="OrientVertexIterator.createGraphElement#?,Object#55:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+12 [label="OrientVertexIterator.createGraphElement#?,Object#61:class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+13 [label="OrientVertexIterator.createGraphElement#?,Object#74:class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+14 [label="OrientVertexIterator.createGraphElement#?,Object#50:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+15 [label="OrientVertexIterator.createGraphElement#?,Object#62:class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+0 -> 10 [label="Action:3"];
+1 -> 0 [label="Action:3"];
+1 -> 7 [label="AST:3"];
+2 -> 1 [label="AST:3"];
+2 -> 4 [label="AST:3"];
+2 -> 5 [label="AST:3"];
+2 -> 6 [label="AST:2"];
+2 -> 11 [label="AST:1"];
+2 -> 12 [label="AST:1"];
+2 -> 13 [label="AST:1"];
+2 -> 14 [label="AST:1"];
+2 -> 15 [label="AST:1"];
+3 -> 2 [label="AST:3"];
+7 -> 8 [label="AST:3"];
+7 -> 9 [label="AST:3"];
+}

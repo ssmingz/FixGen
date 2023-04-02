@@ -1,0 +1,11 @@
+digraph "Pattern" {
+0 [label="locationInParent:body\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
+1 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+2 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+3 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+4 [label="locationInParent:statements\nnodeType:IfStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+0 -> 1 [label="AST:2"];
+0 -> 2 [label="AST:2"];
+0 -> 3 [label="AST:2"];
+0 -> 4 [label="AST:2"];
+}

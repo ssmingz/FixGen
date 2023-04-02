@@ -1,5 +1,7 @@
 package builder;
 
+import com.github.gumtreediff.tree.DefaultTree;
+import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.diff.operations.*;
 import model.CodeGraph;
 import model.graph.node.Node;
@@ -10,7 +12,13 @@ import spoon.reflect.declaration.CtElement;
 import spoon.support.reflect.code.CtBlockImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 
+import java.beans.IntrospectionException;
+import java.beans.PropertyDescriptor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Matcher {
 
@@ -67,33 +75,65 @@ public class Matcher {
 
     public static List<Node> mapOperationToCodeGraph(InsertOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
         List<Node> changedNodes = new ArrayList<>();
-        CtElement ctParent = operation.getParent();
-        CtElement ctInsert = operation.getNode();
-        if (src_matcher.containsKey(ctParent)) {
+        CtElement ctParent = null;
+        int position = operation.getPosition();  // position is metadata-gtnode children index
+        // get real parent
+        CtElement cte = (CtElement) ((DefaultTree)operation.getParent().getMetadata("gtnode")).getChild(position).getMetadata("spoon_object");
+        for (Map.Entry<CtElement, Node> entry : src_matcher.entrySet()) {
+            CtElement key = entry.getKey();
+            if (cte.equals(key)) {
+                ctParent = key;
+                break;
+            }
+        }
+        if (ctParent != null) {
+            CtElement ctInsert = operation.getNode();
             Node cgParent = src_matcher.get(ctParent);
             Insert insertAction = new Insert(cgParent, operation.getAction());
             srcGraph.addActionNode(insertAction);
-            Node insertNode = rebuild(ctInsert, srcGraph, insertAction);
+            Node insertNode = rebuild(ctInsert, srcGraph, insertAction, src_matcher);
             insertAction.setNode(insertNode);
             changedNodes.add(insertAction);
-            src_matcher.putAll(mapStructure(ctInsert, insertNode)); // also need to map their children and so on
+//            src_matcher.putAll(mapStructure(ctInsert, insertNode)); // also need to map their children and so on
         } else {
             System.err.println("[builder.Matcher.mapOperationToCodeGraph(InsertOperation)]No mapped parent " + ctParent.getClass() + " : " + ctParent.getPosition().getLine());
         }
         return changedNodes;
     }
 
+    private static List<Field> getAllFields(Object obj) {
+        Class clazz = obj.getClass();
+        List<Field> fields = new ArrayList<>();
+        while (clazz != null) {
+            fields.addAll(Arrays.asList(clazz.getDeclaredFields()).stream().filter(p -> !p.getName().equals("serialVersionUID")).collect(Collectors.toList()));
+            clazz = clazz.getSuperclass();
+        }
+        return fields;
+    }
+
     public static List<Node> mapOperationToCodeGraph(MoveOperation operation, CodeGraph srcGraph, Map<CtElement, Node> src_matcher) {
         List<Node> changedNodes = new ArrayList<>();
-        CtElement ctParent = operation.getParent();
-        if (src_matcher.containsKey(ctParent)) {
+        CtElement ctParent = null;
+        int position = operation.getPosition();  // position is metadata-gtnode children index
+        // get real parent
+        CtElement cte = (CtElement) ((DefaultTree)operation.getParent().getMetadata("gtnode")).getChild(position).getMetadata("spoon_object");
+        for (Map.Entry<CtElement, Node> entry : src_matcher.entrySet()) {
+            CtElement key = entry.getKey();
+            if (cte.equals(key)) {
+                ctParent = key;
+                break;
+            }
+        }
+        if (ctParent != null) {
             CtElement ctMove = operation.getNode();
             if (src_matcher.containsKey(ctMove)) {
                 Node cgParent = src_matcher.get(ctParent);
                 Move moveAction = new Move(cgParent, operation.getAction());
                 srcGraph.addActionNode(moveAction);
                 Node moveNode = src_matcher.get(ctMove);
-                moveAction.setNode(moveNode);
+                // TODO: see why moveNode is Null
+                if (moveNode != null)
+                    moveAction.setNode(moveNode);
                 changedNodes.add(moveAction);
             } else {
                 System.err.println("[builder.Matcher.mapOperationToCodeGraph(MoveOperation)]No mapped move node " + ctMove.getClass() + " : " + ctMove.getPosition().getLine());
@@ -127,10 +167,10 @@ public class Matcher {
             Node cgBefore = src_matcher.get(ctBefore);
             Update updateAction = new Update(cgBefore, operation.getAction());
             srcGraph.addActionNode(updateAction);
-            Node cgAfter = rebuild(ctAfter, srcGraph, updateAction);
+            Node cgAfter = rebuild(ctAfter, srcGraph, updateAction, src_matcher);
             updateAction.setNewNode(cgAfter);
             changedNodes.add(updateAction);
-            src_matcher.putAll(mapStructure(ctAfter, cgAfter));
+//            src_matcher.putAll(mapStructure(ctAfter, cgAfter));
         } else {
             System.err.println("[builder.Matcher.mapOperationToCodeGraph(UpdateOperation)]No mapped parent " + ctBefore.getClass() + " : " + ctBefore.getPosition().getLine());
         }
@@ -144,10 +184,16 @@ public class Matcher {
         return newMappings;
     }
 
-    private static Node rebuild(CtElement destElement, CodeGraph codeGraph, Node parent) {
+    private static Node rebuild(CtElement destElement, CodeGraph codeGraph, Node parent, Map<CtElement, Node> mappings) {
         // TODO: consider for different types
         PatchNode pn = new PatchNode(destElement, parent);
         codeGraph.addSpoonNode(pn);
+        // update map
+        mappings.put(destElement, pn);
+        // rebuild its childrenSt
+        for (Tree dt : ((DefaultTree)destElement.getMetadata("gtnode")).getChildren()) {
+            rebuild((CtElement) dt.getMetadata("spoon_object"), codeGraph, pn, mappings);
+        }
         return pn;
     }
 }

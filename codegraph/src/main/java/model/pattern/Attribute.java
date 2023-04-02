@@ -13,7 +13,6 @@ import spoon.support.reflect.code.CtExpressionImpl;
 import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.code.CtVariableAccessImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
-import spoon.support.reflect.declaration.CtNamedElementImpl;
 import spoon.support.reflect.declaration.CtTypeImpl;
 
 import java.lang.reflect.Field;
@@ -120,14 +119,51 @@ public class Attribute {
         }
     }
 
+    public static boolean isIdentifierValid(char c) {
+        if (c == 36 || c == 95)
+            return true;
+        else if (c>=48 && c<=57)
+            return true;
+        else if (c>=65 && c<=90)
+            return true;
+        else if (c>=97 && c<=122)
+            return true;
+        else
+            return false;
+    }
+
     public void computeValueName(Node n, CodeGraph cg) {
         // only for expression node
         if (n instanceof ExprNode) {
             String name = n.toLabelString();
             // replace variable name with type name
             if (!(n instanceof SimpName)) {
-                for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet())
-                    name = name.replaceAll(entry.getKey(), entry.getValue());
+                for (Map.Entry<String, String> entry : cg.getTypeByNameMap().entrySet()) {
+                    // TODO: replace name with tokenization
+                    String key = entry.getKey();
+                    String value = entry.getValue();
+                    StringBuilder nameNew = new StringBuilder();
+                    for (int start=0, end=name.indexOf(key); start<name.length()&&end<name.length(); ) {
+                        if (end>=start) {
+                            nameNew.append(name, start, end);
+                            if (end==0 && !isIdentifierValid(name.charAt(end + key.length()))) {
+                                nameNew.append(value);
+                            } else if (end == name.length()-1 && !isIdentifierValid(name.charAt(end-1))) {
+                                nameNew.append(value);
+                            } else if (end>0 && end+key.length()<name.length() && !isIdentifierValid(name.charAt(end + key.length())) && !isIdentifierValid(name.charAt(end-1))) {
+                                nameNew.append(value);
+                            } else {
+                                nameNew.append(key);
+                            }
+                            start = end + key.length();
+                            end = name.indexOf(key, start);
+                        } else {
+                            nameNew.append(name.substring(start));
+                            break;
+                        }
+                    }
+                    name = String.valueOf(nameNew);
+                }
             }
             addValue(name);
         } else if (n instanceof PatchNode) {
@@ -228,6 +264,12 @@ public class Attribute {
             } else if (((PatchNode)n).getSpoonNode() instanceof CtTypeImpl) {
                 addValue("typeDeclaration");
             }
+        }
+    }
+
+    public void computeCodeContent(Node n) {
+        if (n instanceof PatchNode) {
+            addValue(((PatchNode) n).getSpoonNode().toString());  // TODO: abstract variable type
         }
     }
 }

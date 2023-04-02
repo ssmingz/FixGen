@@ -2,6 +2,7 @@ import builder.PatternExtractor;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import model.CodeGraph;
+import model.GraphConfiguration;
 import model.graph.node.actions.ActionNode;
 import model.pattern.Pattern;
 import org.junit.Test;
@@ -43,23 +44,50 @@ public class TestPatternExtractor {
      */
     @Test
     public void testPatternExtractFromMultiplePairs1() {
+        long startTime = System.currentTimeMillis();
         CodeGraph change1 = constructActionGraph("73");
+        long endTime1 = System.currentTimeMillis();
+        long time1 = endTime1 - startTime;
         CodeGraph change2 = constructActionGraph("74");
+        long endTime2 = System.currentTimeMillis();
+        long time2 = endTime2 - endTime1;
         CodeGraph change3 = constructActionGraph("75");
+        long endTime3 = System.currentTimeMillis();
+        long time3 = endTime3 - endTime2;
         CodeGraph change4 = constructActionGraph("76");
+        long endTime4 = System.currentTimeMillis();
+        long time4 = endTime4 - endTime3;
 
         List<CodeGraph> cgs = new ArrayList<>();
         cgs.add(change1);
         cgs.add(change2);
         cgs.add(change3);
         cgs.add(change4);
+
+        DotGraph dot1 = new DotGraph(change1, new GraphConfiguration(), 0);
+        dot1.toDotFile(new File(System.getProperty("user.dir") + "/out/73.dot"));
+        DotGraph dot2 = new DotGraph(change1, new GraphConfiguration(), 0);
+        dot2.toDotFile(new File(System.getProperty("user.dir") + "/out/74.dot"));
+        DotGraph dot3 = new DotGraph(change1, new GraphConfiguration(), 0);
+        dot3.toDotFile(new File(System.getProperty("user.dir") + "/out/75.dot"));
+        DotGraph dot4 = new DotGraph(change1, new GraphConfiguration(), 0);
+        dot4.toDotFile(new File(System.getProperty("user.dir") + "/out/76.dot"));
+
         // extract pattern from more-than-one graphs
+        startTime = System.currentTimeMillis();
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(cgs);
+        long endTime5 = System.currentTimeMillis();
         for (Pattern pat : combinedGraphs) {
             DotGraph dot = new DotGraph(pat, 0);
             File dir1 = new File(System.getProperty("user.dir") + "/out/pattern73-76.dot");
             dot.toDotFile(dir1);
         }
+        System.out.println("codegraph 73 time cost : " + time1 + " ms");
+        System.out.println("codegraph 74 time cost : " + time2 + " ms");
+        System.out.println("codegraph 75 time cost : " + time3 + " ms");
+        System.out.println("codegraph 76 time cost : " + time4 + " ms");
+        System.out.println("pattern extraction time cost : " + (endTime5 - startTime) + " ms");
+
     }
 
     @Test

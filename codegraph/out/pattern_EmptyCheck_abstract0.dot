@@ -1,17 +1,8 @@
 digraph "Pattern" {
-0 [label="##ActionPoint##\nlocationInParent:statements\nnodeType:IfStatement\nnodeTypeHighLevel:statement" shape=ellipse]
-1 [label="locationInParent:body\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
-2 [label="locationInParent:thenStatement\nnodeTypeHighLevel:statement" shape=ellipse]
-3 [label="locationInParent:action\nnodeType:INSERT" shape=ellipse]
-4 [label="locationInParent:action\nnodeType:MOVE" shape=ellipse]
-5 [label="locationInParent:condition\nnodeType:CtBinaryOperatorImpl\nnodeTypeHighLevel:expression\nvalueType:boolean" shape=ellipse]
-6 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
-7 [label="locationInParent:fragments\nnodeType:VariableDeclarationFragment" shape=ellipse]
-8 [label="locationInParent:array\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:keyAndValue" shape=ellipse]
-0 -> 2 [label="AST:2"];
+0 [label="##ActionPoint##\nlocationInParent:action\nnodeType:INSERT" shape=ellipse]
+1 [label="locationInParent:thenStatement\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
+2 [label="locationInParent:statements\nnodeType:ExpressionStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+3 [label="locationInParent:condition\nnodeType:CtBinaryOperatorImpl\nnodeTypeHighLevel:expression\nvalueType:boolean" shape=ellipse]
 0 -> 3 [label="Action:2"];
-1 -> 0 [label="AST:5"];
-2 -> 6 [label="AST:3"];
-3 -> 5 [label="Action:2"];
-5 -> 4 [label="Action:2"];
+1 -> 2 [label="AST:2"];
 }

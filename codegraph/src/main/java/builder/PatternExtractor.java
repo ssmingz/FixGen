@@ -300,7 +300,10 @@ public class PatternExtractor {
             for (List<Node> nodeList: nodeLists) {
                 for (List<Node> nodeListComp : nodeListsComps) {
                     _mappingsByScore.clear();
-                    match(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>());
+                    // calculate similarity score for each pair
+                    Map<Node, Map<Node, Double>> orderBySimScore = calSimScore(nodeList, nodeListComp);
+                    matchBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+//                    match(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>());
                     // group by cgs.get(0)
                     if (_mappingsByScore.size() > 0) {
                         // sort
@@ -367,6 +370,76 @@ public class PatternExtractor {
         return patternList;
     }
 
+    private static Map<Node, Map<Node, Double>> calSimScore(List<Node> nodeList, List<Node> nodeListComp) {
+        Map<Node, Map<Node, Double>> result = new LinkedHashMap<>();
+        for (Node nodeA : nodeList) {
+            if (!result.containsKey(nodeA)) {
+                result.put(nodeA, new LinkedHashMap<>());
+            } else if (result.get(nodeA).size() == nodeListComp.size()){
+                continue;
+            }
+            for (Node nodeB : nodeListComp) {
+                if (result.get(nodeA).containsKey(nodeB)) continue;
+                double score = calContextSim(nodeA.toLabelString(), nodeB.toLabelString());
+                result.get(nodeA).put(nodeB, score);
+                if (!result.containsKey(nodeB)) {
+                    result.put(nodeB, new LinkedHashMap<>());
+                }
+                result.get(nodeB).put(nodeA, score);
+            }
+            result.replace(nodeA, sortByValue(result.get(nodeA)));
+        }
+        return result;
+    }
+
+    /**
+     * 优先匹配相似度分数最高的
+     */
+    private static void matchBySimScore(List<Node> nodeList, int index, List<Node> nodeListComp, double score, Map<Node, Node> mapping, Map<Node, Map<Node, Double>> simScoreMap) {
+        if (index == nodeList.size()) {
+            _mappingsByScore.put(mapping, score);
+            return;
+        }
+        Node node = nodeList.get(index);
+        if (simScoreMap.containsKey(node)) {
+            Iterator<Node> itr = simScoreMap.get(node).keySet().iterator();
+            Node bestSim = null;
+            while (itr.hasNext()) {
+                Node aNode = itr.next();
+                if (isMatch(node, aNode, mapping)) {
+                    bestSim = aNode;
+                    break;
+                }
+            }
+            if (bestSim != null) {
+                double simScore = simScoreMap.get(node).get(bestSim);
+                List<Node> nodeListCopy = new ArrayList<>(nodeListComp);
+                nodeListCopy.remove(bestSim);
+                Map<Node, Node> mappingNew = new LinkedHashMap<>(mapping);
+                mappingNew.put(node, bestSim);
+                // remove itself
+                simScoreMap.remove(bestSim);
+                // remove related
+                Iterator<Map.Entry<Node, Map<Node, Double>>> iterator = simScoreMap.entrySet().iterator();
+                while(iterator.hasNext()) {
+                    Map<Node, Double> scoreMap = iterator.next().getValue();
+                    scoreMap.remove(bestSim);
+                    if (scoreMap.isEmpty()) {
+                        iterator.remove();
+                    }
+                }
+                matchBySimScore(nodeList, index+1, nodeListCopy, score+simScore, mappingNew, simScoreMap);
+            } else {
+                matchBySimScore(nodeList, index+1, nodeListComp, score, mapping, simScoreMap);
+            }
+        } else {
+            matchBySimScore(nodeList, index+1, nodeListComp, score, mapping, simScoreMap);
+        }
+    }
+
+    /**
+     * 考虑所有匹配可能性
+     */
     private static void match(List<Node> nodeList, int index, List<Node> nodeListComp, double score, Map<Node, Node> mapping) {
         if (index == nodeList.size()) {
             _mappingsByScore.put(mapping, score);
@@ -482,6 +555,18 @@ public class PatternExtractor {
     }
 
     /**
+     * sort by value
+     */
+    public static <K, V extends Comparable> Map<K, V> sortByValue(Map<K, V> aMap) {
+        HashMap<K, V> sorted = new LinkedHashMap<>();
+        aMap.entrySet()
+                .stream()
+                .sorted((p1, p2) -> p2.getValue().compareTo(p1.getValue()))
+                .collect(Collectors.toList()).forEach(ele -> sorted.put(ele.getKey(), ele.getValue()));
+        return sorted;
+    }
+
+    /**
      * hard rules for matching
      */
     private static boolean isMatch(Node nodeA, Node nodeB, Map<Node, Node> mapping) {
@@ -509,7 +594,8 @@ public class PatternExtractor {
         for (ActionNode action : codeGraph.getActions()) {
             if (traversed.contains(action)) continue;
             traversed.add(action);
-            List<Node> nodes = extendLinks(action.getParent(), 1, traversed);
+            List<Node> nodes = extendLinks(action, 0, traversed); // start from action
+//            List<Node> nodes = extendLinks(action.getParent(), 1, traversed); // start from action.parent
             if (!nodes.isEmpty())
                 result.add(nodes);
         }

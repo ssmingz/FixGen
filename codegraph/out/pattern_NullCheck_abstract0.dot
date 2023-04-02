@@ -1,0 +1,23 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##\nlocationInParent:action\nnodeType:INSERT" shape=ellipse]
+1 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+2 [label="locationInParent:body\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
+3 [label="locationInParent:bodyDeclarations\nnodeType:MethodDeclaration\nnodeTypeHighLevel:methodDeclaration" shape=ellipse]
+4 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+5 [label="locationInParent:statements\nnodeType:VariableDeclarationStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+6 [label="locationInParent:statements\nnodeType:TryStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+7 [label="locationInParent:fragments\nnodeType:VariableDeclarationFragment\nvalueName:bundle=ResourceBundleFinder.getForCurrentLocale(facesContext)" shape=ellipse]
+8 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:bundle" shape=ellipse]
+9 [label="locationInParent:initializer\nnodeType:MethodInvocation\nnodeTypeHighLevel:expression\nvalueName:ResourceBundleFinder.getForCurrentLocale(facesContext)" shape=ellipse]
+10 [label="locationInParent:statement\nnodeType:CtIfImpl\nnodeTypeHighLevel:statement\ncodeContent:if (value == null) {\n    return;\n}" shape=ellipse]
+0 -> 10 [label="Action:3"];
+1 -> 0 [label="Action:3"];
+1 -> 7 [label="AST:3"];
+2 -> 1 [label="AST:3"];
+2 -> 4 [label="AST:3"];
+2 -> 5 [label="AST:3"];
+2 -> 6 [label="AST:2"];
+3 -> 2 [label="AST:3"];
+7 -> 8 [label="AST:3"];
+7 -> 9 [label="AST:3"];
+}

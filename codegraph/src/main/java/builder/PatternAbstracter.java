@@ -1,9 +1,12 @@
 package builder;
 
 import model.CodeGraph;
+import model.graph.edge.Edge;
 import model.graph.node.Node;
+import model.graph.node.PatchNode;
 import model.pattern.Attribute;
 import model.pattern.Pattern;
+import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 
 import java.util.*;
@@ -35,8 +38,6 @@ public class PatternAbstracter {
         Iterator<PatternNode> it = pat.getNodeSet().iterator();
         while(it.hasNext()){
             PatternNode pn = it.next();
-            if(pn.getAttribute("nodeType").getTag().equals("VariableDeclarationStatement"))
-                pn.getType();
             // remove the attribute
             pn.getComparedAttributes().removeIf(a -> a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"));
             if (pn.getComparedAttributes().size() == 0 || isNoMeaningful(pn)) {
@@ -45,6 +46,26 @@ public class PatternAbstracter {
                 pn.outEdges().removeIf(Objects::nonNull);
                 it.remove();
             }
+        }
+        // recheck for unreached nodes
+        it = pat.getNodeSet().iterator();
+        while (it.hasNext()) {
+            PatternNode pn = it.next();
+            boolean canReach = false;
+            for (PatternEdge e : pn.inEdges()) {
+                if (pat.getNodes().contains(e.getSource())) {
+                    canReach = true;
+                    break;
+                }
+            }
+            if (canReach) continue;
+            for (PatternEdge e : pn.outEdges()) {
+                if (pat.getNodes().contains(e.getTarget())) {
+                    canReach = true;
+                    break;
+                }
+            }
+            if (!canReach) it.remove();
         }
         // edge
     }
@@ -92,6 +113,15 @@ public class PatternAbstracter {
             pn.setComparedAttribute(attr4);
             pn.setComparedAttribute(attr5);
 
+            // special for patch node
+            if (pn.getInstance().keySet().stream().allMatch(p->p instanceof PatchNode)) {
+                Attribute attr6 = new Attribute("codeContent");
+                for (Map.Entry<Node,CodeGraph> entry : pn.getInstance().entrySet()) {
+                    Node n = entry.getKey();
+                    attr6.computeCodeContent(n);
+                }
+                pn.setComparedAttribute(attr6);
+            }
         }
         // edge attributes
     }
