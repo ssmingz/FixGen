@@ -28,6 +28,16 @@ public abstract class Edge {
         return target;
     }
 
+    public void setTarget(Node tar) {
+        target = tar;
+        target.addInEdge(this);
+    }
+
+    public void setSource(Node src) {
+        source = src;
+        source.addOutEdge(this);
+    }
+
     @Override
     public String toString() {
         return source + "-" + getLabel() +"->" + target;

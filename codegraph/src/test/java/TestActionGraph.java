@@ -5,6 +5,7 @@ import model.GraphConfiguration;
 import org.junit.Test;
 import utils.DotGraph;
 import utils.FileIO;
+import utils.MappingStore;
 import utils.Pair;
 
 import java.io.File;
@@ -35,7 +36,10 @@ public class TestActionGraph {
                 CodeGraph dstGraph = pair.getSecond();
                 AstComparator diff = new AstComparator();
                 Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
-                srcGraph.addActionByFilePair(editScript);
+                MappingStore mapStore = new MappingStore(srcGraph, dstGraph, editScript);
+                mapStore.init();
+                srcGraph.addMappingStore(mapStore);
+                srcGraph.addActions(editScript);
                 instances.add(srcGraph);
             }
         }

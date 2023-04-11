@@ -1,17 +1,17 @@
 package model;
 
-import builder.Matcher;
-import com.github.gumtreediff.matchers.Mapping;
-import com.github.gumtreediff.tree.Tree;
-import gumtree.spoon.AstComparator;
+import com.github.gumtreediff.tree.DefaultTree;
+import gumtree.spoon.builder.SpoonGumTreeBuilder;
 import gumtree.spoon.diff.Diff;
 import gumtree.spoon.diff.operations.*;
 import model.graph.Scope;
+import model.graph.edge.ASTEdge;
+import model.graph.edge.Edge;
 import model.graph.node.AnonymousClassDecl;
 import model.graph.node.CatClause;
 import model.graph.node.Node;
 import model.graph.node.PatchNode;
-import model.graph.node.actions.ActionNode;
+import model.graph.node.actions.*;
 import model.graph.node.bodyDecl.FieldDecl;
 import model.graph.node.bodyDecl.MethodDecl;
 import model.graph.node.expr.*;
@@ -22,16 +22,14 @@ import model.graph.node.varDecl.SingleVarDecl;
 import model.graph.node.varDecl.VarDeclFrag;
 import org.eclipse.jdt.core.dom.*;
 import spoon.reflect.declaration.CtElement;
-import spoon.support.reflect.code.CtBinaryOperatorImpl;
-import spoon.support.reflect.code.CtBlockImpl;
-import spoon.support.reflect.code.CtIfImpl;
-import spoon.support.reflect.declaration.CtCompilationUnitImpl;
+import spoon.support.reflect.reference.CtExecutableReferenceImpl;
+import utils.CtObject;
 import utils.JavaASTUtil;
+import utils.MappingStore;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 public class CodeGraph {
     private final GraphConfiguration configuration;
@@ -47,6 +45,7 @@ public class CodeGraph {
     protected CompilationUnit cu = null;
 
     private int startLine, endLine;
+    private MappingStore mappingStore;
 
     public CodeGraph(GraphBuildingContext context, GraphConfiguration configuration) {
         this.context = context;
@@ -74,68 +73,6 @@ public class CodeGraph {
         }
     }
 
-    public void addActionByFilePair(Diff edits) {
-        int method_start = this.getStartLine();
-        int method_end = this.getEndLine();
-        AstComparator diff = new AstComparator();
-        Map<CtElement, CtElement> mappings = new LinkedHashMap<>();
-        for (Mapping mapping : edits.getMappingsComp().asSet()) {
-            Tree srcTree = mapping.first;
-            Tree dstTree = mapping.second;
-            CtElement srcElement = (CtElement) srcTree.getMetadata("spoon_object");
-            CtElement dstElement = (CtElement) dstTree.getMetadata("spoon_object");
-            if (srcElement == null || srcElement.getPosition() == null) {
-                continue;
-            }
-            if (!srcElement.getPosition().isValidPosition()) {
-                continue;
-            }
-            int spoon_start = srcElement.getPosition().getLine();
-            if (spoon_start >= method_start && spoon_start <= method_end) {
-                mappings.put(srcElement, dstElement);
-                // TODO: if two nodes matched, their children also matched
-                if (!(srcElement instanceof CtCompilationUnitImpl))
-                    mapChildren(srcElement, dstElement, mappings);
-            }
-        }
-        Map<CtElement, Node> src_matcher = Matcher.mapSpoonToCodeGraph(this.getNodes(),
-                new ArrayList<>(mappings.keySet()));
-
-        // add modifications
-        List<Operation> operations = edits.getRootOperations();
-        List<Node> changedNodes = new ArrayList<>();
-        for (Operation operation : operations) {
-            if (operation instanceof InsertOperation) {
-                changedNodes.addAll(
-                        Matcher.mapOperationToCodeGraph((InsertOperation) operation, this, src_matcher));
-            } else if (operation instanceof MoveOperation) {
-                changedNodes
-                        .addAll(Matcher.mapOperationToCodeGraph((MoveOperation) operation, this, src_matcher));
-            } else if (operation instanceof DeleteOperation) {
-                changedNodes.addAll(
-                        Matcher.mapOperationToCodeGraph((DeleteOperation) operation, this, src_matcher));
-            } else if (operation instanceof UpdateOperation) {
-                changedNodes.addAll(
-                        Matcher.mapOperationToCodeGraph((UpdateOperation) operation, this, src_matcher));
-            }
-        }
-    }
-
-    private void mapChildren(CtElement srcElement, CtElement dstElement, Map<CtElement, CtElement> mappings) {
-        if (srcElement instanceof CtBlockImpl && dstElement instanceof CtBlockImpl)
-            return;
-        if (srcElement.getDirectChildren().size() == dstElement.getDirectChildren().size()) {
-            for (int i=0; i<srcElement.getDirectChildren().size(); i++) {
-                CtElement srcChild = srcElement.getDirectChildren().get(i);
-                CtElement dstChild = dstElement.getDirectChildren().get(i);
-                if (srcChild.getPosition().isValidPosition() && dstChild.getPosition().isValidPosition()) {
-                    mappings.put(srcChild, dstChild);
-                }
-            }
-        }
-        // do not use recursion since statements may not match in two blocks
-    }
-
     public void addSpoonNode(PatchNode patchNode) {
         allNodes.add(patchNode);
     }
@@ -148,7 +85,6 @@ public class CodeGraph {
         if (astNode == null) {
             return null;
         }
-
         Node node = null;
         if (astNode instanceof FieldDeclaration) {
             node = visit((FieldDeclaration) astNode, control, scope);
@@ -423,13 +359,16 @@ public class CodeGraph {
         consInv.setControlDependency(control);
         // arguments
         ExprList exprList = new ExprList(null, filePath, start, end);
-        List<ExprNode> argulist = new ArrayList<>();
+        List<ExprNode> args = new ArrayList<>();
         for (Object object : astNode.arguments()) {
             ExprNode expr = (ExprNode) buildNode((ASTNode) object, control, scope);
-            argulist.add(expr);
+            args.add(expr);
         }
-        exprList.setExprs(argulist);
+        exprList.setExprs(args);
         consInv.setArguments(exprList);
+        if (args.size() > 0) {
+            this.allNodes.add(exprList);  // since no ExprList type in jdt
+        }
 
         consInv.setScope(scope);
         return consInv;
@@ -528,6 +467,9 @@ public class CodeGraph {
         }
         initExprList.setExprs(initializers);
         forStmt.setInitializer(initExprList);
+        if (initializers.size() > 0) {
+            this.allNodes.add(initExprList);  // since no ExprList type in jdt
+        }
         // expression
         if (astNode.getExpression() != null) {
             ExprNode condition = (ExprNode) buildNode(astNode.getExpression(), control, scope);
@@ -544,6 +486,9 @@ public class CodeGraph {
         }
         exprList.setExprs(updaters);
         forStmt.setUpdaters(exprList);
+        if (updaters.size() > 0) {
+            this.allNodes.add(exprList);  // since no ExprList type in jdt
+        }
         // body
         StmtNode body = wrapBlock(astNode.getBody(), forStmt.getCondition(), scope);
         forStmt.setBody(body);
@@ -616,13 +561,16 @@ public class CodeGraph {
         }
         // parameters
         ExprList arguList = new ExprList(null, filePath, start, end);
-        List<ExprNode> argus = new ArrayList<>();
+        List<ExprNode> args = new ArrayList<>();
         for (Object obj : astNode.arguments()) {
             ExprNode para = (ExprNode) buildNode((ASTNode) obj, control, scope);
-            argus.add(para);
+            args.add(para);
         }
-        arguList.setExprs(argus);
+        arguList.setExprs(args);
         spi.setArguments(arguList);
+        if (args.size() > 0) {
+            this.allNodes.add(arguList);  // since no ExprList type in jdt
+        }
 
         spi.setScope(scope);
         return spi;
@@ -839,6 +787,9 @@ public class CodeGraph {
         }
         dimlist.setExprs(dimension);
         arycr.setDimension(dimlist);
+        if (dimension.size() > 0) {
+            this.allNodes.add(dimlist);  // since no ExprList type in jdt
+        }
         // initializer
         if (astNode.getInitializer() != null) {
             AryInitializer aryinit = (AryInitializer) buildNode(astNode.getInitializer(), control, scope);
@@ -946,13 +897,16 @@ public class CodeGraph {
         }
 
         ExprList exprList = new ExprList(null, filePath, start, end);
-        List<ExprNode> argus = new ArrayList<>();
+        List<ExprNode> args = new ArrayList<>();
         for (Object obj : astNode.arguments()) {
             ExprNode arg = (ExprNode) buildNode((ASTNode) obj, control, scope);
-            argus.add(arg);
+            args.add(arg);
         }
-        exprList.setExprs(argus);
+        exprList.setExprs(args);
         classCreation.setArguments(exprList);
+        if (args.size() > 0) {
+            this.allNodes.add(exprList);  // since no ExprList type in jdt
+        }
 
         String typeStr = JavaASTUtil.getSimpleType(astNode.getType());
         classCreation.setClassType(typeStr);
@@ -1315,6 +1269,9 @@ public class CodeGraph {
         }
         exprList.setExprs(args);
         superMethodInvoc.setArguments(exprList);
+        if (args.size() > 0) {
+            this.allNodes.add(exprList);  // since no ExprList type in jdt
+        }
 
         superMethodInvoc.setScope(scope);
         return superMethodInvoc;
@@ -1494,6 +1451,7 @@ public class CodeGraph {
             int startLine = cu.getLineNumber(node.getStartPosition());
             int endLine = cu.getLineNumber(node.getStartPosition() + node.getLength());
             blk = new BlockStmt(node, filePath, startLine, endLine);
+            allNodes.add(blk);
             List<StmtNode> stmts = new ArrayList<>();
             StmtNode stmt = (StmtNode) buildNode(node, control, scope);
             stmts.add(stmt);
@@ -1622,5 +1580,189 @@ public class CodeGraph {
 
     public Map<String, String> getTypeByNameMap() {
         return typeByName;
+    }
+
+    private void addAction(MoveOperation op) {
+        // moved
+        CtElement node = op.getNode();
+        Set<CtObject> list = MappingStore.findByCt(mappingStore.srcCGSpoonMap, new CtObject(node));
+        while (!list.isEmpty()) {
+            Iterator<CtObject> itr = list.iterator();
+            while (itr.hasNext()) {
+                CtObject l = itr.next();
+                if (list.size() > 1 && l.locationInParent.equals("expression")) { // TODO: more precise to handle CtInvocationImpl
+                    itr.remove();
+                    continue;
+                }
+                Node moveNode = mappingStore.srcSpoonCGMap.get(l);
+                // move to
+                int position = op.getPosition();
+                CtElement cte = (CtElement) ((DefaultTree)op.getParent().getMetadata(SpoonGumTreeBuilder.GUMTREE_NODE)).getChild(position).getMetadata(SpoonGumTreeBuilder.SPOON_OBJECT);
+                Set<CtObject> list2 = MappingStore.findByCt(mappingStore.dstCGSpoonMap, new CtObject(cte));
+                while (!list2.isEmpty()) {
+                    Iterator<CtObject> itr2 = list2.iterator();
+                    while (itr2.hasNext()) {
+                        CtObject l2 = itr2.next();
+                        if (list.size() > 1 && l.locationInParent.equals("expression")) { // TODO: more precise to handle CtInvocationImpl
+                            itr2.remove();
+                            continue;
+                        }
+                        Node parent = mappingStore.cgMap.inverse().get(mappingStore.dstSpoonCGMap.get(l2));
+                        // add to graph
+                        Move moveAction = new Move(parent, op.getAction());
+                        this.addActionNode(moveAction);
+                        moveAction.setNode(moveNode);
+                        itr2.remove();
+                    }
+                }
+                itr.remove();
+            }
+        }
+    }
+
+    private void addAction(DeleteOperation op) {
+        CtElement node = op.getNode();
+        Set<CtObject> list = MappingStore.findByCt(mappingStore.srcCGSpoonMap, new CtObject(node));
+        while (!list.isEmpty()) {
+            Iterator<CtObject> itr = list.iterator();
+            while (itr.hasNext()) {
+                CtObject l = itr.next();
+                if (list.size()>1 && l.locationInParent.equals("expression")) { // TODO: more precise to handle CtInvocationImpl
+                    itr.remove();
+                    continue;
+                }
+                Node delNode = mappingStore.srcSpoonCGMap.get(l);
+                // add to graph
+                if (delNode != null) {
+                    Delete delAction = new Delete(delNode, op.getAction());
+                    this.addActionNode(delAction);
+                }
+                itr.remove();
+            }
+        }
+    }
+
+    private void addAction(InsertOperation op) {
+        // get real parent, already exist
+        int position = op.getPosition();  // position is metadata-gtnode children index
+        CtElement cte = (CtElement) ((DefaultTree)op.getParent().getMetadata(SpoonGumTreeBuilder.GUMTREE_NODE)).getChild(position).getMetadata(SpoonGumTreeBuilder.SPOON_OBJECT);
+        Set<CtObject> list = MappingStore.findByCt(mappingStore.srcCGSpoonMap, new CtObject(cte));
+        while (!list.isEmpty()) {
+            Iterator<CtObject> itr = list.iterator();
+            while (itr.hasNext()) {
+                CtObject l = itr.next();
+                if (list.size()>1 && l.locationInParent.equals("expression")) continue;  // TODO: more precise to handle CtInvocationImpl
+                Node parent = mappingStore.srcSpoonCGMap.get(l);
+                // newly insert
+                CtElement node = op.getNode();  // in dst
+                Node insertNodeInDst = mappingStore.dstSpoonCGMap.get(new CtObject(node, parent.getASTNode().getLocationInParent().getId()));
+                Node insertNodeInSrc = cloneFromDst(insertNodeInDst);
+                this.allNodes.add(insertNodeInSrc);
+                mappingStore.srcSpoonCGMap.put(new CtObject(node, parent.getASTNode().getLocationInParent().getId()), insertNodeInSrc);
+                mappingStore.cgMap.forcePut(insertNodeInSrc, insertNodeInDst);
+                // original edge relationship in dst graph
+                insertNodeInSrc.copyRelationFromDst(insertNodeInDst, mappingStore);
+                // add to graph
+                Insert insertAction = new Insert(parent, op.getAction());
+                this.addActionNode(insertAction);
+                insertAction.setNode(insertNodeInSrc);
+                // insert its children
+                if (list.size()==1 || !l.locationInParent.equals("statements"))
+                    addChildren(insertNodeInSrc, node);
+                itr.remove();
+            }
+        }
+    }
+
+    private void addAction(UpdateOperation op) {
+        CtElement ctOld = op.getSrcNode();
+        Set<CtObject> list = MappingStore.findByCt(mappingStore.srcCGSpoonMap, new CtObject(ctOld));
+        while (!list.isEmpty()) {
+            Iterator<CtObject> itr = list.iterator();
+            while (itr.hasNext()) {
+                CtObject l = itr.next();
+                if (list.size()>1 && l.locationInParent.equals("expression")) continue;  // TODO: more precise to handle CtInvocationImpl
+                Node cgOld = mappingStore.srcSpoonCGMap.get(l);
+                // newly insert
+                CtElement ctNew = op.getDstNode();
+                Node cgNewInDst = mappingStore.dstSpoonCGMap.get(new CtObject(ctNew, cgOld.getASTNode().getLocationInParent().getId()));
+//            if (!mappingStore.cgMap.containsValue(cgNewInDst)) {
+                Node cgNewInSrc = cloneFromDst(cgNewInDst);
+                this.allNodes.add(cgNewInSrc);
+                mappingStore.srcSpoonCGMap.put(new CtObject(ctNew, cgOld.getASTNode().getLocationInParent().getId()), cgNewInSrc);
+                mappingStore.cgMap.forcePut(cgNewInSrc, cgNewInDst);
+                // original edge relationship in dst graph
+                cgNewInSrc.copyRelationFromDst(cgNewInDst, mappingStore);
+                // add to graph
+                Update updateAction = new Update(cgOld, op.getAction());
+                this.addActionNode(updateAction);
+                updateAction.setNewNode(cgNewInSrc);
+                // insert its children
+                if (list.size()==1 || !l.locationInParent.equals("statements"))
+                    addChildren(cgNewInSrc, ctNew);
+//            }
+                itr.remove();
+            }
+        }
+    }
+
+    public void addChildren(Node cg, CtElement subTree) {
+        for (CtElement childCt : subTree.getDirectChildren()) {
+            if (!childCt.getPosition().isValidPosition() && !(childCt instanceof CtExecutableReferenceImpl)) continue;
+            Set<CtObject> list = MappingStore.findByCt(mappingStore.dstCGSpoonMap, new CtObject(childCt));
+            for (CtObject l : list) {
+                Node childInDst = mappingStore.dstSpoonCGMap.get(l);
+                Node childInSrc = mappingStore.cgMap.inverse().get(childInDst);
+//                if (childInSrc == null) {
+                childInSrc = cloneFromDst(childInDst);
+                this.allNodes.add(childInSrc);
+                mappingStore.srcSpoonCGMap.put(new CtObject(childCt), childInSrc);
+                mappingStore.cgMap.forcePut(childInSrc, childInDst);
+//                }
+                // original edge relationship in dst graph
+                childInSrc.copyRelationFromDst(childInDst, mappingStore);
+                if (!cg.hasOutEdge(childInSrc, Edge.EdgeType.AST)) {
+                    new ASTEdge(cg, childInSrc);
+                    childInSrc.setParent(cg);
+                }
+                addChildren(childInSrc, childCt);
+            }
+        }
+    }
+
+    public void addActions(Diff editScript) {
+        for (Operation op : editScript.getRootOperations()) {
+            if (op instanceof InsertOperation) {
+                addAction((InsertOperation) op);
+            } else if (op instanceof MoveOperation) {
+                addAction((MoveOperation) op);
+            } else if (op instanceof DeleteOperation) {
+                addAction((DeleteOperation) op);
+            } else if (op instanceof UpdateOperation) {
+                addAction((UpdateOperation) op);
+            }
+        }
+    }
+
+    public void addMappingStore(MappingStore mapStore) {
+        this.mappingStore = mapStore;
+    }
+
+    private Node cloneFromDst(Node aNode) {
+        Class c = aNode.getClass();
+        Node newNode = null;
+        try {
+            Constructor con = c.getDeclaredConstructor(ASTNode.class, String.class, int.class, int.class);
+            newNode = (Node) con.newInstance(aNode.getASTNode(), aNode.getFileName(), aNode.getStartSourceLine(), aNode.getEndSourceLine());
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return newNode;
     }
 }

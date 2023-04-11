@@ -6,14 +6,10 @@ import model.GraphConfiguration;
 import model.graph.node.actions.ActionNode;
 import model.pattern.Pattern;
 import org.junit.Test;
-import utils.DotGraph;
-import utils.FileIO;
-import utils.Pair;
+import utils.*;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
@@ -34,8 +30,8 @@ public class TestPatternExtractor {
             dot.toDotFile(dir1);
         }
 
-        assertEquals(change1.getNodes().stream().filter(s -> s instanceof ActionNode).collect(Collectors.toList()).size(), 1);
-        assertEquals(change2.getNodes().stream().filter(s -> s instanceof ActionNode).collect(Collectors.toList()).size(), 1);
+        assertEquals(change1.getNodes().stream().filter(s -> s instanceof ActionNode).count(), 1);
+        assertEquals(change2.getNodes().stream().filter(s -> s instanceof ActionNode).count(), 1);
 
     }
 
@@ -44,19 +40,10 @@ public class TestPatternExtractor {
      */
     @Test
     public void testPatternExtractFromMultiplePairs1() {
-        long startTime = System.currentTimeMillis();
         CodeGraph change1 = constructActionGraph("73");
-        long endTime1 = System.currentTimeMillis();
-        long time1 = endTime1 - startTime;
         CodeGraph change2 = constructActionGraph("74");
-        long endTime2 = System.currentTimeMillis();
-        long time2 = endTime2 - endTime1;
         CodeGraph change3 = constructActionGraph("75");
-        long endTime3 = System.currentTimeMillis();
-        long time3 = endTime3 - endTime2;
         CodeGraph change4 = constructActionGraph("76");
-        long endTime4 = System.currentTimeMillis();
-        long time4 = endTime4 - endTime3;
 
         List<CodeGraph> cgs = new ArrayList<>();
         cgs.add(change1);
@@ -66,28 +53,20 @@ public class TestPatternExtractor {
 
         DotGraph dot1 = new DotGraph(change1, new GraphConfiguration(), 0);
         dot1.toDotFile(new File(System.getProperty("user.dir") + "/out/73.dot"));
-        DotGraph dot2 = new DotGraph(change1, new GraphConfiguration(), 0);
+        DotGraph dot2 = new DotGraph(change2, new GraphConfiguration(), 0);
         dot2.toDotFile(new File(System.getProperty("user.dir") + "/out/74.dot"));
-        DotGraph dot3 = new DotGraph(change1, new GraphConfiguration(), 0);
+        DotGraph dot3 = new DotGraph(change3, new GraphConfiguration(), 0);
         dot3.toDotFile(new File(System.getProperty("user.dir") + "/out/75.dot"));
-        DotGraph dot4 = new DotGraph(change1, new GraphConfiguration(), 0);
+        DotGraph dot4 = new DotGraph(change4, new GraphConfiguration(), 0);
         dot4.toDotFile(new File(System.getProperty("user.dir") + "/out/76.dot"));
 
         // extract pattern from more-than-one graphs
-        startTime = System.currentTimeMillis();
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(cgs);
-        long endTime5 = System.currentTimeMillis();
         for (Pattern pat : combinedGraphs) {
             DotGraph dot = new DotGraph(pat, 0);
             File dir1 = new File(System.getProperty("user.dir") + "/out/pattern73-76.dot");
             dot.toDotFile(dir1);
         }
-        System.out.println("codegraph 73 time cost : " + time1 + " ms");
-        System.out.println("codegraph 74 time cost : " + time2 + " ms");
-        System.out.println("codegraph 75 time cost : " + time3 + " ms");
-        System.out.println("codegraph 76 time cost : " + time4 + " ms");
-        System.out.println("pattern extraction time cost : " + (endTime5 - startTime) + " ms");
-
     }
 
     @Test
@@ -128,8 +107,13 @@ public class TestPatternExtractor {
             CodeGraph srcGraph = pair.getFirst();
             CodeGraph dstGraph = pair.getSecond();
             AstComparator diff = new AstComparator();
-            Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
-            srcGraph.addActionByFilePair(editScript);
+            Diff editScript1 = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
+
+            MappingStore mapStore = new MappingStore(srcGraph, dstGraph, editScript1);
+            mapStore.init();
+            srcGraph.addMappingStore(mapStore);
+
+            srcGraph.addActions(editScript1);
             return srcGraph;
         }
     }
@@ -154,7 +138,10 @@ public class TestPatternExtractor {
             CodeGraph dstGraph = pair.getSecond();
             AstComparator diff = new AstComparator();
             Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
-            srcGraph.addActionByFilePair(editScript);
+            MappingStore mapStore = new MappingStore(srcGraph, dstGraph, editScript);
+            mapStore.init();
+            srcGraph.addMappingStore(mapStore);
+            srcGraph.addActions(editScript);
             return srcGraph;
         }
     }

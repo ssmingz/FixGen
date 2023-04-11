@@ -69,7 +69,7 @@ public class DotGraph {
         int id = nodeIndexStart;
         for (Node node : nodes) {
             idByNode.put(node, id);
-            String label = "" + node.getStartSourceLine() + ":" + node.toLabelString();
+            String label = "" + node.getStartSourceLine() + ":" + node.getClass().getSimpleName() + "@" + node.toLabelString();
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
             id++;
         }

@@ -4,17 +4,48 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="delete HFFSM module">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality">
+      <change afterPath="$PROJECT_DIR$/codegraph/out/codegraph_eval_1.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/out/test.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/CtObject.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/MappingStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/73-76.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/73-76.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/73.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/73.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/out/74.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/74.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck_abstract0.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/75.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/75.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/76.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/76.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern73-76.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern73-76_abstract.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern73-76_abstract.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_EmptyCheck0.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_NullCheck.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_NullCheck.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/out/pattern_NullCheck_abstract0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/out/pattern_NullCheck_abstract0.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/builder/PatternExtractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Attribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/edge/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SimpName.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/model/graph/node/expr/SimpName.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/main/java/utils/DotGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestActionGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestActionGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#101/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#101/new/KeePassFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#101/old/KeePassFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#161/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#161/new/AllEntries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#161/old/AllEntries.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#26/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#26/new/Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#26/old/Util.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#69/diff.diff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#69/new/KeysDAORedisImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph/src/test/resources/FixBench/EmptyCheck的副本/Genesis#69/old/KeysDAORedisImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/Operation.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +128,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs3">
+  <component name="RunManager" selected="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs1">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -172,11 +203,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs3" />
-        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2" />
         <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs1" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs1" />
+        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs3" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs2" />
+        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs2" />
       </list>
     </recent_temporary>
   </component>
@@ -336,7 +367,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680196006696</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality">
+      <created>1680425959115</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1680425959115</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -371,7 +409,8 @@
     <MESSAGE value="refactor PatternAbstracter and PatternExtractor" />
     <MESSAGE value="refactor PatternExtractor" />
     <MESSAGE value="delete HFFSM module" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete HFFSM module" />
+    <MESSAGE value="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -383,7 +422,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestGumTree.java</url>
-          <line>24</line>
+          <line>25</line>
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -487,11 +526,6 @@
           <option name="timeStamp" value="110" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/main/java/model/CodeGraph.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="215" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/PatternAbstracter.java</url>
           <line>137</line>
           <option name="timeStamp" value="229" />
@@ -507,19 +541,19 @@
           <option name="timeStamp" value="324" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java</url>
-          <line>183</line>
-          <option name="timeStamp" value="334" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph/src/main/java/builder/Matcher.java</url>
-          <line>132</line>
-          <option name="timeStamp" value="340" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph/src/main/java/model/pattern/Attribute.java</url>
           <line>151</line>
           <option name="timeStamp" value="341" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternAbstract.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="379" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/test/java/TestPatternExtractor.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="511" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -529,6 +563,7 @@
         <watch expression="mappings" />
         <watch expression="((LinkedHashMap)mappings).entrySet().toArray()[37]" custom="java.util.LinkedHashMap" />
         <watch expression="((LinkedHashMap)mappings).entrySet().toArray()[37]" custom="java.util.LinkedHashMap" />
+        <watch expression="((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((MappingStore)((DiffImpl)edits)._mappingsComp).dst).children).get(0)).children).get(8)).children).get(8)" custom="com.github.gumtreediff.matchers.MappingStore,com.github.gumtreediff.tree.DefaultTree,gumtree.spoon.diff.DiffImpl,java.util.ArrayList" />
       </configuration>
     </watches-manager>
   </component>

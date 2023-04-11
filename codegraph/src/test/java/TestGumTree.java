@@ -5,6 +5,7 @@ import model.CodeGraph;
 import model.GraphConfiguration;
 import model.graph.node.actions.ActionNode;
 import org.junit.Test;
+import utils.MappingStore;
 import utils.Pair;
 import utils.FileIO;
 import utils.JavaASTUtil;
@@ -76,8 +77,11 @@ public class TestGumTree {
             CodeGraph dstGraph = pair.getSecond();
             AstComparator diff = new AstComparator();
             Diff editScript = diff.compare(FileIO.readStringFromFile(srcFile), FileIO.readStringFromFile(dstFile));
-            srcGraph.addActionByFilePair(editScript);
-            assertEquals(2, srcGraph.getNodes().stream().filter(p->p instanceof ActionNode).collect(Collectors.toList()).size());
+            MappingStore mapStore = new MappingStore(srcGraph, dstGraph, editScript);
+            mapStore.init();
+            srcGraph.addMappingStore(mapStore);
+            srcGraph.addActions(editScript);
+            assertEquals(2, srcGraph.getNodes().stream().filter(p -> p instanceof ActionNode).count());
             actionGraphs.add(srcGraph);
         }
     }

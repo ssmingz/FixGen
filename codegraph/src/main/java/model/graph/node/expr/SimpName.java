@@ -19,7 +19,9 @@ public class SimpName extends NameExpr {
 
     @Override
     public String toLabelString() {
-        return _name;
+        StringBuffer buf = new StringBuffer();
+        buf.append(_astNode.toString());
+        return buf.toString();
     }
 
     public void setType(String typeStr) { _type = typeStr; }

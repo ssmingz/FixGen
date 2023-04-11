@@ -92,6 +92,10 @@ public class TestPatternAbstract {
         CodeGraph change2 = TestPatternExtractor.constructActionGraph2("NullCheck/Genesis#eval_2");
         CodeGraph change3 = TestPatternExtractor.constructActionGraph2("NullCheck/Genesis#401");
 
+        DotGraph dot3 = new DotGraph(change1, new GraphConfiguration(), 0);
+        dot3.toDotFile(new File(System.getProperty("user.dir") + "/out/codegraph_eval_1.dot"));
+
+
         List<CodeGraph> cgs = new ArrayList<>();
         cgs.add(change1);
         cgs.add(change2);

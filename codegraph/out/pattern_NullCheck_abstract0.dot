@@ -9,7 +9,12 @@ digraph "Pattern" {
 7 [label="locationInParent:fragments\nnodeType:VariableDeclarationFragment\nvalueName:bundle=ResourceBundleFinder.getForCurrentLocale(facesContext)" shape=ellipse]
 8 [label="locationInParent:name\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:bundle" shape=ellipse]
 9 [label="locationInParent:initializer\nnodeType:MethodInvocation\nnodeTypeHighLevel:expression\nvalueName:ResourceBundleFinder.getForCurrentLocale(facesContext)" shape=ellipse]
-10 [label="locationInParent:statement\nnodeType:CtIfImpl\nnodeTypeHighLevel:statement\ncodeContent:if (value == null) {\n    return;\n}" shape=ellipse]
+10 [label="locationInParent:statements\nnodeType:IfStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+11 [label="locationInParent:expression\nnodeType:InfixExpression\nnodeTypeHighLevel:expression\nvalueName:Object == null" shape=ellipse]
+12 [label="locationInParent:leftOperand\nnodeType:SimpleName\nnodeTypeHighLevel:expression\nvalueName:value\nvalueType:Object" shape=ellipse]
+13 [label="locationInParent:rightOperand\nnodeType:NullLiteral\nnodeTypeHighLevel:expression\nvalueName:null" shape=ellipse]
+14 [label="locationInParent:thenStatement\nnodeType:ReturnStatement\nnodeTypeHighLevel:statement" shape=ellipse]
+15 [label="locationInParent:thenStatement\nnodeType:ReturnStatement\nnodeTypeHighLevel:statement" shape=ellipse]
 0 -> 10 [label="Action:3"];
 1 -> 0 [label="Action:3"];
 1 -> 7 [label="AST:3"];
@@ -20,4 +25,9 @@ digraph "Pattern" {
 3 -> 2 [label="AST:3"];
 7 -> 8 [label="AST:3"];
 7 -> 9 [label="AST:3"];
+10 -> 11 [label="AST:3"];
+10 -> 14 [label="AST:3"];
+11 -> 12 [label="AST:3"];
+11 -> 13 [label="AST:3"];
+14 -> 15 [label="AST:3"];
 }

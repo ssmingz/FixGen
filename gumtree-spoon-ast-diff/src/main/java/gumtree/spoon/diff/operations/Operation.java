@@ -110,7 +110,7 @@ public abstract class Operation<T extends Action> {
 		return print.getResult();
 	}
 
-	/** returns the changed (inserded/deleted/updated) element */
+	/** returns the changed (inserted/deleted/updated) element */
 	public CtElement getSrcNode() {
 		return node;
 	}

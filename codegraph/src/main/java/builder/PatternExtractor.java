@@ -6,6 +6,7 @@ import model.graph.node.Node;
 import model.graph.node.PatchNode;
 import model.graph.node.actions.*;
 import model.graph.node.expr.*;
+import model.graph.node.stmt.StmtNode;
 import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 public class PatternExtractor {
     int MAX_NODE_SIZE;
-    static int MAX_EXTEND_LEVEL = 3;  // default is 3
+    static int MAX_EXTEND_LEVEL = 4;  // default is 3
     static Map<Node, PatternNode>  _nodeMap = new LinkedHashMap<>();
     static Map<Map<Node, Node>, Double> _mappingsByScore = new LinkedHashMap<>();
 
@@ -59,45 +60,6 @@ public class PatternExtractor {
             }
         }
         return loc;
-    }
-
-    /**
-     * return the node according to the nodeLabel around root node, return null if not exist
-     */
-    public static PatternNode findNeighbor(PatternNode root, PatternEdge.EdgeType edgeType, String nodeLabel, String direction) {
-        List<PatternEdge> edges;
-        if (direction.equals("in")) {
-            edges = root.inEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
-            //edges = edges.stream().filter(s -> s.getSource().getType().equals(nodeLabel)).collect(Collectors.toList());
-            edges = edges.stream().filter(s -> s.getSource().getLocationInParent().equals(nodeLabel)).collect(Collectors.toList());
-            if (edges.size() == 1)
-                return edges.get(0).getSource();
-        } else if (direction.equals("out")) {
-            edges = root.outEdges().stream().filter(p -> p.type == edgeType).collect(Collectors.toList());
-            //edges = edges.stream().filter(s -> s.getTarget().getType().equals(nodeLabel)).collect(Collectors.toList());
-            edges = edges.stream().filter(s -> s.getTarget().getLocationInParent().equals(nodeLabel)).collect(Collectors.toList());
-            if (edges.size() == 1)
-                return edges.get(0).getTarget();
-        } else {
-            System.out.println("[ERROR]more than one matched patternNode");
-        }
-        return null;
-    }
-
-    private static PatternNode findNode(Node post, CodeGraph cg) {
-        if (_nodeMap.containsKey(post))
-            return _nodeMap.get(post);
-        else {
-            for (Map.Entry<Node, PatternNode> entry : _nodeMap.entrySet()) {
-                for (Node ins : entry.getValue().getInstance().keySet()) {
-                    String label1 = entry.getValue().getInstance().get(ins) + "#" + entry.getKey().getStartSourceLine() + ":" + entry.getKey().toLabelString();
-                    String label2 = cg.getGraphName() + "#" + post.getStartSourceLine() + ":" + post.toLabelString();
-                    if (label1.equals(label2))
-                        return entry.getValue();
-                }
-            }
-        }
-        return null;
     }
 
     /**
@@ -153,37 +115,6 @@ public class PatternExtractor {
             }
         }
         return result;
-    }
-
-    public static boolean similar(ActionNode an1, ActionNode an2) {
-        // action type
-        if (an1.getType() == an2.getType()) {
-            switch (an1.getType()) {
-                case DELETE:
-                    Node del1 = ((Delete) an1).getDelete();
-                    Node del2 = ((Delete) an2).getDelete();
-                    return sameType(del1, del2);
-                case MOVE:
-                    Node movefrom1 = ((Move) an1).getMove();
-                    Node movefrom2 = ((Move) an2).getMove();
-                    Node moveto1 = an1.getParent();
-                    Node moveto2 = an2.getParent();
-                    return sameType(movefrom1, movefrom2) && sameType(moveto1, moveto2);
-                case INSERT:
-                    Node ins1 = ((Insert) an1).getInsert();
-                    Node ins2 = ((Insert) an2).getInsert();
-                    Node insto1 = an1.getParent();
-                    Node insto2 = an2.getParent();
-                    return sameType(ins1, ins2) && sameType(insto1, insto2);
-                case UPDATE:
-                    Node updBef1 = ((Update) an1).getBefore();
-                    Node updBef2 = ((Update) an2).getBefore();
-                    Node updAft1 = ((Update) an1).getAfter();
-                    Node updAft2 = ((Update) an2).getAfter();
-                    return sameType(updBef1, updBef2) && sameType(updAft1, updAft2);
-            }
-        }
-        return false;
     }
 
     public static boolean sameType(Node nodeA, Node nodeB) {
@@ -593,9 +524,7 @@ public class PatternExtractor {
         Set<Node> traversed = new LinkedHashSet<>();
         for (ActionNode action : codeGraph.getActions()) {
             if (traversed.contains(action)) continue;
-            traversed.add(action);
             List<Node> nodes = extendLinks(action, 0, traversed); // start from action
-//            List<Node> nodes = extendLinks(action.getParent(), 1, traversed); // start from action.parent
             if (!nodes.isEmpty())
                 result.add(nodes);
         }
@@ -604,7 +533,7 @@ public class PatternExtractor {
 
     private static List<Node> extendLinks(Node node, int extendLevel, Set<Node> traversed) {
         List<Node> nodes = new ArrayList<>();
-        if (extendLevel > MAX_EXTEND_LEVEL)
+        if (traversed.contains(node) || extendLevel > MAX_EXTEND_LEVEL)
             return nodes;
         nodes.add(node);
         traversed.add(node);
@@ -614,7 +543,10 @@ public class PatternExtractor {
                 nodes.addAll(extendLinks(e.getSource(), extendLevel+1, traversed).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
             } else if (e.getSource().equals(node)) {
                 // continue extending target
-                nodes.addAll(extendLinks(e.getTarget(), extendLevel+1, traversed).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+                if (e.getTarget() instanceof StmtNode)
+                    nodes.addAll(extendLinks(e.getTarget(), extendLevel+1, traversed).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+                else
+                    nodes.addAll(extendLinks(e.getTarget(), extendLevel+1, traversed).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
             }
         }
         return nodes;

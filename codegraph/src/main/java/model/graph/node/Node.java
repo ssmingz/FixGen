@@ -2,14 +2,12 @@ package model.graph.node;
 
 import model.NodeComparator;
 import model.graph.Scope;
-import model.graph.edge.ASTEdge;
-import model.graph.edge.ControlEdge;
-import model.graph.edge.DataEdge;
-import model.graph.edge.Edge;
+import model.graph.edge.*;
 import model.graph.node.expr.ExprNode;
 import model.graph.node.expr.NameExpr;
 import model.graph.node.stmt.StmtNode;
-import org.eclipse.jdt.core.dom.ASTNode;
+import org.eclipse.jdt.core.dom.*;
+import utils.MappingStore;
 
 import java.io.Serializable;
 import java.util.*;
@@ -74,6 +72,10 @@ public abstract class Node implements NodeComparator {
         _parent = parent;
     }
 
+    public String getFileName() {
+        return _fileName;
+    }
+
     public void addOutEdge(Edge edge) {
         outEdges.add(edge);
     }
@@ -97,13 +99,13 @@ public abstract class Node implements NodeComparator {
         if (controller != null) {
             if (controller.hasASTChildren()) {
                 for (Edge out : controller.outEdges) {
-                    if (out instanceof ASTEdge && out.getTarget() instanceof NameExpr) {
-                        // only for direct children
-                        new DataEdge(out.getTarget(), this);
+                    if (out instanceof ASTEdge) {
+                        setDataDependency(out.getTarget());  // not only for direct children
                     }
                 }
             } else {
-                new DataEdge(controller, this);
+                if (controller instanceof NameExpr && !controller.getASTNode().getLocationInParent().getId().equals("name"))
+                    new DataEdge(controller, this);
             }
         }
     }
@@ -225,6 +227,65 @@ public abstract class Node implements NodeComparator {
         allEdges.addAll(inEdges);
         allEdges.addAll(outEdges);
         return allEdges;
+    }
+
+    public Set<Node> getDataDependencySet() {
+        return _dataDependency;
+    }
+
+    public boolean hasInEdge(Node src, Edge.EdgeType type) {
+        for (Edge e: this.inEdges) {
+            if (e.type == type && e.getSource().equals(src))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasOutEdge(Node tar, Edge.EdgeType type) {
+        for (Edge e: this.outEdges) {
+            if (e.type == type && e.getTarget().equals(tar))
+                return true;
+        }
+        return false;
+    }
+
+    public void copyRelationFromDst(Node nodeInDst, MappingStore mappingStore) {
+        for (Edge ie : nodeInDst.inEdges) {
+            Node sourceInDst = ie.getSource();
+            Node sourceInSrc = mappingStore.cgMap.inverse().get(sourceInDst);
+            if (sourceInSrc == null) continue;
+            if (this.hasInEdge(sourceInSrc, ie.type)) continue;
+            if (ie.type == Edge.EdgeType.AST) {
+                new ASTEdge(sourceInSrc, this);
+                this.setParent(sourceInSrc);
+            } else if (ie.type == Edge.EdgeType.CONTROL_DEP) {
+//                new ControlEdge(sourceInSrc, this);
+//                this.setControlDependency(sourceInSrc);
+            } else if (ie.type == Edge.EdgeType.DATA_DEP) {
+                new DataEdge(sourceInSrc, this);
+                this.setDataDependency(sourceInSrc);
+            } else if (ie.type == Edge.EdgeType.DEF_USE) {
+                new DefUseEdge(sourceInSrc, this);
+                this.setDataDependency(sourceInSrc);
+            }
+        }
+        for (Edge oe : nodeInDst.outEdges) {
+            Node targetInDst = oe.getTarget();
+            Node targetInSrc = mappingStore.cgMap.inverse().get(targetInDst);
+            if (this.hasOutEdge(targetInSrc, oe.type)) continue;
+            if (targetInSrc != null) {
+                if (oe.type == Edge.EdgeType.CONTROL_DEP) {
+//                    new ControlEdge(this, targetInSrc);
+//                    targetInSrc.setControlDependency(this);
+                } else if (oe.type == Edge.EdgeType.DATA_DEP) {
+                    new DataEdge(this, targetInSrc);
+                    targetInSrc.setDataDependency(this);
+                } else if (oe.type == Edge.EdgeType.DEF_USE) {
+                    new DataEdge(this, targetInSrc);
+                    targetInSrc.setDataDependency(this);
+                }
+            }
+        }
     }
 }
 

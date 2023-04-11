@@ -1,0 +1,206 @@
+digraph "StellaCNPJValidator.validate#?,FacesContext,UIComponent,Object" {
+0 [label="51:SimpName@validate" shape=ellipse]
+1 [label="51:SimpName@facesContext" shape=ellipse]
+2 [label="51:SingleVarDecl@FacesContext facesContext" shape=ellipse]
+3 [label="51:SimpName@uiComponent" shape=ellipse]
+4 [label="51:SingleVarDecl@UIComponent uiComponent" shape=ellipse]
+5 [label="51:SimpName@value" shape=ellipse]
+6 [label="51:SingleVarDecl@Object value" shape=ellipse]
+7 [label="52:SimpName@bundle" shape=ellipse]
+8 [label="52:SimpName@resourceBundleFinder" shape=ellipse]
+9 [label="52:SimpName@getForCurrentLocale" shape=ellipse]
+10 [label="52:SimpName@facesContext" shape=ellipse]
+11 [label="52:ExprList@facesContext" shape=ellipse]
+12 [label="52:MethodInvoc@resourceBundleFinder.getForCurrentLocale(facesContext)" shape=ellipse]
+13 [label="52:VarDeclFrag@bundle=resourceBundleFinder.getForCurrentLocale(facesContext)" shape=ellipse]
+14 [label="52:VarDeclStmt@class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+15 [label="53:SimpName@producer" shape=ellipse]
+16 [label="53:SimpName@bundle" shape=ellipse]
+17 [label="53:ExprList@bundle" shape=ellipse]
+18 [label="53:ClassInstanceCreationExpr@new ResourceBundleMessageProducer(bundle)" shape=ellipse]
+19 [label="53:VarDeclFrag@producer=new ResourceBundleMessageProducer(bundle)" shape=ellipse]
+20 [label="53:VarDeclStmt@class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+21 [label="54:SimpName@validator" shape=ellipse]
+22 [label="54:SimpName@producer" shape=ellipse]
+23 [label="54:SimpName@formatted" shape=ellipse]
+24 [label="54:ExprList@producer,formatted" shape=ellipse]
+25 [label="54:ClassInstanceCreationExpr@new CNPJValidator(producer,formatted)" shape=ellipse]
+26 [label="54:VarDeclFrag@validator=new CNPJValidator(producer,formatted)" shape=ellipse]
+27 [label="54:VarDeclStmt@class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+28 [label="57:SimpName@validator" shape=ellipse]
+29 [label="57:SimpName@assertValid" shape=ellipse]
+30 [label="57:SimpName@value" shape=ellipse]
+31 [label="57:SimpName@toString" shape=ellipse]
+32 [label="57:MethodInvoc@value.toString()" shape=ellipse]
+33 [label="57:ExprList@value.toString()" shape=ellipse]
+34 [label="57:MethodInvoc@validator.assertValid(value.toString())" shape=ellipse]
+35 [label="57:ExprStmt@class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+36 [label="56:BlockStmt@class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+37 [label="58:SimpName@e" shape=ellipse]
+38 [label="58:SingleVarDecl@InvalidStateException e" shape=ellipse]
+39 [label="59:SimpName@messages" shape=ellipse]
+40 [label="59:SimpName@e" shape=ellipse]
+41 [label="59:SimpName@getInvalidMessages" shape=ellipse]
+42 [label="59:MethodInvoc@e.getInvalidMessages()" shape=ellipse]
+43 [label="59:VarDeclFrag@messages=e.getInvalidMessages()" shape=ellipse]
+44 [label="59:VarDeclStmt@class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+45 [label="60:SimpName@firstErrorMessage" shape=ellipse]
+46 [label="60:SimpName@messages" shape=ellipse]
+47 [label="60:SimpName@remove" shape=ellipse]
+48 [label="60:NumLiteral@0" shape=ellipse]
+49 [label="60:ExprList@0" shape=ellipse]
+50 [label="60:MethodInvoc@messages.remove(0)" shape=ellipse]
+51 [label="60:SimpName@getMessage" shape=ellipse]
+52 [label="60:MethodInvoc@messages.remove(0).getMessage()" shape=ellipse]
+53 [label="60:VarDeclFrag@firstErrorMessage=messages.remove(0).getMessage()" shape=ellipse]
+54 [label="60:VarDeclStmt@class org.eclipse.jdt.core.dom.VariableDeclarationStatement" shape=ellipse]
+55 [label="61:SimpName@registerAllMessages" shape=ellipse]
+56 [label="61:SimpName@facesContext" shape=ellipse]
+57 [label="61:SimpName@uiComponent" shape=ellipse]
+58 [label="61:SimpName@messages" shape=ellipse]
+59 [label="61:ExprList@facesContext,uiComponent,messages" shape=ellipse]
+60 [label="61:MethodInvoc@registerAllMessages(facesContext,uiComponent,messages)" shape=ellipse]
+61 [label="61:ExprStmt@class org.eclipse.jdt.core.dom.ExpressionStatement" shape=ellipse]
+62 [label="62:SimpName@firstErrorMessage" shape=ellipse]
+63 [label="62:ExprList@firstErrorMessage" shape=ellipse]
+64 [label="62:ClassInstanceCreationExpr@new FacesMessage(firstErrorMessage)" shape=ellipse]
+65 [label="62:ExprList@new FacesMessage(firstErrorMessage)" shape=ellipse]
+66 [label="62:ClassInstanceCreationExpr@new ValidatorException(new FacesMessage(firstErrorMessage))" shape=ellipse]
+67 [label="62:ThrowStmt@class org.eclipse.jdt.core.dom.ThrowStatement" shape=ellipse]
+68 [label="58:BlockStmt@class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+69 [label="58:CatClause@catch(InvalidStateException e)class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+70 [label="56:TryStmt@class org.eclipse.jdt.core.dom.TryStatement" shape=ellipse]
+71 [label="51:BlockStmt@class org.eclipse.jdt.core.dom.Block" shape=ellipse]
+72 [label="51:MethodDecl@public void validate(FacesContext facesContext,UIComponent uiComponent,Object value) throws ValidatorException" shape=ellipse]
+73 [label="52:IfStmt@class org.eclipse.jdt.core.dom.IfStatement" shape=ellipse]
+74 [label="-1:Insert@INSERT" shape=ellipse]
+75 [label="52:InfixExpr@value == null" shape=ellipse]
+76 [label="52:SimpName@value" shape=ellipse]
+77 [label="52:NulLiteral@null" shape=ellipse]
+78 [label="52:BlockStmt@class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+79 [label="52:ReturnStmt@class org.eclipse.jdt.core.dom.ReturnStatement" shape=ellipse]
+1 -> 10 [label="Define-Use"];
+1 -> 56 [label="Define-Use"];
+2 -> 1 [label=""];
+3 -> 57 [label="Define-Use"];
+4 -> 3 [label=""];
+5 -> 30 [label="Define-Use"];
+5 -> 76 [label="Define-Use"];
+6 -> 5 [label=""];
+7 -> 16 [label="Define-Use"];
+8 -> 7 [label="Data Dep"];
+10 -> 7 [label="Data Dep"];
+11 -> 10 [label=""];
+12 -> 8 [label=""];
+12 -> 9 [label=""];
+12 -> 11 [label=""];
+13 -> 7 [label=""];
+13 -> 12 [label=""];
+14 -> 13 [label=""];
+14 -> 74 [label="Action"];
+15 -> 22 [label="Define-Use"];
+16 -> 15 [label="Data Dep"];
+17 -> 16 [label=""];
+18 -> 17 [label=""];
+19 -> 15 [label=""];
+19 -> 18 [label=""];
+20 -> 19 [label=""];
+21 -> 28 [label="Define-Use"];
+22 -> 21 [label="Data Dep"];
+23 -> 21 [label="Data Dep"];
+24 -> 22 [label=""];
+24 -> 23 [label=""];
+25 -> 24 [label=""];
+26 -> 21 [label=""];
+26 -> 25 [label=""];
+27 -> 26 [label=""];
+32 -> 30 [label=""];
+32 -> 31 [label=""];
+33 -> 32 [label=""];
+34 -> 28 [label=""];
+34 -> 29 [label=""];
+34 -> 33 [label=""];
+35 -> 34 [label=""];
+36 -> 35 [label=""];
+37 -> 40 [label="Define-Use"];
+38 -> 37 [label=""];
+38 -> 68 [label="Control Dep"];
+38 -> 44 [label="Control Dep"];
+38 -> 43 [label="Control Dep"];
+38 -> 39 [label="Control Dep"];
+38 -> 42 [label="Control Dep"];
+38 -> 40 [label="Control Dep"];
+38 -> 41 [label="Control Dep"];
+38 -> 54 [label="Control Dep"];
+38 -> 53 [label="Control Dep"];
+38 -> 45 [label="Control Dep"];
+38 -> 52 [label="Control Dep"];
+38 -> 50 [label="Control Dep"];
+38 -> 46 [label="Control Dep"];
+38 -> 47 [label="Control Dep"];
+38 -> 48 [label="Control Dep"];
+38 -> 51 [label="Control Dep"];
+38 -> 61 [label="Control Dep"];
+38 -> 60 [label="Control Dep"];
+38 -> 55 [label="Control Dep"];
+38 -> 56 [label="Control Dep"];
+38 -> 57 [label="Control Dep"];
+38 -> 58 [label="Control Dep"];
+38 -> 67 [label="Control Dep"];
+38 -> 66 [label="Control Dep"];
+38 -> 64 [label="Control Dep"];
+38 -> 62 [label="Control Dep"];
+39 -> 46 [label="Define-Use"];
+39 -> 58 [label="Define-Use"];
+40 -> 39 [label="Data Dep"];
+42 -> 40 [label=""];
+42 -> 41 [label=""];
+43 -> 39 [label=""];
+43 -> 42 [label=""];
+44 -> 43 [label=""];
+45 -> 62 [label="Define-Use"];
+46 -> 45 [label="Data Dep"];
+49 -> 48 [label=""];
+50 -> 46 [label=""];
+50 -> 47 [label=""];
+50 -> 49 [label=""];
+52 -> 50 [label=""];
+52 -> 51 [label=""];
+53 -> 45 [label=""];
+53 -> 52 [label=""];
+54 -> 53 [label=""];
+59 -> 56 [label=""];
+59 -> 57 [label=""];
+59 -> 58 [label=""];
+60 -> 55 [label=""];
+60 -> 59 [label=""];
+61 -> 60 [label=""];
+63 -> 62 [label=""];
+64 -> 63 [label=""];
+65 -> 64 [label=""];
+66 -> 65 [label=""];
+67 -> 66 [label=""];
+68 -> 44 [label=""];
+68 -> 54 [label=""];
+68 -> 61 [label=""];
+68 -> 67 [label=""];
+69 -> 38 [label=""];
+69 -> 68 [label=""];
+70 -> 36 [label=""];
+70 -> 69 [label=""];
+71 -> 14 [label=""];
+71 -> 20 [label=""];
+71 -> 27 [label=""];
+71 -> 70 [label=""];
+72 -> 0 [label=""];
+72 -> 2 [label=""];
+72 -> 4 [label=""];
+72 -> 6 [label=""];
+72 -> 71 [label=""];
+73 -> 75 [label=""];
+73 -> 78 [label=""];
+74 -> 73 [label="Action"];
+75 -> 76 [label=""];
+75 -> 77 [label=""];
+78 -> 79 [label=""];
+}
