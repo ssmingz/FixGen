@@ -11,6 +11,8 @@
     <modules>
         <module>codegraph</module>
         <module>gumtree-spoon-ast-diff</module>
+        <module>spoon-core</module>
+        <module>codegraph4spoon</module>
     </modules>
     <dependencies>
         <dependency>

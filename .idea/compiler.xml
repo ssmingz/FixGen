@@ -6,12 +6,27 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="gumtree-spoon-ast-diff" />
         <module name="codegraph" />
+        <module name="gumtree-spoon-ast-diff" />
+        <module name="codegraph4spoon" />
+      </profile>
+      <profile name="Annotation profile for FixGen" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/kohsuke/metainf-services/metainf-services/1.9/metainf-services-1.9.jar" />
+        </processorPath>
+        <module name="spoon-core" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="8">
       <module name="gumtree" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="spoon-core" options="-Xlint:deprecation,unchecked -Xpkginfo:always" />
+    </option>
   </component>
 </project>
