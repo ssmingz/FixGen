@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="codegraph" />
         <module name="gumtree-spoon-ast-diff" />
         <module name="codegraph4spoon" />
+        <module name="codegraph" />
       </profile>
       <profile name="Annotation profile for FixGen" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
