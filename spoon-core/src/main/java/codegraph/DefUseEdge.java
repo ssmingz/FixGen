@@ -1,9 +1,9 @@
-package model.graph.edge;
+package codegraph;
 
-import model.graph.node.Node;
+import spoon.support.reflect.declaration.CtElementImpl;
 
 public class DefUseEdge extends Edge {
-    public DefUseEdge(Node source, Node target) {
+    public DefUseEdge(CtElementImpl source, CtElementImpl target) {
         super(source, target);
         this.type = Edge.EdgeType.DEF_USE;
     }

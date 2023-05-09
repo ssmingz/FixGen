@@ -1,9 +1,9 @@
-package model.graph.edge;
+package codegraph;
 
-import model.graph.node.Node;
+import spoon.support.reflect.declaration.CtElementImpl;
 
 public class ControlEdge extends Edge {
-    public ControlEdge(Node source, Node target) {
+    public ControlEdge(CtElementImpl source, CtElementImpl target) {
         super(source, target);
         this.type = Edge.EdgeType.CONTROL_DEP;
     }

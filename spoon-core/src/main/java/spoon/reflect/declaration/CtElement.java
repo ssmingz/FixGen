@@ -7,6 +7,8 @@
  */
 package spoon.reflect.declaration;
 
+import codegraph.Edge;
+import codegraph.Scope;
 import spoon.compiler.Environment;
 import spoon.processing.FactoryAccessor;
 import spoon.reflect.code.CtComment;
@@ -27,11 +29,7 @@ import spoon.support.sniper.internal.ElementSourceFragment;
 
 import java.io.Serializable;
 import java.lang.annotation.Annotation;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static spoon.reflect.path.CtRole.ANNOTATION;
 import static spoon.reflect.path.CtRole.COMMENT;
@@ -421,4 +419,5 @@ public interface CtElement extends FactoryAccessor, CtVisitable, Cloneable, CtQu
 	// overriding the return type
 	@Override
 	ElementSourceFragment getOriginalSourceFragment();
+	
 }

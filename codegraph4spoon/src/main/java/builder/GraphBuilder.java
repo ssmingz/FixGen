@@ -1,7 +1,7 @@
 package builder;
 
+import codegraph.Scope;
 import model.CodeGraph;
-import model.graph.Scope;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtElement;
@@ -49,7 +49,8 @@ public class GraphBuilder {
         CodeGraph g = new CodeGraph();
         g.setCtMethod(ctMethod);
         g.setName(sig);
-        g.setEntryNode(g.buildNode(ctMethod, null, new Scope(null)));
+        g.buildNode(ctMethod, null, new Scope(null));
+        g.setEntryNode(ctMethod);
         return g;
     }
 }

@@ -5,21 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="init spoon-core and codegraph4spoon">
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/Scope.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/ASTEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/ControlEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/DataEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/DefUseEdge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/Edge.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/node/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ASTUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8,_21_21_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8__21_21__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/Scope.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/ASTEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/ASTEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/ControlEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/ControlEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/DataEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/DataEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/DefUseEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/DefUseEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/edge/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Edge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/graph/node/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/declaration/CtElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/declaration/CtElement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +54,13 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -76,15 +85,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.33793104"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/spoon-core/src/main/java/codegraph" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/spoon-core/src/main/java/codegraph" />
       <recent name="$PROJECT_DIR$/codegraph/src/test/res" />
       <recent name="$PROJECT_DIR$/codegraph/src/test/java/gumtree" />
     </key>
@@ -526,9 +532,14 @@
           <option name="timeStamp" value="511" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph/src/main/java/utils/FileIO.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="521" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java</url>
-          <line>162</line>
-          <option name="timeStamp" value="520" />
+          <line>155</line>
+          <option name="timeStamp" value="522" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

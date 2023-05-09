@@ -1,41 +1,41 @@
-package model.graph.edge;
+package codegraph;
 
-import model.graph.node.Node;
+import spoon.support.reflect.declaration.CtElementImpl;
 
 public abstract class Edge {
     public enum EdgeType {AST, CONTROL_DEP, DATA_DEP, DEF_USE, ACTION};
     public EdgeType type;
-    protected Node source;
-    protected Node target;
+    protected CtElementImpl source;
+    protected CtElementImpl target;
 
-    public Edge(Node source, Node target) {
+    public Edge(CtElementImpl source, CtElementImpl target) {
         this.source = source;
         this.target = target;
         this.source.addOutEdge(this);
         this.target.addInEdge(this);
     }
 
-    public Node getSource() {
+    public CtElementImpl getSource() {
         return source;
     }
 
-    public Node getTarget() {
+    public CtElementImpl getTarget() {
         return target;
     }
 
-    public void setTarget(Node tar) {
+    public void setTarget(CtElementImpl tar) {
         target = tar;
         target.addInEdge(this);
     }
 
-    public void setSource(Node src) {
+    public void setSource(CtElementImpl src) {
         source = src;
         source.addOutEdge(this);
     }
 
     public void delete() {
-        this.source.outEdges.remove(this);
-        this.target.inEdges.remove(this);
+        this.source._outEdges.remove(this);
+        this.target._inEdges.remove(this);
         this.source = null;
         this.target = null;
     }

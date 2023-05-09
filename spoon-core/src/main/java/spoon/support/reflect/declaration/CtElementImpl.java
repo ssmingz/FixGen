@@ -7,6 +7,7 @@
  */
 package spoon.support.reflect.declaration;
 
+import codegraph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spoon.reflect.ModelElementContainerDefaultCapacities;
@@ -14,6 +15,7 @@ import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.code.CtBlock;
 import spoon.reflect.code.CtComment;
 import spoon.reflect.code.CtStatement;
+import spoon.reflect.code.CtVariableAccess;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.declaration.CtAnnotation;
 import spoon.reflect.declaration.CtCompilationUnit;
@@ -45,6 +47,8 @@ import spoon.reflect.visitor.filter.AnnotationFilter;
 import spoon.support.DefaultCoreFactory;
 import spoon.support.DerivedProperty;
 import spoon.support.StandardEnvironment;
+import spoon.support.reflect.code.CtVariableAccessImpl;
+import spoon.support.reflect.code.CtVariableReadImpl;
 import spoon.support.sniper.internal.ElementSourceFragment;
 import spoon.support.util.EmptyClearableList;
 import spoon.support.util.EmptyClearableSet;
@@ -55,14 +59,7 @@ import spoon.support.visitor.equals.EqualsVisitor;
 import spoon.support.visitor.replace.ReplacementVisitor;
 import java.lang.annotation.Annotation;
 import java.lang.invoke.MethodHandles;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static spoon.reflect.visitor.CommentHelper.printComment;
 
@@ -75,6 +72,31 @@ public abstract class CtElementImpl implements CtElement {
 	protected static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
 	public static final String ERROR_MESSAGE_TO_STRING = "Error in printing the node. One parent isn't initialized!";
 	private static final Factory DEFAULT_FACTORY = new FactoryImpl(new DefaultCoreFactory(), new StandardEnvironment());
+
+	/*********************************************************/
+	/******* added by FixGen *********************************/
+	/*********************************************************/
+	/**
+	 * parent node in the abstract syntax tree in codegraph
+	 */
+	protected CtElementImpl _parent = null;
+	/**
+	 * control dependency
+	 */
+	protected CtElementImpl _controlDependency = null;
+	/**
+	 * data dependency
+	 */
+	protected Set<CtElementImpl> _dataDependency = new HashSet<>();
+	/**
+	 * edges
+	 */
+	public ArrayList<Edge> _inEdges = new ArrayList<>();
+	public ArrayList<Edge> _outEdges = new ArrayList<>();
+	/**
+	 * variable usage scope
+	 */
+	private Scope _scope = null;
 
 
 	public static <T> List<T> emptyList() {
@@ -632,5 +654,67 @@ public abstract class CtElementImpl implements CtElement {
 
 		this.accept(scanner);
 		return directChildren;
+	}
+
+	/*********************************************************/
+	/******* added by FixGen *********************************/
+	/*********************************************************/
+	public void addOutEdge(Edge edge) {
+		_outEdges.add(edge);
+	}
+
+	public void addInEdge(Edge edge) {
+		_inEdges.add(edge);
+	}
+
+	public void setParent(CtElementImpl node) {
+		_parent = node;
+	}
+
+	public void setControlDependency(CtElementImpl controller) {
+		_controlDependency = controller;
+		if (controller != null) {
+			new ControlEdge(controller, this);
+		}
+	}
+
+	public void setDataDependency(CtElementImpl controller) {
+		if (controller != null) {
+			if (controller.hasASTChildren()) {
+				for (Edge out : controller._outEdges) {
+					if (out instanceof ASTEdge) {
+						setDataDependency(out.getTarget());  // not only for direct children
+					}
+				}
+			} else {
+				if (controller instanceof CtVariableAccessImpl)
+					new DataEdge(controller, this);
+			}
+		}
+	}
+
+	public void addDataDepNode(CtElementImpl controller) {
+		if (controller != null) {
+			if (controller.hasASTChildren()) {
+				for (Edge out : controller._outEdges) {
+					if (out instanceof ASTEdge && out.getTarget() instanceof CtVariableAccessImpl) {
+						// only for direct children
+						_dataDependency.add(controller);
+					}
+				}
+			} else {
+				_dataDependency.add(controller);
+			}
+		}
+	}
+
+	public void setScope(Scope scope) { _scope = scope; }
+
+	public boolean hasASTChildren() {
+		for (Edge out : _outEdges) {
+			if (out instanceof ASTEdge)
+				return true;
+		}
+		return false;
 	}
 }

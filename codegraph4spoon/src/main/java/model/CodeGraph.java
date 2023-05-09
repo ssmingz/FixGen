@@ -1,19 +1,17 @@
 package model;
 
-import model.graph.Scope;
-import model.graph.node.Node;
+import codegraph.Scope;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
 import spoon.support.reflect.reference.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class CodeGraph {
     private String _name;
     private CtMethodImpl _ctMethod;
-    private List<Node> _allNodes = new ArrayList<>();
-    private Node _entryNode;
+    private ArrayList<CtElementImpl> _allNodes = new ArrayList<>();
+    private CtElementImpl _entryNode;
     public CodeGraph() {}
 
     public void setCtMethod(CtMethodImpl ctMethod) {
@@ -24,14 +22,13 @@ public class CodeGraph {
         _name = name;
     }
 
-    public Node buildNode(Object ctNode, Node control, Scope scope) {
+    public void buildNode(Object ctNode, CtElementImpl control, Scope scope) {
         if (ctNode == null) {
-            return null;
+            return;
         }
-        Node node = null;
         /* The structural part contains the declarations of the program elements, such as interface, class, variable, method, annotation, and enum declarations. */
         if (ctNode instanceof CtMethodImpl) {
-            node = visit((CtMethodImpl) ctNode, control, scope);
+            visit((CtMethodImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtAnonymousExecutableImpl) {
 
         } else if (ctNode instanceof CtConstructorImpl) {
@@ -149,21 +146,37 @@ public class CodeGraph {
         }
         else {
             System.out.println("UNKNOWN ctNode type : " + ctNode.toString());
-            node = null;
         }
-        if (node != null) {
-            _allNodes.add(node);
+        if (ctNode != null) {
+            _allNodes.add((CtElementImpl) ctNode);
         }
-        return node;
     }
 
-    private Node visit(CtMethodImpl ctNode, Node control, Scope scope) {
-        Node method = Node.getNode(ctNode);
-        method.setControlDependency(control);
-        return method;
+    private void visit(CtMethodImpl ctNode, CtElementImpl control, Scope scope) {
+        ctNode.setControlDependency(control);
+        ctNode.setScope(scope);
+        // TODO: modifiers, ModifierKind (enum type)
+        // return type
+        if (ctNode.getType() != null) {
+            buildNode(ctNode.getType(), control, scope);
+        }
+        // TODO: method name, simpleName (string type)
+        // arguments
+        for (Object para : ctNode.getParameters()) {
+            buildNode(para, control, scope);
+        }
+        // throws type
+        for (Object throwt : ctNode.getThrownTypes()) {
+            buildNode(throwt, control, scope);
+        }
+        // method body
+        if (ctNode.getBody() != null) {
+            buildNode(ctNode.getBody(), control, scope);
+        }
     }
 
-    public void setEntryNode(Node buildNode) {
+
+    public void setEntryNode(CtElementImpl buildNode) {
         _entryNode = buildNode;
     }
 
