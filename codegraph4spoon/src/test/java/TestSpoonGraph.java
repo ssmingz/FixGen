@@ -1,13 +1,16 @@
 import builder.GraphBuilder;
 import model.CodeGraph;
+import model.GraphConfiguration;
 import org.eclipse.jdt.core.JavaCore;
 import org.junit.Test;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtClass;
 import spoon.support.reflect.declaration.CtMethodImpl;
+import utils.DotGraph;
 import utils.FileIO;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -33,5 +36,11 @@ public class TestSpoonGraph {
     public void testGraphBuilder() {
         CodeGraph cg = GraphBuilder.buildGraph("src/test/resources/c3/ant/13/0/before.java", new String[] {}, 8, new int[] {});
         assertNotNull("CodeGraph shouldn't be null", cg);
+        // draw dot graph
+        GraphConfiguration config = new GraphConfiguration();
+        int nodeIndexCounter = 0;
+        DotGraph dg = new DotGraph(cg, config, nodeIndexCounter);
+        File dir = new File(System.getProperty("user.dir") + "/out/" + "c3_ant_13_before.dot");
+        dg.toDotFile(dir);
     }
 }

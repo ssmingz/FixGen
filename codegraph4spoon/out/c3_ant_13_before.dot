@@ -1,0 +1,64 @@
+digraph "getUtil#?" {
+0 [label="2:CtTypeReferenceImpl@VAJUtil" shape=ellipse]
+1 [label="3:CtFieldReadImpl@util" shape=ellipse]
+2 [label="3:CtLiteralImpl@null" shape=ellipse]
+3 [label="3:CtBinaryOperatorImpl@util == null" shape=ellipse]
+4 [label="4:CtFieldReadImpl@remoteServer" shape=ellipse]
+5 [label="4:CtLiteralImpl@null" shape=ellipse]
+6 [label="4:CtBinaryOperatorImpl@remoteServer == null" shape=ellipse]
+7 [label="5:CtFieldWriteImpl@util" shape=ellipse]
+8 [label="5:CtConstructorCallImpl@new VAJLocalToolUtil()" shape=ellipse]
+9 [label="5:CtAssignmentImpl@util = new VAJLocalToolUtil()" shape=ellipse]
+10 [label="4:CtBlockImpl@{\\r\\n    util = new VAJLocalToolUtil();\\r\\n}" shape=ellipse]
+11 [label="7:CtFieldWriteImpl@util" shape=ellipse]
+12 [label="7:CtThisAccessImpl@this" shape=ellipse]
+13 [label="7:CtFieldReadImpl@remoteServer" shape=ellipse]
+14 [label="7:CtConstructorCallImpl@new VAJRemoteUtil(this, remoteServer)" shape=ellipse]
+15 [label="7:CtAssignmentImpl@util = new VAJRemoteUtil(this, remoteServer)" shape=ellipse]
+16 [label="6:CtBlockImpl@{\\r\\n    util = new VAJRemoteUtil(this, remoteServer);\\r\\n}" shape=ellipse]
+17 [label="4:CtIfImpl@if (remoteServer == null) {\\r\\n    util = new VAJLocalToolUtil();\\r\\n} else {\\r\\n    util = new VAJRemoteUtil(this, remoteServer);\\r\\n}" shape=ellipse]
+18 [label="3:CtBlockImpl@{\\r\\n    if (remoteServer == null) {\\r\\n        util = new VAJLocalToolUtil();\\r\\n    } else {\\r\\n        util = new VAJRemoteUtil(this, remoteServer);\\r\\n    }\\r\\n}" shape=ellipse]
+19 [label="3:CtIfImpl@if (util == null) {\\r\\n    if (remoteServer == null) {\\r\\n        util = new VAJLocalToolUtil();\\r\\n    } else {\\r\\n        util = new VAJRemoteUtil(this, remoteServer);\\r\\n    }\\r\\n}" shape=ellipse]
+20 [label="10:CtFieldReadImpl@util" shape=ellipse]
+21 [label="10:CtReturnImpl@return util" shape=ellipse]
+22 [label="2:CtBlockImpl@{\\r\\n    if (util == null) {\\r\\n        if (remoteServer == null) {\\r\\n            util = new VAJLocalToolUtil();\\r\\n        } else {\\r\\n            util = new VAJRemoteUtil(this, remoteServer);\\r\\n        }\\r\\n    }\\r\\n    return util;\\r\\n}" shape=ellipse]
+23 [label="2:CtMethodImpl@protected VAJUtil getUtil() {\\r\\n    if (util == null) {\\r\\n        if (remoteServer == null) {\\r\\n            util = new VAJLocalToolUtil();\\r\\n        } else {\\r\\n            util = new VAJRemoteUtil(this, remoteServer);\\r\\n        }\\r\\n    }\\r\\n    return util;\\r\\n}" shape=ellipse]
+3 -> 20 [label=""];
+3 -> 5 [label=""];
+3 -> 18 [label="Control Dep"];
+3 -> 17 [label="Control Dep"];
+3 -> 6 [label="Control Dep"];
+3 -> 13 [label="Control Dep"];
+3 -> 5 [label="Control Dep"];
+6 -> 13 [label=""];
+6 -> 5 [label=""];
+6 -> 10 [label="Control Dep"];
+6 -> 9 [label="Control Dep"];
+6 -> 11 [label="Control Dep"];
+6 -> 8 [label="Control Dep"];
+6 -> 16 [label="Control Dep"];
+6 -> 15 [label="Control Dep"];
+6 -> 11 [label="Control Dep"];
+6 -> 14 [label="Control Dep"];
+6 -> 12 [label="Control Dep"];
+6 -> 13 [label="Control Dep"];
+9 -> 11 [label=""];
+9 -> 8 [label=""];
+10 -> 9 [label=""];
+14 -> 12 [label=""];
+14 -> 13 [label=""];
+15 -> 11 [label=""];
+15 -> 14 [label=""];
+16 -> 15 [label=""];
+17 -> 6 [label=""];
+17 -> 10 [label=""];
+17 -> 16 [label=""];
+18 -> 17 [label=""];
+19 -> 3 [label=""];
+19 -> 18 [label=""];
+21 -> 20 [label=""];
+22 -> 19 [label=""];
+22 -> 21 [label=""];
+23 -> 0 [label=""];
+23 -> 22 [label=""];
+}
