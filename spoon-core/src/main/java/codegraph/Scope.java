@@ -4,12 +4,14 @@ import spoon.reflect.code.CtArrayWrite;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Scope {
     private Scope parent;
-    private Map<String, CtElementImpl> defVars = new LinkedHashMap<>();
+    private Map<String, List<CtElementImpl>> defVars = new LinkedHashMap<>();
     private Map<String, CtElementImpl> usedVars = new LinkedHashMap<>();
 
     public Scope(Scope p) {
@@ -19,7 +21,23 @@ public class Scope {
     public void addDefine(String iden, CtElementImpl node) {
         if (iden == null || node == null)
             return;
-        defVars.put(iden, node);
+        if (defVars.containsKey(iden)) {
+            if (inThen(node)) {
+                if (noElse(node)) {
+
+                } else {
+
+                }
+            } else if (inElse(node)) {
+
+            } else if (inLoopOrCase(node)) {
+
+            }
+        } else {
+            List<CtElementImpl> defines = new ArrayList<>();
+            defines.add(node);
+            defVars.put(iden, defines);
+        }
     }
 
     public void addUse(String iden, CtElementImpl node) {

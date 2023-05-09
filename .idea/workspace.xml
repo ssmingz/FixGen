@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="init spoon-core and codegraph4spoon">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8__21_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8__21_21__Changes_.xml" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CtWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_before.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_before.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -341,7 +341,14 @@
       <option name="project" value="LOCAL" />
       <updated>1680425959115</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon">
+      <created>1683607531115</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1683607531115</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -378,7 +385,8 @@
     <MESSAGE value="delete HFFSM module" />
     <MESSAGE value="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality" />
     <MESSAGE value="init spoon-core and codegraph4spoon" />
-    <option name="LAST_COMMIT_MESSAGE" value="init spoon-core and codegraph4spoon" />
+    <MESSAGE value="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -525,18 +533,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java</url>
-          <line>169</line>
+          <line>170</line>
           <option name="timeStamp" value="520" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="521" />
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="541" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java</url>
-          <line>110</line>
-          <option name="timeStamp" value="524" />
+          <url>file://$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java</url>
+          <line>46</line>
+          <option name="timeStamp" value="544" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

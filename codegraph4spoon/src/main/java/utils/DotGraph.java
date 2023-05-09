@@ -2,6 +2,7 @@ package utils;
 
 import codegraph.*;
 import model.CodeGraph;
+import model.CtWrapper;
 import model.GraphConfiguration;
 import spoon.support.reflect.declaration.CtElementImpl;
 
@@ -25,28 +26,36 @@ public class DotGraph {
         // start
         graph.append(addStart(cg.getGraphName()));
 
-        List<CtElementImpl> nodes = cg.getNodes();
-        HashMap<CtElementImpl, Integer> idByNode = new HashMap<>();
+        List<CtWrapper> nodes = cg.getNodes();
+        HashMap<CtWrapper, Integer> idByNode = new HashMap<>();
         // add nodes
         int id = nodeIndexStart;
-        for (CtElementImpl node : nodes) {
-            if (!node.getPosition().isValidPosition()) {
+        for (CtWrapper node : nodes) {
+            CtElementImpl ctElement = node.getCtElementImpl();
+            if (!ctElement.getPosition().isValidPosition()) {
                 continue;
             }
             idByNode.put(node, id);
-            String label = "" + node.getPosition().getLine() + ":" + node.getClass().getSimpleName() + "@" + node.prettyprint();
+            String label = "" + ctElement.getPosition().getLine() + ":" + ctElement.getClass().getSimpleName() + "@" + ctElement.prettyprint();
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
             id++;
         }
         // add edges
-        for (CtElementImpl node : nodes) {
+        for (CtWrapper node : nodes) {
             if (!idByNode.containsKey(node)) continue;
             int sId = idByNode.get(node);
-            for (Edge e : node._outEdges) {
-                if (!idByNode.containsKey(e.getTarget())) continue;
-                int tId = idByNode.get(e.getTarget());
-                String label = addEdgeLabel(e);
-                graph.append(addEdge(sId, tId, null, null, label));
+            CtElementImpl ctElement = node.getCtElementImpl();
+            for (Edge e : ctElement._outEdges) {
+                for (CtWrapper node2 : nodes) {
+                    CtElementImpl ctElement2 = node2.getCtElementImpl();
+                    if (e.getTarget() == ctElement2) {
+                        if (!idByNode.containsKey(node2))
+                            continue;
+                        int tId = idByNode.get(node2);
+                        String label = addEdgeLabel(e);
+                        graph.append(addEdge(sId, tId, null, null, label));
+                    }
+                }
             }
         }
         // end

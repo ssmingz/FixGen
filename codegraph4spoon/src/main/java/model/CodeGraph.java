@@ -14,7 +14,7 @@ import java.util.List;
 public class CodeGraph {
     private String _name;
     private CtMethodImpl _ctMethod;
-    private ArrayList<CtElementImpl> _allNodes = new ArrayList<>();
+    private ArrayList<CtWrapper> _allNodes = new ArrayList<>();
     private CtElementImpl _entryNode;
     public CodeGraph() {}
 
@@ -161,7 +161,8 @@ public class CodeGraph {
         else {
             System.out.println("UNKNOWN ctNode type : " + ctNode.toString());
         }
-        _allNodes.add((CtElementImpl) ctNode);
+        CtWrapper ctwrapper = new CtWrapper((CtElementImpl) ctNode);
+        _allNodes.add(ctwrapper);
     }
 
     private void visit(CtMethodImpl ctNode, CtElementImpl control, Scope scope) {
@@ -239,6 +240,8 @@ public class CodeGraph {
         buildNode(ctNode.getTarget(), control, scope);
         // index
         buildNode(ctNode.getIndexExpression(), control, scope);
+
+        scope.addUse(ctNode.getTarget().toString(), ctNode);
     }
 
     private void visit(CtArrayWriteImpl ctNode, CtElementImpl control, Scope scope) {
@@ -385,6 +388,8 @@ public class CodeGraph {
         ctNode.setScope(scope);
         // TODO: use getTarget() or getVariable()??
         buildNode(ctNode.getTarget(), control, scope);
+
+        scope.addUse(ctNode.getVariable().getSimpleName(), ctNode);
     }
 
     private void visit(CtFieldWriteImpl ctNode, CtElementImpl control, Scope scope) {
@@ -658,7 +663,7 @@ public class CodeGraph {
         return _name;
     }
 
-    public List<CtElementImpl> getNodes() {
+    public List<CtWrapper> getNodes() {
         return _allNodes;
     }
 }

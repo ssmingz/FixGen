@@ -23,18 +23,18 @@ digraph "getUtil#?" {
 21 [label="10:CtReturnImpl@return util" shape=ellipse]
 22 [label="2:CtBlockImpl@{\\r\\n    if (util == null) {\\r\\n        if (remoteServer == null) {\\r\\n            util = new VAJLocalToolUtil();\\r\\n        } else {\\r\\n            util = new VAJRemoteUtil(this, remoteServer);\\r\\n        }\\r\\n    }\\r\\n    return util;\\r\\n}" shape=ellipse]
 23 [label="2:CtMethodImpl@protected VAJUtil getUtil() {\\r\\n    if (util == null) {\\r\\n        if (remoteServer == null) {\\r\\n            util = new VAJLocalToolUtil();\\r\\n        } else {\\r\\n            util = new VAJRemoteUtil(this, remoteServer);\\r\\n        }\\r\\n    }\\r\\n    return util;\\r\\n}" shape=ellipse]
-3 -> 20 [label=""];
-3 -> 5 [label=""];
+3 -> 1 [label=""];
+3 -> 2 [label=""];
 3 -> 18 [label="Control Dep"];
 3 -> 17 [label="Control Dep"];
 3 -> 6 [label="Control Dep"];
-3 -> 13 [label="Control Dep"];
+3 -> 4 [label="Control Dep"];
 3 -> 5 [label="Control Dep"];
-6 -> 13 [label=""];
+6 -> 4 [label=""];
 6 -> 5 [label=""];
 6 -> 10 [label="Control Dep"];
 6 -> 9 [label="Control Dep"];
-6 -> 11 [label="Control Dep"];
+6 -> 7 [label="Control Dep"];
 6 -> 8 [label="Control Dep"];
 6 -> 16 [label="Control Dep"];
 6 -> 15 [label="Control Dep"];
@@ -42,9 +42,10 @@ digraph "getUtil#?" {
 6 -> 14 [label="Control Dep"];
 6 -> 12 [label="Control Dep"];
 6 -> 13 [label="Control Dep"];
-9 -> 11 [label=""];
+9 -> 7 [label=""];
 9 -> 8 [label=""];
 10 -> 9 [label=""];
+11 -> 20 [label="Define-Use"];
 14 -> 12 [label=""];
 14 -> 13 [label=""];
 15 -> 11 [label=""];
