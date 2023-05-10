@@ -15,7 +15,6 @@ import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.code.CtBlock;
 import spoon.reflect.code.CtComment;
 import spoon.reflect.code.CtStatement;
-import spoon.reflect.code.CtVariableAccess;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.declaration.CtAnnotation;
 import spoon.reflect.declaration.CtCompilationUnit;
@@ -47,8 +46,7 @@ import spoon.reflect.visitor.filter.AnnotationFilter;
 import spoon.support.DefaultCoreFactory;
 import spoon.support.DerivedProperty;
 import spoon.support.StandardEnvironment;
-import spoon.support.reflect.code.CtVariableAccessImpl;
-import spoon.support.reflect.code.CtVariableReadImpl;
+import spoon.support.reflect.code.*;
 import spoon.support.sniper.internal.ElementSourceFragment;
 import spoon.support.util.EmptyClearableList;
 import spoon.support.util.EmptyClearableSet;
@@ -680,30 +678,32 @@ public abstract class CtElementImpl implements CtElement {
 
 	public void setDataDependency(CtElementImpl controller) {
 		if (controller != null) {
-			if (controller.hasASTChildren()) {
-				for (Edge out : controller._outEdges) {
-					if (out instanceof ASTEdge) {
-						setDataDependency(out.getTarget());  // not only for direct children
-					}
+			if (controller instanceof CtArrayReadImpl || controller instanceof CtVariableReadImpl
+					|| controller instanceof CtFieldReadImpl || controller instanceof CtThisAccessImpl) {
+				new DataEdge(controller, this);
+			}
+			for (Object ch : controller.getDirectChildren()) {  // only for direct children
+				if (ch instanceof CtArrayReadImpl || ch instanceof CtVariableReadImpl || ch instanceof CtFieldReadImpl || ch instanceof CtThisAccessImpl) {
+					new DataEdge((CtElementImpl) ch, this);
+				} else {
+					setDataDependency((CtElementImpl) ch);
 				}
-			} else {
-				if (controller instanceof CtVariableAccessImpl)
-					new DataEdge(controller, this);
 			}
 		}
 	}
 
 	public void addDataDepNode(CtElementImpl controller) {
 		if (controller != null) {
-			if (controller.hasASTChildren()) {
-				for (Edge out : controller._outEdges) {
-					if (out instanceof ASTEdge && out.getTarget() instanceof CtVariableAccessImpl) {
-						// only for direct children
-						_dataDependency.add(controller);
-					}
-				}
-			} else {
+			if (controller instanceof CtArrayReadImpl || controller instanceof CtVariableReadImpl
+					|| controller instanceof CtFieldReadImpl || controller instanceof CtThisAccessImpl) {
 				_dataDependency.add(controller);
+			}
+			for (Object ch : controller.getDirectChildren()) {  // only for direct children
+				if (ch instanceof CtArrayReadImpl || ch instanceof CtVariableReadImpl || ch instanceof CtFieldReadImpl || ch instanceof CtThisAccessImpl) {
+					_dataDependency.add((CtElementImpl) ch);
+				} else {
+					_dataDependency.add((CtElementImpl) ch);
+				}
 			}
 		}
 	}

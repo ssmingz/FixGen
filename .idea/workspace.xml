@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CtWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_before.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_before.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -348,7 +346,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683607531115</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="update dependency analysis">
+      <created>1683631396210</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1683631396210</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -386,7 +391,8 @@
     <MESSAGE value="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality" />
     <MESSAGE value="init spoon-core and codegraph4spoon" />
     <MESSAGE value="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon" />
+    <MESSAGE value="update dependency analysis" />
+    <option name="LAST_COMMIT_MESSAGE" value="update dependency analysis" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -543,8 +549,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="544" />
+          <line>94</line>
+          <option name="timeStamp" value="547" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

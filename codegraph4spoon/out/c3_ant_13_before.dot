@@ -42,10 +42,13 @@ digraph "getUtil#?" {
 6 -> 14 [label="Control Dep"];
 6 -> 12 [label="Control Dep"];
 6 -> 13 [label="Control Dep"];
+7 -> 20 [label="Define-Use"];
 9 -> 7 [label=""];
 9 -> 8 [label=""];
 10 -> 9 [label=""];
 11 -> 20 [label="Define-Use"];
+12 -> 11 [label="Data Dep"];
+13 -> 11 [label="Data Dep"];
 14 -> 12 [label=""];
 14 -> 13 [label=""];
 15 -> 11 [label=""];
