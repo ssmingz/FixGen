@@ -157,9 +157,11 @@ public class CodeGraph {
             visit((CtParameterReferenceImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtTypeParameterReferenceImpl) {
             visit((CtTypeParameterReferenceImpl) ctNode, control, scope);
+        } else if (ctNode instanceof CtTypeReferenceImpl) {
+            // do not handle
         }
         else {
-            System.out.println("UNKNOWN ctNode type : " + ctNode.toString());
+            System.out.println("UNKNOWN ctNode type : " + ctNode.getClass().toString());
         }
         CtWrapper ctwrapper = new CtWrapper((CtElementImpl) ctNode);
         _allNodes.add(ctwrapper);
