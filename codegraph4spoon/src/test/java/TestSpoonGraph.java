@@ -1,18 +1,13 @@
 import builder.GraphBuilder;
-import com.martiansoftware.util.StringUtils;
 import model.CodeGraph;
-import model.GraphConfiguration;
-import org.eclipse.jdt.core.JavaCore;
+import builder.GraphConfiguration;
 import org.junit.Test;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
-import spoon.reflect.declaration.CtClass;
 import spoon.support.reflect.declaration.CtMethodImpl;
 import utils.DotGraph;
-import utils.FileIO;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +29,7 @@ public class TestSpoonGraph {
     }
 
     @Test
-    public void testGraphBuilder1() {
+    public void testGraphBuilder() {
         for (int i=0; i<4; i++) {
             CodeGraph cg1 = GraphBuilder.buildGraph(String.format("src/test/resources/c3/ant/13/%d/before.java", i), new String[] {}, 8, new int[] {});
             assertNotNull("CodeGraph shouldn't be null", cg1);

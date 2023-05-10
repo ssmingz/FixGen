@@ -3,7 +3,7 @@ package utils;
 import codegraph.*;
 import model.CodeGraph;
 import model.CtWrapper;
-import model.GraphConfiguration;
+import builder.GraphConfiguration;
 import spoon.support.reflect.declaration.CtElementImpl;
 
 import java.io.BufferedWriter;
