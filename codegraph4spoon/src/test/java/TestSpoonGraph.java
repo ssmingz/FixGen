@@ -1,4 +1,5 @@
 import builder.GraphBuilder;
+import com.martiansoftware.util.StringUtils;
 import model.CodeGraph;
 import model.GraphConfiguration;
 import org.eclipse.jdt.core.JavaCore;
@@ -33,14 +34,23 @@ public class TestSpoonGraph {
     }
 
     @Test
-    public void testGraphBuilder() {
-        CodeGraph cg = GraphBuilder.buildGraph("src/test/resources/c3/ant/13/0/before.java", new String[] {}, 8, new int[] {});
-        assertNotNull("CodeGraph shouldn't be null", cg);
-        // draw dot graph
-        GraphConfiguration config = new GraphConfiguration();
-        int nodeIndexCounter = 0;
-        DotGraph dg = new DotGraph(cg, config, nodeIndexCounter);
-        File dir = new File(System.getProperty("user.dir") + "/out/" + "c3_ant_13_before.dot");
-        dg.toDotFile(dir);
+    public void testGraphBuilder1() {
+        for (int i=0; i<4; i++) {
+            CodeGraph cg1 = GraphBuilder.buildGraph(String.format("src/test/resources/c3/ant/13/%d/before.java", i), new String[] {}, 8, new int[] {});
+            assertNotNull("CodeGraph shouldn't be null", cg1);
+            // draw dot graph
+            GraphConfiguration config = new GraphConfiguration();
+            int nodeIndexCounter = 0;
+            DotGraph dg1 = new DotGraph(cg1, config, nodeIndexCounter);
+            File dir1 = new File(System.getProperty("user.dir") + "/out/" + String.format("c3_ant_13_%d_before.dot", i));
+            dg1.toDotFile(dir1);
+
+            CodeGraph cg2 = GraphBuilder.buildGraph(String.format("src/test/resources/c3/ant/13/%d/after.java", i), new String[] {}, 8, new int[] {});
+            assertNotNull("CodeGraph shouldn't be null", cg2);
+            nodeIndexCounter = 0;
+            DotGraph dg2 = new DotGraph(cg2, config, nodeIndexCounter);
+            File dir2 = new File(System.getProperty("user.dir") + "/out/" + String.format("c3_ant_13_%d_after.dot", i));
+            dg2.toDotFile(dir2);
+        }
     }
 }
