@@ -1,12 +1,15 @@
 package model;
 
 import codegraph.ASTEdge;
+import codegraph.CtVirtualElement;
 import codegraph.Scope;
+import org.checkerframework.checker.units.qual.C;
 import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.declaration.CtElement;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
 import spoon.support.reflect.reference.*;
+import utils.ObjectUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +18,7 @@ public class CodeGraph {
     private String _name;
     private CtMethodImpl _ctMethod;
     private ArrayList<CtWrapper> _allNodes = new ArrayList<>();
+    private ArrayList<CtElementImpl> _traversed = new ArrayList<>();
     private CtElementImpl _entryNode;
     public CodeGraph() {}
 
@@ -30,6 +34,13 @@ public class CodeGraph {
         if (ctNode == null) {
             return;
         }
+        // check whether already parsed
+        for (CtElementImpl c : _traversed) {
+            if (ObjectUtil.equals(c, (CtElementImpl) ctNode)) {
+                return;
+            }
+        }
+        _traversed.add((CtElementImpl) ctNode);
         // connect AST children
         if (ctNode instanceof CtElementImpl) {
             for (CtElement ch : ((CtElementImpl) ctNode).getDirectChildren()) {
@@ -175,7 +186,9 @@ public class CodeGraph {
         if (ctNode.getType() != null) {
             buildNode(ctNode.getType(), control, scope);
         }
-        // TODO: method name, simpleName (string type)
+        // method name
+        CtVirtualElement mname = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        _allNodes.add(new CtWrapper(mname));
         // arguments
         for (Object para : ctNode.getParameters()) {
             buildNode(para, control, scope);
@@ -193,7 +206,9 @@ public class CodeGraph {
     private void visit(CtConstructorImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        // TODO: record name
+        // name
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        _allNodes.add(new CtWrapper(name));
         // arguments
         for (Object arg : ctNode.getParameters()) {
             buildNode(arg, control, scope);
@@ -255,9 +270,9 @@ public class CodeGraph {
         buildNode(ctNode.getIndexExpression(), control, scope);
         // type
         buildNode(ctNode.getType(), control, scope);
-        // add define
-        scope.addDefine(ctNode.getTarget().toString(), ctNode);
-        ((CtElementImpl) ctNode.getTarget()).setDataDependency(ctNode);
+        // if add define, will cause self-loop data dep, e.g. a[0] --data dep-> a
+//        scope.addDefine(ctNode.getTarget().toString(), ctNode);
+//        ((CtElementImpl) ctNode.getTarget()).setDataDependency(ctNode);
     }
 
     private void visit(CtAssertImpl ctNode, CtElementImpl control, Scope scope) {
@@ -339,7 +354,9 @@ public class CodeGraph {
         ctNode.setControlDependency(control);
         scope.addDefine(ctNode.getSimpleName(), ctNode);
         ctNode.setScope(scope);
-        // TODO: name (string type)
+        // name
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        _allNodes.add(new CtWrapper(name));
         // type
         buildNode(ctNode.getType(), control, scope);
         // initializer
@@ -453,6 +470,8 @@ public class CodeGraph {
             buildNode(ctNode.getExecutable(), control, scope);
         }
         // name
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getLabel());
+        _allNodes.add(new CtWrapper(name));
         // TODO: check whether to use getTarget()
         if (ctNode.getTarget() != null) {
             buildNode(ctNode.getTarget(), control, scope);
@@ -482,7 +501,16 @@ public class CodeGraph {
     private void visit(CtLocalVariableImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        // TODO: record name
+        // type
+        buildNode(ctNode.getType(), control, scope);
+        // default expression
+        buildNode(ctNode.getDefaultExpression(), control, scope);
+        // name
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        _allNodes.add(new CtWrapper(name));
+        // add define
+        scope.addDefine(ctNode.getSimpleName(), ctNode);
+        name.setDataDependency(ctNode);
     }
 
     private void visit(CtNewArrayImpl ctNode, CtElementImpl control, Scope scope) {
@@ -618,7 +646,10 @@ public class CodeGraph {
     private void visit(CtArrayTypeReferenceImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        // can get array type, component type, dimension count, array name
+        // name
+        CtVirtualElement arrname = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        _allNodes.add(new CtWrapper(arrname));
+        // TODO: can get array type, component type, dimension count
     }
 
     private void visit(CtCatchVariableReferenceImpl ctNode, CtElementImpl control, Scope scope) {
@@ -630,7 +661,6 @@ public class CodeGraph {
     private void visit(CtExecutableReferenceImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        buildNode(ctNode.getDeclaration(), control, scope);
     }
 
     private void visit(CtFieldReferenceImpl ctNode, CtElementImpl control, Scope scope) {

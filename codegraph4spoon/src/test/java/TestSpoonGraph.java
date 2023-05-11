@@ -48,4 +48,42 @@ public class TestSpoonGraph {
             dg2.toDotFile(dir2);
         }
     }
+
+    @Test
+    public void testGraphBuilderOnC3() {
+        String base = "D:/expdata/c3/dataset/";
+        String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
+        for (int i=0; i<projects.length; i++) {
+            File dir = new File(String.format(base + projects[i]));
+            for (File group : dir.listFiles()) {
+                if (group.isDirectory()) {
+                    for (File pair : group.listFiles()) {
+                        if (pair.isDirectory()) {
+                            CodeGraph cg1 = GraphBuilder.buildGraph(pair.getAbsolutePath()+"/before.java", new String[] {}, 8, new int[] {});
+                            assertNotNull("CodeGraph shouldn't be null", cg1);
+                            CodeGraph cg2 = GraphBuilder.buildGraph(pair.getAbsolutePath()+"/after.java", new String[] {}, 8, new int[] {});
+                            assertNotNull("CodeGraph shouldn't be null", cg2);
+                            System.out.println(pair.getAbsolutePath() + ": generate code graph ok");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    public void testGraphBuilderOnC3_fordebug() {
+        String pro = "cobertura";
+        int group = 117;
+        int pair = 0;
+        String kind = "before";
+        CodeGraph cg = GraphBuilder.buildGraph(String.format("D:/expdata/c3/dataset/%s/%d/%d/%s.java", pro, group, pair, kind), new String[] {}, 8, new int[] {});
+        assertNotNull("CodeGraph shouldn't be null", cg);
+        // draw dot graph
+        GraphConfiguration config = new GraphConfiguration();
+        int nodeIndexCounter = 0;
+        DotGraph dg1 = new DotGraph(cg, config, nodeIndexCounter);
+        File dir1 = new File(System.getProperty("user.dir") + "/out/" + String.format("c3_%s_%d_%d_%s.dot", pro, group, pair, kind));
+        dg1.toDotFile(dir1);
+    }
 }

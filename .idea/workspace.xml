@@ -5,9 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_10__14_19__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_10__14_19__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_10__15_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_10__15_24__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_10__16_25__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_10__16_25__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_9__12_46__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_9__12_46__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_after.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_after.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_before.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_before.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_after.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_after.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_before.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_before.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_after.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_after.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_before.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_before.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_after.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_after.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_before.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_before.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CtWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CtWrapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +85,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.33793104&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/codegraph/src/test/res" />
@@ -85,7 +106,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestSpoonGraph.testGraphBuilder">
+  <component name="RunManager" selected="JUnit.TestSpoonGraph.testGraphBuilderOnC3">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -96,16 +117,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPatternAbstract.testPatternAbstractFromMultiplePairs1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternAbstract" />
-      <option name="METHOD_NAME" value="testPatternAbstractFromMultiplePairs1" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -140,11 +151,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSpoonGraph.testSpoon" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSpoonGraph.testGraphBuilderOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestSpoonGraph" />
-      <option name="METHOD_NAME" value="testSpoon" />
+      <option name="METHOD_NAME" value="testGraphBuilderOnC3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSpoonGraph.testGraphBuilderOnC3_fordebug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSpoonGraph" />
+      <option name="METHOD_NAME" value="testGraphBuilderOnC3_fordebug" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -152,19 +173,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
+      <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilderOnC3" />
+      <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilderOnC3_fordebug" />
       <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilder1" />
       <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilder2" />
       <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilder" />
-      <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs1" />
-      <item itemvalue="JUnit.TestSpoonGraph.testSpoon" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilderOnC3" />
+        <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilderOnC3_fordebug" />
         <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilder" />
         <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilder1" />
         <item itemvalue="JUnit.TestSpoonGraph.testGraphBuilder2" />
-        <item itemvalue="JUnit.TestSpoonGraph.testSpoon" />
-        <item itemvalue="JUnit.TestPatternAbstract.testPatternAbstractFromMultiplePairs1" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +373,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683699535424</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="add graph builder tests">
+      <created>1683703274019</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1683703274019</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -367,7 +395,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="init codegraph" />
     <MESSAGE value="add parsing statement node part" />
     <MESSAGE value="refactor ASTEdge and add control dependency analysis" />
     <MESSAGE value="add data dependency analysis" />
@@ -392,7 +419,8 @@
     <MESSAGE value="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon" />
     <MESSAGE value="update dependency analysis" />
     <MESSAGE value="update data dependency analysis" />
-    <option name="LAST_COMMIT_MESSAGE" value="update data dependency analysis" />
+    <MESSAGE value="add graph builder tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="add graph builder tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -538,14 +566,14 @@
           <option name="timeStamp" value="511" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java</url>
-          <line>170</line>
-          <option name="timeStamp" value="520" />
+          <url>file://$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java</url>
+          <line>94</line>
+          <option name="timeStamp" value="519" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ASTUtil.java</url>
-          <line>12</line>
-          <option name="timeStamp" value="548" />
+          <url>file://$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java</url>
+          <line>680</line>
+          <option name="timeStamp" value="527" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

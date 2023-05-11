@@ -113,6 +113,13 @@ public class Scope {
             return (CtElementImpl) ((CtArrayWriteImpl) node).getTarget();
         } else if (node instanceof CtFieldWriteImpl) {
             return (CtElementImpl) ((CtFieldWriteImpl) node).getVariable();
+        } else if (node instanceof CtLocalVariableImpl) {
+            // virtual element
+            for (Edge oe : node._outEdges) {
+                if (oe instanceof ASTEdge && oe.getTarget() instanceof CtVirtualElement) {
+                    return oe.getTarget();
+                }
+            }
         }
         return null;
     }
