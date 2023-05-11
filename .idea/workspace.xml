@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/ActionEdge.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,14 +69,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "last_opened_file_path": "D:/expdata/code/FixGen/codegraph4spoon/src/main/java/model/actions",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.33793104"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\expdata\code\FixGen\codegraph4spoon\src\main\java\model\actions" />
