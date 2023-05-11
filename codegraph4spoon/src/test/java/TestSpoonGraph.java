@@ -73,8 +73,8 @@ public class TestSpoonGraph {
 
     @Test
     public void testGraphBuilderOnC3_fordebug() {
-        String pro = "cobertura";
-        int group = 117;
+        String pro = "ant";
+        int group = 152;
         int pair = 0;
         String kind = "before";
         CodeGraph cg = GraphBuilder.buildGraph(String.format("D:/expdata/c3/dataset/%s/%d/%d/%s.java", pro, group, pair, kind), new String[] {}, 8, new int[] {});

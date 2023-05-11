@@ -691,6 +691,8 @@ public class CodeGraph {
         _entryNode = buildNode;
     }
 
+    public CtElementImpl getEntryNode() { return _entryNode; }
+
     public String getGraphName() {
         return _name;
     }

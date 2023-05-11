@@ -4,6 +4,7 @@ import codegraph.*;
 import model.CodeGraph;
 import model.CtWrapper;
 import builder.GraphConfiguration;
+import model.actions.ActionEdge;
 import spoon.support.reflect.declaration.CtElementImpl;
 
 import java.io.BufferedWriter;

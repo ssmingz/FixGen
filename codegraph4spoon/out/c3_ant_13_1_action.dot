@@ -1,0 +1,241 @@
+digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@buildMap" shape=ellipse]
+2 [label="3:CtParameterImpl@File fromDir" shape=ellipse]
+3 [label="3:CtParameterImpl@File toDir" shape=ellipse]
+4 [label="3:CtParameterImpl@String[] names" shape=ellipse]
+5 [label="3:CtParameterImpl@FileNameMapper mapper" shape=ellipse]
+6 [label="3:CtParameterImpl@Hashtable map" shape=ellipse]
+7 [label="4:CtVirtualElement@String[]" shape=ellipse]
+8 [label="4:CtArrayTypeReferenceImpl@String[]" shape=ellipse]
+9 [label="4:CtLiteralImpl@null" shape=ellipse]
+10 [label="4:CtVirtualElement@toCopy" shape=ellipse]
+11 [label="4:CtLocalVariableImpl@String[] toCopy = null" shape=ellipse]
+12 [label="5:CtFieldReadImpl@forceOverwrite" shape=ellipse]
+13 [label="6:CtVariableWriteImpl@toCopy" shape=ellipse]
+14 [label="6:CtVariableReadImpl@names" shape=ellipse]
+15 [label="6:CtAssignmentImpl@toCopy = names" shape=ellipse]
+16 [label="5:CtBlockImpl@{\\r\\n    toCopy = names;\\r\\n}" shape=ellipse]
+17 [label="8:CtTypeReferenceImpl@SourceFileScanner" shape=ellipse]
+18 [label="8:CtConstructorCallImpl@new SourceFileScanner()" shape=ellipse]
+19 [label="8:CtVirtualElement@ds" shape=ellipse]
+20 [label="8:CtLocalVariableImpl@SourceFileScanner ds = new SourceFileScanner()" shape=ellipse]
+21 [label="9:CtVariableWriteImpl@toCopy" shape=ellipse]
+22 [label="9:CtExecutableReferenceImpl@restrict(java.lang.String[],File,File,FileNameMapper)" shape=ellipse]
+23 [label="9:CtVirtualElement@null" shape=ellipse]
+24 [label="9:CtVariableReadImpl@ds" shape=ellipse]
+25 [label="9:CtVariableReadImpl@names" shape=ellipse]
+26 [label="9:CtVariableReadImpl@fromDir" shape=ellipse]
+27 [label="9:CtVariableReadImpl@toDir" shape=ellipse]
+28 [label="9:CtVariableReadImpl@mapper" shape=ellipse]
+29 [label="9:CtInvocationImpl@ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
+30 [label="9:CtAssignmentImpl@toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
+31 [label="7:CtBlockImpl@{\\r\\n    SourceFileScanner ds = new SourceFileScanner();\\r\\n    toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n}" shape=ellipse]
+32 [label="5:CtIfImpl@if (forceOverwrite) {\\r\\n    toCopy = names;\\r\\n} else {\\r\\n    SourceFileScanner ds = new SourceFileScanner();\\r\\n    toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n}" shape=ellipse]
+33 [label="11:CtTypeReferenceImpl@int" shape=ellipse]
+34 [label="11:CtLiteralImpl@0" shape=ellipse]
+35 [label="11:CtVirtualElement@i" shape=ellipse]
+36 [label="11:CtLocalVariableImpl@int i = 0" shape=ellipse]
+37 [label="11:CtVariableReadImpl@i" shape=ellipse]
+38 [label="11:CtVariableReadImpl@toCopy" shape=ellipse]
+39 [label="11:CtFieldReadImpl@toCopy.length" shape=ellipse]
+40 [label="11:CtBinaryOperatorImpl@i < toCopy.length" shape=ellipse]
+41 [label="11:CtVariableWriteImpl@i" shape=ellipse]
+42 [label="11:CtUnaryOperatorImpl@i++" shape=ellipse]
+43 [label="12:CtTypeReferenceImpl@File" shape=ellipse]
+44 [label="12:CtVariableReadImpl@fromDir" shape=ellipse]
+45 [label="12:CtVariableReadImpl@toCopy" shape=ellipse]
+46 [label="12:CtVariableReadImpl@i" shape=ellipse]
+47 [label="12:CtArrayReadImpl@toCopy[i]" shape=ellipse]
+48 [label="12:CtConstructorCallImpl@new File(fromDir, toCopy[i])" shape=ellipse]
+49 [label="12:CtVirtualElement@src" shape=ellipse]
+50 [label="12:CtLocalVariableImpl@File src = new File(fromDir, toCopy[i])" shape=ellipse]
+51 [label="13:CtTypeReferenceImpl@File" shape=ellipse]
+52 [label="13:CtVariableReadImpl@toDir" shape=ellipse]
+53 [label="13:CtExecutableReferenceImpl@mapFileName(java.lang.String)" shape=ellipse]
+54 [label="13:CtVirtualElement@null" shape=ellipse]
+55 [label="13:CtVariableReadImpl@mapper" shape=ellipse]
+56 [label="13:CtVariableReadImpl@toCopy" shape=ellipse]
+57 [label="13:CtVariableReadImpl@i" shape=ellipse]
+58 [label="13:CtArrayReadImpl@toCopy[i]" shape=ellipse]
+59 [label="13:CtInvocationImpl@mapper.mapFileName(toCopy[i])" shape=ellipse]
+60 [label="13:CtLiteralImpl@0" shape=ellipse]
+61 [label="13:CtArrayReadImpl@mapper.mapFileName(toCopy[i])[0]" shape=ellipse]
+62 [label="13:CtConstructorCallImpl@new File(toDir, mapper.mapFileName(toCopy[i])[0])" shape=ellipse]
+63 [label="13:CtVirtualElement@dest" shape=ellipse]
+64 [label="13:CtLocalVariableImpl@File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0])" shape=ellipse]
+65 [label="14:CtExecutableReferenceImpl@put()" shape=ellipse]
+66 [label="14:CtVirtualElement@null" shape=ellipse]
+67 [label="14:CtVariableReadImpl@map" shape=ellipse]
+68 [label="14:CtExecutableReferenceImpl@getAbsolutePath()" shape=ellipse]
+69 [label="14:CtVirtualElement@null" shape=ellipse]
+70 [label="14:CtVariableReadImpl@src" shape=ellipse]
+71 [label="14:CtInvocationImpl@src.getAbsolutePath()" shape=ellipse]
+72 [label="14:CtExecutableReferenceImpl@getAbsolutePath()" shape=ellipse]
+73 [label="14:CtVirtualElement@null" shape=ellipse]
+74 [label="14:CtVariableReadImpl@dest" shape=ellipse]
+75 [label="14:CtInvocationImpl@dest.getAbsolutePath()" shape=ellipse]
+76 [label="14:CtInvocationImpl@map.put(src.getAbsolutePath(), dest.getAbsolutePath())" shape=ellipse]
+77 [label="11:CtBlockImpl@{\\r\\n    File src = new File(fromDir, toCopy[i]);\\r\\n    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n    map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n}" shape=ellipse]
+78 [label="11:CtForImpl@for (int i = 0; i < toCopy.length; i++) {\\r\\n    File src = new File(fromDir, toCopy[i]);\\r\\n    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n    map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n}" shape=ellipse]
+79 [label="3:CtBlockImpl@{\\r\\n    String[] toCopy = null;\\r\\n    if (forceOverwrite) {\\r\\n        toCopy = names;\\r\\n    } else {\\r\\n        SourceFileScanner ds = new SourceFileScanner();\\r\\n        toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n    }\\r\\n    for (int i = 0; i < toCopy.length; i++) {\\r\\n        File src = new File(fromDir, toCopy[i]);\\r\\n        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n        map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n    }\\r\\n}" shape=ellipse]
+80 [label="2:CtMethodImpl@protected void buildMap(File fromDir, File toDir, String[] names, FileNameMapper mapper, Hashtable map) {\\r\\n    String[] toCopy = null;\\r\\n    if (forceOverwrite) {\\r\\n        toCopy = names;\\r\\n    } else {\\r\\n        SourceFileScanner ds = new SourceFileScanner();\\r\\n        toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n    }\\r\\n    for (int i = 0; i < toCopy.length; i++) {\\r\\n        File src = new File(fromDir, toCopy[i]);\\r\\n        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n        map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n    }\\r\\n}" shape=ellipse]
+81 [label="8:Update@UPDATE" shape=ellipse]
+82 [label="8:CtConstructorCallImpl@new SourceFileScanner(this)" shape=ellipse]
+8 -> 7 [label=""];
+10 -> 38 [label="Define-Use"];
+10 -> 45 [label="Define-Use"];
+10 -> 47 [label="Define-Use"];
+10 -> 56 [label="Define-Use"];
+10 -> 58 [label="Define-Use"];
+11 -> 8 [label=""];
+11 -> 9 [label=""];
+11 -> 10 [label=""];
+12 -> 16 [label="Control Dep"];
+12 -> 15 [label="Control Dep"];
+12 -> 13 [label="Control Dep"];
+12 -> 14 [label="Control Dep"];
+12 -> 31 [label="Control Dep"];
+12 -> 20 [label="Control Dep"];
+12 -> 18 [label="Control Dep"];
+12 -> 30 [label="Control Dep"];
+12 -> 21 [label="Control Dep"];
+12 -> 29 [label="Control Dep"];
+12 -> 22 [label="Control Dep"];
+12 -> 24 [label="Control Dep"];
+12 -> 25 [label="Control Dep"];
+12 -> 26 [label="Control Dep"];
+12 -> 27 [label="Control Dep"];
+12 -> 28 [label="Control Dep"];
+13 -> 38 [label="Define-Use"];
+13 -> 45 [label="Define-Use"];
+13 -> 47 [label="Define-Use"];
+13 -> 56 [label="Define-Use"];
+13 -> 58 [label="Define-Use"];
+14 -> 13 [label="Data Dep"];
+15 -> 13 [label=""];
+15 -> 14 [label=""];
+16 -> 15 [label=""];
+18 -> 81 [label="Action"];
+19 -> 24 [label="Define-Use"];
+20 -> 17 [label=""];
+20 -> 18 [label=""];
+20 -> 19 [label=""];
+21 -> 38 [label="Define-Use"];
+21 -> 45 [label="Define-Use"];
+21 -> 47 [label="Define-Use"];
+21 -> 56 [label="Define-Use"];
+21 -> 58 [label="Define-Use"];
+24 -> 21 [label="Data Dep"];
+25 -> 21 [label="Data Dep"];
+26 -> 21 [label="Data Dep"];
+27 -> 21 [label="Data Dep"];
+28 -> 21 [label="Data Dep"];
+29 -> 24 [label=""];
+29 -> 22 [label=""];
+29 -> 25 [label=""];
+29 -> 26 [label=""];
+29 -> 27 [label=""];
+29 -> 28 [label=""];
+29 -> 23 [label=""];
+30 -> 21 [label=""];
+30 -> 29 [label=""];
+31 -> 20 [label=""];
+31 -> 30 [label=""];
+32 -> 12 [label=""];
+32 -> 16 [label=""];
+32 -> 31 [label=""];
+35 -> 37 [label="Define-Use"];
+36 -> 33 [label=""];
+36 -> 34 [label=""];
+36 -> 35 [label=""];
+39 -> 38 [label=""];
+40 -> 37 [label=""];
+40 -> 39 [label=""];
+40 -> 77 [label="Control Dep"];
+40 -> 50 [label="Control Dep"];
+40 -> 48 [label="Control Dep"];
+40 -> 44 [label="Control Dep"];
+40 -> 47 [label="Control Dep"];
+40 -> 45 [label="Control Dep"];
+40 -> 46 [label="Control Dep"];
+40 -> 64 [label="Control Dep"];
+40 -> 62 [label="Control Dep"];
+40 -> 52 [label="Control Dep"];
+40 -> 61 [label="Control Dep"];
+40 -> 59 [label="Control Dep"];
+40 -> 53 [label="Control Dep"];
+40 -> 55 [label="Control Dep"];
+40 -> 58 [label="Control Dep"];
+40 -> 56 [label="Control Dep"];
+40 -> 57 [label="Control Dep"];
+40 -> 60 [label="Control Dep"];
+40 -> 76 [label="Control Dep"];
+40 -> 65 [label="Control Dep"];
+40 -> 67 [label="Control Dep"];
+40 -> 71 [label="Control Dep"];
+40 -> 68 [label="Control Dep"];
+40 -> 70 [label="Control Dep"];
+40 -> 75 [label="Control Dep"];
+40 -> 72 [label="Control Dep"];
+40 -> 74 [label="Control Dep"];
+41 -> 46 [label="Define-Use"];
+41 -> 57 [label="Define-Use"];
+42 -> 41 [label=""];
+44 -> 49 [label="Data Dep"];
+47 -> 45 [label=""];
+47 -> 46 [label=""];
+47 -> 49 [label="Data Dep"];
+48 -> 44 [label=""];
+48 -> 47 [label=""];
+49 -> 70 [label="Define-Use"];
+50 -> 43 [label=""];
+50 -> 48 [label=""];
+50 -> 49 [label=""];
+52 -> 63 [label="Data Dep"];
+58 -> 56 [label=""];
+58 -> 57 [label=""];
+59 -> 55 [label=""];
+59 -> 53 [label=""];
+59 -> 58 [label=""];
+59 -> 54 [label=""];
+61 -> 59 [label=""];
+61 -> 60 [label=""];
+61 -> 63 [label="Data Dep"];
+62 -> 52 [label=""];
+62 -> 61 [label=""];
+63 -> 74 [label="Define-Use"];
+64 -> 51 [label=""];
+64 -> 62 [label=""];
+64 -> 63 [label=""];
+71 -> 70 [label=""];
+71 -> 68 [label=""];
+71 -> 69 [label=""];
+75 -> 74 [label=""];
+75 -> 72 [label=""];
+75 -> 73 [label=""];
+76 -> 67 [label=""];
+76 -> 65 [label=""];
+76 -> 71 [label=""];
+76 -> 75 [label=""];
+76 -> 66 [label=""];
+77 -> 50 [label=""];
+77 -> 64 [label=""];
+77 -> 76 [label=""];
+78 -> 36 [label=""];
+78 -> 40 [label=""];
+78 -> 42 [label=""];
+78 -> 77 [label=""];
+79 -> 11 [label=""];
+79 -> 32 [label=""];
+79 -> 78 [label=""];
+80 -> 0 [label=""];
+80 -> 2 [label=""];
+80 -> 3 [label=""];
+80 -> 4 [label=""];
+80 -> 5 [label=""];
+80 -> 6 [label=""];
+80 -> 79 [label=""];
+80 -> 1 [label=""];
+81 -> 82 [label="Action"];
+}
