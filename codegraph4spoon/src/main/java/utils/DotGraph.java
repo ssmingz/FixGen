@@ -5,6 +5,9 @@ import model.CodeGraph;
 import model.CtWrapper;
 import builder.GraphConfiguration;
 import model.actions.ActionEdge;
+import model.pattern.Pattern;
+import model.pattern.PatternEdge;
+import model.pattern.PatternNode;
 import spoon.support.reflect.declaration.CtElementImpl;
 
 import java.io.BufferedWriter;
@@ -21,6 +24,9 @@ public class DotGraph {
     private CodeGraph codeGraph;
     private int nodeLabel = 0;
 
+    /**
+     * draw a dot graph for a code graph
+     */
     public DotGraph(CodeGraph cg, GraphConfiguration config, int nodeIndexStart) {
         configuration = config;
         codeGraph = cg;
@@ -57,6 +63,38 @@ public class DotGraph {
                         graph.append(addEdge(sId, tId, null, null, label));
                     }
                 }
+            }
+        }
+        // end
+        graph.append(addEnd());
+    }
+
+    /**
+     * draw a dot graph for a pattern
+     */
+    public DotGraph(Pattern pat, int nodeIndexStart) {
+        // start
+        graph.append(addStart(pat.getPatternName()));
+
+        List<PatternNode> nodes = pat.getNodes();
+        HashMap<PatternNode, Integer> idByNode = new HashMap<>();
+        // add nodes
+        int id = nodeIndexStart;
+        for (PatternNode node : nodes) {
+            idByNode.put(node, id);
+            String label = node.toLabel();
+            graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
+            id++;
+        }
+        // add edges
+        for (PatternNode node : nodes) {
+            if (!idByNode.containsKey(node)) continue;
+            int sId = idByNode.get(node);
+            for (PatternEdge e : node.outEdges()) {
+                if (!idByNode.containsKey(e.getTarget())) continue;
+                int tId = idByNode.get(e.getTarget());
+                String label = e.getLabel() + ":" + e.getInstanceNumber();
+                graph.append(addEdge(sId, tId, null, null, label));
             }
         }
         // end
@@ -119,13 +157,15 @@ public class DotGraph {
 
     private String escapeControlChars(String label) {
         if (label != null) {
-            label = label.replace("\b", "\\\\b")
-                    .replace("\f", "\\\\f")
-                    .replace("\b", "\\\\b")
-                    .replace("\n", "\\\\n")
-                    .replace("\r", "\\\\r")
-                    .replace("\t", "\\\\t")
-                    .replace("\"", "\\\\\"");
+            label = label.replace("\b", "\\\b")
+                    .replace("\f", "\\\f")
+                    .replace("\b", "\\\b")
+                    //.replace("\n", "\\\n")
+                    .replace("\r", "\\\r")
+                    .replace("\t", "\\\t")
+                    .replace("\"", "\\\"")
+                    .replace("{", "\\{")
+                    .replace("}", "\\}");
         }
         return label;
     }

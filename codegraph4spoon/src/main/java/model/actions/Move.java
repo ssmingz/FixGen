@@ -12,8 +12,9 @@ public class Move extends ActionNode {
         super(move, op);
         _dstNode = dst;
         _position = pos;
-        new ActionEdge(dst, this);
+        new ActionEdge(move, this);
         // TODO: add edge to dst.pos
+        new ActionEdge(this, dst);
     }
 
     public CtElementImpl getDst() {

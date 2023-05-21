@@ -30,4 +30,8 @@ public class CtWrapper{
         }
         return this.ctElementImpl == ((CtWrapper) o).ctElementImpl;
     }
+
+    public String toLabelString() {
+        return ctElementImpl.prettyprint();
+    }
 }

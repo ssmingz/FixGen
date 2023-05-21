@@ -15,14 +15,16 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 13 [label="6:CtVariableWriteImpl@toCopy" shape=ellipse]
 14 [label="6:CtVariableReadImpl@names" shape=ellipse]
 15 [label="6:CtAssignmentImpl@toCopy = names" shape=ellipse]
-16 [label="5:CtBlockImpl@{\\r\\n    toCopy = names;\\r\\n}" shape=ellipse]
+16 [label="5:CtBlockImpl@\{
+    toCopy = names;
+\}" shape=ellipse]
 17 [label="8:CtTypeReferenceImpl@SourceFileScanner" shape=ellipse]
 18 [label="8:CtConstructorCallImpl@new SourceFileScanner()" shape=ellipse]
 19 [label="8:CtVirtualElement@ds" shape=ellipse]
 20 [label="8:CtLocalVariableImpl@SourceFileScanner ds = new SourceFileScanner()" shape=ellipse]
 21 [label="9:CtVariableWriteImpl@toCopy" shape=ellipse]
 22 [label="9:CtExecutableReferenceImpl@restrict(java.lang.String[],File,File,FileNameMapper)" shape=ellipse]
-23 [label="9:CtVirtualElement@null" shape=ellipse]
+23 [label="9:CtVirtualElement@restrict" shape=ellipse]
 24 [label="9:CtVariableReadImpl@ds" shape=ellipse]
 25 [label="9:CtVariableReadImpl@names" shape=ellipse]
 26 [label="9:CtVariableReadImpl@fromDir" shape=ellipse]
@@ -30,8 +32,16 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 28 [label="9:CtVariableReadImpl@mapper" shape=ellipse]
 29 [label="9:CtInvocationImpl@ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
 30 [label="9:CtAssignmentImpl@toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
-31 [label="7:CtBlockImpl@{\\r\\n    SourceFileScanner ds = new SourceFileScanner();\\r\\n    toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n}" shape=ellipse]
-32 [label="5:CtIfImpl@if (forceOverwrite) {\\r\\n    toCopy = names;\\r\\n} else {\\r\\n    SourceFileScanner ds = new SourceFileScanner();\\r\\n    toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n}" shape=ellipse]
+31 [label="7:CtBlockImpl@\{
+    SourceFileScanner ds = new SourceFileScanner();
+    toCopy = ds.restrict(names, fromDir, toDir, mapper);
+\}" shape=ellipse]
+32 [label="5:CtIfImpl@if (forceOverwrite) \{
+    toCopy = names;
+\} else \{
+    SourceFileScanner ds = new SourceFileScanner();
+    toCopy = ds.restrict(names, fromDir, toDir, mapper);
+\}" shape=ellipse]
 33 [label="11:CtTypeReferenceImpl@int" shape=ellipse]
 34 [label="11:CtLiteralImpl@0" shape=ellipse]
 35 [label="11:CtVirtualElement@i" shape=ellipse]
@@ -53,7 +63,7 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 51 [label="13:CtTypeReferenceImpl@File" shape=ellipse]
 52 [label="13:CtVariableReadImpl@toDir" shape=ellipse]
 53 [label="13:CtExecutableReferenceImpl@mapFileName(java.lang.String)" shape=ellipse]
-54 [label="13:CtVirtualElement@null" shape=ellipse]
+54 [label="13:CtVirtualElement@mapFileName" shape=ellipse]
 55 [label="13:CtVariableReadImpl@mapper" shape=ellipse]
 56 [label="13:CtVariableReadImpl@toCopy" shape=ellipse]
 57 [label="13:CtVariableReadImpl@i" shape=ellipse]
@@ -65,21 +75,55 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 63 [label="13:CtVirtualElement@dest" shape=ellipse]
 64 [label="13:CtLocalVariableImpl@File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0])" shape=ellipse]
 65 [label="14:CtExecutableReferenceImpl@put()" shape=ellipse]
-66 [label="14:CtVirtualElement@null" shape=ellipse]
+66 [label="14:CtVirtualElement@put" shape=ellipse]
 67 [label="14:CtVariableReadImpl@map" shape=ellipse]
 68 [label="14:CtExecutableReferenceImpl@getAbsolutePath()" shape=ellipse]
-69 [label="14:CtVirtualElement@null" shape=ellipse]
+69 [label="14:CtVirtualElement@getAbsolutePath" shape=ellipse]
 70 [label="14:CtVariableReadImpl@src" shape=ellipse]
 71 [label="14:CtInvocationImpl@src.getAbsolutePath()" shape=ellipse]
 72 [label="14:CtExecutableReferenceImpl@getAbsolutePath()" shape=ellipse]
-73 [label="14:CtVirtualElement@null" shape=ellipse]
+73 [label="14:CtVirtualElement@getAbsolutePath" shape=ellipse]
 74 [label="14:CtVariableReadImpl@dest" shape=ellipse]
 75 [label="14:CtInvocationImpl@dest.getAbsolutePath()" shape=ellipse]
 76 [label="14:CtInvocationImpl@map.put(src.getAbsolutePath(), dest.getAbsolutePath())" shape=ellipse]
-77 [label="11:CtBlockImpl@{\\r\\n    File src = new File(fromDir, toCopy[i]);\\r\\n    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n    map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n}" shape=ellipse]
-78 [label="11:CtForImpl@for (int i = 0; i < toCopy.length; i++) {\\r\\n    File src = new File(fromDir, toCopy[i]);\\r\\n    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n    map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n}" shape=ellipse]
-79 [label="3:CtBlockImpl@{\\r\\n    String[] toCopy = null;\\r\\n    if (forceOverwrite) {\\r\\n        toCopy = names;\\r\\n    } else {\\r\\n        SourceFileScanner ds = new SourceFileScanner();\\r\\n        toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n    }\\r\\n    for (int i = 0; i < toCopy.length; i++) {\\r\\n        File src = new File(fromDir, toCopy[i]);\\r\\n        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n        map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n    }\\r\\n}" shape=ellipse]
-80 [label="2:CtMethodImpl@protected void buildMap(File fromDir, File toDir, String[] names, FileNameMapper mapper, Hashtable map) {\\r\\n    String[] toCopy = null;\\r\\n    if (forceOverwrite) {\\r\\n        toCopy = names;\\r\\n    } else {\\r\\n        SourceFileScanner ds = new SourceFileScanner();\\r\\n        toCopy = ds.restrict(names, fromDir, toDir, mapper);\\r\\n    }\\r\\n    for (int i = 0; i < toCopy.length; i++) {\\r\\n        File src = new File(fromDir, toCopy[i]);\\r\\n        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\\r\\n        map.put(src.getAbsolutePath(), dest.getAbsolutePath());\\r\\n    }\\r\\n}" shape=ellipse]
+77 [label="11:CtBlockImpl@\{
+    File src = new File(fromDir, toCopy[i]);
+    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+    map.put(src.getAbsolutePath(), dest.getAbsolutePath());
+\}" shape=ellipse]
+78 [label="11:CtForImpl@for (int i = 0; i < toCopy.length; i++) \{
+    File src = new File(fromDir, toCopy[i]);
+    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+    map.put(src.getAbsolutePath(), dest.getAbsolutePath());
+\}" shape=ellipse]
+79 [label="3:CtBlockImpl@\{
+    String[] toCopy = null;
+    if (forceOverwrite) \{
+        toCopy = names;
+    \} else \{
+        SourceFileScanner ds = new SourceFileScanner();
+        toCopy = ds.restrict(names, fromDir, toDir, mapper);
+    \}
+    for (int i = 0; i < toCopy.length; i++) \{
+        File src = new File(fromDir, toCopy[i]);
+        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+        map.put(src.getAbsolutePath(), dest.getAbsolutePath());
+    \}
+\}" shape=ellipse]
+80 [label="2:CtMethodImpl@protected void buildMap(File fromDir, File toDir, String[] names, FileNameMapper mapper, Hashtable map) \{
+    String[] toCopy = null;
+    if (forceOverwrite) \{
+        toCopy = names;
+    \} else \{
+        SourceFileScanner ds = new SourceFileScanner();
+        toCopy = ds.restrict(names, fromDir, toDir, mapper);
+    \}
+    for (int i = 0; i < toCopy.length; i++) \{
+        File src = new File(fromDir, toCopy[i]);
+        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+        map.put(src.getAbsolutePath(), dest.getAbsolutePath());
+    \}
+\}" shape=ellipse]
 81 [label="8:Update@UPDATE" shape=ellipse]
 82 [label="8:CtConstructorCallImpl@new SourceFileScanner(this)" shape=ellipse]
 8 -> 7 [label=""];

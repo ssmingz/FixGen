@@ -717,4 +717,23 @@ public abstract class CtElementImpl implements CtElement {
 		}
 		return false;
 	}
+
+	public boolean isDependOn(CtElementImpl node) {
+		for (CtElementImpl e : this.getDependNodes()) {
+			if (e.equals(node))
+				return true;
+		}
+		return false;
+	}
+
+	public Set<CtElementImpl> getDependNodes() {
+		Set<CtElementImpl> all = new LinkedHashSet<>();
+		for (Edge e : this._inEdges) {
+			if (e.type == Edge.EdgeType.CONTROL_DEP
+					|| e.type == Edge.EdgeType.DATA_DEP || e.type == Edge.EdgeType.DEF_USE)
+				all.add(e.getSource());
+		}
+		return all;
+	}
+
 }

@@ -1,0 +1,166 @@
+digraph "doConfigure#?,Task,Configuration,TaskContext" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@doConfigure" shape=ellipse]
+2 [label="3:CtParameterImpl@final Task task" shape=ellipse]
+3 [label="3:CtParameterImpl@final Configuration taskModel" shape=ellipse]
+4 [label="3:CtParameterImpl@final TaskContext context" shape=ellipse]
+5 [label="4:CtTypeReferenceImpl@TaskException" shape=ellipse]
+6 [label="6:CtExecutableReferenceImpl@configure(Task,Configuration,TaskContext)" shape=ellipse]
+7 [label="6:CtVirtualElement@configure" shape=ellipse]
+8 [label="6:CtFieldReadImpl@m_configurer" shape=ellipse]
+9 [label="6:CtVariableReadImpl@task" shape=ellipse]
+10 [label="6:CtVariableReadImpl@taskModel" shape=ellipse]
+11 [label="6:CtVariableReadImpl@context" shape=ellipse]
+12 [label="6:CtInvocationImpl@m_configurer.configure(task, taskModel, context)" shape=ellipse]
+13 [label="5:CtBlockImpl@\{
+    m_configurer.configure(task, taskModel, context);
+\}" shape=ellipse]
+14 [label="7:CtVirtualElement@throwable" shape=ellipse]
+15 [label="7:CtTypeReferenceImpl@Throwable" shape=ellipse]
+16 [label="7:CtCatchVariableImpl@final Throwable throwable" shape=ellipse]
+17 [label="9:CtLiteralImpl@\"Error configuring task \"" shape=ellipse]
+18 [label="9:CtExecutableReferenceImpl@getName()" shape=ellipse]
+19 [label="9:CtVirtualElement@getName" shape=ellipse]
+20 [label="9:CtVariableReadImpl@taskModel" shape=ellipse]
+21 [label="9:CtInvocationImpl@taskModel.getName()" shape=ellipse]
+22 [label="9:CtBinaryOperatorImpl@(\"Error configuring task \" + taskModel.getName())" shape=ellipse]
+23 [label="9:CtLiteralImpl@\" at \"" shape=ellipse]
+24 [label="9:CtBinaryOperatorImpl@((\"Error configuring task \" + taskModel.getName()) + \" at \")" shape=ellipse]
+25 [label="9:CtExecutableReferenceImpl@getLocation()" shape=ellipse]
+26 [label="9:CtVirtualElement@getLocation" shape=ellipse]
+27 [label="9:CtVariableReadImpl@taskModel" shape=ellipse]
+28 [label="9:CtInvocationImpl@taskModel.getLocation()" shape=ellipse]
+29 [label="9:CtBinaryOperatorImpl@(((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation())" shape=ellipse]
+30 [label="10:CtLiteralImpl@\"(Reason: \"" shape=ellipse]
+31 [label="9:CtBinaryOperatorImpl@((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \")" shape=ellipse]
+32 [label="11:CtExecutableReferenceImpl@getMessage()" shape=ellipse]
+33 [label="11:CtVirtualElement@getMessage" shape=ellipse]
+34 [label="11:CtVariableReadImpl@throwable" shape=ellipse]
+35 [label="11:CtInvocationImpl@throwable.getMessage()" shape=ellipse]
+36 [label="9:CtBinaryOperatorImpl@(((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage())" shape=ellipse]
+37 [label="12:CtLiteralImpl@\")\"" shape=ellipse]
+38 [label="9:CtBinaryOperatorImpl@(((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\"" shape=ellipse]
+39 [label="13:CtVariableReadImpl@throwable" shape=ellipse]
+40 [label="8:CtConstructorCallImpl@new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable)" shape=ellipse]
+41 [label="8:CtThrowImpl@throw new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable)" shape=ellipse]
+42 [label="7:CtBlockImpl@\{
+    throw new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable);
+\}" shape=ellipse]
+43 [label="7:CtCatchImpl@ catch (final Throwable throwable) \{
+    throw new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable);
+\}" shape=ellipse]
+44 [label="5:CtTryImpl@try \{
+    m_configurer.configure(task, taskModel, context);
+\} catch (final Throwable throwable) \{
+    throw new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable);
+\}" shape=ellipse]
+45 [label="4:CtBlockImpl@\{
+    try \{
+        m_configurer.configure(task, taskModel, context);
+    \} catch (final Throwable throwable) \{
+        throw new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable);
+    \}
+\}" shape=ellipse]
+46 [label="2:CtMethodImpl@protected final void doConfigure(final Task task, final Configuration taskModel, final TaskContext context) throws TaskException \{
+    try \{
+        m_configurer.configure(task, taskModel, context);
+    \} catch (final Throwable throwable) \{
+        throw new TaskException((((((\"Error configuring task \" + taskModel.getName()) + \" at \") + taskModel.getLocation()) + \"(Reason: \") + throwable.getMessage()) + \")\", throwable);
+    \}
+\}" shape=ellipse]
+47 [label="9:Update@UPDATE" shape=ellipse]
+48 [label="10:CtLiteralImpl@\"config.error\"" shape=ellipse]
+49 [label="8:Delete@DELETE" shape=ellipse]
+50 [label="8:Insert@INSERT" shape=ellipse]
+51 [label="8:CtLocalVariableImpl@final String message = REZ.getString(\"config.error\", taskModel.getName(), taskModel.getLocation(), throwable.getMessage())" shape=ellipse]
+52 [label="11:Insert@INSERT" shape=ellipse]
+53 [label="11:CtThrowImpl@throw new TaskException(message, throwable)" shape=ellipse]
+54 [label="9:Move@MOVE" shape=ellipse]
+55 [label="9:Move@MOVE" shape=ellipse]
+56 [label="9:Move@MOVE" shape=ellipse]
+57 [label="11:Move@MOVE" shape=ellipse]
+58 [label="13:Move@MOVE" shape=ellipse]
+12 -> 8 [label=""];
+12 -> 6 [label=""];
+12 -> 9 [label=""];
+12 -> 10 [label=""];
+12 -> 11 [label=""];
+12 -> 7 [label=""];
+13 -> 12 [label=""];
+14 -> 34 [label="Define-Use"];
+14 -> 39 [label="Define-Use"];
+16 -> 15 [label=""];
+16 -> 14 [label=""];
+16 -> 42 [label="Control Dep"];
+16 -> 41 [label="Control Dep"];
+16 -> 40 [label="Control Dep"];
+16 -> 38 [label="Control Dep"];
+16 -> 36 [label="Control Dep"];
+16 -> 31 [label="Control Dep"];
+16 -> 29 [label="Control Dep"];
+16 -> 24 [label="Control Dep"];
+16 -> 22 [label="Control Dep"];
+16 -> 17 [label="Control Dep"];
+16 -> 21 [label="Control Dep"];
+16 -> 18 [label="Control Dep"];
+16 -> 20 [label="Control Dep"];
+16 -> 23 [label="Control Dep"];
+16 -> 28 [label="Control Dep"];
+16 -> 25 [label="Control Dep"];
+16 -> 27 [label="Control Dep"];
+16 -> 30 [label="Control Dep"];
+16 -> 35 [label="Control Dep"];
+16 -> 32 [label="Control Dep"];
+16 -> 34 [label="Control Dep"];
+16 -> 37 [label="Control Dep"];
+16 -> 39 [label="Control Dep"];
+17 -> 47 [label="Action"];
+17 -> 54 [label="Action"];
+21 -> 20 [label=""];
+21 -> 18 [label=""];
+21 -> 19 [label=""];
+21 -> 55 [label="Action"];
+22 -> 17 [label=""];
+22 -> 21 [label=""];
+24 -> 22 [label=""];
+24 -> 23 [label=""];
+28 -> 27 [label=""];
+28 -> 25 [label=""];
+28 -> 26 [label=""];
+28 -> 56 [label="Action"];
+29 -> 24 [label=""];
+29 -> 28 [label=""];
+31 -> 29 [label=""];
+31 -> 30 [label=""];
+35 -> 34 [label=""];
+35 -> 32 [label=""];
+35 -> 33 [label=""];
+35 -> 57 [label="Action"];
+36 -> 31 [label=""];
+36 -> 35 [label=""];
+38 -> 36 [label=""];
+38 -> 37 [label=""];
+39 -> 58 [label="Action"];
+40 -> 38 [label=""];
+40 -> 39 [label=""];
+41 -> 40 [label=""];
+41 -> 49 [label="Action"];
+42 -> 41 [label=""];
+43 -> 16 [label=""];
+43 -> 42 [label=""];
+43 -> 50 [label="Action"];
+43 -> 52 [label="Action"];
+44 -> 13 [label=""];
+44 -> 43 [label=""];
+45 -> 44 [label=""];
+46 -> 0 [label=""];
+46 -> 2 [label=""];
+46 -> 3 [label=""];
+46 -> 4 [label=""];
+46 -> 5 [label=""];
+46 -> 45 [label=""];
+46 -> 1 [label=""];
+47 -> 48 [label="Action"];
+50 -> 51 [label="Action"];
+52 -> 53 [label="Action"];
+}

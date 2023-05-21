@@ -13,7 +13,7 @@ public class Insert extends ActionNode {
         _parent = parent;
         _position = pos;
         new ActionEdge(parent, this);
-        // TODO: add edge to parent.pos
+        new ActionEdge(this, insert);
     }
 
     public CtElementImpl getParent() { return _parent; }

@@ -4,6 +4,7 @@ import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.reference.CtCatchVariableReferenceImpl;
 
 import java.util.*;
 
@@ -107,13 +108,11 @@ public class Scope {
                 return (CtElementImpl) ((CtUnaryOperatorImpl) node).getOperand();
         } else if (node instanceof CtVariableWriteImpl) {
             return (CtElementImpl) ((CtVariableWriteImpl) node).getVariable();
-        } else if (node instanceof CtCatchVariableImpl) {
-            return (CtElementImpl) ((CtCatchVariableImpl) node).getReference();
         } else if (node instanceof CtArrayWriteImpl) {
             return (CtElementImpl) ((CtArrayWriteImpl) node).getTarget();
         } else if (node instanceof CtFieldWriteImpl) {
             return (CtElementImpl) ((CtFieldWriteImpl) node).getVariable();
-        } else if (node instanceof CtLocalVariableImpl) {
+        } else if (node instanceof CtLocalVariableImpl || node instanceof CtCatchVariableImpl) {
             // virtual element
             for (Edge oe : node._outEdges) {
                 if (oe instanceof ASTEdge && oe.getTarget() instanceof CtVirtualElement) {

@@ -1,0 +1,174 @@
+digraph "execute#?" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@execute" shape=ellipse]
+2 [label="2:CtTypeReferenceImpl@Exception" shape=ellipse]
+3 [label="3:CtTypeReferenceImpl@XSLTProcessor" shape=ellipse]
+4 [label="3:CtExecutableReferenceImpl@getProcessor()" shape=ellipse]
+5 [label="3:CtVirtualElement@getProcessor" shape=ellipse]
+6 [label="3:CtTypeAccessImpl@XSLTProcessorFactory" shape=ellipse]
+7 [label="3:CtInvocationImpl@XSLTProcessorFactory.getProcessor()" shape=ellipse]
+8 [label="3:CtVirtualElement@processor" shape=ellipse]
+9 [label="3:CtLocalVariableImpl@XSLTProcessor processor = XSLTProcessorFactory.getProcessor()" shape=ellipse]
+10 [label="4:CtExecutableReferenceImpl@setStylesheetParam(java.lang.String)" shape=ellipse]
+11 [label="4:CtVirtualElement@setStylesheetParam" shape=ellipse]
+12 [label="4:CtVariableReadImpl@processor" shape=ellipse]
+13 [label="4:CtLiteralImpl@\"output.dir\"" shape=ellipse]
+14 [label="4:CtLiteralImpl@\"'\"" shape=ellipse]
+15 [label="4:CtExecutableReferenceImpl@getAbsolutePath()" shape=ellipse]
+16 [label="4:CtVirtualElement@getAbsolutePath" shape=ellipse]
+17 [label="4:CtFieldReadImpl@toDir" shape=ellipse]
+18 [label="4:CtInvocationImpl@toDir.getAbsolutePath()" shape=ellipse]
+19 [label="4:CtBinaryOperatorImpl@(\"'\" + toDir.getAbsolutePath())" shape=ellipse]
+20 [label="4:CtLiteralImpl@\"'\"" shape=ellipse]
+21 [label="4:CtBinaryOperatorImpl@(\"'\" + toDir.getAbsolutePath()) + \"'\"" shape=ellipse]
+22 [label="4:CtInvocationImpl@processor.setStylesheetParam(\"output.dir\", (\"'\" + toDir.getAbsolutePath()) + \"'\")" shape=ellipse]
+23 [label="5:CtTypeReferenceImpl@XSLTInputSource" shape=ellipse]
+24 [label="5:CtFieldReadImpl@caller.document" shape=ellipse]
+25 [label="5:CtConstructorCallImpl@new XSLTInputSource(caller.document)" shape=ellipse]
+26 [label="5:CtVirtualElement@xml_src" shape=ellipse]
+27 [label="5:CtLocalVariableImpl@XSLTInputSource xml_src = new XSLTInputSource(caller.document)" shape=ellipse]
+28 [label="6:CtTypeReferenceImpl@String" shape=ellipse]
+29 [label="6:CtExecutableReferenceImpl@getStylesheetSystemId()" shape=ellipse]
+30 [label="6:CtVirtualElement@getStylesheetSystemId" shape=ellipse]
+31 [label="6:CtFieldReadImpl@caller" shape=ellipse]
+32 [label="6:CtInvocationImpl@caller.getStylesheetSystemId()" shape=ellipse]
+33 [label="6:CtVirtualElement@system_id" shape=ellipse]
+34 [label="6:CtLocalVariableImpl@String system_id = caller.getStylesheetSystemId()" shape=ellipse]
+35 [label="7:CtTypeReferenceImpl@XSLTInputSource" shape=ellipse]
+36 [label="7:CtVariableReadImpl@system_id" shape=ellipse]
+37 [label="7:CtConstructorCallImpl@new XSLTInputSource(system_id)" shape=ellipse]
+38 [label="7:CtVirtualElement@xsl_src" shape=ellipse]
+39 [label="7:CtLocalVariableImpl@XSLTInputSource xsl_src = new XSLTInputSource(system_id)" shape=ellipse]
+40 [label="8:CtTypeReferenceImpl@OutputStream" shape=ellipse]
+41 [label="8:CtExecutableReferenceImpl@getOutputStream()" shape=ellipse]
+42 [label="8:CtVirtualElement@getOutputStream" shape=ellipse]
+43 [label="8:CtInvocationImpl@getOutputStream()" shape=ellipse]
+44 [label="8:CtVirtualElement@os" shape=ellipse]
+45 [label="8:CtLocalVariableImpl@OutputStream os = getOutputStream()" shape=ellipse]
+46 [label="9:CtTypeReferenceImpl@XSLTResultTarget" shape=ellipse]
+47 [label="9:CtVariableReadImpl@os" shape=ellipse]
+48 [label="9:CtConstructorCallImpl@new XSLTResultTarget(os)" shape=ellipse]
+49 [label="9:CtVirtualElement@target" shape=ellipse]
+50 [label="9:CtLocalVariableImpl@XSLTResultTarget target = new XSLTResultTarget(os)" shape=ellipse]
+51 [label="10:CtExecutableReferenceImpl@process(XSLTInputSource,XSLTInputSource,XSLTResultTarget)" shape=ellipse]
+52 [label="10:CtVirtualElement@process" shape=ellipse]
+53 [label="10:CtVariableReadImpl@processor" shape=ellipse]
+54 [label="10:CtVariableReadImpl@xml_src" shape=ellipse]
+55 [label="10:CtVariableReadImpl@xsl_src" shape=ellipse]
+56 [label="10:CtVariableReadImpl@target" shape=ellipse]
+57 [label="10:CtInvocationImpl@processor.process(xml_src, xsl_src, target)" shape=ellipse]
+58 [label="2:CtBlockImpl@\{
+    XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+    processor.setStylesheetParam(\"output.dir\", (\"'\" + toDir.getAbsolutePath()) + \"'\");
+    XSLTInputSource xml_src = new XSLTInputSource(caller.document);
+    String system_id = caller.getStylesheetSystemId();
+    XSLTInputSource xsl_src = new XSLTInputSource(system_id);
+    OutputStream os = getOutputStream();
+    XSLTResultTarget target = new XSLTResultTarget(os);
+    processor.process(xml_src, xsl_src, target);
+\}" shape=ellipse]
+59 [label="2:CtMethodImpl@void execute() throws Exception \{
+    XSLTProcessor processor = XSLTProcessorFactory.getProcessor();
+    processor.setStylesheetParam(\"output.dir\", (\"'\" + toDir.getAbsolutePath()) + \"'\");
+    XSLTInputSource xml_src = new XSLTInputSource(caller.document);
+    String system_id = caller.getStylesheetSystemId();
+    XSLTInputSource xsl_src = new XSLTInputSource(system_id);
+    OutputStream os = getOutputStream();
+    XSLTResultTarget target = new XSLTResultTarget(os);
+    processor.process(xml_src, xsl_src, target);
+\}" shape=ellipse]
+60 [label="5:Update@UPDATE" shape=ellipse]
+61 [label="5:CtFieldReadImpl@caller" shape=ellipse]
+62 [label="4:Update@UPDATE" shape=ellipse]
+63 [label="4:CtFieldReadImpl@caller" shape=ellipse]
+64 [label="5:Insert@INSERT" shape=ellipse]
+65 [label="5:CtInvocationImpl@caller.getDocument()" shape=ellipse]
+66 [label="4:Insert@INSERT" shape=ellipse]
+67 [label="4:CtInvocationImpl@caller.getToDir()" shape=ellipse]
+68 [label="5:Move@MOVE" shape=ellipse]
+69 [label="4:Move@MOVE" shape=ellipse]
+7 -> 6 [label=""];
+7 -> 4 [label=""];
+7 -> 5 [label=""];
+8 -> 12 [label="Define-Use"];
+8 -> 53 [label="Define-Use"];
+9 -> 3 [label=""];
+9 -> 7 [label=""];
+9 -> 8 [label=""];
+17 -> 62 [label="Action"];
+17 -> 69 [label="Action"];
+18 -> 17 [label=""];
+18 -> 15 [label=""];
+18 -> 16 [label=""];
+18 -> 66 [label="Action"];
+19 -> 14 [label=""];
+19 -> 18 [label=""];
+21 -> 19 [label=""];
+21 -> 20 [label=""];
+22 -> 12 [label=""];
+22 -> 10 [label=""];
+22 -> 13 [label=""];
+22 -> 21 [label=""];
+22 -> 11 [label=""];
+24 -> 26 [label="Data Dep"];
+24 -> 60 [label="Action"];
+24 -> 68 [label="Action"];
+25 -> 24 [label=""];
+25 -> 64 [label="Action"];
+26 -> 54 [label="Define-Use"];
+27 -> 23 [label=""];
+27 -> 25 [label=""];
+27 -> 26 [label=""];
+31 -> 33 [label="Data Dep"];
+32 -> 31 [label=""];
+32 -> 29 [label=""];
+32 -> 30 [label=""];
+33 -> 36 [label="Define-Use"];
+34 -> 28 [label=""];
+34 -> 32 [label=""];
+34 -> 33 [label=""];
+36 -> 38 [label="Data Dep"];
+37 -> 36 [label=""];
+38 -> 55 [label="Define-Use"];
+39 -> 35 [label=""];
+39 -> 37 [label=""];
+39 -> 38 [label=""];
+43 -> 41 [label=""];
+43 -> 42 [label=""];
+44 -> 47 [label="Define-Use"];
+45 -> 40 [label=""];
+45 -> 43 [label=""];
+45 -> 44 [label=""];
+47 -> 49 [label="Data Dep"];
+48 -> 47 [label=""];
+49 -> 56 [label="Define-Use"];
+50 -> 46 [label=""];
+50 -> 48 [label=""];
+50 -> 49 [label=""];
+57 -> 53 [label=""];
+57 -> 51 [label=""];
+57 -> 54 [label=""];
+57 -> 55 [label=""];
+57 -> 56 [label=""];
+57 -> 52 [label=""];
+58 -> 9 [label=""];
+58 -> 22 [label=""];
+58 -> 27 [label=""];
+58 -> 34 [label=""];
+58 -> 39 [label=""];
+58 -> 45 [label=""];
+58 -> 50 [label=""];
+58 -> 57 [label=""];
+59 -> 0 [label=""];
+59 -> 2 [label=""];
+59 -> 58 [label=""];
+59 -> 1 [label=""];
+60 -> 61 [label="Action"];
+62 -> 63 [label="Action"];
+64 -> 65 [label="Action"];
+65 -> 61 [label=""];
+66 -> 67 [label="Action"];
+67 -> 63 [label=""];
+68 -> 65 [label="Action"];
+69 -> 67 [label="Action"];
+}

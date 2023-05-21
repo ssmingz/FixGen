@@ -3,7 +3,12 @@ package model;
 import codegraph.ASTEdge;
 import codegraph.CtVirtualElement;
 import codegraph.Scope;
-import org.checkerframework.checker.units.qual.C;
+import com.github.gumtreediff.matchers.GumtreeProperties;
+import com.github.gumtreediff.matchers.Mapping;
+import com.github.gumtreediff.matchers.MappingStore;
+import com.github.gumtreediff.tree.Tree;
+import gumtree.spoon.builder.SpoonGumTreeBuilder;
+import model.actions.ActionNode;
 import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.declaration.CtElement;
 import spoon.support.reflect.code.*;
@@ -11,8 +16,7 @@ import spoon.support.reflect.declaration.*;
 import spoon.support.reflect.reference.*;
 import utils.ObjectUtil;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class CodeGraph {
     private String _name;
@@ -20,6 +24,8 @@ public class CodeGraph {
     private ArrayList<CtWrapper> _allNodes = new ArrayList<>();
     private ArrayList<CtElementImpl> _traversed = new ArrayList<>();
     private CtElementImpl _entryNode;
+    private MappingStore _mappingStore;
+    private Map<CtWrapper, CtWrapper> _mapping = new LinkedHashMap<>();
     public CodeGraph() {}
 
     public void setCtMethod(CtMethodImpl ctMethod) {
@@ -159,7 +165,7 @@ public class CodeGraph {
         } else if (ctNode instanceof CtExecutableReferenceImpl) {
             visit((CtExecutableReferenceImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtFieldReferenceImpl) {
-            visit((CtFieldReferenceImpl) ctNode, control, scope);
+            // do not handle
         } else if (ctNode instanceof CtIntersectionTypeReferenceImpl) {
             // do not handle
         } else if (ctNode instanceof CtLocalVariableReferenceImpl) {
@@ -187,7 +193,7 @@ public class CodeGraph {
             buildNode(ctNode.getType(), control, scope);
         }
         // method name
-        CtVirtualElement mname = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        CtVirtualElement mname = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "METHOD_DEC_NAME");
         _allNodes.add(new CtWrapper(mname));
         // arguments
         for (Object para : ctNode.getParameters()) {
@@ -207,7 +213,7 @@ public class CodeGraph {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
         // name
-        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "METHOD_NAME");
         _allNodes.add(new CtWrapper(name));
         // arguments
         for (Object arg : ctNode.getParameters()) {
@@ -355,7 +361,7 @@ public class CodeGraph {
         scope.addDefine(ctNode.getSimpleName(), ctNode);
         ctNode.setScope(scope);
         // name
-        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "CATCH_VAR_NAME");
         _allNodes.add(new CtWrapper(name));
         // type
         buildNode(ctNode.getType(), control, scope);
@@ -470,7 +476,7 @@ public class CodeGraph {
             buildNode(ctNode.getExecutable(), control, scope);
         }
         // name
-        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getLabel());
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getExecutable().getSimpleName(), "METHOD_NAME");
         _allNodes.add(new CtWrapper(name));
         // TODO: check whether to use getTarget()
         if (ctNode.getTarget() != null) {
@@ -506,7 +512,7 @@ public class CodeGraph {
         // default expression
         buildNode(ctNode.getDefaultExpression(), control, scope);
         // name
-        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "LOCAL_VAR_NAME");
         _allNodes.add(new CtWrapper(name));
         // add define
         scope.addDefine(ctNode.getSimpleName(), ctNode);
@@ -647,7 +653,7 @@ public class CodeGraph {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
         // name
-        CtVirtualElement arrname = new CtVirtualElement(ctNode, ctNode.getSimpleName());
+        CtVirtualElement arrname = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "ARRAY_TYPE_NAME");
         _allNodes.add(new CtWrapper(arrname));
         // TODO: can get array type, component type, dimension count
     }
@@ -661,12 +667,6 @@ public class CodeGraph {
     private void visit(CtExecutableReferenceImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-    }
-
-    private void visit(CtFieldReferenceImpl ctNode, CtElementImpl control, Scope scope) {
-        ctNode.setControlDependency(control);
-        ctNode.setScope(scope);
-        buildNode(ctNode.getDeclaration(), control, scope);
     }
 
     private void visit(CtLocalVariableReferenceImpl ctNode, CtElementImpl control, Scope scope) {
@@ -699,5 +699,41 @@ public class CodeGraph {
 
     public List<CtWrapper> getNodes() {
         return _allNodes;
+    }
+
+    public List<ActionNode> getActions() {
+        List<ActionNode> al = new ArrayList<>();
+        for (CtWrapper an : _allNodes) {
+            if (an.getCtElementImpl() instanceof ActionNode)
+                al.add((ActionNode) an.getCtElementImpl());
+        }
+        return al;
+    }
+
+    public void setMappingStore(MappingStore mapping) {
+        _mappingStore = mapping;
+        Iterator itr = mapping.iterator();
+        while (itr.hasNext()) {
+            Mapping pair = (Mapping) itr.next();
+            Tree srcTree = pair.first;
+            Tree dstTree = pair.second;
+            CtElementImpl srcCt = (CtElementImpl) srcTree.getMetadata(SpoonGumTreeBuilder.SPOON_OBJECT);
+            CtElementImpl dstCt = (CtElementImpl) dstTree.getMetadata(SpoonGumTreeBuilder.SPOON_OBJECT);
+            if (srcCt instanceof gumtree.spoon.builder.CtWrapper) {
+                CtVirtualElement srcCtW = new CtVirtualElement((CtElementImpl) srcCt.getParent(), srcCt.toString(), srcCt.getRoleInParent().name());
+                CtVirtualElement dstCtW = new CtVirtualElement((CtElementImpl) dstCt.getParent(), dstCt.toString(), dstCt.getRoleInParent().name());
+                _mapping.put(new CtWrapper(srcCtW), new CtWrapper(dstCtW));
+            } else {
+                _mapping.put(new CtWrapper(srcCt), new CtWrapper(dstCt));
+            }
+        }
+    }
+
+    public MappingStore getMappingStore() {
+        return _mappingStore;
+    }
+
+    public Map<CtWrapper, CtWrapper> getMapping() {
+        return _mapping;
     }
 }

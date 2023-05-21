@@ -12,6 +12,8 @@ public abstract class ActionNode extends CtElementImpl {
     public ActionNode(CtElementImpl src, Operation op) {
         _action = op;
         _srcNode = src;
+        parent = _srcNode;
+        setFactory(src.getFactory());
     }
 
     public Operation getAction() {
