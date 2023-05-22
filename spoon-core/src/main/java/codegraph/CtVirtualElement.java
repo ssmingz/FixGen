@@ -17,7 +17,6 @@ public class CtVirtualElement extends CtElementImpl {
         setFactory(p.getFactory());
         // add ASTEdge
         new ASTEdge(p, this);
-
     }
 
     public String getLabel() {

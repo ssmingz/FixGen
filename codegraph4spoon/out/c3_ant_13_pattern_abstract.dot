@@ -1,59 +1,21 @@
 digraph "Pattern" {
-0 [label="getUtil#?#5:UPDATE
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#8:UPDATE
-parse#?,Project,Object#27:UPDATE
-getUtil#?#5:UPDATE" shape=ellipse]
-1 [label="getUtil#?#5:new VAJLocalToolUtil()
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#8:new SourceFileScanner()
-parse#?,Project,Object#27:new RootHandler()
-getUtil#?#5:new VAJLocalToolUtil()" shape=ellipse]
-2 [label="getUtil#?#5:util = new VAJLocalToolUtil()
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#8:SourceFileScanner ds = new SourceFileScanner()
-parse#?,Project,Object#27:HandlerBase hb = new RootHandler()
-getUtil#?#5:util = new VAJLocalToolUtil()" shape=ellipse]
-3 [label="getUtil#?#4:\{
-    util = new VAJLocalToolUtil();
-\}
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#7:\{
-    SourceFileScanner ds = new SourceFileScanner();
-    toCopy = ds.restrict(names, fromDir, toDir, mapper);
-\}
-parse#?,Project,Object#12:\{
-    SAXParser saxParser = getParserFactory().newSAXParser();
-    try \{
-        parser = saxParser.getParser();
-    \} catch (SAXException exc) \{
-        parser = new XMLReaderAdapter(saxParser.getXMLReader());
-    \}
-    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');
-    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
-        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
-    \}
-    inputStream = new FileInputStream(buildFile);
-    inputSource = new InputSource(inputStream);
-    inputSource.setSystemId(uri);
-    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);
-    HandlerBase hb = new RootHandler();
-    parser.setDocumentHandler(hb);
-    parser.setEntityResolver(hb);
-    parser.setErrorHandler(hb);
-    parser.setDTDHandler(hb);
-    parser.parse(inputSource);
-\}
-getUtil#?#4:\{
-    util = new VAJLocalToolUtil();
-\}" shape=ellipse]
-4 [label="getUtil#?#-1:VAJLocalToolUtil()
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:SourceFileScanner()
-parse#?,Project,Object#-1:RootHandler()
-getUtil#?#-1:VAJLocalToolUtil()" shape=ellipse]
-5 [label="getUtil#?#5:new VAJLocalToolUtil(this)
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#8:new SourceFileScanner(this)
-parse#?,Project,Object#27:new RootHandler(this)
-getUtil#?#5:new VAJLocalToolUtil(this)" shape=ellipse]
-0 -> 5 [label="Action:4"];
-1 -> 0 [label="Action:4"];
-1 -> 4 [label="AST:4"];
-2 -> 1 [label="AST:4"];
-3 -> 2 [label="AST:4"];
+0 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:names" shape=ellipse]
+1 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:fromDir" shape=ellipse]
+2 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:names" shape=ellipse]
+3 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
+4 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:toCopy" shape=ellipse]
+5 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:String[]" shape=ellipse]
+6 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy" shape=ellipse]
+7 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds" shape=ellipse]
+8 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
+0 -> 6 [label="Data Dep:1"];
+1 -> 6 [label="Data Dep:1"];
+2 -> 4 [label="Data Dep:1"];
+3 -> 5 [label="AST:1"];
+3 -> 6 [label="AST:1"];
+3 -> 8 [label="AST:1"];
+7 -> 6 [label="Data Dep:1"];
+8 -> 0 [label="AST:1"];
+8 -> 1 [label="AST:1"];
+8 -> 7 [label="AST:1"];
 }

@@ -34,10 +34,11 @@ public class PatternAbstractor {
             Attribute attr3 = new Attribute("value");
             for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                 CtWrapper n = entry.getKey();
+                CodeGraph g = entry.getValue();
 
-                attr1.computeLocationInParent(n);
-                attr2.computeNodeType(n);
-                attr3.computeValue(n);
+                attr1.computeLocationInParent(n, g);
+                attr2.computeNodeType(n, g);
+                attr3.computeValue(n, g);
             }
             pn.setComparedAttribute(attr1);
             pn.setComparedAttribute(attr2);
@@ -69,9 +70,13 @@ public class PatternAbstractor {
         Iterator<PatternNode> it = pat.getNodeSet().iterator();
         while(it.hasNext()){
             PatternNode pn = it.next();
-            // remove the attribute
-            pn.getComparedAttributes().removeIf(a -> a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"));
-            if (pn.getComparedAttributes().size() == 0) {
+            // remove the attribute by setAbstract instead removing
+//            pn.getComparedAttributes().removeIf(a -> a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"));
+            pn.getComparedAttributes().forEach(a -> {
+                if (a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"))
+                    a.setAbstract(true);
+            });
+            if (pn.getComparedAttributes().stream().anyMatch(a -> !a.isAbstract())) {
                 // remove the node and its attached edges
                 pn.inEdges().removeIf(Objects::nonNull);
                 pn.outEdges().removeIf(Objects::nonNull);

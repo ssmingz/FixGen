@@ -23,7 +23,9 @@ import static java.util.stream.Collectors.toMap;
 public class Attribute {
     private String _name;
     private Map<String, Integer> _numByValues = new LinkedHashMap<>();
+    private Map<CodeGraph, String> _valueByCG = new LinkedHashMap<>();
     private String _tag = ""; // choose which value to use
+    private boolean isAbstract = false;
 
     public Attribute(String name) {
         _name = name;
@@ -41,13 +43,22 @@ public class Attribute {
         return _numByValues.keySet();
     }
 
-    public void addValue(String v) {
+    public boolean isAbstract() { return isAbstract; }
+
+    public void setAbstract(boolean abs) { isAbstract = abs; }
+
+    public void addValue(String v, CodeGraph g) {
+        _valueByCG.put(g, v);
         if (_numByValues.containsKey(v)) {
             int s = _numByValues.get(v) + 1;
             _numByValues.put(v, s);
         } else {
             _numByValues.put(v, 1);
         }
+    }
+
+    public String getValueByCG(CodeGraph g) {
+        return _valueByCG.getOrDefault(g, "MISSING");
     }
 
     public String getTag() {
@@ -68,7 +79,7 @@ public class Attribute {
                                 LinkedHashMap::new));
     }
 
-    public void computeLocationInParent(CtWrapper n) {
+    public void computeLocationInParent(CtWrapper n, CodeGraph g) {
         String role = null;
         if (n.getCtElementImpl() instanceof ActionNode) {
             role = "ACTION";
@@ -77,17 +88,17 @@ public class Attribute {
         } else {
             role = n.getCtElementImpl().getRoleInParent().name();
         }
-        addValue(role);
+        addValue(role, g);
     }
 
-    public void computeNodeType(CtWrapper n) {
+    public void computeNodeType(CtWrapper n, CodeGraph g) {
         String type = n.getCtElementImpl().getClass().getSimpleName();
-        addValue(type);
+        addValue(type, g);
     }
 
-    public void computeValue(CtWrapper n) {
+    public void computeValue(CtWrapper n, CodeGraph g) {
         String value = n.toLabelString();
-        addValue(value);
+        addValue(value, g);
     }
 
 }

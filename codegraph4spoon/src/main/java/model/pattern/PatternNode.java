@@ -3,6 +3,8 @@ package model.pattern;
 import model.CodeGraph;
 import model.CtWrapper;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.reference.CtExecutableReferenceImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;

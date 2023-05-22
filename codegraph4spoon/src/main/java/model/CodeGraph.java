@@ -2,8 +2,8 @@ package model;
 
 import codegraph.ASTEdge;
 import codegraph.CtVirtualElement;
+import codegraph.Edge;
 import codegraph.Scope;
-import com.github.gumtreediff.matchers.GumtreeProperties;
 import com.github.gumtreediff.matchers.Mapping;
 import com.github.gumtreediff.matchers.MappingStore;
 import com.github.gumtreediff.tree.Tree;
@@ -20,12 +20,14 @@ import java.util.*;
 
 public class CodeGraph {
     private String _name;
+    private String _fileName;
     private CtMethodImpl _ctMethod;
     private ArrayList<CtWrapper> _allNodes = new ArrayList<>();
     private ArrayList<CtElementImpl> _traversed = new ArrayList<>();
     private CtElementImpl _entryNode;
     private MappingStore _mappingStore;
     private Map<CtWrapper, CtWrapper> _mapping = new LinkedHashMap<>();
+    private Map<Object, Integer> idCG = new LinkedHashMap<>();
     public CodeGraph() {}
 
     public void setCtMethod(CtMethodImpl ctMethod) {
@@ -34,6 +36,14 @@ public class CodeGraph {
 
     public void setName(String name) {
         _name = name;
+    }
+
+    public int getElementId(Object e) {
+        int elementId = idCG.getOrDefault(e, -1);
+        if (e instanceof CtWrapper) {
+            elementId = idCG.getOrDefault(ObjectUtil.findCtKeyInSet(new HashSet<>(_allNodes), (CtWrapper) e), -1);
+        }
+        return elementId;
     }
 
     public void buildNode(Object ctNode, CtElementImpl control, Scope scope) {
@@ -47,12 +57,6 @@ public class CodeGraph {
             }
         }
         _traversed.add((CtElementImpl) ctNode);
-        // connect AST children
-        if (ctNode instanceof CtElementImpl) {
-            for (CtElement ch : ((CtElementImpl) ctNode).getDirectChildren()) {
-                new ASTEdge((CtElementImpl) ctNode, (CtElementImpl) ch);
-            }
-        }
         /* The structural part contains the declarations of the program elements, such as interface, class, variable, method, annotation, and enum declarations. */
         if (ctNode instanceof CtMethodImpl) {
             visit((CtMethodImpl) ctNode, control, scope);
@@ -180,8 +184,35 @@ public class CodeGraph {
         else {
             System.out.println("UNKNOWN ctNode type : " + ctNode.getClass().toString());
         }
-        CtWrapper ctwrapper = new CtWrapper((CtElementImpl) ctNode);
-        _allNodes.add(ctwrapper);
+        updateCGId(ctNode);
+        // connect AST children
+        if (ctNode instanceof CtElementImpl) {
+            for (CtElement ch : ((CtElementImpl) ctNode).getDirectChildren()) {
+                new ASTEdge((CtElementImpl) ctNode, (CtElementImpl) ch);
+                if (ObjectUtil.findCtKeyInSet(new HashSet<>(_allNodes), new CtWrapper((CtElementImpl) ch)) == null) {
+                    updateCGId(ch);
+                }
+            }
+        }
+    }
+
+    public void updateCGId(Object obj) {
+        if (obj instanceof CtElementImpl) {
+            CtWrapper ctwrapper = new CtWrapper((CtElementImpl) obj);
+            _allNodes.add(ctwrapper);
+            idCG.put(ctwrapper, idCG.size()+1);
+            // edge
+            for (Edge ie : ((CtElementImpl) obj)._inEdges) {
+                if (!idCG.containsKey(ie)) {
+                    idCG.put(ie, idCG.size()+1);
+                }
+            }
+            for (Edge oe : ((CtElementImpl) obj)._outEdges) {
+                if (!idCG.containsKey(oe)) {
+                    idCG.put(oe, idCG.size()+1);
+                }
+            }
+        }
     }
 
     private void visit(CtMethodImpl ctNode, CtElementImpl control, Scope scope) {
@@ -194,7 +225,7 @@ public class CodeGraph {
         }
         // method name
         CtVirtualElement mname = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "METHOD_DEC_NAME");
-        _allNodes.add(new CtWrapper(mname));
+        updateCGId(mname);
         // arguments
         for (Object para : ctNode.getParameters()) {
             buildNode(para, control, scope);
@@ -214,7 +245,7 @@ public class CodeGraph {
         ctNode.setScope(scope);
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "METHOD_NAME");
-        _allNodes.add(new CtWrapper(name));
+        updateCGId(name);
         // arguments
         for (Object arg : ctNode.getParameters()) {
             buildNode(arg, control, scope);
@@ -362,7 +393,7 @@ public class CodeGraph {
         ctNode.setScope(scope);
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "CATCH_VAR_NAME");
-        _allNodes.add(new CtWrapper(name));
+        updateCGId(name);
         // type
         buildNode(ctNode.getType(), control, scope);
         // initializer
@@ -384,6 +415,8 @@ public class CodeGraph {
     private void visit(CtConstructorCallImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
+        // executable
+        buildNode(ctNode.getExecutable(), control, scope);
         // arguments
         for (Object arg : ctNode.getArguments()) {
             buildNode(arg, control, scope);
@@ -477,7 +510,7 @@ public class CodeGraph {
         }
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getExecutable().getSimpleName(), "METHOD_NAME");
-        _allNodes.add(new CtWrapper(name));
+        updateCGId(name);
         // TODO: check whether to use getTarget()
         if (ctNode.getTarget() != null) {
             buildNode(ctNode.getTarget(), control, scope);
@@ -513,7 +546,7 @@ public class CodeGraph {
         buildNode(ctNode.getDefaultExpression(), control, scope);
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "LOCAL_VAR_NAME");
-        _allNodes.add(new CtWrapper(name));
+        updateCGId(name);
         // add define
         scope.addDefine(ctNode.getSimpleName(), ctNode);
         name.setDataDependency(ctNode);
@@ -654,7 +687,7 @@ public class CodeGraph {
         ctNode.setScope(scope);
         // name
         CtVirtualElement arrname = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "ARRAY_TYPE_NAME");
-        _allNodes.add(new CtWrapper(arrname));
+        updateCGId(arrname);
         // TODO: can get array type, component type, dimension count
     }
 
@@ -736,4 +769,10 @@ public class CodeGraph {
     public Map<CtWrapper, CtWrapper> getMapping() {
         return _mapping;
     }
+
+    public void setFileName(String absolutePath) {
+        _fileName = absolutePath;
+    }
+
+    public String getFileName() { return _fileName; }
 }

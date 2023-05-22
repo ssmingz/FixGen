@@ -13,15 +13,24 @@ public class Pattern {
     private Map<CtWrapper, PatternNode> _patternNodeByNode = new LinkedHashMap<>();
     private Set<String> _attributes = new LinkedHashSet<>();
 
+    private HashMap<Integer, Object> _idPattern = new LinkedHashMap<>();
+    private int _idCounter = -1;
+
     public Pattern(PatternNode aNode) {
         _start = aNode;
         _patternNodes.add(aNode);
+        _idPattern.put(++_idCounter, aNode);
     }
+
+    public HashMap<Integer, Object> getIdPattern() { return _idPattern; }
 
     public Set<PatternNode> getNodeSet() { return _patternNodes; }
 
+    public Set<PatternEdge> getEdgeSet() { return _patternEdges; }
+
     public void addNode(PatternNode pNode, CtWrapper node) {
         _patternNodes.add(pNode);
+        _idPattern.put(++_idCounter, pNode);
         _patternNodeByNode.put(node, pNode);
     }
 
@@ -31,6 +40,7 @@ public class Pattern {
             PatternEdge anEdge = new PatternEdge(src, target, type);
             anEdge.addInstance(e, cg);
             _patternEdges.add(anEdge);
+            _idPattern.put(++_idCounter, anEdge);
         } else {
             edge.addInstance(e, cg);
         }

@@ -32,7 +32,7 @@ public class TestPatternAbstractor {
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
             // abstract pattern
-            PatternAbstractor abs = new PatternAbstractor(size);
+            PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.7));
             pat = abs.abstractPattern(pat);
             DotGraph dot = new DotGraph(pat, 0);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract.dot", testPro, testId));

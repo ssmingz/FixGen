@@ -58,6 +58,7 @@ public class GraphBuilder {
         CodeGraph g = new CodeGraph();
         g.setCtMethod(ctMethod);
         g.setName(sig);
+        g.setFileName(ctMethod.getPosition().getFile().getAbsolutePath());
         g.buildNode(ctMethod, null, new Scope(null));
         g.setEntryNode(ctMethod);
         return g;
@@ -79,26 +80,26 @@ public class GraphBuilder {
             if (op instanceof DeleteOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 Delete del = new Delete(src, op);
-                cg1.getNodes().add(new CtWrapper(del));
+                cg1.updateCGId(del);
             } else if (op instanceof UpdateOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl dst = (CtElementImpl) op.getDstNode();
                 Update upd = new Update(src, dst, op);
-                cg1.getNodes().add(new CtWrapper(upd));
-                cg1.getNodes().add(new CtWrapper(dst));
+                cg1.updateCGId(upd);
+                cg1.updateCGId(dst);
             } else if (op instanceof InsertOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl parent = (CtElementImpl) ((InsertOperation) op).getParent();
                 int pos = ((InsertOperation) op).getPosition();
                 Insert ins = new Insert(src, parent, pos, op);
-                cg1.getNodes().add(new CtWrapper(ins));
-                cg1.getNodes().add(new CtWrapper(src));
+                cg1.updateCGId(ins);
+                cg1.updateCGId(src);
             } else if (op instanceof MoveOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl parent = (CtElementImpl) ((MoveOperation) op).getParent();
                 int pos = ((MoveOperation) op).getPosition();
                 Move mov = new Move(src, parent, pos, op);
-                cg1.getNodes().add(new CtWrapper(mov));
+                cg1.updateCGId(mov);
             }
         }
         return cg1;
