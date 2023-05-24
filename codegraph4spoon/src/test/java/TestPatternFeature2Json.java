@@ -7,9 +7,11 @@ import org.junit.Test;
 import utils.ObjectUtil;
 
 import java.io.File;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
-public class TestPatternFeature2Csv {
+public class TestPatternFeature2Json {
     @Test
     public void testWriteFeatCsvFromMultiplePairs() {
         String testPro = "ant";
@@ -33,8 +35,8 @@ public class TestPatternFeature2Csv {
             PatternAbstractor abs = new PatternAbstractor(size);
             pat = abs.abstractPattern(pat);
             // write feature csv
-            String csvPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d.csv", testPro, testId);
-            ObjectUtil.writeFeatureCsv(pat, pat.getIdPattern(), csvPath);
+            String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d", testPro, testId);
+            ObjectUtil.writeFeatureJson(pat, pat.getIdPattern(), jsonPath);
         }
     }
 }

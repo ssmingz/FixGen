@@ -15,11 +15,11 @@ digraph "parse#?,Project,Object" {
 13 [label="4:CtLiteralImpl@\"Only File source supported by default plugin\"" shape=ellipse]
 14 [label="4:CtConstructorCallImpl@new BuildException(\"Only File source supported by default plugin\")" shape=ellipse]
 15 [label="4:CtThrowImpl@throw new BuildException(\"Only File source supported by default plugin\")" shape=ellipse]
-16 [label="3:CtBlockImpl@\{\
-    throw new BuildException(\"Only File source supported by default plugin\");\
+16 [label="3:CtBlockImpl@\{
+    throw new BuildException(\"Only File source supported by default plugin\");
 \}" shape=ellipse]
-17 [label="3:CtIfImpl@if (!(source instanceof File)) \{\
-    throw new BuildException(\"Only File source supported by default plugin\");\
+17 [label="3:CtIfImpl@if (!(source instanceof File)) \{
+    throw new BuildException(\"Only File source supported by default plugin\");
 \}" shape=ellipse]
 18 [label="6:CtTypeReferenceImpl@File" shape=ellipse]
 19 [label="6:CtVariableReadImpl@((File) (source))" shape=ellipse]
@@ -71,8 +71,8 @@ digraph "parse#?,Project,Object" {
 65 [label="15:CtVariableReadImpl@saxParser" shape=ellipse]
 66 [label="15:CtInvocationImpl@saxParser.getParser()" shape=ellipse]
 67 [label="15:CtAssignmentImpl@parser = saxParser.getParser()" shape=ellipse]
-68 [label="14:CtBlockImpl@\{\
-    parser = saxParser.getParser();\
+68 [label="14:CtBlockImpl@\{
+    parser = saxParser.getParser();
 \}" shape=ellipse]
 69 [label="16:CtVirtualElement@exc" shape=ellipse]
 70 [label="16:CtTypeReferenceImpl@SAXException" shape=ellipse]
@@ -85,16 +85,16 @@ digraph "parse#?,Project,Object" {
 77 [label="17:CtInvocationImpl@saxParser.getXMLReader()" shape=ellipse]
 78 [label="17:CtConstructorCallImpl@new XMLReaderAdapter(saxParser.getXMLReader())" shape=ellipse]
 79 [label="17:CtAssignmentImpl@parser = new XMLReaderAdapter(saxParser.getXMLReader())" shape=ellipse]
-80 [label="16:CtBlockImpl@\{\
-    parser = new XMLReaderAdapter(saxParser.getXMLReader());\
+80 [label="16:CtBlockImpl@\{
+    parser = new XMLReaderAdapter(saxParser.getXMLReader());
 \}" shape=ellipse]
-81 [label="16:CtCatchImpl@ catch (SAXException exc) \{\
-    parser = new XMLReaderAdapter(saxParser.getXMLReader());\
+81 [label="16:CtCatchImpl@ catch (SAXException exc) \{
+    parser = new XMLReaderAdapter(saxParser.getXMLReader());
 \}" shape=ellipse]
-82 [label="14:CtTryImpl@try \{\
-    parser = saxParser.getParser();\
-\} catch (SAXException exc) \{\
-    parser = new XMLReaderAdapter(saxParser.getXMLReader());\
+82 [label="14:CtTryImpl@try \{
+    parser = saxParser.getParser();
+\} catch (SAXException exc) \{
+    parser = new XMLReaderAdapter(saxParser.getXMLReader());
 \}" shape=ellipse]
 83 [label="19:CtTypeReferenceImpl@String" shape=ellipse]
 84 [label="19:CtLiteralImpl@\"file:\"" shape=ellipse]
@@ -147,11 +147,11 @@ digraph "parse#?,Project,Object" {
 131 [label="21:CtInvocationImpl@uri.substring(index + 1)" shape=ellipse]
 132 [label="21:CtBinaryOperatorImpl@(uri.substring(0, index) + \"%23\") + uri.substring(index + 1)" shape=ellipse]
 133 [label="21:CtAssignmentImpl@uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1)" shape=ellipse]
-134 [label="20:CtBlockImpl@\{\
-    uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
+134 [label="20:CtBlockImpl@\{
+    uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
 \}" shape=ellipse]
-135 [label="20:CtForImpl@for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{\
-    uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
+135 [label="20:CtForImpl@for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
+    uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
 \}" shape=ellipse]
 136 [label="23:CtVariableWriteImpl@inputStream" shape=ellipse]
 137 [label="23:CtTypeReferenceImpl@FileInputStream" shape=ellipse]
@@ -210,27 +210,27 @@ digraph "parse#?,Project,Object" {
 190 [label="32:CtFieldReadImpl@parser" shape=ellipse]
 191 [label="32:CtVariableReadImpl@inputSource" shape=ellipse]
 192 [label="32:CtInvocationImpl@parser.parse(inputSource)" shape=ellipse]
-193 [label="12:CtBlockImpl@\{\
-    SAXParser saxParser = getParserFactory().newSAXParser();\
-    try \{\
-        parser = saxParser.getParser();\
-    \} catch (SAXException exc) \{\
-        parser = new XMLReaderAdapter(saxParser.getXMLReader());\
-    \}\
-    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');\
-    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{\
-        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
-    \}\
-    inputStream = new FileInputStream(buildFile);\
-    inputSource = new InputSource(inputStream);\
-    inputSource.setSystemId(uri);\
-    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);\
-    HandlerBase hb = new RootHandler();\
-    parser.setDocumentHandler(hb);\
-    parser.setEntityResolver(hb);\
-    parser.setErrorHandler(hb);\
-    parser.setDTDHandler(hb);\
-    parser.parse(inputSource);\
+193 [label="12:CtBlockImpl@\{
+    SAXParser saxParser = getParserFactory().newSAXParser();
+    try \{
+        parser = saxParser.getParser();
+    \} catch (SAXException exc) \{
+        parser = new XMLReaderAdapter(saxParser.getXMLReader());
+    \}
+    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');
+    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
+        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
+    \}
+    inputStream = new FileInputStream(buildFile);
+    inputSource = new InputSource(inputStream);
+    inputSource.setSystemId(uri);
+    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);
+    HandlerBase hb = new RootHandler();
+    parser.setDocumentHandler(hb);
+    parser.setEntityResolver(hb);
+    parser.setErrorHandler(hb);
+    parser.setDTDHandler(hb);
+    parser.parse(inputSource);
 \}" shape=ellipse]
 194 [label="33:CtVirtualElement@exc" shape=ellipse]
 195 [label="33:CtTypeReferenceImpl@ParserConfigurationException" shape=ellipse]
@@ -240,11 +240,11 @@ digraph "parse#?,Project,Object" {
 199 [label="34:CtVariableReadImpl@exc" shape=ellipse]
 200 [label="34:CtConstructorCallImpl@new BuildException(\"Parser has not been configured correctly\", exc)" shape=ellipse]
 201 [label="34:CtThrowImpl@throw new BuildException(\"Parser has not been configured correctly\", exc)" shape=ellipse]
-202 [label="33:CtBlockImpl@\{\
-    throw new BuildException(\"Parser has not been configured correctly\", exc);\
+202 [label="33:CtBlockImpl@\{
+    throw new BuildException(\"Parser has not been configured correctly\", exc);
 \}" shape=ellipse]
-203 [label="33:CtCatchImpl@ catch (ParserConfigurationException exc) \{\
-    throw new BuildException(\"Parser has not been configured correctly\", exc);\
+203 [label="33:CtCatchImpl@ catch (ParserConfigurationException exc) \{
+    throw new BuildException(\"Parser has not been configured correctly\", exc);
 \}" shape=ellipse]
 204 [label="35:CtVirtualElement@exc" shape=ellipse]
 205 [label="35:CtTypeReferenceImpl@SAXParseException" shape=ellipse]
@@ -293,27 +293,27 @@ digraph "parse#?,Project,Object" {
 248 [label="42:CtVariableReadImpl@be" shape=ellipse]
 249 [label="42:CtVariableReadImpl@location" shape=ellipse]
 250 [label="42:CtInvocationImpl@be.setLocation(location)" shape=ellipse]
-251 [label="41:CtBlockImpl@\{\
-    be.setLocation(location);\
+251 [label="41:CtBlockImpl@\{
+    be.setLocation(location);
 \}" shape=ellipse]
-252 [label="41:CtIfImpl@if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-    be.setLocation(location);\
+252 [label="41:CtIfImpl@if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+    be.setLocation(location);
 \}" shape=ellipse]
 253 [label="44:CtVariableReadImpl@be" shape=ellipse]
 254 [label="44:CtThrowImpl@throw be" shape=ellipse]
-255 [label="39:CtBlockImpl@\{\
-    BuildException be = ((BuildException) (t));\
-    if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-        be.setLocation(location);\
-    \}\
-    throw be;\
+255 [label="39:CtBlockImpl@\{
+    BuildException be = ((BuildException) (t));
+    if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+        be.setLocation(location);
+    \}
+    throw be;
 \}" shape=ellipse]
-256 [label="39:CtIfImpl@if (t instanceof BuildException) \{\
-    BuildException be = ((BuildException) (t));\
-    if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-        be.setLocation(location);\
-    \}\
-    throw be;\
+256 [label="39:CtIfImpl@if (t instanceof BuildException) \{
+    BuildException be = ((BuildException) (t));
+    if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+        be.setLocation(location);
+    \}
+    throw be;
 \}" shape=ellipse]
 257 [label="46:CtTypeReferenceImpl@BuildException" shape=ellipse]
 258 [label="46:CtExecutableReferenceImpl@getMessage()" shape=ellipse]
@@ -324,29 +324,29 @@ digraph "parse#?,Project,Object" {
 263 [label="46:CtVariableReadImpl@location" shape=ellipse]
 264 [label="46:CtConstructorCallImpl@new BuildException(exc.getMessage(), t, location)" shape=ellipse]
 265 [label="46:CtThrowImpl@throw new BuildException(exc.getMessage(), t, location)" shape=ellipse]
-266 [label="35:CtBlockImpl@\{\
-    Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());\
-    Throwable t = exc.getException();\
-    if (t instanceof BuildException) \{\
-        BuildException be = ((BuildException) (t));\
-        if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-            be.setLocation(location);\
-        \}\
-        throw be;\
-    \}\
-    throw new BuildException(exc.getMessage(), t, location);\
+266 [label="35:CtBlockImpl@\{
+    Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());
+    Throwable t = exc.getException();
+    if (t instanceof BuildException) \{
+        BuildException be = ((BuildException) (t));
+        if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+            be.setLocation(location);
+        \}
+        throw be;
+    \}
+    throw new BuildException(exc.getMessage(), t, location);
 \}" shape=ellipse]
-267 [label="35:CtCatchImpl@ catch (SAXParseException exc) \{\
-    Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());\
-    Throwable t = exc.getException();\
-    if (t instanceof BuildException) \{\
-        BuildException be = ((BuildException) (t));\
-        if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-            be.setLocation(location);\
-        \}\
-        throw be;\
-    \}\
-    throw new BuildException(exc.getMessage(), t, location);\
+267 [label="35:CtCatchImpl@ catch (SAXParseException exc) \{
+    Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());
+    Throwable t = exc.getException();
+    if (t instanceof BuildException) \{
+        BuildException be = ((BuildException) (t));
+        if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+            be.setLocation(location);
+        \}
+        throw be;
+    \}
+    throw new BuildException(exc.getMessage(), t, location);
 \}" shape=ellipse]
 268 [label="47:CtVirtualElement@exc" shape=ellipse]
 269 [label="47:CtTypeReferenceImpl@SAXException" shape=ellipse]
@@ -365,11 +365,11 @@ digraph "parse#?,Project,Object" {
 282 [label="50:CtVariableReadImpl@((BuildException) (t))" shape=ellipse]
 283 [label="50:CtTypeReferenceImpl@BuildException" shape=ellipse]
 284 [label="50:CtThrowImpl@throw ((BuildException) (t))" shape=ellipse]
-285 [label="49:CtBlockImpl@\{\
-    throw ((BuildException) (t));\
+285 [label="49:CtBlockImpl@\{
+    throw ((BuildException) (t));
 \}" shape=ellipse]
-286 [label="49:CtIfImpl@if (t instanceof BuildException) \{\
-    throw ((BuildException) (t));\
+286 [label="49:CtIfImpl@if (t instanceof BuildException) \{
+    throw ((BuildException) (t));
 \}" shape=ellipse]
 287 [label="52:CtTypeReferenceImpl@BuildException" shape=ellipse]
 288 [label="52:CtExecutableReferenceImpl@getMessage()" shape=ellipse]
@@ -379,19 +379,19 @@ digraph "parse#?,Project,Object" {
 292 [label="52:CtVariableReadImpl@t" shape=ellipse]
 293 [label="52:CtConstructorCallImpl@new BuildException(exc.getMessage(), t)" shape=ellipse]
 294 [label="52:CtThrowImpl@throw new BuildException(exc.getMessage(), t)" shape=ellipse]
-295 [label="47:CtBlockImpl@\{\
-    Throwable t = exc.getException();\
-    if (t instanceof BuildException) \{\
-        throw ((BuildException) (t));\
-    \}\
-    throw new BuildException(exc.getMessage(), t);\
+295 [label="47:CtBlockImpl@\{
+    Throwable t = exc.getException();
+    if (t instanceof BuildException) \{
+        throw ((BuildException) (t));
+    \}
+    throw new BuildException(exc.getMessage(), t);
 \}" shape=ellipse]
-296 [label="47:CtCatchImpl@ catch (SAXException exc) \{\
-    Throwable t = exc.getException();\
-    if (t instanceof BuildException) \{\
-        throw ((BuildException) (t));\
-    \}\
-    throw new BuildException(exc.getMessage(), t);\
+296 [label="47:CtCatchImpl@ catch (SAXException exc) \{
+    Throwable t = exc.getException();
+    if (t instanceof BuildException) \{
+        throw ((BuildException) (t));
+    \}
+    throw new BuildException(exc.getMessage(), t);
 \}" shape=ellipse]
 297 [label="53:CtVirtualElement@exc" shape=ellipse]
 298 [label="53:CtTypeReferenceImpl@FileNotFoundException" shape=ellipse]
@@ -400,11 +400,11 @@ digraph "parse#?,Project,Object" {
 301 [label="54:CtVariableReadImpl@exc" shape=ellipse]
 302 [label="54:CtConstructorCallImpl@new BuildException(exc)" shape=ellipse]
 303 [label="54:CtThrowImpl@throw new BuildException(exc)" shape=ellipse]
-304 [label="53:CtBlockImpl@\{\
-    throw new BuildException(exc);\
+304 [label="53:CtBlockImpl@\{
+    throw new BuildException(exc);
 \}" shape=ellipse]
-305 [label="53:CtCatchImpl@ catch (FileNotFoundException exc) \{\
-    throw new BuildException(exc);\
+305 [label="53:CtCatchImpl@ catch (FileNotFoundException exc) \{
+    throw new BuildException(exc);
 \}" shape=ellipse]
 306 [label="55:CtVirtualElement@exc" shape=ellipse]
 307 [label="55:CtTypeReferenceImpl@IOException" shape=ellipse]
@@ -414,11 +414,11 @@ digraph "parse#?,Project,Object" {
 311 [label="56:CtVariableReadImpl@exc" shape=ellipse]
 312 [label="56:CtConstructorCallImpl@new BuildException(\"Error reading project file\", exc)" shape=ellipse]
 313 [label="56:CtThrowImpl@throw new BuildException(\"Error reading project file\", exc)" shape=ellipse]
-314 [label="55:CtBlockImpl@\{\
-    throw new BuildException(\"Error reading project file\", exc);\
+314 [label="55:CtBlockImpl@\{
+    throw new BuildException(\"Error reading project file\", exc);
 \}" shape=ellipse]
-315 [label="55:CtCatchImpl@ catch (IOException exc) \{\
-    throw new BuildException(\"Error reading project file\", exc);\
+315 [label="55:CtCatchImpl@ catch (IOException exc) \{
+    throw new BuildException(\"Error reading project file\", exc);
 \}" shape=ellipse]
 316 [label="58:CtVariableReadImpl@inputStream" shape=ellipse]
 317 [label="58:CtLiteralImpl@null" shape=ellipse]
@@ -427,285 +427,285 @@ digraph "parse#?,Project,Object" {
 320 [label="60:CtVirtualElement@close" shape=ellipse]
 321 [label="60:CtVariableReadImpl@inputStream" shape=ellipse]
 322 [label="60:CtInvocationImpl@inputStream.close()" shape=ellipse]
-323 [label="59:CtBlockImpl@\{\
-    inputStream.close();\
+323 [label="59:CtBlockImpl@\{
+    inputStream.close();
 \}" shape=ellipse]
 324 [label="61:CtVirtualElement@ioe" shape=ellipse]
 325 [label="61:CtTypeReferenceImpl@IOException" shape=ellipse]
 326 [label="61:CtCatchVariableImpl@IOException ioe" shape=ellipse]
-327 [label="61:CtBlockImpl@\{\
+327 [label="61:CtBlockImpl@\{
 \}" shape=ellipse]
-328 [label="61:CtCatchImpl@ catch (IOException ioe) \{\
+328 [label="61:CtCatchImpl@ catch (IOException ioe) \{
 \}" shape=ellipse]
-329 [label="59:CtTryImpl@try \{\
-    inputStream.close();\
-\} catch (IOException ioe) \{\
+329 [label="59:CtTryImpl@try \{
+    inputStream.close();
+\} catch (IOException ioe) \{
 \}" shape=ellipse]
-330 [label="58:CtBlockImpl@\{\
-    try \{\
-        inputStream.close();\
-    \} catch (IOException ioe) \{\
-    \}\
+330 [label="58:CtBlockImpl@\{
+    try \{
+        inputStream.close();
+    \} catch (IOException ioe) \{
+    \}
 \}" shape=ellipse]
-331 [label="58:CtIfImpl@if (inputStream != null) \{\
-    try \{\
-        inputStream.close();\
-    \} catch (IOException ioe) \{\
-    \}\
+331 [label="58:CtIfImpl@if (inputStream != null) \{
+    try \{
+        inputStream.close();
+    \} catch (IOException ioe) \{
+    \}
 \}" shape=ellipse]
-332 [label="57:CtBlockImpl@\{\
-    if (inputStream != null) \{\
-        try \{\
-            inputStream.close();\
-        \} catch (IOException ioe) \{\
-        \}\
-    \}\
+332 [label="57:CtBlockImpl@\{
+    if (inputStream != null) \{
+        try \{
+            inputStream.close();
+        \} catch (IOException ioe) \{
+        \}
+    \}
 \}" shape=ellipse]
-333 [label="12:CtTryImpl@try \{\
-    SAXParser saxParser = getParserFactory().newSAXParser();\
-    try \{\
-        parser = saxParser.getParser();\
-    \} catch (SAXException exc) \{\
-        parser = new XMLReaderAdapter(saxParser.getXMLReader());\
-    \}\
-    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');\
-    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{\
-        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
-    \}\
-    inputStream = new FileInputStream(buildFile);\
-    inputSource = new InputSource(inputStream);\
-    inputSource.setSystemId(uri);\
-    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);\
-    HandlerBase hb = new RootHandler();\
-    parser.setDocumentHandler(hb);\
-    parser.setEntityResolver(hb);\
-    parser.setErrorHandler(hb);\
-    parser.setDTDHandler(hb);\
-    parser.parse(inputSource);\
-\} catch (ParserConfigurationException exc) \{\
-    throw new BuildException(\"Parser has not been configured correctly\", exc);\
-\} catch (SAXParseException exc) \{\
-    Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());\
-    Throwable t = exc.getException();\
-    if (t instanceof BuildException) \{\
-        BuildException be = ((BuildException) (t));\
-        if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-            be.setLocation(location);\
-        \}\
-        throw be;\
-    \}\
-    throw new BuildException(exc.getMessage(), t, location);\
-\} catch (SAXException exc) \{\
-    Throwable t = exc.getException();\
-    if (t instanceof BuildException) \{\
-        throw ((BuildException) (t));\
-    \}\
-    throw new BuildException(exc.getMessage(), t);\
-\} catch (FileNotFoundException exc) \{\
-    throw new BuildException(exc);\
-\} catch (IOException exc) \{\
-    throw new BuildException(\"Error reading project file\", exc);\
-\} finally \{\
-    if (inputStream != null) \{\
-        try \{\
-            inputStream.close();\
-        \} catch (IOException ioe) \{\
-        \}\
-    \}\
+333 [label="12:CtTryImpl@try \{
+    SAXParser saxParser = getParserFactory().newSAXParser();
+    try \{
+        parser = saxParser.getParser();
+    \} catch (SAXException exc) \{
+        parser = new XMLReaderAdapter(saxParser.getXMLReader());
+    \}
+    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');
+    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
+        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
+    \}
+    inputStream = new FileInputStream(buildFile);
+    inputSource = new InputSource(inputStream);
+    inputSource.setSystemId(uri);
+    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);
+    HandlerBase hb = new RootHandler();
+    parser.setDocumentHandler(hb);
+    parser.setEntityResolver(hb);
+    parser.setErrorHandler(hb);
+    parser.setDTDHandler(hb);
+    parser.parse(inputSource);
+\} catch (ParserConfigurationException exc) \{
+    throw new BuildException(\"Parser has not been configured correctly\", exc);
+\} catch (SAXParseException exc) \{
+    Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());
+    Throwable t = exc.getException();
+    if (t instanceof BuildException) \{
+        BuildException be = ((BuildException) (t));
+        if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+            be.setLocation(location);
+        \}
+        throw be;
+    \}
+    throw new BuildException(exc.getMessage(), t, location);
+\} catch (SAXException exc) \{
+    Throwable t = exc.getException();
+    if (t instanceof BuildException) \{
+        throw ((BuildException) (t));
+    \}
+    throw new BuildException(exc.getMessage(), t);
+\} catch (FileNotFoundException exc) \{
+    throw new BuildException(exc);
+\} catch (IOException exc) \{
+    throw new BuildException(\"Error reading project file\", exc);
+\} finally \{
+    if (inputStream != null) \{
+        try \{
+            inputStream.close();
+        \} catch (IOException ioe) \{
+        \}
+    \}
 \}" shape=ellipse]
-334 [label="2:CtBlockImpl@\{\
-    if (!(source instanceof File)) \{\
-        throw new BuildException(\"Only File source supported by default plugin\");\
-    \}\
-    File buildFile = ((File) (source));\
-    FileInputStream inputStream = null;\
-    InputSource inputSource = null;\
-    this.project = project;\
-    this.buildFile = new File(buildFile.getAbsolutePath());\
-    buildFileParent = new File(this.buildFile.getParent());\
-    try \{\
-        SAXParser saxParser = getParserFactory().newSAXParser();\
-        try \{\
-            parser = saxParser.getParser();\
-        \} catch (SAXException exc) \{\
-            parser = new XMLReaderAdapter(saxParser.getXMLReader());\
-        \}\
-        String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');\
-        for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{\
-            uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
-        \}\
-        inputStream = new FileInputStream(buildFile);\
-        inputSource = new InputSource(inputStream);\
-        inputSource.setSystemId(uri);\
-        project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);\
-        HandlerBase hb = new RootHandler();\
-        parser.setDocumentHandler(hb);\
-        parser.setEntityResolver(hb);\
-        parser.setErrorHandler(hb);\
-        parser.setDTDHandler(hb);\
-        parser.parse(inputSource);\
-    \} catch (ParserConfigurationException exc) \{\
-        throw new BuildException(\"Parser has not been configured correctly\", exc);\
-    \} catch (SAXParseException exc) \{\
-        Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());\
-        Throwable t = exc.getException();\
-        if (t instanceof BuildException) \{\
-            BuildException be = ((BuildException) (t));\
-            if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-                be.setLocation(location);\
-            \}\
-            throw be;\
-        \}\
-        throw new BuildException(exc.getMessage(), t, location);\
-    \} catch (SAXException exc) \{\
-        Throwable t = exc.getException();\
-        if (t instanceof BuildException) \{\
-            throw ((BuildException) (t));\
-        \}\
-        throw new BuildException(exc.getMessage(), t);\
-    \} catch (FileNotFoundException exc) \{\
-        throw new BuildException(exc);\
-    \} catch (IOException exc) \{\
-        throw new BuildException(\"Error reading project file\", exc);\
-    \} finally \{\
-        if (inputStream != null) \{\
-            try \{\
-                inputStream.close();\
-            \} catch (IOException ioe) \{\
-            \}\
-        \}\
-    \}\
+334 [label="2:CtBlockImpl@\{
+    if (!(source instanceof File)) \{
+        throw new BuildException(\"Only File source supported by default plugin\");
+    \}
+    File buildFile = ((File) (source));
+    FileInputStream inputStream = null;
+    InputSource inputSource = null;
+    this.project = project;
+    this.buildFile = new File(buildFile.getAbsolutePath());
+    buildFileParent = new File(this.buildFile.getParent());
+    try \{
+        SAXParser saxParser = getParserFactory().newSAXParser();
+        try \{
+            parser = saxParser.getParser();
+        \} catch (SAXException exc) \{
+            parser = new XMLReaderAdapter(saxParser.getXMLReader());
+        \}
+        String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');
+        for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
+            uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
+        \}
+        inputStream = new FileInputStream(buildFile);
+        inputSource = new InputSource(inputStream);
+        inputSource.setSystemId(uri);
+        project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);
+        HandlerBase hb = new RootHandler();
+        parser.setDocumentHandler(hb);
+        parser.setEntityResolver(hb);
+        parser.setErrorHandler(hb);
+        parser.setDTDHandler(hb);
+        parser.parse(inputSource);
+    \} catch (ParserConfigurationException exc) \{
+        throw new BuildException(\"Parser has not been configured correctly\", exc);
+    \} catch (SAXParseException exc) \{
+        Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());
+        Throwable t = exc.getException();
+        if (t instanceof BuildException) \{
+            BuildException be = ((BuildException) (t));
+            if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+                be.setLocation(location);
+            \}
+            throw be;
+        \}
+        throw new BuildException(exc.getMessage(), t, location);
+    \} catch (SAXException exc) \{
+        Throwable t = exc.getException();
+        if (t instanceof BuildException) \{
+            throw ((BuildException) (t));
+        \}
+        throw new BuildException(exc.getMessage(), t);
+    \} catch (FileNotFoundException exc) \{
+        throw new BuildException(exc);
+    \} catch (IOException exc) \{
+        throw new BuildException(\"Error reading project file\", exc);
+    \} finally \{
+        if (inputStream != null) \{
+            try \{
+                inputStream.close();
+            \} catch (IOException ioe) \{
+            \}
+        \}
+    \}
 \}" shape=ellipse]
-335 [label="2:CtMethodImpl@public void parse(Project project, Object source) throws BuildException \{\
-    if (!(source instanceof File)) \{\
-        throw new BuildException(\"Only File source supported by default plugin\");\
-    \}\
-    File buildFile = ((File) (source));\
-    FileInputStream inputStream = null;\
-    InputSource inputSource = null;\
-    this.project = project;\
-    this.buildFile = new File(buildFile.getAbsolutePath());\
-    buildFileParent = new File(this.buildFile.getParent());\
-    try \{\
-        SAXParser saxParser = getParserFactory().newSAXParser();\
-        try \{\
-            parser = saxParser.getParser();\
-        \} catch (SAXException exc) \{\
-            parser = new XMLReaderAdapter(saxParser.getXMLReader());\
-        \}\
-        String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');\
-        for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{\
-            uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
-        \}\
-        inputStream = new FileInputStream(buildFile);\
-        inputSource = new InputSource(inputStream);\
-        inputSource.setSystemId(uri);\
-        project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);\
-        HandlerBase hb = new RootHandler();\
-        parser.setDocumentHandler(hb);\
-        parser.setEntityResolver(hb);\
-        parser.setErrorHandler(hb);\
-        parser.setDTDHandler(hb);\
-        parser.parse(inputSource);\
-    \} catch (ParserConfigurationException exc) \{\
-        throw new BuildException(\"Parser has not been configured correctly\", exc);\
-    \} catch (SAXParseException exc) \{\
-        Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());\
-        Throwable t = exc.getException();\
-        if (t instanceof BuildException) \{\
-            BuildException be = ((BuildException) (t));\
-            if (be.getLocation() == Location.UNKNOWN_LOCATION) \{\
-                be.setLocation(location);\
-            \}\
-            throw be;\
-        \}\
-        throw new BuildException(exc.getMessage(), t, location);\
-    \} catch (SAXException exc) \{\
-        Throwable t = exc.getException();\
-        if (t instanceof BuildException) \{\
-            throw ((BuildException) (t));\
-        \}\
-        throw new BuildException(exc.getMessage(), t);\
-    \} catch (FileNotFoundException exc) \{\
-        throw new BuildException(exc);\
-    \} catch (IOException exc) \{\
-        throw new BuildException(\"Error reading project file\", exc);\
-    \} finally \{\
-        if (inputStream != null) \{\
-            try \{\
-                inputStream.close();\
-            \} catch (IOException ioe) \{\
-            \}\
-        \}\
-    \}\
+335 [label="2:CtMethodImpl@public void parse(Project project, Object source) throws BuildException \{
+    if (!(source instanceof File)) \{
+        throw new BuildException(\"Only File source supported by default plugin\");
+    \}
+    File buildFile = ((File) (source));
+    FileInputStream inputStream = null;
+    InputSource inputSource = null;
+    this.project = project;
+    this.buildFile = new File(buildFile.getAbsolutePath());
+    buildFileParent = new File(this.buildFile.getParent());
+    try \{
+        SAXParser saxParser = getParserFactory().newSAXParser();
+        try \{
+            parser = saxParser.getParser();
+        \} catch (SAXException exc) \{
+            parser = new XMLReaderAdapter(saxParser.getXMLReader());
+        \}
+        String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');
+        for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
+            uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
+        \}
+        inputStream = new FileInputStream(buildFile);
+        inputSource = new InputSource(inputStream);
+        inputSource.setSystemId(uri);
+        project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);
+        HandlerBase hb = new RootHandler();
+        parser.setDocumentHandler(hb);
+        parser.setEntityResolver(hb);
+        parser.setErrorHandler(hb);
+        parser.setDTDHandler(hb);
+        parser.parse(inputSource);
+    \} catch (ParserConfigurationException exc) \{
+        throw new BuildException(\"Parser has not been configured correctly\", exc);
+    \} catch (SAXParseException exc) \{
+        Location location = new Location(buildFile.toString(), exc.getLineNumber(), exc.getColumnNumber());
+        Throwable t = exc.getException();
+        if (t instanceof BuildException) \{
+            BuildException be = ((BuildException) (t));
+            if (be.getLocation() == Location.UNKNOWN_LOCATION) \{
+                be.setLocation(location);
+            \}
+            throw be;
+        \}
+        throw new BuildException(exc.getMessage(), t, location);
+    \} catch (SAXException exc) \{
+        Throwable t = exc.getException();
+        if (t instanceof BuildException) \{
+            throw ((BuildException) (t));
+        \}
+        throw new BuildException(exc.getMessage(), t);
+    \} catch (FileNotFoundException exc) \{
+        throw new BuildException(exc);
+    \} catch (IOException exc) \{
+        throw new BuildException(\"Error reading project file\", exc);
+    \} finally \{
+        if (inputStream != null) \{
+            try \{
+                inputStream.close();
+            \} catch (IOException ioe) \{
+            \}
+        \}
+    \}
 \}" shape=ellipse]
 336 [label="27:Update@UPDATE" shape=ellipse]
 337 [label="27:CtConstructorCallImpl@new RootHandler(this)" shape=ellipse]
-2 -> 3 [label=""];
-4 -> 5 [label=""];
-8 -> 9 [label=""];
-10 -> 7 [label=""];
-10 -> 8 [label=""];
-11 -> 10 [label=""];
+2 -> 3 [label="AST:TYPE"];
+4 -> 5 [label="AST:TYPE"];
+8 -> 9 [label="AST:ACCESSED_TYPE"];
+10 -> 7 [label="AST:LEFT_OPERAND"];
+10 -> 8 [label="AST:RIGHT_OPERAND"];
+11 -> 10 [label="AST:EXPRESSION"];
 11 -> 16 [label="Control Dep"];
 11 -> 15 [label="Control Dep"];
 11 -> 14 [label="Control Dep"];
 11 -> 13 [label="Control Dep"];
-14 -> 13 [label=""];
-15 -> 14 [label=""];
-16 -> 15 [label=""];
-17 -> 11 [label=""];
-17 -> 16 [label=""];
-19 -> 20 [label=""];
+14 -> 13 [label="AST:ARGUMENT"];
+15 -> 14 [label="AST:EXPRESSION"];
+16 -> 15 [label="AST:STATEMENT"];
+17 -> 11 [label="AST:CONDITION"];
+17 -> 16 [label="AST:THEN"];
+19 -> 20 [label="AST:CAST"];
 19 -> 21 [label="Data Dep"];
-22 -> 21 [label=""];
-22 -> 18 [label=""];
-22 -> 19 [label=""];
-26 -> 25 [label=""];
-26 -> 23 [label=""];
-26 -> 24 [label=""];
-30 -> 29 [label=""];
-30 -> 27 [label=""];
-30 -> 28 [label=""];
-31 -> 32 [label=""];
+22 -> 21 [label="AST:LOCAL_VAR_NAME"];
+22 -> 18 [label="AST:TYPE"];
+22 -> 19 [label="AST:DEFAULT_EXPRESSION"];
+26 -> 25 [label="AST:LOCAL_VAR_NAME"];
+26 -> 23 [label="AST:TYPE"];
+26 -> 24 [label="AST:DEFAULT_EXPRESSION"];
+30 -> 29 [label="AST:LOCAL_VAR_NAME"];
+30 -> 27 [label="AST:TYPE"];
+30 -> 28 [label="AST:DEFAULT_EXPRESSION"];
+31 -> 32 [label="AST:TARGET"];
 33 -> 31 [label="Data Dep"];
-34 -> 31 [label=""];
-34 -> 33 [label=""];
-35 -> 36 [label=""];
+34 -> 31 [label="AST:ASSIGNED"];
+34 -> 33 [label="AST:ASSIGNMENT"];
+35 -> 36 [label="AST:TARGET"];
 40 -> 35 [label="Data Dep"];
-41 -> 39 [label=""];
-41 -> 40 [label=""];
-41 -> 38 [label=""];
-42 -> 41 [label=""];
-43 -> 35 [label=""];
-43 -> 42 [label=""];
-49 -> 48 [label=""];
+41 -> 39 [label="AST:METHOD_NAME"];
+41 -> 40 [label="AST:TARGET"];
+41 -> 38 [label="AST:EXECUTABLE_REF"];
+42 -> 41 [label="AST:ARGUMENT"];
+43 -> 35 [label="AST:ASSIGNED"];
+43 -> 42 [label="AST:ASSIGNMENT"];
+49 -> 48 [label="AST:TARGET"];
 49 -> 44 [label="Data Dep"];
-50 -> 47 [label=""];
-50 -> 49 [label=""];
-50 -> 46 [label=""];
-51 -> 50 [label=""];
-52 -> 44 [label=""];
-52 -> 51 [label=""];
-58 -> 57 [label=""];
-58 -> 56 [label=""];
-59 -> 55 [label=""];
-59 -> 58 [label=""];
-59 -> 54 [label=""];
+50 -> 47 [label="AST:METHOD_NAME"];
+50 -> 49 [label="AST:TARGET"];
+50 -> 46 [label="AST:EXECUTABLE_REF"];
+51 -> 50 [label="AST:ARGUMENT"];
+52 -> 44 [label="AST:ASSIGNED"];
+52 -> 51 [label="AST:ASSIGNMENT"];
+58 -> 57 [label="AST:METHOD_NAME"];
+58 -> 56 [label="AST:EXECUTABLE_REF"];
+59 -> 55 [label="AST:METHOD_NAME"];
+59 -> 58 [label="AST:TARGET"];
+59 -> 54 [label="AST:EXECUTABLE_REF"];
 60 -> 65 [label="Define-Use"];
 60 -> 76 [label="Define-Use"];
-61 -> 60 [label=""];
-61 -> 53 [label=""];
-61 -> 59 [label=""];
+61 -> 60 [label="AST:LOCAL_VAR_NAME"];
+61 -> 53 [label="AST:TYPE"];
+61 -> 59 [label="AST:DEFAULT_EXPRESSION"];
 65 -> 62 [label="Data Dep"];
-66 -> 64 [label=""];
-66 -> 65 [label=""];
-66 -> 63 [label=""];
-67 -> 62 [label=""];
-67 -> 66 [label=""];
-68 -> 67 [label=""];
-71 -> 69 [label=""];
-71 -> 70 [label=""];
+66 -> 64 [label="AST:METHOD_NAME"];
+66 -> 65 [label="AST:TARGET"];
+66 -> 63 [label="AST:EXECUTABLE_REF"];
+67 -> 62 [label="AST:ASSIGNED"];
+67 -> 66 [label="AST:ASSIGNMENT"];
+68 -> 67 [label="AST:STATEMENT"];
+71 -> 69 [label="AST:CATCH_VAR_NAME"];
+71 -> 70 [label="AST:MULTI_TYPE"];
 71 -> 80 [label="Control Dep"];
 71 -> 79 [label="Control Dep"];
 71 -> 72 [label="Control Dep"];
@@ -719,45 +719,45 @@ digraph "parse#?,Project,Object" {
 72 -> 185 [label="Define-Use"];
 72 -> 190 [label="Define-Use"];
 76 -> 72 [label="Data Dep"];
-77 -> 75 [label=""];
-77 -> 76 [label=""];
-77 -> 74 [label=""];
-78 -> 77 [label=""];
-79 -> 72 [label=""];
-79 -> 78 [label=""];
-80 -> 79 [label=""];
-81 -> 71 [label=""];
-81 -> 80 [label=""];
-82 -> 68 [label=""];
-82 -> 81 [label=""];
+77 -> 75 [label="AST:METHOD_NAME"];
+77 -> 76 [label="AST:TARGET"];
+77 -> 74 [label="AST:EXECUTABLE_REF"];
+78 -> 77 [label="AST:ARGUMENT"];
+79 -> 72 [label="AST:ASSIGNED"];
+79 -> 78 [label="AST:ASSIGNMENT"];
+80 -> 79 [label="AST:STATEMENT"];
+81 -> 71 [label="AST:PARAMETER"];
+81 -> 80 [label="AST:BODY"];
+82 -> 68 [label="AST:BODY"];
+82 -> 81 [label="AST:CATCH"];
 89 -> 95 [label="Data Dep"];
-90 -> 88 [label=""];
-90 -> 89 [label=""];
-90 -> 87 [label=""];
-93 -> 86 [label=""];
-93 -> 90 [label=""];
-93 -> 85 [label=""];
-93 -> 91 [label=""];
-93 -> 92 [label=""];
-94 -> 84 [label=""];
-94 -> 93 [label=""];
+90 -> 88 [label="AST:METHOD_NAME"];
+90 -> 89 [label="AST:TARGET"];
+90 -> 87 [label="AST:EXECUTABLE_REF"];
+93 -> 86 [label="AST:METHOD_NAME"];
+93 -> 90 [label="AST:TARGET"];
+93 -> 85 [label="AST:EXECUTABLE_REF"];
+93 -> 91 [label="AST:ARGUMENT"];
+93 -> 92 [label="AST:ARGUMENT"];
+94 -> 84 [label="AST:LEFT_OPERAND"];
+94 -> 93 [label="AST:RIGHT_OPERAND"];
 95 -> 100 [label="Define-Use"];
 95 -> 112 [label="Define-Use"];
-96 -> 95 [label=""];
-96 -> 83 [label=""];
-96 -> 94 [label=""];
+96 -> 95 [label="AST:LOCAL_VAR_NAME"];
+96 -> 83 [label="AST:TYPE"];
+96 -> 94 [label="AST:DEFAULT_EXPRESSION"];
 100 -> 103 [label="Data Dep"];
-102 -> 99 [label=""];
-102 -> 100 [label=""];
-102 -> 98 [label=""];
-102 -> 101 [label=""];
+102 -> 99 [label="AST:METHOD_NAME"];
+102 -> 100 [label="AST:TARGET"];
+102 -> 98 [label="AST:EXECUTABLE_REF"];
+102 -> 101 [label="AST:ARGUMENT"];
 103 -> 105 [label="Define-Use"];
-104 -> 103 [label=""];
-104 -> 97 [label=""];
-104 -> 102 [label=""];
-107 -> 106 [label=""];
-108 -> 105 [label=""];
-108 -> 107 [label=""];
+104 -> 103 [label="AST:LOCAL_VAR_NAME"];
+104 -> 97 [label="AST:TYPE"];
+104 -> 102 [label="AST:DEFAULT_EXPRESSION"];
+107 -> 106 [label="AST:EXPRESSION"];
+108 -> 105 [label="AST:LEFT_OPERAND"];
+108 -> 107 [label="AST:RIGHT_OPERAND"];
 108 -> 134 [label="Control Dep"];
 108 -> 133 [label="Control Dep"];
 108 -> 116 [label="Control Dep"];
@@ -778,130 +778,130 @@ digraph "parse#?,Project,Object" {
 109 -> 121 [label="Define-Use"];
 109 -> 128 [label="Define-Use"];
 112 -> 109 [label="Data Dep"];
-114 -> 111 [label=""];
-114 -> 112 [label=""];
-114 -> 110 [label=""];
-114 -> 113 [label=""];
-115 -> 109 [label=""];
-115 -> 114 [label=""];
+114 -> 111 [label="AST:METHOD_NAME"];
+114 -> 112 [label="AST:TARGET"];
+114 -> 110 [label="AST:EXECUTABLE_REF"];
+114 -> 113 [label="AST:ARGUMENT"];
+115 -> 109 [label="AST:ASSIGNED"];
+115 -> 114 [label="AST:ASSIGNMENT"];
 116 -> 149 [label="Define-Use"];
 116 -> 159 [label="Define-Use"];
 119 -> 116 [label="Data Dep"];
 121 -> 116 [label="Data Dep"];
-122 -> 118 [label=""];
-122 -> 119 [label=""];
-122 -> 117 [label=""];
-122 -> 120 [label=""];
-122 -> 121 [label=""];
-124 -> 122 [label=""];
-124 -> 123 [label=""];
+122 -> 118 [label="AST:METHOD_NAME"];
+122 -> 119 [label="AST:TARGET"];
+122 -> 117 [label="AST:EXECUTABLE_REF"];
+122 -> 120 [label="AST:ARGUMENT"];
+122 -> 121 [label="AST:ARGUMENT"];
+124 -> 122 [label="AST:LEFT_OPERAND"];
+124 -> 123 [label="AST:RIGHT_OPERAND"];
 127 -> 116 [label="Data Dep"];
 128 -> 116 [label="Data Dep"];
-130 -> 128 [label=""];
-130 -> 129 [label=""];
-131 -> 126 [label=""];
-131 -> 127 [label=""];
-131 -> 125 [label=""];
-131 -> 130 [label=""];
-132 -> 124 [label=""];
-132 -> 131 [label=""];
-133 -> 116 [label=""];
-133 -> 132 [label=""];
-134 -> 133 [label=""];
-135 -> 104 [label=""];
-135 -> 108 [label=""];
-135 -> 115 [label=""];
-135 -> 134 [label=""];
+130 -> 128 [label="AST:LEFT_OPERAND"];
+130 -> 129 [label="AST:RIGHT_OPERAND"];
+131 -> 126 [label="AST:METHOD_NAME"];
+131 -> 127 [label="AST:TARGET"];
+131 -> 125 [label="AST:EXECUTABLE_REF"];
+131 -> 130 [label="AST:ARGUMENT"];
+132 -> 124 [label="AST:LEFT_OPERAND"];
+132 -> 131 [label="AST:RIGHT_OPERAND"];
+133 -> 116 [label="AST:ASSIGNED"];
+133 -> 132 [label="AST:ASSIGNMENT"];
+134 -> 133 [label="AST:STATEMENT"];
+135 -> 104 [label="AST:FOR_INIT"];
+135 -> 108 [label="AST:EXPRESSION"];
+135 -> 115 [label="AST:FOR_UPDATE"];
+135 -> 134 [label="AST:BODY"];
 136 -> 143 [label="Define-Use"];
 136 -> 316 [label="Define-Use"];
 136 -> 321 [label="Define-Use"];
 138 -> 136 [label="Data Dep"];
-139 -> 138 [label=""];
-140 -> 136 [label=""];
-140 -> 139 [label=""];
+139 -> 138 [label="AST:ARGUMENT"];
+140 -> 136 [label="AST:ASSIGNED"];
+140 -> 139 [label="AST:ASSIGNMENT"];
 141 -> 148 [label="Define-Use"];
 141 -> 191 [label="Define-Use"];
 143 -> 141 [label="Data Dep"];
-144 -> 143 [label=""];
-145 -> 141 [label=""];
-145 -> 144 [label=""];
-150 -> 147 [label=""];
-150 -> 148 [label=""];
-150 -> 146 [label=""];
-150 -> 149 [label=""];
-156 -> 154 [label=""];
-156 -> 155 [label=""];
-158 -> 156 [label=""];
-158 -> 157 [label=""];
-160 -> 158 [label=""];
-160 -> 159 [label=""];
-162 -> 152 [label=""];
-162 -> 153 [label=""];
-162 -> 151 [label=""];
-162 -> 160 [label=""];
-162 -> 161 [label=""];
+144 -> 143 [label="AST:ARGUMENT"];
+145 -> 141 [label="AST:ASSIGNED"];
+145 -> 144 [label="AST:ASSIGNMENT"];
+150 -> 147 [label="AST:METHOD_NAME"];
+150 -> 148 [label="AST:TARGET"];
+150 -> 146 [label="AST:EXECUTABLE_REF"];
+150 -> 149 [label="AST:ARGUMENT"];
+156 -> 154 [label="AST:LEFT_OPERAND"];
+156 -> 155 [label="AST:RIGHT_OPERAND"];
+158 -> 156 [label="AST:LEFT_OPERAND"];
+158 -> 157 [label="AST:RIGHT_OPERAND"];
+160 -> 158 [label="AST:LEFT_OPERAND"];
+160 -> 159 [label="AST:RIGHT_OPERAND"];
+162 -> 152 [label="AST:METHOD_NAME"];
+162 -> 153 [label="AST:TARGET"];
+162 -> 151 [label="AST:EXECUTABLE_REF"];
+162 -> 160 [label="AST:ARGUMENT"];
+162 -> 161 [label="AST:ARGUMENT"];
 165 -> 336 [label="Action"];
 166 -> 171 [label="Define-Use"];
 166 -> 176 [label="Define-Use"];
 166 -> 181 [label="Define-Use"];
 166 -> 186 [label="Define-Use"];
-167 -> 166 [label=""];
-167 -> 163 [label=""];
-167 -> 165 [label=""];
-172 -> 169 [label=""];
-172 -> 170 [label=""];
-172 -> 168 [label=""];
-172 -> 171 [label=""];
-177 -> 174 [label=""];
-177 -> 175 [label=""];
-177 -> 173 [label=""];
-177 -> 176 [label=""];
-182 -> 179 [label=""];
-182 -> 180 [label=""];
-182 -> 178 [label=""];
-182 -> 181 [label=""];
-187 -> 184 [label=""];
-187 -> 185 [label=""];
-187 -> 183 [label=""];
-187 -> 186 [label=""];
-192 -> 189 [label=""];
-192 -> 190 [label=""];
-192 -> 188 [label=""];
-192 -> 191 [label=""];
-193 -> 61 [label=""];
-193 -> 82 [label=""];
-193 -> 96 [label=""];
-193 -> 135 [label=""];
-193 -> 140 [label=""];
-193 -> 145 [label=""];
-193 -> 150 [label=""];
-193 -> 162 [label=""];
-193 -> 167 [label=""];
-193 -> 172 [label=""];
-193 -> 177 [label=""];
-193 -> 182 [label=""];
-193 -> 187 [label=""];
-193 -> 192 [label=""];
+167 -> 166 [label="AST:LOCAL_VAR_NAME"];
+167 -> 163 [label="AST:TYPE"];
+167 -> 165 [label="AST:DEFAULT_EXPRESSION"];
+172 -> 169 [label="AST:METHOD_NAME"];
+172 -> 170 [label="AST:TARGET"];
+172 -> 168 [label="AST:EXECUTABLE_REF"];
+172 -> 171 [label="AST:ARGUMENT"];
+177 -> 174 [label="AST:METHOD_NAME"];
+177 -> 175 [label="AST:TARGET"];
+177 -> 173 [label="AST:EXECUTABLE_REF"];
+177 -> 176 [label="AST:ARGUMENT"];
+182 -> 179 [label="AST:METHOD_NAME"];
+182 -> 180 [label="AST:TARGET"];
+182 -> 178 [label="AST:EXECUTABLE_REF"];
+182 -> 181 [label="AST:ARGUMENT"];
+187 -> 184 [label="AST:METHOD_NAME"];
+187 -> 185 [label="AST:TARGET"];
+187 -> 183 [label="AST:EXECUTABLE_REF"];
+187 -> 186 [label="AST:ARGUMENT"];
+192 -> 189 [label="AST:METHOD_NAME"];
+192 -> 190 [label="AST:TARGET"];
+192 -> 188 [label="AST:EXECUTABLE_REF"];
+192 -> 191 [label="AST:ARGUMENT"];
+193 -> 61 [label="AST:STATEMENT"];
+193 -> 82 [label="AST:STATEMENT"];
+193 -> 96 [label="AST:STATEMENT"];
+193 -> 135 [label="AST:STATEMENT"];
+193 -> 140 [label="AST:STATEMENT"];
+193 -> 145 [label="AST:STATEMENT"];
+193 -> 150 [label="AST:STATEMENT"];
+193 -> 162 [label="AST:STATEMENT"];
+193 -> 167 [label="AST:STATEMENT"];
+193 -> 172 [label="AST:STATEMENT"];
+193 -> 177 [label="AST:STATEMENT"];
+193 -> 182 [label="AST:STATEMENT"];
+193 -> 187 [label="AST:STATEMENT"];
+193 -> 192 [label="AST:STATEMENT"];
 194 -> 199 [label="Define-Use"];
-196 -> 194 [label=""];
-196 -> 195 [label=""];
+196 -> 194 [label="AST:CATCH_VAR_NAME"];
+196 -> 195 [label="AST:MULTI_TYPE"];
 196 -> 202 [label="Control Dep"];
 196 -> 201 [label="Control Dep"];
 196 -> 200 [label="Control Dep"];
 196 -> 198 [label="Control Dep"];
 196 -> 199 [label="Control Dep"];
-200 -> 198 [label=""];
-200 -> 199 [label=""];
-201 -> 200 [label=""];
-202 -> 201 [label=""];
-203 -> 196 [label=""];
-203 -> 202 [label=""];
+200 -> 198 [label="AST:ARGUMENT"];
+200 -> 199 [label="AST:ARGUMENT"];
+201 -> 200 [label="AST:EXPRESSION"];
+202 -> 201 [label="AST:STATEMENT"];
+203 -> 196 [label="AST:PARAMETER"];
+203 -> 202 [label="AST:BODY"];
 204 -> 215 [label="Define-Use"];
 204 -> 219 [label="Define-Use"];
 204 -> 227 [label="Define-Use"];
 204 -> 260 [label="Define-Use"];
-206 -> 204 [label=""];
-206 -> 205 [label=""];
+206 -> 204 [label="AST:CATCH_VAR_NAME"];
+206 -> 205 [label="AST:MULTI_TYPE"];
 206 -> 266 [label="Control Dep"];
 206 -> 223 [label="Control Dep"];
 206 -> 221 [label="Control Dep"];
@@ -930,38 +930,38 @@ digraph "parse#?,Project,Object" {
 206 -> 262 [label="Control Dep"];
 206 -> 263 [label="Control Dep"];
 211 -> 222 [label="Data Dep"];
-212 -> 210 [label=""];
-212 -> 211 [label=""];
-212 -> 209 [label=""];
+212 -> 210 [label="AST:METHOD_NAME"];
+212 -> 211 [label="AST:TARGET"];
+212 -> 209 [label="AST:EXECUTABLE_REF"];
 215 -> 222 [label="Data Dep"];
-216 -> 214 [label=""];
-216 -> 215 [label=""];
-216 -> 213 [label=""];
+216 -> 214 [label="AST:METHOD_NAME"];
+216 -> 215 [label="AST:TARGET"];
+216 -> 213 [label="AST:EXECUTABLE_REF"];
 219 -> 222 [label="Data Dep"];
-220 -> 218 [label=""];
-220 -> 219 [label=""];
-220 -> 217 [label=""];
-221 -> 212 [label=""];
-221 -> 216 [label=""];
-221 -> 220 [label=""];
+220 -> 218 [label="AST:METHOD_NAME"];
+220 -> 219 [label="AST:TARGET"];
+220 -> 217 [label="AST:EXECUTABLE_REF"];
+221 -> 212 [label="AST:ARGUMENT"];
+221 -> 216 [label="AST:ARGUMENT"];
+221 -> 220 [label="AST:ARGUMENT"];
 222 -> 249 [label="Define-Use"];
 222 -> 263 [label="Define-Use"];
-223 -> 222 [label=""];
-223 -> 207 [label=""];
-223 -> 221 [label=""];
+223 -> 222 [label="AST:LOCAL_VAR_NAME"];
+223 -> 207 [label="AST:TYPE"];
+223 -> 221 [label="AST:DEFAULT_EXPRESSION"];
 227 -> 229 [label="Data Dep"];
-228 -> 226 [label=""];
-228 -> 227 [label=""];
-228 -> 225 [label=""];
+228 -> 226 [label="AST:METHOD_NAME"];
+228 -> 227 [label="AST:TARGET"];
+228 -> 225 [label="AST:EXECUTABLE_REF"];
 229 -> 231 [label="Define-Use"];
 229 -> 236 [label="Define-Use"];
 229 -> 262 [label="Define-Use"];
-230 -> 229 [label=""];
-230 -> 224 [label=""];
-230 -> 228 [label=""];
-232 -> 233 [label=""];
-234 -> 231 [label=""];
-234 -> 232 [label=""];
+230 -> 229 [label="AST:LOCAL_VAR_NAME"];
+230 -> 224 [label="AST:TYPE"];
+230 -> 228 [label="AST:DEFAULT_EXPRESSION"];
+232 -> 233 [label="AST:ACCESSED_TYPE"];
+234 -> 231 [label="AST:LEFT_OPERAND"];
+234 -> 232 [label="AST:RIGHT_OPERAND"];
 234 -> 255 [label="Control Dep"];
 234 -> 239 [label="Control Dep"];
 234 -> 236 [label="Control Dep"];
@@ -973,54 +973,54 @@ digraph "parse#?,Project,Object" {
 234 -> 244 [label="Control Dep"];
 234 -> 254 [label="Control Dep"];
 234 -> 253 [label="Control Dep"];
-236 -> 237 [label=""];
+236 -> 237 [label="AST:CAST"];
 236 -> 238 [label="Data Dep"];
 238 -> 242 [label="Define-Use"];
 238 -> 248 [label="Define-Use"];
 238 -> 253 [label="Define-Use"];
-239 -> 238 [label=""];
-239 -> 235 [label=""];
-239 -> 236 [label=""];
-243 -> 241 [label=""];
-243 -> 242 [label=""];
-243 -> 240 [label=""];
-245 -> 243 [label=""];
-245 -> 244 [label=""];
+239 -> 238 [label="AST:LOCAL_VAR_NAME"];
+239 -> 235 [label="AST:TYPE"];
+239 -> 236 [label="AST:DEFAULT_EXPRESSION"];
+243 -> 241 [label="AST:METHOD_NAME"];
+243 -> 242 [label="AST:TARGET"];
+243 -> 240 [label="AST:EXECUTABLE_REF"];
+245 -> 243 [label="AST:LEFT_OPERAND"];
+245 -> 244 [label="AST:RIGHT_OPERAND"];
 245 -> 251 [label="Control Dep"];
 245 -> 250 [label="Control Dep"];
 245 -> 246 [label="Control Dep"];
 245 -> 248 [label="Control Dep"];
 245 -> 249 [label="Control Dep"];
-250 -> 247 [label=""];
-250 -> 248 [label=""];
-250 -> 246 [label=""];
-250 -> 249 [label=""];
-251 -> 250 [label=""];
-252 -> 245 [label=""];
-252 -> 251 [label=""];
-254 -> 253 [label=""];
-255 -> 239 [label=""];
-255 -> 252 [label=""];
-255 -> 254 [label=""];
-256 -> 234 [label=""];
-256 -> 255 [label=""];
-261 -> 259 [label=""];
-261 -> 260 [label=""];
-261 -> 258 [label=""];
-264 -> 261 [label=""];
-264 -> 262 [label=""];
-264 -> 263 [label=""];
-265 -> 264 [label=""];
-266 -> 223 [label=""];
-266 -> 230 [label=""];
-266 -> 256 [label=""];
-266 -> 265 [label=""];
-267 -> 206 [label=""];
-267 -> 266 [label=""];
+250 -> 247 [label="AST:METHOD_NAME"];
+250 -> 248 [label="AST:TARGET"];
+250 -> 246 [label="AST:EXECUTABLE_REF"];
+250 -> 249 [label="AST:ARGUMENT"];
+251 -> 250 [label="AST:STATEMENT"];
+252 -> 245 [label="AST:CONDITION"];
+252 -> 251 [label="AST:THEN"];
+254 -> 253 [label="AST:EXPRESSION"];
+255 -> 239 [label="AST:STATEMENT"];
+255 -> 252 [label="AST:STATEMENT"];
+255 -> 254 [label="AST:STATEMENT"];
+256 -> 234 [label="AST:CONDITION"];
+256 -> 255 [label="AST:THEN"];
+261 -> 259 [label="AST:METHOD_NAME"];
+261 -> 260 [label="AST:TARGET"];
+261 -> 258 [label="AST:EXECUTABLE_REF"];
+264 -> 261 [label="AST:ARGUMENT"];
+264 -> 262 [label="AST:ARGUMENT"];
+264 -> 263 [label="AST:ARGUMENT"];
+265 -> 264 [label="AST:EXPRESSION"];
+266 -> 223 [label="AST:STATEMENT"];
+266 -> 230 [label="AST:STATEMENT"];
+266 -> 256 [label="AST:STATEMENT"];
+266 -> 265 [label="AST:STATEMENT"];
+267 -> 206 [label="AST:PARAMETER"];
+267 -> 266 [label="AST:BODY"];
 268 -> 274 [label="Define-Use"];
 268 -> 290 [label="Define-Use"];
-270 -> 268 [label=""];
-270 -> 269 [label=""];
+270 -> 268 [label="AST:CATCH_VAR_NAME"];
+270 -> 269 [label="AST:MULTI_TYPE"];
 270 -> 295 [label="Control Dep"];
 270 -> 277 [label="Control Dep"];
 270 -> 275 [label="Control Dep"];
@@ -1037,65 +1037,65 @@ digraph "parse#?,Project,Object" {
 270 -> 290 [label="Control Dep"];
 270 -> 292 [label="Control Dep"];
 274 -> 276 [label="Data Dep"];
-275 -> 273 [label=""];
-275 -> 274 [label=""];
-275 -> 272 [label=""];
+275 -> 273 [label="AST:METHOD_NAME"];
+275 -> 274 [label="AST:TARGET"];
+275 -> 272 [label="AST:EXECUTABLE_REF"];
 276 -> 278 [label="Define-Use"];
 276 -> 282 [label="Define-Use"];
 276 -> 292 [label="Define-Use"];
-277 -> 276 [label=""];
-277 -> 271 [label=""];
-277 -> 275 [label=""];
-279 -> 280 [label=""];
-281 -> 278 [label=""];
-281 -> 279 [label=""];
+277 -> 276 [label="AST:LOCAL_VAR_NAME"];
+277 -> 271 [label="AST:TYPE"];
+277 -> 275 [label="AST:DEFAULT_EXPRESSION"];
+279 -> 280 [label="AST:ACCESSED_TYPE"];
+281 -> 278 [label="AST:LEFT_OPERAND"];
+281 -> 279 [label="AST:RIGHT_OPERAND"];
 281 -> 285 [label="Control Dep"];
 281 -> 284 [label="Control Dep"];
 281 -> 282 [label="Control Dep"];
-282 -> 283 [label=""];
-284 -> 282 [label=""];
-285 -> 284 [label=""];
-286 -> 281 [label=""];
-286 -> 285 [label=""];
-291 -> 289 [label=""];
-291 -> 290 [label=""];
-291 -> 288 [label=""];
-293 -> 291 [label=""];
-293 -> 292 [label=""];
-294 -> 293 [label=""];
-295 -> 277 [label=""];
-295 -> 286 [label=""];
-295 -> 294 [label=""];
-296 -> 270 [label=""];
-296 -> 295 [label=""];
+282 -> 283 [label="AST:CAST"];
+284 -> 282 [label="AST:EXPRESSION"];
+285 -> 284 [label="AST:STATEMENT"];
+286 -> 281 [label="AST:CONDITION"];
+286 -> 285 [label="AST:THEN"];
+291 -> 289 [label="AST:METHOD_NAME"];
+291 -> 290 [label="AST:TARGET"];
+291 -> 288 [label="AST:EXECUTABLE_REF"];
+293 -> 291 [label="AST:ARGUMENT"];
+293 -> 292 [label="AST:ARGUMENT"];
+294 -> 293 [label="AST:EXPRESSION"];
+295 -> 277 [label="AST:STATEMENT"];
+295 -> 286 [label="AST:STATEMENT"];
+295 -> 294 [label="AST:STATEMENT"];
+296 -> 270 [label="AST:PARAMETER"];
+296 -> 295 [label="AST:BODY"];
 297 -> 301 [label="Define-Use"];
-299 -> 297 [label=""];
-299 -> 298 [label=""];
+299 -> 297 [label="AST:CATCH_VAR_NAME"];
+299 -> 298 [label="AST:MULTI_TYPE"];
 299 -> 304 [label="Control Dep"];
 299 -> 303 [label="Control Dep"];
 299 -> 302 [label="Control Dep"];
 299 -> 301 [label="Control Dep"];
-302 -> 301 [label=""];
-303 -> 302 [label=""];
-304 -> 303 [label=""];
-305 -> 299 [label=""];
-305 -> 304 [label=""];
+302 -> 301 [label="AST:ARGUMENT"];
+303 -> 302 [label="AST:EXPRESSION"];
+304 -> 303 [label="AST:STATEMENT"];
+305 -> 299 [label="AST:PARAMETER"];
+305 -> 304 [label="AST:BODY"];
 306 -> 311 [label="Define-Use"];
-308 -> 306 [label=""];
-308 -> 307 [label=""];
+308 -> 306 [label="AST:CATCH_VAR_NAME"];
+308 -> 307 [label="AST:MULTI_TYPE"];
 308 -> 314 [label="Control Dep"];
 308 -> 313 [label="Control Dep"];
 308 -> 312 [label="Control Dep"];
 308 -> 310 [label="Control Dep"];
 308 -> 311 [label="Control Dep"];
-312 -> 310 [label=""];
-312 -> 311 [label=""];
-313 -> 312 [label=""];
-314 -> 313 [label=""];
-315 -> 308 [label=""];
-315 -> 314 [label=""];
-318 -> 316 [label=""];
-318 -> 317 [label=""];
+312 -> 310 [label="AST:ARGUMENT"];
+312 -> 311 [label="AST:ARGUMENT"];
+313 -> 312 [label="AST:EXPRESSION"];
+314 -> 313 [label="AST:STATEMENT"];
+315 -> 308 [label="AST:PARAMETER"];
+315 -> 314 [label="AST:BODY"];
+318 -> 316 [label="AST:LEFT_OPERAND"];
+318 -> 317 [label="AST:RIGHT_OPERAND"];
 318 -> 330 [label="Control Dep"];
 318 -> 329 [label="Control Dep"];
 318 -> 323 [label="Control Dep"];
@@ -1104,41 +1104,41 @@ digraph "parse#?,Project,Object" {
 318 -> 321 [label="Control Dep"];
 318 -> 328 [label="Control Dep"];
 318 -> 326 [label="Control Dep"];
-322 -> 320 [label=""];
-322 -> 321 [label=""];
-322 -> 319 [label=""];
-323 -> 322 [label=""];
-326 -> 324 [label=""];
-326 -> 325 [label=""];
+322 -> 320 [label="AST:METHOD_NAME"];
+322 -> 321 [label="AST:TARGET"];
+322 -> 319 [label="AST:EXECUTABLE_REF"];
+323 -> 322 [label="AST:STATEMENT"];
+326 -> 324 [label="AST:CATCH_VAR_NAME"];
+326 -> 325 [label="AST:MULTI_TYPE"];
 326 -> 327 [label="Control Dep"];
-328 -> 326 [label=""];
-328 -> 327 [label=""];
-329 -> 323 [label=""];
-329 -> 328 [label=""];
-330 -> 329 [label=""];
-331 -> 318 [label=""];
-331 -> 330 [label=""];
-332 -> 331 [label=""];
-333 -> 193 [label=""];
-333 -> 203 [label=""];
-333 -> 267 [label=""];
-333 -> 296 [label=""];
-333 -> 305 [label=""];
-333 -> 315 [label=""];
-333 -> 332 [label=""];
-334 -> 17 [label=""];
-334 -> 22 [label=""];
-334 -> 26 [label=""];
-334 -> 30 [label=""];
-334 -> 34 [label=""];
-334 -> 43 [label=""];
-334 -> 52 [label=""];
-334 -> 333 [label=""];
-335 -> 1 [label=""];
-335 -> 0 [label=""];
-335 -> 2 [label=""];
-335 -> 4 [label=""];
-335 -> 6 [label=""];
-335 -> 334 [label=""];
+328 -> 326 [label="AST:PARAMETER"];
+328 -> 327 [label="AST:BODY"];
+329 -> 323 [label="AST:BODY"];
+329 -> 328 [label="AST:CATCH"];
+330 -> 329 [label="AST:STATEMENT"];
+331 -> 318 [label="AST:CONDITION"];
+331 -> 330 [label="AST:THEN"];
+332 -> 331 [label="AST:STATEMENT"];
+333 -> 193 [label="AST:BODY"];
+333 -> 203 [label="AST:CATCH"];
+333 -> 267 [label="AST:CATCH"];
+333 -> 296 [label="AST:CATCH"];
+333 -> 305 [label="AST:CATCH"];
+333 -> 315 [label="AST:CATCH"];
+333 -> 332 [label="AST:FINALIZER"];
+334 -> 17 [label="AST:STATEMENT"];
+334 -> 22 [label="AST:STATEMENT"];
+334 -> 26 [label="AST:STATEMENT"];
+334 -> 30 [label="AST:STATEMENT"];
+334 -> 34 [label="AST:STATEMENT"];
+334 -> 43 [label="AST:STATEMENT"];
+334 -> 52 [label="AST:STATEMENT"];
+334 -> 333 [label="AST:STATEMENT"];
+335 -> 1 [label="AST:METHOD_DEC_NAME"];
+335 -> 0 [label="AST:TYPE"];
+335 -> 2 [label="AST:PARAMETER"];
+335 -> 4 [label="AST:PARAMETER"];
+335 -> 6 [label="AST:THROWN"];
+335 -> 334 [label="AST:BODY"];
 336 -> 337 [label="Action"];
 }

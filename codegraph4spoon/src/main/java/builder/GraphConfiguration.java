@@ -8,7 +8,7 @@ public class GraphConfiguration {
     /**
      * Whether to display edge label in dot graph
      */
-    public boolean showASTEdge = false;
+    public boolean showASTEdge = true;
     public boolean showControlEdge = true;
     public boolean showDataEdge = true;
     public boolean showDefUseEdge = true;

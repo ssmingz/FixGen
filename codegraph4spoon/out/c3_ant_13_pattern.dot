@@ -12,43 +12,43 @@ buildMap#?,File,File,String[],FileNameMapper,Hashtable#5:forceOverwrite
 getUtil#?#4:remoteServer == null" shape=ellipse]
 3 [label="getUtil#?#3:util == null
 getUtil#?#3:util == null" shape=ellipse]
-4 [label="getUtil#?#4:if (remoteServer == null) \{\
-    util = new VAJLocalToolUtil();\
-\} else \{\
-    util = new VAJRemoteUtil(this, remoteServer);\
+4 [label="getUtil#?#4:if (remoteServer == null) \{
+    util = new VAJLocalToolUtil();
+\} else \{
+    util = new VAJRemoteUtil(this, remoteServer);
 \}
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#5:if (forceOverwrite) \{\
-    toCopy = names;\
-\} else \{\
-    SourceFileScanner ds = new SourceFileScanner();\
-    toCopy = ds.restrict(names, fromDir, toDir, mapper);\
+buildMap#?,File,File,String[],FileNameMapper,Hashtable#5:if (forceOverwrite) \{
+    toCopy = names;
+\} else \{
+    SourceFileScanner ds = new SourceFileScanner();
+    toCopy = ds.restrict(names, fromDir, toDir, mapper);
 \}
-parse#?,Project,Object#12:\{\
-    SAXParser saxParser = getParserFactory().newSAXParser();\
-    try \{\
-        parser = saxParser.getParser();\
-    \} catch (SAXException exc) \{\
-        parser = new XMLReaderAdapter(saxParser.getXMLReader());\
-    \}\
-    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');\
-    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{\
-        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);\
-    \}\
-    inputStream = new FileInputStream(buildFile);\
-    inputSource = new InputSource(inputStream);\
-    inputSource.setSystemId(uri);\
-    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);\
-    HandlerBase hb = new RootHandler();\
-    parser.setDocumentHandler(hb);\
-    parser.setEntityResolver(hb);\
-    parser.setErrorHandler(hb);\
-    parser.setDTDHandler(hb);\
-    parser.parse(inputSource);\
+parse#?,Project,Object#12:\{
+    SAXParser saxParser = getParserFactory().newSAXParser();
+    try \{
+        parser = saxParser.getParser();
+    \} catch (SAXException exc) \{
+        parser = new XMLReaderAdapter(saxParser.getXMLReader());
+    \}
+    String uri = \"file:\" + buildFile.getAbsolutePath().replace('\\', '/');
+    for (int index = uri.indexOf('#'); index != (-1); index = uri.indexOf('#')) \{
+        uri = (uri.substring(0, index) + \"%23\") + uri.substring(index + 1);
+    \}
+    inputStream = new FileInputStream(buildFile);
+    inputSource = new InputSource(inputStream);
+    inputSource.setSystemId(uri);
+    project.log(((\"parsing buildfile \" + buildFile) + \" with URI = \") + uri, MSG_VERBOSE);
+    HandlerBase hb = new RootHandler();
+    parser.setDocumentHandler(hb);
+    parser.setEntityResolver(hb);
+    parser.setErrorHandler(hb);
+    parser.setDTDHandler(hb);
+    parser.parse(inputSource);
 \}
-getUtil#?#4:if (remoteServer == null) \{\
-    util = new VAJLocalToolUtil();\
-\} else \{\
-    util = new VAJRemoteUtil(this, remoteServer);\
+getUtil#?#4:if (remoteServer == null) \{
+    util = new VAJLocalToolUtil();
+\} else \{
+    util = new VAJRemoteUtil(this, remoteServer);
 \}" shape=ellipse]
 5 [label="getUtil#?#4:remoteServer
 buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:forceOverwrite
@@ -56,15 +56,15 @@ parse#?,Project,Object#27:hb
 getUtil#?#4:remoteServer" shape=ellipse]
 6 [label="getUtil#?#4:null
 getUtil#?#4:null" shape=ellipse]
-7 [label="getUtil#?#4:\{\
-    util = new VAJLocalToolUtil();\
+7 [label="getUtil#?#4:\{
+    util = new VAJLocalToolUtil();
 \}
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#7:\{\
-    SourceFileScanner ds = new SourceFileScanner();\
-    toCopy = ds.restrict(names, fromDir, toDir, mapper);\
+buildMap#?,File,File,String[],FileNameMapper,Hashtable#7:\{
+    SourceFileScanner ds = new SourceFileScanner();
+    toCopy = ds.restrict(names, fromDir, toDir, mapper);
 \}
-getUtil#?#4:\{\
-    util = new VAJLocalToolUtil();\
+getUtil#?#4:\{
+    util = new VAJLocalToolUtil();
 \}" shape=ellipse]
 8 [label="getUtil#?#5:util = new VAJLocalToolUtil()
 buildMap#?,File,File,String[],FileNameMapper,Hashtable#8:SourceFileScanner ds = new SourceFileScanner()
@@ -75,14 +75,14 @@ getUtil#?#5:util" shape=ellipse]
 buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:SourceFileScanner()
 parse#?,Project,Object#-1:RootHandler()
 getUtil#?#-1:VAJLocalToolUtil()" shape=ellipse]
-11 [label="getUtil#?#6:\{\
-    util = new VAJRemoteUtil(this, remoteServer);\
+11 [label="getUtil#?#6:\{
+    util = new VAJRemoteUtil(this, remoteServer);
 \}
-buildMap#?,File,File,String[],FileNameMapper,Hashtable#5:\{\
-    toCopy = names;\
+buildMap#?,File,File,String[],FileNameMapper,Hashtable#5:\{
+    toCopy = names;
 \}
-getUtil#?#6:\{\
-    util = new VAJRemoteUtil(this, remoteServer);\
+getUtil#?#6:\{
+    util = new VAJRemoteUtil(this, remoteServer);
 \}" shape=ellipse]
 12 [label="getUtil#?#7:util = new VAJRemoteUtil(this, remoteServer)
 buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:toCopy = names
@@ -107,19 +107,19 @@ getUtil#?#7:remoteServer" shape=ellipse]
 buildMap#?,File,File,String[],FileNameMapper,Hashtable#8:new SourceFileScanner(this)
 parse#?,Project,Object#27:new RootHandler(this)
 getUtil#?#5:new VAJLocalToolUtil(this)" shape=ellipse]
-20 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:toCopy" shape=ellipse]
-21 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds" shape=ellipse]
-22 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:names" shape=ellipse]
-23 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:names" shape=ellipse]
-24 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:String[]" shape=ellipse]
-25 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:fromDir" shape=ellipse]
-26 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
-27 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy" shape=ellipse]
-28 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
-29 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:String[]" shape=ellipse]
-30 [label="parse#?,Project,Object#27:HandlerBase hb = new RootHandler()" shape=ellipse]
+20 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:names" shape=ellipse]
+21 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:String[]" shape=ellipse]
+22 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
+23 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
+24 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds" shape=ellipse]
+25 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:String[]" shape=ellipse]
+26 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy" shape=ellipse]
+27 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:toCopy" shape=ellipse]
+28 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:fromDir" shape=ellipse]
+29 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:names" shape=ellipse]
+30 [label="parse#?,Project,Object#27:RootHandler" shape=ellipse]
 31 [label="parse#?,Project,Object#-1:RootHandler" shape=ellipse]
-32 [label="parse#?,Project,Object#27:RootHandler" shape=ellipse]
+32 [label="parse#?,Project,Object#27:HandlerBase hb = new RootHandler()" shape=ellipse]
 0 -> 19 [label="Action:4"];
 1 -> 0 [label="Action:4"];
 1 -> 10 [label="AST:4"];
@@ -155,41 +155,41 @@ getUtil#?#5:new VAJLocalToolUtil(this)" shape=ellipse]
 4 -> 2 [label="AST:3"];
 4 -> 7 [label="AST:3"];
 4 -> 11 [label="AST:3"];
-4 -> 30 [label="AST:1"];
+4 -> 32 [label="AST:1"];
 7 -> 8 [label="AST:3"];
-7 -> 26 [label="AST:1"];
+7 -> 23 [label="AST:1"];
 8 -> 1 [label="AST:3"];
 8 -> 9 [label="AST:2"];
+10 -> 30 [label="AST:1"];
 10 -> 31 [label="AST:1"];
-10 -> 32 [label="AST:1"];
 11 -> 12 [label="AST:3"];
 12 -> 13 [label="AST:2"];
 12 -> 14 [label="AST:2"];
 12 -> 20 [label="AST:1"];
-12 -> 22 [label="AST:1"];
-12 -> 29 [label="AST:1"];
+12 -> 21 [label="AST:1"];
+12 -> 27 [label="AST:1"];
 14 -> 15 [label="AST:2"];
 14 -> 16 [label="AST:2"];
 14 -> 18 [label="AST:2"];
 16 -> 13 [label="Data Dep:2"];
 16 -> 17 [label="AST:2"];
-16 -> 27 [label="Data Dep:1"];
+16 -> 26 [label="Data Dep:1"];
 18 -> 13 [label="Data Dep:2"];
-18 -> 27 [label="Data Dep:1"];
-21 -> 27 [label="Data Dep:1"];
-22 -> 20 [label="Data Dep:1"];
-23 -> 27 [label="Data Dep:1"];
-25 -> 27 [label="Data Dep:1"];
-26 -> 24 [label="AST:1"];
-26 -> 27 [label="AST:1"];
-26 -> 28 [label="AST:1"];
-28 -> 21 [label="AST:1"];
-28 -> 23 [label="AST:1"];
-28 -> 25 [label="AST:1"];
-28 -> 15 [label="AST:1"];
-28 -> 16 [label="AST:1"];
-28 -> 18 [label="AST:1"];
-30 -> 5 [label="AST:1"];
-30 -> 15 [label="AST:1"];
-30 -> 1 [label="AST:1"];
+18 -> 26 [label="Data Dep:1"];
+20 -> 27 [label="Data Dep:1"];
+22 -> 24 [label="AST:1"];
+22 -> 15 [label="AST:1"];
+22 -> 29 [label="AST:1"];
+22 -> 28 [label="AST:1"];
+22 -> 16 [label="AST:1"];
+22 -> 18 [label="AST:1"];
+23 -> 22 [label="AST:1"];
+23 -> 25 [label="AST:1"];
+23 -> 26 [label="AST:1"];
+24 -> 26 [label="Data Dep:1"];
+28 -> 26 [label="Data Dep:1"];
+29 -> 26 [label="Data Dep:1"];
+32 -> 5 [label="AST:1"];
+32 -> 15 [label="AST:1"];
+32 -> 1 [label="AST:1"];
 }

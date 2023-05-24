@@ -13,7 +13,6 @@ import model.pattern.PatternNode;
 import org.apache.commons.collections4.SetUtils;
 import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
-import spoon.support.reflect.reference.CtExecutableReferenceImpl;
 import utils.ObjectUtil;
 
 import java.lang.reflect.Type;
@@ -205,8 +204,6 @@ public class PatternExtractor {
             CtWrapper bestSim = null;
             while (itr.hasNext()) {
                 CtWrapper aNode = itr.next();
-                if(aNode.toLabelString().equals("new RootHandler(this)"))
-                    System.out.println("debug");
                 if (isMatch(node, aNode, mapping)) {
                     bestSim = aNode;
                     break;

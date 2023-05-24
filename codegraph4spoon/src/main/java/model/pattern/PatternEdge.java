@@ -2,6 +2,7 @@ package model.pattern;
 
 import codegraph.Edge;
 import model.CodeGraph;
+import model.CtWrapper;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,6 +25,10 @@ public class PatternEdge {
     public void remove() {
         this.source.outEdges().remove(this);
         this.target.inEdges().remove(this);
+    }
+
+    public Map<Edge, CodeGraph> getInstance() {
+        return _edgeGraphInstances;
     }
 
     public void addInstance(Edge edge, CodeGraph cg) {

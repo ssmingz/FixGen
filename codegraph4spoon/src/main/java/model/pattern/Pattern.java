@@ -19,7 +19,6 @@ public class Pattern {
     public Pattern(PatternNode aNode) {
         _start = aNode;
         _patternNodes.add(aNode);
-        _idPattern.put(++_idCounter, aNode);
     }
 
     public HashMap<Integer, Object> getIdPattern() { return _idPattern; }

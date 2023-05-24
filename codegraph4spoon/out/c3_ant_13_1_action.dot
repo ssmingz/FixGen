@@ -20,8 +20,8 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 18 [label="6:CtVariableWriteImpl@toCopy" shape=ellipse]
 19 [label="6:CtVariableReadImpl@names" shape=ellipse]
 20 [label="6:CtAssignmentImpl@toCopy = names" shape=ellipse]
-21 [label="5:CtBlockImpl@\{\
-    toCopy = names;\
+21 [label="5:CtBlockImpl@\{
+    toCopy = names;
 \}" shape=ellipse]
 22 [label="8:CtTypeReferenceImpl@SourceFileScanner" shape=ellipse]
 23 [label="8:CtTypeReferenceImpl@SourceFileScanner" shape=ellipse]
@@ -38,15 +38,15 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 34 [label="9:CtVariableReadImpl@mapper" shape=ellipse]
 35 [label="9:CtInvocationImpl@ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
 36 [label="9:CtAssignmentImpl@toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
-37 [label="7:CtBlockImpl@\{\
-    SourceFileScanner ds = new SourceFileScanner();\
-    toCopy = ds.restrict(names, fromDir, toDir, mapper);\
+37 [label="7:CtBlockImpl@\{
+    SourceFileScanner ds = new SourceFileScanner();
+    toCopy = ds.restrict(names, fromDir, toDir, mapper);
 \}" shape=ellipse]
-38 [label="5:CtIfImpl@if (forceOverwrite) \{\
-    toCopy = names;\
-\} else \{\
-    SourceFileScanner ds = new SourceFileScanner();\
-    toCopy = ds.restrict(names, fromDir, toDir, mapper);\
+38 [label="5:CtIfImpl@if (forceOverwrite) \{
+    toCopy = names;
+\} else \{
+    SourceFileScanner ds = new SourceFileScanner();
+    toCopy = ds.restrict(names, fromDir, toDir, mapper);
 \}" shape=ellipse]
 39 [label="11:CtTypeReferenceImpl@int" shape=ellipse]
 40 [label="11:CtLiteralImpl@0" shape=ellipse]
@@ -95,60 +95,60 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 83 [label="14:CtVariableReadImpl@dest" shape=ellipse]
 84 [label="14:CtInvocationImpl@dest.getAbsolutePath()" shape=ellipse]
 85 [label="14:CtInvocationImpl@map.put(src.getAbsolutePath(), dest.getAbsolutePath())" shape=ellipse]
-86 [label="11:CtBlockImpl@\{\
-    File src = new File(fromDir, toCopy[i]);\
-    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\
-    map.put(src.getAbsolutePath(), dest.getAbsolutePath());\
+86 [label="11:CtBlockImpl@\{
+    File src = new File(fromDir, toCopy[i]);
+    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+    map.put(src.getAbsolutePath(), dest.getAbsolutePath());
 \}" shape=ellipse]
-87 [label="11:CtForImpl@for (int i = 0; i < toCopy.length; i++) \{\
-    File src = new File(fromDir, toCopy[i]);\
-    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\
-    map.put(src.getAbsolutePath(), dest.getAbsolutePath());\
+87 [label="11:CtForImpl@for (int i = 0; i < toCopy.length; i++) \{
+    File src = new File(fromDir, toCopy[i]);
+    File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+    map.put(src.getAbsolutePath(), dest.getAbsolutePath());
 \}" shape=ellipse]
-88 [label="3:CtBlockImpl@\{\
-    String[] toCopy = null;\
-    if (forceOverwrite) \{\
-        toCopy = names;\
-    \} else \{\
-        SourceFileScanner ds = new SourceFileScanner();\
-        toCopy = ds.restrict(names, fromDir, toDir, mapper);\
-    \}\
-    for (int i = 0; i < toCopy.length; i++) \{\
-        File src = new File(fromDir, toCopy[i]);\
-        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\
-        map.put(src.getAbsolutePath(), dest.getAbsolutePath());\
-    \}\
+88 [label="3:CtBlockImpl@\{
+    String[] toCopy = null;
+    if (forceOverwrite) \{
+        toCopy = names;
+    \} else \{
+        SourceFileScanner ds = new SourceFileScanner();
+        toCopy = ds.restrict(names, fromDir, toDir, mapper);
+    \}
+    for (int i = 0; i < toCopy.length; i++) \{
+        File src = new File(fromDir, toCopy[i]);
+        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+        map.put(src.getAbsolutePath(), dest.getAbsolutePath());
+    \}
 \}" shape=ellipse]
-89 [label="2:CtMethodImpl@protected void buildMap(File fromDir, File toDir, String[] names, FileNameMapper mapper, Hashtable map) \{\
-    String[] toCopy = null;\
-    if (forceOverwrite) \{\
-        toCopy = names;\
-    \} else \{\
-        SourceFileScanner ds = new SourceFileScanner();\
-        toCopy = ds.restrict(names, fromDir, toDir, mapper);\
-    \}\
-    for (int i = 0; i < toCopy.length; i++) \{\
-        File src = new File(fromDir, toCopy[i]);\
-        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);\
-        map.put(src.getAbsolutePath(), dest.getAbsolutePath());\
-    \}\
+89 [label="2:CtMethodImpl@protected void buildMap(File fromDir, File toDir, String[] names, FileNameMapper mapper, Hashtable map) \{
+    String[] toCopy = null;
+    if (forceOverwrite) \{
+        toCopy = names;
+    \} else \{
+        SourceFileScanner ds = new SourceFileScanner();
+        toCopy = ds.restrict(names, fromDir, toDir, mapper);
+    \}
+    for (int i = 0; i < toCopy.length; i++) \{
+        File src = new File(fromDir, toCopy[i]);
+        File dest = new File(toDir, mapper.mapFileName(toCopy[i])[0]);
+        map.put(src.getAbsolutePath(), dest.getAbsolutePath());
+    \}
 \}" shape=ellipse]
 90 [label="8:Update@UPDATE" shape=ellipse]
 91 [label="8:CtConstructorCallImpl@new SourceFileScanner(this)" shape=ellipse]
-2 -> 3 [label=""];
-4 -> 5 [label=""];
-6 -> 7 [label=""];
-8 -> 9 [label=""];
-10 -> 11 [label=""];
-13 -> 12 [label=""];
+2 -> 3 [label="AST:TYPE"];
+4 -> 5 [label="AST:TYPE"];
+6 -> 7 [label="AST:TYPE"];
+8 -> 9 [label="AST:TYPE"];
+10 -> 11 [label="AST:TYPE"];
+13 -> 12 [label="AST:ARRAY_TYPE_NAME"];
 15 -> 44 [label="Define-Use"];
 15 -> 53 [label="Define-Use"];
 15 -> 55 [label="Define-Use"];
 15 -> 65 [label="Define-Use"];
 15 -> 67 [label="Define-Use"];
-16 -> 15 [label=""];
-16 -> 13 [label=""];
-16 -> 14 [label=""];
+16 -> 15 [label="AST:LOCAL_VAR_NAME"];
+16 -> 13 [label="AST:TYPE"];
+16 -> 14 [label="AST:DEFAULT_EXPRESSION"];
 17 -> 21 [label="Control Dep"];
 17 -> 20 [label="Control Dep"];
 17 -> 18 [label="Control Dep"];
@@ -171,14 +171,14 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 18 -> 65 [label="Define-Use"];
 18 -> 67 [label="Define-Use"];
 19 -> 18 [label="Data Dep"];
-20 -> 18 [label=""];
-20 -> 19 [label=""];
-21 -> 20 [label=""];
+20 -> 18 [label="AST:ASSIGNED"];
+20 -> 19 [label="AST:ASSIGNMENT"];
+21 -> 20 [label="AST:STATEMENT"];
 24 -> 90 [label="Action"];
 25 -> 30 [label="Define-Use"];
-26 -> 25 [label=""];
-26 -> 22 [label=""];
-26 -> 24 [label=""];
+26 -> 25 [label="AST:LOCAL_VAR_NAME"];
+26 -> 22 [label="AST:TYPE"];
+26 -> 24 [label="AST:DEFAULT_EXPRESSION"];
 27 -> 44 [label="Define-Use"];
 27 -> 53 [label="Define-Use"];
 27 -> 55 [label="Define-Use"];
@@ -189,28 +189,28 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 32 -> 27 [label="Data Dep"];
 33 -> 27 [label="Data Dep"];
 34 -> 27 [label="Data Dep"];
-35 -> 29 [label=""];
-35 -> 30 [label=""];
-35 -> 28 [label=""];
-35 -> 31 [label=""];
-35 -> 32 [label=""];
-35 -> 33 [label=""];
-35 -> 34 [label=""];
-36 -> 27 [label=""];
-36 -> 35 [label=""];
-37 -> 26 [label=""];
-37 -> 36 [label=""];
-38 -> 17 [label=""];
-38 -> 21 [label=""];
-38 -> 37 [label=""];
+35 -> 29 [label="AST:METHOD_NAME"];
+35 -> 30 [label="AST:TARGET"];
+35 -> 28 [label="AST:EXECUTABLE_REF"];
+35 -> 31 [label="AST:ARGUMENT"];
+35 -> 32 [label="AST:ARGUMENT"];
+35 -> 33 [label="AST:ARGUMENT"];
+35 -> 34 [label="AST:ARGUMENT"];
+36 -> 27 [label="AST:ASSIGNED"];
+36 -> 35 [label="AST:ASSIGNMENT"];
+37 -> 26 [label="AST:STATEMENT"];
+37 -> 36 [label="AST:STATEMENT"];
+38 -> 17 [label="AST:CONDITION"];
+38 -> 21 [label="AST:THEN"];
+38 -> 37 [label="AST:ELSE"];
 41 -> 43 [label="Define-Use"];
-42 -> 41 [label=""];
-42 -> 39 [label=""];
-42 -> 40 [label=""];
-44 -> 45 [label=""];
-46 -> 44 [label=""];
-47 -> 43 [label=""];
-47 -> 46 [label=""];
+42 -> 41 [label="AST:LOCAL_VAR_NAME"];
+42 -> 39 [label="AST:TYPE"];
+42 -> 40 [label="AST:DEFAULT_EXPRESSION"];
+44 -> 45 [label="AST:VARIABLE"];
+46 -> 44 [label="AST:TARGET"];
+47 -> 43 [label="AST:LEFT_OPERAND"];
+47 -> 46 [label="AST:RIGHT_OPERAND"];
 47 -> 86 [label="Control Dep"];
 47 -> 58 [label="Control Dep"];
 47 -> 56 [label="Control Dep"];
@@ -240,61 +240,61 @@ digraph "buildMap#?,File,File,String[],FileNameMapper,Hashtable" {
 47 -> 83 [label="Control Dep"];
 48 -> 54 [label="Define-Use"];
 48 -> 66 [label="Define-Use"];
-49 -> 48 [label=""];
+49 -> 48 [label="AST:EXPRESSION"];
 52 -> 57 [label="Data Dep"];
-55 -> 53 [label=""];
-55 -> 54 [label=""];
+55 -> 53 [label="AST:TARGET"];
+55 -> 54 [label="AST:EXPRESSION"];
 55 -> 57 [label="Data Dep"];
-56 -> 52 [label=""];
-56 -> 55 [label=""];
+56 -> 52 [label="AST:ARGUMENT"];
+56 -> 55 [label="AST:ARGUMENT"];
 57 -> 79 [label="Define-Use"];
-58 -> 57 [label=""];
-58 -> 50 [label=""];
-58 -> 56 [label=""];
+58 -> 57 [label="AST:LOCAL_VAR_NAME"];
+58 -> 50 [label="AST:TYPE"];
+58 -> 56 [label="AST:DEFAULT_EXPRESSION"];
 61 -> 72 [label="Data Dep"];
-67 -> 65 [label=""];
-67 -> 66 [label=""];
-68 -> 63 [label=""];
-68 -> 64 [label=""];
-68 -> 62 [label=""];
-68 -> 67 [label=""];
-70 -> 68 [label=""];
-70 -> 69 [label=""];
+67 -> 65 [label="AST:TARGET"];
+67 -> 66 [label="AST:EXPRESSION"];
+68 -> 63 [label="AST:METHOD_NAME"];
+68 -> 64 [label="AST:TARGET"];
+68 -> 62 [label="AST:EXECUTABLE_REF"];
+68 -> 67 [label="AST:ARGUMENT"];
+70 -> 68 [label="AST:TARGET"];
+70 -> 69 [label="AST:EXPRESSION"];
 70 -> 72 [label="Data Dep"];
-71 -> 61 [label=""];
-71 -> 70 [label=""];
+71 -> 61 [label="AST:ARGUMENT"];
+71 -> 70 [label="AST:ARGUMENT"];
 72 -> 83 [label="Define-Use"];
-73 -> 72 [label=""];
-73 -> 59 [label=""];
-73 -> 71 [label=""];
-80 -> 78 [label=""];
-80 -> 79 [label=""];
-80 -> 77 [label=""];
-84 -> 82 [label=""];
-84 -> 83 [label=""];
-84 -> 81 [label=""];
-85 -> 75 [label=""];
-85 -> 76 [label=""];
-85 -> 74 [label=""];
-85 -> 80 [label=""];
-85 -> 84 [label=""];
-86 -> 58 [label=""];
-86 -> 73 [label=""];
-86 -> 85 [label=""];
-87 -> 42 [label=""];
-87 -> 47 [label=""];
-87 -> 49 [label=""];
-87 -> 86 [label=""];
-88 -> 16 [label=""];
-88 -> 38 [label=""];
-88 -> 87 [label=""];
-89 -> 1 [label=""];
-89 -> 0 [label=""];
-89 -> 2 [label=""];
-89 -> 4 [label=""];
-89 -> 6 [label=""];
-89 -> 8 [label=""];
-89 -> 10 [label=""];
-89 -> 88 [label=""];
+73 -> 72 [label="AST:LOCAL_VAR_NAME"];
+73 -> 59 [label="AST:TYPE"];
+73 -> 71 [label="AST:DEFAULT_EXPRESSION"];
+80 -> 78 [label="AST:METHOD_NAME"];
+80 -> 79 [label="AST:TARGET"];
+80 -> 77 [label="AST:EXECUTABLE_REF"];
+84 -> 82 [label="AST:METHOD_NAME"];
+84 -> 83 [label="AST:TARGET"];
+84 -> 81 [label="AST:EXECUTABLE_REF"];
+85 -> 75 [label="AST:METHOD_NAME"];
+85 -> 76 [label="AST:TARGET"];
+85 -> 74 [label="AST:EXECUTABLE_REF"];
+85 -> 80 [label="AST:ARGUMENT"];
+85 -> 84 [label="AST:ARGUMENT"];
+86 -> 58 [label="AST:STATEMENT"];
+86 -> 73 [label="AST:STATEMENT"];
+86 -> 85 [label="AST:STATEMENT"];
+87 -> 42 [label="AST:FOR_INIT"];
+87 -> 47 [label="AST:EXPRESSION"];
+87 -> 49 [label="AST:FOR_UPDATE"];
+87 -> 86 [label="AST:BODY"];
+88 -> 16 [label="AST:STATEMENT"];
+88 -> 38 [label="AST:STATEMENT"];
+88 -> 87 [label="AST:STATEMENT"];
+89 -> 1 [label="AST:METHOD_DEC_NAME"];
+89 -> 0 [label="AST:TYPE"];
+89 -> 2 [label="AST:PARAMETER"];
+89 -> 4 [label="AST:PARAMETER"];
+89 -> 6 [label="AST:PARAMETER"];
+89 -> 8 [label="AST:PARAMETER"];
+89 -> 10 [label="AST:PARAMETER"];
+89 -> 88 [label="AST:BODY"];
 90 -> 91 [label="Action"];
 }

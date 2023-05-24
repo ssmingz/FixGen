@@ -11,8 +11,8 @@ digraph "getUtil#?" {
 9 [label="5:CtTypeReferenceImpl@VAJLocalToolUtil" shape=ellipse]
 10 [label="5:CtConstructorCallImpl@new VAJLocalToolUtil()" shape=ellipse]
 11 [label="5:CtAssignmentImpl@util = new VAJLocalToolUtil()" shape=ellipse]
-12 [label="4:CtBlockImpl@\{\
-    util = new VAJLocalToolUtil();\
+12 [label="4:CtBlockImpl@\{
+    util = new VAJLocalToolUtil();
 \}" shape=ellipse]
 13 [label="7:CtFieldWriteImpl@util" shape=ellipse]
 14 [label="7:CtTypeReferenceImpl@VAJRemoteUtil" shape=ellipse]
@@ -20,61 +20,61 @@ digraph "getUtil#?" {
 16 [label="7:CtFieldReadImpl@remoteServer" shape=ellipse]
 17 [label="7:CtConstructorCallImpl@new VAJRemoteUtil(this, remoteServer)" shape=ellipse]
 18 [label="7:CtAssignmentImpl@util = new VAJRemoteUtil(this, remoteServer)" shape=ellipse]
-19 [label="6:CtBlockImpl@\{\
-    util = new VAJRemoteUtil(this, remoteServer);\
+19 [label="6:CtBlockImpl@\{
+    util = new VAJRemoteUtil(this, remoteServer);
 \}" shape=ellipse]
-20 [label="4:CtIfImpl@if (remoteServer == null) \{\
-    util = new VAJLocalToolUtil();\
-\} else \{\
-    util = new VAJRemoteUtil(this, remoteServer);\
+20 [label="4:CtIfImpl@if (remoteServer == null) \{
+    util = new VAJLocalToolUtil();
+\} else \{
+    util = new VAJRemoteUtil(this, remoteServer);
 \}" shape=ellipse]
-21 [label="3:CtBlockImpl@\{\
-    if (remoteServer == null) \{\
-        util = new VAJLocalToolUtil();\
-    \} else \{\
-        util = new VAJRemoteUtil(this, remoteServer);\
-    \}\
+21 [label="3:CtBlockImpl@\{
+    if (remoteServer == null) \{
+        util = new VAJLocalToolUtil();
+    \} else \{
+        util = new VAJRemoteUtil(this, remoteServer);
+    \}
 \}" shape=ellipse]
-22 [label="3:CtIfImpl@if (util == null) \{\
-    if (remoteServer == null) \{\
-        util = new VAJLocalToolUtil();\
-    \} else \{\
-        util = new VAJRemoteUtil(this, remoteServer);\
-    \}\
+22 [label="3:CtIfImpl@if (util == null) \{
+    if (remoteServer == null) \{
+        util = new VAJLocalToolUtil();
+    \} else \{
+        util = new VAJRemoteUtil(this, remoteServer);
+    \}
 \}" shape=ellipse]
 23 [label="10:CtFieldReadImpl@util" shape=ellipse]
 24 [label="10:CtReturnImpl@return util" shape=ellipse]
-25 [label="2:CtBlockImpl@\{\
-    if (util == null) \{\
-        if (remoteServer == null) \{\
-            util = new VAJLocalToolUtil();\
-        \} else \{\
-            util = new VAJRemoteUtil(this, remoteServer);\
-        \}\
-    \}\
-    return util;\
+25 [label="2:CtBlockImpl@\{
+    if (util == null) \{
+        if (remoteServer == null) \{
+            util = new VAJLocalToolUtil();
+        \} else \{
+            util = new VAJRemoteUtil(this, remoteServer);
+        \}
+    \}
+    return util;
 \}" shape=ellipse]
-26 [label="2:CtMethodImpl@protected VAJUtil getUtil() \{\
-    if (util == null) \{\
-        if (remoteServer == null) \{\
-            util = new VAJLocalToolUtil();\
-        \} else \{\
-            util = new VAJRemoteUtil(this, remoteServer);\
-        \}\
-    \}\
-    return util;\
+26 [label="2:CtMethodImpl@protected VAJUtil getUtil() \{
+    if (util == null) \{
+        if (remoteServer == null) \{
+            util = new VAJLocalToolUtil();
+        \} else \{
+            util = new VAJRemoteUtil(this, remoteServer);
+        \}
+    \}
+    return util;
 \}" shape=ellipse]
 27 [label="5:Update@UPDATE" shape=ellipse]
 28 [label="5:CtConstructorCallImpl@new VAJLocalToolUtil(this)" shape=ellipse]
-4 -> 2 [label=""];
-4 -> 3 [label=""];
+4 -> 2 [label="AST:LEFT_OPERAND"];
+4 -> 3 [label="AST:RIGHT_OPERAND"];
 4 -> 21 [label="Control Dep"];
 4 -> 20 [label="Control Dep"];
 4 -> 7 [label="Control Dep"];
 4 -> 5 [label="Control Dep"];
 4 -> 6 [label="Control Dep"];
-7 -> 5 [label=""];
-7 -> 6 [label=""];
+7 -> 5 [label="AST:LEFT_OPERAND"];
+7 -> 6 [label="AST:RIGHT_OPERAND"];
 7 -> 12 [label="Control Dep"];
 7 -> 11 [label="Control Dep"];
 7 -> 8 [label="Control Dep"];
@@ -87,28 +87,28 @@ digraph "getUtil#?" {
 7 -> 16 [label="Control Dep"];
 8 -> 23 [label="Define-Use"];
 10 -> 27 [label="Action"];
-11 -> 8 [label=""];
-11 -> 10 [label=""];
-12 -> 11 [label=""];
+11 -> 8 [label="AST:ASSIGNED"];
+11 -> 10 [label="AST:ASSIGNMENT"];
+12 -> 11 [label="AST:STATEMENT"];
 13 -> 23 [label="Define-Use"];
 15 -> 13 [label="Data Dep"];
 16 -> 13 [label="Data Dep"];
-17 -> 15 [label=""];
-17 -> 16 [label=""];
-18 -> 13 [label=""];
-18 -> 17 [label=""];
-19 -> 18 [label=""];
-20 -> 7 [label=""];
-20 -> 12 [label=""];
-20 -> 19 [label=""];
-21 -> 20 [label=""];
-22 -> 4 [label=""];
-22 -> 21 [label=""];
-24 -> 23 [label=""];
-25 -> 22 [label=""];
-25 -> 24 [label=""];
-26 -> 1 [label=""];
-26 -> 0 [label=""];
-26 -> 25 [label=""];
+17 -> 15 [label="AST:ARGUMENT"];
+17 -> 16 [label="AST:ARGUMENT"];
+18 -> 13 [label="AST:ASSIGNED"];
+18 -> 17 [label="AST:ASSIGNMENT"];
+19 -> 18 [label="AST:STATEMENT"];
+20 -> 7 [label="AST:CONDITION"];
+20 -> 12 [label="AST:THEN"];
+20 -> 19 [label="AST:ELSE"];
+21 -> 20 [label="AST:STATEMENT"];
+22 -> 4 [label="AST:CONDITION"];
+22 -> 21 [label="AST:THEN"];
+24 -> 23 [label="AST:EXPRESSION"];
+25 -> 22 [label="AST:STATEMENT"];
+25 -> 24 [label="AST:STATEMENT"];
+26 -> 1 [label="AST:METHOD_DEC_NAME"];
+26 -> 0 [label="AST:TYPE"];
+26 -> 25 [label="AST:BODY"];
 27 -> 28 [label="Action"];
 }

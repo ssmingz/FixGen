@@ -11,7 +11,10 @@ public class ASTEdge extends Edge{
 
     @Override
     public String getLabel() {
+        String role = this.target instanceof CtVirtualElement? ((CtVirtualElement) this.target).getLocationInParent()
+                : this.target.getRoleInParent().name();
         return "AST";
+//        return "AST:"+role;
     }
 
 }
