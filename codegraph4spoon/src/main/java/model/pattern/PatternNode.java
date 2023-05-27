@@ -3,8 +3,6 @@ package model.pattern;
 import model.CodeGraph;
 import model.CtWrapper;
 import spoon.support.reflect.declaration.CtElementImpl;
-import spoon.support.reflect.reference.CtExecutableReferenceImpl;
-import spoon.support.reflect.reference.CtTypeReferenceImpl;
 
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -86,5 +84,25 @@ public class PatternNode {
 
     public void setPattern(Pattern pattern) {
         _pattern = pattern;
+    }
+
+    public String toLabelAfterAbstract() {
+        StringBuilder label = new StringBuilder();
+        if (isPatternStart()) {
+            label.append("##ActionPoint##");
+        }
+        for (Attribute a : _comparedAttrs) {
+            if (label.length() != 0)
+                label.append("\n");
+            label.append(a.getName()).append(":").append(a.getTag());
+        }
+        return label.toString();
+    }
+
+    public boolean isPatternStart() {
+        if (_pattern != null) {
+            return _pattern.getStart() == this;
+        }
+        return false;
     }
 }

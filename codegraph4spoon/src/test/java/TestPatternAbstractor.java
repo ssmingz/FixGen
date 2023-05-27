@@ -32,9 +32,9 @@ public class TestPatternAbstractor {
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
             // abstract pattern
-            PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.7));
+            PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
             pat = abs.abstractPattern(pat);
-            DotGraph dot = new DotGraph(pat, 0);
+            DotGraph dot = new DotGraph(pat, 0, true);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract.dot", testPro, testId));
             dot.toDotFile(dir);
         }
@@ -98,12 +98,12 @@ public class TestPatternAbstractor {
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0);
+            DotGraph dot = new DotGraph(pat, 0, false);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern.dot", pro, group));
             dot.toDotFile(dir);
             PatternAbstractor abs = new PatternAbstractor(size);
             pat = abs.abstractPattern(pat);
-            DotGraph dot2 = new DotGraph(pat, 0);
+            DotGraph dot2 = new DotGraph(pat, 0, true);
             File dir2 = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract.dot", pro, group));
             dot2.toDotFile(dir2);
         }

@@ -76,7 +76,7 @@ public class PatternAbstractor {
                 if (a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"))
                     a.setAbstract(true);
             });
-            if (pn.getComparedAttributes().stream().anyMatch(a -> !a.isAbstract())) {
+            if (!pn.getComparedAttributes().stream().anyMatch(a -> !a.isAbstract())) {
                 // remove the node and its attached edges
                 pn.inEdges().removeIf(Objects::nonNull);
                 pn.outEdges().removeIf(Objects::nonNull);

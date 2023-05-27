@@ -74,4 +74,7 @@ public class Pattern {
         return new ArrayList<>(_patternNodes);
     }
 
+    public PatternNode getStart() {
+        return _start;
+    }
 }

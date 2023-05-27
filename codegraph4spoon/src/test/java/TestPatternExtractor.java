@@ -37,7 +37,7 @@ public class TestPatternExtractor {
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0);
+            DotGraph dot = new DotGraph(pat, 0, false);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern.dot", testPro, testId));
             dot.toDotFile(dir);
         }
@@ -96,7 +96,7 @@ public class TestPatternExtractor {
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0);
+            DotGraph dot = new DotGraph(pat, 0, false);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern.dot", pro, group));
             dot.toDotFile(dir);
         }

@@ -72,7 +72,7 @@ public class DotGraph {
     /**
      * draw a dot graph for a pattern
      */
-    public DotGraph(Pattern pat, int nodeIndexStart) {
+    public DotGraph(Pattern pat, int nodeIndexStart, boolean isAbstract) {
         // start
         graph.append(addStart(pat.getPatternName()));
 
@@ -82,7 +82,7 @@ public class DotGraph {
         int id = nodeIndexStart;
         for (PatternNode node : nodes) {
             idByNode.put(node, id);
-            String label = node.toLabel();
+            String label = isAbstract ? node.toLabelAfterAbstract() : node.toLabel();
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
             id++;
         }

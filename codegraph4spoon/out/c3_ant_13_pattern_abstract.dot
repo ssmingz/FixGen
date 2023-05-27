@@ -1,21 +1,68 @@
 digraph "Pattern" {
-0 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:toCopy" shape=ellipse]
-1 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy" shape=ellipse]
-2 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:names" shape=ellipse]
-3 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:fromDir" shape=ellipse]
-4 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:toCopy = ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
-5 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds" shape=ellipse]
-6 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#6:names" shape=ellipse]
-7 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#9:ds.restrict(names, fromDir, toDir, mapper)" shape=ellipse]
-8 [label="buildMap#?,File,File,String[],FileNameMapper,Hashtable#-1:String[]" shape=ellipse]
-2 -> 1 [label="Data Dep:1"];
-3 -> 1 [label="Data Dep:1"];
-4 -> 1 [label="AST:1"];
-4 -> 8 [label="AST:1"];
-4 -> 7 [label="AST:1"];
-5 -> 1 [label="Data Dep:1"];
-6 -> 0 [label="Data Dep:1"];
-7 -> 2 [label="AST:1"];
-7 -> 3 [label="AST:1"];
-7 -> 5 [label="AST:1"];
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Update
+value:UPDATE" shape=ellipse]
+1 [label="locationInParent:ASSIGNMENT
+nodeType:CtConstructorCallImpl
+value:new VAJLocalToolUtil()" shape=ellipse]
+2 [label="locationInParent:CONDITION
+nodeType:CtBinaryOperatorImpl
+value:remoteServer == null" shape=ellipse]
+3 [label="locationInParent:STATEMENT
+nodeType:CtIfImpl
+value:if (remoteServer == null) \{
+    util = new VAJLocalToolUtil();
+\} else \{
+    util = new VAJRemoteUtil(this, remoteServer);
+\}" shape=ellipse]
+4 [label="locationInParent:THEN
+nodeType:CtBlockImpl
+value:\{
+    util = new VAJLocalToolUtil();
+\}" shape=ellipse]
+5 [label="locationInParent:STATEMENT
+nodeType:CtAssignmentImpl
+value:util = new VAJLocalToolUtil()" shape=ellipse]
+6 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:VAJLocalToolUtil()" shape=ellipse]
+7 [label="locationInParent:ELSE
+nodeType:CtBlockImpl
+value:\{
+    util = new VAJRemoteUtil(this, remoteServer);
+\}" shape=ellipse]
+8 [label="locationInParent:STATEMENT
+nodeType:CtAssignmentImpl
+value:util = new VAJRemoteUtil(this, remoteServer)" shape=ellipse]
+9 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:VAJRemoteUtil()" shape=ellipse]
+10 [label="locationInParent:ARGUMENT
+nodeType:CtThisAccessImpl
+value:this" shape=ellipse]
+11 [label="locationInParent:ARGUMENT
+nodeType:CtFieldReadImpl
+value:remoteServer" shape=ellipse]
+12 [label="locationInParent:ASSIGNMENT
+nodeType:CtConstructorCallImpl
+value:new VAJLocalToolUtil(this)" shape=ellipse]
+0 -> 12 [label="Action:4"];
+1 -> 0 [label="Action:4"];
+1 -> 6 [label="AST:4"];
+2 -> 1 [label="Control Dep:3"];
+2 -> 4 [label="Control Dep:3"];
+2 -> 5 [label="Control Dep:3"];
+2 -> 6 [label="Control Dep:3"];
+2 -> 7 [label="Control Dep:3"];
+2 -> 8 [label="Control Dep:3"];
+2 -> 9 [label="Control Dep:3"];
+2 -> 10 [label="Control Dep:3"];
+2 -> 11 [label="Control Dep:3"];
+3 -> 2 [label="AST:3"];
+3 -> 4 [label="AST:3"];
+3 -> 7 [label="AST:3"];
+4 -> 5 [label="AST:3"];
+5 -> 1 [label="AST:3"];
+7 -> 8 [label="AST:3"];
 }
