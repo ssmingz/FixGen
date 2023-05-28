@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="write features to a json file for a codegraph">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix pattern extraction and abstraction bugs on c3-ant-13">
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DiffUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestDiffUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/resources/c3/ant/13/0/diff.diff" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_action.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_action.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_action.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_action.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_pattern_abstract.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_pattern_abstract.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Pattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +91,7 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternAbstractor.testPatternAbstractFromMultiplePairs">
+  <component name="RunManager" selected="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -113,51 +106,51 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternAbstractor.testPatternAbstractFromMultiplePairs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDiffUtil.testDiffOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestDiffUtil" />
+      <option name="METHOD_NAME" value="testDiffOnC3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestDiffUtil.testDiffOnExample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestDiffUtil" />
+      <option name="METHOD_NAME" value="testDiffOnExample" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPatternAbstractor.testPatternAbstractorOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestPatternAbstractor" />
-      <option name="METHOD_NAME" value="testPatternAbstractFromMultiplePairs" />
+      <option name="METHOD_NAME" value="testPatternAbstractorOnC3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternExtractor.testPatternExtractFromMultiplePairs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPatternExtractor.testPatternExtractorOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
-      <option name="METHOD_NAME" value="testPatternExtractFromMultiplePairs" />
+      <option name="METHOD_NAME" value="testPatternExtractorOnC3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternFeature2Csv.testWriteFeatCsvFromMultiplePairs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Csv" />
-      <option name="METHOD_NAME" value="testWriteFeatCsvFromMultiplePairs" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
-      <option name="METHOD_NAME" value="testWriteFeatCsvFromMultiplePairs" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestSpoonActionGraph.testGraphBuilder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestSpoonActionGraph.testGraphBuilderOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestSpoonActionGraph" />
-      <option name="METHOD_NAME" value="testGraphBuilder" />
+      <option name="METHOD_NAME" value="testGraphBuilderOnC3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -165,19 +158,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractFromMultiplePairs" />
-      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
-      <item itemvalue="JUnit.TestPatternFeature2Csv.testWriteFeatCsvFromMultiplePairs" />
-      <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilder" />
-      <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairs" />
+      <item itemvalue="JUnit.TestDiffUtil.testDiffOnExample" />
+      <item itemvalue="JUnit.TestDiffUtil.testDiffOnC3" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3" />
+      <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilderOnC3" />
+      <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractFromMultiplePairs" />
-        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractFromMultiplePairs" />
-        <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairs" />
-        <item itemvalue="JUnit.TestPatternFeature2Csv.testWriteFeatCsvFromMultiplePairs" />
-        <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilder" />
+        <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3" />
+        <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilderOnC3" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3" />
+        <item itemvalue="JUnit.TestDiffUtil.testDiffOnC3" />
+        <item itemvalue="JUnit.TestDiffUtil.testDiffOnExample" />
       </list>
     </recent_temporary>
   </component>
@@ -386,7 +379,14 @@
       <option name="project" value="LOCAL" />
       <updated>1684935255847</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="fix pattern extraction and abstraction bugs on c3-ant-13">
+      <created>1685179798164</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1685179798164</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -401,7 +401,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add data dependency analysis" />
     <MESSAGE value="add DotGraph" />
     <MESSAGE value="refactor project module by remove previous gumtree-spoon-ast-diff" />
     <MESSAGE value="combine gumtree mappings and actions" />
@@ -426,7 +425,8 @@
     <MESSAGE value="add graph builder tests" />
     <MESSAGE value="test and debug for graph builder (without actions) on c3 dataset" />
     <MESSAGE value="write features to a json file for a codegraph" />
-    <option name="LAST_COMMIT_MESSAGE" value="write features to a json file for a codegraph" />
+    <MESSAGE value="fix pattern extraction and abstraction bugs on c3-ant-13" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix pattern extraction and abstraction bugs on c3-ant-13" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

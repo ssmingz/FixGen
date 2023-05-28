@@ -1,0 +1,5 @@
+--- src/test/resources/c3/ant/13/0/before.java
++++ src/test/resources/c3/ant/13/0/after.java
+@@ -5,1 +5,1 @@
+-        util = new VAJLocalToolUtil();
++        util = new VAJLocalToolUtil(this);
