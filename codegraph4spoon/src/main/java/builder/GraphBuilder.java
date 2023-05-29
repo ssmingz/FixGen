@@ -5,7 +5,6 @@ import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import gumtree.spoon.diff.operations.*;
 import model.CodeGraph;
-import model.CtWrapper;
 import model.actions.Delete;
 import model.actions.Insert;
 import model.actions.Move;

@@ -23,10 +23,10 @@ public class TestDiffUtil {
 
     @Test
     public void testDiffOnC3() {
-        String base = "/Users/yumeng/PycharmProjects/c3/dataset/";
+        String base = TestConfig.WIN_BASE;
         String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
         for (int i=0; i<projects.length; i++) {
-            File dir = new File(String.format(base + projects[i]));
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
                     for (File pair : group.listFiles()) {

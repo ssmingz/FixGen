@@ -28,4 +28,9 @@ public abstract class ActionNode extends CtElementImpl {
     public SourcePosition getPosition() {
         return _srcNode.getPosition();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return this == o;
+    }
 }

@@ -51,10 +51,10 @@ public class TestSpoonGraph {
 
     @Test
     public void testGraphBuilderOnC3() {
-        String base = "D:/expdata/c3/dataset/";
+        String base = TestConfig.WIN_BASE;
         String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
         for (int i=0; i<projects.length; i++) {
-            File dir = new File(String.format(base + projects[i]));
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
                     for (File pair : group.listFiles()) {
@@ -77,7 +77,7 @@ public class TestSpoonGraph {
         int group = 152;
         int pair = 0;
         String kind = "before";
-        CodeGraph cg = GraphBuilder.buildGraph(String.format("D:/expdata/c3/dataset/%s/%d/%d/%s.java", pro, group, pair, kind), new String[] {}, 8, new int[] {});
+        CodeGraph cg = GraphBuilder.buildGraph(String.format("%s/dataset/%s/%d/%d/%s.java", TestConfig.WIN_BASE, pro, group, pair, kind), new String[] {}, 8, new int[] {});
         assertNotNull("CodeGraph shouldn't be null", cg);
         // draw dot graph
         GraphConfiguration config = new GraphConfiguration();

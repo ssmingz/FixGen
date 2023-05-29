@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix pattern extraction and abstraction bugs on c3-ant-13">
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DiffUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestDiffUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/resources/c3/ant/13/0/diff.diff" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_22__22_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_22__22_41__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/ActionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/ActionNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestDiffUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestDiffUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonActionGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonActionGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonGraph.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +98,7 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3">
+  <component name="RunManager" selected="JUnit.TestPatternExtractor.testPatternExtractorOnC3">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -111,16 +118,6 @@
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestDiffUtil" />
       <option name="METHOD_NAME" value="testDiffOnC3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestDiffUtil.testDiffOnExample" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestDiffUtil" />
-      <option name="METHOD_NAME" value="testDiffOnExample" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -146,6 +143,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestPatternExtractor.testPatternExtractorOnC3_fordebug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
+      <option name="METHOD_NAME" value="testPatternExtractorOnC3_fordebug" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestSpoonActionGraph.testGraphBuilderOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
@@ -158,7 +165,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="JUnit.TestDiffUtil.testDiffOnExample" />
+      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3_fordebug" />
       <item itemvalue="JUnit.TestDiffUtil.testDiffOnC3" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3" />
       <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilderOnC3" />
@@ -166,11 +173,11 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3" />
-        <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilderOnC3" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3" />
+        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3_fordebug" />
         <item itemvalue="JUnit.TestDiffUtil.testDiffOnC3" />
-        <item itemvalue="JUnit.TestDiffUtil.testDiffOnExample" />
+        <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilderOnC3" />
+        <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3" />
       </list>
     </recent_temporary>
   </component>
@@ -572,14 +579,9 @@
           <option name="timeStamp" value="511" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java</url>
-          <line>96</line>
-          <option name="timeStamp" value="642" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DotGraph.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="644" />
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="672" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -590,6 +592,8 @@
         <watch expression="((LinkedHashMap)mappings).entrySet().toArray()[37]" custom="java.util.LinkedHashMap" />
         <watch expression="((LinkedHashMap)mappings).entrySet().toArray()[37]" custom="java.util.LinkedHashMap" />
         <watch expression="((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((MappingStore)((DiffImpl)edits)._mappingsComp).dst).children).get(0)).children).get(8)).children).get(8)" custom="com.github.gumtreediff.matchers.MappingStore,com.github.gumtreediff.tree.DefaultTree,gumtree.spoon.diff.DiffImpl,java.util.ArrayList" />
+        <watch expression="nodeList" />
+        <watch expression="((LinkedHashMap)orderBySimScore).entrySet().toArray()[15]" custom="java.util.LinkedHashMap" />
       </configuration>
     </watches-manager>
   </component>

@@ -504,14 +504,14 @@ public class CodeGraph {
     private void visit(CtInvocationImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        // expression
+        // method name
         if (ctNode.getExecutable() != null) {
             buildNode(ctNode.getExecutable(), control, scope);
         }
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getExecutable().getSimpleName(), "METHOD_NAME");
         updateCGId(name);
-        // TODO: check whether to use getTarget()
+        // invoker
         if (ctNode.getTarget() != null) {
             buildNode(ctNode.getTarget(), control, scope);
         }

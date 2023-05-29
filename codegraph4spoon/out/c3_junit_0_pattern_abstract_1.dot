@@ -1,0 +1,51 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Insert
+value:INSERT" shape=ellipse]
+1 [label="locationInParent:DEFAULT_EXPRESSION
+nodeType:CtInvocationImpl
+value:getAnnotation(method)" shape=ellipse]
+2 [label="locationInParent:LOCAL_VAR_NAME
+nodeType:CtVirtualElement
+value:annotation" shape=ellipse]
+3 [label="locationInParent:METHOD_NAME
+nodeType:CtVirtualElement
+value:getAnnotation" shape=ellipse]
+4 [label="locationInParent:TARGET
+nodeType:CtThisAccessImpl
+value:" shape=ellipse]
+5 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:PlaceHold" shape=ellipse]
+6 [label="locationInParent:TARGET
+nodeType:CtTypeAccessImpl
+value:PlaceHold" shape=ellipse]
+7 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:getAnnotation(<unknown>)" shape=ellipse]
+8 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:Test" shape=ellipse]
+9 [label="locationInParent:ARGUMENT
+nodeType:CtVariableReadImpl
+value:method" shape=ellipse]
+10 [label="locationInParent:VARIABLE
+nodeType:CtParameterReferenceImpl
+value:method" shape=ellipse]
+11 [label="locationInParent:ARGUMENT
+nodeType:CtFieldReadImpl
+value:Test.class" shape=ellipse]
+0 -> 11 [label="Action:2"];
+1 -> 0 [label="Action:2"];
+1 -> 3 [label="AST:2"];
+1 -> 4 [label="AST:2"];
+1 -> 7 [label="AST:2"];
+1 -> 9 [label="AST:2"];
+4 -> 2 [label="Data Dep:2"];
+4 -> 5 [label="AST:2"];
+4 -> 6 [label="AST:2"];
+7 -> 8 [label="AST:2"];
+9 -> 2 [label="Data Dep:2"];
+9 -> 10 [label="AST:2"];
+}

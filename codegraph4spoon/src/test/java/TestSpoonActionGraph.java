@@ -27,10 +27,10 @@ public class TestSpoonActionGraph {
 
     @Test
     public void testGraphBuilderOnC3() {
-        String base = "/Users/yumeng/PycharmProjects/c3/dataset/";
+        String base = TestConfig.WIN_BASE;
         String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
         for (int i=0; i<projects.length; i++) {
-            File dir = new File(String.format(base + projects[i]));
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
                     for (File pair : group.listFiles()) {
@@ -52,8 +52,8 @@ public class TestSpoonActionGraph {
         String pro = "ant";
         int group = 135;
         int pair = 0;
-        String srcPath = String.format("/Users/yumeng/PycharmProjects/c3/dataset/%s/%d/%d/before.java", pro, group, pair);
-        String tarPath = String.format("/Users/yumeng/PycharmProjects/c3/dataset/%s/%d/%d/after.java", pro, group, pair);
+        String srcPath = String.format("%s/dataset/%s/%d/%d/before.java", TestConfig.WIN_BASE, pro, group, pair);
+        String tarPath = String.format("%s/dataset/%s/%d/%d/after.java", TestConfig.WIN_BASE, pro, group, pair);
         // build action graph
         CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
         // draw dot graph

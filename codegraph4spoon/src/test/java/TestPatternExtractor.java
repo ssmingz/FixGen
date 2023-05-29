@@ -45,10 +45,10 @@ public class TestPatternExtractor {
 
     @Test
     public void testPatternExtractorOnC3() {
-        String base = "/Users/yumeng/PycharmProjects/c3/dataset/";
+        String base = TestConfig.WIN_BASE;
         String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
         for (int i=0; i<projects.length; i++) {
-            File dir = new File(String.format(base + projects[i]));
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
                     List<CodeGraph> ags = new ArrayList<>();
@@ -75,10 +75,10 @@ public class TestPatternExtractor {
 
     @Test
     public void testPatternExtractorOnC3_fordebug() {
-        String pro = "ant";
-        int group = 135;
+        String pro = "checkstyle";
+        int group = 103;
         List<CodeGraph> ags = new ArrayList<>();
-        String base = String.format("/Users/yumeng/PycharmProjects/c3/dataset/%s/%d", pro, group);
+        String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
         int size = new File(base).listFiles(p -> p.isDirectory()).length;
         for (int i=0; i<size; i++) {
             String srcPath = String.format("%s/%d/before.java", base, i);

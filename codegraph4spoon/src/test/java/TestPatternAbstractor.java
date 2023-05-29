@@ -35,35 +35,54 @@ public class TestPatternAbstractor {
             PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
             pat = abs.abstractPattern(pat);
             DotGraph dot = new DotGraph(pat, 0, true);
-            File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract.dot", testPro, testId));
+            File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract_%d.dot", testPro, testId, combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
         }
     }
 
     @Test
     public void testPatternAbstractorOnC3() {
-        String base = "/Users/yumeng/PycharmProjects/c3/dataset/";
         String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
+        String base = TestConfig.WIN_BASE;
         for (int i=0; i<projects.length; i++) {
-            File dir = new File(String.format(base + projects[i]));
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
                     List<CodeGraph> ags = new ArrayList<>();
+                    File basedir = new File(String.format("%s/codegraphs/%s/%s", base, projects[i], group.getName()));
+                    if (!basedir.exists() || !basedir.isDirectory()) {
+                        basedir.mkdirs();
+                    }
                     for (File pair : group.listFiles()) {
                         if (pair.isDirectory()) {
                             String srcPath = pair.getAbsolutePath()+"/before.java";
                             String tarPath = pair.getAbsolutePath()+"/after.java";
                             CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
                             ags.add(ag);
+
+                            GraphConfiguration config = new GraphConfiguration();
+                            int nodeIndexCounter = 0;
+                            DotGraph dg = new DotGraph(ag, config, nodeIndexCounter);
+                            File dogf0 = new File(String.format("%s/codegraph_%s.dot", basedir, pair.getName()));
+                            dg.toDotFile(dogf0);
                         }
                     }
                     // extract pattern from more-than-one graphs
                     try {
                         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
                         for (Pattern pat : combinedGraphs) {
+                            DotGraph dot = new DotGraph(pat, 0, false);
+                            File dotf = new File(String.format("%s/pattern_%d.dot", basedir, combinedGraphs.indexOf(pat)));
+                            dot.toDotFile(dotf);
+
                             // abstract pattern
                             PatternAbstractor abs = new PatternAbstractor(group.listFiles().length);
                             pat = abs.abstractPattern(pat);
+
+                            DotGraph dot2 = new DotGraph(pat, 0, true);
+                            File dotf2 = new File(String.format("%s/pattern_abstract_%d.dot", basedir, combinedGraphs.indexOf(pat)));
+                            dot2.toDotFile(dotf2);
+
                             assertNotNull(pat);
                             System.out.println(group.getAbsolutePath() + ": abstract pattern ok");
                         }
@@ -77,10 +96,10 @@ public class TestPatternAbstractor {
 
     @Test
     public void testPatternAbstractorOnC3_fordebug() {
-        String pro = "ant";
-        int group = 135;
+        String pro = "junit";
+        int group = 0;
         List<CodeGraph> ags = new ArrayList<>();
-        String base = String.format("/Users/yumeng/PycharmProjects/c3/dataset/%s/%d", pro, group);
+        String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
         int size = new File(base).listFiles(p -> p.isDirectory()).length;
         for (int i=0; i<size; i++) {
             String srcPath = String.format("%s/%d/before.java", base, i);
@@ -99,12 +118,12 @@ public class TestPatternAbstractor {
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
             DotGraph dot = new DotGraph(pat, 0, false);
-            File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern.dot", pro, group));
+            File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             PatternAbstractor abs = new PatternAbstractor(size);
             pat = abs.abstractPattern(pat);
             DotGraph dot2 = new DotGraph(pat, 0, true);
-            File dir2 = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract.dot", pro, group));
+            File dir2 = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
             dot2.toDotFile(dir2);
         }
     }
