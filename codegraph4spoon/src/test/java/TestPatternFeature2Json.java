@@ -1,15 +1,20 @@
 import builder.GraphBuilder;
+import builder.GraphConfiguration;
 import builder.PatternAbstractor;
 import builder.PatternExtractor;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import model.CodeGraph;
 import model.pattern.Pattern;
+import org.javatuples.Pair;
 import org.junit.Test;
+import utils.DotGraph;
 import utils.ObjectUtil;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
+import static org.junit.Assert.assertNotNull;
 
 public class TestPatternFeature2Json {
     @Test
@@ -36,7 +41,90 @@ public class TestPatternFeature2Json {
             pat = abs.abstractPattern(pat);
             // write feature csv
             String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d", testPro, testId);
-            ObjectUtil.writeFeatureJson(pat, pat.getIdPattern(), jsonPath);
+            ObjectUtil.writeFeatureJsonToFile(pat, pat.getIdPattern(), jsonPath);
         }
+    }
+
+    @Test
+    public void testWriteFeatJsonFromMultiplePairsToSingleFile() {
+        String testPro = "ant";
+        int testId = 13;
+        List<CodeGraph> ags = new ArrayList<>();
+        String base = String.format("src/test/resources/c3/%s/%d", testPro, testId);
+        int size = new File(base).listFiles().length;
+        for (int i=0; i<size; i++) {
+            String srcPath = String.format("%s/%d/before.java", base, i);
+            String tarPath = String.format("%s/%d/after.java", base, i);
+            // build action graph
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            ags.add(ag);
+        }
+        // extract pattern from more-than-one graphs
+        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
+        Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+        for (Pattern pat : combinedGraphs) {
+            // abstract pattern
+            PatternAbstractor abs = new PatternAbstractor(size);
+            pat = abs.abstractPattern(pat);
+            // get feature json object
+            List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+            for (Pair<String, JSONObject> pair : patternByID) {
+                if (!patternsByID.containsKey(pair.getValue0())) {
+                    patternsByID.put(pair.getValue0(), new JSONArray());
+                }
+                patternsByID.get(pair.getValue0()).add(pair.getValue1());
+            }
+        }
+        // write json object to file
+        String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d.json", testPro, testId);;
+        ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+    }
+
+    @Test
+    public void testWriteFeatJsonFromMultiplePairsToSingleFile_C3() {
+        String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
+        String base = TestConfig.WIN_BASE;
+
+        Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+        String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_4_projects.json");;
+        int graphCounter = 0, groupCounter = 0;
+        for (int i=0; i<projects.length; i++) {
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
+            for (File group : dir.listFiles()) {
+                if (group.isDirectory()) {
+                    List<CodeGraph> ags = new ArrayList<>();
+                    for (File pair : group.listFiles()) {
+                        if (pair.isDirectory()) {
+                            String srcPath = pair.getAbsolutePath()+"/before.java";
+                            String tarPath = pair.getAbsolutePath()+"/after.java";
+                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+                            ags.add(ag);
+                            graphCounter++;
+                        }
+                    }
+                    // extract pattern from more-than-one graphs
+                    List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
+                    for (Pattern pat : combinedGraphs) {
+                        // abstract pattern
+                        PatternAbstractor abs = new PatternAbstractor(group.listFiles().length);
+                        pat = abs.abstractPattern(pat);
+                        // get feature json object
+                        List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                        for (Pair<String, JSONObject> pair : patternByID) {
+                            if (!patternsByID.containsKey(pair.getValue0())) {
+                                patternsByID.put(pair.getValue0(), new JSONArray());
+                            }
+                            patternsByID.get(pair.getValue0()).add(pair.getValue1());
+                        }
+                    }
+                    System.out.println(group.getAbsolutePath() + ": " + combinedGraphs.size() + " patterns");
+                    groupCounter++;
+                }
+            }
+        }
+        // write json object to file
+        ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+        System.out.println("Total codegraph instances : " + graphCounter);
+        System.out.println("Total group instances : " + groupCounter);
     }
 }
