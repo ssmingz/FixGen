@@ -4,13 +4,6 @@ import codegraph.CtVirtualElement;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.ActionNode;
-import model.graph.node.Node;
-import model.graph.node.PatchNode;
-import model.graph.node.expr.ExprNode;
-import model.graph.node.expr.SimpName;
-import spoon.reflect.declaration.CtElement;
-import spoon.support.reflect.code.CtExpressionImpl;
-import spoon.support.reflect.code.CtVariableAccessImpl;
 
 import java.util.Collections;
 import java.util.LinkedHashMap;
@@ -79,7 +72,10 @@ public class Attribute {
                                 LinkedHashMap::new));
     }
 
-    public void computeLocationInParent(CtWrapper n, CodeGraph g) {
+    /*********************************************************/
+    /******* calculate attribute *****************************/
+    /*********************************************************/
+    public static String computeLocationInParent(CtWrapper n) {
         String role = null;
         if (n.getCtElementImpl() instanceof ActionNode) {
             role = "ACTION";
@@ -88,17 +84,17 @@ public class Attribute {
         } else {
             role = n.getCtElementImpl().getRoleInParent().name();
         }
-        addValue(role, g);
+        return role;
     }
 
-    public void computeNodeType(CtWrapper n, CodeGraph g) {
+    public static String computeNodeType(CtWrapper n) {
         String type = n.getCtElementImpl().getClass().getSimpleName();
-        addValue(type, g);
+        return type;
     }
 
-    public void computeValue(CtWrapper n, CodeGraph g) {
+    public static String computeValue(CtWrapper n) {
         String value = n.toLabelString();
-        addValue(value, g);
+        return value;
     }
 
 }

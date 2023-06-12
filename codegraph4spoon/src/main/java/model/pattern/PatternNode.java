@@ -17,9 +17,11 @@ public class PatternNode {
     private Set<PatternEdge> _inEdges = new LinkedHashSet<>();
     private Set<PatternEdge> _outEdges = new LinkedHashSet<>();
     private Pattern _pattern = null;
+    private boolean _actionRelated;
 
     public PatternNode(CtWrapper aNode, CodeGraph aGraph) {
         _nodeGraphInstances.put(aNode, aGraph);
+        _actionRelated = aNode.getCtElementImpl().isActionRelated();
     }
 
     public void setComparedAttribute(Attribute attr) {
@@ -102,6 +104,26 @@ public class PatternNode {
     public boolean isPatternStart() {
         if (_pattern != null) {
             return _pattern.getStart() == this;
+        }
+        return false;
+    }
+
+    public boolean isActionRelated() {
+        return _actionRelated;
+    }
+
+    public boolean hasInEdge(PatternNode src, PatternEdge.EdgeType edgeType) {
+        for (PatternEdge ie : _inEdges) {
+            if (ie.getSource().equals(src) && ie.type == edgeType)
+                return true;
+        }
+        return false;
+    }
+
+    public boolean hasOutEdge(PatternNode tar, PatternEdge.EdgeType edgeType) {
+        for (PatternEdge oe : _outEdges) {
+            if (oe.getTarget().equals(tar) && oe.type == edgeType)
+                return true;
         }
         return false;
     }

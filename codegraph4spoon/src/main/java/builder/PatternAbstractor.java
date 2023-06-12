@@ -36,9 +36,9 @@ public class PatternAbstractor {
                 CtWrapper n = entry.getKey();
                 CodeGraph g = entry.getValue();
 
-                attr1.computeLocationInParent(n, g);
-                attr2.computeNodeType(n, g);
-                attr3.computeValue(n, g);
+                attr1.addValue(Attribute.computeLocationInParent(n), g);
+                attr2.addValue(Attribute.computeNodeType(n), g);
+                attr3.addValue(Attribute.computeValue(n), g);
             }
             pn.setComparedAttribute(attr1);
             pn.setComparedAttribute(attr2);

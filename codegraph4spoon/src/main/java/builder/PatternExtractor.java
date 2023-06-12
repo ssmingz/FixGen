@@ -7,6 +7,7 @@ import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.ActionEdge;
 import model.actions.ActionNode;
+import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
@@ -199,7 +200,7 @@ public class PatternExtractor {
     /**
      * 优先匹配相似度分数最高的
      */
-    private static double matchBySimScore(List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
+    public static double matchBySimScore(List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
         if (index == nodeList.size()) {
             _mappingsByScore.put(mapping, score);
             return score;
@@ -241,6 +242,47 @@ public class PatternExtractor {
         }
     }
 
+    public static double matchBySimScorePattern(List<PatternNode> pnList, int index, List<CtWrapper> cgList, double score, Map<PatternNode, CtWrapper> mapping, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
+        if (index == pnList.size()) {
+            return score;
+        }
+        PatternNode node = pnList.get(index);
+        if (simScoreMap.containsKey(node)) {
+            Iterator<CtWrapper> itr = simScoreMap.get(node).keySet().iterator();
+            CtWrapper bestSim = null;
+            while (itr.hasNext()) {
+                CtWrapper aNode = itr.next();
+                if (isMatch(node, aNode, mapping)) {
+                    bestSim = aNode;
+                    break;
+                }
+            }
+            if (bestSim != null) {
+                double simScore = simScoreMap.get(node).get(bestSim);
+                List<CtWrapper> nodeListCopy = new ArrayList<>(cgList);
+                nodeListCopy.remove(bestSim);
+                mapping.put(node, bestSim);
+                // remove itself
+                simScoreMap.remove(bestSim);
+                // remove related
+                Iterator<Map.Entry<PatternNode, Map<CtWrapper, Double>>> iterator = simScoreMap.entrySet().iterator();
+                while(iterator.hasNext()) {
+                    Map<CtWrapper, Double> scoreMap = iterator.next().getValue();
+                    scoreMap.remove(bestSim);
+                    if (scoreMap.isEmpty()) {
+                        iterator.remove();
+                    }
+                }
+                return matchBySimScorePattern(pnList, index+1, nodeListCopy, score+simScore, mapping, simScoreMap);
+            } else {
+                return matchBySimScorePattern(pnList, index+1, cgList, score, mapping, simScoreMap);
+            }
+        } else {
+            return matchBySimScorePattern(pnList, index+1, cgList, score, mapping, simScoreMap);
+        }
+    }
+
+
     /**
      * hard rules for matching
      */
@@ -263,6 +305,29 @@ public class PatternExtractor {
             if (nodeA.getCtElementImpl().isDependOn(key.getCtElementImpl()) != nodeB.getCtElementImpl().isDependOn(value.getCtElementImpl()))
                 return false;
             if (ObjectUtil.hasEdge(nodeA.getCtElementImpl(), key.getCtElementImpl()) != ObjectUtil.hasEdge(nodeB.getCtElementImpl(), value.getCtElementImpl()))
+                return false;
+        }
+        return true;
+    }
+
+    private static boolean isMatch(PatternNode pn, CtWrapper cgn, Map<PatternNode, CtWrapper> mapping) {
+        // compare type
+        String pType = pn.getAttribute("nodeType").getTag();
+        String gType = Attribute.computeNodeType(cgn);
+        if (!gType.equals(pType))
+            return false;
+        // other rules
+        for (Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
+            PatternNode key = entry.getKey();
+            CtWrapper value = entry.getValue();
+            // key -> pn and value -> cgn
+            if (pn.hasInEdge(key, PatternEdge.EdgeType.AST) != value.equals(new CtWrapper((CtElementImpl) cgn.getCtElementImpl().getParent())))
+                return false;
+            if (pn.hasInEdge(key, PatternEdge.EdgeType.CONTROL_DEP) != cgn.getCtElementImpl().hasInEdge(value.getCtElementImpl(), Edge.EdgeType.CONTROL_DEP))
+                return false;
+            if (pn.hasInEdge(key, PatternEdge.EdgeType.DATA_DEP) != cgn.getCtElementImpl().hasInEdge(value.getCtElementImpl(), Edge.EdgeType.DATA_DEP))
+                return false;
+            if (pn.hasInEdge(key, PatternEdge.EdgeType.DEF_USE) != cgn.getCtElementImpl().hasInEdge(value.getCtElementImpl(), Edge.EdgeType.DEF_USE))
                 return false;
         }
         return true;
@@ -336,6 +401,45 @@ public class PatternExtractor {
             result.replace(nodeA, sortByValue(result.get(nodeA)));
         }
         return result;
+    }
+
+    public static Map<PatternNode, Map<CtWrapper, Double>> calSimScorePattern(Set<PatternNode> pNodeList, List<CtWrapper> cgNodeList) {
+        Map<PatternNode, Map<CtWrapper, Double>> result = new LinkedHashMap<>();
+        for (PatternNode nodeA : pNodeList) {
+            if (!result.containsKey(nodeA)) {
+                result.put(nodeA, new LinkedHashMap<>());
+            } else if (result.get(nodeA).size() == cgNodeList.size()){
+                continue;
+            }
+            for (CtWrapper nodeB : cgNodeList) {
+                if (result.get(nodeA).containsKey(nodeB)) continue;
+                double score = calContextSimPattern(nodeA, nodeB);
+                result.get(nodeA).put(nodeB, score);
+            }
+            result.replace(nodeA, sortByValue(result.get(nodeA)));
+        }
+        return result;
+    }
+
+    private static double calContextSimPattern(PatternNode pn, CtWrapper cgn) {
+        double[] scores = new double[pn.getComparedAttributes().size()];
+        int index = 0;
+        for (Attribute a : pn.getComparedAttributes()) {
+            String comp = "";
+            switch (a.getName()) {
+                case "locationInParent":
+                    comp = Attribute.computeLocationInParent(cgn);
+                    break;
+                case "nodeType":
+                    comp = Attribute.computeNodeType(cgn);
+                    break;
+                case "value":
+                    comp = Attribute.computeValue(cgn);
+                    break;
+            }
+            scores[index++] = calContextSim(a.getTag(), comp);
+        }
+        return Arrays.stream(scores).average().getAsDouble();
     }
 
     private static double calContextSim(String a, String b) {

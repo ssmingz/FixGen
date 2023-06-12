@@ -1,0 +1,6 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:DEFAULT_EXPRESSION
+nodeType:CtConstructorCallImpl
+value:new SourceFileScanner()" shape=ellipse]
+}

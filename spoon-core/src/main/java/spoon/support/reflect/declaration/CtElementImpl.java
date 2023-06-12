@@ -95,6 +95,7 @@ public abstract class CtElementImpl implements CtElement {
 	 * variable usage scope
 	 */
 	private Scope _scope = null;
+	protected boolean _actionRelated = false;
 
 
 	public static <T> List<T> emptyList() {
@@ -734,6 +735,33 @@ public abstract class CtElementImpl implements CtElement {
 				all.add(e.getSource());
 		}
 		return all;
+	}
+
+	public boolean hasInEdge(CtElementImpl src, Edge.EdgeType type) {
+		for (Edge ie : _inEdges) {
+			if (ie.getSource()==src && ie.type==type)
+				return true;
+		}
+		return false;
+	}
+
+	public boolean hasOutEdge(CtElementImpl tar, Edge.EdgeType type) {
+		for (Edge oe : _outEdges) {
+			if (oe.getSource()==tar && oe.type==type)
+				return true;
+		}
+		return false;
+	}
+
+	/**
+	 * whether is action node or in "after" graph (compared to "before")
+	 */
+	public boolean isActionRelated() {
+		return _actionRelated;
+	}
+
+	public void setActionRelated(boolean isActionRel) {
+		_actionRelated = isActionRel;
 	}
 
 }

@@ -1,8 +1,10 @@
 package model.pattern;
 
+import builder.PatternExtractor;
 import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
+import org.javatuples.Pair;
 
 import java.util.*;
 
@@ -76,5 +78,43 @@ public class Pattern {
 
     public PatternNode getStart() {
         return _start;
+    }
+
+    public void deleteActionRelated() {
+        Iterator<PatternNode> nItr = _patternNodes.iterator();
+        while(nItr.hasNext()) {
+            PatternNode pn = nItr.next();
+            // set new pattern.start
+            if(pn.isPatternStart()) {
+                for(PatternEdge ie : pn.inEdges()) {
+                    if (ie.type == PatternEdge.EdgeType.ACTION) {
+                        _start = ie.getSource();
+                        break;
+                    }
+                }
+            }
+            if(pn.isActionRelated()) {
+                // delete edges
+                Iterator<PatternEdge> eItr = pn.inEdges().iterator();
+                while(eItr.hasNext()) {
+                    eItr.next();
+                    eItr.remove();
+                }
+                eItr = pn.outEdges().iterator();
+                while(eItr.hasNext()) {
+                    eItr.next();
+                    eItr.remove();
+                }
+                // delete node
+                nItr.remove();
+            }
+        }
+    }
+
+    public Pair<Map<PatternNode, CtWrapper>, Double> compareCG(CodeGraph aGraph) {
+        Map<PatternNode, Map<CtWrapper, Double>> orderBySimScore = PatternExtractor.calSimScorePattern(_patternNodes, aGraph.getNodes());
+        Map<PatternNode, CtWrapper> mapping = new LinkedHashMap<>();
+        double score = PatternExtractor.matchBySimScorePattern(Arrays.asList(_patternNodes.toArray(new PatternNode[0])), 0, aGraph.getNodes(), 0, mapping, orderBySimScore);
+        return new Pair<>(mapping, score);
     }
 }

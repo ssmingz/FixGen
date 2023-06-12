@@ -80,10 +80,12 @@ public class GraphBuilder {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 Delete del = new Delete(src, op);
                 cg1.updateCGId(del);
+
             } else if (op instanceof UpdateOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl dst = (CtElementImpl) op.getDstNode();
                 Update upd = new Update(src, dst, op);
+                dst.setActionRelated(true);
                 cg1.updateCGId(upd);
                 cg1.updateCGId(dst);
             } else if (op instanceof InsertOperation) {
@@ -91,6 +93,7 @@ public class GraphBuilder {
                 CtElementImpl parent = (CtElementImpl) ((InsertOperation) op).getParent();
                 int pos = ((InsertOperation) op).getPosition();
                 Insert ins = new Insert(src, parent, pos, op);
+                src.setActionRelated(true);
                 cg1.updateCGId(ins);
                 cg1.updateCGId(src);
             } else if (op instanceof MoveOperation) {
