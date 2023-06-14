@@ -5,6 +5,8 @@ import model.CtWrapper;
 import model.pattern.Pattern;
 import model.pattern.PatternNode;
 import org.javatuples.Pair;
+import spoon.reflect.cu.SourcePosition;
+import spoon.support.reflect.cu.position.SourcePositionImpl;
 
 import java.util.Map;
 
@@ -26,10 +28,15 @@ public class BugLocator {
             for(Map.Entry<PatternNode, CtWrapper> entry : mappingScore.getValue0().entrySet()) {
                 if(entry.getKey().equals(pat.getStart())) {
                     // get bug info of the target node
-                    String buggyFile = entry.getValue().getCtElementImpl().getPosition().getFile().getAbsolutePath();
-                    int buggyLine = entry.getValue().getCtElementImpl().getPosition().getLine();
-                    System.out.println("[buggy line]" + buggyFile + "#" + buggyLine);
-                    return buggyFile + "#" + buggyLine;
+                    SourcePosition pos = entry.getValue().getCtElementImpl().getPosition();
+                    if(pos.isValidPosition()) {
+                        String buggyFile = entry.getValue().getCtElementImpl().getPosition().getFile().getAbsolutePath();
+                        int buggyLine = entry.getValue().getCtElementImpl().getPosition().getLine();
+                        System.out.println("[buggy line]" + buggyFile + "#" + buggyLine);
+                        return buggyFile + "#" + buggyLine;
+                    } else {
+                        System.out.println("[warn]SourcePosition is not valid:" + entry.getValue().getCtElementImpl().toString());
+                    }
                 }
             }
         }
