@@ -293,8 +293,9 @@ public class PatternExtractor {
         // compare type
         if (!sameType(nodeA, nodeB))
             return false;
-//        if (!getLocationInParent(nodeA).equals(getLocationInParent(nodeB)))
-//            return false;
+        if (nodeA.isVirtual() && nodeB.isVirtual() &&
+                !Objects.equals(((CtVirtualElement)nodeA.getCtElementImpl()).getLocationInParent(), ((CtVirtualElement)nodeB.getCtElementImpl()).getLocationInParent()))
+            return false;
         // TODO: other comparing rules
         for (Map.Entry<CtWrapper, CtWrapper> entry : mapping.entrySet()) {
             CtWrapper key = entry.getKey();

@@ -1,0 +1,31 @@
+digraph "buildStarted#?,BuildEvent" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@buildStarted" shape=ellipse]
+2 [label="2:CtParameterImpl@BuildEvent event" shape=ellipse]
+3 [label="2:CtTypeReferenceImpl@BuildEvent" shape=ellipse]
+4 [label="3:CtExecutableReferenceImpl@postEvent(<unknown>,<unknown>)" shape=ellipse]
+5 [label="3:CtVirtualElement@postEvent" shape=ellipse]
+6 [label="3:CtVariableReadImpl@event" shape=ellipse]
+7 [label="3:CtTypeAccessImpl@BUILD_STARTED" shape=ellipse]
+8 [label="3:CtInvocationImpl@postEvent(event, BUILD_STARTED)" shape=ellipse]
+9 [label="2:CtBlockImpl@\{\
+    postEvent(event, BUILD_STARTED);\
+\}" shape=ellipse]
+10 [label="2:CtMethodImpl@public void buildStarted(BuildEvent event) \{\
+    postEvent(event, BUILD_STARTED);\
+\}" shape=ellipse]
+11 [label="4:Insert@INSERT" shape=ellipse]
+12 [label="4:CtInvocationImpl@_context.getEventBus().postEvent(new BuildStartedEvent(_context, event))" shape=ellipse]
+2 -> 3 [label="AST"];
+8 -> 5 [label="AST"];
+8 -> 4 [label="AST"];
+8 -> 6 [label="AST"];
+8 -> 7 [label="AST"];
+9 -> 8 [label="AST"];
+10 -> 1 [label="AST"];
+10 -> 0 [label="AST"];
+10 -> 2 [label="AST"];
+10 -> 9 [label="AST"];
+10 -> 11 [label="Action"];
+11 -> 12 [label="Action"];
+}

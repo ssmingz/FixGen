@@ -10,9 +10,9 @@ import model.pattern.PatternNode;
 import java.util.*;
 
 public class PatternAbstractor {
-    int THRESHOLD = 0;
+    double THRESHOLD = 0;
 
-    public PatternAbstractor(int thr) {
+    public PatternAbstractor(double thr) {
         THRESHOLD = thr;
     }
 
@@ -65,7 +65,7 @@ public class PatternAbstractor {
     /**
      * remove features by threshold
      */
-    private void filterAttributes(Pattern pat, int threshold) {
+    private void filterAttributes(Pattern pat, double threshold) {
         // node
         Iterator<PatternNode> it = pat.getNodeSet().iterator();
         while(it.hasNext()){

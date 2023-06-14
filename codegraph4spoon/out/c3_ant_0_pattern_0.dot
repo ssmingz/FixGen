@@ -1,0 +1,55 @@
+digraph "Pattern" {
+0 [label="buildStarted#?,BuildEvent#4:INSERT
+buildFinished#?,BuildEvent#4:INSERT
+execute#?#4:INSERT" shape=ellipse]
+1 [label="buildStarted#?,BuildEvent#2:public void buildStarted(BuildEvent event) \{\
+    postEvent(event, BUILD_STARTED);\
+\}
+buildFinished#?,BuildEvent#2:public void buildFinished(BuildEvent event) \{\
+    postEvent(event, BUILD_FINISHED);\
+\}
+execute#?#2:public void execute() \{\
+    _context.setProject(null);\
+\}" shape=ellipse]
+2 [label="buildStarted#?,BuildEvent#2:buildStarted
+buildFinished#?,BuildEvent#2:buildFinished
+execute#?#2:execute" shape=ellipse]
+3 [label="buildStarted#?,BuildEvent#2:void
+buildFinished#?,BuildEvent#2:void
+execute#?#2:void" shape=ellipse]
+4 [label="buildStarted#?,BuildEvent#2:BuildEvent event
+buildFinished#?,BuildEvent#2:BuildEvent event" shape=ellipse]
+5 [label="buildStarted#?,BuildEvent#2:BuildEvent
+buildFinished#?,BuildEvent#2:BuildEvent" shape=ellipse]
+6 [label="buildStarted#?,BuildEvent#2:\{\
+    postEvent(event, BUILD_STARTED);\
+\}
+buildFinished#?,BuildEvent#2:\{\
+    postEvent(event, BUILD_FINISHED);\
+\}
+execute#?#2:\{\
+    _context.setProject(null);\
+\}" shape=ellipse]
+7 [label="buildStarted#?,BuildEvent#3:postEvent(event, BUILD_STARTED)
+buildFinished#?,BuildEvent#3:postEvent(event, BUILD_FINISHED)
+execute#?#3:_context.setProject(null)" shape=ellipse]
+8 [label="buildStarted#?,BuildEvent#2:public
+buildFinished#?,BuildEvent#2:public
+execute#?#2:public" shape=ellipse]
+9 [label="buildStarted#?,BuildEvent#2:VE: Modifiers_Method
+buildFinished#?,BuildEvent#2:VE: Modifiers_Method
+execute#?#2:VE: Modifiers_Method" shape=ellipse]
+10 [label="buildStarted#?,BuildEvent#4:_context.getEventBus().postEvent(new BuildStartedEvent(_context, event))
+buildFinished#?,BuildEvent#4:_context.getEventBus().postEvent(new BuildFinishedEvent(_context, event))
+execute#?#4:_context.getEventBus().postEvent(new ProjectClosedEvent(_context))" shape=ellipse]
+0 -> 10 [label="Action:3"];
+1 -> 0 [label="Action:3"];
+1 -> 2 [label="AST:3"];
+1 -> 3 [label="AST:3"];
+1 -> 4 [label="AST:2"];
+1 -> 6 [label="AST:3"];
+1 -> 8 [label="AST:3"];
+1 -> 9 [label="AST:3"];
+4 -> 5 [label="AST:2"];
+6 -> 7 [label="AST:3"];
+}

@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add BugLocator at line level">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_29__17_59__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_29__17_59__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestFaultLocalization.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestFaultLocalization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +91,7 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestFaultLocalization.testFaultLocalizationOnC3">
+  <component name="RunManager" selected="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3_fordebug">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -104,31 +106,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestFaultLocalization.testFaultLocalization" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPatternAbstractor.testPatternAbstractorOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestFaultLocalization" />
-      <option name="METHOD_NAME" value="testFaultLocalization" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternAbstractor" />
+      <option name="METHOD_NAME" value="testPatternAbstractorOnC3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestFaultLocalization.testFaultLocalizationOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPatternAbstractor.testPatternAbstractorOnC3_fordebug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestFaultLocalization" />
-      <option name="METHOD_NAME" value="testFaultLocalizationOnC3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestFaultLocalization.testFaultLocalizationOnC3_debug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestFaultLocalization" />
-      <option name="METHOD_NAME" value="testFaultLocalizationOnC3_debug" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternAbstractor" />
+      <option name="METHOD_NAME" value="testPatternAbstractorOnC3_fordebug" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -144,11 +136,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternExtractor.testPatternExtractorOnC3_fordebug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairsToSingleFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternExtractor" />
-      <option name="METHOD_NAME" value="testPatternExtractorOnC3_fordebug" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
+      <option name="METHOD_NAME" value="testWriteFeatCsvFromMultiplePairsToSingleFile" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
+      <option name="METHOD_NAME" value="testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -156,19 +158,19 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3_fordebug" />
+      <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3_fordebug" />
+      <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairsToSingleFile" />
+      <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
       <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3" />
-      <item itemvalue="JUnit.TestFaultLocalization.testFaultLocalization" />
-      <item itemvalue="JUnit.TestFaultLocalization.testFaultLocalizationOnC3" />
-      <item itemvalue="JUnit.TestFaultLocalization.testFaultLocalizationOnC3_debug" />
+      <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestFaultLocalization.testFaultLocalizationOnC3" />
-        <item itemvalue="JUnit.TestFaultLocalization.testFaultLocalizationOnC3_debug" />
-        <item itemvalue="JUnit.TestFaultLocalization.testFaultLocalization" />
+        <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3_fordebug" />
+        <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3" />
+        <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
+        <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairsToSingleFile" />
         <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3" />
-        <item itemvalue="JUnit.TestPatternExtractor.testPatternExtractorOnC3_fordebug" />
       </list>
     </recent_temporary>
   </component>
@@ -384,12 +386,12 @@
       <option name="project" value="LOCAL" />
       <updated>1685179798164</updated>
     </task>
-    <task id="LOCAL-00030" summary="add BugLocator at line level">
-      <created>1686576350496</created>
+    <task id="LOCAL-00030" summary="fix pattern extraction and abstraction bugs on c3-junit-0">
+      <created>1685354337079</created>
       <option name="number" value="00030" />
       <option name="presentableId" value="LOCAL-00030" />
       <option name="project" value="LOCAL" />
-      <updated>1686576350496</updated>
+      <updated>1685354337079</updated>
     </task>
     <option name="localTasksCounter" value="31" />
     <servers />
@@ -430,8 +432,8 @@
     <MESSAGE value="test and debug for graph builder (without actions) on c3 dataset" />
     <MESSAGE value="write features to a json file for a codegraph" />
     <MESSAGE value="fix pattern extraction and abstraction bugs on c3-ant-13" />
-    <MESSAGE value="add BugLocator at line level" />
-    <option name="LAST_COMMIT_MESSAGE" value="add BugLocator at line level" />
+    <MESSAGE value="fix pattern extraction and abstraction bugs on c3-junit-0" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix pattern extraction and abstraction bugs on c3-junit-0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -577,9 +579,19 @@
           <option name="timeStamp" value="511" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestFaultLocalization.java</url>
-          <line>140</line>
-          <option name="timeStamp" value="689" />
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java</url>
+          <line>125</line>
+          <option name="timeStamp" value="673" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="676" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="681" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -590,6 +602,8 @@
         <watch expression="((LinkedHashMap)mappings).entrySet().toArray()[37]" custom="java.util.LinkedHashMap" />
         <watch expression="((LinkedHashMap)mappings).entrySet().toArray()[37]" custom="java.util.LinkedHashMap" />
         <watch expression="((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((MappingStore)((DiffImpl)edits)._mappingsComp).dst).children).get(0)).children).get(8)).children).get(8)" custom="com.github.gumtreediff.matchers.MappingStore,com.github.gumtreediff.tree.DefaultTree,gumtree.spoon.diff.DiffImpl,java.util.ArrayList" />
+        <watch expression="nodeList" />
+        <watch expression="((LinkedHashMap)orderBySimScore).entrySet().toArray()[15]" custom="java.util.LinkedHashMap" />
       </configuration>
     </watches-manager>
   </component>

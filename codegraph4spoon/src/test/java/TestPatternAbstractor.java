@@ -9,6 +9,7 @@ import utils.DotGraph;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
@@ -42,7 +43,7 @@ public class TestPatternAbstractor {
 
     @Test
     public void testPatternAbstractorOnC3() {
-        String[] projects = {"ant", "junit", "checkstyle", "cobertura"};
+        String[] projects = {"ant"};
         String base = TestConfig.WIN_BASE;
         for (int i=0; i<projects.length; i++) {
             File dir = new File(String.format(base + "dataset/" + projects[i]));
@@ -76,7 +77,8 @@ public class TestPatternAbstractor {
                             dot.toDotFile(dotf);
 
                             // abstract pattern
-                            PatternAbstractor abs = new PatternAbstractor(group.listFiles().length);
+                            int size = group.listFiles(p -> p.isDirectory()).length;
+                            PatternAbstractor abs = new PatternAbstractor(size*0.8);
                             pat = abs.abstractPattern(pat);
 
                             DotGraph dot2 = new DotGraph(pat, 0, true);
@@ -96,7 +98,7 @@ public class TestPatternAbstractor {
 
     @Test
     public void testPatternAbstractorOnC3_fordebug() {
-        String pro = "junit";
+        String pro = "ant";
         int group = 0;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);

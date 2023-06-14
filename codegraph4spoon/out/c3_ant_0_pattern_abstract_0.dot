@@ -1,0 +1,42 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Insert
+value:INSERT" shape=ellipse]
+1 [label="locationInParent:TYPE_MEMBER
+nodeType:CtMethodImpl
+value:public void buildStarted(BuildEvent event) \{\
+    postEvent(event, BUILD_STARTED);\
+\}" shape=ellipse]
+2 [label="locationInParent:METHOD_DEC_NAME
+nodeType:CtVirtualElement
+value:buildStarted" shape=ellipse]
+3 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:void" shape=ellipse]
+4 [label="locationInParent:BODY
+nodeType:CtBlockImpl
+value:\{\
+    postEvent(event, BUILD_STARTED);\
+\}" shape=ellipse]
+5 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl
+value:postEvent(event, BUILD_STARTED)" shape=ellipse]
+6 [label="locationInParent:MODIFIER
+nodeType:CtVirtualElement
+value:public" shape=ellipse]
+7 [label="locationInParent:MODIFIER
+nodeType:CtVirtualElement
+value:VE: Modifiers_Method" shape=ellipse]
+8 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl
+value:_context.getEventBus().postEvent(new BuildStartedEvent(_context, event))" shape=ellipse]
+0 -> 8 [label="Action:3"];
+1 -> 0 [label="Action:3"];
+1 -> 2 [label="AST:3"];
+1 -> 3 [label="AST:3"];
+1 -> 4 [label="AST:3"];
+1 -> 6 [label="AST:3"];
+1 -> 7 [label="AST:3"];
+4 -> 5 [label="AST:3"];
+}
