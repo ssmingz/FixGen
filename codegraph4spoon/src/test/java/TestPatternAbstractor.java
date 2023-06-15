@@ -43,7 +43,7 @@ public class TestPatternAbstractor {
 
     @Test
     public void testPatternAbstractorOnC3() {
-        String[] projects = {"ant"};
+        String[] projects = {"cobertura", "checkstyle"};
         String base = TestConfig.WIN_BASE;
         for (int i=0; i<projects.length; i++) {
             File dir = new File(String.format(base + "dataset/" + projects[i]));
@@ -99,7 +99,7 @@ public class TestPatternAbstractor {
     @Test
     public void testPatternAbstractorOnC3_fordebug() {
         String pro = "ant";
-        int group = 0;
+        int group = 7;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
         int size = new File(base).listFiles(p -> p.isDirectory()).length;

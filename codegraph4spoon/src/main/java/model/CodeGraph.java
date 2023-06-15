@@ -10,6 +10,7 @@ import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.builder.SpoonGumTreeBuilder;
 import model.actions.ActionNode;
 import spoon.reflect.code.UnaryOperatorKind;
+import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.declaration.CtElement;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
@@ -17,6 +18,7 @@ import spoon.support.reflect.reference.*;
 import utils.ObjectUtil;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class CodeGraph {
     private String _name;
@@ -28,6 +30,15 @@ public class CodeGraph {
     private MappingStore _mappingStore;
     private Map<CtWrapper, CtWrapper> _mapping = new LinkedHashMap<>();
     private Map<Object, Integer> idCG = new LinkedHashMap<>();
+
+//    private Class[] exceptArray = {
+//            CtTypeReferenceImpl.class, CtFieldReferenceImpl.class, CtIntersectionTypeReferenceImpl.class,
+//            CtContinueImpl.class, CtCommentImpl.class, CtAnnotationImpl.class, CtAnnotationFieldAccessImpl.class,
+//            CtAnonymousExecutableImpl.class, CtExecutableReferenceImpl.class, CtTypeAccessImpl.class,
+//            CtNewArrayImpl.class, CtLiteralImpl.class, CtTypeParameterImpl.class, CtParameterImpl.class
+//    };
+//    private HashSet<Class> excepts = (HashSet<Class>) Arrays.stream(exceptArray).collect(Collectors.toSet());
+
     public CodeGraph() {}
 
     public void setCtMethod(CtMethodImpl ctMethod) {
@@ -185,7 +196,6 @@ public class CodeGraph {
             System.out.println("UNKNOWN ctNode type : " + ctNode.getClass().toString());
         }
         updateCGId(ctNode);
-        // connect AST children
         if (ctNode instanceof CtElementImpl) {
             for (CtElement ch : ((CtElementImpl) ctNode).getDirectChildren()) {
                 new ASTEdge((CtElementImpl) ctNode, (CtElementImpl) ch);
@@ -198,6 +208,12 @@ public class CodeGraph {
 
     public void updateCGId(Object obj) {
         if (obj instanceof CtElementImpl) {
+            // set valid position
+            CtElementImpl pt = (CtElementImpl) obj;
+            while (!pt.getPosition().isValidPosition()) {
+                pt = (CtElementImpl) pt.getParent();
+            }
+            ((CtElementImpl) obj).setPosition(pt.getPosition());
             CtWrapper ctwrapper = new CtWrapper((CtElementImpl) obj);
             _allNodes.add(ctwrapper);
             idCG.put(ctwrapper, idCG.size()+1);

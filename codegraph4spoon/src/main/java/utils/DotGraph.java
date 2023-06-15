@@ -39,11 +39,12 @@ public class DotGraph {
         int id = nodeIndexStart;
         for (CtWrapper node : nodes) {
             CtElementImpl ctElement = node.getCtElementImpl();
-            if (!ctElement.getPosition().isValidPosition()) {
-                continue;
+            int pos = -1;
+            if (ctElement.getPosition().isValidPosition()) {
+                pos = ctElement.getPosition().getLine();
             }
             idByNode.put(node, id);
-            String label = "" + ctElement.getPosition().getLine() + ":" + ctElement.getClass().getSimpleName() + "@" + ctElement.prettyprint();
+            String label = "" + pos + ":" + ctElement.getClass().getSimpleName() + "@" + ctElement.prettyprint();
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
             id++;
         }
