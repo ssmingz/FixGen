@@ -163,7 +163,13 @@ public class PatternExtractor {
 
     private static List<CtWrapper> extendLinks(CtWrapper node, int extendLevel, Set<CtWrapper> traversed, Map<CtWrapper, CtWrapper> mapping, boolean isPatch) {
         List<CtWrapper> nodes = new ArrayList<>();
-        if (ObjectUtil.findCtKeyInSet(traversed, node)!=null || extendLevel > MAX_EXTEND_LEVEL)
+        for (Edge ie : node.getCtElementImpl()._inEdges) {
+            if (ie instanceof ActionEdge && !(node.getCtElementImpl() instanceof ActionNode)) {
+                isPatch = true;
+                break;
+            }
+        }
+        if (ObjectUtil.findCtKeyInSet(traversed, node)!=null || (!isPatch && extendLevel > MAX_EXTEND_LEVEL))
             return nodes;
         nodes.add(node);
         // update traversed
@@ -171,12 +177,6 @@ public class PatternExtractor {
         CtWrapper mapped = mapping.get(ObjectUtil.findCtKeyInSet(mapping.keySet(), node));
         if (mapped != null && node.toLabelString().equals(mapped.toLabelString())) {
             traversed.add(mapped);
-        }
-        for (Edge ie : node.getCtElementImpl()._inEdges) {
-            if (ie instanceof ActionEdge && !(node.getCtElementImpl() instanceof ActionNode)) {
-                isPatch = true;
-                break;
-            }
         }
         for (Edge ie : node.getCtElementImpl()._inEdges) {
             // continue extending source
@@ -188,10 +188,7 @@ public class PatternExtractor {
             // continue extending target
             if (isPatch && oe instanceof ASTEdge)  // do not extend AST relationship in dst tree
                 continue;
-            if (oe.getTarget() instanceof CtStatementImpl)
-                nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, mapping, isPatch).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
-            else
-                nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, mapping, isPatch).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, mapping, isPatch).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
 
         }
         return nodes;
