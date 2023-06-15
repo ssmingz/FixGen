@@ -94,6 +94,8 @@ public class PatternNode {
             label.append("##ActionPoint##");
         }
         for (Attribute a : _comparedAttrs) {
+            if (a.isAbstract())
+                continue;
             if (label.length() != 0)
                 label.append("\n");
             label.append(a.getName()).append(":").append(a.getTag());

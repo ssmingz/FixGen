@@ -99,7 +99,7 @@ public class TestPatternAbstractor {
     @Test
     public void testPatternAbstractorOnC3_fordebug() {
         String pro = "ant";
-        int group = 7;
+        int group = 8;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
         int size = new File(base).listFiles(p -> p.isDirectory()).length;

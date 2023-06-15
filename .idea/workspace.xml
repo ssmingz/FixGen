@@ -16,7 +16,8 @@
       <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_abstract_2.dot" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_abstract_3.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -414,7 +415,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686797220104</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7">
+      <created>1686802798269</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1686802798269</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -429,7 +437,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove target files" />
     <MESSAGE value="add .gitignore" />
     <MESSAGE value="change jdk version from 1.8 to 11" />
     <MESSAGE value="add actions on codegraph" />
@@ -454,7 +461,8 @@
     <MESSAGE value="fix pattern extraction and abstraction bugs on c3-junit-0" />
     <MESSAGE value="fix pattern extraction and abstraction bugs on c3-ant-0" />
     <MESSAGE value="fix codegraph-building:InvalidSourcePosition bug on c3-ant-7" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix codegraph-building:InvalidSourcePosition bug on c3-ant-7" />
+    <MESSAGE value="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -605,14 +613,9 @@
           <option name="timeStamp" value="676" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java</url>
-          <line>66</line>
-          <option name="timeStamp" value="681" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java</url>
-          <line>119</line>
-          <option name="timeStamp" value="710" />
+          <line>125</line>
+          <option name="timeStamp" value="714" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
