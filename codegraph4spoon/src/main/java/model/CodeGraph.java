@@ -9,14 +9,18 @@ import com.github.gumtreediff.matchers.MappingStore;
 import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.builder.SpoonGumTreeBuilder;
 import model.actions.ActionNode;
+import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
 import spoon.support.reflect.reference.*;
 import utils.ObjectUtil;
+import utils.ReflectUtil;
 
+import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -768,12 +772,22 @@ public class CodeGraph {
             Tree dstTree = pair.second;
             CtElementImpl srcCt = (CtElementImpl) srcTree.getMetadata(SpoonGumTreeBuilder.SPOON_OBJECT);
             CtElementImpl dstCt = (CtElementImpl) dstTree.getMetadata(SpoonGumTreeBuilder.SPOON_OBJECT);
+            if (srcCt == null)
+                continue;
             if (srcCt instanceof gumtree.spoon.builder.CtWrapper) {
                 CtVirtualElement srcCtW = new CtVirtualElement((CtElementImpl) srcCt.getParent(), srcCt.toString(), srcCt.getRoleInParent().name());
                 CtVirtualElement dstCtW = new CtVirtualElement((CtElementImpl) dstCt.getParent(), dstCt.toString(), dstCt.getRoleInParent().name());
                 _mapping.put(new CtWrapper(srcCtW), new CtWrapper(dstCtW));
             } else {
                 _mapping.put(new CtWrapper(srcCt), new CtWrapper(dstCt));
+                // add direct children mappings
+                CtRole[] roles = ReflectUtil.getAllCtRoles(srcCt.getClass());
+                for (CtRole role : roles) {
+                    Object s = srcCt.getValueByRole(role);
+                    Object d = dstCt.getValueByRole(role);
+                    if (s instanceof CtElementImpl && d instanceof CtElementImpl && ObjectUtil.findCtKeyInSet(_mapping.keySet(), new CtWrapper((CtElementImpl) s))==null)
+                        _mapping.put(new CtWrapper((CtElementImpl) s), new CtWrapper((CtElementImpl) d));
+                }
             }
         }
     }

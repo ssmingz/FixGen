@@ -1,10 +1,14 @@
 package builder;
 
 import codegraph.Scope;
+import com.github.gumtreediff.matchers.Mapping;
+import com.github.gumtreediff.tree.DefaultTree;
+import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import gumtree.spoon.diff.operations.*;
 import model.CodeGraph;
+import model.CtWrapper;
 import model.actions.Delete;
 import model.actions.Insert;
 import model.actions.Move;
@@ -12,9 +16,14 @@ import model.actions.Update;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 import utils.ASTUtil;
+import utils.ObjectUtil;
+
+import java.util.Iterator;
+import java.util.Map;
 
 public class GraphBuilder {
     /**
@@ -89,13 +98,24 @@ public class GraphBuilder {
                 cg1.updateCGId(upd);
                 cg1.updateCGId(dst);
             } else if (op instanceof InsertOperation) {
-                CtElementImpl src = (CtElementImpl) op.getSrcNode();
-                CtElementImpl parent = (CtElementImpl) ((InsertOperation) op).getParent();
+                CtElementImpl insTar = (CtElementImpl) op.getSrcNode();
                 int pos = ((InsertOperation) op).getPosition();
-                Insert ins = new Insert(src, parent, pos, op);
-                src.setActionRelated(true);
+                // use the mapping if finds: parent-in-dstgraph <--> parent-in-srcgraph
+                CtElementImpl insSrc = (CtElementImpl) ((InsertOperation) op).getParent();
+                boolean flag = false;
+                for (Map.Entry<CtWrapper, CtWrapper> entry : cg1.getMapping().entrySet()) {
+                    if (entry.getValue().equals(new CtWrapper((CtElementImpl) insTar.getParent()))) {
+                        insSrc = entry.getKey().getCtElementImpl();
+                        flag = true;
+                        break;
+                    }
+                }
+                if (!flag)
+                    System.out.println("[warn]Not find the CtElement.parent mapping in src/dst graph: " + insSrc.prettyprint());
+                Insert ins = new Insert(insTar, insSrc, pos, op);
+                insTar.setActionRelated(true);
                 cg1.updateCGId(ins);
-                cg1.updateCGId(src);
+                cg1.updateCGId(insTar);
             } else if (op instanceof MoveOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl parent = (CtElementImpl) ((MoveOperation) op).getParent();

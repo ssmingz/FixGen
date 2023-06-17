@@ -5,18 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_0_action.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_1_action.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_0.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_1.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_2.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_3.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_abstract_0.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_abstract_1.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_abstract_2.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_7_pattern_abstract_3.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_8_0_action.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_8_1_action.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_8_pattern_0.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_8_pattern_abstract_0.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -422,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686802798269</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="fix pattern-abstraction:&quot;abstraction not working since all attributes shown in dotgraph&quot; bug on c3-ant-8">
+      <created>1686804497420</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1686804497420</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -437,7 +439,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add .gitignore" />
     <MESSAGE value="change jdk version from 1.8 to 11" />
     <MESSAGE value="add actions on codegraph" />
     <MESSAGE value="delete some unused files and add APImisuse data" />
@@ -462,7 +463,8 @@
     <MESSAGE value="fix pattern extraction and abstraction bugs on c3-ant-0" />
     <MESSAGE value="fix codegraph-building:InvalidSourcePosition bug on c3-ant-7" />
     <MESSAGE value="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7" />
+    <MESSAGE value="fix pattern-abstraction:&quot;abstraction not working since all attributes shown in dotgraph&quot; bug on c3-ant-8" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix pattern-abstraction:&quot;abstraction not working since all attributes shown in dotgraph&quot; bug on c3-ant-8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -617,6 +619,16 @@
           <line>125</line>
           <option name="timeStamp" value="714" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/Operation.java</url>
+          <line>104</line>
+          <option name="timeStamp" value="717" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="746" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -628,6 +640,7 @@
         <watch expression="((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((java.util.ArrayList)((DefaultTree)((MappingStore)((DiffImpl)edits)._mappingsComp).dst).children).get(0)).children).get(8)).children).get(8)" custom="com.github.gumtreediff.matchers.MappingStore,com.github.gumtreediff.tree.DefaultTree,gumtree.spoon.diff.DiffImpl,java.util.ArrayList" />
         <watch expression="nodeList" />
         <watch expression="((LinkedHashMap)orderBySimScore).entrySet().toArray()[15]" custom="java.util.LinkedHashMap" />
+        <watch expression="op" />
       </configuration>
     </watches-manager>
   </component>
