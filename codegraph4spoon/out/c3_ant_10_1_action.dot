@@ -1,0 +1,58 @@
+digraph "test4#?" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@test4" shape=ellipse]
+2 [label="3:CtExecutableReferenceImpl@expectBuildException(java.lang.String,java.lang.String)" shape=ellipse]
+3 [label="3:CtTypeReferenceImpl@String" shape=ellipse]
+4 [label="3:CtTypeReferenceImpl@String" shape=ellipse]
+5 [label="3:CtVirtualElement@expectBuildException" shape=ellipse]
+6 [label="3:CtTypeAccessImpl@PlaceHold" shape=ellipse]
+7 [label="3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+8 [label="3:CtThisAccessImpl@" shape=ellipse]
+9 [label="3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+10 [label="3:CtLiteralImpl@\"test4\"" shape=ellipse]
+11 [label="3:CtTypeReferenceImpl@String" shape=ellipse]
+12 [label="3:CtLiteralImpl@\"target attribute must not be empty\"" shape=ellipse]
+13 [label="3:CtTypeReferenceImpl@String" shape=ellipse]
+14 [label="3:CtInvocationImpl@expectBuildException(\"test4\", \"target attribute must not be empty\")" shape=ellipse]
+15 [label="2:CtBlockImpl@\{\
+    expectBuildException(\"test4\", \"target attribute must not be empty\");\
+\}" shape=ellipse]
+16 [label="2:CtMethodImpl@public void test4() \{\
+    expectBuildException(\"test4\", \"target attribute must not be empty\");\
+\}" shape=ellipse]
+17 [label="3:Update@UPDATE" shape=ellipse]
+18 [label="6:CtInvocationImpl@fail(\"target attribute must not be empty\")" shape=ellipse]
+19 [label="2:Insert@INSERT" shape=ellipse]
+20 [label="2:CtAnnotationImpl@@Test" shape=ellipse]
+21 [label="4:Insert@INSERT" shape=ellipse]
+22 [label="4:CtTryImpl@try \{\
+    buildRule.executeTarget(\"test4\");\
+\
+\} catch (BuildException ex) \{\
+\}" shape=ellipse]
+23 [label="3:Move@MOVE" shape=ellipse]
+2 -> 3 [label="AST"];
+2 -> 4 [label="AST"];
+6 -> 7 [label="AST"];
+8 -> 9 [label="AST"];
+8 -> 6 [label="AST"];
+10 -> 11 [label="AST"];
+12 -> 13 [label="AST"];
+14 -> 5 [label="AST"];
+14 -> 8 [label="AST"];
+14 -> 2 [label="AST"];
+14 -> 10 [label="AST"];
+14 -> 12 [label="AST"];
+14 -> 17 [label="Action"];
+14 -> 23 [label="Action"];
+15 -> 14 [label="AST"];
+15 -> 21 [label="Action"];
+16 -> 1 [label="AST"];
+16 -> 0 [label="AST"];
+16 -> 15 [label="AST"];
+16 -> 19 [label="Action"];
+17 -> 18 [label="Action"];
+19 -> 20 [label="Action"];
+21 -> 22 [label="Action"];
+23 -> 22 [label="Action"];
+}

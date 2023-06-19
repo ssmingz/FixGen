@@ -28,7 +28,7 @@ public class CodeGraph {
     private String _name;
     private String _fileName;
     private CtMethodImpl _ctMethod;
-    private ArrayList<CtWrapper> _allNodes = new ArrayList<>();
+    public ArrayList<CtWrapper> _allNodes = new ArrayList<>();
     private ArrayList<CtElementImpl> _traversed = new ArrayList<>();
     private CtElementImpl _entryNode;
     private MappingStore _mappingStore;

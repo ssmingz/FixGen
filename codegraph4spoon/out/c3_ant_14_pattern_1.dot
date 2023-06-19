@@ -1,0 +1,372 @@
+digraph "Pattern" {
+0 [label="testNoLang#?#2:INSERT
+testNolanguage#?#2:INSERT
+testNoName#?#2:INSERT" shape=ellipse]
+1 [label="testNoLang#?#2:public void testNoLang() \{\
+    expectBuildExceptionContaining(\"nolang\", \"Absence of language attribute not detected\", \"requires a language attribute\");\
+\}
+testNolanguage#?#2:public void testNolanguage() \{\
+    expectBuildExceptionContaining(\"testNolanguage\", \"Absence of language attribute not detected\", \"script language must be specified\");\
+\}
+testNoName#?#2:public void testNoName() \{\
+    expectBuildExceptionContaining(\"noname\", \"Absence of name attribute not detected\", \"scriptdef requires a name attribute\");\
+\}" shape=ellipse]
+2 [label="testNoLang#?#2:testNoLang
+testNolanguage#?#2:testNolanguage
+testNoName#?#2:testNoName" shape=ellipse]
+3 [label="testNoLang#?#2:void
+testNolanguage#?#2:void
+testNoName#?#2:void" shape=ellipse]
+4 [label="testNoLang#?#2:\{\
+    expectBuildExceptionContaining(\"nolang\", \"Absence of language attribute not detected\", \"requires a language attribute\");\
+\}
+testNolanguage#?#2:\{\
+    expectBuildExceptionContaining(\"testNolanguage\", \"Absence of language attribute not detected\", \"script language must be specified\");\
+\}
+testNoName#?#2:\{\
+    expectBuildExceptionContaining(\"noname\", \"Absence of name attribute not detected\", \"scriptdef requires a name attribute\");\
+\}" shape=ellipse]
+5 [label="testNoLang#?#3:expectBuildExceptionContaining(\"nolang\", \"Absence of language attribute not detected\", \"requires a language attribute\")
+testNolanguage#?#3:expectBuildExceptionContaining(\"testNolanguage\", \"Absence of language attribute not detected\", \"script language must be specified\")
+testNoName#?#3:expectBuildExceptionContaining(\"noname\", \"Absence of name attribute not detected\", \"scriptdef requires a name attribute\")" shape=ellipse]
+6 [label="testNoLang#?#4:INSERT
+testNolanguage#?#4:INSERT
+testNoName#?#4:INSERT" shape=ellipse]
+7 [label="testNoLang#?#4:try \{\
+    buildRule.executeTarget(\"nolang\");\
+    fail();\
+\} catch (BuildException ex) \{\
+    AntAssert.assertContains(, ex.getMessage());\
+\}
+testNolanguage#?#4:try \{\
+    buildRule.executeTarget(\"testNolanguage\");\
+    fail();\
+\} catch (BuildException ex) \{\
+    assertContains(, ex.getMessage());\
+\}
+testNoName#?#4:try \{\
+    buildRule.executeTarget(\"noname\");\
+    fail();\
+\} catch (BuildException ex) \{\
+    AntAssert.assertContains(, ex.getMessage());\
+\}" shape=ellipse]
+8 [label="testNoLang#?#4:\{\
+    buildRule.executeTarget(\"nolang\");\
+    fail(\"Absence of language attribute not detected\");\
+\}
+testNolanguage#?#4:\{\
+    buildRule.executeTarget(\"testNolanguage\");\
+    fail(\"Absence of language attribute not detected\");\
+\}
+testNoName#?#4:\{\
+    buildRule.executeTarget(\"noname\");\
+    fail(\"Absence of name attribute not detected\");\
+\}" shape=ellipse]
+9 [label="testNoLang#?#5:buildRule.executeTarget(\"nolang\")
+testNolanguage#?#5:buildRule.executeTarget(\"testNolanguage\")
+testNoName#?#5:buildRule.executeTarget(\"noname\")" shape=ellipse]
+10 [label="testNoLang#?#5:executeTarget
+testNolanguage#?#5:executeTarget
+testNoName#?#5:executeTarget" shape=ellipse]
+11 [label="testNoLang#?#5:buildRule
+testNolanguage#?#5:buildRule
+testNoName#?#5:buildRule" shape=ellipse]
+12 [label="testNoLang#?#5:buildRule
+testNolanguage#?#5:buildRule
+testNoName#?#5:buildRule" shape=ellipse]
+13 [label="testNoLang#?#5:PlaceHold
+testNolanguage#?#5:PlaceHold
+testNoName#?#5:PlaceHold" shape=ellipse]
+14 [label="testNoLang#?#5:
+testNolanguage#?#5:
+testNoName#?#5:" shape=ellipse]
+15 [label="testNoLang#?#5:executeTarget(java.lang.String)
+testNolanguage#?#5:executeTarget(java.lang.String)
+testNoName#?#5:executeTarget(java.lang.String)" shape=ellipse]
+16 [label="testNoLang#?#5:buildRule
+testNolanguage#?#5:buildRule
+testNoName#?#5:buildRule" shape=ellipse]
+17 [label="testNoLang#?#5:
+testNolanguage#?#5:
+testNoName#?#5:" shape=ellipse]
+18 [label="testNoLang#?#5:String
+testNolanguage#?#5:String
+testNoName#?#5:String" shape=ellipse]
+19 [label="testNoLang#?#5:java.lang
+testNolanguage#?#5:java.lang
+testNoName#?#5:java.lang" shape=ellipse]
+20 [label="testNoLang#?#5:\"nolang\"
+testNolanguage#?#5:\"testNolanguage\"
+testNoName#?#5:\"noname\"" shape=ellipse]
+21 [label="testNoLang#?#5:String
+testNolanguage#?#5:String
+testNoName#?#5:String" shape=ellipse]
+22 [label="testNoLang#?#5:java.lang
+testNolanguage#?#5:java.lang
+testNoName#?#5:java.lang" shape=ellipse]
+23 [label="testNoLang#?#6:fail(\"Absence of language attribute not detected\")
+testNolanguage#?#6:fail(\"Absence of language attribute not detected\")
+testNoName#?#6:fail(\"Absence of name attribute not detected\")" shape=ellipse]
+24 [label="testNoLang#?#6:fail
+testNolanguage#?#6:fail
+testNoName#?#6:fail" shape=ellipse]
+25 [label="testNoLang#?#6:
+testNolanguage#?#6:
+testNoName#?#6:" shape=ellipse]
+26 [label="testNoLang#?#6:PlaceHold
+testNolanguage#?#6:PlaceHold
+testNoName#?#6:PlaceHold" shape=ellipse]
+27 [label="testNoLang#?#6:
+testNolanguage#?#6:
+testNoName#?#6:" shape=ellipse]
+28 [label="testNoLang#?#6:PlaceHold
+testNolanguage#?#6:PlaceHold
+testNoName#?#6:PlaceHold" shape=ellipse]
+29 [label="testNoLang#?#6:PlaceHold
+testNolanguage#?#6:PlaceHold
+testNoName#?#6:PlaceHold" shape=ellipse]
+30 [label="testNoLang#?#6:
+testNolanguage#?#6:
+testNoName#?#6:" shape=ellipse]
+31 [label="testNoLang#?#6:fail(java.lang.String)
+testNolanguage#?#6:fail(java.lang.String)
+testNoName#?#6:fail(java.lang.String)" shape=ellipse]
+32 [label="testNoLang#?#6:String
+testNolanguage#?#6:String
+testNoName#?#6:String" shape=ellipse]
+33 [label="testNoLang#?#6:java.lang
+testNolanguage#?#6:java.lang
+testNoName#?#6:java.lang" shape=ellipse]
+34 [label="testNoLang#?#6:\"Absence of language attribute not detected\"
+testNolanguage#?#6:\"Absence of language attribute not detected\"
+testNoName#?#6:\"Absence of name attribute not detected\"" shape=ellipse]
+35 [label="testNoLang#?#6:String
+testNolanguage#?#6:String
+testNoName#?#6:String" shape=ellipse]
+36 [label="testNoLang#?#6:java.lang
+testNolanguage#?#6:java.lang
+testNoName#?#6:java.lang" shape=ellipse]
+37 [label="testNoLang#?#7: catch (BuildException ex) \{\
+    AntAssert.assertContains(\"requires a language attribute\", ex.getMessage());\
+\}
+testNolanguage#?#7: catch (BuildException ex) \{\
+    assertContains(\"script language must be specified\", ex.getMessage());\
+\}
+testNoName#?#7: catch (BuildException ex) \{\
+    AntAssert.assertContains(\"scriptdef requires a name attribute\", ex.getMessage());\
+\}" shape=ellipse]
+38 [label="testNoLang#?#7:BuildException ex
+testNolanguage#?#7:BuildException ex
+testNoName#?#7:BuildException ex" shape=ellipse]
+39 [label="testNoLang#?#7:ex
+testNolanguage#?#7:ex
+testNoName#?#7:ex" shape=ellipse]
+40 [label="testNoLang#?#8:ex
+testNolanguage#?#8:ex
+testNoName#?#8:ex" shape=ellipse]
+41 [label="testNoLang#?#8:ex
+testNolanguage#?#8:ex
+testNoName#?#8:ex" shape=ellipse]
+42 [label="testNoLang#?#8:BuildException
+testNolanguage#?#8:BuildException
+testNoName#?#8:BuildException" shape=ellipse]
+43 [label="testNoLang#?#8:
+testNolanguage#?#8:
+testNoName#?#8:" shape=ellipse]
+44 [label="testNoLang#?#7:BuildException
+testNolanguage#?#7:BuildException
+testNoName#?#7:BuildException" shape=ellipse]
+45 [label="testNoLang#?#7:
+testNolanguage#?#7:
+testNoName#?#7:" shape=ellipse]
+46 [label="testNoLang#?#7:\{\
+    AntAssert.assertContains(\"requires a language attribute\", ex.getMessage());\
+\}
+testNolanguage#?#7:\{\
+    assertContains(\"script language must be specified\", ex.getMessage());\
+\}
+testNoName#?#7:\{\
+    AntAssert.assertContains(\"scriptdef requires a name attribute\", ex.getMessage());\
+\}" shape=ellipse]
+47 [label="testNoLang#?#8:AntAssert.assertContains(\"requires a language attribute\", ex.getMessage())
+testNolanguage#?#8:assertContains(\"script language must be specified\", ex.getMessage())
+testNoName#?#8:AntAssert.assertContains(\"scriptdef requires a name attribute\", ex.getMessage())" shape=ellipse]
+48 [label="testNoLang#?#8:assertContains
+testNolanguage#?#8:assertContains
+testNoName#?#8:assertContains" shape=ellipse]
+49 [label="testNoLang#?#8:AntAssert
+testNoName#?#8:AntAssert" shape=ellipse]
+50 [label="testNoLang#?#8:AntAssert
+testNolanguage#?#2:Test
+testNoName#?#8:AntAssert" shape=ellipse]
+51 [label="testNoLang#?#8:
+testNolanguage#?#2:
+testNoName#?#8:" shape=ellipse]
+52 [label="testNoLang#?#8:assertContains(java.lang.String)
+testNolanguage#?#8:assertContains(java.lang.String,<unknown>)
+testNoName#?#8:assertContains(java.lang.String)" shape=ellipse]
+53 [label="testNoLang#?#8:AntAssert
+testNolanguage#?#8:String
+testNoName#?#8:AntAssert" shape=ellipse]
+54 [label="testNoLang#?#8:
+testNolanguage#?#8:java.lang
+testNoName#?#8:" shape=ellipse]
+55 [label="testNoLang#?#8:String
+testNolanguage#?#8:null
+testNoName#?#8:String" shape=ellipse]
+56 [label="testNoLang#?#8:java.lang
+testNoName#?#8:java.lang" shape=ellipse]
+57 [label="testNoLang#?#8:\"requires a language attribute\"
+testNolanguage#?#8:\"script language must be specified\"
+testNoName#?#8:\"scriptdef requires a name attribute\"" shape=ellipse]
+58 [label="testNoLang#?#8:String
+testNolanguage#?#8:String
+testNoName#?#8:String" shape=ellipse]
+59 [label="testNoLang#?#8:java.lang
+testNolanguage#?#8:java.lang
+testNoName#?#8:java.lang" shape=ellipse]
+60 [label="testNoLang#?#8:ex.getMessage()
+testNolanguage#?#8:ex.getMessage()
+testNoName#?#8:ex.getMessage()" shape=ellipse]
+61 [label="testNoLang#?#8:getMessage
+testNolanguage#?#8:getMessage
+testNoName#?#8:getMessage" shape=ellipse]
+62 [label="testNoLang#?#8:getMessage()
+testNolanguage#?#8:getMessage()
+testNoName#?#8:getMessage()" shape=ellipse]
+63 [label="testNoLang#?#8:BuildException
+testNolanguage#?#8:BuildException
+testNoName#?#8:BuildException" shape=ellipse]
+64 [label="testNoLang#?#8:
+testNolanguage#?#8:
+testNoName#?#8:" shape=ellipse]
+65 [label="testNoLang#?#4:\"requires a language attribute\"
+testNolanguage#?#6:\"script language must be specified\"
+testNoName#?#4:\"scriptdef requires a name attribute\"" shape=ellipse]
+66 [label="testNoLang#?#4:String
+testNolanguage#?#6:String
+testNoName#?#4:String" shape=ellipse]
+67 [label="testNoLang#?#4:MOVE
+testNolanguage#?#6:MOVE
+testNoName#?#4:MOVE" shape=ellipse]
+68 [label="testNoLang#?#2:VE: Modifiers_Method
+testNolanguage#?#2:VE: Modifiers_Method
+testNoName#?#2:VE: Modifiers_Method" shape=ellipse]
+69 [label="testNoLang#?#2:public
+testNolanguage#?#2:public
+testNoName#?#2:public" shape=ellipse]
+70 [label="testNoLang#?#2:@Test
+testNoName#?#2:@Test" shape=ellipse]
+71 [label="testNoLang#?#2:Test
+testNolanguage#?#2:Test
+testNoName#?#2:Test" shape=ellipse]
+72 [label="testNoLang#?#2:
+testNolanguage#?#2:
+testNoName#?#2:" shape=ellipse]
+73 [label="testNoLang#?#2:Test
+testNolanguage#?#8:PlaceHold
+testNoName#?#2:Test" shape=ellipse]
+74 [label="testNoLang#?#2:
+testNolanguage#?#8:
+testNoName#?#2:" shape=ellipse]
+75 [label="testNolanguage#?#8:" shape=ellipse]
+76 [label="testNolanguage#?#8:PlaceHold" shape=ellipse]
+77 [label="testNolanguage#?#2:@Test" shape=ellipse]
+78 [label="testNolanguage#?#8:" shape=ellipse]
+79 [label="testNolanguage#?#8:PlaceHold" shape=ellipse]
+0 -> 70 [label="Action:2"];
+0 -> 77 [label="Action:1"];
+1 -> 0 [label="Action:3"];
+1 -> 2 [label="AST:3"];
+1 -> 3 [label="AST:3"];
+1 -> 4 [label="AST:3"];
+1 -> 68 [label="AST:3"];
+1 -> 69 [label="AST:3"];
+4 -> 5 [label="AST:3"];
+4 -> 6 [label="Action:3"];
+5 -> 65 [label="AST:3"];
+6 -> 7 [label="Action:3"];
+7 -> 8 [label="AST:3"];
+7 -> 37 [label="AST:3"];
+8 -> 9 [label="AST:3"];
+8 -> 23 [label="AST:3"];
+9 -> 10 [label="AST:3"];
+9 -> 11 [label="AST:3"];
+9 -> 15 [label="AST:3"];
+9 -> 20 [label="AST:3"];
+11 -> 12 [label="AST:3"];
+12 -> 13 [label="AST:3"];
+13 -> 14 [label="AST:3"];
+15 -> 16 [label="AST:3"];
+15 -> 18 [label="AST:3"];
+16 -> 17 [label="AST:3"];
+18 -> 19 [label="AST:3"];
+20 -> 21 [label="AST:3"];
+21 -> 22 [label="AST:3"];
+23 -> 24 [label="AST:3"];
+23 -> 25 [label="AST:3"];
+23 -> 31 [label="AST:3"];
+23 -> 34 [label="AST:3"];
+25 -> 26 [label="AST:3"];
+25 -> 28 [label="AST:3"];
+26 -> 27 [label="AST:3"];
+28 -> 29 [label="AST:3"];
+29 -> 30 [label="AST:3"];
+31 -> 32 [label="AST:3"];
+32 -> 33 [label="AST:3"];
+34 -> 35 [label="AST:3"];
+35 -> 36 [label="AST:3"];
+37 -> 38 [label="AST:3"];
+37 -> 46 [label="AST:3"];
+38 -> 39 [label="AST:3"];
+38 -> 44 [label="AST:3"];
+38 -> 46 [label="Control Dep:3"];
+38 -> 47 [label="Control Dep:3"];
+38 -> 52 [label="Control Dep:3"];
+38 -> 49 [label="Control Dep:2"];
+38 -> 57 [label="Control Dep:3"];
+38 -> 60 [label="Control Dep:3"];
+38 -> 62 [label="Control Dep:3"];
+38 -> 40 [label="Control Dep:3"];
+38 -> 65 [label="Control Dep:3"];
+38 -> 76 [label="Control Dep:1"];
+38 -> 78 [label="Control Dep:1"];
+39 -> 40 [label="Define Use:3"];
+40 -> 41 [label="AST:3"];
+41 -> 42 [label="AST:3"];
+42 -> 43 [label="AST:3"];
+44 -> 45 [label="AST:3"];
+46 -> 47 [label="AST:3"];
+47 -> 48 [label="AST:3"];
+47 -> 49 [label="AST:2"];
+47 -> 52 [label="AST:3"];
+47 -> 57 [label="AST:3"];
+47 -> 60 [label="AST:3"];
+47 -> 78 [label="AST:1"];
+49 -> 50 [label="AST:2"];
+50 -> 51 [label="AST:3"];
+52 -> 53 [label="AST:3"];
+52 -> 55 [label="AST:3"];
+53 -> 54 [label="AST:3"];
+55 -> 56 [label="AST:2"];
+57 -> 58 [label="AST:3"];
+58 -> 59 [label="AST:3"];
+60 -> 40 [label="AST:3"];
+60 -> 61 [label="AST:3"];
+60 -> 62 [label="AST:3"];
+62 -> 63 [label="AST:3"];
+63 -> 64 [label="AST:3"];
+65 -> 66 [label="AST:3"];
+65 -> 67 [label="Action:3"];
+67 -> 47 [label="Action:3"];
+70 -> 71 [label="AST:2"];
+70 -> 73 [label="AST:2"];
+71 -> 72 [label="AST:3"];
+73 -> 74 [label="AST:3"];
+76 -> 79 [label="AST:1"];
+77 -> 50 [label="AST:1"];
+77 -> 71 [label="AST:1"];
+78 -> 76 [label="AST:1"];
+78 -> 73 [label="AST:1"];
+79 -> 75 [label="AST:1"];
+}

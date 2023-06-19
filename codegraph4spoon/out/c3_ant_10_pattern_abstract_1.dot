@@ -1,0 +1,153 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Insert
+value:INSERT" shape=ellipse]
+1 [label="locationInParent:TYPE_MEMBER
+nodeType:CtMethodImpl" shape=ellipse]
+2 [label="locationInParent:METHOD_DEC_NAME
+nodeType:CtVirtualElement" shape=ellipse]
+3 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:void" shape=ellipse]
+4 [label="locationInParent:BODY
+nodeType:CtBlockImpl" shape=ellipse]
+5 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl" shape=ellipse]
+6 [label="locationInParent:ACTION
+nodeType:Insert
+value:INSERT" shape=ellipse]
+7 [label="locationInParent:STATEMENT
+nodeType:CtTryImpl" shape=ellipse]
+8 [label="locationInParent:ACTION
+nodeType:Move
+value:MOVE" shape=ellipse]
+9 [label="locationInParent:BODY
+nodeType:CtBlockImpl" shape=ellipse]
+10 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl" shape=ellipse]
+11 [label="locationInParent:METHOD_NAME
+nodeType:CtVirtualElement
+value:executeTarget" shape=ellipse]
+12 [label="locationInParent:TARGET
+nodeType:CtFieldReadImpl
+value:buildRule" shape=ellipse]
+13 [label="locationInParent:VARIABLE
+nodeType:CtFieldReferenceImpl
+value:buildRule" shape=ellipse]
+14 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:executeTarget(java.lang.String)" shape=ellipse]
+15 [label="locationInParent:DECLARING_TYPE
+nodeType:CtTypeReferenceImpl
+value:buildRule" shape=ellipse]
+16 [label="locationInParent:ARGUMENT_TYPE
+nodeType:CtTypeReferenceImpl
+value:String" shape=ellipse]
+17 [label="locationInParent:ARGUMENT
+nodeType:CtLiteralImpl" shape=ellipse]
+18 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:String" shape=ellipse]
+19 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl" shape=ellipse]
+20 [label="locationInParent:ACTION
+nodeType:Update
+value:UPDATE" shape=ellipse]
+21 [label="locationInParent:METHOD_NAME
+nodeType:CtVirtualElement
+value:fail" shape=ellipse]
+22 [label="locationInParent:TARGET
+nodeType:CtThisAccessImpl
+value:" shape=ellipse]
+23 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:PlaceHold" shape=ellipse]
+24 [label="locationInParent:TARGET
+nodeType:CtTypeAccessImpl
+value:PlaceHold" shape=ellipse]
+25 [label="locationInParent:ACCESSED_TYPE
+nodeType:CtTypeReferenceImpl
+value:PlaceHold" shape=ellipse]
+26 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:fail(java.lang.String)" shape=ellipse]
+27 [label="locationInParent:ARGUMENT_TYPE
+nodeType:CtTypeReferenceImpl
+value:String" shape=ellipse]
+28 [label="locationInParent:ARGUMENT
+nodeType:CtLiteralImpl" shape=ellipse]
+29 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:String" shape=ellipse]
+30 [label="locationInParent:CATCH
+nodeType:CtCatchImpl
+value: catch (BuildException ex) \{\
+\}" shape=ellipse]
+31 [label="locationInParent:PARAMETER
+nodeType:CtCatchVariableImpl
+value:BuildException ex" shape=ellipse]
+32 [label="locationInParent:CATCH_VAR_NAME
+nodeType:CtVirtualElement
+value:ex" shape=ellipse]
+33 [label="locationInParent:MULTI_TYPE
+nodeType:CtTypeReferenceImpl
+value:BuildException" shape=ellipse]
+34 [label="locationInParent:PACKAGE_REF
+nodeType:CtPackageReferenceImpl
+value:" shape=ellipse]
+35 [label="locationInParent:BODY
+nodeType:CtBlockImpl
+value:\{\
+\}" shape=ellipse]
+36 [label="locationInParent:MODIFIER
+nodeType:CtVirtualElement
+value:VE: Modifiers_Method" shape=ellipse]
+37 [label="locationInParent:MODIFIER
+nodeType:CtVirtualElement
+value:public" shape=ellipse]
+38 [label="locationInParent:ANNOTATION
+nodeType:CtAnnotationImpl
+value:@Test" shape=ellipse]
+0 -> 38 [label="Action:2"];
+1 -> 0 [label="Action:2"];
+1 -> 2 [label="AST:2"];
+1 -> 3 [label="AST:2"];
+1 -> 4 [label="AST:2"];
+1 -> 36 [label="AST:2"];
+1 -> 37 [label="AST:2"];
+4 -> 5 [label="AST:2"];
+4 -> 6 [label="Action:2"];
+5 -> 20 [label="Action:2"];
+5 -> 8 [label="Action:2"];
+6 -> 7 [label="Action:2"];
+7 -> 9 [label="AST:2"];
+7 -> 30 [label="AST:2"];
+8 -> 7 [label="Action:2"];
+9 -> 10 [label="AST:2"];
+9 -> 19 [label="AST:2"];
+10 -> 11 [label="AST:2"];
+10 -> 12 [label="AST:2"];
+10 -> 14 [label="AST:2"];
+10 -> 17 [label="AST:2"];
+12 -> 13 [label="AST:2"];
+14 -> 15 [label="AST:2"];
+14 -> 16 [label="AST:2"];
+17 -> 18 [label="AST:2"];
+19 -> 21 [label="AST:2"];
+19 -> 22 [label="AST:2"];
+19 -> 26 [label="AST:2"];
+19 -> 28 [label="AST:2"];
+20 -> 19 [label="Action:2"];
+22 -> 23 [label="AST:2"];
+22 -> 24 [label="AST:2"];
+24 -> 25 [label="AST:2"];
+26 -> 27 [label="AST:2"];
+28 -> 29 [label="AST:2"];
+30 -> 31 [label="AST:2"];
+30 -> 35 [label="AST:2"];
+31 -> 32 [label="AST:2"];
+31 -> 33 [label="AST:2"];
+31 -> 35 [label="Control Dep:2"];
+33 -> 34 [label="AST:2"];
+}

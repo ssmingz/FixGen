@@ -1,9 +1,9 @@
 package builder;
 
+import codegraph.ASTEdge;
+import codegraph.DefUseEdge;
+import codegraph.Edge;
 import codegraph.Scope;
-import com.github.gumtreediff.matchers.Mapping;
-import com.github.gumtreediff.tree.DefaultTree;
-import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import gumtree.spoon.diff.operations.*;
@@ -13,17 +13,19 @@ import model.actions.Delete;
 import model.actions.Insert;
 import model.actions.Move;
 import model.actions.Update;
+import org.apache.commons.lang3.StringUtils;
+import org.javatuples.Triplet;
+import org.javatuples.Tuple;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtElement;
-import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.declaration.CtMethodImpl;
 import utils.ASTUtil;
+import utils.CtChildScanner;
 import utils.ObjectUtil;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class GraphBuilder {
     /**
@@ -94,13 +96,52 @@ public class GraphBuilder {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl dst = (CtElementImpl) op.getDstNode();
                 Update upd = new Update(src, dst, op);
-                dst.setActionRelated(true);
                 cg1.updateCGId(upd);
-                cg1.updateCGId(dst);
+                // recursively add dst.children (including dst)
+                CtChildScanner scanner = new CtChildScanner();
+                scanner.scan(dst);
+                for (CtWrapper child : scanner.childList) {
+                    child.getCtElementImpl().setActionRelated(true);
+                    cg1.updateCGId(child.getCtElementImpl());
+                    // add new ASTEdge for CtVirtual
+                    if (!child.getCtElementImpl().hasInEdge((CtElementImpl) child.getCtElementImpl().getParent(), Edge.EdgeType.AST)) {
+                        new ASTEdge((CtElementImpl) child.getCtElementImpl().getParent(), child.getCtElementImpl());
+//                        System.out.printf("[debug]add AST Edge with its parent:%s\n", child.getCtElementImpl().prettyprint());
+                    }
+                }
+                for (CtWrapper child : scanner.childList) {
+                    List<Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType>> newEdges = new ArrayList<>();
+                    for (Edge ie : child.getCtElementImpl()._inEdges) {
+                        CtElementImpl ieSourceInDstGraph = ie.getSource();
+                        if (ie.type == Edge.EdgeType.DEF_USE || ie.type == Edge.EdgeType.CONTROL_DEP) {
+                            CtElementImpl ieSourceInSrcGraph = ObjectUtil.findMappedNodeInSrcGraph(ieSourceInDstGraph, cg1);
+                            if (ieSourceInSrcGraph != null) {
+                                newEdges.add(Triplet.with(ieSourceInSrcGraph, child.getCtElementImpl(), ie.type));
+                            } else {
+//                                System.out.printf("[warn]Unable to find %s Edge.source in srcGraph for:%s\n", ie.getLabel(), child.getCtElementImpl().prettyprint());
+                            }
+                        }
+                    }
+                    for (Edge oe : child.getCtElementImpl()._outEdges) {
+                        CtElementImpl oeTargetInDstGraph = oe.getTarget();
+                        if (oe.type == Edge.EdgeType.CONTROL_DEP || oe.type == Edge.EdgeType.DATA_DEP || oe.type == Edge.EdgeType.DEF_USE) {
+                            CtElementImpl oeTargetInSrcGraph = ObjectUtil.findMappedNodeInSrcGraph(oeTargetInDstGraph, cg1);
+                            if (oeTargetInSrcGraph != null) {
+                                newEdges.add(Triplet.with(child.getCtElementImpl(), oeTargetInSrcGraph, oe.type));
+                            } else {
+//                                System.out.printf("[warn]Unable to find %s Edge.target in srcGraph for:%s\n", oe.getLabel(), child.getCtElementImpl().prettyprint());
+                            }
+                        }
+                    }
+                    for (Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType> tri : newEdges) {
+                        ObjectUtil.newEdge(tri.getValue0(), tri.getValue1(), tri.getValue2());
+                    }
+                }
+
             } else if (op instanceof InsertOperation) {
                 CtElementImpl insTar = (CtElementImpl) op.getSrcNode();
                 int pos = ((InsertOperation) op).getPosition();
-                // use the mapping if finds: parent-in-dstgraph <--> parent-in-srcgraph
+                // step1. use the mapping if finds: parent-in-dstgraph <--> parent-in-srcgraph
                 CtElementImpl insSrc = (CtElementImpl) ((InsertOperation) op).getParent();
                 boolean flag = false;
                 for (Map.Entry<CtWrapper, CtWrapper> entry : cg1.getMapping().entrySet()) {
@@ -110,12 +151,52 @@ public class GraphBuilder {
                         break;
                     }
                 }
-                if (!flag)
-                    System.out.println("[warn]Not find the CtElement.parent mapping in src/dst graph: " + insSrc.prettyprint());
+                if (!flag) {
+//                    System.out.println("[warn]Not find the CtElement.parent mapping in src/dst graph: " + insSrc.prettyprint());
+                }
+                // step2. create insert node and connect the three nodes
                 Insert ins = new Insert(insTar, insSrc, pos, op);
-                insTar.setActionRelated(true);
                 cg1.updateCGId(ins);
-                cg1.updateCGId(insTar);
+                // step3. recursively add insTar.children (including insTar)
+                CtChildScanner scanner = new CtChildScanner();
+                scanner.scan(insTar);
+                for (CtWrapper child : scanner.childList) {
+                    child.getCtElementImpl().setActionRelated(true);
+                    cg1.updateCGId(child.getCtElementImpl());
+                    // add new ASTEdge for CtVirtual
+                    if (!child.getCtElementImpl().hasInEdge((CtElementImpl) child.getCtElementImpl().getParent(), Edge.EdgeType.AST)) {
+                        new ASTEdge((CtElementImpl) child.getCtElementImpl().getParent(), child.getCtElementImpl());
+//                        System.out.printf("[debug]add AST Edge with its parent:%s\n", child.getCtElementImpl().prettyprint());
+                    }
+                }
+                for (CtWrapper child : scanner.childList) {
+                    List<Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType>> newEdges = new ArrayList<>();
+                    for (Edge ie : child.getCtElementImpl()._inEdges) {
+                        CtElementImpl ieSourceInDstGraph = ie.getSource();
+                        if (ie.type == Edge.EdgeType.DEF_USE || ie.type == Edge.EdgeType.CONTROL_DEP) {
+                            CtElementImpl ieSourceInSrcGraph = ObjectUtil.findMappedNodeInSrcGraph(ieSourceInDstGraph, cg1);
+                            if (ieSourceInSrcGraph != null) {
+                                newEdges.add(Triplet.with(ieSourceInSrcGraph, child.getCtElementImpl(), ie.type));
+                            } else {
+//                                System.out.printf("[warn]Unable to find %s Edge.source in srcGraph for:%s\n", ie.getLabel(), child.getCtElementImpl().prettyprint());
+                            }
+                        }
+                    }
+                    for (Edge oe : child.getCtElementImpl()._outEdges) {
+                        CtElementImpl oeTargetInDstGraph = oe.getTarget();
+                        if (oe.type == Edge.EdgeType.CONTROL_DEP || oe.type == Edge.EdgeType.DATA_DEP || oe.type == Edge.EdgeType.DEF_USE) {
+                            CtElementImpl oeTargetInSrcGraph = ObjectUtil.findMappedNodeInSrcGraph(oeTargetInDstGraph, cg1);
+                            if (oeTargetInSrcGraph != null) {
+                                newEdges.add(Triplet.with(child.getCtElementImpl(), oeTargetInSrcGraph, oe.type));
+                            } else {
+//                                System.out.printf("[warn]Unable to find %s Edge.target in srcGraph for:%s\n", oe.getLabel(), child.getCtElementImpl().prettyprint());
+                            }
+                        }
+                    }
+                    for (Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType> tri : newEdges) {
+                        ObjectUtil.newEdge(tri.getValue0(), tri.getValue1(), tri.getValue2());
+                    }
+                }
             } else if (op instanceof MoveOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
                 CtElementImpl parent = (CtElementImpl) ((MoveOperation) op).getParent();

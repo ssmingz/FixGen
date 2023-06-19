@@ -1,0 +1,22 @@
+digraph "Pattern" {
+0 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:DELETE
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:DELETE" shape=ellipse]
+1 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:PlaceHold
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:PlaceHold" shape=ellipse]
+2 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:" shape=ellipse]
+3 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:getAnnotation(method)
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:getAnnotation(method)" shape=ellipse]
+4 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:PlaceHold
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:PlaceHold" shape=ellipse]
+5 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:annotation
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:timeout" shape=ellipse]
+6 [label="possiblyExpectingExceptions#?,FrameworkMethod,Object,Statement#4:PlaceHold
+withPotentialTimeout#?,FrameworkMethod,Object,Statement#3:PlaceHold" shape=ellipse]
+1 -> 0 [label="Action:2"];
+1 -> 6 [label="AST:2"];
+2 -> 1 [label="AST:2"];
+2 -> 4 [label="AST:2"];
+2 -> 5 [label="Data Dep:2"];
+3 -> 2 [label="AST:2"];
+}

@@ -5,6 +5,7 @@ import model.CodeGraph;
 import model.CtWrapper;
 import builder.GraphConfiguration;
 import model.actions.ActionEdge;
+import model.actions.ActionNode;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
@@ -44,7 +45,7 @@ public class DotGraph {
                 pos = ctElement.getPosition().getLine();
             }
             idByNode.put(node, id);
-            String label = "" + pos + ":" + ctElement.getClass().getSimpleName() + "@" + ctElement.prettyprint();
+            String label = "" + pos + ":" + ctElement.getClass().getSimpleName() + "@" + ObjectUtil.printNode(ctElement);
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
             id++;
         }

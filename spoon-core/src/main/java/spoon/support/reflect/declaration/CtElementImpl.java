@@ -747,7 +747,7 @@ public abstract class CtElementImpl implements CtElement {
 
 	public boolean hasOutEdge(CtElementImpl tar, Edge.EdgeType type) {
 		for (Edge oe : _outEdges) {
-			if (oe.getSource()==tar && oe.type==type)
+			if (oe.getTarget()==tar && oe.type==type)
 				return true;
 		}
 		return false;

@@ -1,0 +1,94 @@
+D:\expdata\c3\dataset\junit\0: 2 patterns
+D:\expdata\c3\dataset\junit\1: 6 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\101\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\101\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\101\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\101\1\before.java
+D:\expdata\c3\dataset\junit\101: 1 patterns
+D:\expdata\c3\dataset\junit\102: 2 patterns
+D:\expdata\c3\dataset\junit\103: 1 patterns
+D:\expdata\c3\dataset\junit\104: 1 patterns
+D:\expdata\c3\dataset\junit\13: 1 patterns
+D:\expdata\c3\dataset\junit\16: 1 patterns
+D:\expdata\c3\dataset\junit\17: 1 patterns
+D:\expdata\c3\dataset\junit\19: 1 patterns
+D:\expdata\c3\dataset\junit\2: 1 patterns
+D:\expdata\c3\dataset\junit\21: 1 patterns
+D:\expdata\c3\dataset\junit\22: 1 patterns
+D:\expdata\c3\dataset\junit\23: 1 patterns
+D:\expdata\c3\dataset\junit\24: 3 patterns
+D:\expdata\c3\dataset\junit\25: 1 patterns
+D:\expdata\c3\dataset\junit\26: 1 patterns
+D:\expdata\c3\dataset\junit\29: 1 patterns
+D:\expdata\c3\dataset\junit\3: 1 patterns
+D:\expdata\c3\dataset\junit\32: 1 patterns
+D:\expdata\c3\dataset\junit\34: 1 patterns
+D:\expdata\c3\dataset\junit\35: 1 patterns
+D:\expdata\c3\dataset\junit\37: 1 patterns
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+D:\expdata\c3\dataset\junit\4: 1 patterns
+D:\expdata\c3\dataset\junit\40: 1 patterns
+D:\expdata\c3\dataset\junit\42: 1 patterns
+D:\expdata\c3\dataset\junit\44: 1 patterns
+D:\expdata\c3\dataset\junit\45: 1 patterns
+D:\expdata\c3\dataset\junit\46: 1 patterns
+D:\expdata\c3\dataset\junit\49: 1 patterns
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+D:\expdata\c3\dataset\junit\5: 1 patterns
+D:\expdata\c3\dataset\junit\50: 1 patterns
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+D:\expdata\c3\dataset\junit\55: 1 patterns
+D:\expdata\c3\dataset\junit\58: 3 patterns
+D:\expdata\c3\dataset\junit\59: 1 patterns
+D:\expdata\c3\dataset\junit\6: 1 patterns
+D:\expdata\c3\dataset\junit\64: 1 patterns
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+D:\expdata\c3\dataset\junit\65: 1 patterns
+D:\expdata\c3\dataset\junit\66: 1 patterns
+D:\expdata\c3\dataset\junit\67: 1 patterns
+D:\expdata\c3\dataset\junit\68: 1 patterns
+D:\expdata\c3\dataset\junit\69: 1 patterns
+D:\expdata\c3\dataset\junit\71: 1 patterns
+D:\expdata\c3\dataset\junit\72: 1 patterns
+D:\expdata\c3\dataset\junit\75: 1 patterns
+D:\expdata\c3\dataset\junit\77: 1 patterns
+D:\expdata\c3\dataset\junit\78: 1 patterns
+D:\expdata\c3\dataset\junit\79: 1 patterns
+D:\expdata\c3\dataset\junit\81: 1 patterns
+D:\expdata\c3\dataset\junit\82: 1 patterns
+D:\expdata\c3\dataset\junit\85: 2 patterns
+D:\expdata\c3\dataset\junit\86: 1 patterns
+D:\expdata\c3\dataset\junit\87: 1 patterns
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\88\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\88\1\before.java
+D:\expdata\c3\dataset\junit\88: 1 patterns
+D:\expdata\c3\dataset\junit\9: 1 patterns
+D:\expdata\c3\dataset\junit\90: 1 patterns
+D:\expdata\c3\dataset\junit\91: 1 patterns
+D:\expdata\c3\dataset\junit\94: 1 patterns
+D:\expdata\c3\dataset\junit\98: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\junit\99\1\before.java
+D:\expdata\c3\dataset\junit\99: 2 patterns
+Total codegraph instances : 169
+Total group instances : 60

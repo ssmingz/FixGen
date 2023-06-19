@@ -1,17 +1,22 @@
 package utils;
 
-import codegraph.Edge;
+import codegraph.*;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import gumtree.spoon.diff.operations.InsertOperation;
 import model.CodeGraph;
 import model.CtWrapper;
+import model.actions.ActionEdge;
+import model.actions.Insert;
 import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.apache.commons.lang3.StringUtils;
+import spoon.reflect.declaration.CtElement;
+import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 import spoon.support.reflect.declaration.CtElementImpl;
 import org.javatuples.Pair;
 
@@ -260,6 +265,9 @@ public class ObjectUtil {
                     CGObject cgObj = cgObjects.get(cg);
                     // vertex id
                     int vID = cg.getElementId(entry2.getKey());
+                    if (vID == -1) {
+                        // TODO: cannot figure out why can be -1......oh shit
+                    }
                     cgObj.vertexes.add(vID);
                     cgObj.vertexMap.put(vID, entry2.getKey());
                     // vertex label
@@ -407,5 +415,52 @@ public class ObjectUtil {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String printNode(CtElementImpl cte) {
+        // only insert.target needs to consider "isMoved"
+        for (Edge ie : cte._inEdges) {
+            if (ie.getSource() instanceof Insert) {
+                return ((Insert) ie.getSource()).getAction().partialElementPrint(cte);
+            }
+        }
+        return cte.prettyprint();
+    }
+
+    public static void newEdge(CtElementImpl src, CtElementImpl tar, Edge.EdgeType type) {
+        if (src.hasOutEdge(tar, type))
+            return;
+        switch (type) {
+            case AST:
+                new ASTEdge(src, tar);
+            case ACTION:
+                new ActionEdge(src, tar);
+            case DEF_USE:
+                new DefUseEdge(src, tar);
+            case DATA_DEP:
+                new DataEdge(src, tar);
+            case CONTROL_DEP:
+                new ControlEdge(src, tar);
+            default:
+        }
+    }
+
+    public static CtElementImpl findMappedNodeInSrcGraph(CtElementImpl ieSourceInDstGraph, CodeGraph cg1) {
+        CtElementImpl ieSourceInSrcGraph = null;
+        for (Map.Entry<CtWrapper, CtWrapper> entry : cg1.getMapping().entrySet()) {
+            if (entry.getValue().getCtElementImpl() == ieSourceInDstGraph) {
+                ieSourceInSrcGraph = entry.getKey().getCtElementImpl();
+                break;
+            }
+        }
+        if (ieSourceInSrcGraph == null) {
+            for (CtWrapper c : cg1.getNodes()) {
+                if (c.getCtElementImpl() == ieSourceInDstGraph) {
+                    ieSourceInSrcGraph = c.getCtElementImpl();
+                    break;
+                }
+            }
+        }
+        return ieSourceInSrcGraph;
     }
 }

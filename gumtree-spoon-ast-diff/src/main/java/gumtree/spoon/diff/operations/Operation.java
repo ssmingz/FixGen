@@ -95,7 +95,7 @@ public abstract class Operation<T extends Action> {
 		return stringBuilder.toString();
 	}
 
-	private String partialElementPrint(CtElement element) {
+	public String partialElementPrint(CtElement element) {
 		DefaultJavaPrettyPrinter print = new DefaultJavaPrettyPrinter(element.getFactory().getEnvironment()) {
 			@Override
 			public DefaultJavaPrettyPrinter scan(CtElement e) {

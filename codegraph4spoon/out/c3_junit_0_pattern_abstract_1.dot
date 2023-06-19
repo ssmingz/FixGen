@@ -1,0 +1,19 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Insert
+value:INSERT" shape=ellipse]
+1 [label="locationInParent:ARGUMENT
+nodeType:CtFieldReadImpl
+value:Test.class" shape=ellipse]
+2 [label="nodeType:CtVariableReadImpl" shape=ellipse]
+3 [label="locationInParent:VARIABLE
+nodeType:CtLocalVariableReferenceImpl" shape=ellipse]
+4 [label="locationInParent:ARGUMENT
+nodeType:CtVariableReadImpl" shape=ellipse]
+5 [label="locationInParent:VARIABLE
+nodeType:CtLocalVariableReferenceImpl" shape=ellipse]
+0 -> 1 [label="Action:2"];
+2 -> 3 [label="AST:2"];
+4 -> 5 [label="AST:2"];
+}

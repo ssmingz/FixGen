@@ -12,6 +12,9 @@ import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.apache.commons.collections4.SetUtils;
+import org.checkerframework.checker.units.qual.C;
+import org.eclipse.jdt.core.dom.AST;
+import org.javatuples.Triplet;
 import spoon.support.reflect.code.CtBlockImpl;
 import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
@@ -153,7 +156,7 @@ public class PatternExtractor {
         for (ActionNode action : codeGraph.getActions()) {
             if (traversed_actions.contains(action)) continue;
             Set<CtWrapper> traversed = new LinkedHashSet<>();
-            List<CtWrapper> nodes = extendLinks(new CtWrapper(action), 0, traversed, codeGraph.getMapping(), false); // start from action
+            List<CtWrapper> nodes = extendLinks(new CtWrapper(action), 0, traversed, codeGraph.getMapping(), false, codeGraph); // start from action
             traversed_actions.addAll(nodes.stream().filter(n -> n.getCtElementImpl() instanceof ActionNode).map(CtWrapper::getCtElementImpl).collect(Collectors.toSet()));
             if (!nodes.isEmpty())
                 result.add(nodes);
@@ -161,7 +164,7 @@ public class PatternExtractor {
         return result;
     }
 
-    private static List<CtWrapper> extendLinks(CtWrapper node, int extendLevel, Set<CtWrapper> traversed, Map<CtWrapper, CtWrapper> mapping, boolean isPatch) {
+    private static List<CtWrapper> extendLinks(CtWrapper node, int extendLevel, Set<CtWrapper> traversed, Map<CtWrapper, CtWrapper> mapping, boolean isPatch, CodeGraph cg) {
         List<CtWrapper> nodes = new ArrayList<>();
         for (Edge ie : node.getCtElementImpl()._inEdges) {
             if (ie instanceof ActionEdge && !(node.getCtElementImpl() instanceof ActionNode)) {
@@ -171,7 +174,20 @@ public class PatternExtractor {
         }
         if (ObjectUtil.findCtKeyInSet(traversed, node)!=null || (!isPatch && extendLevel > MAX_EXTEND_LEVEL))
             return nodes;
-        nodes.add(node);
+
+        // Find the mapping one in srcGraph if is the dstGraph node. If cannot find, add only if it is in srcGraph.allNodes, or else skip.
+        if (node.getCtElementImpl()._inEdges.stream().allMatch(e->e instanceof ASTEdge)
+                && cg.getNodes().stream().anyMatch(e->e.getCtElementImpl()==node.getCtElementImpl())) {
+            nodes.add(node);
+        } else {
+            CtElementImpl nodeInSrc = ObjectUtil.findMappedNodeInSrcGraph(node.getCtElementImpl(), cg);
+            if (nodeInSrc != null) {
+                nodes.add(new CtWrapper(nodeInSrc));
+            } else {
+//          System.out.printf("[warn]Unable to find the extended node in srcGraph for:%s\n", node.getCtElementImpl().prettyprint());
+            }
+        }
+
         // update traversed
         traversed.add(node);
         CtWrapper mapped = mapping.get(ObjectUtil.findCtKeyInSet(mapping.keySet(), node));
@@ -180,15 +196,15 @@ public class PatternExtractor {
         }
         for (Edge ie : node.getCtElementImpl()._inEdges) {
             // continue extending source
-            if (isPatch && ie instanceof ASTEdge)  // do not extend AST relationship in dst tree
+            if (isPatch)  // do not extend AST relationship in dst tree (already add it in action graph building)
                 continue;
-            nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel+1, traversed, mapping, isPatch).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel+1, traversed, mapping, isPatch, cg).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
         }
         for (Edge oe : node.getCtElementImpl()._outEdges) {
             // continue extending target
-            if (isPatch && oe instanceof ASTEdge)  // do not extend AST relationship in dst tree
-                continue;
-            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, mapping, isPatch).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+//            if (isPatch)  // do not extend any relationship in dst tree (already add it in action graph building)
+//                continue;
+            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, mapping, isPatch, cg).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
 
         }
         return nodes;

@@ -3,11 +3,10 @@ package model.pattern;
 import model.CodeGraph;
 import model.CtWrapper;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
+import utils.ObjectUtil;
 
-import java.util.LinkedHashMap;
-import java.util.LinkedHashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class PatternNode {
     Set<Attribute> _comparedAttrs = new LinkedHashSet<>();
@@ -78,7 +77,7 @@ public class PatternNode {
             if (ctElement.getPosition().isValidPosition()) {
                 srcLine = ctElement.getPosition().getLine();
             }
-            String ins = entry.getValue().getGraphName() + "#" + srcLine + ":" + ctElement.prettyprint();
+            String ins = entry.getValue().getGraphName() + "#" + srcLine + ":" + ObjectUtil.printNode(ctElement);
             label.append(ins);
         }
         return label.toString();
@@ -128,5 +127,17 @@ public class PatternNode {
                 return true;
         }
         return false;
+    }
+
+    public List<PatternNode> getAllASTChildren(List<PatternNode> traversed) {
+        List<PatternNode> result = new ArrayList<>();
+        for (PatternEdge oe : _outEdges) {
+            if (oe.type == PatternEdge.EdgeType.AST && !traversed.contains(oe.getTarget())) {
+                result.add(oe.getTarget());
+                traversed.add(oe.getTarget());
+                result.addAll(oe.getTarget().getAllASTChildren(traversed));
+            }
+        }
+        return result;
     }
 }

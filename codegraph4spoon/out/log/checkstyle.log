@@ -1,0 +1,312 @@
+D:\expdata\c3\dataset\checkstyle\1: 1 patterns
+D:\expdata\c3\dataset\checkstyle\10: 1 patterns
+D:\expdata\c3\dataset\checkstyle\100: 1 patterns
+D:\expdata\c3\dataset\checkstyle\106: 1 patterns
+D:\expdata\c3\dataset\checkstyle\107: 1 patterns
+D:\expdata\c3\dataset\checkstyle\11: 1 patterns
+D:\expdata\c3\dataset\checkstyle\113: 2 patterns
+D:\expdata\c3\dataset\checkstyle\117: 3 patterns
+D:\expdata\c3\dataset\checkstyle\121: 5 patterns
+D:\expdata\c3\dataset\checkstyle\123: 1 patterns
+D:\expdata\c3\dataset\checkstyle\125: 1 patterns
+D:\expdata\c3\dataset\checkstyle\126: 1 patterns
+D:\expdata\c3\dataset\checkstyle\129: 1 patterns
+D:\expdata\c3\dataset\checkstyle\13: 2 patterns
+D:\expdata\c3\dataset\checkstyle\138: 1 patterns
+D:\expdata\c3\dataset\checkstyle\14: 1 patterns
+D:\expdata\c3\dataset\checkstyle\141: 4 patterns
+D:\expdata\c3\dataset\checkstyle\142: 1 patterns
+D:\expdata\c3\dataset\checkstyle\143: 1 patterns
+D:\expdata\c3\dataset\checkstyle\144: 1 patterns
+D:\expdata\c3\dataset\checkstyle\147: 1 patterns
+D:\expdata\c3\dataset\checkstyle\15: 1 patterns
+D:\expdata\c3\dataset\checkstyle\152: 1 patterns
+D:\expdata\c3\dataset\checkstyle\153: 1 patterns
+D:\expdata\c3\dataset\checkstyle\161: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\162\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\162\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\162\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\162\1\before.java
+D:\expdata\c3\dataset\checkstyle\162: 1 patterns
+D:\expdata\c3\dataset\checkstyle\163: 1 patterns
+D:\expdata\c3\dataset\checkstyle\167: 5 patterns
+D:\expdata\c3\dataset\checkstyle\168: 1 patterns
+D:\expdata\c3\dataset\checkstyle\170: 1 patterns
+D:\expdata\c3\dataset\checkstyle\18: 1 patterns
+D:\expdata\c3\dataset\checkstyle\180: 1 patterns
+D:\expdata\c3\dataset\checkstyle\183: 1 patterns
+D:\expdata\c3\dataset\checkstyle\184: 3 patterns
+D:\expdata\c3\dataset\checkstyle\187: 1 patterns
+D:\expdata\c3\dataset\checkstyle\188: 1 patterns
+D:\expdata\c3\dataset\checkstyle\190: 2 patterns
+D:\expdata\c3\dataset\checkstyle\191: 2 patterns
+D:\expdata\c3\dataset\checkstyle\196: 1 patterns
+D:\expdata\c3\dataset\checkstyle\199: 1 patterns
+D:\expdata\c3\dataset\checkstyle\2: 1 patterns
+D:\expdata\c3\dataset\checkstyle\200: 3 patterns
+D:\expdata\c3\dataset\checkstyle\201: 1 patterns
+D:\expdata\c3\dataset\checkstyle\205: 1 patterns
+D:\expdata\c3\dataset\checkstyle\208: 2 patterns
+D:\expdata\c3\dataset\checkstyle\221: 2 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\4\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\4\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\5\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\5\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\6\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\6\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\7\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\7\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\8\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\222\8\before.java
+D:\expdata\c3\dataset\checkstyle\222: 1 patterns
+D:\expdata\c3\dataset\checkstyle\224: 1 patterns
+D:\expdata\c3\dataset\checkstyle\23: 4 patterns
+D:\expdata\c3\dataset\checkstyle\230: 1 patterns
+D:\expdata\c3\dataset\checkstyle\231: 2 patterns
+D:\expdata\c3\dataset\checkstyle\236: 4 patterns
+D:\expdata\c3\dataset\checkstyle\237: 2 patterns
+D:\expdata\c3\dataset\checkstyle\241: 3 patterns
+D:\expdata\c3\dataset\checkstyle\247: 1 patterns
+D:\expdata\c3\dataset\checkstyle\256: 1 patterns
+D:\expdata\c3\dataset\checkstyle\26: 1 patterns
+D:\expdata\c3\dataset\checkstyle\260: 1 patterns
+D:\expdata\c3\dataset\checkstyle\261: 4 patterns
+D:\expdata\c3\dataset\checkstyle\265: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\266\1\before.java
+D:\expdata\c3\dataset\checkstyle\266: 4 patterns
+D:\expdata\c3\dataset\checkstyle\267: 1 patterns
+D:\expdata\c3\dataset\checkstyle\269: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\27\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\27\0\before.java
+D:\expdata\c3\dataset\checkstyle\27: 2 patterns
+D:\expdata\c3\dataset\checkstyle\272: 1 patterns
+D:\expdata\c3\dataset\checkstyle\273: 1 patterns
+D:\expdata\c3\dataset\checkstyle\275: 1 patterns
+D:\expdata\c3\dataset\checkstyle\278: 1 patterns
+D:\expdata\c3\dataset\checkstyle\28: 2 patterns
+D:\expdata\c3\dataset\checkstyle\283: 1 patterns
+D:\expdata\c3\dataset\checkstyle\284: 1 patterns
+D:\expdata\c3\dataset\checkstyle\285: 1 patterns
+D:\expdata\c3\dataset\checkstyle\289: 2 patterns
+D:\expdata\c3\dataset\checkstyle\292: 1 patterns
+D:\expdata\c3\dataset\checkstyle\293: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\297\2\before.java
+D:\expdata\c3\dataset\checkstyle\297: 4 patterns
+D:\expdata\c3\dataset\checkstyle\298: 3 patterns
+D:\expdata\c3\dataset\checkstyle\299: 2 patterns
+D:\expdata\c3\dataset\checkstyle\3: 1 patterns
+D:\expdata\c3\dataset\checkstyle\303: 1 patterns
+D:\expdata\c3\dataset\checkstyle\307: 3 patterns
+D:\expdata\c3\dataset\checkstyle\310: 1 patterns
+D:\expdata\c3\dataset\checkstyle\313: 1 patterns
+D:\expdata\c3\dataset\checkstyle\320: 1 patterns
+D:\expdata\c3\dataset\checkstyle\324: 3 patterns
+D:\expdata\c3\dataset\checkstyle\326: 1 patterns
+D:\expdata\c3\dataset\checkstyle\327: 1 patterns
+D:\expdata\c3\dataset\checkstyle\33: 1 patterns
+D:\expdata\c3\dataset\checkstyle\331: 2 patterns
+D:\expdata\c3\dataset\checkstyle\333: 1 patterns
+D:\expdata\c3\dataset\checkstyle\336: 1 patterns
+D:\expdata\c3\dataset\checkstyle\337: 1 patterns
+D:\expdata\c3\dataset\checkstyle\338: 1 patterns
+D:\expdata\c3\dataset\checkstyle\34: 1 patterns
+D:\expdata\c3\dataset\checkstyle\354: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\355\1\before.java
+D:\expdata\c3\dataset\checkstyle\355: 3 patterns
+D:\expdata\c3\dataset\checkstyle\357: 4 patterns
+D:\expdata\c3\dataset\checkstyle\360: 4 patterns
+D:\expdata\c3\dataset\checkstyle\361: 3 patterns
+D:\expdata\c3\dataset\checkstyle\362: 1 patterns
+D:\expdata\c3\dataset\checkstyle\363: 1 patterns
+D:\expdata\c3\dataset\checkstyle\364: 1 patterns
+D:\expdata\c3\dataset\checkstyle\366: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\368\1\before.java
+D:\expdata\c3\dataset\checkstyle\368: 2 patterns
+D:\expdata\c3\dataset\checkstyle\379: 1 patterns
+D:\expdata\c3\dataset\checkstyle\382: 1 patterns
+D:\expdata\c3\dataset\checkstyle\383: 1 patterns
+D:\expdata\c3\dataset\checkstyle\384: 1 patterns
+D:\expdata\c3\dataset\checkstyle\390: 1 patterns
+D:\expdata\c3\dataset\checkstyle\391: 1 patterns
+D:\expdata\c3\dataset\checkstyle\392: 1 patterns
+D:\expdata\c3\dataset\checkstyle\394: 1 patterns
+D:\expdata\c3\dataset\checkstyle\395: 1 patterns
+D:\expdata\c3\dataset\checkstyle\4: 1 patterns
+D:\expdata\c3\dataset\checkstyle\43: 2 patterns
+D:\expdata\c3\dataset\checkstyle\44: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\45\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\45\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\45\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\45\1\before.java
+D:\expdata\c3\dataset\checkstyle\45: 1 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\0\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\5\3\before.java
+D:\expdata\c3\dataset\checkstyle\5: 2 patterns
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\1\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\2\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\3\before.java
+[WARN]More than one edge between two nodes : D:\expdata\c3\dataset\checkstyle\50\3\before.java
+D:\expdata\c3\dataset\checkstyle\50: 3 patterns
+D:\expdata\c3\dataset\checkstyle\51: 2 patterns
+D:\expdata\c3\dataset\checkstyle\57: 1 patterns
+D:\expdata\c3\dataset\checkstyle\6: 1 patterns
+D:\expdata\c3\dataset\checkstyle\61: 1 patterns
+D:\expdata\c3\dataset\checkstyle\62: 2 patterns
+D:\expdata\c3\dataset\checkstyle\66: 2 patterns
+D:\expdata\c3\dataset\checkstyle\70: 3 patterns
+D:\expdata\c3\dataset\checkstyle\73: 1 patterns
+D:\expdata\c3\dataset\checkstyle\76: 1 patterns
+D:\expdata\c3\dataset\checkstyle\77: 3 patterns
+D:\expdata\c3\dataset\checkstyle\78: 1 patterns
+D:\expdata\c3\dataset\checkstyle\79: 1 patterns
+D:\expdata\c3\dataset\checkstyle\9: 2 patterns
+D:\expdata\c3\dataset\checkstyle\94: 1 patterns
+D:\expdata\c3\dataset\checkstyle\95: 1 patterns
+D:\expdata\c3\dataset\checkstyle\96: 1 patterns
+D:\expdata\c3\dataset\checkstyle\99: 2 patterns
+Total codegraph instances : 411
+Total group instances : 136

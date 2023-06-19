@@ -8,6 +8,7 @@ import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class PatternAbstractor {
     double THRESHOLD = 0;
@@ -76,34 +77,64 @@ public class PatternAbstractor {
                 if (a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"))
                     a.setAbstract(true);
             });
-            if (!pn.getComparedAttributes().stream().anyMatch(a -> !a.isAbstract())) {
-                // remove the node and its attached edges
+            if (pn.getComparedAttributes().stream().allMatch(Attribute::isAbstract)) {
+                Iterator<PatternEdge> eItr = pn.inEdges().iterator();
+                while (eItr.hasNext()) {
+                    PatternEdge pe = eItr.next();
+                    pe.getSource().outEdges().remove(pe);
+                    eItr.remove();
+                }
+                eItr = pn.outEdges().iterator();
+                while (eItr.hasNext()) {
+                    PatternEdge pe = eItr.next();
+                    pe.getTarget().inEdges().remove(pe);
+                    eItr.remove();
+                }
                 pn.inEdges().removeIf(Objects::nonNull);
                 pn.outEdges().removeIf(Objects::nonNull);
                 it.remove();
             }
         }
-        // recheck for unreached nodes
+        // recheck for unreached nodes with action
+        Set<PatternNode> reached = new HashSet<>();
+        Set<PatternNode> actions = pat.getNodeSet().stream().filter(pn -> pn.getAttribute("locationInParent")!=null
+                        && "ACTION".equals(pn.getAttribute("locationInParent").getTag())).collect(Collectors.toSet());
+        for (PatternNode start : actions) {
+            extendOneEdge(start, reached);
+        }
         it = pat.getNodeSet().iterator();
         while (it.hasNext()) {
             PatternNode pn = it.next();
-            boolean canReach = false;
-            for (PatternEdge e : pn.inEdges()) {
-                if (pat.getNodes().contains(e.getSource())) {
-                    canReach = true;
-                    break;
+            if (!reached.contains(pn)) {
+                Iterator<PatternEdge> eItr = pn.inEdges().iterator();
+                while (eItr.hasNext()) {
+                    PatternEdge pe = eItr.next();
+                    pe.getSource().outEdges().remove(pe);
+                    eItr.remove();
                 }
-            }
-            if (canReach) continue;
-            for (PatternEdge e : pn.outEdges()) {
-                if (pat.getNodes().contains(e.getTarget())) {
-                    canReach = true;
-                    break;
+                eItr = pn.outEdges().iterator();
+                while (eItr.hasNext()) {
+                    PatternEdge pe = eItr.next();
+                    pe.getTarget().inEdges().remove(pe);
+                    eItr.remove();
                 }
+                pn.inEdges().removeIf(Objects::nonNull);
+                pn.outEdges().removeIf(Objects::nonNull);
+                it.remove();
             }
-            if (!canReach) it.remove();
         }
-        // edge
+    }
+
+    private void extendOneEdge(PatternNode start, Set<PatternNode> reached) {
+        if (reached.contains(start))
+            return;
+        reached.add(start);
+        for (PatternEdge ie : start.inEdges()) {
+            extendOneEdge(ie.getSource(), reached);
+        }
+        for (PatternEdge oe : start.outEdges()) {
+            extendOneEdge(oe.getTarget(), reached);
+        }
     }
 
 }
