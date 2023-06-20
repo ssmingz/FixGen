@@ -1,0 +1,86 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Delete
+value:DELETE" shape=ellipse]
+1 [label="locationInParent:STATEMENT
+nodeType:CtAssertImpl" shape=ellipse]
+2 [label="locationInParent:BODY
+nodeType:CtBlockImpl" shape=ellipse]
+3 [label="locationInParent:TYPE_MEMBER
+nodeType:CtMethodImpl" shape=ellipse]
+4 [label="locationInParent:STATEMENT
+nodeType:CtLocalVariableImpl" shape=ellipse]
+5 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl" shape=ellipse]
+6 [label="locationInParent:ACTION
+nodeType:Insert
+value:INSERT" shape=ellipse]
+7 [label="locationInParent:STATEMENT
+nodeType:CtInvocationImpl" shape=ellipse]
+8 [label="locationInParent:METHOD_NAME
+nodeType:CtVirtualElement
+value:assertTrue" shape=ellipse]
+9 [label="locationInParent:TARGET
+nodeType:CtThisAccessImpl
+value:" shape=ellipse]
+10 [label="locationInParent:TYPE
+nodeType:CtTypeReferenceImpl
+value:PlaceHold" shape=ellipse]
+11 [label="locationInParent:PACKAGE_REF
+nodeType:CtPackageReferenceImpl
+value:" shape=ellipse]
+12 [label="locationInParent:TARGET
+nodeType:CtTypeAccessImpl
+value:PlaceHold" shape=ellipse]
+13 [label="locationInParent:ACCESSED_TYPE
+nodeType:CtTypeReferenceImpl
+value:PlaceHold" shape=ellipse]
+14 [label="locationInParent:PACKAGE_REF
+nodeType:CtPackageReferenceImpl
+value:" shape=ellipse]
+15 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:assertTrue(<unknown>)" shape=ellipse]
+16 [label="locationInParent:ARGUMENT_TYPE
+nodeType:CtTypeReferenceImpl
+value:null" shape=ellipse]
+17 [label="locationInParent:ARGUMENT
+nodeType:CtInvocationImpl" shape=ellipse]
+18 [label="locationInParent:METHOD_NAME
+nodeType:CtVirtualElement
+value:wasSuccessful" shape=ellipse]
+19 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+value:wasSuccessful()" shape=ellipse]
+20 [label="locationInParent:DECLARING_TYPE
+nodeType:CtTypeReferenceImpl" shape=ellipse]
+21 [label="locationInParent:PACKAGE_REF
+nodeType:CtPackageReferenceImpl
+value:" shape=ellipse]
+22 [label="locationInParent:ACTION
+nodeType:Move
+value:MOVE" shape=ellipse]
+1 -> 0 [label="Action:2"];
+2 -> 1 [label="AST:2"];
+2 -> 4 [label="AST:2"];
+2 -> 5 [label="AST:2"];
+2 -> 6 [label="Action:2"];
+3 -> 2 [label="AST:2"];
+6 -> 7 [label="Action:2"];
+7 -> 8 [label="AST:2"];
+7 -> 9 [label="AST:2"];
+7 -> 15 [label="AST:2"];
+7 -> 17 [label="AST:2"];
+9 -> 10 [label="AST:2"];
+9 -> 12 [label="AST:2"];
+10 -> 11 [label="AST:2"];
+12 -> 13 [label="AST:2"];
+13 -> 14 [label="AST:2"];
+15 -> 16 [label="AST:2"];
+17 -> 18 [label="AST:2"];
+17 -> 19 [label="AST:2"];
+19 -> 20 [label="AST:2"];
+20 -> 21 [label="AST:2"];
+22 -> 7 [label="Action:2"];
+}

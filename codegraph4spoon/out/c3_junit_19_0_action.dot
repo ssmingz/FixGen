@@ -1,0 +1,166 @@
+digraph "testInheritedTests#?" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@testInheritedTests" shape=ellipse]
+2 [label="3:CtTypeReferenceImpl@TestSuite" shape=ellipse]
+3 [label="3:CtPackageReferenceImpl@" shape=ellipse]
+4 [label="3:CtExecutableReferenceImpl@TestSuite(java.lang.Class)" shape=ellipse]
+5 [label="3:CtTypeReferenceImpl@TestSuite" shape=ellipse]
+6 [label="3:CtTypeReferenceImpl@TestSuite" shape=ellipse]
+7 [label="3:CtTypeReferenceImpl@Class<InheritedTestCase>" shape=ellipse]
+8 [label="3:CtFieldReferenceImpl@InheritedTestCase.class" shape=ellipse]
+9 [label="3:CtTypeReferenceImpl@InheritedTestCase" shape=ellipse]
+10 [label="3:CtTypeReferenceImpl@Class" shape=ellipse]
+11 [label="3:CtFieldReadImpl@InheritedTestCase.class" shape=ellipse]
+12 [label="3:CtTypeAccessImpl@InheritedTestCase" shape=ellipse]
+13 [label="3:CtConstructorCallImpl@new TestSuite(InheritedTestCase.class)" shape=ellipse]
+14 [label="3:CtVirtualElement@suite" shape=ellipse]
+15 [label="3:CtLocalVariableImpl@TestSuite suite = new TestSuite(InheritedTestCase.class)" shape=ellipse]
+16 [label="4:CtExecutableReferenceImpl@run()" shape=ellipse]
+17 [label="4:CtTypeReferenceImpl@TestSuite" shape=ellipse]
+18 [label="4:CtVirtualElement@run" shape=ellipse]
+19 [label="4:CtVariableReadImpl@suite" shape=ellipse]
+20 [label="4:CtLocalVariableReferenceImpl@suite" shape=ellipse]
+21 [label="4:CtFieldReferenceImpl@fResult" shape=ellipse]
+22 [label="4:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+23 [label="4:CtFieldReadImpl@fResult" shape=ellipse]
+24 [label="4:CtInvocationImpl@suite.run(fResult)" shape=ellipse]
+25 [label="5:CtExecutableReferenceImpl@wasSuccessful()" shape=ellipse]
+26 [label="5:CtTypeReferenceImpl@fResult" shape=ellipse]
+27 [label="5:CtTypeReferenceImpl@boolean" shape=ellipse]
+28 [label="5:CtVirtualElement@wasSuccessful" shape=ellipse]
+29 [label="5:CtFieldReferenceImpl@fResult" shape=ellipse]
+30 [label="5:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+31 [label="5:CtFieldReadImpl@fResult" shape=ellipse]
+32 [label="5:CtInvocationImpl@fResult.wasSuccessful()" shape=ellipse]
+33 [label="5:CtAssertImpl@assert fResult.wasSuccessful()" shape=ellipse]
+34 [label="6:CtExecutableReferenceImpl@assertEquals(int,<unknown>)" shape=ellipse]
+35 [label="6:CtTypeReferenceImpl@int" shape=ellipse]
+36 [label="6:CtTypeReferenceImpl@null" shape=ellipse]
+37 [label="6:CtVirtualElement@assertEquals" shape=ellipse]
+38 [label="6:CtTypeAccessImpl@PlaceHold" shape=ellipse]
+39 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+40 [label="6:CtThisAccessImpl@" shape=ellipse]
+41 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+42 [label="6:CtLiteralImpl@2" shape=ellipse]
+43 [label="6:CtTypeReferenceImpl@int" shape=ellipse]
+44 [label="6:CtExecutableReferenceImpl@runCount()" shape=ellipse]
+45 [label="6:CtTypeReferenceImpl@fResult" shape=ellipse]
+46 [label="6:CtVirtualElement@runCount" shape=ellipse]
+47 [label="6:CtFieldReferenceImpl@fResult" shape=ellipse]
+48 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+49 [label="6:CtFieldReadImpl@fResult" shape=ellipse]
+50 [label="6:CtInvocationImpl@fResult.runCount()" shape=ellipse]
+51 [label="6:CtInvocationImpl@assertEquals(2, fResult.runCount())" shape=ellipse]
+52 [label="2:CtBlockImpl@\{\
+    TestSuite suite = new TestSuite(InheritedTestCase.class);\
+    suite.run(fResult);\
+    assert fResult.wasSuccessful();\
+    assertEquals(2, fResult.runCount());\
+\}" shape=ellipse]
+53 [label="2:CtMethodImpl@public void testInheritedTests() \{\
+    TestSuite suite = new TestSuite(InheritedTestCase.class);\
+    suite.run(fResult);\
+    assert fResult.wasSuccessful();\
+    assertEquals(2, fResult.runCount());\
+\}" shape=ellipse]
+54 [label="5:Delete@DELETE" shape=ellipse]
+55 [label="5:Insert@INSERT" shape=ellipse]
+56 [label="5:CtPackageReferenceImpl@" shape=ellipse]
+57 [label="5:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+58 [label="5:CtPackageReferenceImpl@" shape=ellipse]
+59 [label="5:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+60 [label="5:CtTypeAccessImpl@PlaceHold" shape=ellipse]
+61 [label="5:CtThisAccessImpl@" shape=ellipse]
+62 [label="5:CtTypeReferenceImpl@null" shape=ellipse]
+63 [label="5:CtExecutableReferenceImpl@assertTrue(<unknown>)" shape=ellipse]
+64 [label="5:CtPackageReferenceImpl@" shape=ellipse]
+65 [label="5:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+66 [label="5:CtFieldReferenceImpl@fResult" shape=ellipse]
+67 [label="5:CtFieldReadImpl@fResult" shape=ellipse]
+68 [label="5:CtPackageReferenceImpl@" shape=ellipse]
+69 [label="5:CtTypeReferenceImpl@fResult" shape=ellipse]
+70 [label="5:CtExecutableReferenceImpl@wasSuccessful()" shape=ellipse]
+71 [label="5:CtInvocationImpl@fResult.wasSuccessful()" shape=ellipse]
+72 [label="5:CtVirtualElement@wasSuccessful" shape=ellipse]
+73 [label="5:CtInvocationImpl@assertTrue()" shape=ellipse]
+74 [label="5:CtVirtualElement@assertTrue" shape=ellipse]
+75 [label="5:Move@MOVE" shape=ellipse]
+2 -> 3 [label="AST"];
+4 -> 5 [label="AST"];
+4 -> 6 [label="AST"];
+4 -> 7 [label="AST"];
+8 -> 9 [label="AST"];
+8 -> 10 [label="AST"];
+11 -> 12 [label="AST"];
+11 -> 8 [label="AST"];
+11 -> 14 [label="Data Dep"];
+13 -> 4 [label="AST"];
+13 -> 11 [label="AST"];
+14 -> 19 [label="Define-Use"];
+15 -> 14 [label="AST"];
+15 -> 2 [label="AST"];
+15 -> 13 [label="AST"];
+16 -> 17 [label="AST"];
+19 -> 20 [label="AST"];
+21 -> 22 [label="AST"];
+23 -> 21 [label="AST"];
+24 -> 18 [label="AST"];
+24 -> 19 [label="AST"];
+24 -> 16 [label="AST"];
+24 -> 23 [label="AST"];
+25 -> 26 [label="AST"];
+25 -> 27 [label="AST"];
+29 -> 30 [label="AST"];
+31 -> 29 [label="AST"];
+32 -> 28 [label="AST"];
+32 -> 31 [label="AST"];
+32 -> 25 [label="AST"];
+32 -> 75 [label="Action"];
+33 -> 32 [label="AST"];
+33 -> 54 [label="Action"];
+34 -> 35 [label="AST"];
+34 -> 36 [label="AST"];
+38 -> 39 [label="AST"];
+40 -> 41 [label="AST"];
+40 -> 38 [label="AST"];
+42 -> 43 [label="AST"];
+44 -> 45 [label="AST"];
+47 -> 48 [label="AST"];
+49 -> 47 [label="AST"];
+50 -> 46 [label="AST"];
+50 -> 49 [label="AST"];
+50 -> 44 [label="AST"];
+51 -> 37 [label="AST"];
+51 -> 40 [label="AST"];
+51 -> 34 [label="AST"];
+51 -> 42 [label="AST"];
+51 -> 50 [label="AST"];
+52 -> 15 [label="AST"];
+52 -> 24 [label="AST"];
+52 -> 33 [label="AST"];
+52 -> 51 [label="AST"];
+52 -> 55 [label="Action"];
+53 -> 1 [label="AST"];
+53 -> 0 [label="AST"];
+53 -> 52 [label="AST"];
+55 -> 73 [label="Action"];
+57 -> 56 [label="AST"];
+59 -> 58 [label="AST"];
+60 -> 59 [label="AST"];
+61 -> 57 [label="AST"];
+61 -> 60 [label="AST"];
+63 -> 62 [label="AST"];
+65 -> 64 [label="AST"];
+66 -> 65 [label="AST"];
+67 -> 66 [label="AST"];
+69 -> 68 [label="AST"];
+70 -> 69 [label="AST"];
+71 -> 72 [label="AST"];
+71 -> 67 [label="AST"];
+71 -> 70 [label="AST"];
+73 -> 74 [label="AST"];
+73 -> 61 [label="AST"];
+73 -> 63 [label="AST"];
+73 -> 71 [label="AST"];
+75 -> 73 [label="Action"];
+}

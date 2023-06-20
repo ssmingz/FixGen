@@ -123,6 +123,7 @@ public class PatternAbstractor {
                 it.remove();
             }
         }
+        int i=1;
     }
 
     private void extendOneEdge(PatternNode start, Set<PatternNode> reached) {

@@ -336,7 +336,7 @@ public class CodeGraph {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
         // expression
-        buildNode(ctNode.getExpression(), control, scope);
+        buildNode(ctNode.getAssertExpression(), control, scope);
         // TODO: assert message
     }
 
@@ -465,7 +465,7 @@ public class CodeGraph {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
         // TODO: use getTarget() or getVariable()??
-        buildNode(ctNode.getTarget(), control, scope);
+        buildNode(ctNode.getVariable(), control, scope);
 
         scope.addUse(ctNode.getVariable().getSimpleName(), ctNode);
     }

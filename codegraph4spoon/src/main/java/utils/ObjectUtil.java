@@ -169,7 +169,7 @@ public class ObjectUtil {
                                 edgeMatrix2[i][j] = cgObj.edgeMap.get(e)?1:0;
                             }
                             if (edges.size() > 1)
-                                System.out.println("[WARN]More than one edge between two nodes : " + entry.getKey().getFileName());
+                                System.out.println("[warn]More than one edge between two nodes : " + entry.getKey().getFileName());
                         } else {
                             edgeMatrix[i][j] = "";
                         }
@@ -266,7 +266,7 @@ public class ObjectUtil {
                     // vertex id
                     int vID = cg.getElementId(entry2.getKey());
                     if (vID == -1) {
-                        // TODO: cannot figure out why can be -1......oh shit
+                        System.out.printf("[warn]Cannot find vertex id for an instance in a pattern node: %s@%s\n", entry2.getKey().getCtElementImpl().getPosition().toString(), entry2.getKey().getCtElementImpl());
                     }
                     cgObj.vertexes.add(vID);
                     cgObj.vertexMap.put(vID, entry2.getKey());
@@ -319,7 +319,7 @@ public class ObjectUtil {
                             edgeMatrix2[i][j] = cgObj.edgeMap.get(e)?1:0;
                         }
                         if (edges.size() > 1)
-                            System.out.println("[WARN]More than one edge between two nodes : " + entry.getKey().getFileName());
+                            System.out.println("[warn]More than one edge between two nodes : " + entry.getKey().getFileName());
                     } else {
                         edgeMatrix[i][j] = "";
                     }

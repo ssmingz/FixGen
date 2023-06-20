@@ -31,6 +31,16 @@ public class CtWrapper{
         return this.ctElementImpl == ((CtWrapper) o).ctElementImpl;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        if(ctElementImpl != null) {
+            hash += ctElementImpl.hashCode();
+        }
+        hash += isVirtual ? 1:0;
+        return hash;
+    }
+
     public String toLabelString() {
         return ctElementImpl.prettyprint();
     }

@@ -102,7 +102,7 @@ public class TestPatternAbstractor {
     @Test
     public void testPatternAbstractorOnC3_fordebug() {
         String pro = "junit";
-        int group = 0;
+        int group = 19;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
         int size = new File(base).listFiles(p -> p.isDirectory()).length;
