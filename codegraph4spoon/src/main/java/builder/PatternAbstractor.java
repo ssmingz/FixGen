@@ -32,18 +32,27 @@ public class PatternAbstractor {
         for (PatternNode pn : pat.getNodes()) {
             Attribute attr1 = new Attribute("locationInParent");
             Attribute attr2 = new Attribute("nodeType");
-            Attribute attr3 = new Attribute("value");
+            Attribute attr3 = new Attribute("nodeType2");  // a more general one, e.g. WhileStmt and IfStmt --> Stmt
+            Attribute attr4 = new Attribute("nodeType3");
+            Attribute attr5 = new Attribute("value");
+            Attribute attr6 = new Attribute("value2");  // replace name with type
             for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                 CtWrapper n = entry.getKey();
                 CodeGraph g = entry.getValue();
 
                 attr1.addValue(Attribute.computeLocationInParent(n), g);
                 attr2.addValue(Attribute.computeNodeType(n), g);
-                attr3.addValue(Attribute.computeValue(n), g);
+                attr3.addValue(Attribute.computeNodeType2(n), g);
+                attr4.addValue(Attribute.computeNodeType3(n), g);
+                attr5.addValue(Attribute.computeValue(n), g);
+                attr6.addValue(Attribute.computeValue2(n), g);
             }
             pn.setComparedAttribute(attr1);
             pn.setComparedAttribute(attr2);
             pn.setComparedAttribute(attr3);
+            pn.setComparedAttribute(attr4);
+            pn.setComparedAttribute(attr5);
+            pn.setComparedAttribute(attr6);
         }
         // edge attributes
     }

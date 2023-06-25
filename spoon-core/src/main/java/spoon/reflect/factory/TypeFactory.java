@@ -7,6 +7,7 @@
  */
 package spoon.reflect.factory;
 
+import codegraph.CtVirtualElement;
 import spoon.Launcher;
 import spoon.SpoonException;
 import spoon.reflect.code.CtNewClass;

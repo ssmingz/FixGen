@@ -7,6 +7,7 @@
  */
 package spoon.experimental;
 
+import codegraph.CtVirtualElement;
 import org.apache.commons.lang3.StringEscapeUtils;
 import spoon.reflect.code.CtBinaryOperator;
 import spoon.reflect.code.CtComment;

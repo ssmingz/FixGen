@@ -7,6 +7,7 @@
  */
 package spoon.reflect.visitor;
 
+import codegraph.CtVirtualElement;
 import spoon.reflect.code.CtAnnotationFieldAccess;
 import spoon.reflect.code.CtArrayRead;
 import spoon.reflect.code.CtArrayWrite;

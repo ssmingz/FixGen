@@ -4,10 +4,11 @@ import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
 
+import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class PatternEdge {
+public class PatternEdge implements Serializable {
     public enum EdgeType {AST, DATA_DEP, CONTROL_DEP, DEF_USE, ACTION, NULL};
     public PatternEdge.EdgeType type;
     private PatternNode source;

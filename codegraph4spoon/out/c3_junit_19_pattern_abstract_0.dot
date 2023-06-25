@@ -2,65 +2,124 @@ digraph "Pattern" {
 0 [label="##ActionPoint##
 locationInParent:ACTION
 nodeType:Delete
-value:DELETE" shape=ellipse]
+nodeType2:ActionNode
+nodeType3:CtElementImpl
+value:DELETE
+value2:" shape=ellipse]
 1 [label="locationInParent:STATEMENT
-nodeType:CtAssertImpl" shape=ellipse]
+nodeType:CtAssertImpl
+nodeType2:CtStatementImpl
+nodeType3:CtStatementImpl" shape=ellipse]
 2 [label="locationInParent:BODY
-nodeType:CtBlockImpl" shape=ellipse]
+nodeType:CtBlockImpl
+nodeType2:CtStatementImpl
+nodeType3:CtStatementImpl" shape=ellipse]
 3 [label="locationInParent:TYPE_MEMBER
-nodeType:CtMethodImpl" shape=ellipse]
+nodeType:CtMethodImpl
+nodeType2:CtExecutableImpl
+nodeType3:CtExecutableImpl" shape=ellipse]
 4 [label="locationInParent:STATEMENT
-nodeType:CtLocalVariableImpl" shape=ellipse]
+nodeType:CtLocalVariableImpl
+nodeType2:CtStatementImpl
+nodeType3:CtStatementImpl" shape=ellipse]
 5 [label="locationInParent:STATEMENT
-nodeType:CtInvocationImpl" shape=ellipse]
+nodeType:CtInvocationImpl
+nodeType2:CtTargetedExpressionImpl
+nodeType3:CtExpressionImpl" shape=ellipse]
 6 [label="locationInParent:ACTION
 nodeType:Insert
-value:INSERT" shape=ellipse]
+nodeType2:ActionNode
+nodeType3:CtElementImpl
+value:INSERT
+value2:" shape=ellipse]
 7 [label="locationInParent:STATEMENT
-nodeType:CtInvocationImpl" shape=ellipse]
+nodeType:CtInvocationImpl
+nodeType2:CtTargetedExpressionImpl
+nodeType3:CtExpressionImpl" shape=ellipse]
 8 [label="locationInParent:METHOD_NAME
 nodeType:CtVirtualElement
+nodeType2:CtElementImpl
+nodeType3:Object
 value:assertTrue" shape=ellipse]
 9 [label="locationInParent:TARGET
 nodeType:CtThisAccessImpl
-value:" shape=ellipse]
+nodeType2:CtTargetedExpressionImpl
+nodeType3:CtExpressionImpl
+value:
+value2:" shape=ellipse]
 10 [label="locationInParent:TYPE
 nodeType:CtTypeReferenceImpl
-value:PlaceHold" shape=ellipse]
+nodeType2:CtTypeReferenceImpl
+nodeType3:CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold" shape=ellipse]
 11 [label="locationInParent:PACKAGE_REF
 nodeType:CtPackageReferenceImpl
-value:" shape=ellipse]
+nodeType2:CtPackageReferenceImpl
+nodeType3:CtPackageReferenceImpl
+value:
+value2:" shape=ellipse]
 12 [label="locationInParent:TARGET
 nodeType:CtTypeAccessImpl
-value:PlaceHold" shape=ellipse]
+nodeType2:CtExpressionImpl
+nodeType3:CtExpressionImpl
+value:PlaceHold
+value2:PlaceHold" shape=ellipse]
 13 [label="locationInParent:ACCESSED_TYPE
 nodeType:CtTypeReferenceImpl
-value:PlaceHold" shape=ellipse]
+nodeType2:CtTypeReferenceImpl
+nodeType3:CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold" shape=ellipse]
 14 [label="locationInParent:PACKAGE_REF
 nodeType:CtPackageReferenceImpl
-value:" shape=ellipse]
+nodeType2:CtPackageReferenceImpl
+nodeType3:CtPackageReferenceImpl
+value:
+value2:" shape=ellipse]
 15 [label="locationInParent:EXECUTABLE_REF
 nodeType:CtExecutableReferenceImpl
-value:assertTrue(<unknown>)" shape=ellipse]
+nodeType2:CtExecutableReferenceImpl
+nodeType3:CtExecutableReferenceImpl
+value:assertTrue(<unknown>)
+value2:assertTrue(<unknown>)" shape=ellipse]
 16 [label="locationInParent:ARGUMENT_TYPE
 nodeType:CtTypeReferenceImpl
-value:null" shape=ellipse]
+nodeType2:CtTypeReferenceImpl
+nodeType3:CtTypeReferenceImpl
+value:null
+value2:null" shape=ellipse]
 17 [label="locationInParent:ARGUMENT
-nodeType:CtInvocationImpl" shape=ellipse]
+nodeType:CtInvocationImpl
+nodeType2:CtTargetedExpressionImpl
+nodeType3:CtExpressionImpl" shape=ellipse]
 18 [label="locationInParent:METHOD_NAME
 nodeType:CtVirtualElement
+nodeType2:CtElementImpl
+nodeType3:Object
 value:wasSuccessful" shape=ellipse]
 19 [label="locationInParent:EXECUTABLE_REF
 nodeType:CtExecutableReferenceImpl
-value:wasSuccessful()" shape=ellipse]
+nodeType2:CtExecutableReferenceImpl
+nodeType3:CtExecutableReferenceImpl
+value:wasSuccessful()
+value2:wasSuccessful()" shape=ellipse]
 20 [label="locationInParent:DECLARING_TYPE
-nodeType:CtTypeReferenceImpl" shape=ellipse]
+nodeType:CtTypeReferenceImpl
+nodeType2:CtTypeReferenceImpl
+nodeType3:CtTypeReferenceImpl" shape=ellipse]
 21 [label="locationInParent:PACKAGE_REF
 nodeType:CtPackageReferenceImpl
-value:" shape=ellipse]
+nodeType2:CtPackageReferenceImpl
+nodeType3:CtPackageReferenceImpl
+value:
+value2:" shape=ellipse]
 22 [label="locationInParent:ACTION
 nodeType:Move
-value:MOVE" shape=ellipse]
+nodeType2:ActionNode
+nodeType3:CtElementImpl
+value:MOVE
+value2:" shape=ellipse]
 1 -> 0 [label="Action:2"];
 2 -> 1 [label="AST:2"];
 2 -> 4 [label="AST:2"];

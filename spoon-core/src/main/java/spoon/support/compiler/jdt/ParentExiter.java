@@ -7,6 +7,7 @@
  */
 package spoon.support.compiler.jdt;
 
+import codegraph.CtVirtualElement;
 import org.eclipse.jdt.internal.compiler.ast.ASTNode;
 import org.eclipse.jdt.internal.compiler.ast.AbstractVariableDeclaration;
 import org.eclipse.jdt.internal.compiler.ast.AllocationExpression;

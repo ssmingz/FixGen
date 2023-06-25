@@ -12,6 +12,8 @@ import java.lang.annotation.Annotation;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Map;
+
+import codegraph.CtVirtualElement;
 import spoon.reflect.code.CtAnnotationFieldAccess;
 import spoon.reflect.code.CtArrayRead;
 import spoon.reflect.code.CtArrayWrite;
@@ -1077,8 +1079,6 @@ public abstract class CtScanner implements CtVisitor {
 		scan(CtRole.COMMENT, recordType.getComments());
 		exit(recordType);
 	}
-
-
 
 }
 

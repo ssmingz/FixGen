@@ -6,9 +6,10 @@ import model.CodeGraph;
 import model.CtWrapper;
 import org.javatuples.Pair;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class Pattern {
+public class Pattern implements Serializable {
     private Set<PatternNode> _patternNodes = new LinkedHashSet<>();
     private Set<PatternEdge> _patternEdges = new LinkedHashSet<>();
     private PatternNode _start;

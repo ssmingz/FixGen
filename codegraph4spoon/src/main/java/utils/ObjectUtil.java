@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
-import gumtree.spoon.diff.operations.InsertOperation;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.ActionEdge;
@@ -15,8 +14,6 @@ import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.apache.commons.lang3.StringUtils;
-import spoon.reflect.declaration.CtElement;
-import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 import spoon.support.reflect.declaration.CtElementImpl;
 import org.javatuples.Pair;
 
@@ -462,5 +459,42 @@ public class ObjectUtil {
             }
         }
         return ieSourceInSrcGraph;
+    }
+
+    public static void writeObjectToFile(Object obj, String filePath) {
+        File file = new File(filePath);
+        try {
+            FileOutputStream out = new FileOutputStream(file);
+            ObjectOutputStream objOut = new ObjectOutputStream(out);
+            objOut.writeObject(obj);
+            objOut.flush();
+            objOut.close();
+            System.out.println("[error]Write object success");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("[error]Write object failed");
+            e.printStackTrace();
+        }
+    }
+
+    public static Object readObjectFromFile(String filePath) {
+        Object temp = null;
+        File file = new File(filePath);
+        try {
+            FileInputStream in = new FileInputStream(filePath);
+            ObjectInputStream objIn = new ObjectInputStream(in);
+            temp = objIn.readObject();
+            objIn.close();
+            System.out.println("Read object success");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("Read object failed");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return temp;
     }
 }

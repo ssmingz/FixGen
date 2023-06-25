@@ -54,17 +54,17 @@ digraph "testExceptionSubclass#?" {
 52 [label="6:CtLocalVariableReferenceImpl@result" shape=ellipse]
 53 [label="6:CtInvocationImpl@result.wasSuccessful()" shape=ellipse]
 54 [label="6:CtAssertImpl@assert result.wasSuccessful()" shape=ellipse]
-55 [label="2:CtBlockImpl@\{\
-    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);\
-    TestResult result = test.run();\
-    assertEquals(1, result.runCount());\
-    assert result.wasSuccessful();\
+55 [label="2:CtBlockImpl@\{
+    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);
+    TestResult result = test.run();
+    assertEquals(1, result.runCount());
+    assert result.wasSuccessful();
 \}" shape=ellipse]
-56 [label="2:CtMethodImpl@public void testExceptionSubclass() \{\
-    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);\
-    TestResult result = test.run();\
-    assertEquals(1, result.runCount());\
-    assert result.wasSuccessful();\
+56 [label="2:CtMethodImpl@public void testExceptionSubclass() \{
+    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);
+    TestResult result = test.run();
+    assertEquals(1, result.runCount());
+    assert result.wasSuccessful();
 \}" shape=ellipse]
 57 [label="6:Delete@DELETE" shape=ellipse]
 58 [label="6:Insert@INSERT" shape=ellipse]

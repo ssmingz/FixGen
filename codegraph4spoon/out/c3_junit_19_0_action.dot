@@ -51,17 +51,17 @@ digraph "testInheritedTests#?" {
 49 [label="6:CtFieldReadImpl@fResult" shape=ellipse]
 50 [label="6:CtInvocationImpl@fResult.runCount()" shape=ellipse]
 51 [label="6:CtInvocationImpl@assertEquals(2, fResult.runCount())" shape=ellipse]
-52 [label="2:CtBlockImpl@\{\
-    TestSuite suite = new TestSuite(InheritedTestCase.class);\
-    suite.run(fResult);\
-    assert fResult.wasSuccessful();\
-    assertEquals(2, fResult.runCount());\
+52 [label="2:CtBlockImpl@\{
+    TestSuite suite = new TestSuite(InheritedTestCase.class);
+    suite.run(fResult);
+    assert fResult.wasSuccessful();
+    assertEquals(2, fResult.runCount());
 \}" shape=ellipse]
-53 [label="2:CtMethodImpl@public void testInheritedTests() \{\
-    TestSuite suite = new TestSuite(InheritedTestCase.class);\
-    suite.run(fResult);\
-    assert fResult.wasSuccessful();\
-    assertEquals(2, fResult.runCount());\
+53 [label="2:CtMethodImpl@public void testInheritedTests() \{
+    TestSuite suite = new TestSuite(InheritedTestCase.class);
+    suite.run(fResult);
+    assert fResult.wasSuccessful();
+    assertEquals(2, fResult.runCount());
 \}" shape=ellipse]
 54 [label="5:Delete@DELETE" shape=ellipse]
 55 [label="5:Insert@INSERT" shape=ellipse]

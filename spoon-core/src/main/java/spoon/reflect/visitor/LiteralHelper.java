@@ -16,7 +16,7 @@ import spoon.reflect.cu.SourcePosition;
 /**
  * Computes source code representation of the literal
  */
-abstract class LiteralHelper {
+public abstract class LiteralHelper {
 
 	private LiteralHelper() {
 	}

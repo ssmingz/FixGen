@@ -6,12 +6,13 @@ import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.reference.CtCatchVariableReferenceImpl;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static spoon.reflect.path.CtRole.BODY;
 import static spoon.reflect.path.CtRole.CASE;
 
-public class Scope {
+public class Scope implements Serializable {
     private Scope parent;
     private Map<String, List<CtElementImpl>> defVars = new LinkedHashMap<>();
     private Map<String, CtElementImpl> usedVars = new LinkedHashMap<>();

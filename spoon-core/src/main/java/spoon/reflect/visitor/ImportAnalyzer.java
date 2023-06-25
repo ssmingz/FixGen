@@ -7,6 +7,7 @@
  */
 package spoon.reflect.visitor;
 
+import codegraph.CtVirtualElement;
 import spoon.processing.AbstractProcessor;
 import spoon.processing.Processor;
 import spoon.reflect.code.CtConstructorCall;

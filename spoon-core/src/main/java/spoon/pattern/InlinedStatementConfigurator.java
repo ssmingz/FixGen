@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
+import codegraph.CtVirtualElement;
 import spoon.SpoonException;
 import spoon.pattern.internal.node.ForEachNode;
 import spoon.pattern.internal.node.ListOfNodes;

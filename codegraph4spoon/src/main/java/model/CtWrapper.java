@@ -3,7 +3,9 @@ package model;
 import codegraph.CtVirtualElement;
 import spoon.support.reflect.declaration.CtElementImpl;
 
-public class CtWrapper{
+import java.io.Serializable;
+
+public class CtWrapper implements Serializable {
     /*
     * represent the corresponding CtElement or CtVirtualElement (e.g. can be an attribute of a CtElement)
     */

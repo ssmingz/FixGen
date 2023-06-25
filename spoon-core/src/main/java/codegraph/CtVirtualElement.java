@@ -1,5 +1,6 @@
 package codegraph;
 
+import codegraph.visitor.TokenVisitor;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.visitor.CtVisitor;
 import spoon.support.reflect.declaration.CtElementImpl;

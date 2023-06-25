@@ -44,7 +44,7 @@ public class TestPatternAbstractor {
     @Test
     public void testPatternAbstractorOnC3() {
         String[] projects = {"junit", "cobertura", "checkstyle", "ant"};
-        String base = TestConfig.WIN_BASE;
+        String base = TestConfig.MAC_BASE;
         for (int i=0; i<projects.length; i++) {
             File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
@@ -104,7 +104,7 @@ public class TestPatternAbstractor {
         String pro = "junit";
         int group = 19;
         List<CodeGraph> ags = new ArrayList<>();
-        String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
+        String base = String.format("%s/dataset/%s/%d", TestConfig.MAC_BASE, pro, group);
         int size = new File(base).listFiles(p -> p.isDirectory()).length;
         for (int i=0; i<size; i++) {
             String srcPath = String.format("%s/%d/before.java", base, i);

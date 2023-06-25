@@ -9,9 +9,7 @@ import com.github.gumtreediff.matchers.MappingStore;
 import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.builder.SpoonGumTreeBuilder;
 import model.actions.ActionNode;
-import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.code.UnaryOperatorKind;
-import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.declaration.CtElement;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
@@ -20,11 +18,10 @@ import spoon.support.reflect.reference.*;
 import utils.ObjectUtil;
 import utils.ReflectUtil;
 
-import java.lang.reflect.Field;
+import java.io.Serializable;
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class CodeGraph {
+public class CodeGraph implements Serializable {
     private String _name;
     private String _fileName;
     private CtMethodImpl _ctMethod;

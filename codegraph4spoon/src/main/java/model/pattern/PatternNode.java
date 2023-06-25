@@ -3,12 +3,12 @@ package model.pattern;
 import model.CodeGraph;
 import model.CtWrapper;
 import spoon.support.reflect.declaration.CtElementImpl;
-import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
 import utils.ObjectUtil;
 
+import java.io.Serializable;
 import java.util.*;
 
-public class PatternNode {
+public class PatternNode implements Serializable {
     Set<Attribute> _comparedAttrs = new LinkedHashSet<>();
 
     private Map<CtWrapper, CodeGraph> _nodeGraphInstances = new LinkedHashMap<>();

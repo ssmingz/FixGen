@@ -2,7 +2,9 @@ package codegraph;
 
 import spoon.support.reflect.declaration.CtElementImpl;
 
-public abstract class Edge {
+import java.io.Serializable;
+
+public abstract class Edge implements Serializable {
     public enum EdgeType {AST, CONTROL_DEP, DATA_DEP, DEF_USE, ACTION};
     public EdgeType type;
     protected CtElementImpl source;

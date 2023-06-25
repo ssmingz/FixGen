@@ -3,29 +3,29 @@ digraph "Pattern" {
 testExceptionSubclass#?#6:DELETE" shape=ellipse]
 1 [label="testInheritedTests#?#5:assert fResult.wasSuccessful()
 testExceptionSubclass#?#6:assert result.wasSuccessful()" shape=ellipse]
-2 [label="testInheritedTests#?#2:\{\
-    TestSuite suite = new TestSuite(InheritedTestCase.class);\
-    suite.run(fResult);\
-    assert fResult.wasSuccessful();\
-    assertEquals(2, fResult.runCount());\
+2 [label="testInheritedTests#?#2:\{
+    TestSuite suite = new TestSuite(InheritedTestCase.class);
+    suite.run(fResult);
+    assert fResult.wasSuccessful();
+    assertEquals(2, fResult.runCount());
 \}
-testExceptionSubclass#?#2:\{\
-    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);\
-    TestResult result = test.run();\
-    assertEquals(1, result.runCount());\
-    assert result.wasSuccessful();\
+testExceptionSubclass#?#2:\{
+    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);
+    TestResult result = test.run();
+    assertEquals(1, result.runCount());
+    assert result.wasSuccessful();
 \}" shape=ellipse]
-3 [label="testInheritedTests#?#2:public void testInheritedTests() \{\
-    TestSuite suite = new TestSuite(InheritedTestCase.class);\
-    suite.run(fResult);\
-    assert fResult.wasSuccessful();\
-    assertEquals(2, fResult.runCount());\
+3 [label="testInheritedTests#?#2:public void testInheritedTests() \{
+    TestSuite suite = new TestSuite(InheritedTestCase.class);
+    suite.run(fResult);
+    assert fResult.wasSuccessful();
+    assertEquals(2, fResult.runCount());
 \}
-testExceptionSubclass#?#2:public void testExceptionSubclass() \{\
-    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);\
-    TestResult result = test.run();\
-    assertEquals(1, result.runCount());\
-    assert result.wasSuccessful();\
+testExceptionSubclass#?#2:public void testExceptionSubclass() \{
+    ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class);
+    TestResult result = test.run();
+    assertEquals(1, result.runCount());
+    assert result.wasSuccessful();
 \}" shape=ellipse]
 4 [label="testInheritedTests#?#3:TestSuite suite = new TestSuite(InheritedTestCase.class)
 testExceptionSubclass#?#3:ExceptionTestCase test = new ThrowExceptionTestCase(\"test\", IndexOutOfBoundsException.class)" shape=ellipse]
