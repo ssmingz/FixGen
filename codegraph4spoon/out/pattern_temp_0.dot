@@ -1,0 +1,18 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:Update
+nodeType2:ActionNode
+nodeType3:CtElementImpl
+value:UPDATE
+value2:" shape=ellipse]
+1 [label="nodeType:CtConstructorCallImpl
+nodeType2:CtTargetedExpressionImpl
+nodeType3:CtExpressionImpl" shape=ellipse]
+2 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+nodeType2:CtExecutableReferenceImpl
+nodeType3:CtExecutableReferenceImpl" shape=ellipse]
+1 -> 0 [label="Action:3"];
+1 -> 2 [label="AST:3"];
+}

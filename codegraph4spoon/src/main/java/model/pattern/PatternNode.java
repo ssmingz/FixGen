@@ -140,4 +140,8 @@ public class PatternNode implements Serializable {
         }
         return result;
     }
+
+    public boolean isAction() {
+        return getAttribute("locationInParent")!=null && getAttribute("locationInParent").getTag().equals("ACTION");
+    }
 }

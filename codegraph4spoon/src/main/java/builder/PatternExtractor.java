@@ -40,8 +40,7 @@ public class PatternExtractor {
         // init patterns
         for (List<CtWrapper> l : nodeLists) {
             PatternNode start = new PatternNode(l.get(0), ags.get(0));
-            Pattern pat = new Pattern(start);
-            pat.addNode(start, l.get(0));
+            Pattern pat = new Pattern(start, l.get(0));
             start.setPattern(pat);
             patternList.add(pat);
             for (int i=1; i<l.size(); i++) {
@@ -224,8 +223,6 @@ public class PatternExtractor {
         if (simScoreMap.containsKey(node)) {
             Iterator<CtWrapper> itr = simScoreMap.get(node).keySet().iterator();
             CtWrapper bestSim = null;
-            if(node.toLabelString().equals("fResult"))
-                System.out.println("debug");
             while (itr.hasNext()) {
                 CtWrapper aNode = itr.next();
                 if (isMatch(node, aNode, mapping)) {

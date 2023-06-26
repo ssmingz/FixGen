@@ -4,6 +4,7 @@ import builder.PatternExtractor;
 import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
+import model.actions.ActionNode;
 import org.javatuples.Pair;
 
 import java.io.Serializable;
@@ -15,13 +16,14 @@ public class Pattern implements Serializable {
     private PatternNode _start;
     private Map<CtWrapper, PatternNode> _patternNodeByNode = new LinkedHashMap<>();
     private Set<String> _attributes = new LinkedHashSet<>();
+    private Set<PatternNode> _actions = new HashSet<>();  // srcNode:actionNode
 
     private HashMap<Integer, Object> _idPattern = new LinkedHashMap<>();
     private int _idCounter = -1;
 
-    public Pattern(PatternNode aNode) {
-        _start = aNode;
-        _patternNodes.add(aNode);
+    public Pattern(PatternNode pNode, CtWrapper node) {
+        _start = pNode;
+        addNode(pNode, node);
     }
 
     public HashMap<Integer, Object> getIdPattern() { return _idPattern; }
@@ -30,10 +32,16 @@ public class Pattern implements Serializable {
 
     public Set<PatternEdge> getEdgeSet() { return _patternEdges; }
 
+    public Set<PatternNode> getActionSet() { return _actions; }
+
     public void addNode(PatternNode pNode, CtWrapper node) {
         _patternNodes.add(pNode);
         _idPattern.put(++_idCounter, pNode);
         _patternNodeByNode.put(node, pNode);
+        // record actions
+        if (node.getCtElementImpl() instanceof ActionNode) {
+            _actions.add(pNode);
+        }
     }
 
     public void addEdge(PatternNode src, PatternNode target, PatternEdge.EdgeType type, Edge e, CodeGraph cg) {
@@ -95,17 +103,17 @@ public class Pattern implements Serializable {
                 }
             }
             if(pn.isActionRelated()) {
-                // delete edges
-                Iterator<PatternEdge> eItr = pn.inEdges().iterator();
-                while(eItr.hasNext()) {
-                    eItr.next();
-                    eItr.remove();
-                }
-                eItr = pn.outEdges().iterator();
-                while(eItr.hasNext()) {
-                    eItr.next();
-                    eItr.remove();
-                }
+//                // delete edges
+//                Iterator<PatternEdge> eItr = pn.inEdges().iterator();
+//                while(eItr.hasNext()) {
+//                    eItr.next();
+//                    eItr.remove();
+//                }
+//                eItr = pn.outEdges().iterator();
+//                while(eItr.hasNext()) {
+//                    eItr.next();
+//                    eItr.remove();
+//                }
                 // delete node
                 nItr.remove();
             }
