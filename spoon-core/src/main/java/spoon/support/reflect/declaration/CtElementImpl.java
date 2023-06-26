@@ -107,7 +107,7 @@ public abstract class CtElementImpl implements CtElement {
 	}
 
 	public static <T> List<T> unmodifiableList(List<T> list) {
-		return list.isEmpty() ? Collections.<T>emptyList() : Collections.unmodifiableList(list);
+		return list==null || list.isEmpty() ? Collections.<T>emptyList() : Collections.unmodifiableList(list);
 	}
 
 	/** this field `factory` must be transient in order to allow proper serialization
@@ -126,7 +126,7 @@ public abstract class CtElementImpl implements CtElement {
 	@MetamodelPropertyField(role = CtRole.POSITION)
 	SourcePosition position = SourcePosition.NOPOSITION;
 
-	Map<String, Object> metadata;
+	transient Map<String, Object> metadata;
 
 	public CtElementImpl() {
 	}
@@ -146,7 +146,7 @@ public abstract class CtElementImpl implements CtElement {
 		}
 		boolean ret = EqualsVisitor.equals(this, (CtElement) o);
 		// neat online testing of core Java contract
-		if (ret && !factory.getEnvironment().checksAreSkipped() && this.hashCode() != o.hashCode()) {
+		if (ret && (factory!=null && !factory.getEnvironment().checksAreSkipped()) && this.hashCode() != o.hashCode()) {
 			throw new IllegalStateException("violation of equal/hashcode contract between \n" + this + "\nand\n" + o + "\n");
 		}
 		return ret;

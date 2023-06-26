@@ -9,7 +9,6 @@ import utils.DotGraph;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
@@ -36,7 +35,7 @@ public class TestPatternAbstractor {
             PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
             pat = abs.abstractPattern(pat);
             DotGraph dot = new DotGraph(pat, 0, true);
-            File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract_%d.dot", testPro, testId, combinedGraphs.indexOf(pat)));
+            File dir = new File(String.format("%s/out/c3_%s_%d_pattern_abstract_%d.dot", System.getProperty("user.dir"), testPro, testId, combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
         }
     }

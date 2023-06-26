@@ -82,7 +82,7 @@ public class GraphBuilder {
         AstComparator diff = new AstComparator();
         Diff editScript = diff.compare(cg1.getEntryNode(), cg2.getEntryNode());
         // attach CtElement mapping
-        cg1.setMappingStore(editScript.getMappingsComp());
+        cg1.setMapping(editScript.getMappingsComp());
         // add actions to src graph
         // TODO: add relationships in dst graph
         // TODO: add dst children to allNodes

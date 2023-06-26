@@ -11,6 +11,8 @@ import spoon.reflect.declaration.CtPackage;
 import spoon.reflect.declaration.CtType;
 import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 
+import java.io.Serializable;
+
 public abstract class Operation<T extends Action> {
 	private final CtElement node;
 	private final T action;

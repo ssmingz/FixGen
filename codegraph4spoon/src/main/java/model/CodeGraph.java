@@ -28,7 +28,6 @@ public class CodeGraph implements Serializable {
     public ArrayList<CtWrapper> _allNodes = new ArrayList<>();
     private ArrayList<CtElementImpl> _traversed = new ArrayList<>();
     private CtElementImpl _entryNode;
-    private MappingStore _mappingStore;
     private Map<CtWrapper, CtWrapper> _mapping = new LinkedHashMap<>();
     private Map<Object, Integer> idCG = new LinkedHashMap<>();
 
@@ -760,8 +759,7 @@ public class CodeGraph implements Serializable {
         return al;
     }
 
-    public void setMappingStore(MappingStore mapping) {
-        _mappingStore = mapping;
+    public void setMapping(MappingStore mapping) {
         Iterator itr = mapping.iterator();
         while (itr.hasNext()) {
             Mapping pair = (Mapping) itr.next();
@@ -787,10 +785,6 @@ public class CodeGraph implements Serializable {
                 }
             }
         }
-    }
-
-    public MappingStore getMappingStore() {
-        return _mappingStore;
     }
 
     public Map<CtWrapper, CtWrapper> getMapping() {

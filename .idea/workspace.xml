@@ -5,62 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add TokenVisitor and ReplaceNameVisitor">
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_6_25,_10_13_[Changes]/shelved.patch" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_6_25__10_13__Changes_.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSerialization.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_6_14_10_50_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_6_14_10_50__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_10_0_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_10_1_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_10_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_10_pattern_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_10_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_10_pattern_abstract_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_0_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_1_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_2_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_pattern_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_pattern_2.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_pattern_abstract_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_14_pattern_abstract_2.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_0_0_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_0_1_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_0_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_0_pattern_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_0_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_0_pattern_abstract_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_0_action.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_0_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_1_action.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_1_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_pattern_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_pattern_0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_pattern_abstract_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_pattern_abstract_0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CtWrapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CtWrapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/ActionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/ActionNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Pattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternEdge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/CtVirtualElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/CtVirtualElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Edge.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Edge.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/experimental/SpoonifierVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/experimental/SpoonifierVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/pattern/InlinedStatementConfigurator.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/pattern/InlinedStatementConfigurator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/factory/TypeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/factory/TypeFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/CtScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/CtScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/CtVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/CtVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/ImportAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/ImportAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/LiteralHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/LiteralHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/compiler/jdt/ParentExiter.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/compiler/jdt/ParentExiter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/visitor/clone/CloneBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/visitor/clone/CloneBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSerialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSerialization.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/Operation.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/diff/operations/Operation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/Operation$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/Operation$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/Operation.class" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/diff/operations/Operation.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,7 +111,7 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3_fordebug">
+  <component name="RunManager" selected="JUnit.TestSerialization.testSaveAndLoadPattern">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -189,21 +146,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairsToSingleFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
-      <option name="METHOD_NAME" value="testWriteFeatCsvFromMultiplePairsToSingleFile" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
       <option name="METHOD_NAME" value="testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestSerialization.testSaveAndLoadPattern" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestSerialization" />
+      <option name="METHOD_NAME" value="testSaveAndLoadPattern" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -222,18 +179,18 @@
     <list>
       <item itemvalue="Application.Miner" />
       <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3_fordebug" />
-      <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairsToSingleFile" />
       <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
       <item itemvalue="JUnit.TestSerialization.testSaveCodeGraph" />
       <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractFromMultiplePairs" />
+      <item itemvalue="JUnit.TestSerialization.testSaveAndLoadPattern" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestSerialization.testSaveAndLoadPattern" />
+        <item itemvalue="JUnit.TestSerialization.testSaveCodeGraph" />
         <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractorOnC3_fordebug" />
         <item itemvalue="JUnit.TestPatternAbstractor.testPatternAbstractFromMultiplePairs" />
-        <item itemvalue="JUnit.TestSerialization.testSaveCodeGraph" />
         <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
-        <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatCsvFromMultiplePairsToSingleFile" />
       </list>
     </recent_temporary>
   </component>
@@ -498,7 +455,14 @@
       <option name="project" value="LOCAL" />
       <updated>1687166749434</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add TokenVisitor and ReplaceNameVisitor">
+      <created>1687710266819</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1687710266819</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -689,9 +653,9 @@
           <option name="timeStamp" value="852" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java</url>
-          <line>152</line>
-          <option name="timeStamp" value="869" />
+          <url>jar:///Library/Java/JavaVirtualMachines/jdk-11.0.17.jdk/Contents/Home/lib/src.zip!/java.base/java/io/ObjectOutputStream.java</url>
+          <line>1184</line>
+          <option name="timeStamp" value="870" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

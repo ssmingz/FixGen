@@ -6,7 +6,7 @@ import spoon.support.reflect.declaration.CtElementImpl;
 
 public abstract class ActionNode extends CtElementImpl {
     public enum ActionType {UPDATE, INSERT, DELETE, MOVE};
-    protected Operation _action;
+    protected transient Operation _action;
     protected CtElementImpl _srcNode;
 
     public ActionNode(CtElementImpl src, Operation op) {

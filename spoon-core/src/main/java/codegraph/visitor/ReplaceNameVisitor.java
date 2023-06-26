@@ -22,7 +22,10 @@ public class ReplaceNameVisitor extends DefaultJavaPrettyPrinter {
     @Override
     public <T> void visitCtLiteral(CtLiteral<T> literal) {
         enterCtExpression(literal);
-        printer.writeLiteral(literal.getValue().getClass().getSimpleName());
+        if (literal.getValue() == null)
+            printer.writeLiteral("null");
+        else
+            printer.writeLiteral(literal.getValue().getClass().getSimpleName());
         exitCtExpression(literal);
     }
 

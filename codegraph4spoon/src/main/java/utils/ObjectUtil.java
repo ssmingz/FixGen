@@ -469,7 +469,7 @@ public class ObjectUtil {
             objOut.writeObject(obj);
             objOut.flush();
             objOut.close();
-            System.out.println("[error]Write object success");
+            System.out.println("[ok]Write object success");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -486,11 +486,11 @@ public class ObjectUtil {
             ObjectInputStream objIn = new ObjectInputStream(in);
             temp = objIn.readObject();
             objIn.close();
-            System.out.println("Read object success");
+            System.out.println("[ok]Read object success");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
-            System.out.println("Read object failed");
+            System.out.println("[error]Read object failed");
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
