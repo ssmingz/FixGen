@@ -114,13 +114,30 @@ nodeType2:CtPackageReferenceImpl
 nodeType3:CtPackageReferenceImpl
 value:
 value2:" shape=ellipse]
-22 [label="locationInParent:ACTION
+22 [label="locationInParent:CONDITION
+nodeType:CtInvocationImpl
+nodeType2:CtTargetedExpressionImpl
+nodeType3:CtExpressionImpl" shape=ellipse]
+23 [label="locationInParent:METHOD_NAME
+nodeType:CtVirtualElement
+nodeType2:CtElementImpl
+nodeType3:Object
+value:wasSuccessful" shape=ellipse]
+24 [label="locationInParent:TARGET" shape=ellipse]
+25 [label="locationInParent:EXECUTABLE_REF
+nodeType:CtExecutableReferenceImpl
+nodeType2:CtExecutableReferenceImpl
+nodeType3:CtExecutableReferenceImpl
+value:wasSuccessful()
+value2:wasSuccessful()" shape=ellipse]
+26 [label="locationInParent:ACTION
 nodeType:Move
 nodeType2:ActionNode
 nodeType3:CtElementImpl
 value:MOVE
 value2:" shape=ellipse]
 1 -> 0 [label="Action:2"];
+1 -> 22 [label="AST:2"];
 2 -> 1 [label="AST:2"];
 2 -> 4 [label="AST:2"];
 2 -> 5 [label="AST:2"];
@@ -141,5 +158,9 @@ value2:" shape=ellipse]
 17 -> 19 [label="AST:2"];
 19 -> 20 [label="AST:2"];
 20 -> 21 [label="AST:2"];
-22 -> 7 [label="Action:2"];
+22 -> 23 [label="AST:2"];
+22 -> 24 [label="AST:2"];
+22 -> 25 [label="AST:2"];
+22 -> 26 [label="Action:2"];
+26 -> 7 [label="Action:2"];
 }

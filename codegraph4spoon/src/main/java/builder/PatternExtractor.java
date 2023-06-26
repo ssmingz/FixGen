@@ -16,8 +16,10 @@ import org.checkerframework.checker.units.qual.C;
 import org.eclipse.jdt.core.dom.AST;
 import org.javatuples.Triplet;
 import spoon.support.reflect.code.CtBlockImpl;
+import spoon.support.reflect.code.CtLocalVariableImpl;
 import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
 import utils.ObjectUtil;
 
 import java.lang.reflect.Type;
@@ -222,6 +224,8 @@ public class PatternExtractor {
         if (simScoreMap.containsKey(node)) {
             Iterator<CtWrapper> itr = simScoreMap.get(node).keySet().iterator();
             CtWrapper bestSim = null;
+            if(node.toLabelString().equals("fResult"))
+                System.out.println("debug");
             while (itr.hasNext()) {
                 CtWrapper aNode = itr.next();
                 if (isMatch(node, aNode, mapping)) {
@@ -371,6 +375,8 @@ public class PatternExtractor {
             return true;
         } else if (isVar(ctA) && isVar(ctB)) {
             return true;
+        } else if (isVarRef(ctA) && isVarRef(ctB)) {
+            return true;
         } else {
             // special case
             String aStr = ctA.prettyprint();
@@ -382,9 +388,18 @@ public class PatternExtractor {
     private static boolean isVar(CtElementImpl ct) {
         boolean isVirtualName = ct instanceof CtVirtualElement && ((CtVirtualElement) ct).getLocationInParent().contains("VAR_NAME");
         String clazz = ct.getClass().getSimpleName();
-        String[] varRelate = {"CtFieldReadImpl", "CtFieldWriteImpl", "CtArrayReadImpl",
-                "CtArrayWriteImpl", "CtLocalVariableImpl", "CtThisAccessImpl",
+        String[] varRelate = {
+                "CtFieldReadImpl", "CtFieldWriteImpl", "CtArrayReadImpl", "CtArrayWriteImpl",
                 "CtVariableReadImpl", "CtVariableWriteImpl",
+                "CtThisAccessImpl"
+        };
+        return Arrays.asList(varRelate).contains(clazz) || isVirtualName;
+    }
+
+    private static boolean isVarRef(CtElementImpl ct) {
+        boolean isVirtualName = ct instanceof CtVirtualElement && ((CtVirtualElement) ct).getLocationInParent().contains("VAR_NAME");
+        String clazz = ct.getClass().getSimpleName();
+        String[] varRelate = {
                 "CtCatchVariableReferenceImpl", "CtFieldReferenceImpl", "CtLocalVariableReferenceImpl", "CtParameterReferenceImpl"};
         return Arrays.asList(varRelate).contains(clazz) || isVirtualName;
     }
