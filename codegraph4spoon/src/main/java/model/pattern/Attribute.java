@@ -6,8 +6,12 @@ import codegraph.visitor.TokenVisitor;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.ActionNode;
+import model.actions.Insert;
+import model.actions.Move;
+import org.javatuples.Pair;
 import spoon.Launcher;
 import spoon.experimental.CtUnresolvedImport;
+import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.CtCodeElementImpl;
 import spoon.support.reflect.declaration.*;
 import spoon.support.reflect.reference.CtReferenceImpl;
@@ -21,9 +25,9 @@ import static java.util.stream.Collectors.toMap;
 
 public class Attribute implements Serializable {
     private String _name;
-    private Map<String, Integer> _numByValues = new LinkedHashMap<>();
-    private Map<CodeGraph, String> _valueByCG = new LinkedHashMap<>();
-    private String _tag = ""; // choose which value to use
+    private Map<Object, Integer> _numByValues = new LinkedHashMap<>();
+    private Map<CodeGraph, Object> _valueByCG = new LinkedHashMap<>();
+    private Object _tag = ""; // choose which value to use
     private boolean isAbstract = false;
 
     private static int MAX_TOKEN_LENGTH = 15;
@@ -46,7 +50,7 @@ public class Attribute implements Serializable {
         _name = name;
     }
 
-    public void setTag(String v) {
+    public void setTag(Object v) {
         _tag = v;
     }
 
@@ -54,7 +58,7 @@ public class Attribute implements Serializable {
         return _name;
     }
 
-    public Set<String> getValueSet() {
+    public Set<Object> getValueSet() {
         return _numByValues.keySet();
     }
 
@@ -62,7 +66,9 @@ public class Attribute implements Serializable {
 
     public void setAbstract(boolean abs) { isAbstract = abs; }
 
-    public void addValue(String v, CodeGraph g) {
+    public void addValue(Object v, CodeGraph g) {
+        if (v == null)
+            return;
         _valueByCG.put(g, v);
         if (_numByValues.containsKey(v)) {
             int s = _numByValues.get(v) + 1;
@@ -72,19 +78,19 @@ public class Attribute implements Serializable {
         }
     }
 
-    public String getValueByCG(CodeGraph g) {
+    public Object getValueByCG(CodeGraph g) {
         return _valueByCG.getOrDefault(g, "MISSING");
     }
 
-    public String getTag() {
+    public Object getTag() {
         return _tag;
     }
 
-    public int getSupport(String aValue) {
+    public int getSupport(Object aValue) {
         return _numByValues.getOrDefault(aValue, 0);
     }
 
-    public Map<String, Integer> sort() {
+    public Map<Object, Integer> sort() {
         return  _numByValues
                 .entrySet()
                 .stream()
@@ -113,7 +119,7 @@ public class Attribute implements Serializable {
      * type, e.g. CtIfImpl in CtCodeElementImpl.CtStatementImpl.CtIfImpl
      */
     public static String computeNodeType(CtWrapper n) {
-        String type = n.getCtElementImpl().getClass().getSimpleName();
+        String type = n.getCtElementImpl().getClass().getName();
         return type;
     }
 
@@ -159,7 +165,7 @@ public class Attribute implements Serializable {
         if (rootTypes.contains(clazz)) {
             clazz = n.getCtElementImpl().getClass();
         }
-        return clazz.getSimpleName();
+        return clazz.getName();
     }
 
     /**
@@ -175,7 +181,18 @@ public class Attribute implements Serializable {
                 clazz = n.getCtElementImpl().getClass().getSuperclass();
             }
         }
-        return clazz.getSimpleName();
+        return clazz.getName();
     }
 
+    public static List<Pair<CtRole, Class>> computePosition(CtWrapper n) {
+        if (n.getCtElementImpl() instanceof ActionNode) {
+            ActionNode node = (ActionNode) n.getCtElementImpl();
+            if (node instanceof Insert) {
+                return ((Insert) node)._roleList;
+            } else if (node instanceof Move) {
+                return ((Move) node)._roleList;
+            }
+        }
+        return null;
+    }
 }

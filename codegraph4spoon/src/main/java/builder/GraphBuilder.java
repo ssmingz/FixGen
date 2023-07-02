@@ -4,6 +4,7 @@ import codegraph.ASTEdge;
 import codegraph.DefUseEdge;
 import codegraph.Edge;
 import codegraph.Scope;
+import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
 import gumtree.spoon.diff.operations.*;
@@ -19,8 +20,7 @@ import org.javatuples.Tuple;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtElement;
-import spoon.support.reflect.declaration.CtElementImpl;
-import spoon.support.reflect.declaration.CtMethodImpl;
+import spoon.support.reflect.declaration.*;
 import utils.ASTUtil;
 import utils.CtChildScanner;
 import utils.ObjectUtil;
@@ -43,16 +43,19 @@ public class GraphBuilder {
         launcher.buildModel();
         CtModel model = launcher.getModel();
 
-        for (CtElement method : model.getElements(s -> s instanceof CtMethodImpl)) {
-            if (checkByLine((CtMethodImpl) method, includeLines)) {
-                CodeGraph graph = buildGraph((CtMethodImpl) method);
+        for (CtElement method : model.getElements(s -> s instanceof CtMethodImpl
+                || s instanceof CtConstructorImpl || s instanceof CtAnonymousExecutableImpl)) {
+            if (checkByLine((CtElementImpl) method, includeLines)) {
+                CodeGraph graph = buildGraph((CtExecutableImpl) method);
                 return graph;
             }
         }
         return null;
     }
 
-    private static boolean checkByLine(CtMethodImpl method, int[] includeLines) {
+    private static boolean checkByLine(CtElementImpl method, int[] includeLines) {
+        if (!method.getPosition().isValidPosition())
+            return false;
         int start = method.getPosition().getLine();
         int end = method.getPosition().getEndLine();
         for (int line : includeLines) {
@@ -63,7 +66,7 @@ public class GraphBuilder {
         return true;
     }
 
-    public static CodeGraph buildGraph(CtMethodImpl ctMethod) {
+    public static CodeGraph buildGraph(CtExecutableImpl ctMethod) {
         String sig = ASTUtil.buildSignature(ctMethod);
         CodeGraph g = new CodeGraph();
         g.setCtMethod(ctMethod);
@@ -74,10 +77,10 @@ public class GraphBuilder {
         return g;
     }
 
-    public static CodeGraph buildActionGraph(String srcPath, String tarPath) {
+    public static CodeGraph buildActionGraph(String srcPath, String tarPath, int[] includeLines) {
         // code graph
-        CodeGraph cg1 = GraphBuilder.buildGraph(srcPath, new String[] {}, 8, new int[] {});
-        CodeGraph cg2 = GraphBuilder.buildGraph(tarPath, new String[] {}, 8, new int[] {});
+        CodeGraph cg1 = GraphBuilder.buildGraph(srcPath, new String[] {}, 8, includeLines);
+        CodeGraph cg2 = GraphBuilder.buildGraph(tarPath, new String[] {}, 8, includeLines);
         // gumtree diff
         AstComparator diff = new AstComparator();
         Diff editScript = diff.compare(cg1.getEntryNode(), cg2.getEntryNode());
@@ -140,7 +143,6 @@ public class GraphBuilder {
 
             } else if (op instanceof InsertOperation) {
                 CtElementImpl insTar = (CtElementImpl) op.getSrcNode();
-                int pos = ((InsertOperation) op).getPosition();
                 // step1. use the mapping if finds: parent-in-dstgraph <--> parent-in-srcgraph
                 CtElementImpl insSrc = (CtElementImpl) ((InsertOperation) op).getParent();
                 boolean flag = false;
@@ -155,7 +157,7 @@ public class GraphBuilder {
 //                    System.out.println("[warn]Not find the CtElement.parent mapping in src/dst graph: " + insSrc.prettyprint());
                 }
                 // step2. create insert node and connect the three nodes
-                Insert ins = new Insert(insTar, insSrc, pos, op);
+                Insert ins = new Insert(insTar, insSrc, insTar.getRoleInParent(), op);
                 cg1.updateCGId(ins);
                 // step3. recursively add insTar.children (including insTar)
                 CtChildScanner scanner = new CtChildScanner();
@@ -198,10 +200,10 @@ public class GraphBuilder {
                     }
                 }
             } else if (op instanceof MoveOperation) {
-                CtElementImpl src = (CtElementImpl) op.getSrcNode();
+                CtElementImpl movedInSrc = (CtElementImpl) op.getSrcNode();
+                CtElementImpl movedInDst = (CtElementImpl) editScript.getMappingsComp().getDstForSrc((Tree) movedInSrc.getMetadata("gtnode")).getMetadata("spoon_object");
                 CtElementImpl parent = (CtElementImpl) ((MoveOperation) op).getParent();
-                int pos = ((MoveOperation) op).getPosition();
-                Move mov = new Move(src, parent, pos, op);
+                Move mov = new Move(movedInSrc, parent, movedInDst, op);
                 cg1.updateCGId(mov);
             }
         }

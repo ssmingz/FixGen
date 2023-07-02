@@ -15,7 +15,7 @@ public class TestSpoonActionGraph {
             String srcPath = String.format("src/test/resources/c3/ant/13/%d/before.java", i);
             String tarPath = String.format("src/test/resources/c3/ant/13/%d/after.java", i);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             // draw dot graph
             GraphConfiguration config = new GraphConfiguration();
             int nodeIndexCounter = 0;
@@ -37,7 +37,7 @@ public class TestSpoonActionGraph {
                         if (pair.isDirectory()) {
                             String srcPath = pair.getAbsolutePath()+"/before.java";
                             String tarPath = pair.getAbsolutePath()+"/after.java";
-                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
                             assertNotNull("CodeGraph shouldn't be null", ag);
                             System.out.println(pair.getAbsolutePath() + ": generate code graph ok");
                         }
@@ -55,7 +55,7 @@ public class TestSpoonActionGraph {
         String srcPath = String.format("%s/dataset/%s/%d/%d/before.java", TestConfig.WIN_BASE, pro, group, pair);
         String tarPath = String.format("%s/dataset/%s/%d/%d/after.java", TestConfig.WIN_BASE, pro, group, pair);
         // build action graph
-        CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+        CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
         // draw dot graph
         GraphConfiguration config = new GraphConfiguration();
         int nodeIndexCounter = 0;

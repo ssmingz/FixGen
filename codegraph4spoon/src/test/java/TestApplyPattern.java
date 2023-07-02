@@ -31,7 +31,7 @@ public class TestApplyPattern {
             String srcPath = String.format("%s/%d/before.java", base, i);
             String tarPath = String.format("%s/%d/after.java", base, i);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
         }
         // extract pattern from more-than-one graphs
@@ -75,7 +75,7 @@ public class TestApplyPattern {
                             String srcPath = String.format("%s/%d/before.java", baseDir, k);
                             String tarPath = String.format("%s/%d/after.java", baseDir, k);
                             // build action graph
-                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
                             ags.add(ag);
                         }
                         // extract pattern from more-than-one graphs
@@ -116,7 +116,7 @@ public class TestApplyPattern {
             String srcPath = String.format("%s/%d/before.java", baseDir, k);
             String tarPath = String.format("%s/%d/after.java", baseDir, k);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
         }
         // extract pattern from more-than-one graphs

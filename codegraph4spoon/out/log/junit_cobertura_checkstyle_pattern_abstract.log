@@ -1,0 +1,790 @@
+/Library/Java/JavaVirtualMachines/jdk-11.0.17.jdk/Contents/Home/bin/java -ea -Didea.test.cyclic.buffer.size=1048576 -javaagent:/Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar=56734:/Applications/IntelliJ IDEA CE.app/Contents/bin -Dfile.encoding=UTF-8 -classpath /Applications/IntelliJ IDEA CE.app/Contents/lib/idea_rt.jar:/Applications/IntelliJ IDEA CE.app/Contents/plugins/junit/lib/junit5-rt.jar:/Applications/IntelliJ IDEA CE.app/Contents/plugins/junit/lib/junit-rt.jar:/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/target/test-classes:/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/target/classes:/Users/yumeng/JavaProjects/FixGen/spoon-core/target/classes:/Users/yumeng/.m2/repository/org/eclipse/jdt/org.eclipse.jdt.core/3.32.0/org.eclipse.jdt.core-3.32.0.jar:/Users/yumeng/.m2/repository/com/martiansoftware/jsap/2.1/jsap-2.1.jar:/Users/yumeng/.m2/repository/org/slf4j/slf4j-api/1.7.36/slf4j-api-1.7.36.jar:/Users/yumeng/.m2/repository/commons-io/commons-io/2.11.0/commons-io-2.11.0.jar:/Users/yumeng/.m2/repository/org/apache/maven/maven-model/4.0.0-alpha-5/maven-model-4.0.0-alpha-5.jar:/Users/yumeng/.m2/repository/org/apache/maven/maven-api-model/4.0.0-alpha-5/maven-api-model-4.0.0-alpha-5.jar:/Users/yumeng/.m2/repository/org/apache/maven/maven-api-xml/4.0.0-alpha-5/maven-api-xml-4.0.0-alpha-5.jar:/Users/yumeng/.m2/repository/org/apache/maven/maven-api-meta/4.0.0-alpha-5/maven-api-meta-4.0.0-alpha-5.jar:/Users/yumeng/.m2/repository/org/apache/maven/maven-xml-impl/4.0.0-alpha-5/maven-xml-impl-4.0.0-alpha-5.jar:/Users/yumeng/.m2/repository/org/eclipse/sisu/org.eclipse.sisu.plexus/0.3.5/org.eclipse.sisu.plexus-0.3.5.jar:/Users/yumeng/.m2/repository/javax/annotation/javax.annotation-api/1.2/javax.annotation-api-1.2.jar:/Users/yumeng/.m2/repository/org/eclipse/sisu/org.eclipse.sisu.inject/0.3.5/org.eclipse.sisu.inject-0.3.5.jar:/Users/yumeng/.m2/repository/org/codehaus/plexus/plexus-component-annotations/1.5.5/plexus-component-annotations-1.5.5.jar:/Users/yumeng/.m2/repository/org/codehaus/plexus/plexus-classworlds/2.5.2/plexus-classworlds-2.5.2.jar:/Users/yumeng/.m2/repository/org/codehaus/plexus/plexus-utils/3.0.24/plexus-utils-3.0.24.jar:/Users/yumeng/.m2/repository/org/apache/commons/commons-lang3/3.12.0/commons-lang3-3.12.0.jar:/Users/yumeng/.m2/repository/com/fasterxml/jackson/core/jackson-databind/2.14.2/jackson-databind-2.14.2.jar:/Users/yumeng/.m2/repository/com/fasterxml/jackson/core/jackson-annotations/2.14.2/jackson-annotations-2.14.2.jar:/Users/yumeng/.m2/repository/com/fasterxml/jackson/core/jackson-core/2.14.2/jackson-core-2.14.2.jar:/Users/yumeng/.m2/repository/org/apache/commons/commons-compress/1.22/commons-compress-1.22.jar:/Users/yumeng/.m2/repository/org/apache/maven/shared/maven-invoker/3.2.0/maven-invoker-3.2.0.jar:/Users/yumeng/.m2/repository/org/apache/maven/shared/maven-shared-utils/3.3.4/maven-shared-utils-3.3.4.jar:/Users/yumeng/.m2/repository/javax/inject/javax.inject/1/javax.inject-1.jar:/Users/yumeng/JavaProjects/FixGen/codegraph/target/classes:/Users/yumeng/.m2/repository/org/apache/commons/commons-collections4/4.4/commons-collections4-4.4.jar:/Users/yumeng/.m2/repository/com/google/guava/guava/31.0.1-jre/guava-31.0.1-jre.jar:/Users/yumeng/.m2/repository/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar:/Users/yumeng/.m2/repository/com/google/guava/listenablefuture/9999.0-empty-to-avoid-conflict-with-guava/listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar:/Users/yumeng/.m2/repository/com/google/code/findbugs/jsr305/3.0.2/jsr305-3.0.2.jar:/Users/yumeng/.m2/repository/org/checkerframework/checker-qual/3.12.0/checker-qual-3.12.0.jar:/Users/yumeng/.m2/repository/com/google/errorprone/error_prone_annotations/2.7.1/error_prone_annotations-2.7.1.jar:/Users/yumeng/.m2/repository/com/google/j2objc/j2objc-annotations/1.3/j2objc-annotations-1.3.jar:/Users/yumeng/.m2/repository/org/apache/bcel/bcel/6.7.0/bcel-6.7.0.jar:/Users/yumeng/.m2/repository/dom4j/dom4j/1.6.1/dom4j-1.6.1.jar:/Users/yumeng/.m2/repository/xml-apis/xml-apis/1.0.b2/xml-apis-1.0.b2.jar:/Users/yumeng/JavaProjects/FixGen/gumtree-spoon-ast-diff/target/classes:/Users/yumeng/.m2/repository/com/github/gumtreediff/core/3.0.0/core-3.0.0.jar:/Users/yumeng/.m2/repository/org/atteo/classindex/classindex/3.10/classindex-3.10.jar:/Users/yumeng/.m2/repository/com/github/mpkorstanje/simmetrics-core/3.2.3/simmetrics-core-3.2.3.jar:/Users/yumeng/.m2/repository/commons-codec/commons-codec/1.10/commons-codec-1.10.jar:/Users/yumeng/.m2/repository/it/unimi/dsi/fastutil/8.3.1/fastutil-8.3.1.jar:/Users/yumeng/.m2/repository/org/jgrapht/jgrapht-core/1.5.1/jgrapht-core-1.5.1.jar:/Users/yumeng/.m2/repository/org/jheaps/jheaps/0.13/jheaps-0.13.jar:/Users/yumeng/.m2/repository/com/google/code/gson/gson/2.10/gson-2.10.jar:/Users/yumeng/.m2/repository/net/sf/trove4j/trove4j/3.0.3/trove4j-3.0.3.jar:/Users/yumeng/.m2/repository/com/opencsv/opencsv/4.1/opencsv-4.1.jar:/Users/yumeng/.m2/repository/org/apache/commons/commons-text/1.1/commons-text-1.1.jar:/Users/yumeng/.m2/repository/commons-beanutils/commons-beanutils/1.9.3/commons-beanutils-1.9.3.jar:/Users/yumeng/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/yumeng/.m2/repository/commons-collections/commons-collections/3.2.2/commons-collections-3.2.2.jar:/Users/yumeng/.m2/repository/io/github/java-diff-utils/java-diff-utils/4.11/java-diff-utils-4.11.jar:/Users/yumeng/.m2/repository/org/javatuples/javatuples/1.2/javatuples-1.2.jar:/Users/yumeng/.m2/repository/com/alibaba/fastjson/2.0.32/fastjson-2.0.32.jar:/Users/yumeng/.m2/repository/com/alibaba/fastjson2/fastjson2-extension/2.0.32/fastjson2-extension-2.0.32.jar:/Users/yumeng/.m2/repository/com/alibaba/fastjson2/fastjson2/2.0.32/fastjson2-2.0.32.jar:/Users/yumeng/.m2/repository/junit/junit/4.13.2/junit-4.13.2.jar:/Users/yumeng/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar com.intellij.rt.junit.JUnitStarter -ideVersion5 -junit4 TestPatternAbstractor,testPatternAbstractorOnC3
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/59
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+/Users/yumeng/PycharmProjects/c3/dataset/junit/59: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/66
+/Users/yumeng/PycharmProjects/c3/dataset/junit/66: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/104
+/Users/yumeng/PycharmProjects/c3/dataset/junit/104: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/50
+/Users/yumeng/PycharmProjects/c3/dataset/junit/50: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/68
+/Users/yumeng/PycharmProjects/c3/dataset/junit/68: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/103
+/Users/yumeng/PycharmProjects/c3/dataset/junit/103: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/32
+/Users/yumeng/PycharmProjects/c3/dataset/junit/32: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/35
+/Users/yumeng/PycharmProjects/c3/dataset/junit/35: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/102
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/junit/102: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/102: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/69
+/Users/yumeng/PycharmProjects/c3/dataset/junit/69: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/58
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/junit/58: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/58: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/58: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/67
+/Users/yumeng/PycharmProjects/c3/dataset/junit/67: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/94
+/Users/yumeng/PycharmProjects/c3/dataset/junit/94: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/34
+/Users/yumeng/PycharmProjects/c3/dataset/junit/34: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/9
+/Users/yumeng/PycharmProjects/c3/dataset/junit/9: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/0
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/junit/0: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/0: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/29
+/Users/yumeng/PycharmProjects/c3/dataset/junit/29: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/16
+/Users/yumeng/PycharmProjects/c3/dataset/junit/16: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/42
+/Users/yumeng/PycharmProjects/c3/dataset/junit/42: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/45
+/Users/yumeng/PycharmProjects/c3/dataset/junit/45: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/87
+/Users/yumeng/PycharmProjects/c3/dataset/junit/87: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/6
+/Users/yumeng/PycharmProjects/c3/dataset/junit/6: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/17
+/Users/yumeng/PycharmProjects/c3/dataset/junit/17: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/1
+[warn]extracted pattern not single, size:6
+/Users/yumeng/PycharmProjects/c3/dataset/junit/1: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/1: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/1: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/1: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/1: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/1: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/19
+/Users/yumeng/PycharmProjects/c3/dataset/junit/19: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/26
+/Users/yumeng/PycharmProjects/c3/dataset/junit/26: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/21
+/Users/yumeng/PycharmProjects/c3/dataset/junit/21: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/75
+/Users/yumeng/PycharmProjects/c3/dataset/junit/75: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/81
+/Users/yumeng/PycharmProjects/c3/dataset/junit/81: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/86
+/Users/yumeng/PycharmProjects/c3/dataset/junit/86: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/72
+/Users/yumeng/PycharmProjects/c3/dataset/junit/72: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/44
+/Users/yumeng/PycharmProjects/c3/dataset/junit/44: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/88
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/junit/88: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/91
+/Users/yumeng/PycharmProjects/c3/dataset/junit/91: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/65
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/junit/65: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/98
+/Users/yumeng/PycharmProjects/c3/dataset/junit/98: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/37
+/Users/yumeng/PycharmProjects/c3/dataset/junit/37: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/99
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/junit/99: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/99: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/101
+/Users/yumeng/PycharmProjects/c3/dataset/junit/101: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/55
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/junit/55 null
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/64
+/Users/yumeng/PycharmProjects/c3/dataset/junit/64: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/90
+/Users/yumeng/PycharmProjects/c3/dataset/junit/90: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/46
+/Users/yumeng/PycharmProjects/c3/dataset/junit/46: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/79
+/Users/yumeng/PycharmProjects/c3/dataset/junit/79: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/77
+/Users/yumeng/PycharmProjects/c3/dataset/junit/77: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/24
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/junit/24: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/24: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/24: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/23
+/Users/yumeng/PycharmProjects/c3/dataset/junit/23: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/4
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/junit/4: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/3
+/Users/yumeng/PycharmProjects/c3/dataset/junit/3: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/85
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/junit/85: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/junit/85: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/71
+/Users/yumeng/PycharmProjects/c3/dataset/junit/71: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/82
+/Users/yumeng/PycharmProjects/c3/dataset/junit/82: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/49
+/Users/yumeng/PycharmProjects/c3/dataset/junit/49: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/40
+/Users/yumeng/PycharmProjects/c3/dataset/junit/40 null
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/78
+/Users/yumeng/PycharmProjects/c3/dataset/junit/78: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/2
+/Users/yumeng/PycharmProjects/c3/dataset/junit/2: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/13
+/Users/yumeng/PycharmProjects/c3/dataset/junit/13: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/5
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/junit/5: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/22
+/Users/yumeng/PycharmProjects/c3/dataset/junit/22: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/junit/25
+/Users/yumeng/PycharmProjects/c3/dataset/junit/25: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/95
+[warn]extracted pattern not single, size:8
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/95: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/132
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/132: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/92
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/92 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/32
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/32: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/192
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/192: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/102
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/102: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/105
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/105 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/67
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/67 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/93
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/93: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/93: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/93: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/160
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/160 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/33
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/33: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/33: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/158
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/158: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/193
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/193: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/193: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/151
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/151 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/169
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/169 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/204
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/204 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/205
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/205: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/174
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/174: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/180
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/180: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/180: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/180: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/18
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/18 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/9
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/9 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/142
+[warn]extracted pattern not single, size:10
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/142: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/142 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/16
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/16: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/129
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/129: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/45
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/45 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/87
+[warn]extracted pattern not single, size:16
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/87 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/28
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/28 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/143
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/143: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/143: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/144
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/144 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/10
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/10: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/181
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/181: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/175
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/175: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/175: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/175: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/21
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/21: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/21: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/21: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/81
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/81: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/121
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/121: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/119
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/119: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/86
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/86: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/72
+[warn]There are more than one CtRole in this attribute:java.util.List spoon.support.reflect.declaration.CtTypeImpl.typeMembers
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/72: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/110
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/110 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/128
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/128: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/128: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/117
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/117: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/198
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/198: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/153
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/153: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/36
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/36: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/131
+[warn]extracted pattern not single, size:5
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/131: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/131: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/131: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/131: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/131: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/100
+[warn]extracted pattern not single, size:5
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/100: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/100: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/100: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/100: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/100: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/30
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/30: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/30: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/30: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/197
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/197 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/155
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/155 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/99
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/99 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/52
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/52: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/52: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/52 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/139
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/139: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/97
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/97 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/63
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/63 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/200
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/200: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/207
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/207: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/206
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/206: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/46
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/46 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/79
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/79 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/123
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/123: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/123: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/123: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/84
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/84 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/124
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/124: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/177
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/177: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/183
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/183: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/148
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/148: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/148: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/148: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/141
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/141 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/4
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/4 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/85
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/85: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/85: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/85: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/125
+[warn]extracted pattern not single, size:5
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/125: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/125: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/125: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/125: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/125: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/76
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/76: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/82
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/82 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/40
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/40 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/47
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/47: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/78
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/78: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/147
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/147: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/178
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/178 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/5
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/5: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/5: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/140
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/140 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/14
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/14 null
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/22
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/22: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/22: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/22: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/171
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/171: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/cobertura/185
+/Users/yumeng/PycharmProjects/c3/dataset/cobertura/185: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/307
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/307: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/307: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/307: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/61
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/61: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/95
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/95: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/338
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/338: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/66
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/66: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/66: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/336
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/336: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/50
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/50 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/331
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/331: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/331: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/57
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/57: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/168
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/168: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/391
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/391: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/362
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/362: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/354
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/354: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/161
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/161: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/337
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/337 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/51
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/51: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/51: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/94
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/94: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/34
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/34: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/33
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/33: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/355
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/355: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/355: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/355: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/167
+[warn]extracted pattern not single, size:5
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/167: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/167: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/167: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/167: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/167: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/363
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/363: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/364
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/364: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/390
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/390: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/273
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/273: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/289
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/289: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/289: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/221
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/221: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/221: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/272
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/272: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/275
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/275: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/292
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/292: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/266
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/266: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/266: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/266: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/266: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/261
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/261: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/261: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/261: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/261: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/260
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/260: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/267
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/267: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/293
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/293: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/256
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/256: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/269
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/269: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/205
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/205: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/180
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/180: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/379
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/379: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/187
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/187 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/18
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/18: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/27
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/27 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/9
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/9: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/9: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/383
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/383: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/11
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/11: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/142
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/142: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/384
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/384: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/129
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/129: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/324
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/324: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/324: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/324: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/45
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/45: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/73
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/73: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/6
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/6: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/28
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/28: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/28: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/143
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/143: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/188
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/188: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/144
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/144: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/382
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/382: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/1
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/1: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/10
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/10: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/26
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/26: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/313
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/313: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/121
+[warn]extracted pattern not single, size:5
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/121: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/121: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/121: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/121: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/121: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/126
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/126: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/44
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/44: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/43
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/43: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/43: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/117
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/117: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/117: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/117: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/361
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/361: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/361: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/361: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/153
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/153: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/395
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/395: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/392
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/392: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/366
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/366: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/196
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/196: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/162
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/162: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/368
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/368: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/368: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/357
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/357: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/357: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/357: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/357: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/191
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/191: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/191: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/303
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/303: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/62
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/62: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/62: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/96
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/96: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/100
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/100: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/107
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/107: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/138
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/138: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/190
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/190 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/163
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/163: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/199
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/199: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/394
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/394: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/152
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/152: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/360
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/360: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/360: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/360: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/360: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/106
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/106: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/99
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/99: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/99: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/333
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/333: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/284
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/284: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/283
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/283: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/241
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/241: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/241: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/241: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/224
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/224: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/278
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/278: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/247
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/247: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/285
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/285: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/222
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/222: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/231
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/231: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/231: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/236
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/236: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/236: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/236: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/236: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/200
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/200: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/200: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/200: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/298
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/298: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/298: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/298: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/265
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/265: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/201
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/201: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/208
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/208: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/208: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/237
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/237: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/237: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/230
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/230: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/297
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/297: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/297: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/297: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/297: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/299
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/299: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/299: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/79
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/79: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/320
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/320: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/327
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/327 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/77
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/77: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/77: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/77: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/123
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/123: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/70
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/70: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/70: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/70: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/184
+[warn]extracted pattern not single, size:3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/184: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/184: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/184: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/170
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/170: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/183
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/183: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/23
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/23: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/23: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/23: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/23: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/141
+[warn]extracted pattern not single, size:4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/141: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/141: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/141: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/141: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/4
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/4: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/15
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/15: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/3
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/3: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/125
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/125: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/76
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/76: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/310
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/310: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/326
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/326 null
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/113
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/113: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/113: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/78
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/78: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/147
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/147: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/2: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/13
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/13: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/13: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/5
+[warn]extracted pattern not single, size:2
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/5: abstract pattern ok
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/5: abstract pattern ok
+start /Users/yumeng/PycharmProjects/c3/dataset/checkstyle/14
+/Users/yumeng/PycharmProjects/c3/dataset/checkstyle/14: abstract pattern ok
+extracted pattern not single: 78/278

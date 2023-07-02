@@ -1,0 +1,418 @@
+digraph "<init>#?,String,String,String" {
+0 [label="32:CtVirtualElement@<init>" shape=ellipse]
+1 [label="32:CtParameterImpl@final String suffix" shape=ellipse]
+2 [label="32:CtTypeReferenceImpl@String" shape=ellipse]
+3 [label="32:CtParameterImpl@final String mime" shape=ellipse]
+4 [label="32:CtTypeReferenceImpl@String" shape=ellipse]
+5 [label="32:CtParameterImpl@final String name" shape=ellipse]
+6 [label="32:CtTypeReferenceImpl@String" shape=ellipse]
+7 [label="33:CtExecutableReferenceImpl@java.lang.Object()" shape=ellipse]
+8 [label="33:CtTypeReferenceImpl@Object" shape=ellipse]
+9 [label="33:CtTypeReferenceImpl@Object" shape=ellipse]
+10 [label="33:CtVirtualElement@<init>" shape=ellipse]
+11 [label="33:CtInvocationImpl@super()" shape=ellipse]
+12 [label="35:CtTypeReferenceImpl@String" shape=ellipse]
+13 [label="35:CtPackageReferenceImpl@java.lang" shape=ellipse]
+14 [label="35:CtVirtualElement@s" shape=ellipse]
+15 [label="35:CtLocalVariableImpl@String s" shape=ellipse]
+16 [label="37:CtVariableWriteImpl@s" shape=ellipse]
+17 [label="37:CtLocalVariableReferenceImpl@s" shape=ellipse]
+18 [label="37:CtExecutableReferenceImpl@prepare(java.lang.String)" shape=ellipse]
+19 [label="37:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+20 [label="37:CtTypeReferenceImpl@String" shape=ellipse]
+21 [label="37:CtTypeReferenceImpl@String" shape=ellipse]
+22 [label="37:CtVirtualElement@prepare" shape=ellipse]
+23 [label="37:CtTypeAccessImpl@TextUtils" shape=ellipse]
+24 [label="37:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+25 [label="37:CtVariableReadImpl@suffix" shape=ellipse]
+26 [label="37:CtParameterReferenceImpl@suffix" shape=ellipse]
+27 [label="37:CtInvocationImpl@TextUtils.prepare(suffix)" shape=ellipse]
+28 [label="37:CtTypeReferenceImpl@String" shape=ellipse]
+29 [label="37:CtPackageReferenceImpl@java.lang" shape=ellipse]
+30 [label="37:CtAssignmentImpl@s = TextUtils.prepare(suffix)" shape=ellipse]
+31 [label="38:CtFieldReferenceImpl@m_suffix" shape=ellipse]
+32 [label="38:CtTypeReferenceImpl@FileType" shape=ellipse]
+33 [label="38:CtTypeReferenceImpl@String" shape=ellipse]
+34 [label="38:CtFieldWriteImpl@this.m_suffix" shape=ellipse]
+35 [label="38:CtThisAccessImpl@this" shape=ellipse]
+36 [label="38:CtVariableReadImpl@s" shape=ellipse]
+37 [label="38:CtLocalVariableReferenceImpl@s" shape=ellipse]
+38 [label="38:CtLiteralImpl@null" shape=ellipse]
+39 [label="38:CtTypeReferenceImpl@<nulltype>" shape=ellipse]
+40 [label="38:CtBinaryOperatorImpl@s != null" shape=ellipse]
+41 [label="38:CtTypeReferenceImpl@boolean" shape=ellipse]
+42 [label="38:CtExecutableReferenceImpl@toLowerCase()" shape=ellipse]
+43 [label="38:CtTypeReferenceImpl@String" shape=ellipse]
+44 [label="38:CtTypeReferenceImpl@String" shape=ellipse]
+45 [label="38:CtVirtualElement@toLowerCase" shape=ellipse]
+46 [label="38:CtVariableReadImpl@s" shape=ellipse]
+47 [label="38:CtLocalVariableReferenceImpl@s" shape=ellipse]
+48 [label="38:CtInvocationImpl@s.toLowerCase()" shape=ellipse]
+49 [label="38:CtVariableReadImpl@s" shape=ellipse]
+50 [label="38:CtLocalVariableReferenceImpl@s" shape=ellipse]
+51 [label="38:CtConditionalImpl@(s != null) ? s.toLowerCase() : s" shape=ellipse]
+52 [label="38:CtTypeReferenceImpl@String" shape=ellipse]
+53 [label="38:CtTypeReferenceImpl@String" shape=ellipse]
+54 [label="38:CtPackageReferenceImpl@java.lang" shape=ellipse]
+55 [label="38:CtAssignmentImpl@this.m_suffix = (s != null) ? s.toLowerCase() : s" shape=ellipse]
+56 [label="40:CtFieldReferenceImpl@m_mime" shape=ellipse]
+57 [label="40:CtTypeReferenceImpl@FileType" shape=ellipse]
+58 [label="40:CtTypeReferenceImpl@String" shape=ellipse]
+59 [label="40:CtFieldWriteImpl@this.m_mime" shape=ellipse]
+60 [label="40:CtThisAccessImpl@this" shape=ellipse]
+61 [label="40:CtExecutableReferenceImpl@prepare(java.lang.String)" shape=ellipse]
+62 [label="40:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+63 [label="40:CtTypeReferenceImpl@String" shape=ellipse]
+64 [label="40:CtTypeReferenceImpl@String" shape=ellipse]
+65 [label="40:CtVirtualElement@prepare" shape=ellipse]
+66 [label="40:CtTypeAccessImpl@TextUtils" shape=ellipse]
+67 [label="40:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+68 [label="40:CtVariableReadImpl@mime" shape=ellipse]
+69 [label="40:CtParameterReferenceImpl@mime" shape=ellipse]
+70 [label="40:CtInvocationImpl@TextUtils.prepare(mime)" shape=ellipse]
+71 [label="40:CtTypeReferenceImpl@String" shape=ellipse]
+72 [label="40:CtPackageReferenceImpl@java.lang" shape=ellipse]
+73 [label="40:CtAssignmentImpl@this.m_mime = TextUtils.prepare(mime)" shape=ellipse]
+74 [label="42:CtVariableWriteImpl@s" shape=ellipse]
+75 [label="42:CtLocalVariableReferenceImpl@s" shape=ellipse]
+76 [label="42:CtExecutableReferenceImpl@prepare(java.lang.String)" shape=ellipse]
+77 [label="42:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+78 [label="42:CtTypeReferenceImpl@String" shape=ellipse]
+79 [label="42:CtTypeReferenceImpl@String" shape=ellipse]
+80 [label="42:CtVirtualElement@prepare" shape=ellipse]
+81 [label="42:CtTypeAccessImpl@TextUtils" shape=ellipse]
+82 [label="42:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+83 [label="42:CtVariableReadImpl@name" shape=ellipse]
+84 [label="42:CtParameterReferenceImpl@name" shape=ellipse]
+85 [label="42:CtInvocationImpl@TextUtils.prepare(name)" shape=ellipse]
+86 [label="42:CtTypeReferenceImpl@String" shape=ellipse]
+87 [label="42:CtPackageReferenceImpl@java.lang" shape=ellipse]
+88 [label="42:CtAssignmentImpl@s = TextUtils.prepare(name)" shape=ellipse]
+89 [label="43:CtVariableReadImpl@s" shape=ellipse]
+90 [label="43:CtLocalVariableReferenceImpl@s" shape=ellipse]
+91 [label="43:CtLiteralImpl@null" shape=ellipse]
+92 [label="43:CtTypeReferenceImpl@<nulltype>" shape=ellipse]
+93 [label="43:CtBinaryOperatorImpl@s == null" shape=ellipse]
+94 [label="43:CtTypeReferenceImpl@boolean" shape=ellipse]
+95 [label="44:CtVariableWriteImpl@s" shape=ellipse]
+96 [label="44:CtLocalVariableReferenceImpl@s" shape=ellipse]
+97 [label="44:CtLiteralImpl@\"Unknown File Type\"" shape=ellipse]
+98 [label="44:CtTypeReferenceImpl@String" shape=ellipse]
+99 [label="44:CtTypeReferenceImpl@String" shape=ellipse]
+100 [label="44:CtPackageReferenceImpl@java.lang" shape=ellipse]
+101 [label="44:CtAssignmentImpl@s = \"Unknown File Type\"// $NON-NLS-1$
+" shape=ellipse]
+102 [label="44:CtCommentImpl@// $NON-NLS-1$" shape=ellipse]
+103 [label="45:CtFieldReferenceImpl@m_suffix" shape=ellipse]
+104 [label="45:CtTypeReferenceImpl@FileType" shape=ellipse]
+105 [label="45:CtTypeReferenceImpl@String" shape=ellipse]
+106 [label="45:CtFieldReadImpl@this.m_suffix" shape=ellipse]
+107 [label="45:CtThisAccessImpl@this" shape=ellipse]
+108 [label="45:CtLiteralImpl@null" shape=ellipse]
+109 [label="45:CtTypeReferenceImpl@<nulltype>" shape=ellipse]
+110 [label="45:CtBinaryOperatorImpl@this.m_suffix != null" shape=ellipse]
+111 [label="45:CtTypeReferenceImpl@boolean" shape=ellipse]
+112 [label="46:CtVariableWriteImpl@s" shape=ellipse]
+113 [label="46:CtLocalVariableReferenceImpl@s" shape=ellipse]
+114 [label="46:CtLiteralImpl@\" with Extension '\"" shape=ellipse]
+115 [label="46:CtTypeReferenceImpl@String" shape=ellipse]
+116 [label="46:CtFieldReferenceImpl@m_suffix" shape=ellipse]
+117 [label="46:CtTypeReferenceImpl@FileType" shape=ellipse]
+118 [label="46:CtTypeReferenceImpl@String" shape=ellipse]
+119 [label="46:CtFieldReadImpl@this.m_suffix" shape=ellipse]
+120 [label="46:CtThisAccessImpl@this" shape=ellipse]
+121 [label="46:CtBinaryOperatorImpl@(\" with Extension '\" + this.m_suffix)" shape=ellipse]
+122 [label="46:CtTypeReferenceImpl@String" shape=ellipse]
+123 [label="46:CtLiteralImpl@'\''" shape=ellipse]
+124 [label="46:CtTypeReferenceImpl@char" shape=ellipse]
+125 [label="46:CtBinaryOperatorImpl@(\" with Extension '\" + this.m_suffix) + '\''" shape=ellipse]
+126 [label="46:CtTypeReferenceImpl@String" shape=ellipse]
+127 [label="46:CtTypeReferenceImpl@String" shape=ellipse]
+128 [label="46:CtPackageReferenceImpl@java.lang" shape=ellipse]
+129 [label="46:CtOperatorAssignmentImpl@s += (\" with Extension '\" + this.m_suffix) + '\''// $NON-NLS-1$
+" shape=ellipse]
+130 [label="46:CtCommentImpl@// $NON-NLS-1$" shape=ellipse]
+131 [label="45:CtBlockImpl@\{
+    s += (\" with Extension '\" + this.m_suffix) + '\'';// $NON-NLS-1$
+
+\}" shape=ellipse]
+132 [label="45:CtIfImpl@if (this.m_suffix != null) \{
+    s += (\" with Extension '\" + this.m_suffix) + '\'';// $NON-NLS-1$
+
+\}" shape=ellipse]
+133 [label="43:CtBlockImpl@\{
+    s = \"Unknown File Type\";// $NON-NLS-1$
+
+    if (this.m_suffix != null) \{
+        s += (\" with Extension '\" + this.m_suffix) + '\'';// $NON-NLS-1$
+
+    \}
+\}" shape=ellipse]
+134 [label="43:CtIfImpl@if (s == null) \{
+    s = \"Unknown File Type\";// $NON-NLS-1$
+
+    if (this.m_suffix != null) \{
+        s += (\" with Extension '\" + this.m_suffix) + '\'';// $NON-NLS-1$
+
+    \}
+\}" shape=ellipse]
+135 [label="49:CtFieldReferenceImpl@m_name" shape=ellipse]
+136 [label="49:CtTypeReferenceImpl@FileType" shape=ellipse]
+137 [label="49:CtTypeReferenceImpl@String" shape=ellipse]
+138 [label="49:CtFieldWriteImpl@this.m_name" shape=ellipse]
+139 [label="49:CtThisAccessImpl@this" shape=ellipse]
+140 [label="49:CtVariableReadImpl@s" shape=ellipse]
+141 [label="49:CtLocalVariableReferenceImpl@s" shape=ellipse]
+142 [label="49:CtTypeReferenceImpl@String" shape=ellipse]
+143 [label="49:CtPackageReferenceImpl@java.lang" shape=ellipse]
+144 [label="49:CtAssignmentImpl@this.m_name = s" shape=ellipse]
+145 [label="32:CtBlockImpl@\{
+    super();
+    String s;
+    s = TextUtils.prepare(suffix);
+    this.m_suffix = (s != null) ? s.toLowerCase() : s;
+    this.m_mime = TextUtils.prepare(mime);
+    s = TextUtils.prepare(name);
+    if (s == null) \{
+        s = \"Unknown File Type\";// $NON-NLS-1$
+
+        if (this.m_suffix != null) \{
+            s += (\" with Extension '\" + this.m_suffix) + '\'';// $NON-NLS-1$
+
+        \}
+    \}
+    this.m_name = s;
+\}" shape=ellipse]
+146 [label="32:CtConstructorImpl@/**
+ * Create
+ *
+ * @param suffix
+ * \	\	the file name suffix
+ * @param mime
+ * \	\	the mime type
+ * @param name
+ * \	\	the file's name
+ */
+public FileType(final String suffix, final String mime, final String name) \{
+    super();
+    String s;
+    s = TextUtils.prepare(suffix);
+    this.m_suffix = (s != null) ? s.toLowerCase() : s;
+    this.m_mime = TextUtils.prepare(mime);
+    s = TextUtils.prepare(name);
+    if (s == null) \{
+        s = \"Unknown File Type\";// $NON-NLS-1$
+
+        if (this.m_suffix != null) \{
+            s += (\" with Extension '\" + this.m_suffix) + '\'';// $NON-NLS-1$
+
+        \}
+    \}
+    this.m_name = s;
+\}" shape=ellipse]
+147 [label="22:CtJavaDocImpl@/**
+ * Create
+ *
+ * @param suffix
+ * \	\	the file name suffix
+ * @param mime
+ * \	\	the mime type
+ * @param name
+ * \	\	the file's name
+ */" shape=ellipse]
+148 [label="38:Insert@INSERT" shape=ellipse]
+149 [label="38:CtPackageReferenceImpl@org.optimizationBenchmarking.utils.text" shape=ellipse]
+150 [label="38:CtTypeReferenceImpl@TextUtils" shape=ellipse]
+151 [label="38:CtTypeAccessImpl@org.optimizationBenchmarking.utils.text.TextUtils" shape=ellipse]
+1 -> 2 [label="AST"];
+3 -> 4 [label="AST"];
+5 -> 6 [label="AST"];
+7 -> 8 [label="AST"];
+7 -> 9 [label="AST"];
+11 -> 10 [label="AST"];
+11 -> 7 [label="AST"];
+12 -> 13 [label="AST"];
+15 -> 14 [label="AST"];
+15 -> 12 [label="AST"];
+16 -> 17 [label="AST"];
+16 -> 36 [label="Define-Use"];
+16 -> 46 [label="Define-Use"];
+16 -> 49 [label="Define-Use"];
+18 -> 19 [label="AST"];
+18 -> 20 [label="AST"];
+18 -> 21 [label="AST"];
+23 -> 24 [label="AST"];
+25 -> 26 [label="AST"];
+25 -> 16 [label="Data Dep"];
+27 -> 22 [label="AST"];
+27 -> 23 [label="AST"];
+27 -> 18 [label="AST"];
+27 -> 25 [label="AST"];
+28 -> 29 [label="AST"];
+30 -> 28 [label="AST"];
+30 -> 16 [label="AST"];
+30 -> 27 [label="AST"];
+31 -> 32 [label="AST"];
+31 -> 33 [label="AST"];
+31 -> 106 [label="Define-Use"];
+31 -> 119 [label="Define-Use"];
+34 -> 35 [label="AST"];
+34 -> 31 [label="AST"];
+36 -> 37 [label="AST"];
+36 -> 34 [label="Data Dep"];
+38 -> 39 [label="AST"];
+40 -> 41 [label="AST"];
+40 -> 36 [label="AST"];
+40 -> 38 [label="AST"];
+40 -> 48 [label="Control Dep"];
+40 -> 42 [label="Control Dep"];
+40 -> 46 [label="Control Dep"];
+40 -> 49 [label="Control Dep"];
+40 -> 151 [label="Control Dep"];
+42 -> 43 [label="AST"];
+42 -> 44 [label="AST"];
+46 -> 47 [label="AST"];
+46 -> 34 [label="Data Dep"];
+48 -> 45 [label="AST"];
+48 -> 46 [label="AST"];
+48 -> 42 [label="AST"];
+48 -> 148 [label="Action"];
+49 -> 50 [label="AST"];
+49 -> 34 [label="Data Dep"];
+51 -> 52 [label="AST"];
+51 -> 40 [label="AST"];
+51 -> 48 [label="AST"];
+51 -> 49 [label="AST"];
+53 -> 54 [label="AST"];
+55 -> 53 [label="AST"];
+55 -> 34 [label="AST"];
+55 -> 51 [label="AST"];
+56 -> 57 [label="AST"];
+56 -> 58 [label="AST"];
+59 -> 60 [label="AST"];
+59 -> 56 [label="AST"];
+61 -> 62 [label="AST"];
+61 -> 63 [label="AST"];
+61 -> 64 [label="AST"];
+66 -> 67 [label="AST"];
+68 -> 69 [label="AST"];
+68 -> 59 [label="Data Dep"];
+70 -> 65 [label="AST"];
+70 -> 66 [label="AST"];
+70 -> 61 [label="AST"];
+70 -> 68 [label="AST"];
+71 -> 72 [label="AST"];
+73 -> 71 [label="AST"];
+73 -> 59 [label="AST"];
+73 -> 70 [label="AST"];
+74 -> 75 [label="AST"];
+74 -> 89 [label="Define-Use"];
+74 -> 140 [label="Define-Use"];
+76 -> 77 [label="AST"];
+76 -> 78 [label="AST"];
+76 -> 79 [label="AST"];
+81 -> 82 [label="AST"];
+83 -> 84 [label="AST"];
+83 -> 74 [label="Data Dep"];
+85 -> 80 [label="AST"];
+85 -> 81 [label="AST"];
+85 -> 76 [label="AST"];
+85 -> 83 [label="AST"];
+86 -> 87 [label="AST"];
+88 -> 86 [label="AST"];
+88 -> 74 [label="AST"];
+88 -> 85 [label="AST"];
+89 -> 90 [label="AST"];
+91 -> 92 [label="AST"];
+93 -> 94 [label="AST"];
+93 -> 89 [label="AST"];
+93 -> 91 [label="AST"];
+93 -> 133 [label="Control Dep"];
+93 -> 101 [label="Control Dep"];
+93 -> 95 [label="Control Dep"];
+93 -> 97 [label="Control Dep"];
+93 -> 132 [label="Control Dep"];
+93 -> 110 [label="Control Dep"];
+93 -> 106 [label="Control Dep"];
+93 -> 108 [label="Control Dep"];
+95 -> 96 [label="AST"];
+95 -> 140 [label="Define-Use"];
+96 -> 140 [label="Define-Use"];
+97 -> 98 [label="AST"];
+99 -> 100 [label="AST"];
+101 -> 99 [label="AST"];
+101 -> 95 [label="AST"];
+101 -> 97 [label="AST"];
+101 -> 102 [label="AST"];
+103 -> 104 [label="AST"];
+103 -> 105 [label="AST"];
+106 -> 107 [label="AST"];
+106 -> 103 [label="AST"];
+108 -> 109 [label="AST"];
+110 -> 111 [label="AST"];
+110 -> 106 [label="AST"];
+110 -> 108 [label="AST"];
+110 -> 131 [label="Control Dep"];
+110 -> 129 [label="Control Dep"];
+110 -> 112 [label="Control Dep"];
+110 -> 125 [label="Control Dep"];
+110 -> 121 [label="Control Dep"];
+110 -> 114 [label="Control Dep"];
+110 -> 119 [label="Control Dep"];
+110 -> 123 [label="Control Dep"];
+112 -> 113 [label="AST"];
+112 -> 140 [label="Define-Use"];
+113 -> 140 [label="Define-Use"];
+114 -> 115 [label="AST"];
+116 -> 117 [label="AST"];
+116 -> 118 [label="AST"];
+119 -> 120 [label="AST"];
+119 -> 116 [label="AST"];
+119 -> 112 [label="Data Dep"];
+121 -> 122 [label="AST"];
+121 -> 114 [label="AST"];
+121 -> 119 [label="AST"];
+123 -> 124 [label="AST"];
+125 -> 126 [label="AST"];
+125 -> 121 [label="AST"];
+125 -> 123 [label="AST"];
+127 -> 128 [label="AST"];
+129 -> 127 [label="AST"];
+129 -> 112 [label="AST"];
+129 -> 125 [label="AST"];
+129 -> 130 [label="AST"];
+131 -> 129 [label="AST"];
+132 -> 110 [label="AST"];
+132 -> 131 [label="AST"];
+133 -> 101 [label="AST"];
+133 -> 132 [label="AST"];
+134 -> 93 [label="AST"];
+134 -> 133 [label="AST"];
+135 -> 136 [label="AST"];
+135 -> 137 [label="AST"];
+138 -> 139 [label="AST"];
+138 -> 135 [label="AST"];
+140 -> 141 [label="AST"];
+140 -> 138 [label="Data Dep"];
+142 -> 143 [label="AST"];
+144 -> 142 [label="AST"];
+144 -> 138 [label="AST"];
+144 -> 140 [label="AST"];
+145 -> 11 [label="AST"];
+145 -> 15 [label="AST"];
+145 -> 30 [label="AST"];
+145 -> 55 [label="AST"];
+145 -> 73 [label="AST"];
+145 -> 88 [label="AST"];
+145 -> 134 [label="AST"];
+145 -> 144 [label="AST"];
+146 -> 0 [label="AST"];
+146 -> 1 [label="AST"];
+146 -> 3 [label="AST"];
+146 -> 5 [label="AST"];
+146 -> 145 [label="AST"];
+146 -> 147 [label="AST"];
+148 -> 151 [label="Action"];
+150 -> 149 [label="AST"];
+151 -> 150 [label="AST"];
+}

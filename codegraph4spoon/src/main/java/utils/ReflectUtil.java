@@ -2,8 +2,10 @@ package utils;
 
 import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.path.CtRole;
+import spoon.support.reflect.declaration.CtElementImpl;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,5 +40,24 @@ public class ReflectUtil {
         }
         CtRole[] roles = new CtRole[roleList.size()];
         return roleList.toArray(roles);
+    }
+
+    public static Object createInstance(String className) {
+        try {
+            Class clazz = Class.forName(className);
+            Object obj = clazz.getDeclaredConstructor().newInstance();
+            return obj;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

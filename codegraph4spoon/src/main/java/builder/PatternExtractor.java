@@ -327,7 +327,7 @@ public class PatternExtractor {
 
     private static boolean isMatch(PatternNode pn, CtWrapper cgn, Map<PatternNode, CtWrapper> mapping) {
         // compare type
-        String pType = pn.getAttribute("nodeType").getTag();
+        String pType = pn.getAttribute("nodeType").getTag().toString();
         String gType = Attribute.computeNodeType(cgn);
         if (!gType.equals(pType))
             return false;
@@ -463,7 +463,7 @@ public class PatternExtractor {
                     comp = Attribute.computeValue(cgn);
                     break;
             }
-            scores[index++] = calContextSim(a.getTag(), comp);
+            scores[index++] = calContextSim(a.getTag().toString(), comp);
         }
         return Arrays.stream(scores).average().getAsDouble();
     }

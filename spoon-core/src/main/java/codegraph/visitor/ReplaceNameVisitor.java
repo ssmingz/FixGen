@@ -91,7 +91,7 @@ public class ReplaceNameVisitor extends DefaultJavaPrettyPrinter {
         if ("class".equals(reference.getSimpleName())) {
             printer.writeKeyword("class");
         } else {
-            printer.writeIdentifier(reference.getType().getSimpleName());
+            printer.writeIdentifier(reference.getType()!=null?reference.getType().getSimpleName():"");
         }
     }
 

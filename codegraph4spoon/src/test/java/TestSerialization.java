@@ -17,7 +17,7 @@ public class TestSerialization {
         String srcPath = String.format("src/test/resources/c3/ant/13/%d/before.java", 0);
         String tarPath = String.format("src/test/resources/c3/ant/13/%d/after.java", 0);
         // build action graph
-        CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+        CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
 
         String filePath = String.format("%s/out/c3_ant_13_%d_ActionGraph.dat", System.getProperty("user.dir"), 0);
         ObjectUtil.writeObjectToFile(ag, filePath);  // save
@@ -37,7 +37,7 @@ public class TestSerialization {
             String srcPath = String.format("%s/%d/before.java", base, i);
             String tarPath = String.format("%s/%d/after.java", base, i);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
         }
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);

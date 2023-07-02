@@ -28,7 +28,7 @@ public class TestPatternFeature2Json {
             String srcPath = String.format("%s/%d/before.java", base, i);
             String tarPath = String.format("%s/%d/after.java", base, i);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
         }
         // extract pattern from more-than-one graphs
@@ -56,7 +56,7 @@ public class TestPatternFeature2Json {
             String srcPath = String.format("%s/%d/before.java", base, i);
             String tarPath = String.format("%s/%d/after.java", base, i);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
         }
         // extract pattern from more-than-one graphs
@@ -97,7 +97,7 @@ public class TestPatternFeature2Json {
                             if (pair.isDirectory()) {
                                 String srcPath = pair.getAbsolutePath()+"/before.java";
                                 String tarPath = pair.getAbsolutePath()+"/after.java";
-                                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath);
+                                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
                                 ags.add(ag);
                                 graphCounter++;
                             }

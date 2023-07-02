@@ -1,19 +1,33 @@
 package model.actions;
 
 import gumtree.spoon.diff.operations.Operation;
+import org.javatuples.Pair;
+import spoon.reflect.path.CtRole;
 import spoon.reflect.visitor.CtVisitor;
 import spoon.support.reflect.declaration.CtElementImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Insert extends ActionNode {
     protected CtElementImpl _parent;
-    protected int _position;
+    protected CtRole _position;
+    public List<Pair<CtRole, Class>> _roleList = new ArrayList<>();
 
-    public Insert(CtElementImpl insert, CtElementImpl parent, int pos, Operation op) {
+    public Insert(CtElementImpl insert, CtElementImpl parent, CtRole role, Operation op) {
         super(insert, op);
         _parent = parent;
-        _position = pos;
+        _position = role;
         new ActionEdge(parent, this);
         new ActionEdge(this, insert);
+        // role list from end to root
+        // notice it is in statements list if role is statement
+        CtElementImpl ptr = insert;
+        while (ptr != null) {
+            Pair pair = new Pair<>(ptr.getRoleInParent(), ptr.getClass());
+            _roleList.add(pair);
+            ptr = (CtElementImpl) ptr.getParent();
+        }
     }
 
     public CtElementImpl getParent() { return _parent; }
@@ -37,4 +51,6 @@ public class Insert extends ActionNode {
     public String prettyprint() {
         return "INSERT";
     }
+
+    public CtRole insertTo() { return _position; }
 }

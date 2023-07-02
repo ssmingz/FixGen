@@ -24,7 +24,7 @@ import java.util.*;
 public class CodeGraph implements Serializable {
     private String _name;
     private String _fileName;
-    private CtMethodImpl _ctMethod;
+    private CtExecutableImpl _ctMethod;
     public ArrayList<CtWrapper> _allNodes = new ArrayList<>();
     private ArrayList<CtElementImpl> _traversed = new ArrayList<>();
     private CtElementImpl _entryNode;
@@ -41,7 +41,7 @@ public class CodeGraph implements Serializable {
 
     public CodeGraph() {}
 
-    public void setCtMethod(CtMethodImpl ctMethod) {
+    public void setCtMethod(CtExecutableImpl ctMethod) {
         _ctMethod = ctMethod;
     }
 
@@ -230,6 +230,28 @@ public class CodeGraph implements Serializable {
             }
         }
     }
+
+    public void deleteCGId(Object obj) {
+        if (obj instanceof CtElementImpl) {
+            Iterator<CtWrapper> itr = _allNodes.iterator();
+            while (itr.hasNext()) {
+                CtWrapper e = itr.next();
+                if (e.getCtElementImpl() == obj) {
+                    itr.remove();
+                    break;
+                }
+            }
+            Iterator<Map.Entry<Object, Integer>> itr2 = idCG.entrySet().iterator();
+            while (itr2.hasNext()) {
+                Map.Entry<Object, Integer> e = itr2.next();
+                if (e.getKey() instanceof CtWrapper && ((CtWrapper) e.getKey()).getCtElementImpl() == obj) {
+                    itr2.remove();
+                    break;
+                }
+            }
+        }
+    }
+
 
     private void visit(CtMethodImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
@@ -796,4 +818,8 @@ public class CodeGraph implements Serializable {
     }
 
     public String getFileName() { return _fileName; }
+
+    public void nodeSetAdd(CtElementImpl insert) {
+        _allNodes.add(new CtWrapper(insert));
+    }
 }
