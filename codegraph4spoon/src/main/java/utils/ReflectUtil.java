@@ -1,5 +1,6 @@
 package utils;
 
+import codegraph.CtVirtualElement;
 import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.declaration.CtElementImpl;
@@ -51,6 +52,20 @@ public class ReflectUtil {
             e.printStackTrace();
         } catch (InstantiationException e) {
             e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static Object createInstance(Class clazz) throws InstantiationException {
+        try {
+            Object obj = clazz.getDeclaredConstructor().newInstance();
+            return obj;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

@@ -1,5 +1,6 @@
 package builder;
 
+import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.Delete;
@@ -9,15 +10,21 @@ import model.actions.Update;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
+import org.checkerframework.checker.units.qual.C;
 import org.javatuples.Pair;
+import org.javatuples.Triplet;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.meta.RoleHandler;
 import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
+import spoon.reflect.visitor.Child;
+import spoon.support.reflect.code.CtLiteralImpl;
+import spoon.support.reflect.code.CtThisAccessImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
 import utils.ObjectUtil;
 import utils.ReflectUtil;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class BugLocator {
@@ -68,32 +75,38 @@ public class BugLocator {
 
         // compare with the target
         Pair<Map<PatternNode, CtWrapper>, Double> mappingScore = pat.compareCG(target);
+        // record the original root node
+        CtElementImpl root = target.getEntryNode();
         if(mappingScore.getValue1()>SIMILARITY_THRESHOLD){
             Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
             // pattern.start is the action point, that is also the buggy point
+            List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
             for(Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
                 for (Pair<PatternNode, PatternNode> pair : nodeAttachAction) {
                     if (pair.getValue0() == entry.getKey()) {
-                        // record the original root node
-                        CtElementImpl root = target.getEntryNode();
                         // apply action
                         PatternNode action = pair.getValue1();
                         CtElementImpl oriNode = entry.getValue().getCtElementImpl();
-                        if (action.getAttribute("nodeType").getTag().equals(Delete.class.getName())) {
-                            applyDelete(action, oriNode, target);
-                        } else if (action.getAttribute("nodeType").getTag().equals(Update.class.getName())) {
-                            applyUpdate(action, oriNode, target, mapping, target.getMapping());
-                        } else if (action.getAttribute("nodeType").getTag().equals(Insert.class.getName())) {
-                            applyInsert(action, oriNode, target, mapping, target.getMapping());
-                        } else if (action.getAttribute("nodeType").getTag().equals(Move.class.getName())) {
-                            applyMove(action, oriNode, target, mapping);
-                        } else {
-                            System.out.println("[warn]Invalid action nodeType");
-                        }
-                        ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+                        temp.add(Pair.with(action, oriNode));
                     }
                 }
             }
+            for(Pair<PatternNode, CtElementImpl> tri : temp) {
+                PatternNode action = tri.getValue0();
+                CtElementImpl oriNode = tri.getValue1();
+                if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+                    applyDelete(action, oriNode, target);
+                } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                    applyUpdate(action, oriNode, target, mapping, target.getMapping());
+                } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+                    applyInsert(action, oriNode, target, mapping, target.getMapping());
+                } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+                    applyMove(action, oriNode, target, mapping);
+                } else {
+                    System.out.println("[warn]Invalid action nodeType");
+                }
+            }
+            ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
         }
     }
 
@@ -113,13 +126,13 @@ public class BugLocator {
 
     private void applyMove(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping) {
         // find move.target in pattern
-        CtElementImpl parentInTarget = null;
+        CtElementImpl moveDstTarget = null;
         for (PatternEdge oe : action.outEdges()) {
             if (oe.type == PatternEdge.EdgeType.ACTION) {
-                PatternNode parentInPattern = oe.getTarget();
-                if (mapping.containsKey(parentInPattern)) {
+                PatternNode moveDstPattern = oe.getTarget();
+                if (mapping.containsKey(moveDstPattern)) {
                     // find move.target in target code graph
-                    parentInTarget = mapping.get(parentInPattern).getCtElementImpl();
+                    moveDstTarget = mapping.get(moveDstPattern).getCtElementImpl();
                 } else {
                     System.out.println("[error]Cannot find mapped MOVE.target in target code graph: " + target.getFileName());
                     return;
@@ -129,7 +142,14 @@ public class BugLocator {
         // delete oriNode in the old tree
         oriNode.delete();
         // TODO: move to where, the concrete position of move.target
-        modifyValueByRole(parentInTarget, (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag(), oriNode);
+        List<Pair<CtRole, Class>> roles;
+        if (!action.getAttribute("position").isAbstract()) {
+            roles = (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag();
+        } else {
+            roles = new ArrayList<>();
+            roles.add(Pair.with(moveDstTarget.getRoleInParent(), moveDstTarget.getClass()));
+        }
+        modifyValueByRole((CtElementImpl) moveDstTarget.getParent(), roles, oriNode, moveDstTarget);
     }
 
     private void applyUpdate(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
@@ -143,11 +163,22 @@ public class BugLocator {
         if (newInPattern != null) {
             // TODO: follow the subtree of update.target to create a new CtElementImpl
             CtElementImpl update = createSpoonNodeRecursively(newInPattern, mapping4pattern, mapping4diff);
+            mapping4pattern.put(newInPattern, new CtWrapper(update));
+            mapping4pattern.putAll(addMapping4Child(newInPattern, update));
             // update codegraph node set
             target.deleteCGId(oriNode);
             target.nodeSetAdd(update);
             // TODO: replace oriNode with the new node in the old tree
-            oriNode.replace(update);
+//            oriNode.replace(update);
+            List<Pair<CtRole, Class>> roles;
+            if (!action.getAttribute("position").isAbstract()) {
+                roles = (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag();
+            } else {
+                roles = new ArrayList<>();
+                roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
+            }
+            modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, update, oriNode);
+
         } else {
             System.out.println("[error]Cannot find UPDATE.target in pattern: " + target.getFileName());
         }
@@ -165,9 +196,12 @@ public class BugLocator {
         if (newInPattern != null) {
             // TODO: follow the subtree of insert.target to create a new CtElementImpl
             CtElementImpl insert = createSpoonNodeRecursively(newInPattern, mapping4pattern, mapping4diff);
+            // add new mapping
+            mapping4pattern.put(newInPattern, new CtWrapper(insert));
+            mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
             // insert.source is the parent, which is oriNode
             // TODO: insert to where, the concrete position of insert.source
-            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag(), insert);
+            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag(), insert, null);
             // update codegraph node set
             target.nodeSetAdd(insert);
         } else {
@@ -175,20 +209,80 @@ public class BugLocator {
         }
     }
 
-    private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, CtElementImpl child) {
+    private Map<PatternNode, CtWrapper> addMapping4Child(PatternNode pn, CtElementImpl cte) {
+        Map<PatternNode, CtWrapper> childMap = new LinkedHashMap<>();
+        if (pn == null || cte == null)
+            return childMap;
+        for (PatternEdge oe : pn.outEdges()) {
+            if (oe.type == PatternEdge.EdgeType.AST) {
+                String location = !oe.getTarget().getAttribute("locationInParent").isAbstract() ? (String) oe.getTarget().getAttribute("locationInParent").getTag() : null;
+                if (location != null && CtRole.fromName(location) != null) {
+                    Object child = cte.getValueByRole(CtRole.fromName(location));
+                    if (child instanceof CtElementImpl) {
+                        childMap.put(oe.getTarget(), new CtWrapper((CtElementImpl) child));
+                        childMap.putAll(addMapping4Child(oe.getTarget(), (CtElementImpl) child));
+                    } else if (child instanceof List) {
+                        int listIndex = !oe.getTarget().getAttribute("listIndex").isAbstract() ? (int) oe.getTarget().getAttribute("listIndex").getTag() : -1;
+                        if (listIndex != -1 && ((List<?>) child).size()>listIndex) {
+                            childMap.put(oe.getTarget(), new CtWrapper(((List<CtElementImpl>) child).get(listIndex)));
+                            childMap.putAll(addMapping4Child(oe.getTarget(), ((List<CtElementImpl>) child).get(listIndex)));
+                        }
+                    }
+                }
+            }
+        }
+        return childMap;
+    }
+
+    private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, CtElementImpl child, CtElementImpl replacement) {
         CtRole pre = null;
         for (Pair<CtRole, Class> pair : roles) {
             RoleHandler rh = RoleHandlerHelper.getOptionalRoleHandler(parent.getClass(), pair.getValue0());
             if (rh != null) {
-                CtElementImpl ori = parent.getValueByRole(pair.getValue0());
+                Object ori = parent.getValueByRole(pair.getValue0());
                 if (ori instanceof List) {
-                    ((List<CtElementImpl>) ori).add(0, child);
+                    if (((List<?>) ori).isEmpty()) {
+                        ArrayList<CtElementImpl> init = new ArrayList<>();
+                        init.add(child);
+                        parent.setValueByRole(pair.getValue0(), init);
+                    } else if (ori.getClass().getSimpleName().equals("UnmodifiableRandomAccessList")){
+                        ArrayList<CtElementImpl> init = new ArrayList<>();
+                        init.addAll((List<? extends CtElementImpl>) ori);
+                        if (init.contains(replacement))
+                            Collections.replaceAll(init, replacement, child);
+                        else
+                            init.add(child);
+                        parent.setValueByRole(pair.getValue0(), Collections.unmodifiableList(init));
+                    } else {
+                        if (((List<?>) ori).contains(replacement))
+                            Collections.replaceAll((List<CtElementImpl>) ori, replacement, child);
+                        else
+                            ((List<CtElementImpl>) ori).add(child);
+                    }
                 } else {
                     if (pre != null) {
-                        if (ori.getValueByRole(pre) instanceof List)
-                            ((List<CtElementImpl>) ori.getValueByRole(pre)).add(child);
-                        else
-                            ori.setValueByRole(pre, child);
+                        if (((CtElementImpl) ori).getValueByRole(pre) instanceof List) {
+                            if (((List<?>) ((CtElementImpl) ori).getValueByRole(pre)).isEmpty()) {
+                                ArrayList<CtElementImpl> init = new ArrayList<>();
+                                init.add(child);
+                                parent.setValueByRole(pre, init);
+                            } else if ((((CtElementImpl) ori).getValueByRole(pre)).getClass().getSimpleName().equals("UnmodifiableRandomAccessList")) {
+                                ArrayList<CtElementImpl> init = new ArrayList<>();
+                                init.addAll((((CtElementImpl) ori).getValueByRole(pre)));
+                                if (init.contains(replacement))
+                                    Collections.replaceAll(init, replacement, child);
+                                else
+                                    init.add(child);
+                                parent.setValueByRole(pre, init);
+                            } else {
+                                if (((List<CtElementImpl>) ((CtElementImpl) ori).getValueByRole(pre)).contains(replacement))
+                                    Collections.replaceAll(((CtElementImpl) ori).getValueByRole(pre), replacement, child);
+                                else
+                                    ((List<CtElementImpl>) ((CtElementImpl) ori).getValueByRole(pre)).add(child);
+                            }
+                        } else {
+                            ((CtElementImpl) ori).setValueByRole(pre, child);
+                        }
                     } else {
                         parent.setValueByRole(pair.getValue0(), child);
                     }
@@ -208,18 +302,42 @@ public class BugLocator {
         return pointer;
     }
 
-    public CtElementImpl createSpoonNodeRecursively(PatternNode pnRoot, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
+    @SuppressWarnings("unchecked")
+    public <T> CtElementImpl createSpoonNodeRecursively(PatternNode pnRoot, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
         // nodeType->nodeType2->nodeType3
-        String clazz = pnRoot.getAttribute("nodeType") != null ? pnRoot.getAttribute("nodeType").getTag().toString() :
-                        (pnRoot.getAttribute("nodeType2") != null ? pnRoot.getAttribute("nodeType2").getTag().toString() :
-                            (pnRoot.getAttribute("nodeType3") != null ? pnRoot.getAttribute("nodeType3").getTag().toString() : null));
+        Class clazz = !pnRoot.getAttribute("nodeType").isAbstract() ? (Class) pnRoot.getAttribute("nodeType").getTag() :
+                        (!pnRoot.getAttribute("nodeType2").isAbstract() ? (Class) pnRoot.getAttribute("nodeType2").getTag() :
+                            (!pnRoot.getAttribute("nodeType3").isAbstract() ? (Class) pnRoot.getAttribute("nodeType3").getTag() : null));
         if (clazz == null) {
             throw new IllegalArgumentException("Create new spoon node failed: pattern node does not have node type attribute");
         }
-        CtElementImpl newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
+        CtElementImpl newly = null;
+        try {
+            newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
+        } catch (InstantiationException e) {
+            System.out.println("[warn]failed to directly use class name to create instance");
+            // if is update.target
+            for (PatternEdge ie : pnRoot.inEdges()) {
+                if (ie.type == PatternEdge.EdgeType.ACTION && !ie.getSource().getAttribute("nodeType").isAbstract()
+                        && ie.getSource().getAttribute("nodeType").getTag().equals(Update.class)) {
+                    for (PatternEdge ie2 : ie.getSource().inEdges()) {
+                        if (ie2.type == PatternEdge.EdgeType.ACTION && mapping4pattern.containsKey(ie2.getSource())) {
+                            try {
+                                clazz = mapping4pattern.get(ie2.getSource()).getCtElementImpl().getClass();
+                                newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
+                            } catch (InstantiationException ex) {
+                                ex.printStackTrace();
+                            }
+                        }
+                    }
+                }
+            }
+        }
         if (newly == null) {
             throw new IllegalStateException("Create new spoon node failed: createInstance() return null");
         }
+        if (!pnRoot.getAttribute("implicit").isAbstract())
+            newly.setImplicit((Boolean) pnRoot.getAttribute("implicit").getTag());
         // check value for name
         if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null) {
             // check define-use for name
@@ -247,19 +365,40 @@ public class BugLocator {
                 }
             }
             if (!hasDef && !hasUse) {
-                newly.setValueByRole(CtRole.NAME, pnRoot.getAttribute("value") != null ?
+                newly.setValueByRole(CtRole.NAME, !pnRoot.getAttribute("value").isAbstract() ?
                         pnRoot.getAttribute("value").getTag() : pnRoot.getAttribute("value2").getTag());
             }
         }
+        String valueType = pnRoot.getAttribute("valueType")!=null && !pnRoot.getAttribute("valueType").isAbstract() ? pnRoot.getAttribute("valueType").getTag().toString() : null;
+        T value = pnRoot.getAttribute("value")!=null && !pnRoot.getAttribute("value").isAbstract() ? (T) pnRoot.getAttribute("value").getTag() : null;
+        if (clazz.equals(CtLiteralImpl.class) && valueType != null && value != null) {
+            ((CtLiteralImpl) newly).setValue(value);
+        }
         // recursively for children
         for (PatternEdge oe : pnRoot.outEdges()) {
-            if (oe.type == PatternEdge.EdgeType.AST) {
+            if (oe.type == PatternEdge.EdgeType.AST && !oe.getTarget().isVirtual()) {
                 // node type
                 CtElementImpl child = createSpoonNodeRecursively(oe.getTarget(), mapping4pattern, mapping4diff);
+                if (child.prettyprint().equals("PlaceHold"))
+                    continue;
                 // role in parent
                 CtRole role = CtRole.fromName((String) oe.getTarget().getAttribute("locationInParent").getTag());
+                Object listSize = oe.getTarget().getAttribute("listSize").getTag();
+                Object listIndex = oe.getTarget().getAttribute("listIndex").getTag();
                 if (newly.getValueByRole(role) instanceof List) {
-                    ((List<CtElementImpl>) newly.getValueByRole(role)).add(child);
+                    int size = (Integer) listSize;
+                    int index = (Integer) listIndex;
+                    if (((List<?>) newly.getValueByRole(role)).isEmpty()) {
+                        CtElementImpl[] init = new CtElementImpl[size];
+                        init[index] = child;
+                        newly.setValueByRole(role, Arrays.asList(init));
+                    } else if (newly.getValueByRole(role).getClass().getSimpleName().equals("UnmodifiableRandomAccessList")){
+                        CtElementImpl[] init = ((List<?>) newly.getValueByRole(role)).toArray(new CtElementImpl[size]);
+                        init[index] = child;
+                        newly.setValueByRole(role, Collections.unmodifiableList(Arrays.asList(init)));
+                    } else {
+                        ((List<CtElementImpl>) newly.getValueByRole(role)).add(index, child);
+                    }
                 } else {
                     newly.setValueByRole(role, child);
                 }

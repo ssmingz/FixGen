@@ -25,42 +25,42 @@ public class ReplaceNameVisitor extends DefaultJavaPrettyPrinter {
         if (literal.getValue() == null)
             printer.writeLiteral("null");
         else
-            printer.writeLiteral(literal.getValue().getClass().getSimpleName());
+            printer.writeLiteral(literal.getValue().getClass().getName());
         exitCtExpression(literal);
     }
 
     @Override
     public <T> void visitCtLocalVariableReference(CtLocalVariableReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getSimpleName());
+        printer.writeIdentifier(reference.getType().getQualifiedName());
     }
 
     @Override
     public <T> void visitCtCatchVariableReference(CtCatchVariableReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getSimpleName());
+        printer.writeIdentifier(reference.getType().getQualifiedName());
     }
 
     @Override
     public <T> void visitCtParameterReference(CtParameterReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getSimpleName());
+        printer.writeIdentifier(reference.getType().getQualifiedName());
     }
 
     @Override
     public <T> void visitCtVariableRead(CtVariableRead<T> variableRead) {
         enterCtExpression(variableRead);
-        printer.writeIdentifier(variableRead.getVariable().getType().getSimpleName());
+        printer.writeIdentifier(variableRead.getVariable().getType().getQualifiedName());
         exitCtExpression(variableRead);
     }
 
     @Override
     public <T> void visitCtVariableWrite(CtVariableWrite<T> variableWrite) {
         enterCtExpression(variableWrite);
-        printer.writeIdentifier(variableWrite.getVariable().getType().getSimpleName());
+        printer.writeIdentifier(variableWrite.getVariable().getType().getQualifiedName());
         exitCtExpression(variableWrite);
     }
 
     @Override
     public <T> void visitCtUnboundVariableReference(CtUnboundVariableReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getSimpleName());
+        printer.writeIdentifier(reference.getType().getQualifiedName());
     }
 
     @Override
@@ -91,7 +91,7 @@ public class ReplaceNameVisitor extends DefaultJavaPrettyPrinter {
         if ("class".equals(reference.getSimpleName())) {
             printer.writeKeyword("class");
         } else {
-            printer.writeIdentifier(reference.getType()!=null?reference.getType().getSimpleName():"");
+            printer.writeIdentifier(reference.getType()!=null?reference.getType().getQualifiedName():"");
         }
     }
 

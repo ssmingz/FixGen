@@ -2,6 +2,7 @@ import builder.GraphBuilder;
 import builder.GraphConfiguration;
 import model.CodeGraph;
 import org.junit.Test;
+import spoon.support.reflect.declaration.CtElementImpl;
 import utils.DotGraph;
 
 import java.io.File;

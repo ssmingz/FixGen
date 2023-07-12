@@ -37,6 +37,10 @@ public class PatternAbstractor {
             Attribute attr5 = new Attribute("value");
             Attribute attr6 = new Attribute("value2");  // replace name with type
             Attribute attr7 = new Attribute("position");
+            Attribute attr8 = new Attribute("listSize");  // list length if is list type, or else -1
+            Attribute attr9 = new Attribute("listIndex");  // list index if is list type, or else -1
+            Attribute attr10 = new Attribute("valueType");  // type of the value
+            Attribute attr11 = new Attribute("implicit");  // field of CtElement, to avoid complicated this.
             for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                 CtWrapper n = entry.getKey();
                 CodeGraph g = entry.getValue();
@@ -48,6 +52,10 @@ public class PatternAbstractor {
                 attr5.addValue(Attribute.computeValue(n), g);
                 attr6.addValue(Attribute.computeValue2(n), g);
                 attr7.addValue(Attribute.computePosition(n), g);
+                attr8.addValue(Attribute.computeListSize(n), g);
+                attr9.addValue(Attribute.computeListIndex(n), g);
+                attr10.addValue(Attribute.computeValueType(n), g);
+                attr11.addValue(Attribute.computeImplicit(n), g);
             }
             pn.setComparedAttribute(attr1);
             pn.setComparedAttribute(attr2);
@@ -57,6 +65,10 @@ public class PatternAbstractor {
             pn.setComparedAttribute(attr6);
             if (attr7.getValueSet().size() > 0)
                 pn.setComparedAttribute(attr7);
+            pn.setComparedAttribute(attr8);
+            pn.setComparedAttribute(attr9);
+            pn.setComparedAttribute(attr10);
+            pn.setComparedAttribute(attr11);
         }
         // edge attributes
     }

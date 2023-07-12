@@ -143,8 +143,8 @@ public class TestPatternAbstractor {
 
     @Test
     public void testPatternAbstractorOnFixBench_fordebug() {
-        String pro = "FindBugs-DM_CONVERT_CASE";
-        int group = 0;
+        String pro = "FindBugs-DM_DEFAULT_ENCODING";
+        int group = 2;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("%s/%s/%d", TestConfig.FIXBENCH_MAC_BASE, pro, group);
         File[] ins = new File(base).listFiles(File::isDirectory);

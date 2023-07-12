@@ -553,7 +553,7 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
 		enterCtExpression(operator);
 		scan(operator.getLeftHandOperand());
 		printer.writeSpace();
-		printer.writeOperator(OperatorHelper.getOperatorText(operator.getKind()));
+		printer.writeOperator(operator.getKind()==null?"":OperatorHelper.getOperatorText(operator.getKind()));  // modified to avoid getOperatorText(null)
 		printer.writeSpace();
 		try (Writable _context = context.modify()) {
 			if (operator.getKind() == BinaryOperatorKind.INSTANCEOF) {
@@ -937,6 +937,9 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
 			// the implicit information is used for analysis (e.g. is visibility caused by implicit bugs?) but
 			// not for pretty-printing
 			CtTypeAccess target = (CtTypeAccess) thisAccess.getTarget();
+			if (target == null) {
+				return;
+			}
 			CtTypeReference targetType = target.getAccessedType();
 
 			// readable mode as close as possible to the original code
@@ -2059,11 +2062,11 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
 		enterCtStatement(operator);
 		enterCtExpression(operator);
 		UnaryOperatorKind op = operator.getKind();
-		if (OperatorHelper.isPrefixOperator(op)) {
+		if (op!=null && OperatorHelper.isPrefixOperator(op)) {
 			printer.writeOperator(OperatorHelper.getOperatorText(op));
 		}
 		scan(operator.getOperand());
-		if (OperatorHelper.isSufixOperator(op)) {
+		if (op!=null && OperatorHelper.isSufixOperator(op)) {
 			printer.writeOperator(OperatorHelper.getOperatorText(op));
 		}
 		exitCtExpression(operator);

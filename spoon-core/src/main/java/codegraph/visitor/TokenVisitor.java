@@ -43,7 +43,7 @@ public class TokenVisitor extends CtScanner {
 
     @Override
     public <T> void visitCtBinaryOperator(final CtBinaryOperator<T> operator) {
-        tokens.add(operator.getKind().name());
+        tokens.add(operator.getKind()==null ? "" : operator.getKind().name());
         super.visitCtBinaryOperator(operator);
     }
 

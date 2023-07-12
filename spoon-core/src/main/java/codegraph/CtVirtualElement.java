@@ -2,10 +2,12 @@ package codegraph;
 
 import codegraph.visitor.TokenVisitor;
 import spoon.reflect.cu.SourcePosition;
+import spoon.reflect.path.CtRole;
 import spoon.reflect.visitor.CtVisitor;
+import spoon.support.reflect.code.CtCodeElementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
 
-public class CtVirtualElement extends CtElementImpl {
+public class CtVirtualElement extends CtCodeElementImpl {
     private static final long serialVersionUID = 1L;
     private CtElementImpl parent;
     private String label;

@@ -1,5 +1,6 @@
 package model.pattern;
 
+import codegraph.CtVirtualElement;
 import model.CodeGraph;
 import model.CtWrapper;
 import spoon.support.reflect.declaration.CtElementImpl;
@@ -111,6 +112,10 @@ public class PatternNode implements Serializable {
 
     public boolean isActionRelated() {
         return _actionRelated;
+    }
+
+    public boolean isVirtual() {
+        return getAttribute("nodeType")!=null && getAttribute("nodeType").getTag().equals(CtVirtualElement.class);
     }
 
     public boolean hasInEdge(PatternNode src, PatternEdge.EdgeType edgeType) {

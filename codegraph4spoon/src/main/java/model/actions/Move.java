@@ -6,27 +6,23 @@ import spoon.reflect.path.CtRole;
 import spoon.reflect.visitor.CtVisitor;
 import spoon.support.reflect.declaration.CtElementImpl;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Move extends ActionNode {
     protected CtElementImpl _dstNode;
     protected CtRole _position;
-    public List<Pair<CtRole, Class>> _roleList = new ArrayList<>();
 
-    public Move(CtElementImpl move, CtElementImpl dst, CtElementImpl movedInDst, Operation op) {
+    public Move(CtElementImpl move, CtElementImpl dstParent, CtElementImpl movedInDst, Operation op) {
         super(move, op);
-        _dstNode = dst;
+        _dstNode = movedInDst;
         _position = movedInDst.getRoleInParent();
         new ActionEdge(move, this);
         // TODO: add edge to dst.pos
-        new ActionEdge(this, dst);
+        new ActionEdge(this, movedInDst);
         // role list from end to root
         // notice it is in statements list if role is statement
         CtElementImpl ptr = movedInDst;
         while (ptr != null) {
-            Pair pair = new Pair<>(ptr.getRoleInParent(), ptr.getClass());
-            _roleList.add(pair);
+            _roleList.add(new Pair<>(ptr.getRoleInParent(), ptr.getClass()));
             ptr = (CtElementImpl) ptr.getParent();
         }
     }

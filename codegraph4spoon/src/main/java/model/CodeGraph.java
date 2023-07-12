@@ -85,6 +85,10 @@ public class CodeGraph implements Serializable {
             visit((CtParameterImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtTypeParameterImpl) {
             visit((CtTypeParameterImpl) ctNode, control, scope);
+        } else if (ctNode instanceof CtNewClassImpl) {
+            visit((CtNewClassImpl) ctNode, control, scope);
+        } else if (ctNode instanceof CtClassImpl) {
+            visit((CtClassImpl) ctNode, control, scope);
         }
         /* The code part contains the executable Java code, such as the one found in method bodies. */
         else if (ctNode instanceof CtAnnotationFieldAccessImpl) {
@@ -191,8 +195,7 @@ public class CodeGraph implements Serializable {
             visit((CtTypeParameterReferenceImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtTypeReferenceImpl) {
             // do not handle
-        }
-        else {
+        } else {
             System.out.println("UNKNOWN ctNode type : " + ctNode.getClass().toString());
         }
         updateCGId(ctNode);
@@ -318,6 +321,11 @@ public class CodeGraph implements Serializable {
     private void visit(CtParameterImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
+        // name
+        CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "PARAMETER_VAR_NAME");
+        updateCGId(name);
+        // add define
+        scope.addDefine(ctNode.getSimpleName(), ctNode);
     }
 
     private void visit(CtTypeParameterImpl ctNode, CtElementImpl control, Scope scope) {
@@ -758,6 +766,38 @@ public class CodeGraph implements Serializable {
         buildNode(ctNode.getDeclaration(), control, scope);
     }
 
+    private void visit(CtNewClassImpl ctNode, CtElementImpl control, Scope scope) {
+        ctNode.setControlDependency(control);
+        ctNode.setScope(scope);
+        // anonymousClass
+        buildNode(ctNode.getAnonymousClass(), control, scope);
+        // arguments
+        for (Object arg : ctNode.getArguments()) {
+            buildNode(arg, control, scope);
+        }
+        // executable
+        buildNode(ctNode.getExecutable(), control, scope);
+    }
+
+    private void visit(CtClassImpl ctNode, CtElementImpl control, Scope scope) {
+        if (ctNode.getSuperclass() != null)
+            buildNode(ctNode.getSuperclass(), control, scope);
+        for (Object permittedType : ctNode.getPermittedTypes()) {
+            buildNode(permittedType, control, scope);
+        }
+        for (Object formalCtTypeParameter : ctNode.getFormalCtTypeParameters()) {
+            buildNode(formalCtTypeParameter, control, scope);
+        }
+        for (Object interFace : ctNode.getSuperInterfaces()) {
+            buildNode(interFace, control, scope);
+        }
+        for (Object typeMember : ctNode.getTypeMembers()) {
+            buildNode(typeMember, control, scope);
+        }
+        CtVirtualElement cName = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "CLASS_DEC_NAME");
+        updateCGId(cName);
+    }
+
     public void setEntryNode(CtElementImpl buildNode) {
         _entryNode = buildNode;
     }
@@ -804,6 +844,19 @@ public class CodeGraph implements Serializable {
                     Object d = dstCt.getValueByRole(role);
                     if (s instanceof CtElementImpl && d instanceof CtElementImpl && ObjectUtil.findCtKeyInSet(_mapping.keySet(), new CtWrapper((CtElementImpl) s))==null)
                         _mapping.put(new CtWrapper((CtElementImpl) s), new CtWrapper((CtElementImpl) d));
+                }
+                // add other out-ast-edge CtVirtualElement children
+                for (Edge oe : srcCt._outEdges) {
+                    CtElementImpl sChild = oe.getTarget();
+                    if (oe.type == Edge.EdgeType.AST && ObjectUtil.findCtKeyInSet(_mapping.keySet(), new CtWrapper(sChild))==null) {
+                        for (Edge oe2 : dstCt._outEdges) {
+                            CtElementImpl dChild = oe2.getTarget();
+                            if (sChild instanceof CtVirtualElement && dChild instanceof CtVirtualElement
+                                    && ((CtVirtualElement) sChild).getLocationInParent().equals(((CtVirtualElement) dChild).getLocationInParent())) {
+                                _mapping.put(new CtWrapper(sChild), new CtWrapper(dChild));
+                            }
+                        }
+                    }
                 }
             }
         }

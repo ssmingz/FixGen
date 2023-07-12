@@ -11,11 +11,16 @@ import model.actions.Move;
 import org.javatuples.Pair;
 import spoon.Launcher;
 import spoon.experimental.CtUnresolvedImport;
+import spoon.reflect.meta.RoleHandler;
+import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.CtCodeElementImpl;
+import spoon.support.reflect.code.CtLiteralImpl;
 import spoon.support.reflect.declaration.*;
+import spoon.support.reflect.reference.CtExecutableReferenceImpl;
 import spoon.support.reflect.reference.CtReferenceImpl;
 import spoon.support.reflect.reference.CtTypeMemberWildcardImportReferenceImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
 
 import java.io.Serializable;
 import java.util.*;
@@ -118,22 +123,28 @@ public class Attribute implements Serializable {
     /**
      * type, e.g. CtIfImpl in CtCodeElementImpl.CtStatementImpl.CtIfImpl
      */
-    public static String computeNodeType(CtWrapper n) {
-        String type = n.getCtElementImpl().getClass().getName();
-        return type;
+    public static Class computeNodeType(CtWrapper n) {
+        return n.getCtElementImpl().getClass();
     }
 
     /**
      * Do not record if exceed MAX_LENGTH.
      */
-    public static String computeValue(CtWrapper n) {
+    public static <T> T computeValue(CtWrapper n) {
         TokenVisitor visitor = new TokenVisitor();
         visitor.scan(n.getCtElementImpl());
 
-        if (visitor.tokens.size() > MAX_TOKEN_LENGTH)
-            return String.format("exceed MAX_TOKEN_LENGTH:%d tokens", visitor.tokens.size());
-        else
-            return n.toLabelString();
+        if (visitor.tokens.size() > MAX_TOKEN_LENGTH) {
+            return (T) String.format("exceed MAX_TOKEN_LENGTH:%d tokens", visitor.tokens.size());
+        } else if (n.getCtElementImpl() instanceof CtExecutableImpl) {
+            return (T) ((CtExecutableImpl<?>) n.getCtElementImpl()).getSimpleName();
+        } else if (n.getCtElementImpl() instanceof CtExecutableReferenceImpl) {
+            return (T) ((CtExecutableReferenceImpl<?>) n.getCtElementImpl()).getSimpleName();
+        } else if (n.getCtElementImpl() instanceof CtLiteralImpl) {
+            return (T) ((CtLiteralImpl<?>) n.getCtElementImpl()).getValue();
+        } else {
+            return (T) n.toLabelString();
+        }
     }
 
     /**
@@ -146,11 +157,17 @@ public class Attribute implements Serializable {
 
         String value = n.toLabelString();
         if (visitor.tokens.size() < MAX_TOKEN_LENGTH) {
-            // replace name by type
-            Launcher launcher = new Launcher();
-            ReplaceNameVisitor replaceVisitor = new ReplaceNameVisitor(launcher.getEnvironment());
-            replaceVisitor.scan(n.getCtElementImpl());
-            value = replaceVisitor.toString();
+            if (n.getCtElementImpl() instanceof CtExecutableImpl) {
+                value = ((CtExecutableImpl<?>) n.getCtElementImpl()).getSimpleName();
+            } else if (n.getCtElementImpl() instanceof CtExecutableReferenceImpl) {
+                value = ((CtExecutableReferenceImpl<?>) n.getCtElementImpl()).getSimpleName();
+            } else {
+                // replace name by type
+                Launcher launcher = new Launcher();
+                ReplaceNameVisitor replaceVisitor = new ReplaceNameVisitor(launcher.getEnvironment());
+                replaceVisitor.scan(n.getCtElementImpl());
+                value = replaceVisitor.toString();
+            }
         } else {
             value = String.format("exceed MAX_TOKEN_LENGTH:%d tokens", visitor.tokens.size());
         }
@@ -160,18 +177,18 @@ public class Attribute implements Serializable {
     /**
      * super type, e.g. CtStatementImpl in CtCodeElementImpl.CtStatementImpl.CtIfImpl
      */
-    public static String computeNodeType2(CtWrapper n) {
+    public static Class computeNodeType2(CtWrapper n) {
         Class clazz = n.getCtElementImpl().getClass().getSuperclass();
         if (rootTypes.contains(clazz)) {
             clazz = n.getCtElementImpl().getClass();
         }
-        return clazz.getName();
+        return clazz;
     }
 
     /**
      * super type of the super type, e.g. CtStatementImpl in CtCodeElementImpl.CtStatementImpl.CtLoopImpl.CtWhileImpl
      */
-    public static String computeNodeType3(CtWrapper n) {
+    public static Class computeNodeType3(CtWrapper n) {
         Class clazz = n.getCtElementImpl().getClass().getSuperclass();
         if (rootTypes.contains(clazz)) {
             clazz = n.getCtElementImpl().getClass();
@@ -181,18 +198,48 @@ public class Attribute implements Serializable {
                 clazz = n.getCtElementImpl().getClass().getSuperclass();
             }
         }
-        return clazz.getName();
+        return clazz;
     }
 
     public static List<Pair<CtRole, Class>> computePosition(CtWrapper n) {
         if (n.getCtElementImpl() instanceof ActionNode) {
             ActionNode node = (ActionNode) n.getCtElementImpl();
-            if (node instanceof Insert) {
-                return ((Insert) node)._roleList;
-            } else if (node instanceof Move) {
-                return ((Move) node)._roleList;
-            }
+            return node._roleList;
         }
         return null;
+    }
+
+    public static Integer computeListSize(CtWrapper n) {
+        CtElementImpl cte = n.getCtElementImpl();
+        if (cte.getRoleInParent() != null
+                && RoleHandlerHelper.getOptionalRoleHandler(cte.getParent().getClass(), cte.getRoleInParent()) != null) {
+            if (cte.getParent().getValueByRole(cte.getRoleInParent()) instanceof List)
+                return ((List<?>) cte.getParent().getValueByRole(cte.getRoleInParent())).size();
+        }
+        return -1;
+    }
+
+    public static Integer computeListIndex(CtWrapper n) {
+        CtElementImpl cte = n.getCtElementImpl();
+        if (cte.getRoleInParent() != null
+                && RoleHandlerHelper.getOptionalRoleHandler(cte.getParent().getClass(), cte.getRoleInParent()) != null) {
+            if (cte.getParent().getValueByRole(cte.getRoleInParent()) instanceof List) {
+                return ((List<?>) cte.getParent().getValueByRole(cte.getRoleInParent())).indexOf(cte);
+            }
+        }
+        return -1;
+    }
+
+    public static String computeValueType(CtWrapper n) {
+        CtElementImpl cte = n.getCtElementImpl();
+        if (RoleHandlerHelper.getOptionalRoleHandler(cte.getClass(), CtRole.TYPE) != null ) {
+            CtTypeReferenceImpl vType = cte.getValueByRole(CtRole.TYPE);
+            return vType == null ? null : vType.getQualifiedName();
+        }
+        return null;
+    }
+
+    public static boolean computeImplicit(CtWrapper n) {
+        return n.getCtElementImpl().isImplicit();
     }
 }

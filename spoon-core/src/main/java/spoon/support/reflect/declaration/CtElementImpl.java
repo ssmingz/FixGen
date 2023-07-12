@@ -721,7 +721,7 @@ public abstract class CtElementImpl implements CtElement {
 
 	public boolean isDependOn(CtElementImpl node) {
 		for (CtElementImpl e : this.getDependNodes()) {
-			if (e.equals(node))
+			if (e == node)
 				return true;
 		}
 		return false;

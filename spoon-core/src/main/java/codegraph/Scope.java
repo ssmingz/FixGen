@@ -4,6 +4,7 @@ import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.declaration.CtParameterImpl;
 import spoon.support.reflect.reference.CtCatchVariableReferenceImpl;
 
 import java.io.Serializable;
@@ -113,7 +114,7 @@ public class Scope implements Serializable {
             return (CtElementImpl) ((CtArrayWriteImpl) node).getTarget();
         } else if (node instanceof CtFieldWriteImpl) {
             return (CtElementImpl) ((CtFieldWriteImpl) node).getVariable();
-        } else if (node instanceof CtLocalVariableImpl || node instanceof CtCatchVariableImpl) {
+        } else if (node instanceof CtLocalVariableImpl || node instanceof CtCatchVariableImpl || node instanceof CtParameterImpl) {
             // virtual element
             for (Edge oe : node._outEdges) {
                 if (oe instanceof ASTEdge && oe.getTarget() instanceof CtVirtualElement) {

@@ -12,7 +12,6 @@ import java.util.List;
 public class Insert extends ActionNode {
     protected CtElementImpl _parent;
     protected CtRole _position;
-    public List<Pair<CtRole, Class>> _roleList = new ArrayList<>();
 
     public Insert(CtElementImpl insert, CtElementImpl parent, CtRole role, Operation op) {
         super(insert, op);
@@ -24,8 +23,7 @@ public class Insert extends ActionNode {
         // notice it is in statements list if role is statement
         CtElementImpl ptr = insert;
         while (ptr != null) {
-            Pair pair = new Pair<>(ptr.getRoleInParent(), ptr.getClass());
-            _roleList.add(pair);
+            _roleList.add(new Pair<>(ptr.getRoleInParent(), ptr.getClass()));
             ptr = (CtElementImpl) ptr.getParent();
         }
     }

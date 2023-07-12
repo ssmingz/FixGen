@@ -501,6 +501,9 @@ public class ObjectUtil {
     public static void writeStringToFile(String content, String filePath) {
         try {
             File file = new File(filePath);
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
             if (!file.exists()) {
                 file.createNewFile();
             }
@@ -510,6 +513,20 @@ public class ObjectUtil {
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static String readStringFromFile(String inputFile) {
+        try {
+            BufferedInputStream in = new BufferedInputStream(new FileInputStream(inputFile));
+            byte[] bytes = new byte[(int) new File(inputFile).length()];
+            in.read(bytes);
+            in.close();
+            return new String(bytes);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

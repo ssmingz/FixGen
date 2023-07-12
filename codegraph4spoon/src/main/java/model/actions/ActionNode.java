@@ -1,13 +1,19 @@
 package model.actions;
 
 import gumtree.spoon.diff.operations.Operation;
+import org.javatuples.Pair;
 import spoon.reflect.cu.SourcePosition;
+import spoon.reflect.path.CtRole;
 import spoon.support.reflect.declaration.CtElementImpl;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ActionNode extends CtElementImpl {
     public enum ActionType {UPDATE, INSERT, DELETE, MOVE};
     protected transient Operation _action;
     protected CtElementImpl _srcNode;
+    public List<Pair<CtRole, Class>> _roleList = new ArrayList<>();
 
     public ActionNode(CtElementImpl src, Operation op) {
         _action = op;

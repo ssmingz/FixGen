@@ -11,17 +11,21 @@ import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections4.SetUtils;
 import org.checkerframework.checker.units.qual.C;
 import org.eclipse.jdt.core.dom.AST;
 import org.javatuples.Triplet;
 import spoon.support.reflect.code.CtBlockImpl;
+import spoon.support.reflect.code.CtCodeElementImpl;
 import spoon.support.reflect.code.CtLocalVariableImpl;
 import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
+import spoon.support.reflect.reference.CtReferenceImpl;
 import utils.ObjectUtil;
 
+import javax.swing.text.html.StyleSheet;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -177,8 +181,7 @@ public class PatternExtractor {
             return nodes;
 
         // Find the mapping one in srcGraph if is the dstGraph node. If cannot find, add only if it is in srcGraph.allNodes, or else skip.
-        if (node.getCtElementImpl()._inEdges.stream().allMatch(e->e instanceof ASTEdge)
-                && cg.getNodes().stream().anyMatch(e->e.getCtElementImpl()==node.getCtElementImpl())) {
+        if (cg.getNodes().stream().anyMatch(e->e.getCtElementImpl() == node.getCtElementImpl())) {
             nodes.add(node);
         } else {
             CtElementImpl nodeInSrc = ObjectUtil.findMappedNodeInSrcGraph(node.getCtElementImpl(), cg);
@@ -191,10 +194,10 @@ public class PatternExtractor {
 
         // update traversed
         traversed.add(node);
-        CtWrapper mapped = mapping.get(ObjectUtil.findCtKeyInSet(mapping.keySet(), node));
-        if (mapped != null && node.toLabelString().equals(mapped.toLabelString())) {
-            traversed.add(mapped);
-        }
+//        CtWrapper mapped = mapping.get(ObjectUtil.findCtKeyInSet(mapping.keySet(), node));
+//        if (mapped != null && node.toLabelString().equals(mapped.toLabelString())) {
+//            traversed.add(mapped);
+//        }
         for (Edge ie : node.getCtElementImpl()._inEdges) {
             // continue extending source
             if (isPatch)  // do not extend AST relationship in dst tree (already add it in action graph building)
@@ -310,6 +313,8 @@ public class PatternExtractor {
         if (nodeA.isVirtual() && nodeB.isVirtual() &&
                 !Objects.equals(((CtVirtualElement)nodeA.getCtElementImpl()).getLocationInParent(), ((CtVirtualElement)nodeB.getCtElementImpl()).getLocationInParent()))
             return false;
+        if (nodeA.getCtElementImpl().isActionRelated() != nodeB.getCtElementImpl().isActionRelated())
+            return false;
         // TODO: other comparing rules
         for (Map.Entry<CtWrapper, CtWrapper> entry : mapping.entrySet()) {
             CtWrapper key = entry.getKey();
@@ -327,9 +332,11 @@ public class PatternExtractor {
 
     private static boolean isMatch(PatternNode pn, CtWrapper cgn, Map<PatternNode, CtWrapper> mapping) {
         // compare type
-        String pType = pn.getAttribute("nodeType").getTag().toString();
-        String gType = Attribute.computeNodeType(cgn);
-        if (!gType.equals(pType))
+        Class pType = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag() :
+                    ((pn.getAttribute("nodeType2") != null) ? (Class) pn.getAttribute("nodeType2").getTag() :
+                    ((pn.getAttribute("nodeType3") != null) ? (Class) pn.getAttribute("nodeType").getTag() : null));
+        Class gType = Attribute.computeNodeType(cgn);
+        if (!sameType(pn, cgn) || (pType.equals(CtBlockImpl.class)) != (gType.equals(CtBlockImpl.class)))
             return false;
         // other rules
         for (Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
@@ -361,11 +368,11 @@ public class PatternExtractor {
     public static boolean sameType(CtWrapper nodeA, CtWrapper nodeB) {
         CtElementImpl ctA = nodeA.getCtElementImpl();
         CtElementImpl ctB = nodeB.getCtElementImpl();
-        if (ctA.getClass().getSimpleName().equals(ctB.getClass().getSimpleName()))
+        if (ctA.getClass().equals(ctB.getClass()))
             return true;
         Type ancA = ctA.getClass().getAnnotatedSuperclass().getType();
         Type ancB = ctB.getClass().getAnnotatedSuperclass().getType();
-        if (ancA == ancB && (ctA instanceof CtBlockImpl) == (ctB instanceof CtBlockImpl)) {
+        if (sameAncType(ctA.getClass(), ctB.getClass()) && (ctA instanceof CtBlockImpl) == (ctB instanceof CtBlockImpl)) {
             // same ancestor type
             return true;
         } else if (similarType(ancA, ancB)) {
@@ -382,8 +389,52 @@ public class PatternExtractor {
         }
     }
 
-    private static boolean isVar(CtElementImpl ct) {
-        boolean isVirtualName = ct instanceof CtVirtualElement && ((CtVirtualElement) ct).getLocationInParent().contains("VAR_NAME");
+    public static boolean sameType(PatternNode pn, CtWrapper cgn) {
+        Class a = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag() :
+                    ((pn.getAttribute("nodeType2") != null) ? (Class) pn.getAttribute("nodeType2").getTag() :
+                    ((pn.getAttribute("nodeType3") != null) ? (Class) pn.getAttribute("nodeType").getTag() : null));
+        Class b = Attribute.computeNodeType(cgn);
+        if (a.equals(b))
+            return true;
+        Type ancA = a.getAnnotatedSuperclass().getType();
+        Type ancB = b.getAnnotatedSuperclass().getType();
+        if (sameAncType(a, b) && (a.equals(CtBlockImpl.class) == b.equals(CtBlockImpl.class))) {
+            // same ancestor type
+            return true;
+        } else if (similarType(ancA, ancB)) {
+            return true;
+        } else if (isVar(pn) && isVar(cgn)) {
+            return true;
+        } else if (isVarRef(pn) && isVarRef(cgn)) {
+            return true;
+        } else {
+            // special case
+            String aStr = pn.getAttribute("value") != null ? pn.getAttribute("value").getTag().toString() : null;
+            String bStr = cgn.toLabelString();
+            return ("==".equals(aStr) && "!=".equals(bStr)) || ("!=".equals(aStr) && "==".equals(bStr));
+        }
+    }
+
+    private static boolean sameAncType(Class<? extends CtElementImpl> a, Class<? extends CtElementImpl> b) {
+        Set<Class> aClassList = new LinkedHashSet<>();
+        Set<Class> bClassList = new LinkedHashSet<>();
+        while (a.getSuperclass() != null) {
+            if (!a.getPackageName().contains("spoon.support.reflect") || a.equals(CtCodeElementImpl.class) || a.equals(CtReferenceImpl.class) || a.equals(CtElementImpl.class))
+                break;
+            aClassList.add(a);
+            a = (Class<? extends CtElementImpl>) a.getSuperclass();
+        }
+        while (b.getSuperclass() != null) {
+            if (b.equals(CtCodeElementImpl.class) || b.equals(CtReferenceImpl.class) || b.equals(CtElementImpl.class))
+                break;
+            bClassList.add(b);
+            b = (Class<? extends CtElementImpl>) b.getSuperclass();
+        }
+        return CollectionUtils.intersection(aClassList, bClassList).size()>0;
+    }
+
+    private static boolean isVar(Object ct) {
+        boolean isVirtualName = isVirtualName(ct);
         String clazz = ct.getClass().getSimpleName();
         String[] varRelate = {
                 "CtFieldReadImpl", "CtFieldWriteImpl", "CtArrayReadImpl", "CtArrayWriteImpl",
@@ -393,8 +444,20 @@ public class PatternExtractor {
         return Arrays.asList(varRelate).contains(clazz) || isVirtualName;
     }
 
-    private static boolean isVarRef(CtElementImpl ct) {
-        boolean isVirtualName = ct instanceof CtVirtualElement && ((CtVirtualElement) ct).getLocationInParent().contains("VAR_NAME");
+    private static boolean isVirtualName(Object obj) {
+        boolean isVirtualName = false;
+        if (obj instanceof CtElementImpl)
+            isVirtualName = obj instanceof CtVirtualElement && ((CtVirtualElement) obj).getLocationInParent().contains("VAR_NAME");
+        else if (obj instanceof PatternNode) {
+            Class nodeType = ((PatternNode) obj).getAttribute("nodeType") != null ? (Class) ((PatternNode) obj).getAttribute("nodeType").getTag() : null;
+            String location = ((PatternNode) obj).getAttribute("locationInParent") != null ? (String) ((PatternNode) obj).getAttribute("locationInParent").getTag() : null;
+            isVirtualName = (nodeType != null) && (location != null) && nodeType.equals(CtVirtualElement.class) && location.contains("VAR_NAME");
+        }
+        return isVirtualName;
+    }
+
+    private static boolean isVarRef(Object ct) {
+        boolean isVirtualName = isVirtualName(ct);
         String clazz = ct.getClass().getSimpleName();
         String[] varRelate = {
                 "CtCatchVariableReferenceImpl", "CtFieldReferenceImpl", "CtLocalVariableReferenceImpl", "CtParameterReferenceImpl"};
@@ -451,7 +514,9 @@ public class PatternExtractor {
         double[] scores = new double[pn.getComparedAttributes().size()];
         int index = 0;
         for (Attribute a : pn.getComparedAttributes()) {
-            String comp = "";
+            if (a.isAbstract())
+                continue;
+            Object comp = "";
             switch (a.getName()) {
                 case "locationInParent":
                     comp = Attribute.computeLocationInParent(cgn);
@@ -459,11 +524,35 @@ public class PatternExtractor {
                 case "nodeType":
                     comp = Attribute.computeNodeType(cgn);
                     break;
+                case "nodeType2":
+                    comp = Attribute.computeNodeType2(cgn);
+                    break;
+                case "nodeType3":
+                    comp = Attribute.computeNodeType3(cgn);
+                    break;
                 case "value":
                     comp = Attribute.computeValue(cgn);
                     break;
+                case "value2":
+                    comp = Attribute.computeValue2(cgn);
+                    break;
+                case "position":
+                    comp = Attribute.computePosition(cgn);
+                    break;
+                case "listSize":
+                    comp = Attribute.computeListSize(cgn);
+                    break;
+                case "listIndex":
+                    comp = Attribute.computeListIndex(cgn);
+                    break;
+                case "valueType":
+                    comp = Attribute.computeValueType(cgn);
+                    break;
+                case "implicit":
+                    comp = Attribute.computeImplicit(cgn);
+                    break;
             }
-            scores[index++] = calContextSim(a.getTag().toString(), comp);
+            scores[index++] = calContextSim(a.getTag().toString(), comp == null ? null : comp.toString());
         }
         return Arrays.stream(scores).average().getAsDouble();
     }

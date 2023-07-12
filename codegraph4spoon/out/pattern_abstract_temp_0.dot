@@ -1,0 +1,95 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:class model.actions.Update
+nodeType2:class model.actions.ActionNode
+nodeType3:class spoon.support.reflect.declaration.CtElementImpl
+value:UPDATE
+value2:
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+1 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+nodeType2:class spoon.support.reflect.code.CtTargetedExpressionImpl
+nodeType3:class spoon.support.reflect.code.CtExpressionImpl
+value:max.sort(request)
+value2:MaxCore.sort(Request)
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+2 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+nodeType2:class codegraph.CtVirtualElement
+nodeType3:class codegraph.CtVirtualElement
+value:sort
+value2:MaxCore.sort(Request)
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+3 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+nodeType2:class spoon.support.reflect.code.CtTargetedExpressionImpl
+nodeType3:class spoon.support.reflect.code.CtExpressionImpl
+value:max.sortedLeavesForTest(request)
+value2:MaxCore.sortedLeavesForTest(Request)
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+4 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+nodeType2:class codegraph.CtVirtualElement
+nodeType3:class codegraph.CtVirtualElement
+value:sortedLeavesForTest
+value2:MaxCore.sortedLeavesForTest(Request)
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+5 [label="locationInParent:EXECUTABLE_REF
+nodeType:class spoon.support.reflect.reference.CtExecutableReferenceImpl
+nodeType2:class spoon.support.reflect.reference.CtExecutableReferenceImpl
+nodeType3:class spoon.support.reflect.reference.CtExecutableReferenceImpl
+value:sortedLeavesForTest
+value2:sortedLeavesForTest
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+6 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+nodeType2:class spoon.support.reflect.reference.CtTypeReferenceImpl
+nodeType3:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:MaxCore
+value2:MaxCore
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+7 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+nodeType2:class spoon.support.reflect.reference.CtPackageReferenceImpl
+nodeType3:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+listSize:-1
+listIndex:-1
+implicit:true" shape=ellipse]
+8 [label="nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+nodeType2:class spoon.support.reflect.reference.CtTypeReferenceImpl
+nodeType3:class spoon.support.reflect.reference.CtTypeReferenceImpl
+implicit:false" shape=ellipse]
+9 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+nodeType2:class spoon.support.reflect.reference.CtPackageReferenceImpl
+nodeType3:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+listSize:-1
+listIndex:-1
+implicit:true" shape=ellipse]
+0 -> 3 [label="Action:3"];
+1 -> 0 [label="Action:3"];
+1 -> 2 [label="AST:3"];
+3 -> 4 [label="AST:3"];
+3 -> 5 [label="AST:3"];
+5 -> 6 [label="AST:3"];
+5 -> 8 [label="AST:3"];
+6 -> 7 [label="AST:3"];
+8 -> 9 [label="AST:3"];
+}
