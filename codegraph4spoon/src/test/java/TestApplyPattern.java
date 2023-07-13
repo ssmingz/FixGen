@@ -2,7 +2,6 @@ import builder.*;
 import model.CodeGraph;
 import model.pattern.Pattern;
 import org.junit.Test;
-import spoon.reflect.visitor.DefaultJavaPrettyPrinter;
 import utils.DotGraph;
 
 import java.io.File;
@@ -122,7 +121,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 59;
+        int testId = 102;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);
@@ -141,6 +140,9 @@ public class TestApplyPattern {
             // build action graph
             CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
+            DotGraph dot = new DotGraph(ag, new GraphConfiguration(), 0);
+            File dir = new File(String.format("%s/out/codegraph_temp_%d.dot", System.getProperty("user.dir"),k));
+            dot.toDotFile(dir);
         }
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);

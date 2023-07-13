@@ -161,22 +161,42 @@ public class PatternExtractor {
         for (ActionNode action : codeGraph.getActions()) {
             if (traversed_actions.contains(action)) continue;
             Set<CtWrapper> traversed = new LinkedHashSet<>();
-            List<CtWrapper> nodes = extendLinks(new CtWrapper(action), 0, traversed, codeGraph.getMapping(), false, codeGraph); // start from action
-            traversed_actions.addAll(nodes.stream().filter(n -> n.getCtElementImpl() instanceof ActionNode).map(CtWrapper::getCtElementImpl).collect(Collectors.toSet()));
+            Set<CtWrapper> extendFromControlDep = new HashSet<>();
+            List<CtWrapper> nodes = extendLinks(new CtWrapper(action), 0, traversed, codeGraph, extendFromControlDep); // start from action
+
+            // remove extended-by-control-dep if action-related nodes cannot reach
+            Set<CtWrapper> actionRelated = nodes.stream().filter(n -> n.getCtElementImpl().isActionRelated()
+                    && canReach(action, n.getCtElementImpl()) != 99999).collect(Collectors.toSet());
+            for (CtWrapper c : extendFromControlDep) {
+                if (actionRelated.stream().noneMatch(a -> canReach(a.getCtElementImpl(), c.getCtElementImpl()) <= MAX_EXTEND_LEVEL
+                        || canReach(c.getCtElementImpl(), a.getCtElementImpl()) <= MAX_EXTEND_LEVEL)) {
+                    nodes.removeIf(n -> n.getCtElementImpl() == c.getCtElementImpl());
+                }
+            }
+            traversed_actions.addAll(nodes.stream().map(CtWrapper::getCtElementImpl).filter(ctElementImpl -> ctElementImpl instanceof ActionNode).collect(Collectors.toSet()));
             if (!nodes.isEmpty())
                 result.add(nodes);
         }
         return result;
     }
 
-    private static List<CtWrapper> extendLinks(CtWrapper node, int extendLevel, Set<CtWrapper> traversed, Map<CtWrapper, CtWrapper> mapping, boolean isPatch, CodeGraph cg) {
-        List<CtWrapper> nodes = new ArrayList<>();
-        for (Edge ie : node.getCtElementImpl()._inEdges) {
-            if (ie instanceof ActionEdge && !(node.getCtElementImpl() instanceof ActionNode)) {
-                isPatch = true;
-                break;
-            }
+    private static int canReach(CtElementImpl src, CtElementImpl tar) {
+        int result = 99999;
+        if (src == tar)
+            return 0;
+        if (src._outEdges.isEmpty())
+            return result;
+        for (Edge oe : src._outEdges) {
+            int path = 1 + canReach(oe.getTarget(), tar);
+            if (result > path)
+                result = path;
         }
+        return result;
+    }
+
+    private static List<CtWrapper> extendLinks(CtWrapper node, int extendLevel, Set<CtWrapper> traversed, CodeGraph cg, Set<CtWrapper> extendFromControlDep) {
+        List<CtWrapper> nodes = new ArrayList<>();
+        boolean isPatch = node.getCtElementImpl().isActionRelated() && !(node.getCtElementImpl() instanceof ActionNode);
         if (ObjectUtil.findCtKeyInSet(traversed, node)!=null || (!isPatch && extendLevel > MAX_EXTEND_LEVEL))
             return nodes;
 
@@ -194,22 +214,20 @@ public class PatternExtractor {
 
         // update traversed
         traversed.add(node);
-//        CtWrapper mapped = mapping.get(ObjectUtil.findCtKeyInSet(mapping.keySet(), node));
-//        if (mapped != null && node.toLabelString().equals(mapped.toLabelString())) {
-//            traversed.add(mapped);
-//        }
         for (Edge ie : node.getCtElementImpl()._inEdges) {
             // continue extending source
-            if (isPatch)  // do not extend AST relationship in dst tree (already add it in action graph building)
+            if (isPatch && ie.type == Edge.EdgeType.AST)  // do not extend AST relationship in dst tree (already add it in action graph building)
                 continue;
-            nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel+1, traversed, mapping, isPatch, cg).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            if (ObjectUtil.findCtKeyInSet(extendFromControlDep, new CtWrapper(node.getCtElementImpl())) != null)
+                extendFromControlDep.add(new CtWrapper(ie.getSource()));
+            nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel+1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
         }
         for (Edge oe : node.getCtElementImpl()._outEdges) {
             // continue extending target
-//            if (isPatch)  // do not extend any relationship in dst tree (already add it in action graph building)
-//                continue;
-            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, mapping, isPatch, cg).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
-
+            if (ObjectUtil.findCtKeyInSet(extendFromControlDep, new CtWrapper(node.getCtElementImpl())) != null
+                    || oe.type == Edge.EdgeType.CONTROL_DEP)
+                extendFromControlDep.add(new CtWrapper(oe.getTarget()));
+            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
         }
         return nodes;
     }
@@ -269,6 +287,8 @@ public class PatternExtractor {
             CtWrapper bestSim = null;
             while (itr.hasNext()) {
                 CtWrapper aNode = itr.next();
+                if (simScoreMap.get(node).get(aNode) <= 0)
+                    break;
                 if (isMatch(node, aNode, mapping)) {
                     bestSim = aNode;
                     break;
@@ -511,8 +531,7 @@ public class PatternExtractor {
     }
 
     private static double calContextSimPattern(PatternNode pn, CtWrapper cgn) {
-        double[] scores = new double[pn.getComparedAttributes().size()];
-        int index = 0;
+        List<Double> scores = new ArrayList<>();
         for (Attribute a : pn.getComparedAttributes()) {
             if (a.isAbstract())
                 continue;
@@ -523,12 +542,11 @@ public class PatternExtractor {
                     break;
                 case "nodeType":
                     comp = Attribute.computeNodeType(cgn);
-                    break;
-                case "nodeType2":
-                    comp = Attribute.computeNodeType2(cgn);
-                    break;
-                case "nodeType3":
-                    comp = Attribute.computeNodeType3(cgn);
+                    if (!a.getTag().equals(comp)) {
+                        comp = Attribute.computeNodeType2(cgn);
+                        if (!a.getTag().equals(comp))
+                            comp = Attribute.computeNodeType3(cgn);
+                    }
                     break;
                 case "value":
                     comp = Attribute.computeValue(cgn);
@@ -552,9 +570,14 @@ public class PatternExtractor {
                     comp = Attribute.computeImplicit(cgn);
                     break;
             }
-            scores[index++] = calContextSim(a.getTag().toString(), comp == null ? null : comp.toString());
+            if (Objects.equals(a.getTag(), comp))
+                scores.add(calContextSim(a.getTag().toString(), comp == null ? null : comp.toString()));
+            else {
+                scores.clear();  // all attributes must be satisfied, or else will not be considered as mapped
+                break;
+            }
         }
-        return Arrays.stream(scores).average().getAsDouble();
+        return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n->n).average().getAsDouble();
     }
 
     private static double calContextSim(String a, String b) {

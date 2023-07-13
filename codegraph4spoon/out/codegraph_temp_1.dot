@@ -1,0 +1,74 @@
+digraph "addFailedAssumption#?,AssumptionViolatedException" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@addFailedAssumption" shape=ellipse]
+2 [label="2:CtVirtualElement@e" shape=ellipse]
+3 [label="2:CtParameterImpl@AssumptionViolatedException e" shape=ellipse]
+4 [label="2:CtTypeReferenceImpl@AssumptionViolatedException" shape=ellipse]
+5 [label="3:CtExecutableReferenceImpl@fireTestAssumptionFailed(Failure)" shape=ellipse]
+6 [label="3:CtTypeReferenceImpl@fNotifier" shape=ellipse]
+7 [label="3:CtTypeReferenceImpl@Failure" shape=ellipse]
+8 [label="3:CtVirtualElement@fireTestAssumptionFailed" shape=ellipse]
+9 [label="3:CtFieldReferenceImpl@fNotifier" shape=ellipse]
+10 [label="3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+11 [label="3:CtFieldReadImpl@fNotifier" shape=ellipse]
+12 [label="3:CtExecutableReferenceImpl@Failure()" shape=ellipse]
+13 [label="3:CtTypeReferenceImpl@Failure" shape=ellipse]
+14 [label="3:CtTypeReferenceImpl@Failure" shape=ellipse]
+15 [label="3:CtFieldReferenceImpl@fDescription" shape=ellipse]
+16 [label="3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+17 [label="3:CtFieldReadImpl@fDescription" shape=ellipse]
+18 [label="3:CtVariableReadImpl@e" shape=ellipse]
+19 [label="3:CtParameterReferenceImpl@e" shape=ellipse]
+20 [label="3:CtConstructorCallImpl@new Failure(fDescription, e)" shape=ellipse]
+21 [label="3:CtInvocationImpl@fNotifier.fireTestAssumptionFailed(new Failure(fDescription, e))" shape=ellipse]
+22 [label="2:CtBlockImpl@\{
+    fNotifier.fireTestAssumptionFailed(new Failure(fDescription, e));
+\}" shape=ellipse]
+23 [label="2:CtMethodImpl@public void addFailedAssumption(AssumptionViolatedException e) \{
+    fNotifier.fireTestAssumptionFailed(new Failure(fDescription, e));
+\}" shape=ellipse]
+24 [label="3:Update@UPDATE" shape=ellipse]
+25 [label="3:CtPackageReferenceImpl@" shape=ellipse]
+26 [label="3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+27 [label="3:CtFieldReferenceImpl@notifier" shape=ellipse]
+28 [label="3:CtFieldReadImpl@notifier" shape=ellipse]
+29 [label="3:Update@UPDATE" shape=ellipse]
+30 [label="3:CtPackageReferenceImpl@" shape=ellipse]
+31 [label="3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+32 [label="3:CtFieldReferenceImpl@description" shape=ellipse]
+33 [label="3:CtFieldReadImpl@description" shape=ellipse]
+2 -> 18 [label="Define-Use"];
+3 -> 2 [label="AST"];
+3 -> 4 [label="AST"];
+5 -> 6 [label="AST"];
+5 -> 7 [label="AST"];
+9 -> 10 [label="AST"];
+11 -> 9 [label="AST"];
+11 -> 24 [label="Action"];
+12 -> 13 [label="AST"];
+12 -> 14 [label="AST"];
+15 -> 16 [label="AST"];
+17 -> 15 [label="AST"];
+17 -> 29 [label="Action"];
+18 -> 19 [label="AST"];
+20 -> 12 [label="AST"];
+20 -> 17 [label="AST"];
+20 -> 18 [label="AST"];
+21 -> 8 [label="AST"];
+21 -> 11 [label="AST"];
+21 -> 5 [label="AST"];
+21 -> 20 [label="AST"];
+22 -> 21 [label="AST"];
+23 -> 1 [label="AST"];
+23 -> 0 [label="AST"];
+23 -> 3 [label="AST"];
+23 -> 22 [label="AST"];
+24 -> 28 [label="Action"];
+26 -> 25 [label="AST"];
+27 -> 26 [label="AST"];
+28 -> 27 [label="AST"];
+29 -> 33 [label="Action"];
+31 -> 30 [label="AST"];
+32 -> 31 [label="AST"];
+33 -> 32 [label="AST"];
+}

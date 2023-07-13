@@ -71,6 +71,13 @@ public class Attribute implements Serializable {
 
     public void setAbstract(boolean abs) { isAbstract = abs; }
 
+    public void clear() {
+        _numByValues.clear();
+        _valueByCG.clear();
+        _tag = "";
+        isAbstract = false;
+    }
+
     public void addValue(Object v, CodeGraph g) {
         if (v == null)
             return;

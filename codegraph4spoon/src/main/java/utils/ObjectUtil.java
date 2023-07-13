@@ -430,14 +430,19 @@ public class ObjectUtil {
         switch (type) {
             case AST:
                 new ASTEdge(src, tar);
+                break;
             case ACTION:
                 new ActionEdge(src, tar);
+                break;
             case DEF_USE:
                 new DefUseEdge(src, tar);
+                break;
             case DATA_DEP:
                 new DataEdge(src, tar);
+                break;
             case CONTROL_DEP:
                 new ControlEdge(src, tar);
+                break;
             default:
         }
     }

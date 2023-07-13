@@ -32,43 +32,37 @@ public class PatternAbstractor {
         for (PatternNode pn : pat.getNodes()) {
             Attribute attr1 = new Attribute("locationInParent");
             Attribute attr2 = new Attribute("nodeType");
-            Attribute attr3 = new Attribute("nodeType2");  // a more general one, e.g. WhileStmt and IfStmt --> Stmt
-            Attribute attr4 = new Attribute("nodeType3");
-            Attribute attr5 = new Attribute("value");
-            Attribute attr6 = new Attribute("value2");  // replace name with type
-            Attribute attr7 = new Attribute("position");
-            Attribute attr8 = new Attribute("listSize");  // list length if is list type, or else -1
-            Attribute attr9 = new Attribute("listIndex");  // list index if is list type, or else -1
-            Attribute attr10 = new Attribute("valueType");  // type of the value
-            Attribute attr11 = new Attribute("implicit");  // field of CtElement, to avoid complicated this.
+            Attribute attr3 = new Attribute("value");
+            Attribute attr4 = new Attribute("value2");  // replace name with type
+            Attribute attr5 = new Attribute("position");
+            Attribute attr6 = new Attribute("listSize");  // list length if is list type, or else -1
+            Attribute attr7 = new Attribute("listIndex");  // list index if is list type, or else -1
+            Attribute attr8 = new Attribute("valueType");  // type of the value
+            Attribute attr9 = new Attribute("implicit");  // field of CtElement, to avoid complicated this.
             for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                 CtWrapper n = entry.getKey();
                 CodeGraph g = entry.getValue();
 
                 attr1.addValue(Attribute.computeLocationInParent(n), g);
                 attr2.addValue(Attribute.computeNodeType(n), g);
-                attr3.addValue(Attribute.computeNodeType2(n), g);
-                attr4.addValue(Attribute.computeNodeType3(n), g);
-                attr5.addValue(Attribute.computeValue(n), g);
-                attr6.addValue(Attribute.computeValue2(n), g);
-                attr7.addValue(Attribute.computePosition(n), g);
-                attr8.addValue(Attribute.computeListSize(n), g);
-                attr9.addValue(Attribute.computeListIndex(n), g);
-                attr10.addValue(Attribute.computeValueType(n), g);
-                attr11.addValue(Attribute.computeImplicit(n), g);
+                attr3.addValue(Attribute.computeValue(n), g);
+                attr4.addValue(Attribute.computeValue2(n), g);
+                attr5.addValue(Attribute.computePosition(n), g);
+                attr6.addValue(Attribute.computeListSize(n), g);
+                attr7.addValue(Attribute.computeListIndex(n), g);
+                attr8.addValue(Attribute.computeValueType(n), g);
+                attr9.addValue(Attribute.computeImplicit(n), g);
             }
             pn.setComparedAttribute(attr1);
             pn.setComparedAttribute(attr2);
             pn.setComparedAttribute(attr3);
             pn.setComparedAttribute(attr4);
-            pn.setComparedAttribute(attr5);
+            if (attr5.getValueSet().size() > 0)
+                pn.setComparedAttribute(attr5);
             pn.setComparedAttribute(attr6);
-            if (attr7.getValueSet().size() > 0)
-                pn.setComparedAttribute(attr7);
+            pn.setComparedAttribute(attr7);
             pn.setComparedAttribute(attr8);
             pn.setComparedAttribute(attr9);
-            pn.setComparedAttribute(attr10);
-            pn.setComparedAttribute(attr11);
         }
         // edge attributes
     }
@@ -80,12 +74,16 @@ public class PatternAbstractor {
         // node
         for (PatternNode pn : pat.getNodes()) {
             for (Attribute a : pn.getComparedAttributes()) {
-                List<Map.Entry<Object, Integer>> sorted = new ArrayList<>(a.sort().entrySet());
-                if (sorted.size() != 0)
-                    a.setTag(sorted.get(0).getKey());
+                vote4Attribute(a);
             }
         }
         // edge
+    }
+
+    private void vote4Attribute(Attribute attr) {
+        List<Map.Entry<Object, Integer>> sorted = new ArrayList<>(attr.sort().entrySet());
+        if (sorted.size() != 0)
+            attr.setTag(sorted.get(0).getKey());
     }
 
     /**
@@ -102,6 +100,27 @@ public class PatternAbstractor {
                 if (a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"))
                     a.setAbstract(true);
             });
+            if (pn.getAttribute("nodeType").isAbstract()) {
+                Attribute nodeTypeAttr = pn.getAttribute("nodeType");
+                nodeTypeAttr.clear();
+                for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
+                    CtWrapper n = entry.getKey();
+                    CodeGraph g = entry.getValue();
+                    nodeTypeAttr.addValue(Attribute.computeNodeType2(n), g);
+                }
+                vote4Attribute(nodeTypeAttr);
+                if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold || nodeTypeAttr.getTag().equals("?")) {
+                    nodeTypeAttr.clear();
+                    for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
+                        CtWrapper n = entry.getKey();
+                        CodeGraph g = entry.getValue();
+                        nodeTypeAttr.addValue(Attribute.computeNodeType3(n), g);
+                    }
+                    vote4Attribute(nodeTypeAttr);
+                    if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold || nodeTypeAttr.getTag().equals("?"))
+                        nodeTypeAttr.setAbstract(true);
+                }
+            }
             if (pn.getComparedAttributes().stream().allMatch(Attribute::isAbstract)) {
                 Iterator<PatternEdge> eItr = pn.inEdges().iterator();
                 while (eItr.hasNext()) {

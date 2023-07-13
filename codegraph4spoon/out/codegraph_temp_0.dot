@@ -1,0 +1,148 @@
+digraph "addFailure#?,Throwable" {
+0 [label="2:CtTypeReferenceImpl@void" shape=ellipse]
+1 [label="2:CtVirtualElement@addFailure" shape=ellipse]
+2 [label="2:CtVirtualElement@targetException" shape=ellipse]
+3 [label="2:CtParameterImpl@Throwable targetException" shape=ellipse]
+4 [label="2:CtTypeReferenceImpl@Throwable" shape=ellipse]
+5 [label="3:CtVariableReadImpl@targetException" shape=ellipse]
+6 [label="3:CtParameterReferenceImpl@targetException" shape=ellipse]
+7 [label="3:CtTypeAccessImpl@MultipleFailureException" shape=ellipse]
+8 [label="3:CtTypeReferenceImpl@MultipleFailureException" shape=ellipse]
+9 [label="3:CtBinaryOperatorImpl@targetException instanceof MultipleFailureException" shape=ellipse]
+10 [label="3:CtTypeReferenceImpl@boolean" shape=ellipse]
+11 [label="4:CtExecutableReferenceImpl@addMultipleFailureException(MultipleFailureException)" shape=ellipse]
+12 [label="4:CtTypeReferenceImpl@MultipleFailureException" shape=ellipse]
+13 [label="4:CtVirtualElement@addMultipleFailureException" shape=ellipse]
+14 [label="4:CtTypeAccessImpl@PlaceHold" shape=ellipse]
+15 [label="4:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+16 [label="4:CtThisAccessImpl@" shape=ellipse]
+17 [label="4:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+18 [label="4:CtVariableReadImpl@((MultipleFailureException) (targetException))" shape=ellipse]
+19 [label="4:CtTypeReferenceImpl@MultipleFailureException" shape=ellipse]
+20 [label="4:CtParameterReferenceImpl@targetException" shape=ellipse]
+21 [label="4:CtInvocationImpl@addMultipleFailureException(((MultipleFailureException) (targetException)))" shape=ellipse]
+22 [label="3:CtBlockImpl@\{
+    addMultipleFailureException(((MultipleFailureException) (targetException)));
+\}" shape=ellipse]
+23 [label="6:CtExecutableReferenceImpl@fireTestFailure(Failure)" shape=ellipse]
+24 [label="6:CtTypeReferenceImpl@fNotifier" shape=ellipse]
+25 [label="6:CtTypeReferenceImpl@Failure" shape=ellipse]
+26 [label="6:CtVirtualElement@fireTestFailure" shape=ellipse]
+27 [label="6:CtFieldReferenceImpl@fNotifier" shape=ellipse]
+28 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+29 [label="6:CtFieldReadImpl@fNotifier" shape=ellipse]
+30 [label="6:CtExecutableReferenceImpl@Failure()" shape=ellipse]
+31 [label="6:CtTypeReferenceImpl@Failure" shape=ellipse]
+32 [label="6:CtTypeReferenceImpl@Failure" shape=ellipse]
+33 [label="6:CtFieldReferenceImpl@fDescription" shape=ellipse]
+34 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+35 [label="6:CtFieldReadImpl@fDescription" shape=ellipse]
+36 [label="6:CtVariableReadImpl@targetException" shape=ellipse]
+37 [label="6:CtParameterReferenceImpl@targetException" shape=ellipse]
+38 [label="6:CtConstructorCallImpl@new Failure(fDescription, targetException)" shape=ellipse]
+39 [label="6:CtInvocationImpl@fNotifier.fireTestFailure(new Failure(fDescription, targetException))" shape=ellipse]
+40 [label="5:CtBlockImpl@\{
+    fNotifier.fireTestFailure(new Failure(fDescription, targetException));
+\}" shape=ellipse]
+41 [label="3:CtIfImpl@if (targetException instanceof MultipleFailureException) \{
+    addMultipleFailureException(((MultipleFailureException) (targetException)));
+\} else \{
+    fNotifier.fireTestFailure(new Failure(fDescription, targetException));
+\}" shape=ellipse]
+42 [label="2:CtBlockImpl@\{
+    if (targetException instanceof MultipleFailureException) \{
+        addMultipleFailureException(((MultipleFailureException) (targetException)));
+    \} else \{
+        fNotifier.fireTestFailure(new Failure(fDescription, targetException));
+    \}
+\}" shape=ellipse]
+43 [label="2:CtMethodImpl@public void addFailure(Throwable targetException) \{
+    if (targetException instanceof MultipleFailureException) \{
+        addMultipleFailureException(((MultipleFailureException) (targetException)));
+    \} else \{
+        fNotifier.fireTestFailure(new Failure(fDescription, targetException));
+    \}
+\}" shape=ellipse]
+44 [label="6:Update@UPDATE" shape=ellipse]
+45 [label="6:CtPackageReferenceImpl@" shape=ellipse]
+46 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+47 [label="6:CtFieldReferenceImpl@notifier" shape=ellipse]
+48 [label="6:CtFieldReadImpl@notifier" shape=ellipse]
+49 [label="6:Update@UPDATE" shape=ellipse]
+50 [label="6:CtPackageReferenceImpl@" shape=ellipse]
+51 [label="6:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+52 [label="6:CtFieldReferenceImpl@description" shape=ellipse]
+53 [label="6:CtFieldReadImpl@description" shape=ellipse]
+2 -> 5 [label="Define-Use"];
+2 -> 18 [label="Define-Use"];
+2 -> 36 [label="Define-Use"];
+3 -> 2 [label="AST"];
+3 -> 4 [label="AST"];
+5 -> 6 [label="AST"];
+7 -> 8 [label="AST"];
+9 -> 10 [label="AST"];
+9 -> 5 [label="AST"];
+9 -> 7 [label="AST"];
+9 -> 22 [label="Control Dep"];
+9 -> 21 [label="Control Dep"];
+9 -> 11 [label="Control Dep"];
+9 -> 16 [label="Control Dep"];
+9 -> 14 [label="Control Dep"];
+9 -> 18 [label="Control Dep"];
+9 -> 40 [label="Control Dep"];
+9 -> 39 [label="Control Dep"];
+9 -> 23 [label="Control Dep"];
+9 -> 29 [label="Control Dep"];
+9 -> 38 [label="Control Dep"];
+9 -> 30 [label="Control Dep"];
+9 -> 35 [label="Control Dep"];
+9 -> 36 [label="Control Dep"];
+9 -> 48 [label="Control Dep"];
+9 -> 53 [label="Control Dep"];
+11 -> 12 [label="AST"];
+14 -> 15 [label="AST"];
+16 -> 17 [label="AST"];
+16 -> 14 [label="AST"];
+18 -> 19 [label="AST"];
+18 -> 20 [label="AST"];
+21 -> 13 [label="AST"];
+21 -> 16 [label="AST"];
+21 -> 11 [label="AST"];
+21 -> 18 [label="AST"];
+22 -> 21 [label="AST"];
+23 -> 24 [label="AST"];
+23 -> 25 [label="AST"];
+27 -> 28 [label="AST"];
+29 -> 27 [label="AST"];
+29 -> 44 [label="Action"];
+30 -> 31 [label="AST"];
+30 -> 32 [label="AST"];
+33 -> 34 [label="AST"];
+35 -> 33 [label="AST"];
+35 -> 49 [label="Action"];
+36 -> 37 [label="AST"];
+38 -> 30 [label="AST"];
+38 -> 35 [label="AST"];
+38 -> 36 [label="AST"];
+39 -> 26 [label="AST"];
+39 -> 29 [label="AST"];
+39 -> 23 [label="AST"];
+39 -> 38 [label="AST"];
+40 -> 39 [label="AST"];
+41 -> 9 [label="AST"];
+41 -> 22 [label="AST"];
+41 -> 40 [label="AST"];
+42 -> 41 [label="AST"];
+43 -> 1 [label="AST"];
+43 -> 0 [label="AST"];
+43 -> 3 [label="AST"];
+43 -> 42 [label="AST"];
+44 -> 48 [label="Action"];
+46 -> 45 [label="AST"];
+47 -> 46 [label="AST"];
+48 -> 47 [label="AST"];
+49 -> 53 [label="Action"];
+51 -> 50 [label="AST"];
+52 -> 51 [label="AST"];
+53 -> 52 [label="AST"];
+}

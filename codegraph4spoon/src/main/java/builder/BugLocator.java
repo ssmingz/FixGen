@@ -379,8 +379,8 @@ public class BugLocator {
             if (oe.type == PatternEdge.EdgeType.AST && !oe.getTarget().isVirtual()) {
                 // node type
                 CtElementImpl child = createSpoonNodeRecursively(oe.getTarget(), mapping4pattern, mapping4diff);
-                if (child.prettyprint().equals("PlaceHold"))
-                    continue;
+//                if (child.prettyprint().equals("PlaceHold"))
+//                    continue;
                 // role in parent
                 CtRole role = CtRole.fromName((String) oe.getTarget().getAttribute("locationInParent").getTag());
                 Object listSize = oe.getTarget().getAttribute("listSize").getTag();

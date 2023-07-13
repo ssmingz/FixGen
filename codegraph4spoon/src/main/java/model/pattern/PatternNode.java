@@ -29,6 +29,10 @@ public class PatternNode implements Serializable {
             _comparedAttrs.add(attr);
     }
 
+    public void removeAttribute(Attribute attr) {
+        _comparedAttrs.remove(attr);
+    }
+
     public Set<Attribute> getComparedAttributes() {
         return _comparedAttrs;
     }

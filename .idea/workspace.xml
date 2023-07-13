@@ -4,336 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add generate-code part for applying pattern to the target code graph">
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_1_action.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_2_action.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_3_action.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/log/junit_apply_pattern.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/log/junit_patch_correctness.log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/101/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/101/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/103/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/103/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/16/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/16/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/17/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/17/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/21/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/21/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/26/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/26/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/7/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/8/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/34/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/34/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/35/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/35/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/35/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/50/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/50/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/59/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/59/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/59/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/65/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/65/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/66/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/66/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/67/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/67/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/68/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/68/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/72/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/72/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/72/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/7/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/81/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/81/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/87/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/87/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/88/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/88/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/9/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/9/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/90/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/90/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/98/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/98/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/98/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_3.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_4.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_5.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/101/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/101/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/104/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/104/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/16/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/16/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/17/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/17/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/19/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/19/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/2/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/2/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/22/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/22/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/23/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/23/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/23/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/0/patch_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/1/patch_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/25/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/25/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/26/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/26/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/3/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/3/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/7/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/8/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/34/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/34/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/35/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/35/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/35/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/37/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/37/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/4/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/4/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/40/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/40/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/44/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/45/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/45/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/46/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/46/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/49/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/49/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/5/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/5/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/5/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/50/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/50/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/55/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/55/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/55/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/0/patch_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/1/patch_2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/59/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/59/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/59/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/6/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/6/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/6/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/66/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/66/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/67/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/67/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/68/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/68/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/69/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/69/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/7/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/8/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/72/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/72/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/72/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/75/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/77/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/77/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/78/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/78/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/79/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/79/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/81/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/81/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/82/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/82/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/86/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/86/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/87/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/87/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/88/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/88/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/9/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/9/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/90/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/90/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/5/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/6/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/3/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/4/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/98/2/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/0/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/0/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/1/patch_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/1/patch_1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_103_1_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_29_2_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_2_0_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_59_0_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_5_0_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_68_1_0.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_0.dot" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestInteract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatchCorrectness.java" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add repair process">
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_0.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_1.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_102_0_0.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_102_0_1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_1.dot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_1.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_ActionGraph.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_Pattern_0.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_0_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_1_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_19_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/cg_temp.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0_action.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75260_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75353_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75382_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75407_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75432_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75542_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_FBViolation#75590_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/fixbench_FindBugs-DM_CONVERT_CASE_0_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch_ant_1069_0_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch_ant_1069_0_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch_temp_0.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_0.dot" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/ActionNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/ActionNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Delete.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Delete.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Insert.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Insert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Move.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Move.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Update.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/actions/Update.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DiffUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/DiffUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ReflectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ReflectUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestDiffUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestDiffUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonActionGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestSpoonActionGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/CtVirtualElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/CtVirtualElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/Scope.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/visitor/SignaturePrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/visitor/SignaturePrinter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -427,7 +115,7 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestSpoonActionGraph.testGraphBuilder">
+  <component name="RunManager" selected="JUnit.TestApplyPattern.testApplyPatternOnC3_debug">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -502,9 +190,9 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilder" />
         <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3_debug" />
         <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3" />
+        <item itemvalue="JUnit.TestSpoonActionGraph.testGraphBuilder" />
         <item itemvalue="JUnit.TestPatchCorrectness.testPatchCorrectness2" />
         <item itemvalue="JUnit.TestPatchCorrectness.testFormatCode" />
       </list>
@@ -806,7 +494,14 @@
       <option name="project" value="LOCAL" />
       <updated>1688295496892</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="add repair process">
+      <created>1689162939698</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1689162939698</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -821,7 +516,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor PatternAbstracter" />
     <MESSAGE value="refactor PatternAbstracter and PatternExtractor" />
     <MESSAGE value="refactor PatternExtractor" />
     <MESSAGE value="delete HFFSM module" />
@@ -846,7 +540,8 @@
     <MESSAGE value="fix pattern-extraction:&quot;node matching confusion between Variable and VariableReference&quot;" />
     <MESSAGE value="apply pattern to the target code graph" />
     <MESSAGE value="add generate-code part for applying pattern to the target code graph" />
-    <option name="LAST_COMMIT_MESSAGE" value="add generate-code part for applying pattern to the target code graph" />
+    <MESSAGE value="add repair process" />
+    <option name="LAST_COMMIT_MESSAGE" value="add repair process" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1048,28 +743,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>103</line>
-          <option name="timeStamp" value="1133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>101</line>
-          <option name="timeStamp" value="1134" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
           <line>203</line>
           <option name="timeStamp" value="1136" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>99</line>
-          <option name="timeStamp" value="1141" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>97</line>
-          <option name="timeStamp" value="1142" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
@@ -1080,6 +755,11 @@
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
           <line>336</line>
           <option name="timeStamp" value="1164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
+          <line>182</line>
+          <option name="timeStamp" value="1190" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
