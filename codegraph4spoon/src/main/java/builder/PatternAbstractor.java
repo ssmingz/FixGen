@@ -101,7 +101,6 @@ public class PatternAbstractor {
         while(it.hasNext()){
             PatternNode pn = it.next();
             // remove the attribute by setAbstract instead removing
-//            pn.getComparedAttributes().removeIf(a -> a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"));
             pn.getComparedAttributes().forEach(a -> {
                 if (a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"))
                     a.setAbstract(true);
@@ -131,18 +130,14 @@ public class PatternAbstractor {
                 Iterator<PatternEdge> eItr = pn.inEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    pe.getSource().outEdges().remove(pe);
-                    eItr.remove();
+                    pe.setAbstract(true);
                 }
                 eItr = pn.outEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    pe.getTarget().inEdges().remove(pe);
-                    eItr.remove();
+                    pe.setAbstract(true);
                 }
-                pn.inEdges().removeIf(Objects::nonNull);
-                pn.outEdges().removeIf(Objects::nonNull);
-                it.remove();
+                pn.setAbstract(true);
             }
         }
         // recheck for unreached nodes with action
@@ -159,21 +154,16 @@ public class PatternAbstractor {
                 Iterator<PatternEdge> eItr = pn.inEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    pe.getSource().outEdges().remove(pe);
-                    eItr.remove();
+                    pe.setAbstract(true);
                 }
                 eItr = pn.outEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    pe.getTarget().inEdges().remove(pe);
-                    eItr.remove();
+                    pe.setAbstract(true);
                 }
-                pn.inEdges().removeIf(Objects::nonNull);
-                pn.outEdges().removeIf(Objects::nonNull);
-                it.remove();
+                pn.setAbstract(true);
             }
         }
-        int i=1;
     }
 
     private void extendOneEdge(PatternNode start, Set<PatternNode> reached) {
@@ -181,10 +171,12 @@ public class PatternAbstractor {
             return;
         reached.add(start);
         for (PatternEdge ie : start.inEdges()) {
-            extendOneEdge(ie.getSource(), reached);
+            if (!ie.isAbstract())
+                extendOneEdge(ie.getSource(), reached);
         }
         for (PatternEdge oe : start.outEdges()) {
-            extendOneEdge(oe.getTarget(), reached);
+            if (!oe.isAbstract())
+                extendOneEdge(oe.getTarget(), reached);
         }
     }
 

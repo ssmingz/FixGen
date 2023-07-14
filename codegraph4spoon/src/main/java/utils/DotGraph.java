@@ -74,7 +74,7 @@ public class DotGraph {
     /**
      * draw a dot graph for a pattern
      */
-    public DotGraph(Pattern pat, int nodeIndexStart, boolean isAbstract) {
+    public DotGraph(Pattern pat, int nodeIndexStart, boolean isAbstract, boolean showAbstract) {
         // start
         graph.append(addStart(pat.getPatternName()));
 
@@ -83,6 +83,7 @@ public class DotGraph {
         // add nodes
         int id = nodeIndexStart;
         for (PatternNode node : nodes) {
+            if (!showAbstract && node.isAbstract()) continue;
             idByNode.put(node, id);
             String label = isAbstract ? node.toLabelAfterAbstract() : node.toLabel();
             String style = node.isAbstract() ? "dashed" : null;
@@ -91,9 +92,11 @@ public class DotGraph {
         }
         // add edges
         for (PatternNode node : nodes) {
+            if (!showAbstract && node.isAbstract()) continue;
             if (!idByNode.containsKey(node)) continue;
             int sId = idByNode.get(node);
             for (PatternEdge e : node.outEdges()) {
+                if (!showAbstract && e.isAbstract()) continue;
                 if (!idByNode.containsKey(e.getTarget())) continue;
                 int tId = idByNode.get(e.getTarget());
                 String label = String.format("%s:%d\n%s", e.getLabel(), e.getInstanceNumber(), e.toLabel());

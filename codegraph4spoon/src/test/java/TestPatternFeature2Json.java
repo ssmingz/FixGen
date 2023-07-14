@@ -82,9 +82,9 @@ public class TestPatternFeature2Json {
 
     @Test
     public void testWriteFeatJsonFromMultiplePairsToSingleFile_C3() {
-        //String[] projects = {"ant", "junit", "checkstyle", "cobertura", "drjava"};
-        String[] projects = {"junit"};
-        String base = TestConfig.WIN_BASE;
+        String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
+        //String[] projects = {"junit"};
+        String base = TestConfig.MAC_BASE;
         for (int i=0; i<projects.length; i++) {
             Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
             int graphCounter = 0, groupCounter = 0, groupBuffer = 0;

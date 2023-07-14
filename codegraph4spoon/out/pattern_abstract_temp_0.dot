@@ -7,20 +7,96 @@ value2:
 listSize:-1
 listIndex:-1
 implicit:false" shape=ellipse]
-1 [label="locationInParent:TARGET
-nodeType:class spoon.support.reflect.code.CtFieldReadImpl
-value:fNotifier
-value2:PlaceHold
+1 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+value:max.sort(request)
+value2:MaxCore.sort(Request)
 listSize:-1
 listIndex:-1
-valueType:PlaceHold
 implicit:false" shape=ellipse]
-2 [label="nodeType:class spoon.support.reflect.code.CtExpressionImpl
+2 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+value:sort
+value2:MaxCore.sort(Request)
+listSize:-1
+listIndex:-1
 implicit:false" shape=ellipse]
-3 [label="nodeType:class spoon.support.reflect.code.CtExpressionImpl
+3 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+value:max.sortedLeavesForTest(request)
+value2:MaxCore.sortedLeavesForTest(Request)
+listSize:-1
+listIndex:-1
 implicit:false" shape=ellipse]
-1 -> 0 [label="Action:2"];
-2 -> 1 [label="Control Dep:1"];
-2 -> 3 [label="AST:2"];
-2 -> 1 [label="AST:1"];
+4 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+value:sortedLeavesForTest
+value2:MaxCore.sortedLeavesForTest(Request)
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+5 [label="locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:sortedLeavesForTest
+value2:sortedLeavesForTest
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+6 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:MaxCore
+value2:MaxCore
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+7 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+listSize:-1
+listIndex:-1
+implicit:true" shape=ellipse]
+8 [label="nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+implicit:false" shape=ellipse]
+9 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+listSize:-1
+listIndex:-1
+implicit:true" shape=ellipse]
+0 -> 3 [label="Action:3
+preferRecentlyFailed#?:229
+preferFast#?:205
+twoTestsNotRunComeBackInRandomOrder#?:315"];
+1 -> 0 [label="Action:3
+preferRecentlyFailed#?:226
+preferFast#?:202
+twoTestsNotRunComeBackInRandomOrder#?:312"];
+1 -> 2 [label="AST:3
+preferRecentlyFailed#?:146
+preferFast#?:137
+twoTestsNotRunComeBackInRandomOrder#?:178"];
+3 -> 4 [label="AST:3
+preferRecentlyFailed#?:248
+preferFast#?:220
+twoTestsNotRunComeBackInRandomOrder#?:334"];
+3 -> 5 [label="AST:3
+preferRecentlyFailed#?:250
+preferFast#?:222
+twoTestsNotRunComeBackInRandomOrder#?:336"];
+5 -> 6 [label="AST:3
+preferRecentlyFailed#?:240
+preferFast#?:213
+twoTestsNotRunComeBackInRandomOrder#?:326"];
+5 -> 8 [label="AST:3
+preferRecentlyFailed#?:241
+preferFast#?:214
+twoTestsNotRunComeBackInRandomOrder#?:327"];
+6 -> 7 [label="AST:3
+preferRecentlyFailed#?:235
+preferFast#?:211
+twoTestsNotRunComeBackInRandomOrder#?:321"];
+8 -> 9 [label="AST:3
+preferRecentlyFailed#?:237
+preferFast#?:212
+twoTestsNotRunComeBackInRandomOrder#?:323"];
 }

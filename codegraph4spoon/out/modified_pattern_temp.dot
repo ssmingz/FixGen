@@ -1,7 +1,7 @@
 digraph "Pattern" {
 0 [label="##ActionPoint##
 locationInParent:ACTION
-position:[[assignment, class spoon.support.reflect.code.CtConstructorCallImpl], [statement, class spoon.support.reflect.code.CtAssignmentImpl], [then, class spoon.support.reflect.code.CtBlockImpl], [statement, class spoon.support.reflect.code.CtIfImpl], [then, class spoon.support.reflect.code.CtBlockImpl], [statement, class spoon.support.reflect.code.CtIfImpl], [body, class spoon.support.reflect.code.CtBlockImpl], [typeMember, class spoon.support.reflect.declaration.CtMethodImpl], [containedType, class spoon.support.reflect.declaration.CtClassImpl], [subPackage, class spoon.reflect.CtModelImpl$CtRootPackage], [null, class spoon.reflect.factory.ModuleFactory$CtUnnamedModule], [null, class spoon.reflect.factory.ModuleFactory$CtUnnamedModule$1]]" shape=ellipse]
+position:TOO LONG TO BE PRINTED" shape=ellipse]
 1 [label="locationInParent:ASSIGNMENT
 value:new VAJLocalToolUtil()
 value2:new VAJLocalToolUtil()
@@ -22,16 +22,8 @@ listIndex:-1
 implicit:false" shape=ellipse]
 4 [label="locationInParent:STATEMENT
 nodeType:class spoon.support.reflect.code.CtIfImpl
-value:if (remoteServer == null) \{
-    util = new VAJLocalToolUtil();
-\} else \{
-    util = new VAJRemoteUtil(this, remoteServer);
-\}
-value2:if (PlaceHold == null) \{
-    PlaceHold = new VAJLocalToolUtil();
-\} else \{
-    PlaceHold = new VAJRemoteUtil(this, PlaceHold);
-\}
+value:TOO LONG TO BE PRINTED
+value2:TOO LONG TO BE PRINTED
 listSize:1
 listIndex:0
 implicit:false" shape=ellipse]

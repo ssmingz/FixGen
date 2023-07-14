@@ -36,7 +36,7 @@ public class TestPatternAbstractor {
             // abstract pattern
             PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
             pat = abs.abstractPattern(pat);
-            DotGraph dot = new DotGraph(pat, 0, true);
+            DotGraph dot = new DotGraph(pat, 0, true, false);
             File dir = new File(String.format("%s/out/c3_%s_%d_pattern_abstract_%d.dot", System.getProperty("user.dir"), testPro, testId, combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
         }
@@ -82,7 +82,7 @@ public class TestPatternAbstractor {
                             patSizeCounter++;
                         }
                         for (Pattern pat : combinedGraphs) {
-                            DotGraph dot = new DotGraph(pat, 0, false);
+                            DotGraph dot = new DotGraph(pat, 0, false, false);
                             File dotf = new File(String.format("%s/pattern_%d.dot", basedir, combinedGraphs.indexOf(pat)));
                             dot.toDotFile(dotf);
 
@@ -91,7 +91,7 @@ public class TestPatternAbstractor {
                             PatternAbstractor abs = new PatternAbstractor(size*0.8);
                             pat = abs.abstractPattern(pat);
 
-                            DotGraph dot2 = new DotGraph(pat, 0, true);
+                            DotGraph dot2 = new DotGraph(pat, 0, true, false);
                             File dotf2 = new File(String.format("%s/pattern_abstract_%d.dot", basedir, combinedGraphs.indexOf(pat)));
                             dot2.toDotFile(dotf2);
 
@@ -130,12 +130,12 @@ public class TestPatternAbstractor {
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0, false);
+            DotGraph dot = new DotGraph(pat, 0, false, false);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             PatternAbstractor abs = new PatternAbstractor(size);
             pat = abs.abstractPattern(pat);
-            DotGraph dot2 = new DotGraph(pat, 0, true);
+            DotGraph dot2 = new DotGraph(pat, 0, true, false);
             File dir2 = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
             dot2.toDotFile(dir2);
         }
@@ -169,12 +169,12 @@ public class TestPatternAbstractor {
         }// extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0, false);
+            DotGraph dot = new DotGraph(pat, 0, false, false);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/fixbench_%s_%s_pattern_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             PatternAbstractor abs = new PatternAbstractor(size);
             pat = abs.abstractPattern(pat);
-            DotGraph dot2 = new DotGraph(pat, 0, true);
+            DotGraph dot2 = new DotGraph(pat, 0, true, false);
             File dir2 = new File(System.getProperty("user.dir") + String.format("/out/fixbench_%s_%s_pattern_abstract_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
             dot2.toDotFile(dir2);
         }
@@ -221,7 +221,7 @@ public class TestPatternAbstractor {
                         patSizeCounter++;
                     }
                     for (Pattern pat : combinedGraphs) {
-                        DotGraph dot = new DotGraph(pat, 0, false);
+                        DotGraph dot = new DotGraph(pat, 0, false, false);
                         File dotf = new File(String.format("%s/pattern_%d.dot", basedir, combinedGraphs.indexOf(pat)));
                         dot.toDotFile(dotf);
 
@@ -230,7 +230,7 @@ public class TestPatternAbstractor {
                         PatternAbstractor abs = new PatternAbstractor(size*0.8);
                         pat = abs.abstractPattern(pat);
 
-                        DotGraph dot2 = new DotGraph(pat, 0, true);
+                        DotGraph dot2 = new DotGraph(pat, 0, true, false);
                         File dotf2 = new File(String.format("%s/pattern_abstract_%d.dot", basedir, combinedGraphs.indexOf(pat)));
                         dot2.toDotFile(dotf2);
 

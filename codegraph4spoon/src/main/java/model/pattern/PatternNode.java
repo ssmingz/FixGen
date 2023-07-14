@@ -10,7 +10,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class PatternNode implements Serializable {
-    Set<Attribute> _comparedAttrs = new LinkedHashSet<>();
+    List<Attribute> _comparedAttrs = new ArrayList<>();
 
     private Map<CtWrapper, CodeGraph> _nodeGraphInstances = new LinkedHashMap<>();
 
@@ -30,11 +30,17 @@ public class PatternNode implements Serializable {
             _comparedAttrs.add(attr);
     }
 
+    public void replaceAttribute(Attribute old, Attribute newly) {
+        int oldIndex = _comparedAttrs.indexOf(old);
+        _comparedAttrs.remove(old);
+        _comparedAttrs.add(oldIndex, newly);
+    }
+
     public void removeAttribute(Attribute attr) {
         _comparedAttrs.remove(attr);
     }
 
-    public Set<Attribute> getComparedAttributes() {
+    public List<Attribute> getComparedAttributes() {
         return _comparedAttrs;
     }
 
@@ -104,7 +110,8 @@ public class PatternNode implements Serializable {
                 continue;
             if (label.length() != 0)
                 label.append("\n");
-            label.append(a.getName()).append(":").append(a.getTag());
+            String tag = a.getTag().toString();
+            label.append(a.getName()).append(":").append(tag.length()>60?"TOO LONG TO BE PRINTED":tag);
         }
         return label.toString();
     }

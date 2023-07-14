@@ -46,7 +46,7 @@ public class TestFaultLocalization {
             // abstract pattern
             PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
             abs.abstractPattern(pat);
-            DotGraph dot = new DotGraph(pat, 0, true);
+            DotGraph dot = new DotGraph(pat, 0, true, false);
             File dir = new File(System.getProperty("user.dir") + String.format("/out/pattern_temp_%d.dot", combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             // locate the buggy line

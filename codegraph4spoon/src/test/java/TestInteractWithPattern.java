@@ -57,7 +57,7 @@ public class TestInteractWithPattern {
     }
 
     private void drawPattern(Pattern pattern, String path, boolean isAbstract) {
-        DotGraph dot = new DotGraph(pattern, 0, isAbstract);
+        DotGraph dot = new DotGraph(pattern, 0, isAbstract, false);
         dot.toDotFile(new File(path));
     }
 

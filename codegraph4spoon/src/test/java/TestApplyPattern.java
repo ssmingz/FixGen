@@ -40,7 +40,7 @@ public class TestApplyPattern {
             // abstract pattern
             PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
             abs.abstractPattern(pat);
-            DotGraph dot = new DotGraph(pat, 0, true);
+            DotGraph dot = new DotGraph(pat, 0, true, false);
             File dir = new File(String.format("%s/out/pattern_temp_%d.dot", System.getProperty("user.dir"), combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             // locate the buggy line
@@ -121,7 +121,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 102;
+        int testId = 59;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);
@@ -147,13 +147,13 @@ public class TestApplyPattern {
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0, false);
+            DotGraph dot = new DotGraph(pat, 0, false, false);
             File dir = new File(String.format("%s/out/pattern_temp_%d.dot", System.getProperty("user.dir"), combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             // abstract pattern
             PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size*0.8));
             abs.abstractPattern(pat);
-            DotGraph dot2 = new DotGraph(pat, 0, true);
+            DotGraph dot2 = new DotGraph(pat, 0, true, false);
             File dir2 = new File(String.format("%s/out/pattern_abstract_temp_%d.dot", System.getProperty("user.dir"), combinedGraphs.indexOf(pat)));
             dot2.toDotFile(dir2);
             // locate the buggy line

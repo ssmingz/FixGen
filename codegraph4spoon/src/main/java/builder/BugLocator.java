@@ -304,10 +304,8 @@ public class BugLocator {
 
     @SuppressWarnings("unchecked")
     public <T> CtElementImpl createSpoonNodeRecursively(PatternNode pnRoot, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
-        // nodeType->nodeType2->nodeType3
-        Class clazz = !pnRoot.getAttribute("nodeType").isAbstract() ? (Class) pnRoot.getAttribute("nodeType").getTag() :
-                        (!pnRoot.getAttribute("nodeType2").isAbstract() ? (Class) pnRoot.getAttribute("nodeType2").getTag() :
-                            (!pnRoot.getAttribute("nodeType3").isAbstract() ? (Class) pnRoot.getAttribute("nodeType3").getTag() : null));
+        // nodeType
+        Class clazz = !pnRoot.getAttribute("nodeType").isAbstract() ? (Class) pnRoot.getAttribute("nodeType").getTag():null;
         if (clazz == null) {
             throw new IllegalArgumentException("Create new spoon node failed: pattern node does not have node type attribute");
         }
@@ -318,10 +316,10 @@ public class BugLocator {
             System.out.println("[warn]failed to directly use class name to create instance");
             // if is update.target
             for (PatternEdge ie : pnRoot.inEdges()) {
-                if (ie.type == PatternEdge.EdgeType.ACTION && !ie.getSource().getAttribute("nodeType").isAbstract()
+                if (!ie.isAbstract() && ie.type == PatternEdge.EdgeType.ACTION && !ie.getSource().getAttribute("nodeType").isAbstract()
                         && ie.getSource().getAttribute("nodeType").getTag().equals(Update.class)) {
                     for (PatternEdge ie2 : ie.getSource().inEdges()) {
-                        if (ie2.type == PatternEdge.EdgeType.ACTION && mapping4pattern.containsKey(ie2.getSource())) {
+                        if (!ie2.isAbstract() && ie2.type == PatternEdge.EdgeType.ACTION && mapping4pattern.containsKey(ie2.getSource())) {
                             try {
                                 clazz = mapping4pattern.get(ie2.getSource()).getCtElementImpl().getClass();
                                 newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
@@ -343,7 +341,7 @@ public class BugLocator {
             // check define-use for name
             boolean hasDef = false, hasUse = false;
             for (PatternEdge ie : pnRoot.inEdges()) {
-                if (ie.type == PatternEdge.EdgeType.DEF_USE) {
+                if (!ie.isAbstract() && ie.type == PatternEdge.EdgeType.DEF_USE) {
                     hasDef = true;
                     if (mapping4pattern.containsKey(ie.getSource()))
                         newly.setValueByRole(CtRole.NAME, mapping4pattern.get(ie.getSource()));
@@ -354,7 +352,7 @@ public class BugLocator {
             }
             if (!hasDef) {
                 for (PatternEdge oe : pnRoot.outEdges()) {
-                    if (oe.type == PatternEdge.EdgeType.DEF_USE) {
+                    if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.DEF_USE) {
                         hasUse = true;
                         if (mapping4pattern.containsKey(oe.getTarget()))
                             newly.setValueByRole(CtRole.NAME, mapping4pattern.get(oe.getTarget()));
@@ -376,7 +374,7 @@ public class BugLocator {
         }
         // recursively for children
         for (PatternEdge oe : pnRoot.outEdges()) {
-            if (oe.type == PatternEdge.EdgeType.AST && !oe.getTarget().isVirtual()) {
+            if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.AST && !oe.getTarget().isVirtual()) {
                 // node type
                 CtElementImpl child = createSpoonNodeRecursively(oe.getTarget(), mapping4pattern, mapping4diff);
 //                if (child.prettyprint().equals("PlaceHold"))

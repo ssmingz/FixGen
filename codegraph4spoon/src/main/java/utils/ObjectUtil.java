@@ -118,8 +118,7 @@ public class ObjectUtil {
                         cgObj.vertexes.add(vID);
                         cgObj.vertexMap.put(vID, entry2.getKey());
                         // vertex label
-                        boolean isRemoved = pat.getNodeSet().contains(pObj);
-                        cgObj.vertexLabel.add(isRemoved ? 0 : 1);
+                        cgObj.vertexLabel.add(pn.isAbstract() ? 0 : 1);
                         // feature list
                         for (Attribute att : pn.getComparedAttributes()) {
                             if (!cgObj.attributes.containsKey(vID)) {
@@ -134,7 +133,7 @@ public class ObjectUtil {
                     }
                 } else if (pObj instanceof PatternEdge) {
                     PatternEdge pe = (PatternEdge) pObj;
-                    boolean isKept = pat.getEdgeSet().contains(pObj);  // contain --> keep --> not remove --> 1
+                    boolean isKept = pe.isAbstract();  // contain --> keep --> not remove --> 1
                     String patLabel = pe.getLabel();
                     for (Map.Entry<Edge, CodeGraph> entry2 : pe.getInstance().entrySet()) {
                         Edge e = entry2.getKey();
@@ -268,8 +267,7 @@ public class ObjectUtil {
                     cgObj.vertexes.add(vID);
                     cgObj.vertexMap.put(vID, entry2.getKey());
                     // vertex label
-                    boolean isRemoved = pat.getNodeSet().contains(pObj);
-                    cgObj.vertexLabel.add(isRemoved ? 0 : 1);
+                    cgObj.vertexLabel.add(pn.isAbstract() ? 0 : 1);
                     // feature list
                     for (Attribute att : pn.getComparedAttributes()) {
                         if (!cgObj.attributes.containsKey(vID)) {
@@ -284,7 +282,7 @@ public class ObjectUtil {
                 }
             } else if (pObj instanceof PatternEdge) {
                 PatternEdge pe = (PatternEdge) pObj;
-                boolean isKept = pat.getEdgeSet().contains(pObj);  // contain --> keep --> not remove --> 1
+                boolean isKept = pe.isAbstract();  // contain --> keep --> not remove --> 1
                 String patLabel = pe.getLabel();
                 for (Map.Entry<Edge, CodeGraph> entry2 : pe.getInstance().entrySet()) {
                     Edge e = entry2.getKey();

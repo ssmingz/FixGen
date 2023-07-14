@@ -246,6 +246,8 @@ public class PatternExtractor {
             CtWrapper bestSim = null;
             while (itr.hasNext()) {
                 CtWrapper aNode = itr.next();
+//                if(aNode.toLabelString().equals("request")&&node.toLabelString().equals("tests")&&isMatch(node, aNode, mapping))
+//                    System.out.println("debug");
                 if (isMatch(node, aNode, mapping)) {
                     bestSim = aNode;
                     break;
@@ -352,9 +354,7 @@ public class PatternExtractor {
 
     private static boolean isMatch(PatternNode pn, CtWrapper cgn, Map<PatternNode, CtWrapper> mapping) {
         // compare type
-        Class pType = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag() :
-                    ((pn.getAttribute("nodeType2") != null) ? (Class) pn.getAttribute("nodeType2").getTag() :
-                    ((pn.getAttribute("nodeType3") != null) ? (Class) pn.getAttribute("nodeType").getTag() : null));
+        Class pType = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag():null;
         Class gType = Attribute.computeNodeType(cgn);
         if (!sameType(pn, cgn) || (pType.equals(CtBlockImpl.class)) != (gType.equals(CtBlockImpl.class)))
             return false;
@@ -410,9 +410,7 @@ public class PatternExtractor {
     }
 
     public static boolean sameType(PatternNode pn, CtWrapper cgn) {
-        Class a = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag() :
-                    ((pn.getAttribute("nodeType2") != null) ? (Class) pn.getAttribute("nodeType2").getTag() :
-                    ((pn.getAttribute("nodeType3") != null) ? (Class) pn.getAttribute("nodeType").getTag() : null));
+        Class a = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag():null;
         Class b = Attribute.computeNodeType(cgn);
         if (a.equals(b))
             return true;
@@ -501,11 +499,14 @@ public class PatternExtractor {
             for (CtWrapper nodeB : nodeListComp) {
                 if (result.get(nodeA).containsKey(nodeB)) continue;
                 double score = calContextSim(nodeA.toLabelString(), nodeB.toLabelString());
-                result.get(nodeA).put(nodeB, score);
+                double parent_score = 0;
+                if (nodeA.getCtElementImpl().getParent() != null && nodeB.getCtElementImpl().getParent() != null)
+                    parent_score = calContextSim(nodeA.getCtElementImpl().getParent().toString(), nodeB.getCtElementImpl().getParent().toString());
+                result.get(nodeA).put(nodeB, score + parent_score);
                 if (!result.containsKey(nodeB)) {
                     result.put(nodeB, new LinkedHashMap<>());
                 }
-                result.get(nodeB).put(nodeA, score);
+                result.get(nodeB).put(nodeA, score + parent_score);
             }
             result.replace(nodeA, sortByValue(result.get(nodeA)));
         }
