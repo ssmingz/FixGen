@@ -45,7 +45,7 @@ public class DotGraph {
                 pos = ctElement.getPosition().getLine();
             }
             idByNode.put(node, id);
-            String label = "" + pos + ":" + ctElement.getClass().getSimpleName() + "@" + ObjectUtil.printNode(ctElement);
+            String label = String.format("%d#L%d:%s@%s", cg.getElementId(node), pos, ctElement.getClass().getSimpleName(), ObjectUtil.printNode(ctElement));
             graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
             id++;
         }
@@ -61,7 +61,7 @@ public class DotGraph {
                         if (!idByNode.containsKey(node2))
                             continue;
                         int tId = idByNode.get(node2);
-                        String label = addEdgeLabel(e);
+                        String label = String.format("%d#%s", cg.getElementId(e), addEdgeLabel(e));
                         graph.append(addEdge(sId, tId, null, null, label));
                     }
                 }
@@ -85,7 +85,8 @@ public class DotGraph {
         for (PatternNode node : nodes) {
             idByNode.put(node, id);
             String label = isAbstract ? node.toLabelAfterAbstract() : node.toLabel();
-            graph.append(addNode(id, label, SHAPE_ELLIPSE, null, null, null));
+            String style = node.isAbstract() ? "dashed" : null;
+            graph.append(addNode(id, label, SHAPE_ELLIPSE, style, null, null));
             id++;
         }
         // add edges
@@ -95,8 +96,9 @@ public class DotGraph {
             for (PatternEdge e : node.outEdges()) {
                 if (!idByNode.containsKey(e.getTarget())) continue;
                 int tId = idByNode.get(e.getTarget());
-                String label = e.getLabel() + ":" + e.getInstanceNumber();
-                graph.append(addEdge(sId, tId, null, null, label));
+                String label = String.format("%s:%d\n%s", e.getLabel(), e.getInstanceNumber(), e.toLabel());
+                String style = e.isAbstract() ? "dashed" : null;
+                graph.append(addEdge(sId, tId, style, null, label));
             }
         }
         // end

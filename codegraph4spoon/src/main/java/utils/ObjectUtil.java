@@ -128,7 +128,7 @@ public class ObjectUtil {
                                 Map<String, Integer> labs = new LinkedHashMap<>();
                                 cgObj.attributeLabel.put(vID, labs);
                             }
-                            cgObj.attributes.get(vID).put(att.getName(), att.getValueByCG(cg));
+                            cgObj.attributes.get(vID).put(att.getName(), att.getValueByCG(cg).toString());
                             cgObj.attributeLabel.get(vID).put(att.getName(), att.isAbstract() ? 1 : 0);
                         }
                     }
@@ -278,7 +278,7 @@ public class ObjectUtil {
                             Map<String, Integer> labs = new LinkedHashMap<>();
                             cgObj.attributeLabel.put(vID, labs);
                         }
-                        cgObj.attributes.get(vID).put(att.getName(), att.getValueByCG(cg));
+                        cgObj.attributes.get(vID).put(att.getName(), att.getValueByCG(cg).toString());
                         cgObj.attributeLabel.get(vID).put(att.getName(), att.isAbstract() ? 1 : 0);
                     }
                 }
@@ -533,5 +533,10 @@ public class ObjectUtil {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static Object readJsonFromFile(String inputFile) {
+        String content = readStringFromFile(inputFile);
+        return JSON.parse(content);
     }
 }

@@ -24,10 +24,16 @@ public class PatternAbstractor {
         return pat;
     }
 
+    public static Pattern buildWithoutAbstract(Pattern pat) {
+        collectAttributes(pat);
+        voteAttributes(pat);
+        return pat;
+    }
+
     /**
      * collect feature values for each element in a pattern
      */
-    private void collectAttributes(Pattern pat) {
+    public static void collectAttributes(Pattern pat) {
         // node attributes
         for (PatternNode pn : pat.getNodes()) {
             Attribute attr1 = new Attribute("locationInParent");
@@ -70,7 +76,7 @@ public class PatternAbstractor {
     /**
      * sort features by instances size
      */
-    private void voteAttributes(Pattern pat) {
+    public static void voteAttributes(Pattern pat) {
         // node
         for (PatternNode pn : pat.getNodes()) {
             for (Attribute a : pn.getComparedAttributes()) {
@@ -80,7 +86,7 @@ public class PatternAbstractor {
         // edge
     }
 
-    private void vote4Attribute(Attribute attr) {
+    public static void vote4Attribute(Attribute attr) {
         List<Map.Entry<Object, Integer>> sorted = new ArrayList<>(attr.sort().entrySet());
         if (sorted.size() != 0)
             attr.setTag(sorted.get(0).getKey());

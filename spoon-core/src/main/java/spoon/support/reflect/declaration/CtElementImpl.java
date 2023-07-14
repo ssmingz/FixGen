@@ -96,7 +96,8 @@ public abstract class CtElementImpl implements CtElement {
 	 */
 	private Scope _scope = null;
 	protected boolean _actionRelated = false;
-
+	public String _graphName = "";
+	public int _graphId = -1;
 
 	public static <T> List<T> emptyList() {
 		return EmptyClearableList.instance();

@@ -18,6 +18,7 @@ public class PatternNode implements Serializable {
     private Set<PatternEdge> _outEdges = new LinkedHashSet<>();
     private Pattern _pattern = null;
     private boolean _actionRelated;
+    private boolean isAbstract = false;
 
     public PatternNode(CtWrapper aNode, CodeGraph aGraph) {
         _nodeGraphInstances.put(aNode, aGraph);
@@ -82,7 +83,8 @@ public class PatternNode implements Serializable {
             if (ctElement.getPosition().isValidPosition()) {
                 srcLine = ctElement.getPosition().getLine();
             }
-            String ins = entry.getValue().getGraphName() + "#" + srcLine + ":" + ObjectUtil.printNode(ctElement);
+            CodeGraph cg = entry.getValue();
+            String ins = String.format("%s:%d#L%d:%s", cg.getGraphName(), cg.getElementId(entry.getKey()), srcLine, ObjectUtil.printNode(ctElement));
             label.append(ins);
         }
         return label.toString();
@@ -153,4 +155,8 @@ public class PatternNode implements Serializable {
     public boolean isAction() {
         return getAttribute("locationInParent")!=null && getAttribute("locationInParent").getTag().equals("ACTION");
     }
+
+    public boolean isAbstract() { return isAbstract; }
+
+    public void setAbstract(boolean abs) { isAbstract = abs; }
 }

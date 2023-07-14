@@ -198,7 +198,6 @@ public class CodeGraph implements Serializable {
         } else {
             System.out.println("UNKNOWN ctNode type : " + ctNode.getClass().toString());
         }
-        updateCGId(ctNode);
         if (ctNode instanceof CtElementImpl) {
             for (CtElement ch : ((CtElementImpl) ctNode).getDirectChildren()) {
                 new ASTEdge((CtElementImpl) ctNode, (CtElementImpl) ch);
@@ -207,6 +206,7 @@ public class CodeGraph implements Serializable {
                 }
             }
         }
+        updateCGId(ctNode);
     }
 
     public void updateCGId(Object obj) {
@@ -219,17 +219,16 @@ public class CodeGraph implements Serializable {
             ((CtElementImpl) obj).setPosition(pt.getPosition());
             CtWrapper ctwrapper = new CtWrapper((CtElementImpl) obj);
             _allNodes.add(ctwrapper);
-            idCG.put(ctwrapper, idCG.size()+1);
-            // edge
-            for (Edge ie : ((CtElementImpl) obj)._inEdges) {
-                if (!idCG.containsKey(ie)) {
-                    idCG.put(ie, idCG.size()+1);
-                }
-            }
-            for (Edge oe : ((CtElementImpl) obj)._outEdges) {
-                if (!idCG.containsKey(oe)) {
-                    idCG.put(oe, idCG.size()+1);
-                }
+            int id = idCG.size()+1;
+            idCG.put(ctwrapper, id);
+            ((CtElementImpl) obj)._graphName = this.getFileName();
+            ((CtElementImpl) obj)._graphId = id;
+        } else if (obj instanceof Edge) {
+            if (!idCG.containsKey(obj)) {
+                int id = idCG.size()+1;
+                idCG.put(obj, id);
+                ((Edge) obj)._graphName = this.getFileName();
+                ((Edge) obj)._graphId = id;
             }
         }
     }
@@ -874,5 +873,13 @@ public class CodeGraph implements Serializable {
 
     public void nodeSetAdd(CtElementImpl insert) {
         _allNodes.add(new CtWrapper(insert));
+    }
+
+    public Object getElementById(int id) {
+        for (Map.Entry<Object, Integer> entry : idCG.entrySet()) {
+            if (entry.getValue() == id)
+                return entry.getKey();
+        }
+        return null;
     }
 }

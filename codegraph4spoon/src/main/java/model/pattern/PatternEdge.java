@@ -3,17 +3,21 @@ package model.pattern;
 import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
+import spoon.support.reflect.declaration.CtElementImpl;
+import utils.ObjectUtil;
 
 import java.io.Serializable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class PatternEdge implements Serializable {
+
     public enum EdgeType {AST, DATA_DEP, CONTROL_DEP, DEF_USE, ACTION, NULL};
     public PatternEdge.EdgeType type;
     private PatternNode source;
     private PatternNode target;
     private Map<Edge, CodeGraph> _edgeGraphInstances = new LinkedHashMap<>();
+    private boolean isAbstract = false;
 
     public PatternEdge(PatternNode source, PatternNode target, EdgeType type) {
         this.source = source;
@@ -80,4 +84,21 @@ public class PatternEdge implements Serializable {
     public int getInstanceNumber() {
         return _edgeGraphInstances.size();
     }
+
+    public String toLabel() {
+        StringBuilder label = new StringBuilder();
+        for (Map.Entry<Edge, CodeGraph> entry : _edgeGraphInstances.entrySet()) {
+            if (label.length() != 0)
+                label.append("\n");
+            Edge e = entry.getKey();
+            CodeGraph cg = entry.getValue();
+            String ins = String.format("%s:%d", cg.getGraphName(), cg.getElementId(e));
+            label.append(ins);
+        }
+        return label.toString();
+    }
+
+    public boolean isAbstract() { return isAbstract; }
+
+    public void setAbstract(boolean abs) { isAbstract = abs; }
 }

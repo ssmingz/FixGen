@@ -74,6 +74,12 @@ public class GraphBuilder {
         g.setFileName(ctMethod.getPosition().getFile().getAbsolutePath());
         g.buildNode(ctMethod, null, new Scope(null));
         g.setEntryNode(ctMethod);
+        // update edge id
+        for (CtWrapper w : g._allNodes) {
+            for (Edge oe : w.getCtElementImpl()._outEdges) {
+                g.updateCGId(oe);
+            }
+        }
         return g;
     }
 
@@ -205,6 +211,12 @@ public class GraphBuilder {
                 CtElementImpl parent = (CtElementImpl) ((MoveOperation) op).getParent();
                 Move mov = new Move(movedInSrc, parent, movedInDst, op);
                 cg1.updateCGId(mov);
+            }
+        }
+        // update edge id
+        for (CtWrapper w : cg1._allNodes) {
+            for (Edge oe : w.getCtElementImpl()._outEdges) {
+                cg1.updateCGId(oe);
             }
         }
         return cg1;

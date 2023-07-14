@@ -126,4 +126,48 @@ public class Pattern implements Serializable {
         double score = PatternExtractor.matchBySimScorePattern(Arrays.asList(_patternNodes.toArray(new PatternNode[0])), 0, aGraph.getNodes(), 0, mapping, orderBySimScore);
         return new Pair<>(mapping, score);
     }
+
+    public PatternNode getPatternNodeByCGNode(CtWrapper n) {
+        for (Map.Entry<CtWrapper, PatternNode> entry : _patternNodeByNode.entrySet()) {
+            if (entry.getKey().getCtElementImpl() == n.getCtElementImpl()) {
+                return entry.getValue();
+            }
+        }
+        return null;
+    }
+
+    public PatternNode getPatternNodeByCGElementId(String graphName, int id) {
+        for (PatternNode pn : _patternNodes) {
+            for (CtWrapper n : pn.getInstance().keySet()) {
+                if (n.getCtElementImpl()._graphId == id && n.getCtElementImpl()._graphName.equals(graphName))
+                    return pn;
+            }
+        }
+        System.out.printf("[warn]pattern vertex (%d# in codegraph@%s) not exist\n", id, graphName);
+        return null;
+    }
+
+    public PatternEdge getPatternEdgeByCGElementId(String graphName, int id) {
+        for (PatternEdge pe : _patternEdges) {
+            for (Edge n : pe.getInstance().keySet()) {
+                if (n._graphId == id && n._graphName.equals(graphName))
+                    return pe;
+            }
+        }
+        System.out.printf("[warn]pattern edge (%d# in codegraph@%s) not exist\n", id, graphName);
+        return null;
+    }
+
+    public PatternEdge getPatternEdgeByCGElementId(String graphName, int v1, int v2) {
+        for (PatternEdge pe : _patternEdges) {
+            for (Edge n : pe.getInstance().keySet()) {
+                if (n._graphName.equals(graphName) &&
+                        ((n.getSource()._graphId == v1 && n.getTarget()._graphId == v2) ||
+                        (n.getTarget()._graphId == v1 && n.getSource()._graphId == v2)))
+                    return pe;
+            }
+        }
+        System.out.printf("[warn]pattern edge (vId %d# and vId %d# in codegraph@%s) not exist\n", v1, v2, graphName);
+        return null;
+    }
 }

@@ -9,6 +9,8 @@ public abstract class Edge implements Serializable {
     public EdgeType type;
     protected CtElementImpl source;
     protected CtElementImpl target;
+    public String _graphName = "";
+    public int _graphId = -1;
 
     public Edge(CtElementImpl source, CtElementImpl target) {
         this.source = source;

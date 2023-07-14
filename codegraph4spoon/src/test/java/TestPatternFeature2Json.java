@@ -51,7 +51,7 @@ public class TestPatternFeature2Json {
         int testId = 13;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("src/test/resources/c3/%s/%d", testPro, testId);
-        int size = new File(base).listFiles().length;
+        int size = new File(base).listFiles(File::isDirectory).length;
         for (int i=0; i<size; i++) {
             String srcPath = String.format("%s/%d/before.java", base, i);
             String tarPath = String.format("%s/%d/after.java", base, i);
