@@ -106,7 +106,7 @@ public class TestPatternFeature2Json {
                         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
                         for (Pattern pat : combinedGraphs) {
                             // abstract pattern
-                            PatternAbstractor abs = new PatternAbstractor(group.listFiles().length);
+                            PatternAbstractor abs = new PatternAbstractor(group.listFiles(File::isDirectory).length);
                             pat = abs.abstractPattern(pat);
                             // get feature json object
                             List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());

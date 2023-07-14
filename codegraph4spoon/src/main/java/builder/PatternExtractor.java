@@ -166,10 +166,10 @@ public class PatternExtractor {
 
             // remove extended-by-control-dep if action-related nodes cannot reach
             Set<CtWrapper> actionRelated = nodes.stream().filter(n -> n.getCtElementImpl().isActionRelated()
-                    && canReach(action, n.getCtElementImpl()) != 99999).collect(Collectors.toSet());
+                    && canReach(action, n.getCtElementImpl(), new HashSet<>()) != 99999).collect(Collectors.toSet());
             for (CtWrapper c : extendFromControlDep) {
-                if (actionRelated.stream().noneMatch(a -> canReach(a.getCtElementImpl(), c.getCtElementImpl()) <= MAX_EXTEND_LEVEL
-                        || canReach(c.getCtElementImpl(), a.getCtElementImpl()) <= MAX_EXTEND_LEVEL)) {
+                if (actionRelated.stream().noneMatch(a -> canReach(a.getCtElementImpl(), c.getCtElementImpl(), new HashSet<>()) <= MAX_EXTEND_LEVEL
+                        || canReach(c.getCtElementImpl(), a.getCtElementImpl(), new HashSet<>()) <= MAX_EXTEND_LEVEL)) {
                     nodes.removeIf(n -> n.getCtElementImpl() == c.getCtElementImpl());
                 }
             }
@@ -180,16 +180,19 @@ public class PatternExtractor {
         return result;
     }
 
-    private static int canReach(CtElementImpl src, CtElementImpl tar) {
+    private static int canReach(CtElementImpl src, CtElementImpl tar, Set<CtWrapper> traversed) {
         int result = 99999;
         if (src == tar)
             return 0;
         if (src._outEdges.isEmpty())
             return result;
+        traversed.add(new CtWrapper(src));
         for (Edge oe : src._outEdges) {
-            int path = 1 + canReach(oe.getTarget(), tar);
-            if (result > path)
-                result = path;
+            if (ObjectUtil.findCtKeyInSet(traversed, new CtWrapper(oe.getTarget())) == null) {
+                int path = 1 + canReach(oe.getTarget(), tar, traversed);
+                if (result > path)
+                    result = path;
+            }
         }
         return result;
     }
