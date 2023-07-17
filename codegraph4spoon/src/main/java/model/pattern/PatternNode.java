@@ -110,7 +110,7 @@ public class PatternNode implements Serializable {
                 continue;
             if (label.length() != 0)
                 label.append("\n");
-            String tag = a.getTag().toString();
+            String tag = String.valueOf(a.getTag());
             label.append(a.getName()).append(":").append(tag.length()>60?"TOO LONG TO BE PRINTED":tag);
         }
         return label.toString();

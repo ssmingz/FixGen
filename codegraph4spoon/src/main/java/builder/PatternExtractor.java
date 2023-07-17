@@ -16,6 +16,7 @@ import org.apache.commons.collections4.SetUtils;
 import org.checkerframework.checker.units.qual.C;
 import org.eclipse.jdt.core.dom.AST;
 import org.javatuples.Triplet;
+import spoon.reflect.reference.CtTypeReference;
 import spoon.support.reflect.code.CtBlockImpl;
 import spoon.support.reflect.code.CtCodeElementImpl;
 import spoon.support.reflect.code.CtLocalVariableImpl;
@@ -23,6 +24,7 @@ import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
 import spoon.support.reflect.reference.CtReferenceImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
 import utils.ObjectUtil;
 
 import javax.swing.text.html.StyleSheet;
@@ -249,8 +251,6 @@ public class PatternExtractor {
             CtWrapper bestSim = null;
             while (itr.hasNext()) {
                 CtWrapper aNode = itr.next();
-//                if(aNode.toLabelString().equals("request")&&node.toLabelString().equals("tests")&&isMatch(node, aNode, mapping))
-//                    System.out.println("debug");
                 if (isMatch(node, aNode, mapping)) {
                     bestSim = aNode;
                     break;
@@ -337,6 +337,9 @@ public class PatternExtractor {
             return false;
         if (nodeA.isVirtual() && nodeB.isVirtual() &&
                 !Objects.equals(((CtVirtualElement)nodeA.getCtElementImpl()).getLocationInParent(), ((CtVirtualElement)nodeB.getCtElementImpl()).getLocationInParent()))
+            return false;
+        if (nodeA.getCtElementImpl() instanceof CtTypeReferenceImpl && nodeB.getCtElementImpl() instanceof CtTypeReferenceImpl &&
+                !Objects.equals((nodeA.getCtElementImpl()).getRoleInParent(), (nodeB.getCtElementImpl()).getRoleInParent()))
             return false;
         if (nodeA.getCtElementImpl().isActionRelated() != nodeB.getCtElementImpl().isActionRelated())
             return false;

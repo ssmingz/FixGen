@@ -1,0 +1,135 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:class model.actions.Update
+value:UPDATE
+value2:
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+1 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+value:max.sort(request)
+value2:MaxCore.sort(Request)
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+2 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+value:sort
+value2:MaxCore.sort(Request)
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+3 [label="locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:sort
+value2:sort
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+4 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:MaxCore
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+5 [label="locationInParent:ARGUMENT_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:Request
+value2:Request
+position:null
+listSize:1
+listIndex:0
+valueType:null
+implicit:false" shape=ellipse]
+6 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+value:max.sortedLeavesForTest(request)
+value2:MaxCore.sortedLeavesForTest(Request)
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+7 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+value:sortedLeavesForTest
+value2:MaxCore.sortedLeavesForTest(Request)
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+8 [label="locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:sortedLeavesForTest
+value2:sortedLeavesForTest
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+9 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:MaxCore
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+10 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:true" shape=ellipse]
+0 -> 6 [label="Action:3
+preferRecentlyFailed#?:229
+preferFast#?:205
+twoTestsNotRunComeBackInRandomOrder#?:315"];
+1 -> 0 [label="Action:3
+preferRecentlyFailed#?:226
+preferFast#?:202
+twoTestsNotRunComeBackInRandomOrder#?:312"];
+1 -> 2 [label="AST:3
+preferRecentlyFailed#?:146
+preferFast#?:137
+twoTestsNotRunComeBackInRandomOrder#?:178"];
+1 -> 3 [label="AST:3
+preferRecentlyFailed#?:148
+preferFast#?:139
+twoTestsNotRunComeBackInRandomOrder#?:180"];
+3 -> 4 [label="AST:3
+preferRecentlyFailed#?:139
+preferFast#?:131
+twoTestsNotRunComeBackInRandomOrder#?:171"];
+3 -> 5 [label="AST:3
+preferRecentlyFailed#?:141
+preferFast#?:132
+twoTestsNotRunComeBackInRandomOrder#?:173"];
+6 -> 7 [label="AST:3
+preferRecentlyFailed#?:248
+preferFast#?:220
+twoTestsNotRunComeBackInRandomOrder#?:334"];
+6 -> 8 [label="AST:3
+preferRecentlyFailed#?:250
+preferFast#?:222
+twoTestsNotRunComeBackInRandomOrder#?:336"];
+8 -> 9 [label="AST:3
+preferRecentlyFailed#?:240
+preferFast#?:213
+twoTestsNotRunComeBackInRandomOrder#?:326"];
+9 -> 10 [label="AST:3
+preferRecentlyFailed#?:235
+preferFast#?:211
+twoTestsNotRunComeBackInRandomOrder#?:321"];
+}

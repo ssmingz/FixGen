@@ -1,0 +1,308 @@
+digraph "Pattern" {
+0 [label="preferRecentlyFailed#?:204#L7:UPDATE
+preferFast#?:184#L7:UPDATE
+twoTestsNotRunComeBackInRandomOrder#?:290#L6:UPDATE" shape=ellipse]
+1 [label="preferRecentlyFailed#?:52#L7:max.sort(request)
+preferFast#?:54#L7:max.sort(request)
+twoTestsNotRunComeBackInRandomOrder#?:43#L6:max.sort(request)" shape=ellipse]
+2 [label="preferRecentlyFailed#?:54#L7:List<Description> tests = max.sort(request)
+twoTestsNotRunComeBackInRandomOrder#?:45#L6:List<Description> things = max.sort(request)" shape=ellipse]
+3 [label="preferRecentlyFailed#?:95#L3:\{
+    Request request = Request.aClass(TwoTests.class);
+    MaxCore max = MaxCore.createFresh();
+    max.run(request);
+    List<Description> tests = max.sort(request);
+    Description dontSucceed = Description.createTestDescription(TwoTests.class, \"dontSucceed\");
+    assertEquals(dontSucceed, tests.get(0));
+\}
+twoTestsNotRunComeBackInRandomOrder#?:137#L3:\{
+    Request request = Request.aClass(TwoTests.class);
+    MaxCore max = MaxCore.createFresh();
+    List<Description> things = max.sort(request);
+    Description succeed = Description.createTestDescription(TwoTests.class, \"succeed\");
+    Description dontSucceed = Description.createTestDescription(TwoTests.class, \"dontSucceed\");
+    assertTrue(things.contains(succeed));
+    assertTrue(things.contains(dontSucceed));
+    assertEquals(2, things.size());
+\}" shape=ellipse]
+4 [label="preferRecentlyFailed#?:53#L7:tests
+preferFast#?:18#L4:request
+twoTestsNotRunComeBackInRandomOrder#?:44#L6:things" shape=ellipse]
+5 [label="preferRecentlyFailed#?:208#L7:max
+twoTestsNotRunComeBackInRandomOrder#?:294#L6:max" shape=ellipse]
+6 [label="preferRecentlyFailed#?:207#L7:max
+preferFast#?:187#L7:max
+twoTestsNotRunComeBackInRandomOrder#?:293#L6:max" shape=ellipse]
+7 [label="preferRecentlyFailed#?:206#L7:MaxCore
+preferFast#?:186#L7:MaxCore
+twoTestsNotRunComeBackInRandomOrder#?:292#L6:MaxCore" shape=ellipse]
+8 [label="preferRecentlyFailed#?:205#L7:
+preferFast#?:185#L7:
+twoTestsNotRunComeBackInRandomOrder#?:291#L6:" shape=ellipse]
+9 [label="preferRecentlyFailed#?:221#L7:request
+twoTestsNotRunComeBackInRandomOrder#?:307#L6:request" shape=ellipse]
+10 [label="preferRecentlyFailed#?:220#L7:request
+preferFast#?:196#L7:request
+twoTestsNotRunComeBackInRandomOrder#?:306#L6:request" shape=ellipse]
+11 [label="preferRecentlyFailed#?:219#L7:Request
+preferFast#?:195#L7:Request
+twoTestsNotRunComeBackInRandomOrder#?:305#L6:Request" shape=ellipse]
+12 [label="preferRecentlyFailed#?:218#L7:
+preferFast#?:194#L7:
+twoTestsNotRunComeBackInRandomOrder#?:304#L6:" shape=ellipse]
+13 [label="preferRecentlyFailed#?:42#L7:List<Description>
+twoTestsNotRunComeBackInRandomOrder#?:33#L6:List<Description>" shape=ellipse]
+14 [label="preferRecentlyFailed#?:47#L7:sort
+preferFast#?:49#L7:sort
+twoTestsNotRunComeBackInRandomOrder#?:38#L6:sort" shape=ellipse]
+15 [label="preferRecentlyFailed#?:49#L7:max
+twoTestsNotRunComeBackInRandomOrder#?:40#L6:max" shape=ellipse]
+16 [label="preferRecentlyFailed#?:29#L5:max
+preferFast#?:29#L5:max
+twoTestsNotRunComeBackInRandomOrder#?:29#L5:max" shape=ellipse]
+17 [label="preferRecentlyFailed#?:48#L7:max
+preferFast#?:50#L7:max
+twoTestsNotRunComeBackInRandomOrder#?:39#L6:max" shape=ellipse]
+18 [label="preferRecentlyFailed#?:46#L7:sort(Request)
+preferFast#?:48#L7:sort(Request)
+twoTestsNotRunComeBackInRandomOrder#?:37#L6:sort(Request)" shape=ellipse]
+19 [label="preferRecentlyFailed#?:43#L7:MaxCore
+preferFast#?:46#L7:MaxCore
+twoTestsNotRunComeBackInRandomOrder#?:34#L6:MaxCore" shape=ellipse]
+20 [label="preferRecentlyFailed#?:44#L7:List<Description>
+twoTestsNotRunComeBackInRandomOrder#?:35#L6:List<Description>" shape=ellipse]
+21 [label="preferRecentlyFailed#?:45#L7:Request
+preferFast#?:47#L7:Request
+twoTestsNotRunComeBackInRandomOrder#?:36#L6:Request" shape=ellipse]
+22 [label="preferRecentlyFailed#?:51#L7:request
+twoTestsNotRunComeBackInRandomOrder#?:42#L6:request" shape=ellipse]
+23 [label="preferRecentlyFailed#?:18#L4:request
+preferFast#?:52#L7:request
+twoTestsNotRunComeBackInRandomOrder#?:18#L4:request" shape=ellipse]
+24 [label="preferRecentlyFailed#?:50#L7:request
+preferFast#?:58#L7:thing
+twoTestsNotRunComeBackInRandomOrder#?:41#L6:request" shape=ellipse]
+25 [label="preferRecentlyFailed#?:222#L7:max.sortedLeavesForTest(request)
+preferFast#?:198#L7:max.sortedLeavesForTest(request)
+twoTestsNotRunComeBackInRandomOrder#?:308#L6:max.sortedLeavesForTest(request)" shape=ellipse]
+26 [label="preferRecentlyFailed#?:223#L7:sortedLeavesForTest
+preferFast#?:199#L7:sortedLeavesForTest
+twoTestsNotRunComeBackInRandomOrder#?:309#L6:sortedLeavesForTest" shape=ellipse]
+27 [label="preferRecentlyFailed#?:217#L7:sortedLeavesForTest(Request)
+preferFast#?:193#L7:sortedLeavesForTest(Request)
+twoTestsNotRunComeBackInRandomOrder#?:303#L6:sortedLeavesForTest(Request)" shape=ellipse]
+28 [label="preferRecentlyFailed#?:210#L7:MaxCore
+preferFast#?:190#L7:MaxCore
+twoTestsNotRunComeBackInRandomOrder#?:296#L6:MaxCore" shape=ellipse]
+29 [label="preferRecentlyFailed#?:209#L7:
+preferFast#?:189#L7:
+twoTestsNotRunComeBackInRandomOrder#?:295#L6:" shape=ellipse]
+30 [label="preferRecentlyFailed#?:214#L7:List<Description>
+twoTestsNotRunComeBackInRandomOrder#?:300#L6:List<Description>" shape=ellipse]
+31 [label="preferRecentlyFailed#?:211#L7:
+preferFast#?:191#L7:
+twoTestsNotRunComeBackInRandomOrder#?:297#L6:" shape=ellipse]
+32 [label="preferRecentlyFailed#?:213#L7:Description
+twoTestsNotRunComeBackInRandomOrder#?:299#L6:Description" shape=ellipse]
+33 [label="preferRecentlyFailed#?:212#L7:
+twoTestsNotRunComeBackInRandomOrder#?:298#L6:" shape=ellipse]
+34 [label="preferRecentlyFailed#?:216#L7:Request
+twoTestsNotRunComeBackInRandomOrder#?:302#L6:Request" shape=ellipse]
+35 [label="preferRecentlyFailed#?:215#L7:
+twoTestsNotRunComeBackInRandomOrder#?:301#L6:" shape=ellipse]
+36 [label="preferFast#?:57#L7:max.sort(request).get(1)" shape=ellipse]
+37 [label="preferFast#?:56#L7:1" shape=ellipse]
+38 [label="preferFast#?:51#L7:max" shape=ellipse]
+39 [label="preferFast#?:188#L7:max" shape=ellipse]
+40 [label="preferFast#?:197#L7:request" shape=ellipse]
+41 [label="preferFast#?:53#L7:request" shape=ellipse]
+42 [label="preferFast#?:45#L7:get" shape=ellipse]
+43 [label="preferFast#?:44#L7:get(int)" shape=ellipse]
+44 [label="preferFast#?:192#L7:Request" shape=ellipse]
+45 [label="preferFast#?:59#L7:Description thing = max.sort(request).get(1)" shape=ellipse]
+0 -> 25 [label="Action:3
+preferRecentlyFailed#?:229
+preferFast#?:205
+twoTestsNotRunComeBackInRandomOrder#?:315"];
+1 -> 0 [label="Action:3
+preferRecentlyFailed#?:226
+preferFast#?:202
+twoTestsNotRunComeBackInRandomOrder#?:312"];
+1 -> 14 [label="AST:3
+preferRecentlyFailed#?:146
+preferFast#?:137
+twoTestsNotRunComeBackInRandomOrder#?:178"];
+1 -> 15 [label="AST:2
+preferRecentlyFailed#?:147
+twoTestsNotRunComeBackInRandomOrder#?:179"];
+1 -> 18 [label="AST:3
+preferRecentlyFailed#?:148
+preferFast#?:139
+twoTestsNotRunComeBackInRandomOrder#?:180"];
+1 -> 22 [label="AST:2
+preferRecentlyFailed#?:149
+twoTestsNotRunComeBackInRandomOrder#?:181"];
+1 -> 38 [label="AST:1
+preferFast#?:138"];
+1 -> 41 [label="AST:1
+preferFast#?:140"];
+2 -> 1 [label="AST:2
+preferRecentlyFailed#?:153
+twoTestsNotRunComeBackInRandomOrder#?:187"];
+2 -> 4 [label="AST:2
+preferRecentlyFailed#?:151
+twoTestsNotRunComeBackInRandomOrder#?:185"];
+2 -> 13 [label="AST:2
+preferRecentlyFailed#?:152
+twoTestsNotRunComeBackInRandomOrder#?:186"];
+3 -> 2 [label="AST:2
+preferRecentlyFailed#?:197
+twoTestsNotRunComeBackInRandomOrder#?:280"];
+4 -> 40 [label="Define Use:1
+preferFast#?:200"];
+4 -> 41 [label="Define Use:1
+preferFast#?:104"];
+5 -> 4 [label="Data Dep:2
+preferRecentlyFailed#?:234
+twoTestsNotRunComeBackInRandomOrder#?:320"];
+5 -> 6 [label="AST:2
+preferRecentlyFailed#?:232
+twoTestsNotRunComeBackInRandomOrder#?:318"];
+6 -> 7 [label="AST:3
+preferRecentlyFailed#?:231
+preferFast#?:207
+twoTestsNotRunComeBackInRandomOrder#?:317"];
+7 -> 8 [label="AST:3
+preferRecentlyFailed#?:230
+preferFast#?:206
+twoTestsNotRunComeBackInRandomOrder#?:316"];
+9 -> 4 [label="Data Dep:2
+preferRecentlyFailed#?:247
+twoTestsNotRunComeBackInRandomOrder#?:333"];
+9 -> 10 [label="AST:2
+preferRecentlyFailed#?:245
+twoTestsNotRunComeBackInRandomOrder#?:331"];
+10 -> 11 [label="AST:3
+preferRecentlyFailed#?:244
+preferFast#?:216
+twoTestsNotRunComeBackInRandomOrder#?:330"];
+11 -> 12 [label="AST:3
+preferRecentlyFailed#?:243
+preferFast#?:215
+twoTestsNotRunComeBackInRandomOrder#?:329"];
+15 -> 4 [label="Data Dep:2
+preferRecentlyFailed#?:143
+twoTestsNotRunComeBackInRandomOrder#?:175"];
+15 -> 17 [label="AST:2
+preferRecentlyFailed#?:142
+twoTestsNotRunComeBackInRandomOrder#?:174"];
+16 -> 5 [label="Define Use:2
+preferRecentlyFailed#?:225
+twoTestsNotRunComeBackInRandomOrder#?:311"];
+16 -> 15 [label="Define Use:2
+preferRecentlyFailed#?:125
+twoTestsNotRunComeBackInRandomOrder#?:165"];
+16 -> 38 [label="Define Use:1
+preferFast#?:116"];
+16 -> 39 [label="Define Use:1
+preferFast#?:201"];
+18 -> 19 [label="AST:3
+preferRecentlyFailed#?:139
+preferFast#?:131
+twoTestsNotRunComeBackInRandomOrder#?:171"];
+18 -> 20 [label="AST:2
+preferRecentlyFailed#?:140
+twoTestsNotRunComeBackInRandomOrder#?:172"];
+18 -> 21 [label="AST:3
+preferRecentlyFailed#?:141
+preferFast#?:132
+twoTestsNotRunComeBackInRandomOrder#?:173"];
+22 -> 4 [label="Data Dep:2
+preferRecentlyFailed#?:145
+twoTestsNotRunComeBackInRandomOrder#?:177"];
+22 -> 24 [label="AST:2
+preferRecentlyFailed#?:144
+twoTestsNotRunComeBackInRandomOrder#?:176"];
+23 -> 9 [label="Define Use:2
+preferRecentlyFailed#?:224
+twoTestsNotRunComeBackInRandomOrder#?:310"];
+23 -> 22 [label="Define Use:2
+preferRecentlyFailed#?:113
+twoTestsNotRunComeBackInRandomOrder#?:154"];
+25 -> 5 [label="AST:2
+preferRecentlyFailed#?:249
+twoTestsNotRunComeBackInRandomOrder#?:335"];
+25 -> 9 [label="AST:2
+preferRecentlyFailed#?:251
+twoTestsNotRunComeBackInRandomOrder#?:337"];
+25 -> 26 [label="AST:3
+preferRecentlyFailed#?:248
+preferFast#?:220
+twoTestsNotRunComeBackInRandomOrder#?:334"];
+25 -> 27 [label="AST:3
+preferRecentlyFailed#?:250
+preferFast#?:222
+twoTestsNotRunComeBackInRandomOrder#?:336"];
+25 -> 39 [label="AST:1
+preferFast#?:221"];
+25 -> 40 [label="AST:1
+preferFast#?:223"];
+27 -> 28 [label="AST:3
+preferRecentlyFailed#?:240
+preferFast#?:213
+twoTestsNotRunComeBackInRandomOrder#?:326"];
+27 -> 30 [label="AST:2
+preferRecentlyFailed#?:241
+twoTestsNotRunComeBackInRandomOrder#?:327"];
+27 -> 34 [label="AST:2
+preferRecentlyFailed#?:242
+twoTestsNotRunComeBackInRandomOrder#?:328"];
+27 -> 44 [label="AST:1
+preferFast#?:214"];
+28 -> 29 [label="AST:3
+preferRecentlyFailed#?:235
+preferFast#?:211
+twoTestsNotRunComeBackInRandomOrder#?:321"];
+30 -> 31 [label="AST:2
+preferRecentlyFailed#?:237
+twoTestsNotRunComeBackInRandomOrder#?:323"];
+30 -> 32 [label="AST:2
+preferRecentlyFailed#?:238
+twoTestsNotRunComeBackInRandomOrder#?:324"];
+32 -> 33 [label="AST:2
+preferRecentlyFailed#?:236
+twoTestsNotRunComeBackInRandomOrder#?:322"];
+34 -> 35 [label="AST:2
+preferRecentlyFailed#?:239
+twoTestsNotRunComeBackInRandomOrder#?:325"];
+36 -> 42 [label="AST:1
+preferFast#?:142"];
+36 -> 1 [label="AST:1
+preferFast#?:143"];
+36 -> 43 [label="AST:1
+preferFast#?:144"];
+36 -> 37 [label="AST:1
+preferFast#?:145"];
+38 -> 17 [label="AST:1
+preferFast#?:133"];
+38 -> 24 [label="Data Dep:1
+preferFast#?:134"];
+39 -> 6 [label="AST:1
+preferFast#?:208"];
+39 -> 24 [label="Data Dep:1
+preferFast#?:210"];
+40 -> 10 [label="AST:1
+preferFast#?:217"];
+40 -> 24 [label="Data Dep:1
+preferFast#?:219"];
+41 -> 23 [label="AST:1
+preferFast#?:135"];
+41 -> 24 [label="Data Dep:1
+preferFast#?:136"];
+44 -> 31 [label="AST:1
+preferFast#?:212"];
+45 -> 36 [label="AST:1
+preferFast#?:149"];
+45 -> 24 [label="AST:1
+preferFast#?:147"];
+}
