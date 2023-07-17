@@ -81,6 +81,41 @@ public class TestPatternFeature2Json {
     }
 
     @Test
+    public void testWriteFeatJsonFromMultiplePairsToSingleFile_c3() {
+        String testPro = "cobertura";
+        int testId = 174;
+        List<CodeGraph> ags = new ArrayList<>();
+        String base = String.format("/Users/yumeng/PycharmProjects/c3/dataset/%s/%d", testPro, testId);
+        int size = new File(base).listFiles(File::isDirectory).length;
+        for (int i=0; i<size; i++) {
+            String srcPath = String.format("%s/%d/before.java", base, i);
+            String tarPath = String.format("%s/%d/after.java", base, i);
+            // build action graph
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
+            ags.add(ag);
+        }
+        // extract pattern from more-than-one graphs
+        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
+        Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+        for (Pattern pat : combinedGraphs) {
+            // abstract pattern
+            PatternAbstractor abs = new PatternAbstractor(size);
+            pat = abs.abstractPattern(pat);
+            // get feature json object
+            List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+            for (Pair<String, JSONObject> pair : patternByID) {
+                if (!patternsByID.containsKey(pair.getValue0())) {
+                    patternsByID.put(pair.getValue0(), new JSONArray());
+                }
+                patternsByID.get(pair.getValue0()).add(pair.getValue1());
+            }
+        }
+        // write json object to file
+        String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d.json", testPro, testId);;
+        ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+    }
+
+    @Test
     public void testWriteFeatJsonFromMultiplePairsToSingleFile_C3() {
         String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
         //String[] projects = {"junit"};
@@ -90,6 +125,8 @@ public class TestPatternFeature2Json {
             int graphCounter = 0, groupCounter = 0, groupBuffer = 0;
             File dir = new File(String.format(base + "dataset/" + projects[i]));
             for (File group : dir.listFiles()) {
+                if (TestConfig.SKIP_EXIST_OUTPUT && new File(String.format("%s/out/json/%s/%s.json", System.getProperty("user.dir"), projects[i], group.getName())).exists())
+                    continue;
                 if (group.isDirectory()) {
                     try {
                         List<CodeGraph> ags = new ArrayList<>();
@@ -122,10 +159,19 @@ public class TestPatternFeature2Json {
                     } catch (Exception e) {
                         System.out.println(group.getAbsolutePath() + ": " + " 0 patterns");
                     }
-                    if (groupCounter>TestConfig.MAX_GROUP) {
+                    if (groupCounter==TestConfig.MAX_GROUP) {
                         groupBuffer++;
                         // write json object to file
-                        String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d.json", projects[i], groupBuffer);
+                        String jsonPath;
+                        if (TestConfig.MAX_GROUP != 1)
+                            jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d.json", projects[i], groupBuffer);
+                        else {
+                            jsonPath = System.getProperty("user.dir") + String.format("/out/json/%s/%s.json", projects[i], group.getName());
+                            File file = new File(jsonPath);
+                            if (!file.getParentFile().exists()) {
+                                file.getParentFile().mkdirs();
+                            }
+                        }
                         ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
                         groupCounter = 0;
                         patternsByID.clear();

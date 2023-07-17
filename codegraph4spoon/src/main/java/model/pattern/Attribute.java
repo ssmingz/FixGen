@@ -79,8 +79,8 @@ public class Attribute implements Serializable {
     }
 
     public void addValue(Object v, CodeGraph g) {
-        if (v == null)
-            return;
+//        if (v == null)
+//            return;
         _valueByCG.put(g, v);
         if (_numByValues.containsKey(v)) {
             int s = _numByValues.get(v) + 1;

@@ -102,7 +102,7 @@ public class PatternAbstractor {
             PatternNode pn = it.next();
             // remove the attribute by setAbstract instead removing
             pn.getComparedAttributes().forEach(a -> {
-                if (a.getSupport(a.getTag()) < threshold || a.getTag().equals("?"))
+                if (a.getSupport(a.getTag()) < threshold || "?".equals(a.getTag()))
                     a.setAbstract(true);
             });
             if (pn.getAttribute("nodeType").isAbstract()) {

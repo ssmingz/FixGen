@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="use setAbstract instead of remove in memory">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix canReach loop error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -107,7 +110,7 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3">
+  <component name="RunManager" selected="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_c3">
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -118,16 +121,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestApplyPattern.testApplyPatternOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestApplyPattern" />
-      <option name="METHOD_NAME" value="testApplyPatternOnC3" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -172,21 +165,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_c3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="codegraph4spoon" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
+      <option name="METHOD_NAME" value="testWriteFeatJsonFromMultiplePairsToSingleFile_c3" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3" />
       <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3_debug" />
       <item itemvalue="JUnit.TestInteractWithPattern.testModelResult" />
       <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile" />
       <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
+      <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_c3" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_c3" />
         <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile_C3" />
         <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3_debug" />
         <item itemvalue="JUnit.TestInteractWithPattern.testModelResult" />
         <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile" />
-        <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3" />
       </list>
     </recent_temporary>
   </component>
@@ -514,7 +517,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689334899624</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="fix canReach loop error">
+      <created>1689338228108</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1689338228108</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -529,7 +539,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix the using of 'pos' in gumtree and change the mapping algorithm to an approximate global optimality" />
     <MESSAGE value="init spoon-core and codegraph4spoon" />
     <MESSAGE value="finish build(CtElementImpl,CtElementImpl,Scope) in codegraph4spoon" />
     <MESSAGE value="update dependency analysis" />
@@ -554,7 +563,8 @@
     <MESSAGE value="1)remove unconnected control-dep during extension;&#10;2)keep only one nodeType attribute;&#10;3)set all not-abstracted attributes as hard rules when match the target code" />
     <MESSAGE value="1)add interface for interacting with pattern (both model result and manual checking)" />
     <MESSAGE value="use setAbstract instead of remove in memory" />
-    <option name="LAST_COMMIT_MESSAGE" value="use setAbstract instead of remove in memory" />
+    <MESSAGE value="fix canReach loop error" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix canReach loop error" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -696,7 +706,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java</url>
-          <line>141</line>
+          <line>187</line>
           <option name="timeStamp" value="837" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
