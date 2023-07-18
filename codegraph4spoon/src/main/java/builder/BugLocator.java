@@ -367,9 +367,9 @@ public class BugLocator {
                         pnRoot.getAttribute("value").getTag() : pnRoot.getAttribute("value2").getTag());
             }
         }
-        String valueType = pnRoot.getAttribute("valueType")!=null && !pnRoot.getAttribute("valueType").isAbstract() ? pnRoot.getAttribute("valueType").getTag().toString() : null;
+        String valueType = pnRoot.getAttribute("valueType")!=null && !pnRoot.getAttribute("valueType").isAbstract() ? String.valueOf(pnRoot.getAttribute("valueType").getTag()) : null;
         T value = pnRoot.getAttribute("value")!=null && !pnRoot.getAttribute("value").isAbstract() ? (T) pnRoot.getAttribute("value").getTag() : null;
-        if (clazz.equals(CtLiteralImpl.class) && valueType != null && value != null) {
+        if (clazz.equals(CtLiteralImpl.class) && valueType != null && pnRoot.getAttribute("value")!=null && !pnRoot.getAttribute("value").isAbstract()) {
             ((CtLiteralImpl) newly).setValue(value);
         }
         // recursively for children

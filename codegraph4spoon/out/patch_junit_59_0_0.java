@@ -3,7 +3,7 @@ public void preferRecentlyFailed() {
     Request request = Request.aClass(TwoTests.class);
     MaxCore max = MaxCore.createFresh();
     max.run(request);
-    List<Description> tests = sortedLeavesForTest();
+    List<Description> tests = max.sortedLeavesForTest(request);
     Description dontSucceed = Description.createTestDescription(TwoTests.class, "dontSucceed");
     assertEquals(dontSucceed, tests.get(0));
 }

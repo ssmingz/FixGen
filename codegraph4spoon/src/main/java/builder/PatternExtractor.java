@@ -350,7 +350,9 @@ public class PatternExtractor {
             // key -> nodeA and value -> nodeB
             if (key.equals(new CtWrapper((CtElementImpl) nodeA.getCtElementImpl().getParent())) != value.equals(new CtWrapper((CtElementImpl) nodeB.getCtElementImpl().getParent())))
                 return false;
-            if (nodeA.getCtElementImpl().isDependOn(key.getCtElementImpl()) != nodeB.getCtElementImpl().isDependOn(value.getCtElementImpl()))
+            if (nodeA.getCtElementImpl().hasDependencyRelation(key.getCtElementImpl()) != nodeB.getCtElementImpl().hasDependencyRelation(value.getCtElementImpl()))
+                return false;
+            if (key.getCtElementImpl().hasDependencyRelation(nodeA.getCtElementImpl()) != value.getCtElementImpl().hasDependencyRelation(nodeB.getCtElementImpl()))
                 return false;
             if (ObjectUtil.hasEdge(nodeA.getCtElementImpl(), key.getCtElementImpl()) != ObjectUtil.hasEdge(nodeB.getCtElementImpl(), value.getCtElementImpl()))
                 return false;
@@ -578,7 +580,7 @@ public class PatternExtractor {
                     break;
             }
             if (Objects.equals(a.getTag(), comp))
-                scores.add(calContextSim(a.getTag().toString(), comp == null ? null : comp.toString()));
+                scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
             else {
                 scores.clear();  // all attributes must be satisfied, or else will not be considered as mapped
                 break;

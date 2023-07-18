@@ -26,9 +26,10 @@ twoTestsNotRunComeBackInRandomOrder#?:137#L3:\{
     assertEquals(2, things.size());
 \}" shape=ellipse]
 4 [label="preferRecentlyFailed#?:53#L7:tests
-preferFast#?:18#L4:request
+preferFast#?:58#L7:thing
 twoTestsNotRunComeBackInRandomOrder#?:44#L6:things" shape=ellipse]
 5 [label="preferRecentlyFailed#?:208#L7:max
+preferFast#?:188#L7:max
 twoTestsNotRunComeBackInRandomOrder#?:294#L6:max" shape=ellipse]
 6 [label="preferRecentlyFailed#?:207#L7:max
 preferFast#?:187#L7:max
@@ -40,6 +41,7 @@ twoTestsNotRunComeBackInRandomOrder#?:292#L6:MaxCore" shape=ellipse]
 preferFast#?:185#L7:
 twoTestsNotRunComeBackInRandomOrder#?:291#L6:" shape=ellipse]
 9 [label="preferRecentlyFailed#?:221#L7:request
+preferFast#?:197#L7:request
 twoTestsNotRunComeBackInRandomOrder#?:307#L6:request" shape=ellipse]
 10 [label="preferRecentlyFailed#?:220#L7:request
 preferFast#?:196#L7:request
@@ -56,6 +58,7 @@ twoTestsNotRunComeBackInRandomOrder#?:33#L6:List<Description>" shape=ellipse]
 preferFast#?:49#L7:sort
 twoTestsNotRunComeBackInRandomOrder#?:38#L6:sort" shape=ellipse]
 15 [label="preferRecentlyFailed#?:49#L7:max
+preferFast#?:51#L7:max
 twoTestsNotRunComeBackInRandomOrder#?:40#L6:max" shape=ellipse]
 16 [label="preferRecentlyFailed#?:29#L5:max
 preferFast#?:29#L5:max
@@ -75,12 +78,13 @@ twoTestsNotRunComeBackInRandomOrder#?:35#L6:List<Description>" shape=ellipse]
 preferFast#?:47#L7:Request
 twoTestsNotRunComeBackInRandomOrder#?:36#L6:Request" shape=ellipse]
 22 [label="preferRecentlyFailed#?:51#L7:request
+preferFast#?:53#L7:request
 twoTestsNotRunComeBackInRandomOrder#?:42#L6:request" shape=ellipse]
 23 [label="preferRecentlyFailed#?:18#L4:request
-preferFast#?:52#L7:request
+preferFast#?:18#L4:request
 twoTestsNotRunComeBackInRandomOrder#?:18#L4:request" shape=ellipse]
 24 [label="preferRecentlyFailed#?:50#L7:request
-preferFast#?:58#L7:thing
+preferFast#?:52#L7:request
 twoTestsNotRunComeBackInRandomOrder#?:41#L6:request" shape=ellipse]
 25 [label="preferRecentlyFailed#?:222#L7:max.sortedLeavesForTest(request)
 preferFast#?:198#L7:max.sortedLeavesForTest(request)
@@ -112,14 +116,10 @@ twoTestsNotRunComeBackInRandomOrder#?:302#L6:Request" shape=ellipse]
 twoTestsNotRunComeBackInRandomOrder#?:301#L6:" shape=ellipse]
 36 [label="preferFast#?:57#L7:max.sort(request).get(1)" shape=ellipse]
 37 [label="preferFast#?:56#L7:1" shape=ellipse]
-38 [label="preferFast#?:51#L7:max" shape=ellipse]
-39 [label="preferFast#?:188#L7:max" shape=ellipse]
-40 [label="preferFast#?:197#L7:request" shape=ellipse]
-41 [label="preferFast#?:53#L7:request" shape=ellipse]
-42 [label="preferFast#?:45#L7:get" shape=ellipse]
-43 [label="preferFast#?:44#L7:get(int)" shape=ellipse]
-44 [label="preferFast#?:192#L7:Request" shape=ellipse]
-45 [label="preferFast#?:59#L7:Description thing = max.sort(request).get(1)" shape=ellipse]
+38 [label="preferFast#?:45#L7:get" shape=ellipse]
+39 [label="preferFast#?:44#L7:get(int)" shape=ellipse]
+40 [label="preferFast#?:192#L7:Request" shape=ellipse]
+41 [label="preferFast#?:59#L7:Description thing = max.sort(request).get(1)" shape=ellipse]
 0 -> 25 [label="Action:3
 preferRecentlyFailed#?:229
 preferFast#?:205
@@ -132,20 +132,18 @@ twoTestsNotRunComeBackInRandomOrder#?:312"];
 preferRecentlyFailed#?:146
 preferFast#?:137
 twoTestsNotRunComeBackInRandomOrder#?:178"];
-1 -> 15 [label="AST:2
+1 -> 15 [label="AST:3
 preferRecentlyFailed#?:147
+preferFast#?:138
 twoTestsNotRunComeBackInRandomOrder#?:179"];
 1 -> 18 [label="AST:3
 preferRecentlyFailed#?:148
 preferFast#?:139
 twoTestsNotRunComeBackInRandomOrder#?:180"];
-1 -> 22 [label="AST:2
+1 -> 22 [label="AST:3
 preferRecentlyFailed#?:149
+preferFast#?:140
 twoTestsNotRunComeBackInRandomOrder#?:181"];
-1 -> 38 [label="AST:1
-preferFast#?:138"];
-1 -> 41 [label="AST:1
-preferFast#?:140"];
 2 -> 1 [label="AST:2
 preferRecentlyFailed#?:153
 twoTestsNotRunComeBackInRandomOrder#?:187"];
@@ -158,15 +156,13 @@ twoTestsNotRunComeBackInRandomOrder#?:186"];
 3 -> 2 [label="AST:2
 preferRecentlyFailed#?:197
 twoTestsNotRunComeBackInRandomOrder#?:280"];
-4 -> 40 [label="Define Use:1
-preferFast#?:200"];
-4 -> 41 [label="Define Use:1
-preferFast#?:104"];
-5 -> 4 [label="Data Dep:2
+5 -> 4 [label="Data Dep:3
 preferRecentlyFailed#?:234
+preferFast#?:210
 twoTestsNotRunComeBackInRandomOrder#?:320"];
-5 -> 6 [label="AST:2
+5 -> 6 [label="AST:3
 preferRecentlyFailed#?:232
+preferFast#?:208
 twoTestsNotRunComeBackInRandomOrder#?:318"];
 6 -> 7 [label="AST:3
 preferRecentlyFailed#?:231
@@ -176,11 +172,13 @@ twoTestsNotRunComeBackInRandomOrder#?:317"];
 preferRecentlyFailed#?:230
 preferFast#?:206
 twoTestsNotRunComeBackInRandomOrder#?:316"];
-9 -> 4 [label="Data Dep:2
+9 -> 4 [label="Data Dep:3
 preferRecentlyFailed#?:247
+preferFast#?:219
 twoTestsNotRunComeBackInRandomOrder#?:333"];
-9 -> 10 [label="AST:2
+9 -> 10 [label="AST:3
 preferRecentlyFailed#?:245
+preferFast#?:217
 twoTestsNotRunComeBackInRandomOrder#?:331"];
 10 -> 11 [label="AST:3
 preferRecentlyFailed#?:244
@@ -190,22 +188,22 @@ twoTestsNotRunComeBackInRandomOrder#?:330"];
 preferRecentlyFailed#?:243
 preferFast#?:215
 twoTestsNotRunComeBackInRandomOrder#?:329"];
-15 -> 4 [label="Data Dep:2
+15 -> 4 [label="Data Dep:3
 preferRecentlyFailed#?:143
+preferFast#?:134
 twoTestsNotRunComeBackInRandomOrder#?:175"];
-15 -> 17 [label="AST:2
+15 -> 17 [label="AST:3
 preferRecentlyFailed#?:142
+preferFast#?:133
 twoTestsNotRunComeBackInRandomOrder#?:174"];
-16 -> 5 [label="Define Use:2
+16 -> 5 [label="Define Use:3
 preferRecentlyFailed#?:225
+preferFast#?:201
 twoTestsNotRunComeBackInRandomOrder#?:311"];
-16 -> 15 [label="Define Use:2
+16 -> 15 [label="Define Use:3
 preferRecentlyFailed#?:125
+preferFast#?:116
 twoTestsNotRunComeBackInRandomOrder#?:165"];
-16 -> 38 [label="Define Use:1
-preferFast#?:116"];
-16 -> 39 [label="Define Use:1
-preferFast#?:201"];
 18 -> 19 [label="AST:3
 preferRecentlyFailed#?:139
 preferFast#?:131
@@ -217,23 +215,29 @@ twoTestsNotRunComeBackInRandomOrder#?:172"];
 preferRecentlyFailed#?:141
 preferFast#?:132
 twoTestsNotRunComeBackInRandomOrder#?:173"];
-22 -> 4 [label="Data Dep:2
+22 -> 4 [label="Data Dep:3
 preferRecentlyFailed#?:145
+preferFast#?:136
 twoTestsNotRunComeBackInRandomOrder#?:177"];
-22 -> 24 [label="AST:2
+22 -> 24 [label="AST:3
 preferRecentlyFailed#?:144
+preferFast#?:135
 twoTestsNotRunComeBackInRandomOrder#?:176"];
-23 -> 9 [label="Define Use:2
+23 -> 9 [label="Define Use:3
 preferRecentlyFailed#?:224
+preferFast#?:200
 twoTestsNotRunComeBackInRandomOrder#?:310"];
-23 -> 22 [label="Define Use:2
+23 -> 22 [label="Define Use:3
 preferRecentlyFailed#?:113
+preferFast#?:104
 twoTestsNotRunComeBackInRandomOrder#?:154"];
-25 -> 5 [label="AST:2
+25 -> 5 [label="AST:3
 preferRecentlyFailed#?:249
+preferFast#?:221
 twoTestsNotRunComeBackInRandomOrder#?:335"];
-25 -> 9 [label="AST:2
+25 -> 9 [label="AST:3
 preferRecentlyFailed#?:251
+preferFast#?:223
 twoTestsNotRunComeBackInRandomOrder#?:337"];
 25 -> 26 [label="AST:3
 preferRecentlyFailed#?:248
@@ -243,10 +247,6 @@ twoTestsNotRunComeBackInRandomOrder#?:334"];
 preferRecentlyFailed#?:250
 preferFast#?:222
 twoTestsNotRunComeBackInRandomOrder#?:336"];
-25 -> 39 [label="AST:1
-preferFast#?:221"];
-25 -> 40 [label="AST:1
-preferFast#?:223"];
 27 -> 28 [label="AST:3
 preferRecentlyFailed#?:240
 preferFast#?:213
@@ -257,7 +257,7 @@ twoTestsNotRunComeBackInRandomOrder#?:327"];
 27 -> 34 [label="AST:2
 preferRecentlyFailed#?:242
 twoTestsNotRunComeBackInRandomOrder#?:328"];
-27 -> 44 [label="AST:1
+27 -> 40 [label="AST:1
 preferFast#?:214"];
 28 -> 29 [label="AST:3
 preferRecentlyFailed#?:235
@@ -275,34 +275,18 @@ twoTestsNotRunComeBackInRandomOrder#?:322"];
 34 -> 35 [label="AST:2
 preferRecentlyFailed#?:239
 twoTestsNotRunComeBackInRandomOrder#?:325"];
-36 -> 42 [label="AST:1
+36 -> 38 [label="AST:1
 preferFast#?:142"];
 36 -> 1 [label="AST:1
 preferFast#?:143"];
-36 -> 43 [label="AST:1
+36 -> 39 [label="AST:1
 preferFast#?:144"];
 36 -> 37 [label="AST:1
 preferFast#?:145"];
-38 -> 17 [label="AST:1
-preferFast#?:133"];
-38 -> 24 [label="Data Dep:1
-preferFast#?:134"];
-39 -> 6 [label="AST:1
-preferFast#?:208"];
-39 -> 24 [label="Data Dep:1
-preferFast#?:210"];
-40 -> 10 [label="AST:1
-preferFast#?:217"];
-40 -> 24 [label="Data Dep:1
-preferFast#?:219"];
-41 -> 23 [label="AST:1
-preferFast#?:135"];
-41 -> 24 [label="Data Dep:1
-preferFast#?:136"];
-44 -> 31 [label="AST:1
+40 -> 31 [label="AST:1
 preferFast#?:212"];
-45 -> 36 [label="AST:1
+41 -> 36 [label="AST:1
 preferFast#?:149"];
-45 -> 24 [label="AST:1
+41 -> 4 [label="AST:1
 preferFast#?:147"];
 }

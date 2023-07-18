@@ -728,6 +728,21 @@ public abstract class CtElementImpl implements CtElement {
 		return false;
 	}
 
+	public boolean hasDependencyRelation(CtElementImpl src) {
+		// this depends on src
+		for (CtElementImpl e : this.getDependNodes()) {
+			if (e == src)
+				return true;
+			Iterator<CtElement> itr = src.descendantIterator();
+			while (itr.hasNext()) {
+				CtElementImpl c = (CtElementImpl) itr.next();
+				if (e == c)
+					return true;
+			}
+		}
+		return false;
+	}
+
 	public Set<CtElementImpl> getDependNodes() {
 		Set<CtElementImpl> all = new LinkedHashSet<>();
 		for (Edge e : this._inEdges) {

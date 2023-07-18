@@ -15,24 +15,32 @@ position:null
 listSize:-1
 listIndex:-1
 implicit:false" shape=ellipse]
-2 [label="locationInParent:METHOD_NAME
+2 [label="locationInParent:LOCAL_VAR_NAME
 nodeType:class codegraph.CtVirtualElement
-value:sort
-value2:MaxCore.sort(Request)
 position:null
 listSize:-1
 listIndex:-1
 valueType:null
 implicit:false" shape=ellipse]
-3 [label="locationInParent:EXECUTABLE_REF
-nodeType:TOO LONG TO BE PRINTED
-value:sort
-value2:sort
+3 [label="locationInParent:TARGET
+nodeType:class spoon.support.reflect.code.CtVariableReadImpl
+value:max
+value2:MaxCore
 position:null
 listSize:-1
 listIndex:-1
+valueType:MaxCore
 implicit:false" shape=ellipse]
-4 [label="locationInParent:DECLARING_TYPE
+4 [label="locationInParent:VARIABLE
+nodeType:TOO LONG TO BE PRINTED
+value:max
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:MaxCore
+implicit:false" shape=ellipse]
+5 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:MaxCore
 value2:MaxCore
@@ -41,43 +49,37 @@ listSize:-1
 listIndex:-1
 valueType:null
 implicit:false" shape=ellipse]
-5 [label="locationInParent:ARGUMENT_TYPE
-nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:Request
+6 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:true" shape=ellipse]
+7 [label="locationInParent:ARGUMENT
+nodeType:class spoon.support.reflect.code.CtVariableReadImpl
+value:request
 value2:Request
 position:null
 listSize:1
 listIndex:0
-valueType:null
+valueType:Request
 implicit:false" shape=ellipse]
-6 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
-value:max.sortedLeavesForTest(request)
-value2:MaxCore.sortedLeavesForTest(Request)
-position:null
-listSize:-1
-listIndex:-1
-implicit:false" shape=ellipse]
-7 [label="locationInParent:METHOD_NAME
-nodeType:class codegraph.CtVirtualElement
-value:sortedLeavesForTest
-value2:MaxCore.sortedLeavesForTest(Request)
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-8 [label="locationInParent:EXECUTABLE_REF
+8 [label="locationInParent:VARIABLE
 nodeType:TOO LONG TO BE PRINTED
-value:sortedLeavesForTest
-value2:sortedLeavesForTest
+value:request
+value2:Request
 position:null
 listSize:-1
 listIndex:-1
+valueType:Request
 implicit:false" shape=ellipse]
-9 [label="locationInParent:DECLARING_TYPE
+9 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:MaxCore
-value2:MaxCore
+value:Request
+value2:Request
 position:null
 listSize:-1
 listIndex:-1
@@ -92,7 +94,137 @@ listSize:-1
 listIndex:-1
 valueType:null
 implicit:true" shape=ellipse]
-0 -> 6 [label="Action:3
+11 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+value:sort
+value2:MaxCore.sort(Request)
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+12 [label="locationInParent:TARGET
+nodeType:class spoon.support.reflect.code.CtVariableReadImpl
+value:max
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:MaxCore
+implicit:false" shape=ellipse]
+13 [label="locationInParent:LOCAL_VAR_NAME
+nodeType:class codegraph.CtVirtualElement
+value:max
+value2:MaxCore max = MaxCore.createFresh()
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+14 [label="locationInParent:VARIABLE
+nodeType:TOO LONG TO BE PRINTED
+value:max
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:MaxCore
+implicit:false" shape=ellipse]
+15 [label="locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:sort
+value2:sort
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+16 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:MaxCore
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+17 [label="locationInParent:ARGUMENT_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:Request
+value2:Request
+position:null
+listSize:1
+listIndex:0
+valueType:null
+implicit:false" shape=ellipse]
+18 [label="locationInParent:ARGUMENT
+nodeType:class spoon.support.reflect.code.CtVariableReadImpl
+value:request
+value2:Request
+position:null
+listSize:1
+listIndex:0
+valueType:Request
+implicit:false" shape=ellipse]
+19 [label="locationInParent:LOCAL_VAR_NAME
+nodeType:class codegraph.CtVirtualElement
+value:request
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+20 [label="locationInParent:VARIABLE
+nodeType:TOO LONG TO BE PRINTED
+value:request
+value2:Request
+position:null
+listSize:-1
+listIndex:-1
+valueType:Request
+implicit:false" shape=ellipse]
+21 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl
+value:max.sortedLeavesForTest(request)
+value2:MaxCore.sortedLeavesForTest(Request)
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+22 [label="locationInParent:METHOD_NAME
+nodeType:class codegraph.CtVirtualElement
+value:sortedLeavesForTest
+value2:MaxCore.sortedLeavesForTest(Request)
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+23 [label="locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:sortedLeavesForTest
+value2:sortedLeavesForTest
+position:null
+listSize:-1
+listIndex:-1
+implicit:false" shape=ellipse]
+24 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:MaxCore
+value2:MaxCore
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:false" shape=ellipse]
+25 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+position:null
+listSize:-1
+listIndex:-1
+valueType:null
+implicit:true" shape=ellipse]
+0 -> 21 [label="Action:3
 preferRecentlyFailed#?:229
 preferFast#?:205
 twoTestsNotRunComeBackInRandomOrder#?:315"];
@@ -100,35 +232,115 @@ twoTestsNotRunComeBackInRandomOrder#?:315"];
 preferRecentlyFailed#?:226
 preferFast#?:202
 twoTestsNotRunComeBackInRandomOrder#?:312"];
-1 -> 2 [label="AST:3
+1 -> 11 [label="AST:3
 preferRecentlyFailed#?:146
 preferFast#?:137
 twoTestsNotRunComeBackInRandomOrder#?:178"];
-1 -> 3 [label="AST:3
+1 -> 12 [label="AST:3
+preferRecentlyFailed#?:147
+preferFast#?:138
+twoTestsNotRunComeBackInRandomOrder#?:179"];
+1 -> 15 [label="AST:3
 preferRecentlyFailed#?:148
 preferFast#?:139
 twoTestsNotRunComeBackInRandomOrder#?:180"];
+1 -> 18 [label="AST:3
+preferRecentlyFailed#?:149
+preferFast#?:140
+twoTestsNotRunComeBackInRandomOrder#?:181"];
+3 -> 2 [label="Data Dep:3
+preferRecentlyFailed#?:234
+preferFast#?:210
+twoTestsNotRunComeBackInRandomOrder#?:320"];
 3 -> 4 [label="AST:3
+preferRecentlyFailed#?:232
+preferFast#?:208
+twoTestsNotRunComeBackInRandomOrder#?:318"];
+4 -> 5 [label="AST:3
+preferRecentlyFailed#?:231
+preferFast#?:207
+twoTestsNotRunComeBackInRandomOrder#?:317"];
+5 -> 6 [label="AST:3
+preferRecentlyFailed#?:230
+preferFast#?:206
+twoTestsNotRunComeBackInRandomOrder#?:316"];
+7 -> 2 [label="Data Dep:3
+preferRecentlyFailed#?:247
+preferFast#?:219
+twoTestsNotRunComeBackInRandomOrder#?:333"];
+7 -> 8 [label="AST:3
+preferRecentlyFailed#?:245
+preferFast#?:217
+twoTestsNotRunComeBackInRandomOrder#?:331"];
+8 -> 9 [label="AST:3
+preferRecentlyFailed#?:244
+preferFast#?:216
+twoTestsNotRunComeBackInRandomOrder#?:330"];
+9 -> 10 [label="AST:3
+preferRecentlyFailed#?:243
+preferFast#?:215
+twoTestsNotRunComeBackInRandomOrder#?:329"];
+12 -> 2 [label="Data Dep:3
+preferRecentlyFailed#?:143
+preferFast#?:134
+twoTestsNotRunComeBackInRandomOrder#?:175"];
+12 -> 14 [label="AST:3
+preferRecentlyFailed#?:142
+preferFast#?:133
+twoTestsNotRunComeBackInRandomOrder#?:174"];
+13 -> 3 [label="Define Use:3
+preferRecentlyFailed#?:225
+preferFast#?:201
+twoTestsNotRunComeBackInRandomOrder#?:311"];
+13 -> 12 [label="Define Use:3
+preferRecentlyFailed#?:125
+preferFast#?:116
+twoTestsNotRunComeBackInRandomOrder#?:165"];
+15 -> 16 [label="AST:3
 preferRecentlyFailed#?:139
 preferFast#?:131
 twoTestsNotRunComeBackInRandomOrder#?:171"];
-3 -> 5 [label="AST:3
+15 -> 17 [label="AST:3
 preferRecentlyFailed#?:141
 preferFast#?:132
 twoTestsNotRunComeBackInRandomOrder#?:173"];
-6 -> 7 [label="AST:3
+18 -> 2 [label="Data Dep:3
+preferRecentlyFailed#?:145
+preferFast#?:136
+twoTestsNotRunComeBackInRandomOrder#?:177"];
+18 -> 20 [label="AST:3
+preferRecentlyFailed#?:144
+preferFast#?:135
+twoTestsNotRunComeBackInRandomOrder#?:176"];
+19 -> 7 [label="Define Use:3
+preferRecentlyFailed#?:224
+preferFast#?:200
+twoTestsNotRunComeBackInRandomOrder#?:310"];
+19 -> 18 [label="Define Use:3
+preferRecentlyFailed#?:113
+preferFast#?:104
+twoTestsNotRunComeBackInRandomOrder#?:154"];
+21 -> 3 [label="AST:3
+preferRecentlyFailed#?:249
+preferFast#?:221
+twoTestsNotRunComeBackInRandomOrder#?:335"];
+21 -> 7 [label="AST:3
+preferRecentlyFailed#?:251
+preferFast#?:223
+twoTestsNotRunComeBackInRandomOrder#?:337"];
+21 -> 22 [label="AST:3
 preferRecentlyFailed#?:248
 preferFast#?:220
 twoTestsNotRunComeBackInRandomOrder#?:334"];
-6 -> 8 [label="AST:3
+21 -> 23 [label="AST:3
 preferRecentlyFailed#?:250
 preferFast#?:222
 twoTestsNotRunComeBackInRandomOrder#?:336"];
-8 -> 9 [label="AST:3
+23 -> 24 [label="AST:3
 preferRecentlyFailed#?:240
 preferFast#?:213
 twoTestsNotRunComeBackInRandomOrder#?:326"];
-9 -> 10 [label="AST:3
+24 -> 25 [label="AST:3
 preferRecentlyFailed#?:235
 preferFast#?:211
 twoTestsNotRunComeBackInRandomOrder#?:321"];
