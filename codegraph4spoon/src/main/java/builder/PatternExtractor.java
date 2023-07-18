@@ -563,20 +563,8 @@ public class PatternExtractor {
                 case "value2":
                     comp = Attribute.computeValue2(cgn);
                     break;
-                case "position":
-                    comp = Attribute.computePosition(cgn);
-                    break;
-                case "listSize":
-                    comp = Attribute.computeListSize(cgn);
-                    break;
-                case "listIndex":
-                    comp = Attribute.computeListIndex(cgn);
-                    break;
                 case "valueType":
                     comp = Attribute.computeValueType(cgn);
-                    break;
-                case "implicit":
-                    comp = Attribute.computeImplicit(cgn);
                     break;
             }
             if (Objects.equals(a.getTag(), comp))

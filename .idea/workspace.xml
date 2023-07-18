@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix junit-59 clustering error">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix errors when extracting json file">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_1.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_1.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_2.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_2.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.dot" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_abstract_0.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_abstract_0.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_abstract_1.dot" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_abstract_1.dot" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternExtractor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/PatternNode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ObjectUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -207,13 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665371441595</updated>
-    </task>
-    <task id="LOCAL-00001" summary="init codegraph">
-      <created>1665470163186</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1665470163186</updated>
     </task>
     <task id="LOCAL-00002" summary="add parsing statement node part">
       <created>1665824859778</created>
@@ -551,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689646052762</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="fix errors when extracting json file">
+      <created>1689674472746</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1689674472747</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -566,7 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update dependency analysis" />
     <MESSAGE value="update data dependency analysis" />
     <MESSAGE value="add graph builder tests" />
     <MESSAGE value="test and debug for graph builder (without actions) on c3 dataset" />
@@ -591,7 +588,8 @@
     <MESSAGE value="fix canReach loop error" />
     <MESSAGE value="fix &quot;attribute not added if attribute is null literal&quot; error" />
     <MESSAGE value="fix junit-59 clustering error" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix junit-59 clustering error" />
+    <MESSAGE value="fix errors when extracting json file" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix errors when extracting json file" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -733,7 +731,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java</url>
-          <line>199</line>
+          <line>159</line>
           <option name="timeStamp" value="837" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -798,18 +796,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>334</line>
+          <line>335</line>
           <option name="timeStamp" value="1164" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
           <line>182</line>
           <option name="timeStamp" value="1190" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java</url>
-          <line>79</line>
-          <option name="timeStamp" value="1198" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/InteractPattern.java</url>
@@ -828,12 +821,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>309</line>
+          <line>310</line>
           <option name="timeStamp" value="1235" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java</url>
-          <line>129</line>
+          <line>124</line>
           <option name="timeStamp" value="1264" />
         </line-breakpoint>
       </breakpoints>

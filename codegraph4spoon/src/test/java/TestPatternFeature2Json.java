@@ -18,34 +18,6 @@ import static org.junit.Assert.assertNotNull;
 
 public class TestPatternFeature2Json {
     @Test
-    public void testWriteFeatCsvFromMultiplePairs() {
-        String testPro = "ant";
-        int testId = 13;
-        List<CodeGraph> ags = new ArrayList<>();
-        String base = String.format("src/test/resources/c3/%s/%d", testPro, testId);
-        int size = new File(base).listFiles().length;
-        for (int i=0; i<size; i++) {
-            String srcPath = String.format("%s/%d/before.java", base, i);
-            String tarPath = String.format("%s/%d/after.java", base, i);
-            // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
-            ags.add(ag);
-        }
-        // extract pattern from more-than-one graphs
-        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
-        for (Pattern pat : combinedGraphs) {
-            // elements before abstraction
-            HashMap<Integer, Object> idPattern = pat.getIdPattern();
-            // abstract pattern
-            PatternAbstractor abs = new PatternAbstractor(size);
-            pat = abs.abstractPattern(pat);
-            // write feature csv
-            String jsonPath = System.getProperty("user.dir") + String.format("/out/c3_%s_%d", testPro, testId);
-            ObjectUtil.writeFeatureJsonToFile(pat, pat.getIdPattern(), jsonPath);
-        }
-    }
-
-    @Test
     public void testWriteFeatJsonFromMultiplePairsToSingleFile() {
         String testPro = "ant";
         int testId = 13;
@@ -93,26 +65,14 @@ public class TestPatternFeature2Json {
             // build action graph
             CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
             ags.add(ag);
-            // draw dot graph
-            GraphConfiguration config = new GraphConfiguration();
-            int nodeIndexCounter = 0;
-            DotGraph dg = new DotGraph(ag, config, nodeIndexCounter);
-            File dir = new File(System.getProperty("user.dir") + "/out/" + String.format("c3_%s_%d_%d_action.dot", testPro, testId, i));
-            dg.toDotFile(dir);
         }
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
         for (Pattern pat : combinedGraphs) {
-            DotGraph dot = new DotGraph(pat, 0, false, false);
-            File dir = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_%d.dot", testPro, testId, combinedGraphs.indexOf(pat)));
-            dot.toDotFile(dir);
             // abstract pattern
             PatternAbstractor abs = new PatternAbstractor(size);
             pat = abs.abstractPattern(pat);
-            DotGraph dot2 = new DotGraph(pat, 0, true, false);
-            File dir2 = new File(System.getProperty("user.dir") + String.format("/out/c3_%s_%d_pattern_abstract_%d.dot", testPro, testId, combinedGraphs.indexOf(pat)));
-            dot2.toDotFile(dir2);
             // get feature json object
             List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
             for (Pair<String, JSONObject> pair : patternByID) {

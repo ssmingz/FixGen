@@ -3,6 +3,8 @@ package model.pattern;
 import codegraph.CtVirtualElement;
 import model.CodeGraph;
 import model.CtWrapper;
+import org.javatuples.Pair;
+import spoon.reflect.path.CtRole;
 import spoon.support.reflect.declaration.CtElementImpl;
 import utils.ObjectUtil;
 
@@ -19,6 +21,13 @@ public class PatternNode implements Serializable {
     private Pattern _pattern = null;
     private boolean _actionRelated;
     private boolean isAbstract = false;
+    /**
+     * pattern node features, e.g. for repairing
+     */
+    public Attribute position = new Attribute("position");
+    public Attribute listIndex =  new Attribute("listIndex");  // list index if is list type, or else -1
+    public Attribute listSize = new Attribute("listSize");  // list length if is list type, or else -1
+    public Attribute implicit = new Attribute("implicit");  // field of CtElement, to avoid complicated this.xxx
 
     public PatternNode(CtWrapper aNode, CodeGraph aGraph) {
         _nodeGraphInstances.put(aNode, aGraph);

@@ -40,37 +40,28 @@ public class PatternAbstractor {
             Attribute attr2 = new Attribute("nodeType");
             Attribute attr3 = new Attribute("value");
             Attribute attr4 = new Attribute("value2");  // replace name with type
-            Attribute attr5 = new Attribute("position");
-            Attribute attr6 = new Attribute("listSize");  // list length if is list type, or else -1
-            Attribute attr7 = new Attribute("listIndex");  // list index if is list type, or else -1
-            Attribute attr8 = new Attribute("valueType");  // type of the value
-            Attribute attr9 = new Attribute("implicit");  // field of CtElement, to avoid complicated this.
+            Attribute attr5 = new Attribute("valueType");  // type of the value
             for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                 CtWrapper n = entry.getKey();
                 CodeGraph g = entry.getValue();
 
+                // Notice: set value="?" if the value cannot be computed
                 attr1.addValue(Attribute.computeLocationInParent(n), g);
                 attr2.addValue(Attribute.computeNodeType(n), g);
                 attr3.addValue(Attribute.computeValue(n), g);
                 attr4.addValue(Attribute.computeValue2(n), g);
-                attr5.addValue(Attribute.computePosition(n), g);
-                attr6.addValue(Attribute.computeListSize(n), g);
-                attr7.addValue(Attribute.computeListIndex(n), g);
-                attr8.addValue(Attribute.computeValueType(n), g);
-                attr9.addValue(Attribute.computeImplicit(n), g);
+                attr5.addValue(Attribute.computeValueType(n), g);
+
+                pn.position.addValue(Attribute.computePosition(n), g);
+                pn.listSize.addValue(Attribute.computeListSize(n), g);
+                pn.listIndex.addValue(Attribute.computeListIndex(n), g);
+                pn.implicit.addValue(Attribute.computeImplicit(n), g);
             }
             pn.setComparedAttribute(attr1);
             pn.setComparedAttribute(attr2);
             pn.setComparedAttribute(attr3);
             pn.setComparedAttribute(attr4);
-            if (attr5.getValueSet().size() > 0)
-                pn.setComparedAttribute(attr5);
-            pn.setComparedAttribute(attr6);
-            pn.setComparedAttribute(attr7);
-            pn.setComparedAttribute(attr8);
-            pn.setComparedAttribute(attr9);
-        }
-        // edge attributes
+            pn.setComparedAttribute(attr5);}
     }
 
     /**
@@ -82,8 +73,12 @@ public class PatternAbstractor {
             for (Attribute a : pn.getComparedAttributes()) {
                 vote4Attribute(a);
             }
+            // other features
+            vote4Attribute(pn.position);
+            vote4Attribute(pn.listSize);
+            vote4Attribute(pn.listIndex);
+            vote4Attribute(pn.implicit);
         }
-        // edge
     }
 
     public static void vote4Attribute(Attribute attr) {

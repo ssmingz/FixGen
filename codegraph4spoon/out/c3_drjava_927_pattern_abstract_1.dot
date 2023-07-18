@@ -3,204 +3,85 @@ digraph "Pattern" {
 locationInParent:ACTION
 nodeType:class model.actions.Insert
 value:INSERT
-value2:
-position:TOO LONG TO BE PRINTED
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:" shape=ellipse]
 1 [label="locationInParent:BODY
-nodeType:class spoon.support.reflect.code.CtBlockImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class spoon.support.reflect.code.CtBlockImpl" shape=ellipse]
 2 [label="locationInParent:TYPE_MEMBER
 nodeType:class spoon.support.reflect.declaration.CtMethodImpl
-position:null
-listSize:2
-listIndex:1
-valueType:java.lang.String
-implicit:false" shape=ellipse]
+valueType:java.lang.String" shape=ellipse]
 3 [label="locationInParent:MODIFIER
 nodeType:class codegraph.CtVirtualElement
-value:public
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value:public" shape=ellipse]
 4 [label="locationInParent:MODIFIER
 nodeType:class codegraph.CtVirtualElement
-value:synchronized
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value:synchronized" shape=ellipse]
 5 [label="locationInParent:METHOD_DEC_NAME
-nodeType:class codegraph.CtVirtualElement
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class codegraph.CtVirtualElement" shape=ellipse]
 6 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:String
-value2:java.lang.String
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:java.lang.String" shape=ellipse]
 7 [label="locationInParent:STATEMENT
-nodeType:class spoon.support.reflect.code.CtReturnImpl
-position:null
-listSize:1
-listIndex:0
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class spoon.support.reflect.code.CtReturnImpl" shape=ellipse]
 8 [label="locationInParent:EXPRESSION
 nodeType:class spoon.support.reflect.code.CtInvocationImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:java.lang.String
-implicit:false" shape=ellipse]
+valueType:java.lang.String" shape=ellipse]
 9 [label="locationInParent:ACTION
 nodeType:class model.actions.Move
 value:MOVE
-value2:
-position:TOO LONG TO BE PRINTED
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:" shape=ellipse]
 10 [label="locationInParent:STATEMENT
-nodeType:class spoon.support.reflect.code.CtReturnImpl
-position:null
-listSize:1
-listIndex:0
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class spoon.support.reflect.code.CtReturnImpl" shape=ellipse]
 11 [label="locationInParent:EXPRESSION
 nodeType:class spoon.support.reflect.code.CtInvocationImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:java.lang.String
-implicit:false" shape=ellipse]
+valueType:java.lang.String" shape=ellipse]
 12 [label="locationInParent:METHOD_NAME
-nodeType:class codegraph.CtVirtualElement
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class codegraph.CtVirtualElement" shape=ellipse]
 13 [label="locationInParent:TARGET
 nodeType:class spoon.support.reflect.code.CtFieldReadImpl
 value:_history
 value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:PlaceHold
-implicit:false" shape=ellipse]
+valueType:PlaceHold" shape=ellipse]
 14 [label="locationInParent:VARIABLE
 nodeType:class spoon.support.reflect.reference.CtFieldReferenceImpl
 value:_history
 value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:PlaceHold
-implicit:false" shape=ellipse]
+valueType:PlaceHold" shape=ellipse]
 15 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:PlaceHold
-value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:PlaceHold" shape=ellipse]
 16 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:" shape=ellipse]
 17 [label="locationInParent:EXECUTABLE_REF
 nodeType:TOO LONG TO BE PRINTED
-position:null
-listSize:-1
-listIndex:-1
-valueType:java.lang.String
-implicit:false" shape=ellipse]
+valueType:java.lang.String" shape=ellipse]
 18 [label="locationInParent:DECLARING_TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:_history
-value2:_history
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:_history" shape=ellipse]
 19 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:" shape=ellipse]
 20 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:String
-value2:java.lang.String
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:java.lang.String" shape=ellipse]
 21 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:java.lang
-value2:java.lang
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:java.lang" shape=ellipse]
 22 [label="locationInParent:ACTION
 nodeType:class model.actions.Insert
 value:INSERT
-value2:
-position:TOO LONG TO BE PRINTED
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:" shape=ellipse]
 23 [label="locationInParent:STATEMENT
-nodeType:class spoon.support.reflect.code.CtTryImpl
-position:null
-listSize:2
-listIndex:1
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class spoon.support.reflect.code.CtTryImpl" shape=ellipse]
 24 [label="locationInParent:BODY
-nodeType:class spoon.support.reflect.code.CtBlockImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+nodeType:class spoon.support.reflect.code.CtBlockImpl" shape=ellipse]
 25 [label="locationInParent:FINALIZER
 nodeType:class spoon.support.reflect.code.CtBlockImpl
 value:\{
@@ -208,174 +89,83 @@ value:\{
 \}
 value2:\{
     releaseReadLock();
-\}
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+\}" shape=ellipse]
 26 [label="locationInParent:STATEMENT
 nodeType:class spoon.support.reflect.code.CtInvocationImpl
 value:releaseReadLock()
-value2:releaseReadLock()
-position:null
-listSize:1
-listIndex:0
-valueType:null
-implicit:false" shape=ellipse]
+value2:releaseReadLock()" shape=ellipse]
 27 [label="locationInParent:METHOD_NAME
 nodeType:class codegraph.CtVirtualElement
 value:releaseReadLock
-value2:releaseReadLock()
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:releaseReadLock()" shape=ellipse]
 28 [label="locationInParent:TARGET
 nodeType:class spoon.support.reflect.code.CtThisAccessImpl
 value:
 value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:PlaceHold
-implicit:true" shape=ellipse]
+valueType:PlaceHold" shape=ellipse]
 29 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:PlaceHold
-value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:PlaceHold" shape=ellipse]
 30 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:" shape=ellipse]
 31 [label="locationInParent:TARGET
 nodeType:class spoon.support.reflect.code.CtTypeAccessImpl
 value:PlaceHold
 value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:void
-implicit:false" shape=ellipse]
+valueType:void" shape=ellipse]
 32 [label="locationInParent:ACCESSED_TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:PlaceHold
-value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:PlaceHold" shape=ellipse]
 33 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:" shape=ellipse]
 34 [label="locationInParent:EXECUTABLE_REF
 nodeType:TOO LONG TO BE PRINTED
 value:releaseReadLock
-value2:releaseReadLock
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:releaseReadLock" shape=ellipse]
 35 [label="locationInParent:STATEMENT
 nodeType:class spoon.support.reflect.code.CtInvocationImpl
 value:acquireReadLock()
-value2:acquireReadLock()
-position:null
-listSize:2
-listIndex:0
-valueType:null
-implicit:false" shape=ellipse]
+value2:acquireReadLock()" shape=ellipse]
 36 [label="locationInParent:METHOD_NAME
 nodeType:class codegraph.CtVirtualElement
 value:acquireReadLock
-value2:acquireReadLock()
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:acquireReadLock()" shape=ellipse]
 37 [label="locationInParent:TARGET
 nodeType:class spoon.support.reflect.code.CtThisAccessImpl
 value:
 value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:PlaceHold
-implicit:true" shape=ellipse]
+valueType:PlaceHold" shape=ellipse]
 38 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:PlaceHold
-value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:PlaceHold" shape=ellipse]
 39 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:" shape=ellipse]
 40 [label="locationInParent:TARGET
 nodeType:class spoon.support.reflect.code.CtTypeAccessImpl
 value:PlaceHold
 value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:void
-implicit:false" shape=ellipse]
+valueType:void" shape=ellipse]
 41 [label="locationInParent:ACCESSED_TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
 value:PlaceHold
-value2:PlaceHold
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:PlaceHold" shape=ellipse]
 42 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value2:" shape=ellipse]
 43 [label="locationInParent:EXECUTABLE_REF
 nodeType:TOO LONG TO BE PRINTED
 value:acquireReadLock
-value2:acquireReadLock
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
+value2:acquireReadLock" shape=ellipse]
 0 -> 35 [label="Action:2
 getHistoryAsStringWithSemicolons#?:75
 getHistoryAsString#?:75"];

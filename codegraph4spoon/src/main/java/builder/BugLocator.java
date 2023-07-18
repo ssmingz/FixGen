@@ -143,8 +143,8 @@ public class BugLocator {
         oriNode.delete();
         // TODO: move to where, the concrete position of move.target
         List<Pair<CtRole, Class>> roles;
-        if (!action.getAttribute("position").isAbstract()) {
-            roles = (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag();
+        if (!action.position.isAbstract()) {
+            roles = (List<Pair<CtRole, Class>>) action.position.getTag();
         } else {
             roles = new ArrayList<>();
             roles.add(Pair.with(moveDstTarget.getRoleInParent(), moveDstTarget.getClass()));
@@ -171,8 +171,8 @@ public class BugLocator {
             // TODO: replace oriNode with the new node in the old tree
 //            oriNode.replace(update);
             List<Pair<CtRole, Class>> roles;
-            if (!action.getAttribute("position").isAbstract()) {
-                roles = (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag();
+            if (!action.position.isAbstract()) {
+                roles = (List<Pair<CtRole, Class>>) action.position.getTag();
             } else {
                 roles = new ArrayList<>();
                 roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
@@ -201,7 +201,7 @@ public class BugLocator {
             mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
             // insert.source is the parent, which is oriNode
             // TODO: insert to where, the concrete position of insert.source
-            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.getAttribute("position").getTag(), insert, null);
+            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), insert, null);
             // update codegraph node set
             target.nodeSetAdd(insert);
         } else {
@@ -222,7 +222,8 @@ public class BugLocator {
                         childMap.put(oe.getTarget(), new CtWrapper((CtElementImpl) child));
                         childMap.putAll(addMapping4Child(oe.getTarget(), (CtElementImpl) child));
                     } else if (child instanceof List) {
-                        int listIndex = !oe.getTarget().getAttribute("listIndex").isAbstract() ? (int) oe.getTarget().getAttribute("listIndex").getTag() : -1;
+                        int listIndex = !oe.getTarget().
+                                listIndex.isAbstract() ? (int) oe.getTarget().listIndex.getTag() : -1;
                         if (listIndex != -1 && ((List<?>) child).size()>listIndex) {
                             childMap.put(oe.getTarget(), new CtWrapper(((List<CtElementImpl>) child).get(listIndex)));
                             childMap.putAll(addMapping4Child(oe.getTarget(), ((List<CtElementImpl>) child).get(listIndex)));
@@ -334,8 +335,8 @@ public class BugLocator {
         if (newly == null) {
             throw new IllegalStateException("Create new spoon node failed: createInstance() return null");
         }
-        if (!pnRoot.getAttribute("implicit").isAbstract())
-            newly.setImplicit((Boolean) pnRoot.getAttribute("implicit").getTag());
+        if (!pnRoot.implicit.isAbstract())
+            newly.setImplicit((Boolean) pnRoot.implicit.getTag());
         // check value for name
         if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null) {
             // check define-use for name
@@ -381,8 +382,8 @@ public class BugLocator {
 //                    continue;
                 // role in parent
                 CtRole role = CtRole.fromName((String) oe.getTarget().getAttribute("locationInParent").getTag());
-                Object listSize = oe.getTarget().getAttribute("listSize").getTag();
-                Object listIndex = oe.getTarget().getAttribute("listIndex").getTag();
+                Object listSize = oe.getTarget().listSize.getTag();
+                Object listIndex = oe.getTarget().listIndex.getTag();
                 if (newly.getValueByRole(role) instanceof List) {
                     int size = (Integer) listSize;
                     int index = (Integer) listIndex;

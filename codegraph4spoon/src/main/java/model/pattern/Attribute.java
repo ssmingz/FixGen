@@ -6,12 +6,9 @@ import codegraph.visitor.TokenVisitor;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.ActionNode;
-import model.actions.Insert;
-import model.actions.Move;
 import org.javatuples.Pair;
 import spoon.Launcher;
 import spoon.experimental.CtUnresolvedImport;
-import spoon.reflect.meta.RoleHandler;
 import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.CtCodeElementImpl;
@@ -241,9 +238,9 @@ public class Attribute implements Serializable {
         CtElementImpl cte = n.getCtElementImpl();
         if (RoleHandlerHelper.getOptionalRoleHandler(cte.getClass(), CtRole.TYPE) != null ) {
             CtTypeReferenceImpl vType = cte.getValueByRole(CtRole.TYPE);
-            return vType == null ? null : vType.getQualifiedName();
+            return vType == null ? "?" : vType.getQualifiedName();
         }
-        return null;
+        return "?";
     }
 
     public static boolean computeImplicit(CtWrapper n) {
