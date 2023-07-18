@@ -1,292 +1,210 @@
 digraph "Pattern" {
-0 [label="preferRecentlyFailed#?:204#L7:UPDATE
-preferFast#?:184#L7:UPDATE
-twoTestsNotRunComeBackInRandomOrder#?:290#L6:UPDATE" shape=ellipse]
-1 [label="preferRecentlyFailed#?:52#L7:max.sort(request)
-preferFast#?:54#L7:max.sort(request)
-twoTestsNotRunComeBackInRandomOrder#?:43#L6:max.sort(request)" shape=ellipse]
-2 [label="preferRecentlyFailed#?:54#L7:List<Description> tests = max.sort(request)
-twoTestsNotRunComeBackInRandomOrder#?:45#L6:List<Description> things = max.sort(request)" shape=ellipse]
-3 [label="preferRecentlyFailed#?:95#L3:\{
-    Request request = Request.aClass(TwoTests.class);
-    MaxCore max = MaxCore.createFresh();
-    max.run(request);
-    List<Description> tests = max.sort(request);
-    Description dontSucceed = Description.createTestDescription(TwoTests.class, \"dontSucceed\");
-    assertEquals(dontSucceed, tests.get(0));
+0 [label="addMoneyBag#?,MoneyBag:47#L3:UPDATE
+addMoney#?,Money:47#L3:UPDATE" shape=ellipse]
+1 [label="addMoneyBag#?,MoneyBag:20#L3:new MoneyBag(s, this).simplify()
+addMoney#?,Money:20#L3:new MoneyBag(m, this).simplify()" shape=ellipse]
+2 [label="addMoneyBag#?,MoneyBag:21#L3:return new MoneyBag(s, this).simplify()
+addMoney#?,Money:21#L3:return new MoneyBag(m, this).simplify()" shape=ellipse]
+3 [label="addMoneyBag#?,MoneyBag:22#L2:\{
+    return new MoneyBag(s, this).simplify();
 \}
-twoTestsNotRunComeBackInRandomOrder#?:137#L3:\{
-    Request request = Request.aClass(TwoTests.class);
-    MaxCore max = MaxCore.createFresh();
-    List<Description> things = max.sort(request);
-    Description succeed = Description.createTestDescription(TwoTests.class, \"succeed\");
-    Description dontSucceed = Description.createTestDescription(TwoTests.class, \"dontSucceed\");
-    assertTrue(things.contains(succeed));
-    assertTrue(things.contains(dontSucceed));
-    assertEquals(2, things.size());
+addMoney#?,Money:22#L2:\{
+    return new MoneyBag(m, this).simplify();
 \}" shape=ellipse]
-4 [label="preferRecentlyFailed#?:53#L7:tests
-preferFast#?:58#L7:thing
-twoTestsNotRunComeBackInRandomOrder#?:44#L6:things" shape=ellipse]
-5 [label="preferRecentlyFailed#?:208#L7:max
-preferFast#?:188#L7:max
-twoTestsNotRunComeBackInRandomOrder#?:294#L6:max" shape=ellipse]
-6 [label="preferRecentlyFailed#?:207#L7:max
-preferFast#?:187#L7:max
-twoTestsNotRunComeBackInRandomOrder#?:293#L6:max" shape=ellipse]
-7 [label="preferRecentlyFailed#?:206#L7:MaxCore
-preferFast#?:186#L7:MaxCore
-twoTestsNotRunComeBackInRandomOrder#?:292#L6:MaxCore" shape=ellipse]
-8 [label="preferRecentlyFailed#?:205#L7:
-preferFast#?:185#L7:
-twoTestsNotRunComeBackInRandomOrder#?:291#L6:" shape=ellipse]
-9 [label="preferRecentlyFailed#?:221#L7:request
-preferFast#?:197#L7:request
-twoTestsNotRunComeBackInRandomOrder#?:307#L6:request" shape=ellipse]
-10 [label="preferRecentlyFailed#?:220#L7:request
-preferFast#?:196#L7:request
-twoTestsNotRunComeBackInRandomOrder#?:306#L6:request" shape=ellipse]
-11 [label="preferRecentlyFailed#?:219#L7:Request
-preferFast#?:195#L7:Request
-twoTestsNotRunComeBackInRandomOrder#?:305#L6:Request" shape=ellipse]
-12 [label="preferRecentlyFailed#?:218#L7:
-preferFast#?:194#L7:
-twoTestsNotRunComeBackInRandomOrder#?:304#L6:" shape=ellipse]
-13 [label="preferRecentlyFailed#?:42#L7:List<Description>
-twoTestsNotRunComeBackInRandomOrder#?:33#L6:List<Description>" shape=ellipse]
-14 [label="preferRecentlyFailed#?:47#L7:sort
-preferFast#?:49#L7:sort
-twoTestsNotRunComeBackInRandomOrder#?:38#L6:sort" shape=ellipse]
-15 [label="preferRecentlyFailed#?:49#L7:max
-preferFast#?:51#L7:max
-twoTestsNotRunComeBackInRandomOrder#?:40#L6:max" shape=ellipse]
-16 [label="preferRecentlyFailed#?:29#L5:max
-preferFast#?:29#L5:max
-twoTestsNotRunComeBackInRandomOrder#?:29#L5:max" shape=ellipse]
-17 [label="preferRecentlyFailed#?:48#L7:max
-preferFast#?:50#L7:max
-twoTestsNotRunComeBackInRandomOrder#?:39#L6:max" shape=ellipse]
-18 [label="preferRecentlyFailed#?:46#L7:sort(Request)
-preferFast#?:48#L7:sort(Request)
-twoTestsNotRunComeBackInRandomOrder#?:37#L6:sort(Request)" shape=ellipse]
-19 [label="preferRecentlyFailed#?:43#L7:MaxCore
-preferFast#?:46#L7:MaxCore
-twoTestsNotRunComeBackInRandomOrder#?:34#L6:MaxCore" shape=ellipse]
-20 [label="preferRecentlyFailed#?:44#L7:List<Description>
-twoTestsNotRunComeBackInRandomOrder#?:35#L6:List<Description>" shape=ellipse]
-21 [label="preferRecentlyFailed#?:45#L7:Request
-preferFast#?:47#L7:Request
-twoTestsNotRunComeBackInRandomOrder#?:36#L6:Request" shape=ellipse]
-22 [label="preferRecentlyFailed#?:51#L7:request
-preferFast#?:53#L7:request
-twoTestsNotRunComeBackInRandomOrder#?:42#L6:request" shape=ellipse]
-23 [label="preferRecentlyFailed#?:18#L4:request
-preferFast#?:18#L4:request
-twoTestsNotRunComeBackInRandomOrder#?:18#L4:request" shape=ellipse]
-24 [label="preferRecentlyFailed#?:50#L7:request
-preferFast#?:52#L7:request
-twoTestsNotRunComeBackInRandomOrder#?:41#L6:request" shape=ellipse]
-25 [label="preferRecentlyFailed#?:222#L7:max.sortedLeavesForTest(request)
-preferFast#?:198#L7:max.sortedLeavesForTest(request)
-twoTestsNotRunComeBackInRandomOrder#?:308#L6:max.sortedLeavesForTest(request)" shape=ellipse]
-26 [label="preferRecentlyFailed#?:223#L7:sortedLeavesForTest
-preferFast#?:199#L7:sortedLeavesForTest
-twoTestsNotRunComeBackInRandomOrder#?:309#L6:sortedLeavesForTest" shape=ellipse]
-27 [label="preferRecentlyFailed#?:217#L7:sortedLeavesForTest(Request)
-preferFast#?:193#L7:sortedLeavesForTest(Request)
-twoTestsNotRunComeBackInRandomOrder#?:303#L6:sortedLeavesForTest(Request)" shape=ellipse]
-28 [label="preferRecentlyFailed#?:210#L7:MaxCore
-preferFast#?:190#L7:MaxCore
-twoTestsNotRunComeBackInRandomOrder#?:296#L6:MaxCore" shape=ellipse]
-29 [label="preferRecentlyFailed#?:209#L7:
-preferFast#?:189#L7:
-twoTestsNotRunComeBackInRandomOrder#?:295#L6:" shape=ellipse]
-30 [label="preferRecentlyFailed#?:214#L7:List<Description>
-twoTestsNotRunComeBackInRandomOrder#?:300#L6:List<Description>" shape=ellipse]
-31 [label="preferRecentlyFailed#?:211#L7:
-preferFast#?:191#L7:
-twoTestsNotRunComeBackInRandomOrder#?:297#L6:" shape=ellipse]
-32 [label="preferRecentlyFailed#?:213#L7:Description
-twoTestsNotRunComeBackInRandomOrder#?:299#L6:Description" shape=ellipse]
-33 [label="preferRecentlyFailed#?:212#L7:
-twoTestsNotRunComeBackInRandomOrder#?:298#L6:" shape=ellipse]
-34 [label="preferRecentlyFailed#?:216#L7:Request
-twoTestsNotRunComeBackInRandomOrder#?:302#L6:Request" shape=ellipse]
-35 [label="preferRecentlyFailed#?:215#L7:
-twoTestsNotRunComeBackInRandomOrder#?:301#L6:" shape=ellipse]
-36 [label="preferFast#?:57#L7:max.sort(request).get(1)" shape=ellipse]
-37 [label="preferFast#?:56#L7:1" shape=ellipse]
-38 [label="preferFast#?:45#L7:get" shape=ellipse]
-39 [label="preferFast#?:44#L7:get(int)" shape=ellipse]
-40 [label="preferFast#?:192#L7:Request" shape=ellipse]
-41 [label="preferFast#?:59#L7:Description thing = max.sort(request).get(1)" shape=ellipse]
-0 -> 25 [label="Action:3
-preferRecentlyFailed#?:229
-preferFast#?:205
-twoTestsNotRunComeBackInRandomOrder#?:315"];
-1 -> 0 [label="Action:3
-preferRecentlyFailed#?:226
-preferFast#?:202
-twoTestsNotRunComeBackInRandomOrder#?:312"];
-1 -> 14 [label="AST:3
-preferRecentlyFailed#?:146
-preferFast#?:137
-twoTestsNotRunComeBackInRandomOrder#?:178"];
-1 -> 15 [label="AST:3
-preferRecentlyFailed#?:147
-preferFast#?:138
-twoTestsNotRunComeBackInRandomOrder#?:179"];
-1 -> 18 [label="AST:3
-preferRecentlyFailed#?:148
-preferFast#?:139
-twoTestsNotRunComeBackInRandomOrder#?:180"];
-1 -> 22 [label="AST:3
-preferRecentlyFailed#?:149
-preferFast#?:140
-twoTestsNotRunComeBackInRandomOrder#?:181"];
+4 [label="addMoneyBag#?,MoneyBag:9#L3:simplify
+addMoney#?,Money:9#L3:simplify" shape=ellipse]
+5 [label="addMoneyBag#?,MoneyBag:19#L3:new MoneyBag(s, this)
+addMoney#?,Money:19#L3:new MoneyBag(m, this)" shape=ellipse]
+6 [label="addMoneyBag#?,MoneyBag:12#L3:MoneyBag()
+addMoney#?,Money:12#L3:MoneyBag()" shape=ellipse]
+7 [label="addMoneyBag#?,MoneyBag:14#L3:s
+addMoney#?,Money:18#L3:this" shape=ellipse]
+8 [label="addMoneyBag#?,MoneyBag:18#L3:this
+addMoney#?,Money:14#L3:m" shape=ellipse]
+9 [label="addMoneyBag#?,MoneyBag:8#L3:simplify()
+addMoney#?,Money:8#L3:simplify()" shape=ellipse]
+10 [label="addMoneyBag#?,MoneyBag:7#L3:IMoney
+addMoney#?,Money:7#L3:IMoney" shape=ellipse]
+11 [label="addMoneyBag#?,MoneyBag:70#L3:MoneyBag.create(s, this)
+addMoney#?,Money:70#L3:MoneyBag.create(m, this)" shape=ellipse]
+12 [label="addMoneyBag#?,MoneyBag:71#L3:create
+addMoney#?,Money:71#L3:create" shape=ellipse]
+13 [label="addMoneyBag#?,MoneyBag:50#L3:MoneyBag
+addMoney#?,Money:50#L3:MoneyBag" shape=ellipse]
+14 [label="addMoneyBag#?,MoneyBag:49#L3:MoneyBag
+addMoney#?,Money:49#L3:MoneyBag" shape=ellipse]
+15 [label="addMoneyBag#?,MoneyBag:48#L3:
+addMoney#?,Money:48#L3:" shape=ellipse]
+16 [label="addMoneyBag#?,MoneyBag:59#L3:create(MoneyBag,PlaceHold)
+addMoney#?,Money:59#L3:create(Money,PlaceHold)" shape=ellipse]
+17 [label="addMoneyBag#?,MoneyBag:52#L3:MoneyBag
+addMoney#?,Money:52#L3:MoneyBag" shape=ellipse]
+18 [label="addMoneyBag#?,MoneyBag:51#L3:
+addMoney#?,Money:51#L3:" shape=ellipse]
+19 [label="addMoneyBag#?,MoneyBag:54#L3:IMoney
+addMoney#?,Money:54#L3:IMoney" shape=ellipse]
+20 [label="addMoneyBag#?,MoneyBag:53#L3:
+addMoney#?,Money:53#L3:" shape=ellipse]
+21 [label="addMoneyBag#?,MoneyBag:56#L3:MoneyBag
+addMoney#?,Money:56#L3:Money" shape=ellipse]
+22 [label="addMoneyBag#?,MoneyBag:55#L3:
+addMoney#?,Money:55#L3:" shape=ellipse]
+23 [label="addMoneyBag#?,MoneyBag:58#L3:PlaceHold
+addMoney#?,Money:58#L3:PlaceHold" shape=ellipse]
+24 [label="addMoneyBag#?,MoneyBag:57#L3:
+addMoney#?,Money:57#L3:" shape=ellipse]
+25 [label="addMoneyBag#?,MoneyBag:63#L3:s
+addMoney#?,Money:69#L3:this" shape=ellipse]
+26 [label="addMoneyBag#?,MoneyBag:4#L2:s" shape=ellipse]
+27 [label="addMoneyBag#?,MoneyBag:72#L3:MOVE
+addMoney#?,Money:73#L3:MOVE" shape=ellipse]
+28 [label="addMoneyBag#?,MoneyBag:62#L3:s" shape=ellipse]
+29 [label="addMoneyBag#?,MoneyBag:61#L3:MoneyBag
+addMoney#?,Money:61#L3:Money" shape=ellipse]
+30 [label="addMoneyBag#?,MoneyBag:60#L3:
+addMoney#?,Money:60#L3:" shape=ellipse]
+31 [label="addMoneyBag#?,MoneyBag:69#L3:this
+addMoney#?,Money:63#L3:m" shape=ellipse]
+32 [label="addMoneyBag#?,MoneyBag:73#L3:MOVE
+addMoney#?,Money:72#L3:MOVE" shape=ellipse]
+33 [label="addMoneyBag#?,MoneyBag:65#L3:PlaceHold" shape=ellipse]
+34 [label="addMoneyBag#?,MoneyBag:64#L3:
+addMoney#?,Money:64#L3:" shape=ellipse]
+35 [label="addMoneyBag#?,MoneyBag:68#L3:PlaceHold" shape=ellipse]
+36 [label="addMoneyBag#?,MoneyBag:67#L3:PlaceHold
+addMoney#?,Money:67#L3:PlaceHold" shape=ellipse]
+37 [label="addMoneyBag#?,MoneyBag:66#L3:
+addMoney#?,Money:66#L3:" shape=ellipse]
+38 [label="addMoney#?,Money:68#L3:PlaceHold" shape=ellipse]
+39 [label="addMoney#?,Money:65#L3:PlaceHold" shape=ellipse]
+40 [label="addMoney#?,Money:62#L3:m" shape=ellipse]
+41 [label="addMoney#?,Money:4#L2:m" shape=ellipse]
+0 -> 11 [label="Action:2
+addMoneyBag#?,MoneyBag:80
+addMoney#?,Money:80"];
+1 -> 0 [label="Action:2
+addMoneyBag#?,MoneyBag:77
+addMoney#?,Money:77"];
+1 -> 4 [label="AST:2
+addMoneyBag#?,MoneyBag:38
+addMoney#?,Money:38"];
+1 -> 5 [label="AST:2
+addMoneyBag#?,MoneyBag:39
+addMoney#?,Money:39"];
+1 -> 9 [label="AST:2
+addMoneyBag#?,MoneyBag:40
+addMoney#?,Money:40"];
 2 -> 1 [label="AST:2
-preferRecentlyFailed#?:153
-twoTestsNotRunComeBackInRandomOrder#?:187"];
-2 -> 4 [label="AST:2
-preferRecentlyFailed#?:151
-twoTestsNotRunComeBackInRandomOrder#?:185"];
-2 -> 13 [label="AST:2
-preferRecentlyFailed#?:152
-twoTestsNotRunComeBackInRandomOrder#?:186"];
+addMoneyBag#?,MoneyBag:41
+addMoney#?,Money:41"];
 3 -> 2 [label="AST:2
-preferRecentlyFailed#?:197
-twoTestsNotRunComeBackInRandomOrder#?:280"];
-5 -> 4 [label="Data Dep:3
-preferRecentlyFailed#?:234
-preferFast#?:210
-twoTestsNotRunComeBackInRandomOrder#?:320"];
-5 -> 6 [label="AST:3
-preferRecentlyFailed#?:232
-preferFast#?:208
-twoTestsNotRunComeBackInRandomOrder#?:318"];
-6 -> 7 [label="AST:3
-preferRecentlyFailed#?:231
-preferFast#?:207
-twoTestsNotRunComeBackInRandomOrder#?:317"];
-7 -> 8 [label="AST:3
-preferRecentlyFailed#?:230
-preferFast#?:206
-twoTestsNotRunComeBackInRandomOrder#?:316"];
-9 -> 4 [label="Data Dep:3
-preferRecentlyFailed#?:247
-preferFast#?:219
-twoTestsNotRunComeBackInRandomOrder#?:333"];
-9 -> 10 [label="AST:3
-preferRecentlyFailed#?:245
-preferFast#?:217
-twoTestsNotRunComeBackInRandomOrder#?:331"];
-10 -> 11 [label="AST:3
-preferRecentlyFailed#?:244
-preferFast#?:216
-twoTestsNotRunComeBackInRandomOrder#?:330"];
-11 -> 12 [label="AST:3
-preferRecentlyFailed#?:243
-preferFast#?:215
-twoTestsNotRunComeBackInRandomOrder#?:329"];
-15 -> 4 [label="Data Dep:3
-preferRecentlyFailed#?:143
-preferFast#?:134
-twoTestsNotRunComeBackInRandomOrder#?:175"];
-15 -> 17 [label="AST:3
-preferRecentlyFailed#?:142
-preferFast#?:133
-twoTestsNotRunComeBackInRandomOrder#?:174"];
-16 -> 5 [label="Define Use:3
-preferRecentlyFailed#?:225
-preferFast#?:201
-twoTestsNotRunComeBackInRandomOrder#?:311"];
-16 -> 15 [label="Define Use:3
-preferRecentlyFailed#?:125
-preferFast#?:116
-twoTestsNotRunComeBackInRandomOrder#?:165"];
-18 -> 19 [label="AST:3
-preferRecentlyFailed#?:139
-preferFast#?:131
-twoTestsNotRunComeBackInRandomOrder#?:171"];
-18 -> 20 [label="AST:2
-preferRecentlyFailed#?:140
-twoTestsNotRunComeBackInRandomOrder#?:172"];
-18 -> 21 [label="AST:3
-preferRecentlyFailed#?:141
-preferFast#?:132
-twoTestsNotRunComeBackInRandomOrder#?:173"];
-22 -> 4 [label="Data Dep:3
-preferRecentlyFailed#?:145
-preferFast#?:136
-twoTestsNotRunComeBackInRandomOrder#?:177"];
-22 -> 24 [label="AST:3
-preferRecentlyFailed#?:144
-preferFast#?:135
-twoTestsNotRunComeBackInRandomOrder#?:176"];
-23 -> 9 [label="Define Use:3
-preferRecentlyFailed#?:224
-preferFast#?:200
-twoTestsNotRunComeBackInRandomOrder#?:310"];
-23 -> 22 [label="Define Use:3
-preferRecentlyFailed#?:113
-preferFast#?:104
-twoTestsNotRunComeBackInRandomOrder#?:154"];
-25 -> 5 [label="AST:3
-preferRecentlyFailed#?:249
-preferFast#?:221
-twoTestsNotRunComeBackInRandomOrder#?:335"];
-25 -> 9 [label="AST:3
-preferRecentlyFailed#?:251
-preferFast#?:223
-twoTestsNotRunComeBackInRandomOrder#?:337"];
-25 -> 26 [label="AST:3
-preferRecentlyFailed#?:248
-preferFast#?:220
-twoTestsNotRunComeBackInRandomOrder#?:334"];
-25 -> 27 [label="AST:3
-preferRecentlyFailed#?:250
-preferFast#?:222
-twoTestsNotRunComeBackInRandomOrder#?:336"];
-27 -> 28 [label="AST:3
-preferRecentlyFailed#?:240
-preferFast#?:213
-twoTestsNotRunComeBackInRandomOrder#?:326"];
-27 -> 30 [label="AST:2
-preferRecentlyFailed#?:241
-twoTestsNotRunComeBackInRandomOrder#?:327"];
-27 -> 34 [label="AST:2
-preferRecentlyFailed#?:242
-twoTestsNotRunComeBackInRandomOrder#?:328"];
-27 -> 40 [label="AST:1
-preferFast#?:214"];
-28 -> 29 [label="AST:3
-preferRecentlyFailed#?:235
-preferFast#?:211
-twoTestsNotRunComeBackInRandomOrder#?:321"];
-30 -> 31 [label="AST:2
-preferRecentlyFailed#?:237
-twoTestsNotRunComeBackInRandomOrder#?:323"];
-30 -> 32 [label="AST:2
-preferRecentlyFailed#?:238
-twoTestsNotRunComeBackInRandomOrder#?:324"];
-32 -> 33 [label="AST:2
-preferRecentlyFailed#?:236
-twoTestsNotRunComeBackInRandomOrder#?:322"];
-34 -> 35 [label="AST:2
-preferRecentlyFailed#?:239
-twoTestsNotRunComeBackInRandomOrder#?:325"];
-36 -> 38 [label="AST:1
-preferFast#?:142"];
-36 -> 1 [label="AST:1
-preferFast#?:143"];
-36 -> 39 [label="AST:1
-preferFast#?:144"];
-36 -> 37 [label="AST:1
-preferFast#?:145"];
-40 -> 31 [label="AST:1
-preferFast#?:212"];
-41 -> 36 [label="AST:1
-preferFast#?:149"];
-41 -> 4 [label="AST:1
-preferFast#?:147"];
+addMoneyBag#?,MoneyBag:42
+addMoney#?,Money:42"];
+5 -> 6 [label="AST:2
+addMoneyBag#?,MoneyBag:35
+addMoney#?,Money:35"];
+5 -> 7 [label="AST:2
+addMoneyBag#?,MoneyBag:36
+addMoney#?,Money:37"];
+5 -> 8 [label="AST:2
+addMoneyBag#?,MoneyBag:37
+addMoney#?,Money:36"];
+7 -> 27 [label="Action:2
+addMoneyBag#?,MoneyBag:75
+addMoney#?,Money:76"];
+8 -> 32 [label="Action:2
+addMoneyBag#?,MoneyBag:76
+addMoney#?,Money:75"];
+9 -> 10 [label="AST:2
+addMoneyBag#?,MoneyBag:28
+addMoney#?,Money:28"];
+11 -> 12 [label="AST:2
+addMoneyBag#?,MoneyBag:99
+addMoney#?,Money:99"];
+11 -> 13 [label="AST:2
+addMoneyBag#?,MoneyBag:100
+addMoney#?,Money:100"];
+11 -> 16 [label="AST:2
+addMoneyBag#?,MoneyBag:101
+addMoney#?,Money:101"];
+11 -> 25 [label="AST:2
+addMoneyBag#?,MoneyBag:102
+addMoney#?,Money:103"];
+11 -> 31 [label="AST:2
+addMoneyBag#?,MoneyBag:103
+addMoney#?,Money:102"];
+13 -> 14 [label="AST:2
+addMoneyBag#?,MoneyBag:82
+addMoney#?,Money:82"];
+14 -> 15 [label="AST:2
+addMoneyBag#?,MoneyBag:81
+addMoney#?,Money:81"];
+16 -> 17 [label="AST:2
+addMoneyBag#?,MoneyBag:87
+addMoney#?,Money:87"];
+16 -> 19 [label="AST:2
+addMoneyBag#?,MoneyBag:88
+addMoney#?,Money:88"];
+16 -> 21 [label="AST:2
+addMoneyBag#?,MoneyBag:89
+addMoney#?,Money:89"];
+16 -> 23 [label="AST:2
+addMoneyBag#?,MoneyBag:90
+addMoney#?,Money:90"];
+17 -> 18 [label="AST:2
+addMoneyBag#?,MoneyBag:83
+addMoney#?,Money:83"];
+19 -> 20 [label="AST:2
+addMoneyBag#?,MoneyBag:84
+addMoney#?,Money:84"];
+21 -> 22 [label="AST:2
+addMoneyBag#?,MoneyBag:85
+addMoney#?,Money:85"];
+23 -> 24 [label="AST:2
+addMoneyBag#?,MoneyBag:86
+addMoney#?,Money:86"];
+25 -> 28 [label="AST:1
+addMoneyBag#?,MoneyBag:93"];
+25 -> 38 [label="AST:1
+addMoney#?,Money:98"];
+25 -> 39 [label="AST:1
+addMoney#?,Money:97"];
+26 -> 7 [label="Define Use:1
+addMoneyBag#?,MoneyBag:25"];
+26 -> 25 [label="Define Use:1
+addMoneyBag#?,MoneyBag:74"];
+27 -> 25 [label="Action:2
+addMoneyBag#?,MoneyBag:104
+addMoney#?,Money:105"];
+28 -> 29 [label="AST:1
+addMoneyBag#?,MoneyBag:92"];
+29 -> 30 [label="AST:2
+addMoneyBag#?,MoneyBag:91
+addMoney#?,Money:91"];
+31 -> 33 [label="AST:1
+addMoneyBag#?,MoneyBag:97"];
+31 -> 35 [label="AST:1
+addMoneyBag#?,MoneyBag:98"];
+31 -> 40 [label="AST:1
+addMoney#?,Money:93"];
+32 -> 31 [label="Action:2
+addMoneyBag#?,MoneyBag:105
+addMoney#?,Money:104"];
+33 -> 34 [label="AST:1
+addMoneyBag#?,MoneyBag:94"];
+35 -> 36 [label="AST:1
+addMoneyBag#?,MoneyBag:96"];
+36 -> 37 [label="AST:2
+addMoneyBag#?,MoneyBag:95
+addMoney#?,Money:95"];
+38 -> 36 [label="AST:1
+addMoney#?,Money:96"];
+39 -> 34 [label="AST:1
+addMoney#?,Money:94"];
+40 -> 29 [label="AST:1
+addMoney#?,Money:92"];
+41 -> 8 [label="Define Use:1
+addMoney#?,Money:25"];
+41 -> 31 [label="Define Use:1
+addMoney#?,Money:74"];
 }

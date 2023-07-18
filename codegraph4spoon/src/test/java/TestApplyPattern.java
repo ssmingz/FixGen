@@ -121,7 +121,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 59;
+        int testId = 104;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);

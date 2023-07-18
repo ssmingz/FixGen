@@ -1,9 +1,6 @@
 package builder;
 
-import codegraph.ASTEdge;
-import codegraph.DefUseEdge;
-import codegraph.Edge;
-import codegraph.Scope;
+import codegraph.*;
 import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
@@ -93,11 +90,21 @@ public class GraphBuilder {
         // attach CtElement mapping
         cg1.setMapping(editScript.getMappingsComp());
         // add actions to src graph
-        // TODO: add relationships in dst graph
-        // TODO: add dst children to allNodes
         for (Operation op : editScript.getRootOperations()) {
             if (op instanceof DeleteOperation) {
                 CtElementImpl src = (CtElementImpl) op.getSrcNode();
+                if (op.getSrcNode() instanceof gumtree.spoon.builder.CtWrapper) {
+                    gumtree.spoon.builder.CtWrapper ori = (gumtree.spoon.builder.CtWrapper) op.getSrcNode();
+                    for (CtWrapper ctw : cg1._allNodes) {
+                        if (ctw.getCtElementImpl().getParent() == op.getSrcNode().getParent()
+                                && ctw.toLabelString().equals(ori.getValue().toString())
+                                && ctw.getCtElementImpl() instanceof CtVirtualElement
+                                && ((CtVirtualElement) ctw.getCtElementImpl()).getLocationInParent().toLowerCase(Locale.ROOT).equals(ori.getRoleInParent().name().toLowerCase(Locale.ROOT))) {
+                            src = ctw.getCtElementImpl();
+                            break;
+                        }
+                    }
+                }
                 Delete del = new Delete(src, op);
                 cg1.updateCGId(del);
 

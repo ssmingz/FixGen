@@ -11,6 +11,7 @@ import gumtree.spoon.builder.SpoonGumTreeBuilder;
 import model.actions.ActionNode;
 import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
@@ -30,6 +31,7 @@ public class CodeGraph implements Serializable {
     private CtElementImpl _entryNode;
     private Map<CtWrapper, CtWrapper> _mapping = new LinkedHashMap<>();
     private Map<Object, Integer> idCG = new LinkedHashMap<>();
+    private int indexCounter = 0;
 
 //    private Class[] exceptArray = {
 //            CtTypeReferenceImpl.class, CtFieldReferenceImpl.class, CtIntersectionTypeReferenceImpl.class,
@@ -219,16 +221,14 @@ public class CodeGraph implements Serializable {
             ((CtElementImpl) obj).setPosition(pt.getPosition());
             CtWrapper ctwrapper = new CtWrapper((CtElementImpl) obj);
             _allNodes.add(ctwrapper);
-            int id = idCG.size()+1;
-            idCG.put(ctwrapper, id);
+            idCG.put(ctwrapper, ++indexCounter);
             ((CtElementImpl) obj)._graphName = this.getFileName();
-            ((CtElementImpl) obj)._graphId = id;
+            ((CtElementImpl) obj)._graphId = indexCounter;
         } else if (obj instanceof Edge) {
             if (!idCG.containsKey(obj)) {
-                int id = idCG.size()+1;
-                idCG.put(obj, id);
+                idCG.put(obj, ++indexCounter);
                 ((Edge) obj)._graphName = this.getFileName();
-                ((Edge) obj)._graphId = id;
+                ((Edge) obj)._graphId = indexCounter;
             }
         }
     }
@@ -258,7 +258,11 @@ public class CodeGraph implements Serializable {
     private void visit(CtMethodImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        // TODO: modifiers, ModifierKind (enum type)
+        // modifiers, ModifierKind (enum type)
+        for (Object mf : ctNode.getModifiers()) {
+            CtVirtualElement modifier = new CtVirtualElement(ctNode, mf.toString(), "MODIFIER");
+            updateCGId(modifier);
+        }
         // return type
         if (ctNode.getType() != null) {
             buildNode(ctNode.getType(), control, scope);

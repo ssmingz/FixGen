@@ -109,8 +109,8 @@ public class TestPatternAbstractor {
 
     @Test
     public void testPatternAbstractorOnC3_fordebug() {
-        String pro = "junit";
-        int group = 59;
+        String pro = "drjava";
+        int group = 927;
         List<CodeGraph> ags = new ArrayList<>();
         String base = String.format("%s/dataset/%s/%d", TestConfig.MAC_BASE, pro, group);
         int size = new File(base).listFiles(File::isDirectory).length;

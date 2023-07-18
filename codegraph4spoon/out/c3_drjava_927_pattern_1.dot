@@ -1,0 +1,246 @@
+digraph "Pattern" {
+0 [label="getHistoryAsStringWithSemicolons#?:33#L3:INSERT
+getHistoryAsString#?:33#L3:INSERT" shape=ellipse]
+1 [label="getHistoryAsStringWithSemicolons#?:15#L2:\{
+    return _history.getHistoryAsStringWithSemicolons();
+\}
+getHistoryAsString#?:15#L2:\{
+    return _history.getHistoryAsString();
+\}" shape=ellipse]
+2 [label="getHistoryAsStringWithSemicolons#?:16#L2:public synchronized String getHistoryAsStringWithSemicolons() \{
+    return _history.getHistoryAsStringWithSemicolons();
+\}
+getHistoryAsString#?:16#L2:public synchronized String getHistoryAsString() \{
+    return _history.getHistoryAsString();
+\}" shape=ellipse]
+3 [label="getHistoryAsStringWithSemicolons#?:1#L2:public
+getHistoryAsString#?:1#L2:public" shape=ellipse]
+4 [label="getHistoryAsStringWithSemicolons#?:2#L2:synchronized
+getHistoryAsString#?:2#L2:synchronized" shape=ellipse]
+5 [label="getHistoryAsStringWithSemicolons#?:5#L2:getHistoryAsStringWithSemicolons
+getHistoryAsString#?:5#L2:getHistoryAsString" shape=ellipse]
+6 [label="getHistoryAsStringWithSemicolons#?:4#L2:String
+getHistoryAsString#?:4#L2:String" shape=ellipse]
+7 [label="getHistoryAsStringWithSemicolons#?:14#L3:return _history.getHistoryAsStringWithSemicolons()
+getHistoryAsString#?:14#L3:return _history.getHistoryAsString()" shape=ellipse]
+8 [label="getHistoryAsStringWithSemicolons#?:13#L3:_history.getHistoryAsStringWithSemicolons()
+getHistoryAsString#?:13#L3:_history.getHistoryAsString()" shape=ellipse]
+9 [label="getHistoryAsStringWithSemicolons#?:68#L3:MOVE
+getHistoryAsString#?:68#L3:MOVE" shape=ellipse]
+10 [label="getHistoryAsStringWithSemicolons#?:55#L5:return _history.getHistoryAsStringWithSemicolons()
+getHistoryAsString#?:55#L5:return _history.getHistoryAsString()" shape=ellipse]
+11 [label="getHistoryAsStringWithSemicolons#?:53#L5:_history.getHistoryAsStringWithSemicolons()
+getHistoryAsString#?:53#L5:_history.getHistoryAsString()" shape=ellipse]
+12 [label="getHistoryAsStringWithSemicolons#?:54#L5:getHistoryAsStringWithSemicolons
+getHistoryAsString#?:54#L5:getHistoryAsString" shape=ellipse]
+13 [label="getHistoryAsStringWithSemicolons#?:47#L5:_history
+getHistoryAsString#?:47#L5:_history" shape=ellipse]
+14 [label="getHistoryAsStringWithSemicolons#?:46#L5:_history
+getHistoryAsString#?:46#L5:_history" shape=ellipse]
+15 [label="getHistoryAsStringWithSemicolons#?:45#L5:PlaceHold
+getHistoryAsString#?:45#L5:PlaceHold" shape=ellipse]
+16 [label="getHistoryAsStringWithSemicolons#?:44#L5:
+getHistoryAsString#?:44#L5:" shape=ellipse]
+17 [label="getHistoryAsStringWithSemicolons#?:52#L5:getHistoryAsStringWithSemicolons()
+getHistoryAsString#?:52#L5:getHistoryAsString()" shape=ellipse]
+18 [label="getHistoryAsStringWithSemicolons#?:49#L5:_history
+getHistoryAsString#?:49#L5:_history" shape=ellipse]
+19 [label="getHistoryAsStringWithSemicolons#?:48#L5:
+getHistoryAsString#?:48#L5:" shape=ellipse]
+20 [label="getHistoryAsStringWithSemicolons#?:51#L5:String
+getHistoryAsString#?:51#L5:String" shape=ellipse]
+21 [label="getHistoryAsStringWithSemicolons#?:50#L5:java.lang
+getHistoryAsString#?:50#L5:java.lang" shape=ellipse]
+22 [label="getHistoryAsStringWithSemicolons#?:43#L4:INSERT
+getHistoryAsString#?:43#L4:INSERT" shape=ellipse]
+23 [label="getHistoryAsStringWithSemicolons#?:67#L4:try \{
+
+\} finally \{
+    releaseReadLock();
+\}
+getHistoryAsString#?:67#L4:try \{
+
+\} finally \{
+    releaseReadLock();
+\}" shape=ellipse]
+24 [label="getHistoryAsStringWithSemicolons#?:56#L4:\{
+    return _history.getHistoryAsStringWithSemicolons();
+\}
+getHistoryAsString#?:56#L4:\{
+    return _history.getHistoryAsString();
+\}" shape=ellipse]
+25 [label="getHistoryAsStringWithSemicolons#?:66#L6:\{
+    releaseReadLock();
+\}
+getHistoryAsString#?:66#L6:\{
+    releaseReadLock();
+\}" shape=ellipse]
+26 [label="getHistoryAsStringWithSemicolons#?:64#L7:releaseReadLock()
+getHistoryAsString#?:64#L7:releaseReadLock()" shape=ellipse]
+27 [label="getHistoryAsStringWithSemicolons#?:65#L7:releaseReadLock
+getHistoryAsString#?:65#L7:releaseReadLock" shape=ellipse]
+28 [label="getHistoryAsStringWithSemicolons#?:62#L7:
+getHistoryAsString#?:62#L7:" shape=ellipse]
+29 [label="getHistoryAsStringWithSemicolons#?:58#L7:PlaceHold
+getHistoryAsString#?:58#L7:PlaceHold" shape=ellipse]
+30 [label="getHistoryAsStringWithSemicolons#?:57#L7:
+getHistoryAsString#?:57#L7:" shape=ellipse]
+31 [label="getHistoryAsStringWithSemicolons#?:61#L7:PlaceHold
+getHistoryAsString#?:61#L7:PlaceHold" shape=ellipse]
+32 [label="getHistoryAsStringWithSemicolons#?:60#L7:PlaceHold
+getHistoryAsString#?:60#L7:PlaceHold" shape=ellipse]
+33 [label="getHistoryAsStringWithSemicolons#?:59#L7:
+getHistoryAsString#?:59#L7:" shape=ellipse]
+34 [label="getHistoryAsStringWithSemicolons#?:63#L7:releaseReadLock()
+getHistoryAsString#?:63#L7:releaseReadLock()" shape=ellipse]
+35 [label="getHistoryAsStringWithSemicolons#?:41#L3:acquireReadLock()
+getHistoryAsString#?:41#L3:acquireReadLock()" shape=ellipse]
+36 [label="getHistoryAsStringWithSemicolons#?:42#L3:acquireReadLock
+getHistoryAsString#?:42#L3:acquireReadLock" shape=ellipse]
+37 [label="getHistoryAsStringWithSemicolons#?:39#L3:
+getHistoryAsString#?:39#L3:" shape=ellipse]
+38 [label="getHistoryAsStringWithSemicolons#?:35#L3:PlaceHold
+getHistoryAsString#?:35#L3:PlaceHold" shape=ellipse]
+39 [label="getHistoryAsStringWithSemicolons#?:34#L3:
+getHistoryAsString#?:34#L3:" shape=ellipse]
+40 [label="getHistoryAsStringWithSemicolons#?:38#L3:PlaceHold
+getHistoryAsString#?:38#L3:PlaceHold" shape=ellipse]
+41 [label="getHistoryAsStringWithSemicolons#?:37#L3:PlaceHold
+getHistoryAsString#?:37#L3:PlaceHold" shape=ellipse]
+42 [label="getHistoryAsStringWithSemicolons#?:36#L3:
+getHistoryAsString#?:36#L3:" shape=ellipse]
+43 [label="getHistoryAsStringWithSemicolons#?:40#L3:acquireReadLock()
+getHistoryAsString#?:40#L3:acquireReadLock()" shape=ellipse]
+0 -> 35 [label="Action:2
+getHistoryAsStringWithSemicolons#?:75
+getHistoryAsString#?:75"];
+1 -> 0 [label="Action:2
+getHistoryAsStringWithSemicolons#?:71
+getHistoryAsString#?:71"];
+1 -> 7 [label="AST:2
+getHistoryAsStringWithSemicolons#?:26
+getHistoryAsString#?:26"];
+1 -> 22 [label="Action:2
+getHistoryAsStringWithSemicolons#?:72
+getHistoryAsString#?:72"];
+2 -> 1 [label="AST:2
+getHistoryAsStringWithSemicolons#?:31
+getHistoryAsString#?:31"];
+2 -> 3 [label="AST:2
+getHistoryAsStringWithSemicolons#?:27
+getHistoryAsString#?:27"];
+2 -> 4 [label="AST:2
+getHistoryAsStringWithSemicolons#?:28
+getHistoryAsString#?:28"];
+2 -> 5 [label="AST:2
+getHistoryAsStringWithSemicolons#?:29
+getHistoryAsString#?:29"];
+2 -> 6 [label="AST:2
+getHistoryAsStringWithSemicolons#?:30
+getHistoryAsString#?:30"];
+7 -> 8 [label="AST:2
+getHistoryAsStringWithSemicolons#?:25
+getHistoryAsString#?:25"];
+7 -> 9 [label="Action:2
+getHistoryAsStringWithSemicolons#?:70
+getHistoryAsString#?:70"];
+9 -> 10 [label="Action:2
+getHistoryAsStringWithSemicolons#?:108
+getHistoryAsString#?:108"];
+10 -> 11 [label="AST:2
+getHistoryAsStringWithSemicolons#?:95
+getHistoryAsString#?:95"];
+11 -> 12 [label="AST:2
+getHistoryAsStringWithSemicolons#?:92
+getHistoryAsString#?:92"];
+11 -> 13 [label="AST:2
+getHistoryAsStringWithSemicolons#?:93
+getHistoryAsString#?:93"];
+11 -> 17 [label="AST:2
+getHistoryAsStringWithSemicolons#?:94
+getHistoryAsString#?:94"];
+13 -> 14 [label="AST:2
+getHistoryAsStringWithSemicolons#?:87
+getHistoryAsString#?:87"];
+14 -> 15 [label="AST:2
+getHistoryAsStringWithSemicolons#?:86
+getHistoryAsString#?:86"];
+15 -> 16 [label="AST:2
+getHistoryAsStringWithSemicolons#?:85
+getHistoryAsString#?:85"];
+17 -> 18 [label="AST:2
+getHistoryAsStringWithSemicolons#?:90
+getHistoryAsString#?:90"];
+17 -> 20 [label="AST:2
+getHistoryAsStringWithSemicolons#?:91
+getHistoryAsString#?:91"];
+18 -> 19 [label="AST:2
+getHistoryAsStringWithSemicolons#?:88
+getHistoryAsString#?:88"];
+20 -> 21 [label="AST:2
+getHistoryAsStringWithSemicolons#?:89
+getHistoryAsString#?:89"];
+22 -> 23 [label="Action:2
+getHistoryAsStringWithSemicolons#?:84
+getHistoryAsString#?:84"];
+23 -> 24 [label="AST:2
+getHistoryAsStringWithSemicolons#?:106
+getHistoryAsString#?:106"];
+23 -> 25 [label="AST:2
+getHistoryAsStringWithSemicolons#?:107
+getHistoryAsString#?:107"];
+24 -> 10 [label="AST:2
+getHistoryAsStringWithSemicolons#?:96
+getHistoryAsString#?:96"];
+25 -> 26 [label="AST:2
+getHistoryAsStringWithSemicolons#?:105
+getHistoryAsString#?:105"];
+26 -> 27 [label="AST:2
+getHistoryAsStringWithSemicolons#?:102
+getHistoryAsString#?:102"];
+26 -> 28 [label="AST:2
+getHistoryAsStringWithSemicolons#?:103
+getHistoryAsString#?:103"];
+26 -> 34 [label="AST:2
+getHistoryAsStringWithSemicolons#?:104
+getHistoryAsString#?:104"];
+28 -> 29 [label="AST:2
+getHistoryAsStringWithSemicolons#?:100
+getHistoryAsString#?:100"];
+28 -> 31 [label="AST:2
+getHistoryAsStringWithSemicolons#?:101
+getHistoryAsString#?:101"];
+29 -> 30 [label="AST:2
+getHistoryAsStringWithSemicolons#?:97
+getHistoryAsString#?:97"];
+31 -> 32 [label="AST:2
+getHistoryAsStringWithSemicolons#?:99
+getHistoryAsString#?:99"];
+32 -> 33 [label="AST:2
+getHistoryAsStringWithSemicolons#?:98
+getHistoryAsString#?:98"];
+35 -> 36 [label="AST:2
+getHistoryAsStringWithSemicolons#?:81
+getHistoryAsString#?:81"];
+35 -> 37 [label="AST:2
+getHistoryAsStringWithSemicolons#?:82
+getHistoryAsString#?:82"];
+35 -> 43 [label="AST:2
+getHistoryAsStringWithSemicolons#?:83
+getHistoryAsString#?:83"];
+37 -> 38 [label="AST:2
+getHistoryAsStringWithSemicolons#?:79
+getHistoryAsString#?:79"];
+37 -> 40 [label="AST:2
+getHistoryAsStringWithSemicolons#?:80
+getHistoryAsString#?:80"];
+38 -> 39 [label="AST:2
+getHistoryAsStringWithSemicolons#?:76
+getHistoryAsString#?:76"];
+40 -> 41 [label="AST:2
+getHistoryAsStringWithSemicolons#?:78
+getHistoryAsString#?:78"];
+41 -> 42 [label="AST:2
+getHistoryAsStringWithSemicolons#?:77
+getHistoryAsString#?:77"];
+}

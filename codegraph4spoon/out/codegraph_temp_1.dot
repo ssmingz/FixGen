@@ -1,234 +1,109 @@
-digraph "preferFast#?" {
-0 [label="1#L3:CtTypeReferenceImpl@void" shape=ellipse]
-1 [label="2#L3:CtVirtualElement@preferFast" shape=ellipse]
-2 [label="3#L4:CtPackageReferenceImpl@" shape=ellipse]
-3 [label="4#L4:CtTypeReferenceImpl@Request" shape=ellipse]
-4 [label="5#L4:CtTypeReferenceImpl@Request" shape=ellipse]
-5 [label="6#L4:CtTypeReferenceImpl@Request" shape=ellipse]
-6 [label="7#L4:CtTypeReferenceImpl@Class<TwoUnEqualTests>" shape=ellipse]
-7 [label="8#L4:CtExecutableReferenceImpl@aClass(java.lang.Class)" shape=ellipse]
-8 [label="9#L4:CtVirtualElement@aClass" shape=ellipse]
-9 [label="10#L4:CtTypeReferenceImpl@Request" shape=ellipse]
-10 [label="11#L4:CtTypeAccessImpl@Request" shape=ellipse]
-11 [label="12#L4:CtTypeReferenceImpl@TwoUnEqualTests" shape=ellipse]
-12 [label="13#L4:CtTypeReferenceImpl@Class" shape=ellipse]
-13 [label="14#L4:CtFieldReferenceImpl@TwoUnEqualTests.class" shape=ellipse]
-14 [label="15#L4:CtTypeAccessImpl@TwoUnEqualTests" shape=ellipse]
-15 [label="16#L4:CtFieldReadImpl@TwoUnEqualTests.class" shape=ellipse]
-16 [label="17#L4:CtInvocationImpl@Request.aClass(TwoUnEqualTests.class)" shape=ellipse]
-17 [label="18#L4:CtVirtualElement@request" shape=ellipse]
-18 [label="19#L4:CtLocalVariableImpl@Request request = Request.aClass(TwoUnEqualTests.class)" shape=ellipse]
-19 [label="20#L5:CtPackageReferenceImpl@" shape=ellipse]
-20 [label="21#L5:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-21 [label="22#L5:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-22 [label="23#L5:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-23 [label="24#L5:CtExecutableReferenceImpl@createFresh()" shape=ellipse]
-24 [label="25#L5:CtVirtualElement@createFresh" shape=ellipse]
-25 [label="26#L5:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-26 [label="27#L5:CtTypeAccessImpl@MaxCore" shape=ellipse]
-27 [label="28#L5:CtInvocationImpl@MaxCore.createFresh()" shape=ellipse]
-28 [label="29#L5:CtVirtualElement@max" shape=ellipse]
-29 [label="30#L5:CtLocalVariableImpl@MaxCore max = MaxCore.createFresh()" shape=ellipse]
-30 [label="31#L6:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-31 [label="32#L6:CtTypeReferenceImpl@Request" shape=ellipse]
-32 [label="33#L6:CtExecutableReferenceImpl@run(Request)" shape=ellipse]
-33 [label="34#L6:CtVirtualElement@run" shape=ellipse]
-34 [label="35#L6:CtLocalVariableReferenceImpl@max" shape=ellipse]
-35 [label="36#L6:CtVariableReadImpl@max" shape=ellipse]
-36 [label="37#L6:CtLocalVariableReferenceImpl@request" shape=ellipse]
-37 [label="38#L6:CtVariableReadImpl@request" shape=ellipse]
-38 [label="39#L6:CtInvocationImpl@max.run(request)" shape=ellipse]
-39 [label="40#L7:CtPackageReferenceImpl@" shape=ellipse]
-40 [label="41#L7:CtTypeReferenceImpl@Description" shape=ellipse]
-41 [label="42#L7:CtTypeReferenceImpl@Description" shape=ellipse]
-42 [label="43#L7:CtTypeReferenceImpl@int" shape=ellipse]
-43 [label="44#L7:CtExecutableReferenceImpl@get(int)" shape=ellipse]
-44 [label="45#L7:CtVirtualElement@get" shape=ellipse]
-45 [label="46#L7:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-46 [label="47#L7:CtTypeReferenceImpl@Request" shape=ellipse]
-47 [label="48#L7:CtExecutableReferenceImpl@sort(Request)" shape=ellipse]
-48 [label="49#L7:CtVirtualElement@sort" shape=ellipse]
-49 [label="50#L7:CtLocalVariableReferenceImpl@max" shape=ellipse]
-50 [label="51#L7:CtVariableReadImpl@max" shape=ellipse]
-51 [label="52#L7:CtLocalVariableReferenceImpl@request" shape=ellipse]
-52 [label="53#L7:CtVariableReadImpl@request" shape=ellipse]
-53 [label="54#L7:CtInvocationImpl@max.sort(request)" shape=ellipse]
-54 [label="55#L7:CtTypeReferenceImpl@int" shape=ellipse]
-55 [label="56#L7:CtLiteralImpl@1" shape=ellipse]
-56 [label="57#L7:CtInvocationImpl@max.sort(request).get(1)" shape=ellipse]
-57 [label="58#L7:CtVirtualElement@thing" shape=ellipse]
-58 [label="59#L7:CtLocalVariableImpl@Description thing = max.sort(request).get(1)" shape=ellipse]
-59 [label="60#L8:CtTypeReferenceImpl@null" shape=ellipse]
-60 [label="61#L8:CtTypeReferenceImpl@null" shape=ellipse]
-61 [label="62#L8:CtExecutableReferenceImpl@assertEquals(<unknown>,<unknown>)" shape=ellipse]
-62 [label="63#L8:CtVirtualElement@assertEquals" shape=ellipse]
-63 [label="64#L8:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-64 [label="65#L8:CtTypeAccessImpl@PlaceHold" shape=ellipse]
-65 [label="66#L8:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-66 [label="67#L8:CtThisAccessImpl@" shape=ellipse]
-67 [label="68#L9:CtTypeReferenceImpl@Description" shape=ellipse]
-68 [label="69#L9:CtTypeReferenceImpl@Class<TwoUnEqualTests>" shape=ellipse]
-69 [label="70#L9:CtTypeReferenceImpl@String" shape=ellipse]
-70 [label="71#L9:CtExecutableReferenceImpl@createTestDescription(java.lang.Class,java.lang.String)" shape=ellipse]
-71 [label="72#L9:CtVirtualElement@createTestDescription" shape=ellipse]
-72 [label="73#L9:CtTypeReferenceImpl@Description" shape=ellipse]
-73 [label="74#L9:CtTypeAccessImpl@Description" shape=ellipse]
-74 [label="75#L9:CtTypeReferenceImpl@TwoUnEqualTests" shape=ellipse]
-75 [label="76#L9:CtTypeReferenceImpl@Class" shape=ellipse]
-76 [label="77#L9:CtFieldReferenceImpl@TwoUnEqualTests.class" shape=ellipse]
-77 [label="78#L9:CtTypeAccessImpl@TwoUnEqualTests" shape=ellipse]
-78 [label="79#L9:CtFieldReadImpl@TwoUnEqualTests.class" shape=ellipse]
-79 [label="80#L9:CtTypeReferenceImpl@String" shape=ellipse]
-80 [label="81#L9:CtLiteralImpl@\"slow\"" shape=ellipse]
-81 [label="82#L9:CtInvocationImpl@Description.createTestDescription(TwoUnEqualTests.class, \"slow\")" shape=ellipse]
-82 [label="83#L9:CtLocalVariableReferenceImpl@thing" shape=ellipse]
-83 [label="84#L9:CtVariableReadImpl@thing" shape=ellipse]
-84 [label="85#L8:CtInvocationImpl@assertEquals(Description.createTestDescription(TwoUnEqualTests.class, \"slow\"), thing)" shape=ellipse]
-85 [label="86#L3:CtBlockImpl@\{
-    Request request = Request.aClass(TwoUnEqualTests.class);
-    MaxCore max = MaxCore.createFresh();
-    max.run(request);
-    Description thing = max.sort(request).get(1);
-    assertEquals(Description.createTestDescription(TwoUnEqualTests.class, \"slow\"), thing);
+digraph "addMoney#?,Money" {
+0 [label="1#L2:CtPackageReferenceImpl@" shape=ellipse]
+1 [label="2#L2:CtTypeReferenceImpl@IMoney" shape=ellipse]
+2 [label="3#L2:CtVirtualElement@addMoney" shape=ellipse]
+3 [label="4#L2:CtVirtualElement@m" shape=ellipse]
+4 [label="5#L2:CtTypeReferenceImpl@Money" shape=ellipse]
+5 [label="6#L2:CtParameterImpl@Money m" shape=ellipse]
+6 [label="7#L3:CtTypeReferenceImpl@IMoney" shape=ellipse]
+7 [label="8#L3:CtExecutableReferenceImpl@simplify()" shape=ellipse]
+8 [label="9#L3:CtVirtualElement@simplify" shape=ellipse]
+9 [label="10#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
+10 [label="11#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
+11 [label="12#L3:CtExecutableReferenceImpl@MoneyBag()" shape=ellipse]
+12 [label="13#L3:CtParameterReferenceImpl@m" shape=ellipse]
+13 [label="14#L3:CtVariableReadImpl@m" shape=ellipse]
+14 [label="15#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+15 [label="16#L3:CtTypeAccessImpl@PlaceHold" shape=ellipse]
+16 [label="17#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+17 [label="18#L3:CtThisAccessImpl@this" shape=ellipse]
+18 [label="19#L3:CtConstructorCallImpl@new MoneyBag(m, this)" shape=ellipse]
+19 [label="20#L3:CtInvocationImpl@new MoneyBag(m, this).simplify()" shape=ellipse]
+20 [label="21#L3:CtReturnImpl@return new MoneyBag(m, this).simplify()" shape=ellipse]
+21 [label="22#L2:CtBlockImpl@\{
+    return new MoneyBag(m, this).simplify();
 \}" shape=ellipse]
-86 [label="87#L2:CtAnnotationImpl@@Test" shape=ellipse]
-87 [label="88#L3:CtMethodImpl@@Test
-public void preferFast() \{
-    Request request = Request.aClass(TwoUnEqualTests.class);
-    MaxCore max = MaxCore.createFresh();
-    max.run(request);
-    Description thing = max.sort(request).get(1);
-    assertEquals(Description.createTestDescription(TwoUnEqualTests.class, \"slow\"), thing);
+22 [label="23#L2:CtMethodImpl@public IMoney addMoney(Money m) \{
+    return new MoneyBag(m, this).simplify();
 \}" shape=ellipse]
-88 [label="184#L7:Update@UPDATE" shape=ellipse]
-89 [label="185#L7:CtPackageReferenceImpl@" shape=ellipse]
-90 [label="186#L7:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-91 [label="187#L7:CtLocalVariableReferenceImpl@max" shape=ellipse]
-92 [label="188#L7:CtVariableReadImpl@max" shape=ellipse]
-93 [label="189#L7:CtPackageReferenceImpl@" shape=ellipse]
-94 [label="190#L7:CtTypeReferenceImpl@MaxCore" shape=ellipse]
-95 [label="191#L7:CtPackageReferenceImpl@" shape=ellipse]
-96 [label="192#L7:CtTypeReferenceImpl@Request" shape=ellipse]
-97 [label="193#L7:CtExecutableReferenceImpl@sortedLeavesForTest(Request)" shape=ellipse]
-98 [label="194#L7:CtPackageReferenceImpl@" shape=ellipse]
-99 [label="195#L7:CtTypeReferenceImpl@Request" shape=ellipse]
-100 [label="196#L7:CtLocalVariableReferenceImpl@request" shape=ellipse]
-101 [label="197#L7:CtVariableReadImpl@request" shape=ellipse]
-102 [label="198#L7:CtInvocationImpl@max.sortedLeavesForTest(request)" shape=ellipse]
-103 [label="199#L7:CtVirtualElement@sortedLeavesForTest" shape=ellipse]
-3 -> 2 [label="89#AST"];
-7 -> 4 [label="90#AST"];
-7 -> 5 [label="91#AST"];
-7 -> 6 [label="92#AST"];
-10 -> 9 [label="93#AST"];
-13 -> 11 [label="94#AST"];
-13 -> 12 [label="95#AST"];
-15 -> 14 [label="96#AST"];
-15 -> 13 [label="97#AST"];
-15 -> 17 [label="98#Data Dep"];
-16 -> 8 [label="99#AST"];
-16 -> 10 [label="100#AST"];
-16 -> 7 [label="101#AST"];
-16 -> 15 [label="102#AST"];
-17 -> 37 [label="103#Define-Use"];
-17 -> 52 [label="104#Define-Use"];
-17 -> 101 [label="200#Define-Use"];
-18 -> 17 [label="105#AST"];
-18 -> 3 [label="106#AST"];
-18 -> 16 [label="107#AST"];
-20 -> 19 [label="108#AST"];
-23 -> 21 [label="109#AST"];
-23 -> 22 [label="110#AST"];
-26 -> 25 [label="111#AST"];
-27 -> 24 [label="112#AST"];
-27 -> 26 [label="113#AST"];
-27 -> 23 [label="114#AST"];
-28 -> 35 [label="115#Define-Use"];
-28 -> 50 [label="116#Define-Use"];
-28 -> 92 [label="201#Define-Use"];
-29 -> 28 [label="117#AST"];
-29 -> 20 [label="118#AST"];
-29 -> 27 [label="119#AST"];
-32 -> 30 [label="120#AST"];
-32 -> 31 [label="121#AST"];
-35 -> 34 [label="122#AST"];
-37 -> 36 [label="123#AST"];
-38 -> 33 [label="124#AST"];
-38 -> 35 [label="125#AST"];
-38 -> 32 [label="126#AST"];
-38 -> 37 [label="127#AST"];
-40 -> 39 [label="128#AST"];
-43 -> 41 [label="129#AST"];
-43 -> 42 [label="130#AST"];
-47 -> 45 [label="131#AST"];
-47 -> 46 [label="132#AST"];
-50 -> 49 [label="133#AST"];
-50 -> 57 [label="134#Data Dep"];
-52 -> 51 [label="135#AST"];
-52 -> 57 [label="136#Data Dep"];
-53 -> 48 [label="137#AST"];
-53 -> 50 [label="138#AST"];
-53 -> 47 [label="139#AST"];
-53 -> 52 [label="140#AST"];
-53 -> 88 [label="202#Action"];
-55 -> 54 [label="141#AST"];
-56 -> 44 [label="142#AST"];
-56 -> 53 [label="143#AST"];
-56 -> 43 [label="144#AST"];
-56 -> 55 [label="145#AST"];
-57 -> 83 [label="146#Define-Use"];
-58 -> 57 [label="147#AST"];
-58 -> 40 [label="148#AST"];
-58 -> 56 [label="149#AST"];
-61 -> 59 [label="150#AST"];
-61 -> 60 [label="151#AST"];
-64 -> 63 [label="152#AST"];
-66 -> 65 [label="153#AST"];
-66 -> 64 [label="154#AST"];
-70 -> 67 [label="155#AST"];
-70 -> 68 [label="156#AST"];
-70 -> 69 [label="157#AST"];
-73 -> 72 [label="158#AST"];
-76 -> 74 [label="159#AST"];
-76 -> 75 [label="160#AST"];
-78 -> 77 [label="161#AST"];
-78 -> 76 [label="162#AST"];
-80 -> 79 [label="163#AST"];
-81 -> 71 [label="164#AST"];
-81 -> 73 [label="165#AST"];
-81 -> 70 [label="166#AST"];
-81 -> 78 [label="167#AST"];
-81 -> 80 [label="168#AST"];
-83 -> 82 [label="169#AST"];
-84 -> 62 [label="170#AST"];
-84 -> 66 [label="171#AST"];
-84 -> 61 [label="172#AST"];
-84 -> 81 [label="173#AST"];
-84 -> 83 [label="174#AST"];
-85 -> 18 [label="175#AST"];
-85 -> 29 [label="176#AST"];
-85 -> 38 [label="177#AST"];
-85 -> 58 [label="178#AST"];
-85 -> 84 [label="179#AST"];
-87 -> 1 [label="180#AST"];
-87 -> 86 [label="181#AST"];
-87 -> 0 [label="182#AST"];
-87 -> 85 [label="183#AST"];
-88 -> 102 [label="205#Action"];
-90 -> 89 [label="206#AST"];
-91 -> 90 [label="207#AST"];
-92 -> 91 [label="208#AST"];
-92 -> 57 [label="210#Data Dep"];
-94 -> 93 [label="211#AST"];
-96 -> 95 [label="212#AST"];
-97 -> 94 [label="213#AST"];
-97 -> 96 [label="214#AST"];
-99 -> 98 [label="215#AST"];
-100 -> 99 [label="216#AST"];
-101 -> 100 [label="217#AST"];
-101 -> 57 [label="219#Data Dep"];
-102 -> 103 [label="220#AST"];
-102 -> 92 [label="221#AST"];
-102 -> 97 [label="222#AST"];
-102 -> 101 [label="223#AST"];
+23 [label="47#L3:Update@UPDATE" shape=ellipse]
+24 [label="48#L3:CtPackageReferenceImpl@" shape=ellipse]
+25 [label="49#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
+26 [label="50#L3:CtTypeAccessImpl@MoneyBag" shape=ellipse]
+27 [label="51#L3:CtPackageReferenceImpl@" shape=ellipse]
+28 [label="52#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
+29 [label="53#L3:CtPackageReferenceImpl@" shape=ellipse]
+30 [label="54#L3:CtTypeReferenceImpl@IMoney" shape=ellipse]
+31 [label="55#L3:CtPackageReferenceImpl@" shape=ellipse]
+32 [label="56#L3:CtTypeReferenceImpl@Money" shape=ellipse]
+33 [label="57#L3:CtPackageReferenceImpl@" shape=ellipse]
+34 [label="58#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+35 [label="59#L3:CtExecutableReferenceImpl@create(Money,PlaceHold)" shape=ellipse]
+36 [label="60#L3:CtPackageReferenceImpl@" shape=ellipse]
+37 [label="61#L3:CtTypeReferenceImpl@Money" shape=ellipse]
+38 [label="62#L3:CtParameterReferenceImpl@m" shape=ellipse]
+39 [label="63#L3:CtVariableReadImpl@m" shape=ellipse]
+40 [label="64#L3:CtPackageReferenceImpl@" shape=ellipse]
+41 [label="65#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+42 [label="66#L3:CtPackageReferenceImpl@" shape=ellipse]
+43 [label="67#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+44 [label="68#L3:CtTypeAccessImpl@PlaceHold" shape=ellipse]
+45 [label="69#L3:CtThisAccessImpl@this" shape=ellipse]
+46 [label="70#L3:CtInvocationImpl@MoneyBag.create(m, this)" shape=ellipse]
+47 [label="71#L3:CtVirtualElement@create" shape=ellipse]
+48 [label="72#L3:Move@MOVE" shape=ellipse]
+49 [label="73#L3:Move@MOVE" shape=ellipse]
+1 -> 0 [label="24#AST"];
+3 -> 13 [label="25#Define-Use"];
+3 -> 39 [label="74#Define-Use"];
+5 -> 3 [label="26#AST"];
+5 -> 4 [label="27#AST"];
+7 -> 6 [label="28#AST"];
+11 -> 9 [label="29#AST"];
+11 -> 10 [label="30#AST"];
+13 -> 12 [label="31#AST"];
+13 -> 48 [label="75#Action"];
+15 -> 14 [label="32#AST"];
+17 -> 16 [label="33#AST"];
+17 -> 15 [label="34#AST"];
+17 -> 49 [label="76#Action"];
+18 -> 11 [label="35#AST"];
+18 -> 13 [label="36#AST"];
+18 -> 17 [label="37#AST"];
+19 -> 8 [label="38#AST"];
+19 -> 18 [label="39#AST"];
+19 -> 7 [label="40#AST"];
+19 -> 23 [label="77#Action"];
+20 -> 19 [label="41#AST"];
+21 -> 20 [label="42#AST"];
+22 -> 2 [label="43#AST"];
+22 -> 1 [label="44#AST"];
+22 -> 5 [label="45#AST"];
+22 -> 21 [label="46#AST"];
+23 -> 46 [label="80#Action"];
+25 -> 24 [label="81#AST"];
+26 -> 25 [label="82#AST"];
+28 -> 27 [label="83#AST"];
+30 -> 29 [label="84#AST"];
+32 -> 31 [label="85#AST"];
+34 -> 33 [label="86#AST"];
+35 -> 28 [label="87#AST"];
+35 -> 30 [label="88#AST"];
+35 -> 32 [label="89#AST"];
+35 -> 34 [label="90#AST"];
+37 -> 36 [label="91#AST"];
+38 -> 37 [label="92#AST"];
+39 -> 38 [label="93#AST"];
+41 -> 40 [label="94#AST"];
+43 -> 42 [label="95#AST"];
+44 -> 43 [label="96#AST"];
+45 -> 41 [label="97#AST"];
+45 -> 44 [label="98#AST"];
+46 -> 47 [label="99#AST"];
+46 -> 26 [label="100#AST"];
+46 -> 35 [label="101#AST"];
+46 -> 39 [label="102#AST"];
+46 -> 45 [label="103#AST"];
+48 -> 39 [label="104#Action"];
+49 -> 45 [label="105#Action"];
 }

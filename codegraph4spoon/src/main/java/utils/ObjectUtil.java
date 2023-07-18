@@ -128,7 +128,7 @@ public class ObjectUtil {
                                 cgObj.attributeLabel.put(vID, labs);
                             }
                             cgObj.attributes.get(vID).put(att.getName(), att.getValueByCG(cg).toString());
-                            cgObj.attributeLabel.get(vID).put(att.getName(), att.isAbstract() ? 1 : 0);
+                            cgObj.attributeLabel.get(vID).put(att.getName(), att.isAbstract() ? 0 : 1);
                         }
                     }
                 } else if (pObj instanceof PatternEdge) {
@@ -277,7 +277,7 @@ public class ObjectUtil {
                             cgObj.attributeLabel.put(vID, labs);
                         }
                         cgObj.attributes.get(vID).put(att.getName(), String.valueOf(att.getValueByCG(cg)));
-                        cgObj.attributeLabel.get(vID).put(att.getName(), att.isAbstract() ? 1 : 0);
+                        cgObj.attributeLabel.get(vID).put(att.getName(), att.isAbstract() ? 0 : 1);
                     }
                 }
             } else if (pObj instanceof PatternEdge) {
