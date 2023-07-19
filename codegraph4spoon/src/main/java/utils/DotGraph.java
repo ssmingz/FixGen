@@ -193,4 +193,22 @@ public class DotGraph {
             e.printStackTrace();
         }
     }
+
+    public static void drawPattern(Pattern pattern, String path, boolean isAbstract) {
+        DotGraph dot = new DotGraph(pattern, 0, isAbstract, false);
+        dot.toDotFile(new File(path));
+    }
+
+    public static void drawPattern(List<Pattern> patternList, String base, boolean isAbstract) {
+        for (int i=0; i<patternList.size(); i++) {
+            String abs = isAbstract ? "_abstract" : "";
+            String path = String.format("%s/pattern%s_%d.dot", base, abs, i);
+            drawPattern(patternList.get(i), path, isAbstract);
+        }
+    }
+
+    public static void drawCodeGraph(CodeGraph cg, String path) {
+        DotGraph dot = new DotGraph(cg, new GraphConfiguration(), 0);
+        dot.toDotFile(new File(path));
+    }
 }

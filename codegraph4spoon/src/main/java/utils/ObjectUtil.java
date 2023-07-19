@@ -137,7 +137,7 @@ public class ObjectUtil {
                 }
             } else if (pObj instanceof PatternEdge) {
                 PatternEdge pe = (PatternEdge) pObj;
-                boolean isKept = pe.isAbstract();  // contain --> keep --> not remove --> 1
+                boolean isKept = !pe.isAbstract();  // contain --> keep --> not remove --> 1
                 String patLabel = pe.getLabel();
                 for (Map.Entry<Edge, CodeGraph> entry2 : pe.getInstance().entrySet()) {
                     Edge e = entry2.getKey();

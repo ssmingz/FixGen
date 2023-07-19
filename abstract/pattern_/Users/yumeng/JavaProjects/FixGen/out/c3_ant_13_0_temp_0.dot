@@ -1,0 +1,156 @@
+digraph "Pattern" {
+0 [label="##ActionPoint##
+locationInParent:ACTION
+nodeType:class model.actions.Update
+value:UPDATE
+value2:
+locationInParent:ACTION
+nodeType:class model.actions.Update
+value:UPDATE
+value2:
+valueType:?" shape=ellipse]
+1 [label="nodeType:class spoon.support.reflect.code.CtConstructorCallImpl
+locationInParent:ASSIGNMENT
+nodeType:class spoon.support.reflect.code.CtConstructorCallImpl
+value:new VAJLocalToolUtil()
+value2:new VAJLocalToolUtil()
+valueType:VAJLocalToolUtil" shape=ellipse]
+2 [label="nodeType:class spoon.support.reflect.code.CtBlockImpl
+locationInParent:THEN
+nodeType:class spoon.support.reflect.code.CtBlockImpl
+value:\{
+    util = new VAJLocalToolUtil();
+\}
+value2:\{
+    PlaceHold = new VAJLocalToolUtil();
+\}
+valueType:?" shape=ellipse]
+3 [label="locationInParent:STATEMENT
+nodeType:class spoon.support.reflect.code.CtAssignmentImpl
+locationInParent:STATEMENT
+nodeType:class spoon.support.reflect.code.CtAssignmentImpl
+value:util = new VAJLocalToolUtil()
+value2:PlaceHold = new VAJLocalToolUtil()
+valueType:?" shape=ellipse]
+4 [label="locationInParent:ARGUMENT
+nodeType:class spoon.support.reflect.code.CtThisAccessImpl
+value:this
+value2:this
+valueType:PlaceHold
+locationInParent:ARGUMENT
+nodeType:class spoon.support.reflect.code.CtThisAccessImpl
+value:this
+value2:this
+valueType:PlaceHold" shape=ellipse]
+5 [label="locationInParent:TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold
+locationInParent:TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold
+valueType:?" shape=ellipse]
+6 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+valueType:?" shape=ellipse]
+7 [label="locationInParent:TARGET
+nodeType:class spoon.support.reflect.code.CtTypeAccessImpl
+value:PlaceHold
+value2:PlaceHold
+valueType:void
+locationInParent:TARGET
+nodeType:class spoon.support.reflect.code.CtTypeAccessImpl
+value:PlaceHold
+value2:PlaceHold
+valueType:void" shape=ellipse]
+8 [label="locationInParent:ACCESSED_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold
+locationInParent:ACCESSED_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold
+valueType:?" shape=ellipse]
+9 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+valueType:?" shape=ellipse]
+10 [label="locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:<init>
+value2:<init>
+locationInParent:EXECUTABLE_REF
+nodeType:TOO LONG TO BE PRINTED
+value:<init>
+value2:<init>
+valueType:VAJLocalToolUtil" shape=ellipse]
+11 [label="locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+locationInParent:DECLARING_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:VAJLocalToolUtil
+value2:VAJLocalToolUtil
+valueType:?" shape=ellipse]
+12 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+valueType:?" shape=ellipse]
+13 [label="locationInParent:TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+locationInParent:TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:VAJLocalToolUtil
+value2:VAJLocalToolUtil
+valueType:?" shape=ellipse]
+14 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+valueType:?" shape=ellipse]
+15 [label="locationInParent:ARGUMENT_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold
+locationInParent:ARGUMENT_TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
+value:PlaceHold
+value2:PlaceHold
+valueType:?" shape=ellipse]
+16 [label="locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+locationInParent:PACKAGE_REF
+nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
+value:
+value2:
+valueType:?" shape=ellipse]
+17 [label="nodeType:class spoon.support.reflect.code.CtConstructorCallImpl
+locationInParent:ASSIGNMENT
+nodeType:class spoon.support.reflect.code.CtConstructorCallImpl
+value:new VAJLocalToolUtil(this)
+value2:new VAJLocalToolUtil(this)
+valueType:VAJLocalToolUtil" shape=ellipse]
+}

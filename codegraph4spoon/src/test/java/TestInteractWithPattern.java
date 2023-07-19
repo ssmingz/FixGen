@@ -7,7 +7,6 @@ import org.junit.Test;
 import utils.DotGraph;
 import utils.ObjectUtil;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,7 @@ public class TestInteractWithPattern {
         String srcPath = String.format("%s/before.java", base);
         String tarPath = String.format("%s/after.java", base);
         CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
-        drawCodeGraph(ag, System.getProperty("user.dir") + "/out/cg_temp.dot");
+        DotGraph.drawCodeGraph(ag, System.getProperty("user.dir") + "/out/cg_temp.dot");
 
         // init the pattern
         List<Pattern> patterns = PatternExtractor.combineGraphs(new ArrayList<>(){
@@ -31,7 +30,7 @@ public class TestInteractWithPattern {
                 add(ag);
             }
         });
-        drawPattern(patterns, System.getProperty("user.dir") + "/out/", false);
+        DotGraph.drawPattern(patterns, System.getProperty("user.dir") + "/out/", false);
 
         // load element label
         String key = "/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/src/test/resources/c3/ant/13/0/before.java";
@@ -53,23 +52,6 @@ public class TestInteractWithPattern {
         InteractPattern.abstractVertex(pat_reload, 122, 1, key);
         InteractPattern.abstractEdge(pat_reload, 122, 22, 0, key);
         InteractPattern.abstractAttribute(pat_reload, 122, "locationInParent", 1, key);
-        drawPattern(pat_reload, System.getProperty("user.dir") + "/out/modified_pattern_temp.dot", true);
-    }
-
-    private void drawPattern(Pattern pattern, String path, boolean isAbstract) {
-        DotGraph dot = new DotGraph(pattern, 0, isAbstract, false);
-        dot.toDotFile(new File(path));
-    }
-
-    private void drawPattern(List<Pattern> patternList, String base, boolean isAbstract) {
-        for (int i=0; i<patternList.size(); i++) {
-            String path = String.format("%s/pattern_temp_%d.dot", base, i);
-            drawPattern(patternList.get(i), path, isAbstract);
-        }
-    }
-
-    private void drawCodeGraph(CodeGraph cg, String path) {
-        DotGraph dot = new DotGraph(cg, new GraphConfiguration(), 0);
-        dot.toDotFile(new File(path));
+        DotGraph.drawPattern(pat_reload, System.getProperty("user.dir") + "/out/modified_pattern_temp.dot", true);
     }
 }
