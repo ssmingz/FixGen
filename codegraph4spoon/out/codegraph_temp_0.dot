@@ -1,109 +1,120 @@
-digraph "addMoneyBag#?,MoneyBag" {
-0 [label="1#L2:CtPackageReferenceImpl@" shape=ellipse]
-1 [label="2#L2:CtTypeReferenceImpl@IMoney" shape=ellipse]
-2 [label="3#L2:CtVirtualElement@addMoneyBag" shape=ellipse]
-3 [label="4#L2:CtVirtualElement@s" shape=ellipse]
-4 [label="5#L2:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-5 [label="6#L2:CtParameterImpl@MoneyBag s" shape=ellipse]
-6 [label="7#L3:CtTypeReferenceImpl@IMoney" shape=ellipse]
-7 [label="8#L3:CtExecutableReferenceImpl@simplify()" shape=ellipse]
-8 [label="9#L3:CtVirtualElement@simplify" shape=ellipse]
-9 [label="10#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-10 [label="11#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-11 [label="12#L3:CtExecutableReferenceImpl@MoneyBag()" shape=ellipse]
-12 [label="13#L3:CtParameterReferenceImpl@s" shape=ellipse]
-13 [label="14#L3:CtVariableReadImpl@s" shape=ellipse]
-14 [label="15#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-15 [label="16#L3:CtTypeAccessImpl@PlaceHold" shape=ellipse]
-16 [label="17#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-17 [label="18#L3:CtThisAccessImpl@this" shape=ellipse]
-18 [label="19#L3:CtConstructorCallImpl@new MoneyBag(s, this)" shape=ellipse]
-19 [label="20#L3:CtInvocationImpl@new MoneyBag(s, this).simplify()" shape=ellipse]
-20 [label="21#L3:CtReturnImpl@return new MoneyBag(s, this).simplify()" shape=ellipse]
-21 [label="22#L2:CtBlockImpl@\{
-    return new MoneyBag(s, this).simplify();
+digraph "getTimeout#?" {
+0 [label="1#L2:CtVirtualElement@public" shape=ellipse]
+1 [label="2#L2:CtTypeReferenceImpl@long" shape=ellipse]
+2 [label="3#L2:CtVirtualElement@getTimeout" shape=ellipse]
+3 [label="4#L3:CtPackageReferenceImpl@" shape=ellipse]
+4 [label="5#L3:CtTypeReferenceImpl@Test" shape=ellipse]
+5 [label="6#L3:CtTypeReferenceImpl@fMethod" shape=ellipse]
+6 [label="7#L3:CtTypeReferenceImpl@Test" shape=ellipse]
+7 [label="8#L3:CtTypeReferenceImpl@Class<Test>" shape=ellipse]
+8 [label="9#L3:CtExecutableReferenceImpl@getAnnotation(java.lang.Class)" shape=ellipse]
+9 [label="10#L3:CtVirtualElement@getAnnotation" shape=ellipse]
+10 [label="11#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
+11 [label="12#L3:CtFieldReferenceImpl@fMethod" shape=ellipse]
+12 [label="13#L3:CtFieldReadImpl@fMethod" shape=ellipse]
+13 [label="14#L3:CtTypeReferenceImpl@Test" shape=ellipse]
+14 [label="15#L3:CtTypeReferenceImpl@Class" shape=ellipse]
+15 [label="16#L3:CtFieldReferenceImpl@Test.class" shape=ellipse]
+16 [label="17#L3:CtTypeAccessImpl@Test" shape=ellipse]
+17 [label="18#L3:CtFieldReadImpl@Test.class" shape=ellipse]
+18 [label="19#L3:CtInvocationImpl@fMethod.getAnnotation(Test.class)" shape=ellipse]
+19 [label="20#L3:CtVirtualElement@annotation" shape=ellipse]
+20 [label="21#L3:CtLocalVariableImpl@Test annotation = fMethod.getAnnotation(Test.class)" shape=ellipse]
+21 [label="22#L4:CtTypeReferenceImpl@long" shape=ellipse]
+22 [label="23#L4:CtTypeReferenceImpl@Test" shape=ellipse]
+23 [label="24#L4:CtTypeReferenceImpl@long" shape=ellipse]
+24 [label="25#L4:CtExecutableReferenceImpl@timeout()" shape=ellipse]
+25 [label="26#L4:CtVirtualElement@timeout" shape=ellipse]
+26 [label="27#L4:CtLocalVariableReferenceImpl@annotation" shape=ellipse]
+27 [label="28#L4:CtVariableReadImpl@annotation" shape=ellipse]
+28 [label="29#L4:CtInvocationImpl@annotation.timeout()" shape=ellipse]
+29 [label="30#L4:CtVirtualElement@timeout" shape=ellipse]
+30 [label="31#L4:CtLocalVariableImpl@long timeout = annotation.timeout()" shape=ellipse]
+31 [label="32#L5:CtLocalVariableReferenceImpl@timeout" shape=ellipse]
+32 [label="33#L5:CtVariableReadImpl@timeout" shape=ellipse]
+33 [label="34#L5:CtReturnImpl@return timeout" shape=ellipse]
+34 [label="35#L2:CtBlockImpl@\{
+    Test annotation = fMethod.getAnnotation(Test.class);
+    long timeout = annotation.timeout();
+    return timeout;
 \}" shape=ellipse]
-22 [label="23#L2:CtMethodImpl@public IMoney addMoneyBag(MoneyBag s) \{
-    return new MoneyBag(s, this).simplify();
+35 [label="36#L2:CtMethodImpl@public long getTimeout() \{
+    Test annotation = fMethod.getAnnotation(Test.class);
+    long timeout = annotation.timeout();
+    return timeout;
 \}" shape=ellipse]
-23 [label="47#L3:Update@UPDATE" shape=ellipse]
-24 [label="48#L3:CtPackageReferenceImpl@" shape=ellipse]
-25 [label="49#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-26 [label="50#L3:CtTypeAccessImpl@MoneyBag" shape=ellipse]
-27 [label="51#L3:CtPackageReferenceImpl@" shape=ellipse]
-28 [label="52#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-29 [label="53#L3:CtPackageReferenceImpl@" shape=ellipse]
-30 [label="54#L3:CtTypeReferenceImpl@IMoney" shape=ellipse]
-31 [label="55#L3:CtPackageReferenceImpl@" shape=ellipse]
-32 [label="56#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-33 [label="57#L3:CtPackageReferenceImpl@" shape=ellipse]
-34 [label="58#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-35 [label="59#L3:CtExecutableReferenceImpl@create(MoneyBag,PlaceHold)" shape=ellipse]
-36 [label="60#L3:CtPackageReferenceImpl@" shape=ellipse]
-37 [label="61#L3:CtTypeReferenceImpl@MoneyBag" shape=ellipse]
-38 [label="62#L3:CtParameterReferenceImpl@s" shape=ellipse]
-39 [label="63#L3:CtVariableReadImpl@s" shape=ellipse]
-40 [label="64#L3:CtPackageReferenceImpl@" shape=ellipse]
-41 [label="65#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-42 [label="66#L3:CtPackageReferenceImpl@" shape=ellipse]
-43 [label="67#L3:CtTypeReferenceImpl@PlaceHold" shape=ellipse]
-44 [label="68#L3:CtTypeAccessImpl@PlaceHold" shape=ellipse]
-45 [label="69#L3:CtThisAccessImpl@this" shape=ellipse]
-46 [label="70#L3:CtInvocationImpl@MoneyBag.create(s, this)" shape=ellipse]
-47 [label="71#L3:CtVirtualElement@create" shape=ellipse]
-48 [label="72#L3:Move@MOVE" shape=ellipse]
-49 [label="73#L3:Move@MOVE" shape=ellipse]
-1 -> 0 [label="24#AST"];
-3 -> 13 [label="25#Define-Use"];
-3 -> 39 [label="74#Define-Use"];
-5 -> 3 [label="26#AST"];
-5 -> 4 [label="27#AST"];
-7 -> 6 [label="28#AST"];
-11 -> 9 [label="29#AST"];
-11 -> 10 [label="30#AST"];
-13 -> 12 [label="31#AST"];
-13 -> 48 [label="75#Action"];
-15 -> 14 [label="32#AST"];
-17 -> 16 [label="33#AST"];
-17 -> 15 [label="34#AST"];
-17 -> 49 [label="76#Action"];
-18 -> 11 [label="35#AST"];
-18 -> 13 [label="36#AST"];
-18 -> 17 [label="37#AST"];
-19 -> 8 [label="38#AST"];
-19 -> 18 [label="39#AST"];
-19 -> 7 [label="40#AST"];
-19 -> 23 [label="77#Action"];
-20 -> 19 [label="41#AST"];
-21 -> 20 [label="42#AST"];
-22 -> 2 [label="43#AST"];
-22 -> 1 [label="44#AST"];
-22 -> 5 [label="45#AST"];
-22 -> 21 [label="46#AST"];
-23 -> 46 [label="80#Action"];
-25 -> 24 [label="81#AST"];
-26 -> 25 [label="82#AST"];
-28 -> 27 [label="83#AST"];
-30 -> 29 [label="84#AST"];
-32 -> 31 [label="85#AST"];
-34 -> 33 [label="86#AST"];
-35 -> 28 [label="87#AST"];
-35 -> 30 [label="88#AST"];
-35 -> 32 [label="89#AST"];
-35 -> 34 [label="90#AST"];
-37 -> 36 [label="91#AST"];
-38 -> 37 [label="92#AST"];
-39 -> 38 [label="93#AST"];
-41 -> 40 [label="94#AST"];
-43 -> 42 [label="95#AST"];
-44 -> 43 [label="96#AST"];
-45 -> 41 [label="97#AST"];
-45 -> 44 [label="98#AST"];
-46 -> 47 [label="99#AST"];
-46 -> 26 [label="100#AST"];
-46 -> 35 [label="101#AST"];
-46 -> 39 [label="102#AST"];
-46 -> 45 [label="103#AST"];
-48 -> 39 [label="104#Action"];
-49 -> 45 [label="105#Action"];
+36 [label="77#L4:Insert@INSERT" shape=ellipse]
+37 [label="78#L4:CtPackageReferenceImpl@" shape=ellipse]
+38 [label="79#L4:CtTypeReferenceImpl@Test" shape=ellipse]
+39 [label="80#L4:CtLocalVariableReferenceImpl@annotation" shape=ellipse]
+40 [label="81#L4:CtVariableReadImpl@annotation" shape=ellipse]
+41 [label="82#L4:CtTypeReferenceImpl@<nulltype>" shape=ellipse]
+42 [label="83#L4:CtLiteralImpl@null" shape=ellipse]
+43 [label="84#L4:CtBinaryOperatorImpl@annotation == null" shape=ellipse]
+44 [label="85#L5:CtTypeReferenceImpl@int" shape=ellipse]
+45 [label="86#L5:CtLiteralImpl@0" shape=ellipse]
+46 [label="87#L5:CtReturnImpl@return 0" shape=ellipse]
+47 [label="88#L4:CtBlockImpl@\{
+    return 0;
+\}" shape=ellipse]
+48 [label="89#L4:CtIfImpl@if (annotation == null) \{
+    return 0;
+\}" shape=ellipse]
+4 -> 3 [label="37#AST"];
+8 -> 5 [label="38#AST"];
+8 -> 6 [label="39#AST"];
+8 -> 7 [label="40#AST"];
+11 -> 10 [label="41#AST"];
+12 -> 11 [label="42#AST"];
+12 -> 19 [label="43#Data Dep"];
+15 -> 13 [label="44#AST"];
+15 -> 14 [label="45#AST"];
+17 -> 16 [label="46#AST"];
+17 -> 15 [label="47#AST"];
+17 -> 19 [label="48#Data Dep"];
+18 -> 9 [label="49#AST"];
+18 -> 12 [label="50#AST"];
+18 -> 8 [label="51#AST"];
+18 -> 17 [label="52#AST"];
+19 -> 27 [label="53#Define-Use"];
+19 -> 40 [label="90#Define-Use"];
+20 -> 19 [label="54#AST"];
+20 -> 4 [label="55#AST"];
+20 -> 18 [label="56#AST"];
+24 -> 22 [label="57#AST"];
+24 -> 23 [label="58#AST"];
+27 -> 26 [label="59#AST"];
+27 -> 29 [label="60#Data Dep"];
+28 -> 25 [label="61#AST"];
+28 -> 27 [label="62#AST"];
+28 -> 24 [label="63#AST"];
+29 -> 32 [label="64#Define-Use"];
+30 -> 29 [label="65#AST"];
+30 -> 21 [label="66#AST"];
+30 -> 28 [label="67#AST"];
+32 -> 31 [label="68#AST"];
+33 -> 32 [label="69#AST"];
+34 -> 20 [label="70#AST"];
+34 -> 30 [label="71#AST"];
+34 -> 33 [label="72#AST"];
+34 -> 36 [label="91#Action"];
+35 -> 0 [label="73#AST"];
+35 -> 2 [label="74#AST"];
+35 -> 1 [label="75#AST"];
+35 -> 34 [label="76#AST"];
+36 -> 48 [label="94#Action"];
+38 -> 37 [label="95#AST"];
+39 -> 38 [label="96#AST"];
+40 -> 39 [label="97#AST"];
+42 -> 41 [label="98#AST"];
+43 -> 40 [label="99#AST"];
+43 -> 42 [label="100#AST"];
+43 -> 47 [label="101#Control Dep"];
+43 -> 46 [label="102#Control Dep"];
+43 -> 45 [label="103#Control Dep"];
+45 -> 44 [label="104#AST"];
+46 -> 45 [label="105#AST"];
+47 -> 46 [label="106#AST"];
+48 -> 43 [label="107#AST"];
+48 -> 47 [label="108#AST"];
 }

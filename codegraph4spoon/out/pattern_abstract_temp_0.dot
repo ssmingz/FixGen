@@ -1,322 +1,117 @@
 digraph "Pattern" {
 0 [label="##ActionPoint##
 locationInParent:ACTION
-nodeType:class model.actions.Update
-value:UPDATE
-value2:
-position:TOO LONG TO BE PRINTED
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-1 [label="locationInParent:EXPRESSION
-nodeType:class spoon.support.reflect.code.CtInvocationImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:IMoney
-implicit:false" shape=ellipse]
-2 [label="locationInParent:STATEMENT
-nodeType:class spoon.support.reflect.code.CtReturnImpl
-position:null
-listSize:1
-listIndex:0
-valueType:null
-implicit:false" shape=ellipse]
-3 [label="locationInParent:BODY
-nodeType:class spoon.support.reflect.code.CtBlockImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-4 [label="locationInParent:METHOD_NAME
+nodeType:class model.actions.Insert
+value:INSERT
+value2:" shape=ellipse]
+1 [label="locationInParent:BODY
+nodeType:class spoon.support.reflect.code.CtBlockImpl" shape=ellipse]
+2 [label="locationInParent:TYPE_MEMBER
+nodeType:class spoon.support.reflect.declaration.CtMethodImpl" shape=ellipse]
+3 [label="locationInParent:MODIFIER
 nodeType:class codegraph.CtVirtualElement
-value:simplify
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-5 [label="locationInParent:TARGET
-nodeType:class spoon.support.reflect.code.CtConstructorCallImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:MoneyBag
-implicit:false" shape=ellipse]
-6 [label="locationInParent:EXECUTABLE_REF
-nodeType:TOO LONG TO BE PRINTED
-value:<init>
-value2:<init>
-position:null
-listSize:-1
-listIndex:-1
-valueType:MoneyBag
-implicit:true" shape=ellipse]
-7 [label="locationInParent:ARGUMENT
-nodeType:class spoon.support.reflect.code.CtExpressionImpl
-position:null
-listSize:2
-implicit:false" shape=ellipse]
-8 [label="locationInParent:ARGUMENT
-nodeType:class spoon.support.reflect.code.CtExpressionImpl
-position:null
-listSize:2
-implicit:false" shape=ellipse]
-9 [label="locationInParent:EXECUTABLE_REF
-nodeType:TOO LONG TO BE PRINTED
-value:simplify
-value2:simplify
-position:null
-listSize:-1
-listIndex:-1
-valueType:IMoney
-implicit:false" shape=ellipse]
-10 [label="locationInParent:TYPE
-nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:IMoney
-value2:IMoney
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-11 [label="locationInParent:EXPRESSION
-nodeType:class spoon.support.reflect.code.CtInvocationImpl
-position:null
-listSize:-1
-listIndex:-1
-valueType:IMoney
-implicit:false" shape=ellipse]
-12 [label="locationInParent:METHOD_NAME
-nodeType:class codegraph.CtVirtualElement
-value:create
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-13 [label="locationInParent:TARGET
-nodeType:class spoon.support.reflect.code.CtTypeAccessImpl
-value:MoneyBag
-value2:MoneyBag
-position:null
-listSize:-1
-listIndex:-1
-valueType:void
-implicit:false" shape=ellipse]
-14 [label="locationInParent:ACCESSED_TYPE
-nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:MoneyBag
-value2:MoneyBag
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-15 [label="locationInParent:PACKAGE_REF
+value:public" shape=ellipse]
+4 [label="locationInParent:METHOD_DEC_NAME
+nodeType:class codegraph.CtVirtualElement" shape=ellipse]
+5 [label="locationInParent:TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl" shape=ellipse]
+6 [label="locationInParent:STATEMENT
+nodeType:class spoon.support.reflect.code.CtStatementImpl" shape=ellipse]
+7 [label="locationInParent:LEFT_OPERAND" shape=ellipse]
+8 [label="locationInParent:VARIABLE
+nodeType:TOO LONG TO BE PRINTED" shape=ellipse]
+9 [label="locationInParent:TYPE
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl" shape=ellipse]
+10 [label="locationInParent:PACKAGE_REF
 nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
 value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
-16 [label="locationInParent:EXECUTABLE_REF
-nodeType:TOO LONG TO BE PRINTED
-value:create
-value2:create
-position:null
-listSize:-1
-listIndex:-1
-valueType:IMoney
-implicit:false" shape=ellipse]
-17 [label="locationInParent:DECLARING_TYPE
+value2:" shape=ellipse]
+11 [label="nodeType:class spoon.support.reflect.code.CtInvocationImpl" shape=ellipse]
+12 [label="locationInParent:STATEMENT
+nodeType:class spoon.support.reflect.code.CtIfImpl" shape=ellipse]
+13 [label="locationInParent:CONDITION
+nodeType:class spoon.support.reflect.code.CtBinaryOperatorImpl" shape=ellipse]
+14 [label="locationInParent:RIGHT_OPERAND
+nodeType:class spoon.support.reflect.code.CtLiteralImpl
+value:null
+value2:null
+valueType:<nulltype>" shape=ellipse]
+15 [label="locationInParent:TYPE
 nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:MoneyBag
-value2:MoneyBag
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-18 [label="locationInParent:PACKAGE_REF
-nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
-value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
+value:<nulltype>
+value2:<nulltype>" shape=ellipse]
+16 [label="locationInParent:THEN
+nodeType:class spoon.support.reflect.code.CtBlockImpl" shape=ellipse]
+17 [label="locationInParent:STATEMENT
+nodeType:class spoon.support.reflect.code.CtReturnImpl" shape=ellipse]
+18 [label="locationInParent:EXPRESSION
+nodeType:class spoon.support.reflect.code.CtLiteralImpl" shape=ellipse]
 19 [label="locationInParent:TYPE
-nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:IMoney
-value2:IMoney
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-20 [label="locationInParent:PACKAGE_REF
-nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
-value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
-21 [label="locationInParent:ARGUMENT_TYPE
-nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-position:null
-listSize:2
-listIndex:0
-valueType:null
-implicit:false" shape=ellipse]
-22 [label="locationInParent:PACKAGE_REF
-nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
-value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
-23 [label="locationInParent:ARGUMENT_TYPE
-nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl
-value:PlaceHold
-value2:PlaceHold
-position:null
-listSize:2
-listIndex:1
-valueType:null
-implicit:false" shape=ellipse]
-24 [label="locationInParent:PACKAGE_REF
-nodeType:class spoon.support.reflect.reference.CtPackageReferenceImpl
-value:
-value2:
-position:null
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:true" shape=ellipse]
-25 [label="locationInParent:ARGUMENT
-nodeType:class spoon.support.reflect.code.CtExpressionImpl
-position:null
-listSize:2
-implicit:false" shape=ellipse]
-26 [label="locationInParent:ACTION
-nodeType:class model.actions.Move
-value:MOVE
-value2:
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-27 [label="locationInParent:ARGUMENT
-nodeType:class spoon.support.reflect.code.CtExpressionImpl
-position:null
-listSize:2
-implicit:false" shape=ellipse]
-28 [label="locationInParent:ACTION
-nodeType:class model.actions.Move
-value:MOVE
-value2:
-listSize:-1
-listIndex:-1
-valueType:null
-implicit:false" shape=ellipse]
-0 -> 11 [label="Action:2
-addMoneyBag#?,MoneyBag:80
-addMoney#?,Money:80"];
+nodeType:class spoon.support.reflect.reference.CtTypeReferenceImpl" shape=ellipse]
+0 -> 12 [label="Action:2
+getTimeout#?:94
+getName#?:47"];
 1 -> 0 [label="Action:2
-addMoneyBag#?,MoneyBag:77
-addMoney#?,Money:77"];
-1 -> 4 [label="AST:2
-addMoneyBag#?,MoneyBag:38
-addMoney#?,Money:38"];
-1 -> 5 [label="AST:2
-addMoneyBag#?,MoneyBag:39
-addMoney#?,Money:39"];
-1 -> 9 [label="AST:2
-addMoneyBag#?,MoneyBag:40
-addMoney#?,Money:40"];
+getTimeout#?:91
+getName#?:44"];
+1 -> 6 [label="AST:2
+getTimeout#?:70
+getName#?:25"];
 2 -> 1 [label="AST:2
-addMoneyBag#?,MoneyBag:41
-addMoney#?,Money:41"];
-3 -> 2 [label="AST:2
-addMoneyBag#?,MoneyBag:42
-addMoney#?,Money:42"];
-5 -> 6 [label="AST:2
-addMoneyBag#?,MoneyBag:35
-addMoney#?,Money:35"];
-5 -> 7 [label="AST:2
-addMoneyBag#?,MoneyBag:36
-addMoney#?,Money:37"];
-5 -> 8 [label="AST:2
-addMoneyBag#?,MoneyBag:37
-addMoney#?,Money:36"];
-7 -> 26 [label="Action:2
-addMoneyBag#?,MoneyBag:75
-addMoney#?,Money:76"];
-8 -> 28 [label="Action:2
-addMoneyBag#?,MoneyBag:76
-addMoney#?,Money:75"];
+getTimeout#?:76
+getName#?:29"];
+2 -> 3 [label="AST:2
+getTimeout#?:73
+getName#?:26"];
+2 -> 4 [label="AST:2
+getTimeout#?:74
+getName#?:27"];
+2 -> 5 [label="AST:2
+getTimeout#?:75
+getName#?:28"];
+6 -> 11 [label="AST:2
+getTimeout#?:56
+getName#?:24"];
+7 -> 8 [label="AST:2
+getTimeout#?:97
+getName#?:50"];
+8 -> 9 [label="AST:2
+getTimeout#?:96
+getName#?:49"];
 9 -> 10 [label="AST:2
-addMoneyBag#?,MoneyBag:28
-addMoney#?,Money:28"];
-11 -> 12 [label="AST:2
-addMoneyBag#?,MoneyBag:99
-addMoney#?,Money:99"];
-11 -> 13 [label="AST:2
-addMoneyBag#?,MoneyBag:100
-addMoney#?,Money:100"];
-11 -> 16 [label="AST:2
-addMoneyBag#?,MoneyBag:101
-addMoney#?,Money:101"];
-11 -> 25 [label="AST:2
-addMoneyBag#?,MoneyBag:102
-addMoney#?,Money:103"];
-11 -> 27 [label="AST:2
-addMoneyBag#?,MoneyBag:103
-addMoney#?,Money:102"];
+getTimeout#?:95
+getName#?:48"];
+12 -> 13 [label="AST:2
+getTimeout#?:107
+getName#?:61"];
+12 -> 16 [label="AST:2
+getTimeout#?:108
+getName#?:62"];
+13 -> 7 [label="AST:2
+getTimeout#?:99
+getName#?:52"];
 13 -> 14 [label="AST:2
-addMoneyBag#?,MoneyBag:82
-addMoney#?,Money:82"];
+getTimeout#?:100
+getName#?:53"];
+13 -> 16 [label="Control Dep:2
+getTimeout#?:101
+getName#?:54"];
+13 -> 17 [label="Control Dep:2
+getTimeout#?:102
+getName#?:55"];
+13 -> 18 [label="Control Dep:2
+getTimeout#?:103
+getName#?:56"];
 14 -> 15 [label="AST:2
-addMoneyBag#?,MoneyBag:81
-addMoney#?,Money:81"];
+getTimeout#?:98
+getName#?:51"];
 16 -> 17 [label="AST:2
-addMoneyBag#?,MoneyBag:87
-addMoney#?,Money:87"];
-16 -> 19 [label="AST:2
-addMoneyBag#?,MoneyBag:88
-addMoney#?,Money:88"];
-16 -> 21 [label="AST:2
-addMoneyBag#?,MoneyBag:89
-addMoney#?,Money:89"];
-16 -> 23 [label="AST:2
-addMoneyBag#?,MoneyBag:90
-addMoney#?,Money:90"];
+getTimeout#?:106
+getName#?:60"];
 17 -> 18 [label="AST:2
-addMoneyBag#?,MoneyBag:83
-addMoney#?,Money:83"];
-19 -> 20 [label="AST:2
-addMoneyBag#?,MoneyBag:84
-addMoney#?,Money:84"];
-21 -> 22 [label="AST:2
-addMoneyBag#?,MoneyBag:85
-addMoney#?,Money:85"];
-23 -> 24 [label="AST:2
-addMoneyBag#?,MoneyBag:86
-addMoney#?,Money:86"];
-26 -> 25 [label="Action:2
-addMoneyBag#?,MoneyBag:104
-addMoney#?,Money:105"];
-28 -> 27 [label="Action:2
-addMoneyBag#?,MoneyBag:105
-addMoney#?,Money:104"];
+getTimeout#?:105
+getName#?:59"];
+18 -> 19 [label="AST:2
+getTimeout#?:104
+getName#?:58"];
 }

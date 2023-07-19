@@ -125,15 +125,11 @@ public class PatternAbstractor {
                 Iterator<PatternEdge> eItr = pn.inEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    if(pe.getLabel().equals("Action"))
-                        System.out.println("debug");
                     pe.setAbstract(true);
                 }
                 eItr = pn.outEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    if(pe.getLabel().equals("Action"))
-                        System.out.println("debug");
                     pe.setAbstract(true);
                 }
                 pn.setAbstract(true);
@@ -153,15 +149,11 @@ public class PatternAbstractor {
                 Iterator<PatternEdge> eItr = pn.inEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    if(pe.getLabel().equals("Action"))
-                        System.out.println("debug");
                     pe.setAbstract(true);
                 }
                 eItr = pn.outEdges().iterator();
                 while (eItr.hasNext()) {
                     PatternEdge pe = eItr.next();
-                    if(pe.getLabel().equals("Action"))
-                        System.out.println("debug");
                     pe.setAbstract(true);
                 }
                 pn.setAbstract(true);

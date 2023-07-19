@@ -1,6 +1,5 @@
 package builder;
 
-import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.Delete;
@@ -10,21 +9,16 @@ import model.actions.Update;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
-import org.checkerframework.checker.units.qual.C;
 import org.javatuples.Pair;
-import org.javatuples.Triplet;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.meta.RoleHandler;
 import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
-import spoon.reflect.visitor.Child;
 import spoon.support.reflect.code.CtLiteralImpl;
-import spoon.support.reflect.code.CtThisAccessImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
 import utils.ObjectUtil;
 import utils.ReflectUtil;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class BugLocator {
@@ -91,22 +85,26 @@ public class BugLocator {
                     }
                 }
             }
-            for(Pair<PatternNode, CtElementImpl> tri : temp) {
-                PatternNode action = tri.getValue0();
-                CtElementImpl oriNode = tri.getValue1();
-                if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-                    applyDelete(action, oriNode, target);
-                } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-                    applyUpdate(action, oriNode, target, mapping, target.getMapping());
-                } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
-                    applyInsert(action, oriNode, target, mapping, target.getMapping());
-                } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
-                    applyMove(action, oriNode, target, mapping);
-                } else {
-                    System.out.println("[warn]Invalid action nodeType");
+            try {
+                for(Pair<PatternNode, CtElementImpl> pair : temp) {
+                    PatternNode action = pair.getValue0();
+                    CtElementImpl oriNode = pair.getValue1();
+                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+                        applyDelete(action, oriNode, target);
+                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                        applyUpdate(action, oriNode, target, mapping, target.getMapping());
+                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+                        applyInsert(action, oriNode, target, mapping, target.getMapping());
+                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+                        applyMove(action, oriNode, target, mapping);
+                    } else {
+                        System.out.println("[warn]Invalid action nodeType");
+                    }
                 }
+                ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+            } catch (IllegalStateException se) {
+                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
             }
-            ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
         }
     }
 
@@ -163,6 +161,10 @@ public class BugLocator {
         if (newInPattern != null) {
             // TODO: follow the subtree of update.target to create a new CtElementImpl
             CtElementImpl update = createSpoonNodeRecursively(newInPattern, mapping4pattern, mapping4diff);
+            if (update == null) {
+                System.out.println("[error]Create new spoon node failed return null");
+                throw new IllegalStateException();
+            }
             mapping4pattern.put(newInPattern, new CtWrapper(update));
             mapping4pattern.putAll(addMapping4Child(newInPattern, update));
             // update codegraph node set
@@ -196,6 +198,10 @@ public class BugLocator {
         if (newInPattern != null) {
             // TODO: follow the subtree of insert.target to create a new CtElementImpl
             CtElementImpl insert = createSpoonNodeRecursively(newInPattern, mapping4pattern, mapping4diff);
+            if (insert == null) {
+                System.out.println("[error]Create new spoon node failed return null");
+                throw new IllegalStateException();
+            }
             // add new mapping
             mapping4pattern.put(newInPattern, new CtWrapper(insert));
             mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
@@ -308,7 +314,8 @@ public class BugLocator {
         // nodeType
         Class clazz = !pnRoot.getAttribute("nodeType").isAbstract() ? (Class) pnRoot.getAttribute("nodeType").getTag():null;
         if (clazz == null) {
-            throw new IllegalArgumentException("Create new spoon node failed: pattern node does not have node type attribute");
+            System.out.println("[error]Create new spoon node failed: pattern node does not have node type attribute");
+            throw new IllegalStateException();
         }
         CtElementImpl newly = null;
         try {
@@ -333,7 +340,8 @@ public class BugLocator {
             }
         }
         if (newly == null) {
-            throw new IllegalStateException("Create new spoon node failed: createInstance() return null");
+            System.out.println("[error]Create new spoon node failed: createInstance() return null");
+            throw new IllegalStateException();
         }
         if (!pnRoot.implicit.isAbstract())
             newly.setImplicit((Boolean) pnRoot.implicit.getTag());
@@ -378,8 +386,6 @@ public class BugLocator {
             if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.AST && !oe.getTarget().isVirtual()) {
                 // node type
                 CtElementImpl child = createSpoonNodeRecursively(oe.getTarget(), mapping4pattern, mapping4diff);
-//                if (child.prettyprint().equals("PlaceHold"))
-//                    continue;
                 // role in parent
                 CtRole role = CtRole.fromName((String) oe.getTarget().getAttribute("locationInParent").getTag());
                 Object listSize = oe.getTarget().listSize.getTag();

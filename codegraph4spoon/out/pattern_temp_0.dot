@@ -1,210 +1,159 @@
 digraph "Pattern" {
-0 [label="addMoneyBag#?,MoneyBag:47#L3:UPDATE
-addMoney#?,Money:47#L3:UPDATE" shape=ellipse]
-1 [label="addMoneyBag#?,MoneyBag:20#L3:new MoneyBag(s, this).simplify()
-addMoney#?,Money:20#L3:new MoneyBag(m, this).simplify()" shape=ellipse]
-2 [label="addMoneyBag#?,MoneyBag:21#L3:return new MoneyBag(s, this).simplify()
-addMoney#?,Money:21#L3:return new MoneyBag(m, this).simplify()" shape=ellipse]
-3 [label="addMoneyBag#?,MoneyBag:22#L2:\{
-    return new MoneyBag(s, this).simplify();
+0 [label="getTimeout#?:77#L4:INSERT
+getName#?:30#L3:INSERT" shape=ellipse]
+1 [label="getTimeout#?:35#L2:\{
+    Test annotation = fMethod.getAnnotation(Test.class);
+    long timeout = annotation.timeout();
+    return timeout;
 \}
-addMoney#?,Money:22#L2:\{
-    return new MoneyBag(m, this).simplify();
+getName#?:14#L2:\{
+    return fClass.getName();
 \}" shape=ellipse]
-4 [label="addMoneyBag#?,MoneyBag:9#L3:simplify
-addMoney#?,Money:9#L3:simplify" shape=ellipse]
-5 [label="addMoneyBag#?,MoneyBag:19#L3:new MoneyBag(s, this)
-addMoney#?,Money:19#L3:new MoneyBag(m, this)" shape=ellipse]
-6 [label="addMoneyBag#?,MoneyBag:12#L3:MoneyBag()
-addMoney#?,Money:12#L3:MoneyBag()" shape=ellipse]
-7 [label="addMoneyBag#?,MoneyBag:14#L3:s
-addMoney#?,Money:18#L3:this" shape=ellipse]
-8 [label="addMoneyBag#?,MoneyBag:18#L3:this
-addMoney#?,Money:14#L3:m" shape=ellipse]
-9 [label="addMoneyBag#?,MoneyBag:8#L3:simplify()
-addMoney#?,Money:8#L3:simplify()" shape=ellipse]
-10 [label="addMoneyBag#?,MoneyBag:7#L3:IMoney
-addMoney#?,Money:7#L3:IMoney" shape=ellipse]
-11 [label="addMoneyBag#?,MoneyBag:70#L3:MoneyBag.create(s, this)
-addMoney#?,Money:70#L3:MoneyBag.create(m, this)" shape=ellipse]
-12 [label="addMoneyBag#?,MoneyBag:71#L3:create
-addMoney#?,Money:71#L3:create" shape=ellipse]
-13 [label="addMoneyBag#?,MoneyBag:50#L3:MoneyBag
-addMoney#?,Money:50#L3:MoneyBag" shape=ellipse]
-14 [label="addMoneyBag#?,MoneyBag:49#L3:MoneyBag
-addMoney#?,Money:49#L3:MoneyBag" shape=ellipse]
-15 [label="addMoneyBag#?,MoneyBag:48#L3:
-addMoney#?,Money:48#L3:" shape=ellipse]
-16 [label="addMoneyBag#?,MoneyBag:59#L3:create(MoneyBag,PlaceHold)
-addMoney#?,Money:59#L3:create(Money,PlaceHold)" shape=ellipse]
-17 [label="addMoneyBag#?,MoneyBag:52#L3:MoneyBag
-addMoney#?,Money:52#L3:MoneyBag" shape=ellipse]
-18 [label="addMoneyBag#?,MoneyBag:51#L3:
-addMoney#?,Money:51#L3:" shape=ellipse]
-19 [label="addMoneyBag#?,MoneyBag:54#L3:IMoney
-addMoney#?,Money:54#L3:IMoney" shape=ellipse]
-20 [label="addMoneyBag#?,MoneyBag:53#L3:
-addMoney#?,Money:53#L3:" shape=ellipse]
-21 [label="addMoneyBag#?,MoneyBag:56#L3:MoneyBag
-addMoney#?,Money:56#L3:Money" shape=ellipse]
-22 [label="addMoneyBag#?,MoneyBag:55#L3:
-addMoney#?,Money:55#L3:" shape=ellipse]
-23 [label="addMoneyBag#?,MoneyBag:58#L3:PlaceHold
-addMoney#?,Money:58#L3:PlaceHold" shape=ellipse]
-24 [label="addMoneyBag#?,MoneyBag:57#L3:
-addMoney#?,Money:57#L3:" shape=ellipse]
-25 [label="addMoneyBag#?,MoneyBag:63#L3:s
-addMoney#?,Money:69#L3:this" shape=ellipse]
-26 [label="addMoneyBag#?,MoneyBag:4#L2:s" shape=ellipse]
-27 [label="addMoneyBag#?,MoneyBag:72#L3:MOVE
-addMoney#?,Money:73#L3:MOVE" shape=ellipse]
-28 [label="addMoneyBag#?,MoneyBag:62#L3:s" shape=ellipse]
-29 [label="addMoneyBag#?,MoneyBag:61#L3:MoneyBag
-addMoney#?,Money:61#L3:Money" shape=ellipse]
-30 [label="addMoneyBag#?,MoneyBag:60#L3:
-addMoney#?,Money:60#L3:" shape=ellipse]
-31 [label="addMoneyBag#?,MoneyBag:69#L3:this
-addMoney#?,Money:63#L3:m" shape=ellipse]
-32 [label="addMoneyBag#?,MoneyBag:73#L3:MOVE
-addMoney#?,Money:72#L3:MOVE" shape=ellipse]
-33 [label="addMoneyBag#?,MoneyBag:65#L3:PlaceHold" shape=ellipse]
-34 [label="addMoneyBag#?,MoneyBag:64#L3:
-addMoney#?,Money:64#L3:" shape=ellipse]
-35 [label="addMoneyBag#?,MoneyBag:68#L3:PlaceHold" shape=ellipse]
-36 [label="addMoneyBag#?,MoneyBag:67#L3:PlaceHold
-addMoney#?,Money:67#L3:PlaceHold" shape=ellipse]
-37 [label="addMoneyBag#?,MoneyBag:66#L3:
-addMoney#?,Money:66#L3:" shape=ellipse]
-38 [label="addMoney#?,Money:68#L3:PlaceHold" shape=ellipse]
-39 [label="addMoney#?,Money:65#L3:PlaceHold" shape=ellipse]
-40 [label="addMoney#?,Money:62#L3:m" shape=ellipse]
-41 [label="addMoney#?,Money:4#L2:m" shape=ellipse]
-0 -> 11 [label="Action:2
-addMoneyBag#?,MoneyBag:80
-addMoney#?,Money:80"];
+2 [label="getTimeout#?:36#L2:public long getTimeout() \{
+    Test annotation = fMethod.getAnnotation(Test.class);
+    long timeout = annotation.timeout();
+    return timeout;
+\}
+getName#?:15#L2:public String getName() \{
+    return fClass.getName();
+\}" shape=ellipse]
+3 [label="getTimeout#?:1#L2:public
+getName#?:1#L2:public" shape=ellipse]
+4 [label="getTimeout#?:3#L2:getTimeout
+getName#?:4#L2:getName" shape=ellipse]
+5 [label="getTimeout#?:2#L2:long
+getName#?:3#L2:String" shape=ellipse]
+6 [label="getTimeout#?:21#L3:Test annotation = fMethod.getAnnotation(Test.class)
+getName#?:13#L3:return fClass.getName()" shape=ellipse]
+7 [label="getTimeout#?:20#L3:annotation" shape=ellipse]
+8 [label="getTimeout#?:81#L4:annotation
+getName#?:34#L3:fClass" shape=ellipse]
+9 [label="getTimeout#?:80#L4:annotation
+getName#?:33#L3:fClass" shape=ellipse]
+10 [label="getTimeout#?:79#L4:Test
+getName#?:32#L3:PlaceHold" shape=ellipse]
+11 [label="getTimeout#?:78#L4:
+getName#?:31#L3:" shape=ellipse]
+12 [label="getTimeout#?:5#L3:Test" shape=ellipse]
+13 [label="getTimeout#?:19#L3:fMethod.getAnnotation(Test.class)
+getName#?:12#L3:fClass.getName()" shape=ellipse]
+14 [label="getTimeout#?:31#L4:long timeout = annotation.timeout()" shape=ellipse]
+15 [label="getTimeout#?:30#L4:timeout" shape=ellipse]
+16 [label="getTimeout#?:22#L4:long" shape=ellipse]
+17 [label="getTimeout#?:29#L4:annotation.timeout()" shape=ellipse]
+18 [label="getTimeout#?:34#L5:return timeout" shape=ellipse]
+19 [label="getTimeout#?:33#L5:timeout" shape=ellipse]
+20 [label="getTimeout#?:89#L4:if (annotation == null) \{
+    return 0;
+\}
+getName#?:43#L3:if (fClass == null) \{
+    return \"null\";
+\}" shape=ellipse]
+21 [label="getTimeout#?:84#L4:annotation == null
+getName#?:37#L3:fClass == null" shape=ellipse]
+22 [label="getTimeout#?:83#L4:null
+getName#?:36#L3:null" shape=ellipse]
+23 [label="getTimeout#?:82#L4:<nulltype>
+getName#?:35#L3:<nulltype>" shape=ellipse]
+24 [label="getTimeout#?:88#L4:\{
+    return 0;
+\}
+getName#?:42#L3:\{
+    return \"null\";
+\}" shape=ellipse]
+25 [label="getTimeout#?:87#L5:return 0
+getName#?:41#L4:return \"null\"" shape=ellipse]
+26 [label="getTimeout#?:86#L5:0
+getName#?:40#L4:\"null\"" shape=ellipse]
+27 [label="getTimeout#?:85#L5:int
+getName#?:39#L4:String" shape=ellipse]
+28 [label="getName#?:38#L4:java.lang" shape=ellipse]
+0 -> 20 [label="Action:2
+getTimeout#?:94
+getName#?:47"];
 1 -> 0 [label="Action:2
-addMoneyBag#?,MoneyBag:77
-addMoney#?,Money:77"];
-1 -> 4 [label="AST:2
-addMoneyBag#?,MoneyBag:38
-addMoney#?,Money:38"];
-1 -> 5 [label="AST:2
-addMoneyBag#?,MoneyBag:39
-addMoney#?,Money:39"];
-1 -> 9 [label="AST:2
-addMoneyBag#?,MoneyBag:40
-addMoney#?,Money:40"];
+getTimeout#?:91
+getName#?:44"];
+1 -> 6 [label="AST:2
+getTimeout#?:70
+getName#?:25"];
+1 -> 14 [label="AST:1
+getTimeout#?:71"];
+1 -> 18 [label="AST:1
+getTimeout#?:72"];
 2 -> 1 [label="AST:2
-addMoneyBag#?,MoneyBag:41
-addMoney#?,Money:41"];
-3 -> 2 [label="AST:2
-addMoneyBag#?,MoneyBag:42
-addMoney#?,Money:42"];
-5 -> 6 [label="AST:2
-addMoneyBag#?,MoneyBag:35
-addMoney#?,Money:35"];
-5 -> 7 [label="AST:2
-addMoneyBag#?,MoneyBag:36
-addMoney#?,Money:37"];
-5 -> 8 [label="AST:2
-addMoneyBag#?,MoneyBag:37
-addMoney#?,Money:36"];
-7 -> 27 [label="Action:2
-addMoneyBag#?,MoneyBag:75
-addMoney#?,Money:76"];
-8 -> 32 [label="Action:2
-addMoneyBag#?,MoneyBag:76
-addMoney#?,Money:75"];
+getTimeout#?:76
+getName#?:29"];
+2 -> 3 [label="AST:2
+getTimeout#?:73
+getName#?:26"];
+2 -> 4 [label="AST:2
+getTimeout#?:74
+getName#?:27"];
+2 -> 5 [label="AST:2
+getTimeout#?:75
+getName#?:28"];
+6 -> 7 [label="AST:1
+getTimeout#?:54"];
+6 -> 12 [label="AST:1
+getTimeout#?:55"];
+6 -> 13 [label="AST:2
+getTimeout#?:56
+getName#?:24"];
+7 -> 8 [label="Define Use:1
+getTimeout#?:90"];
+8 -> 9 [label="AST:2
+getTimeout#?:97
+getName#?:50"];
 9 -> 10 [label="AST:2
-addMoneyBag#?,MoneyBag:28
-addMoney#?,Money:28"];
-11 -> 12 [label="AST:2
-addMoneyBag#?,MoneyBag:99
-addMoney#?,Money:99"];
-11 -> 13 [label="AST:2
-addMoneyBag#?,MoneyBag:100
-addMoney#?,Money:100"];
-11 -> 16 [label="AST:2
-addMoneyBag#?,MoneyBag:101
-addMoney#?,Money:101"];
-11 -> 25 [label="AST:2
-addMoneyBag#?,MoneyBag:102
-addMoney#?,Money:103"];
-11 -> 31 [label="AST:2
-addMoneyBag#?,MoneyBag:103
-addMoney#?,Money:102"];
-13 -> 14 [label="AST:2
-addMoneyBag#?,MoneyBag:82
-addMoney#?,Money:82"];
-14 -> 15 [label="AST:2
-addMoneyBag#?,MoneyBag:81
-addMoney#?,Money:81"];
-16 -> 17 [label="AST:2
-addMoneyBag#?,MoneyBag:87
-addMoney#?,Money:87"];
-16 -> 19 [label="AST:2
-addMoneyBag#?,MoneyBag:88
-addMoney#?,Money:88"];
-16 -> 21 [label="AST:2
-addMoneyBag#?,MoneyBag:89
-addMoney#?,Money:89"];
-16 -> 23 [label="AST:2
-addMoneyBag#?,MoneyBag:90
-addMoney#?,Money:90"];
-17 -> 18 [label="AST:2
-addMoneyBag#?,MoneyBag:83
-addMoney#?,Money:83"];
-19 -> 20 [label="AST:2
-addMoneyBag#?,MoneyBag:84
-addMoney#?,Money:84"];
+getTimeout#?:96
+getName#?:49"];
+10 -> 11 [label="AST:2
+getTimeout#?:95
+getName#?:48"];
+14 -> 15 [label="AST:1
+getTimeout#?:65"];
+14 -> 16 [label="AST:1
+getTimeout#?:66"];
+14 -> 17 [label="AST:1
+getTimeout#?:67"];
+15 -> 19 [label="Define Use:1
+getTimeout#?:64"];
+18 -> 19 [label="AST:1
+getTimeout#?:69"];
+20 -> 21 [label="AST:2
+getTimeout#?:107
+getName#?:61"];
+20 -> 24 [label="AST:2
+getTimeout#?:108
+getName#?:62"];
+21 -> 8 [label="AST:2
+getTimeout#?:99
+getName#?:52"];
 21 -> 22 [label="AST:2
-addMoneyBag#?,MoneyBag:85
-addMoney#?,Money:85"];
-23 -> 24 [label="AST:2
-addMoneyBag#?,MoneyBag:86
-addMoney#?,Money:86"];
-25 -> 28 [label="AST:1
-addMoneyBag#?,MoneyBag:93"];
-25 -> 38 [label="AST:1
-addMoney#?,Money:98"];
-25 -> 39 [label="AST:1
-addMoney#?,Money:97"];
-26 -> 7 [label="Define Use:1
-addMoneyBag#?,MoneyBag:25"];
-26 -> 25 [label="Define Use:1
-addMoneyBag#?,MoneyBag:74"];
-27 -> 25 [label="Action:2
-addMoneyBag#?,MoneyBag:104
-addMoney#?,Money:105"];
-28 -> 29 [label="AST:1
-addMoneyBag#?,MoneyBag:92"];
-29 -> 30 [label="AST:2
-addMoneyBag#?,MoneyBag:91
-addMoney#?,Money:91"];
-31 -> 33 [label="AST:1
-addMoneyBag#?,MoneyBag:97"];
-31 -> 35 [label="AST:1
-addMoneyBag#?,MoneyBag:98"];
-31 -> 40 [label="AST:1
-addMoney#?,Money:93"];
-32 -> 31 [label="Action:2
-addMoneyBag#?,MoneyBag:105
-addMoney#?,Money:104"];
-33 -> 34 [label="AST:1
-addMoneyBag#?,MoneyBag:94"];
-35 -> 36 [label="AST:1
-addMoneyBag#?,MoneyBag:96"];
-36 -> 37 [label="AST:2
-addMoneyBag#?,MoneyBag:95
-addMoney#?,Money:95"];
-38 -> 36 [label="AST:1
-addMoney#?,Money:96"];
-39 -> 34 [label="AST:1
-addMoney#?,Money:94"];
-40 -> 29 [label="AST:1
-addMoney#?,Money:92"];
-41 -> 8 [label="Define Use:1
-addMoney#?,Money:25"];
-41 -> 31 [label="Define Use:1
-addMoney#?,Money:74"];
+getTimeout#?:100
+getName#?:53"];
+21 -> 24 [label="Control Dep:2
+getTimeout#?:101
+getName#?:54"];
+21 -> 25 [label="Control Dep:2
+getTimeout#?:102
+getName#?:55"];
+21 -> 26 [label="Control Dep:2
+getTimeout#?:103
+getName#?:56"];
+22 -> 23 [label="AST:2
+getTimeout#?:98
+getName#?:51"];
+24 -> 25 [label="AST:2
+getTimeout#?:106
+getName#?:60"];
+25 -> 26 [label="AST:2
+getTimeout#?:105
+getName#?:59"];
+26 -> 27 [label="AST:2
+getTimeout#?:104
+getName#?:58"];
+27 -> 28 [label="AST:1
+getName#?:57"];
 }

@@ -496,6 +496,22 @@ public class PatternExtractor {
         return (tA.contains("CtExpressionImpl") && tB.contains("CtFieldAccessImpl")) || (tA.contains("CtFieldAccessImpl") && tB.contains("CtExpressionImpl"));
     }
 
+    private static double calSimScore(CtElementImpl a, CtElementImpl b) {
+        double text_score = calContextSim(a.prettyprint(), b.prettyprint());
+        double parent_score = 0;
+        if (a.getParent() != null && b.getParent() != null)
+            parent_score = calContextSim(a.getParent().prettyprint(), b.getParent().prettyprint());
+        else if (a.getParent() == null && b.getParent() == null)
+            parent_score = 1.0;
+        double role_score = 0;
+        String aRole = a instanceof CtVirtualElement ? ((CtVirtualElement) a).getLocationInParent() : (a.getRoleInParent() == null ? null : a.getRoleInParent().toString());
+        String bRole = b instanceof CtVirtualElement ? ((CtVirtualElement) b).getLocationInParent() : (b.getRoleInParent() == null ? null : b.getRoleInParent().toString());
+        role_score = calContextSim(aRole, bRole);
+
+        double score = (text_score + parent_score + role_score) / 3;
+        return score;
+    }
+
     private static Map<CtWrapper, Map<CtWrapper, Double>> calSimScore(List<CtWrapper> nodeList, List<CtWrapper> nodeListComp) {
         Map<CtWrapper, Map<CtWrapper, Double>> result = new LinkedHashMap<>();
         for (CtWrapper nodeA : nodeList) {
@@ -506,15 +522,12 @@ public class PatternExtractor {
             }
             for (CtWrapper nodeB : nodeListComp) {
                 if (result.get(nodeA).containsKey(nodeB)) continue;
-                double score = calContextSim(nodeA.toLabelString(), nodeB.toLabelString());
-                double parent_score = 0;
-                if (nodeA.getCtElementImpl().getParent() != null && nodeB.getCtElementImpl().getParent() != null)
-                    parent_score = calContextSim(nodeA.getCtElementImpl().getParent().toString(), nodeB.getCtElementImpl().getParent().toString());
-                result.get(nodeA).put(nodeB, score + parent_score);
+                double score = calSimScore(nodeA.getCtElementImpl(), nodeB.getCtElementImpl());
+                result.get(nodeA).put(nodeB, score);
                 if (!result.containsKey(nodeB)) {
                     result.put(nodeB, new LinkedHashMap<>());
                 }
-                result.get(nodeB).put(nodeA, score + parent_score);
+                result.get(nodeB).put(nodeA, score);
             }
             result.replace(nodeA, sortByValue(result.get(nodeA)));
         }
