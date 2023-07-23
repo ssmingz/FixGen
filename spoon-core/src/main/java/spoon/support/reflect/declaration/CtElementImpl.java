@@ -669,6 +669,7 @@ public abstract class CtElementImpl implements CtElement {
 
 	public void setParent(CtElementImpl node) {
 		_parent = node;
+		this.parent = node;
 	}
 
 	public void setControlDependency(CtElementImpl controller) {

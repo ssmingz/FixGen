@@ -183,7 +183,6 @@ public class BugLocator {
                 roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
             }
             modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, update, oriNode);
-
         } else {
             System.out.println("[error]Cannot find UPDATE.target in pattern: " + target.getFileName());
         }
@@ -246,6 +245,7 @@ public class BugLocator {
 
     private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, CtElementImpl child, CtElementImpl replacement) {
         CtRole pre = null;
+        child.setParent(parent);
         for (Pair<CtRole, Class> pair : roles) {
             if (pair.getValue0() == null)
                 continue;

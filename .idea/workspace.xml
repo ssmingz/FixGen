@@ -4,312 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add other rules for calSimScore()">
-      <change afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/SyntaxUtil.java" afterDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_ant_13_0.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_cobertura_174.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_0_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_1_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_drjava_927_pattern_abstract_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_1.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_59_0_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_59_1_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_59_2_action.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_59_pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/c3_junit_59_pattern_abstract_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/cg_temp.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_1.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/codegraph_temp_2.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/101/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/101/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/103/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/103/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/16/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/16/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/17/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/17/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/21/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/21/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/26/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/26/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/29/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/7/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/32/8/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/34/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/34/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/35/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/35/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/35/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/42/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/50/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/50/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/59/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/59/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/59/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/64/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/65/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/65/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/66/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/66/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/67/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/67/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/68/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/68/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/72/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/72/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/72/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/75/7/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/81/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/81/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/87/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/87/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/88/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/88/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/9/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/9/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/90/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/90/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/91/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/94/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/98/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/98/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit/98/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/0/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/0/patch_5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_3.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_4.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/1/1/patch_5.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/101/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/101/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/102/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/104/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/104/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/13/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/16/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/16/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/17/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/17/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/19/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/19/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/2/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/2/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/22/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/22/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/23/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/23/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/23/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/0/patch_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/24/1/patch_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/25/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/25/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/26/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/26/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/29/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/3/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/3/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/7/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/32/8/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/34/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/34/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/35/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/35/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/35/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/37/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/37/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/4/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/4/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/40/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/40/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/42/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/44/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/45/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/45/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/46/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/46/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/49/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/49/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/5/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/5/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/5/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/50/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/50/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/55/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/55/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/55/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/0/patch_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/58/1/patch_2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/59/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/59/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/59/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/6/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/6/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/6/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/64/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/66/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/66/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/67/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/67/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/68/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/68/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/69/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/69/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/7/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/71/8/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/72/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/72/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/72/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/75/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/77/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/77/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/78/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/78/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/79/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/79/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/81/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/81/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/82/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/82/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/85/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/86/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/86/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/87/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/87/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/88/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/88/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/9/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/9/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/90/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/90/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/5/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/91/6/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/3/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/94/4/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/98/2/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/0/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/0/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/1/patch_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch/junit的副本/99/1/patch_1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_2_0_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_3_0_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/patch_junit_59_0_0.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_abstract_temp_0.dot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.dat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/out/pattern_temp_0.dot" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/PatternAbstractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Pattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Pattern.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/CtVirtualElement.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/CtVirtualElement.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/reflect/visitor/DefaultJavaPrettyPrinter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -503,13 +202,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665371441595</updated>
-    </task>
-    <task id="LOCAL-00005" summary="add DotGraph">
-      <created>1667057589018</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1667057589018</updated>
     </task>
     <task id="LOCAL-00006" summary="refactor project module by remove previous gumtree-spoon-ast-diff">
       <created>1667876112917</created>
@@ -847,7 +539,14 @@
       <option name="project" value="LOCAL" />
       <updated>1689759448303</updated>
     </task>
-    <option name="localTasksCounter" value="54" />
+    <task id="LOCAL-00054" summary="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use">
+      <created>1690131001811</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1690131001811</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -862,7 +561,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix pattern extraction and abstraction bugs on c3-junit-0" />
     <MESSAGE value="fix pattern extraction and abstraction bugs on c3-ant-0" />
     <MESSAGE value="fix codegraph-building:InvalidSourcePosition bug on c3-ant-7" />
     <MESSAGE value="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7" />
@@ -887,7 +585,8 @@
     <MESSAGE value="add Main.java for the whole method precess" />
     <MESSAGE value="add Main.java for the whole method process" />
     <MESSAGE value="add other rules for calSimScore()" />
-    <option name="LAST_COMMIT_MESSAGE" value="add other rules for calSimScore()" />
+    <MESSAGE value="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1089,7 +788,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>187</line>
+          <line>186</line>
           <option name="timeStamp" value="1190" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">

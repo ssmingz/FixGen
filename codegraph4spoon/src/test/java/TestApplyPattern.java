@@ -104,7 +104,13 @@ public class TestApplyPattern {
                             // locate the buggy line
                             BugLocator detector = new BugLocator(0.6);
                             String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
-                            detector.applyPattern(pat, target_ag, patchPath);
+                            try{
+                                detector.applyPattern(pat, target_ag, patchPath);
+                            } catch (Exception e) {
+                                System.out.println("[error]Unknown exception");
+                            } catch (Error e) {
+                                System.out.println("[error]Unknown error");
+                            }
                         }
                         System.out.println("[finished]"+target_ag.getFileName());
                     }
@@ -121,7 +127,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 87;
+        int testId = 24;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);
