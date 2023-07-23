@@ -7,6 +7,7 @@
  */
 package spoon.reflect.visitor;
 
+import codegraph.CtVirtualElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spoon.SpoonException;

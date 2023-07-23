@@ -1,5 +1,6 @@
 package codegraph.visitor;
 
+import codegraph.CtVirtualElement;
 import spoon.compiler.Environment;
 import spoon.reflect.code.CtLiteral;
 import spoon.reflect.code.CtVariableRead;
@@ -93,6 +94,15 @@ public class ReplaceNameVisitor extends DefaultJavaPrettyPrinter {
         } else {
             printer.writeIdentifier(reference.getType()!=null?reference.getType().getQualifiedName():"");
         }
+    }
+
+    public void visitCtVirtual(final CtVirtualElement virtual) {
+        if (virtual.getLocationInParent().contains("NAME"))
+            printer.writeIdentifier(virtual.prettyprint());
+        else if (virtual.getLocationInParent().equals("OPERATOR_KIND"))
+            printer.writeOperator(virtual.prettyprint());
+        else if (virtual.getLocationInParent().equals("MODIFIER"))
+            printer.writeKeyword(virtual.prettyprint());
     }
 
 }

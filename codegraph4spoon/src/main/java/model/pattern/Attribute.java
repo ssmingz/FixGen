@@ -238,9 +238,9 @@ public class Attribute implements Serializable {
         CtElementImpl cte = n.getCtElementImpl();
         if (RoleHandlerHelper.getOptionalRoleHandler(cte.getClass(), CtRole.TYPE) != null ) {
             CtTypeReferenceImpl vType = cte.getValueByRole(CtRole.TYPE);
-            return vType == null ? "?" : vType.getQualifiedName();
+            return vType == null ? "null type" : vType.getQualifiedName();
         }
-        return "?";
+        return "no type";
     }
 
     public static boolean computeImplicit(CtWrapper n) {

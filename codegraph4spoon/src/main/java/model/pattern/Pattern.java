@@ -124,7 +124,7 @@ public class Pattern implements Serializable {
         Map<PatternNode, Map<CtWrapper, Double>> orderBySimScore = PatternExtractor.calSimScorePattern(_patternNodes, aGraph.getNodes());
         Map<PatternNode, CtWrapper> mapping = new LinkedHashMap<>();
         double score = PatternExtractor.matchBySimScorePattern(Arrays.asList(_patternNodes.toArray(new PatternNode[0])), 0, aGraph.getNodes(), 0, mapping, orderBySimScore);
-        return new Pair<>(mapping, score);
+        return new Pair<>(mapping, score/mapping.size());
     }
 
     public PatternNode getPatternNodeByCGNode(CtWrapper n) {

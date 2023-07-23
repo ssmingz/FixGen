@@ -45,7 +45,6 @@ public class PatternAbstractor {
                 CtWrapper n = entry.getKey();
                 CodeGraph g = entry.getValue();
 
-                // Notice: set value="?" if the value cannot be computed
                 attr1.addValue(Attribute.computeLocationInParent(n), g);
                 attr2.addValue(Attribute.computeNodeType(n), g);
                 attr3.addValue(Attribute.computeValue(n), g);
@@ -97,7 +96,7 @@ public class PatternAbstractor {
             PatternNode pn = it.next();
             // remove the attribute by setAbstract instead removing
             pn.getComparedAttributes().forEach(a -> {
-                if (a.getSupport(a.getTag()) < threshold || "?".equals(a.getTag()))
+                if (a.getSupport(a.getTag()) < threshold)
                     a.setAbstract(true);
             });
             if (pn.getAttribute("nodeType").isAbstract()) {
@@ -109,7 +108,7 @@ public class PatternAbstractor {
                     nodeTypeAttr.addValue(Attribute.computeNodeType2(n), g);
                 }
                 vote4Attribute(nodeTypeAttr);
-                if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold || nodeTypeAttr.getTag().equals("?")) {
+                if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold) {
                     nodeTypeAttr.clear();
                     for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                         CtWrapper n = entry.getKey();
@@ -117,7 +116,7 @@ public class PatternAbstractor {
                         nodeTypeAttr.addValue(Attribute.computeNodeType3(n), g);
                     }
                     vote4Attribute(nodeTypeAttr);
-                    if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold || nodeTypeAttr.getTag().equals("?"))
+                    if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold)
                         nodeTypeAttr.setAbstract(true);
                 }
             }

@@ -1,5 +1,6 @@
 package codegraph;
 
+import codegraph.visitor.ReplaceNameVisitor;
 import codegraph.visitor.TokenVisitor;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.path.CtRole;
@@ -37,7 +38,12 @@ public class CtVirtualElement extends CtCodeElementImpl {
     @Override
     public void accept(CtVisitor visitor) {
         // TODO: how to handle
-        parent.accept(visitor);
+        if (visitor instanceof TokenVisitor)
+            ((TokenVisitor) visitor).visitCtVirtual(this);
+        else if (visitor instanceof ReplaceNameVisitor)
+            ((ReplaceNameVisitor) visitor).visitCtVirtual(this);
+        else
+            parent.accept(visitor);
     }
 
     @Override

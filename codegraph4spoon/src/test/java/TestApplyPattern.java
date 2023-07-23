@@ -54,7 +54,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         boolean SKIP_IF_EXIST = true;
-        String[] projects = {"junit"};
+        String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
         String base = TestConfig.MAC_BASE;
         int targetCounter = 0;
         long start = System.currentTimeMillis();
@@ -95,11 +95,11 @@ public class TestApplyPattern {
                         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp);
                         if (combinedGraphs.size() > 1) {
                             System.out.printf("[warn]extracted pattern not single, size:%d\n", combinedGraphs.size());
-                            continue;
+                            //continue;
                         }
                         for (Pattern pat : combinedGraphs) {
                             // abstract pattern
-                            PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size*0.8));
+                            PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size*1.0));
                             abs.abstractPattern(pat);
                             // locate the buggy line
                             BugLocator detector = new BugLocator(0.6);
@@ -121,7 +121,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 3;
+        int testId = 87;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);

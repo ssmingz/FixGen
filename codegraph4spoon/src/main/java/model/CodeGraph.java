@@ -388,7 +388,9 @@ public class CodeGraph implements Serializable {
     private void visit(CtBinaryOperatorImpl ctNode, CtElementImpl control, Scope scope) {
         ctNode.setControlDependency(control);
         ctNode.setScope(scope);
-        // TODO: operator kind (BinaryOperatorKind type)
+        // operator kind (BinaryOperatorKind type)
+        CtVirtualElement kind = new CtVirtualElement(ctNode, ctNode.getKind().name(), "OPERATOR_KIND");
+        updateCGId(kind);
         // left
         buildNode(ctNode.getLeftHandOperand(), control, scope);
         // right

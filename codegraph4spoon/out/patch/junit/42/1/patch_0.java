@@ -1,3 +1,0 @@
-SafeNotifier() {
-    this(listeners);
-}

@@ -10,14 +10,17 @@ import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.javatuples.Pair;
+import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.meta.RoleHandler;
 import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
-import spoon.support.reflect.code.CtLiteralImpl;
+import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
 import utils.ObjectUtil;
 import utils.ReflectUtil;
+import utils.SyntaxUtil;
 
 import java.util.*;
 
@@ -244,6 +247,8 @@ public class BugLocator {
     private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, CtElementImpl child, CtElementImpl replacement) {
         CtRole pre = null;
         for (Pair<CtRole, Class> pair : roles) {
+            if (pair.getValue0() == null)
+                continue;
             RoleHandler rh = RoleHandlerHelper.getOptionalRoleHandler(parent.getClass(), pair.getValue0());
             if (rh != null) {
                 Object ori = parent.getValueByRole(pair.getValue0());
@@ -258,13 +263,13 @@ public class BugLocator {
                         if (init.contains(replacement))
                             Collections.replaceAll(init, replacement, child);
                         else
-                            init.add(child);
+                            addNewElement(init, child);
                         parent.setValueByRole(pair.getValue0(), Collections.unmodifiableList(init));
                     } else {
                         if (((List<?>) ori).contains(replacement))
                             Collections.replaceAll((List<CtElementImpl>) ori, replacement, child);
                         else
-                            ((List<CtElementImpl>) ori).add(child);
+                            addNewElement((List<CtElementImpl>) ori, child);
                     }
                 } else {
                     if (pre != null) {
@@ -279,13 +284,13 @@ public class BugLocator {
                                 if (init.contains(replacement))
                                     Collections.replaceAll(init, replacement, child);
                                 else
-                                    init.add(child);
+                                    addNewElement(init, child);
                                 parent.setValueByRole(pre, init);
                             } else {
                                 if (((List<CtElementImpl>) ((CtElementImpl) ori).getValueByRole(pre)).contains(replacement))
                                     Collections.replaceAll(((CtElementImpl) ori).getValueByRole(pre), replacement, child);
                                 else
-                                    ((List<CtElementImpl>) ((CtElementImpl) ori).getValueByRole(pre)).add(child);
+                                    addNewElement(((CtElementImpl) ori).getValueByRole(pre), child);
                             }
                         } else {
                             ((CtElementImpl) ori).setValueByRole(pre, child);
@@ -299,6 +304,18 @@ public class BugLocator {
                 pre = pair.getValue0();
             }
         }
+    }
+
+    private void addNewElement(List<CtElementImpl> list, CtElementImpl child) {
+        if (!list.isEmpty() && isEndStmt(list.get(list.size()-1)))
+            list.add(list.size()-1, child);
+        else
+            list.add(child);
+    }
+
+    private boolean isEndStmt(CtElementImpl ctElement) {
+        return  (ctElement instanceof CtReturnImpl || ctElement instanceof CtThrowImpl
+                || ctElement instanceof CtBreakImpl || ctElement instanceof CtContinueImpl);
     }
 
     public CtElementImpl getRoot(CtElementImpl node) {
@@ -348,68 +365,102 @@ public class BugLocator {
         // check value for name
         if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null) {
             // check define-use for name
-            boolean hasDef = false, hasUse = false;
-            for (PatternEdge ie : pnRoot.inEdges()) {
-                if (!ie.isAbstract() && ie.type == PatternEdge.EdgeType.DEF_USE) {
-                    hasDef = true;
-                    if (mapping4pattern.containsKey(ie.getSource()))
-                        newly.setValueByRole(CtRole.NAME, mapping4pattern.get(ie.getSource()));
+            PatternNode define = findDefine(pnRoot), use = null;
+            if (mapping4pattern.containsKey(define))
+                newly.setValueByRole(CtRole.NAME, mapping4pattern.get(define).toLabelString());
+            if (define == null) {
+                use = findUse(pnRoot);
+                if (mapping4pattern.containsKey(use))
+                    newly.setValueByRole(CtRole.NAME, mapping4pattern.get(use).toLabelString());
+            }
+            if (define == null && use == null) {
+                if (!pnRoot.getAttribute("value").isAbstract()) {
+                    String name = (String) pnRoot.getAttribute("value").getTag();
+                    if (SyntaxUtil.checkIdentifierForJLSCorrectness(name, newly.getFactory().getEnvironment().getComplianceLevel()))
+                        newly.setValueByRole(CtRole.NAME, name);
                     else
-                        System.out.println("[warn]Cannot find matched define-position in source code according to pattern");
-                    break;
+                        System.out.println("[warn]Generated variable name is not syntax-valid");
+                } else if (clazz.equals(CtLiteralImpl.class)) {
+                    T value = !pnRoot.getAttribute("value").isAbstract() ? (T) pnRoot.getAttribute("value").getTag() : null;
+                    ((CtLiteralImpl) newly).setValue(value);
+                } else {
+                    System.out.println("[warn]Cannot find matched variable name in source code according to pattern");
                 }
             }
-            if (!hasDef) {
-                for (PatternEdge oe : pnRoot.outEdges()) {
-                    if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.DEF_USE) {
-                        hasUse = true;
-                        if (mapping4pattern.containsKey(oe.getTarget()))
-                            newly.setValueByRole(CtRole.NAME, mapping4pattern.get(oe.getTarget()));
-                        else
-                            System.out.println("[warn]Cannot find matched use-position in source code according to pattern");
-                        break;
-                    }
-                }
-            }
-            if (!hasDef && !hasUse) {
-                newly.setValueByRole(CtRole.NAME, !pnRoot.getAttribute("value").isAbstract() ?
-                        pnRoot.getAttribute("value").getTag() : pnRoot.getAttribute("value2").getTag());
-            }
-        }
-        String valueType = pnRoot.getAttribute("valueType")!=null && !pnRoot.getAttribute("valueType").isAbstract() ? String.valueOf(pnRoot.getAttribute("valueType").getTag()) : null;
-        T value = pnRoot.getAttribute("value")!=null && !pnRoot.getAttribute("value").isAbstract() ? (T) pnRoot.getAttribute("value").getTag() : null;
-        if (clazz.equals(CtLiteralImpl.class) && valueType != null && pnRoot.getAttribute("value")!=null && !pnRoot.getAttribute("value").isAbstract()) {
-            ((CtLiteralImpl) newly).setValue(value);
         }
         // recursively for children
         for (PatternEdge oe : pnRoot.outEdges()) {
-            if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.AST && !oe.getTarget().isVirtual()) {
-                // node type
-                CtElementImpl child = createSpoonNodeRecursively(oe.getTarget(), mapping4pattern, mapping4diff);
-                // role in parent
-                CtRole role = CtRole.fromName((String) oe.getTarget().getAttribute("locationInParent").getTag());
-                Object listSize = oe.getTarget().listSize.getTag();
-                Object listIndex = oe.getTarget().listIndex.getTag();
-                if (newly.getValueByRole(role) instanceof List) {
-                    int size = (Integer) listSize;
-                    int index = (Integer) listIndex;
-                    if (((List<?>) newly.getValueByRole(role)).isEmpty()) {
-                        CtElementImpl[] init = new CtElementImpl[size];
-                        init[index] = child;
-                        newly.setValueByRole(role, Arrays.asList(init));
-                    } else if (newly.getValueByRole(role).getClass().getSimpleName().equals("UnmodifiableRandomAccessList")){
-                        CtElementImpl[] init = ((List<?>) newly.getValueByRole(role)).toArray(new CtElementImpl[size]);
-                        init[index] = child;
-                        newly.setValueByRole(role, Collections.unmodifiableList(Arrays.asList(init)));
-                    } else {
-                        ((List<CtElementImpl>) newly.getValueByRole(role)).add(index, child);
+            if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.AST) {
+                String r = oe.getTarget().getAttribute("locationInParent").isAbstract() ? null : (String) oe.getTarget().getAttribute("locationInParent").getTag();
+                if (r == null)
+                    System.out.println("[error]Create new spoon node failed: pattern node does not have same CtRole");
+                else if ("OPERATOR_KIND".equals(r)) {
+                    if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.fromName(r)) != null) {
+                        String kind = oe.getTarget().getAttribute("value").isAbstract() ? null : (String) oe.getTarget().getAttribute("value").getTag();
+                        if (kind != null)
+                            newly.setValueByRole(CtRole.fromName(r), BinaryOperatorKind.valueOf(kind));
+                        else
+                            System.out.println("[error]Create new spoon node failed: pattern node does not have same operator kind");
                     }
-                } else {
-                    newly.setValueByRole(role, child);
+                }
+                else if (!oe.getTarget().isVirtual()) {
+                    // node type
+                    CtElementImpl child = createSpoonNodeRecursively(oe.getTarget(), mapping4pattern, mapping4diff);
+                    // role in parent
+                    CtRole role = CtRole.fromName(r);
+                    Object listSize = oe.getTarget().listSize.getTag();
+                    Object listIndex = oe.getTarget().listIndex.getTag();
+                    if (newly.getValueByRole(role) instanceof List) {
+                        int size = (Integer) listSize;
+                        int index = (Integer) listIndex;
+                        if (((List<?>) newly.getValueByRole(role)).isEmpty()) {
+                            CtElementImpl[] init = new CtElementImpl[size];
+                            init[index] = child;
+                            newly.setValueByRole(role, Arrays.asList(init));
+                        } else if (newly.getValueByRole(role).getClass().getSimpleName().equals("UnmodifiableRandomAccessList")){
+                            CtElementImpl[] init = ((List<?>) newly.getValueByRole(role)).toArray(new CtElementImpl[size]);
+                            init[index] = child;
+                            newly.setValueByRole(role, Collections.unmodifiableList(Arrays.asList(init)));
+                        } else {
+                            ((List<CtElementImpl>) newly.getValueByRole(role)).add(index, child);
+                        }
+                    } else {
+                        newly.setValueByRole(role, child);
+                    }
                 }
             }
             // TODO: seems no need to extend control dep in patch part in pattern, control dep can be extended from its parent?
         }
         return newly;
+    }
+
+    private PatternNode findDefine(PatternNode pnRoot) {
+        for (PatternEdge ie : pnRoot.inEdges()) {
+            if (!ie.isAbstract() && ie.type == PatternEdge.EdgeType.DEF_USE) {
+                return ie.getSource();
+            }
+        }
+        for (PatternEdge ie : pnRoot.inEdges()) {
+            if (!ie.isAbstract() && !ie.getSource().getAttribute("nodeType").isAbstract()
+                    && SyntaxUtil.isVariableType(ie.getSource().getAttribute("nodeType").getTag())) {
+                return findDefine(ie.getSource());
+            }
+        }
+        return null;
+    }
+
+    private PatternNode findUse(PatternNode pnRoot) {
+        for (PatternEdge oe : pnRoot.outEdges()) {
+            if (!oe.isAbstract() && oe.type == PatternEdge.EdgeType.DEF_USE) {
+                return oe.getSource();
+            }
+        }
+        for (PatternEdge oe : pnRoot.outEdges()) {
+            if (!oe.isAbstract() && !oe.getTarget().getAttribute("nodeType").isAbstract()
+                    && SyntaxUtil.isVariableType(oe.getTarget().getAttribute("nodeType").getTag())) {
+                return findDefine(oe.getTarget());
+            }
+        }
+        return null;
     }
 }

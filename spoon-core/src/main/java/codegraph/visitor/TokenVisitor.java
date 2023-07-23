@@ -161,4 +161,7 @@ public class TokenVisitor extends CtScanner {
         tokens.add(parameter.getType().getSimpleName());
     }
 
+    public void visitCtVirtual(final CtVirtualElement virtual) {
+        tokens.add(virtual.prettyprint());
+    }
 }
