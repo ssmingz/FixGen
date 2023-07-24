@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix bugs for role searching that returns null">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/abstract/pattern_/Users/yumeng/JavaProjects/FixGen/out/c3_ant_13_0_temp_0.dot" beforeDir="false" />
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add timeout setting">
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -206,13 +203,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665371441595</updated>
-    </task>
-    <task id="LOCAL-00009" summary="add .gitignore">
-      <created>1668362255879</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1668362255879</updated>
     </task>
     <task id="LOCAL-00010" summary="change jdk version from 1.8 to 11">
       <created>1676947302989</created>
@@ -550,7 +540,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690169819768</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="add timeout setting">
+      <created>1690187952606</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1690187952606</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -565,7 +562,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix pattern-abstraction:&quot;abstraction not working since all attributes shown in dotgraph&quot; bug on c3-ant-8" />
     <MESSAGE value="fix graph-building:&quot;insert.source different type for gumtree and spoon node&quot; bug" />
     <MESSAGE value="fix bugs for patchnode extension and connection" />
     <MESSAGE value="add TokenVisitor and ReplaceNameVisitor" />
@@ -590,7 +586,8 @@
     <MESSAGE value="fix bugs for patch generation:not set parent for newly created node" />
     <MESSAGE value="fix bugs for parsing CtVirtualElement" />
     <MESSAGE value="fix bugs for role searching that returns null" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs for role searching that returns null" />
+    <MESSAGE value="add timeout setting" />
+    <option name="LAST_COMMIT_MESSAGE" value="add timeout setting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

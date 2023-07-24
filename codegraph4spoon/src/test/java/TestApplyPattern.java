@@ -81,7 +81,6 @@ public class TestApplyPattern {
                     // 使用Callable接口作为构造参数
                     int finalI = i;
                     FutureTask<String> future = new FutureTask<>(() -> {
-                        System.out.println("Running::" + LocalDateTime.now());
                         // 真正的任务代码在这里执行，返回值为你需要的类型
                         try {
                             // all action graph
