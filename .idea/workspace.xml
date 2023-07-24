@@ -4,11 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use">
+    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="fix bugs for patch generation:not set parent for newly created node">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/pattern/Attribute.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestApplyPattern.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/spoon/support/reflect/declaration/CtElementImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/NodeCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/NodeCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/NodeCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/NodeCreator.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,13 +205,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665371441595</updated>
-    </task>
-    <task id="LOCAL-00006" summary="refactor project module by remove previous gumtree-spoon-ast-diff">
-      <created>1667876112917</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1667876112917</updated>
     </task>
     <task id="LOCAL-00007" summary="combine gumtree mappings and actions">
       <created>1668361709376</created>
@@ -546,7 +542,14 @@
       <option name="project" value="LOCAL" />
       <updated>1690131001811</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="fix bugs for patch generation:not set parent for newly created node">
+      <created>1690132999136</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1690132999136</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -561,7 +564,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix pattern extraction and abstraction bugs on c3-ant-0" />
     <MESSAGE value="fix codegraph-building:InvalidSourcePosition bug on c3-ant-7" />
     <MESSAGE value="fix pattern-extraction:&quot;patch node not extended due to extend level&quot; bug on c3-ant-7" />
     <MESSAGE value="fix pattern-abstraction:&quot;abstraction not working since all attributes shown in dotgraph&quot; bug on c3-ant-8" />
@@ -586,7 +588,8 @@
     <MESSAGE value="add Main.java for the whole method process" />
     <MESSAGE value="add other rules for calSimScore()" />
     <MESSAGE value="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bugs for patch generation:1)add statements before return/break/continue/throw;2)add parsing for binary operator kind;3)add recursion searching for define-use" />
+    <MESSAGE value="fix bugs for patch generation:not set parent for newly created node" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bugs for patch generation:not set parent for newly created node" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -743,7 +746,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>46</line>
+          <line>47</line>
           <option name="timeStamp" value="905" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -788,7 +791,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>186</line>
+          <line>188</line>
           <option name="timeStamp" value="1190" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -805,11 +808,6 @@
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java</url>
           <line>41</line>
           <option name="timeStamp" value="1278" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/BugLocator.java</url>
-          <line>108</line>
-          <option name="timeStamp" value="1282" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ReflectUtil.java</url>

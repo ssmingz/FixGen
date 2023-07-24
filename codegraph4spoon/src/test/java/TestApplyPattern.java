@@ -107,7 +107,7 @@ public class TestApplyPattern {
                             try{
                                 detector.applyPattern(pat, target_ag, patchPath);
                             } catch (Exception e) {
-                                System.out.println("[error]Unknown exception");
+                                System.out.printf("[error]Unknown exception : %s\n", e.getCause());
                             } catch (Error e) {
                                 System.out.println("[error]Unknown error");
                             }
@@ -126,8 +126,8 @@ public class TestApplyPattern {
     @Test
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
-        String pro = "junit";
-        int testId = 24;
+        String pro = "checkstyle";
+        int testId = 266;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);

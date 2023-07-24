@@ -74,6 +74,7 @@ public class NodeCreator extends CtInheritanceScanner {
 		// We create a virtual node
 		CtVirtualElement virtualElement = new CtVirtualElement(type, m, m.getModifiers(), CtRole.MODIFIER);
 		modifiers.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT, virtualElement);
+		virtualElement.putMetadata(SpoonGumTreeBuilder.GUMTREE_NODE, modifiers);
 
 		List<SourcePosition> modifierPositions = new ArrayList<>();
 
@@ -147,8 +148,10 @@ public class NodeCreator extends CtInheritanceScanner {
 		// nodes of interfaces
 		Tree superInterfaceRoot = builder.createNode("SUPER_INTERFACES", "");
 		String virtualNodeDescription = "SuperInterfaces_" + typeReference.getQualifiedName();
-		superInterfaceRoot.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT, new CtVirtualElement(virtualNodeDescription,
-				(CtElement) typeReference, typeReference.getSuperInterfaces(), CtRole.INTERFACE));
+		CtVirtualElement virtualElement = new CtVirtualElement(virtualNodeDescription,
+				(CtElement) typeReference, typeReference.getSuperInterfaces(), CtRole.INTERFACE);
+		superInterfaceRoot.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT, virtualElement);
+		virtualElement.putMetadata(SpoonGumTreeBuilder.GUMTREE_NODE, superInterfaceRoot);
 
 		// attach each super interface to the root created above
 		for (CtTypeReference<?> superInterface : typeReference.getSuperInterfaces()) {
@@ -190,8 +193,9 @@ public class NodeCreator extends CtInheritanceScanner {
 		if (!e.getThrownTypes().isEmpty()) {
 			Tree thrownTypeRoot = builder.createNode("THROWN_TYPES", "");
 			String virtualNodeDescription = "ThrownTypes_" + e.getSimpleName();
-			thrownTypeRoot.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT,
-					new CtVirtualElement(virtualNodeDescription, e, e.getThrownTypes(), CtRole.THROWN));
+			CtVirtualElement virtualElement = new CtVirtualElement(virtualNodeDescription, e, e.getThrownTypes(), CtRole.THROWN);
+			thrownTypeRoot.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT, virtualElement);
+			virtualElement.putMetadata(SpoonGumTreeBuilder.GUMTREE_NODE, thrownTypeRoot);
 
 			for (CtTypeReference<? extends Throwable> thrownType : e.getThrownTypes()) {
 				Tree thrownNode = builder.createNode("THROWN", thrownType.getQualifiedName());
@@ -213,8 +217,9 @@ public class NodeCreator extends CtInheritanceScanner {
 		final String virtualNodeDescription = "AnnotationValues_" + getClassName(annotation.getClass().getSimpleName());
 		Tree annotationNode = builder.createNode(virtualNodeDescription, "");
 
-		annotationNode.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT,
-				new CtVirtualElement(virtualNodeDescription, annotation, annotation.getValues().entrySet(), CtRole.VALUE));
+		CtVirtualElement virtualElement = new CtVirtualElement(virtualNodeDescription, annotation, annotation.getValues().entrySet(), CtRole.VALUE);
+		annotationNode.setMetadata(SpoonGumTreeBuilder.SPOON_OBJECT, virtualElement);
+		virtualElement.putMetadata(SpoonGumTreeBuilder.GUMTREE_NODE, annotationNode);
 
 		for (Map.Entry<String, CtExpression> entry: annotation.getValues().entrySet()) {
 			Tree annotationValueNode = builder.createNode("ANNOTATION_VALUE", entry.toString());

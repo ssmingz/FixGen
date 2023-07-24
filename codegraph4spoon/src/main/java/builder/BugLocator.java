@@ -1,5 +1,6 @@
 package builder;
 
+import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
 import model.actions.Delete;
@@ -183,6 +184,7 @@ public class BugLocator {
                 roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
             }
             modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, update, oriNode);
+            oriNode.delete();
         } else {
             System.out.println("[error]Cannot find UPDATE.target in pattern: " + target.getFileName());
         }
@@ -245,7 +247,6 @@ public class BugLocator {
 
     private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, CtElementImpl child, CtElementImpl replacement) {
         CtRole pre = null;
-        child.setParent(parent);
         for (Pair<CtRole, Class> pair : roles) {
             if (pair.getValue0() == null)
                 continue;
@@ -299,6 +300,7 @@ public class BugLocator {
                         parent.setValueByRole(pair.getValue0(), child);
                     }
                 }
+                child.setParent(parent);
                 break;
             } else {
                 pre = pair.getValue0();
