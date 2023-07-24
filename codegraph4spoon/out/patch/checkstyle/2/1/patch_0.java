@@ -1,0 +1,3 @@
+int getTotal() {
+    return total;
+}

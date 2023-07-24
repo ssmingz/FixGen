@@ -126,8 +126,8 @@ public class TestApplyPattern {
     @Test
     public void testApplyPatternOnC3_debug(){
         boolean INCLUE_INSTANCE_ITSELF = true;
-        String pro = "checkstyle";
-        int testId = 266;
+        String pro = "drjava";
+        int testId = 1103;
         int targetNo = 0;
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);

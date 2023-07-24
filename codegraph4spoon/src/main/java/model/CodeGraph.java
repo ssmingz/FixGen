@@ -12,6 +12,7 @@ import model.actions.ActionNode;
 import spoon.reflect.code.UnaryOperatorKind;
 import spoon.reflect.declaration.CtElement;
 import spoon.reflect.declaration.ModifierKind;
+import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
@@ -850,6 +851,9 @@ public class CodeGraph implements Serializable {
                 // add direct children mappings
                 CtRole[] roles = ReflectUtil.getAllCtRoles(srcCt.getClass());
                 for (CtRole role : roles) {
+                    if (RoleHandlerHelper.getOptionalRoleHandler(srcCt.getClass(), role) == null
+                            || RoleHandlerHelper.getOptionalRoleHandler(dstCt.getClass(), role) == null)
+                        continue;
                     Object s = srcCt.getValueByRole(role);
                     Object d = dstCt.getValueByRole(role);
                     if (s instanceof CtElementImpl && d instanceof CtElementImpl && ObjectUtil.findCtKeyInSet(_mapping.keySet(), new CtWrapper((CtElementImpl) s))==null)

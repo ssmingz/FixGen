@@ -118,7 +118,7 @@ public class Attribute implements Serializable {
             role = "ACTION";
         } else if (n.isVirtual()) {
             role = ((CtVirtualElement) n.getCtElementImpl()).getLocationInParent();
-        } else {
+        } else if (n.getCtElementImpl().getRoleInParent() != null) {
             role = n.getCtElementImpl().getRoleInParent().name();
         }
         return role;
