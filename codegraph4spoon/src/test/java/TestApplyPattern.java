@@ -5,7 +5,13 @@ import org.junit.Test;
 import utils.DotGraph;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class TestApplyPattern {
     @Test
@@ -54,9 +60,10 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         boolean SKIP_IF_EXIST = true;
-        String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
+        //String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
+        String[] projects = {"drjava", "ant", "swt"};
         String base = TestConfig.MAC_BASE;
-        int targetCounter = 0;
+        AtomicInteger targetCounter = new AtomicInteger();
         long start = System.currentTimeMillis();
         for (int i=0; i<projects.length; i++) {
             File dir = new File(base + "dataset/" + projects[i]);
@@ -68,51 +75,88 @@ public class TestApplyPattern {
                     String patchDir = String.format("%s/out/patch/%s/%s/", System.getProperty("user.dir"), projects[i], testId);
                     if (SKIP_IF_EXIST && new File(patchDir).exists())
                         continue;
-                    // all action graph
-                    List<CodeGraph> ags = new ArrayList<>();
-                    for (int k=0; k<size; k++) {
-                        String srcPath = String.format("%s/%d/before.java", baseDir, k);
-                        String tarPath = String.format("%s/%d/after.java", baseDir, k);
-                        // build action graph
-                        CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
-                        ags.add(ag);
-                    }
-                    // each as target
-                    for (int targetNo=0; targetNo<size; targetNo++) {
-                        targetCounter++;
-                        // build for the target
-                        CodeGraph target_ag = GraphBuilder.buildGraph(
-                                String.format("%s/%d/before.java", baseDir, targetNo), new String[] {}, 8, new int[] {});
-                        System.out.println("[start]"+target_ag.getFileName());
 
-                        // build for the pattern
-                        List<CodeGraph> ags_temp = new ArrayList<>();
-                        for (int k=0; k<size; k++) {
-                            if (!INCLUE_INSTANCE_ITSELF && k==targetNo) continue;
-                            ags_temp.add(ags.get(k));
-                        }
-                        // extract pattern from more-than-one graphs
-                        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp);
-                        if (combinedGraphs.size() > 1) {
-                            System.out.printf("[warn]extracted pattern not single, size:%d\n", combinedGraphs.size());
-                            //continue;
-                        }
-                        for (Pattern pat : combinedGraphs) {
-                            // abstract pattern
-                            PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size*1.0));
-                            abs.abstractPattern(pat);
-                            // locate the buggy line
-                            BugLocator detector = new BugLocator(0.6);
-                            String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
-                            try{
-                                detector.applyPattern(pat, target_ag, patchPath);
-                            } catch (Exception e) {
-                                System.out.printf("[error]Unknown exception : %s\n", e.getCause());
-                            } catch (Error e) {
-                                System.out.println("[error]Unknown error");
+                    ExecutorService executor = Executors.newCachedThreadPool();
+
+                    // 使用Callable接口作为构造参数
+                    int finalI = i;
+                    FutureTask<String> future = new FutureTask<>(() -> {
+                        System.out.println("Running::" + LocalDateTime.now());
+                        // 真正的任务代码在这里执行，返回值为你需要的类型
+                        try {
+                            // all action graph
+                            long step_start = System.currentTimeMillis();
+                            List<CodeGraph> ags = new ArrayList<>();
+                            for (int k = 0; k < size; k++) {
+                                String srcPath = String.format("%s/%d/before.java", baseDir, k);
+                                String tarPath = String.format("%s/%d/after.java", baseDir, k);
+                                // build action graph
+                                System.out.printf("[prepare]build action graph: %s %d %d\n", projects[finalI], testId, k);
+                                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+                                ags.add(ag);
                             }
+                            long step_end = System.currentTimeMillis();
+                            System.out.printf("[time]build all instance action graphs: %f s\n", (step_end - step_start) / 1000.0);
+                            // each as target
+                            for (int targetNo = 0; targetNo < size; targetNo++) {
+                                targetCounter.getAndIncrement();
+                                // build for the target
+                                String path = String.format("%s/%d/before.java", baseDir, targetNo);
+                                System.out.println("[start]" + path);
+                                step_start = System.currentTimeMillis();
+                                CodeGraph target_ag = GraphBuilder.buildGraph(path, new String[]{}, 8, new int[]{});
+                                step_end = System.currentTimeMillis();
+                                System.out.printf("[time]build target codegraph: %f s\n", (step_end - step_start) / 1000.0);
+
+                                // build for the pattern
+                                List<CodeGraph> ags_temp = new ArrayList<>();
+                                for (int k = 0; k < size; k++) {
+                                    if (!INCLUE_INSTANCE_ITSELF && k == targetNo) continue;
+                                    ags_temp.add(ags.get(k));
+                                }
+                                // extract pattern from more-than-one graphs
+                                step_start = System.currentTimeMillis();
+                                List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp);
+                                step_end = System.currentTimeMillis();
+                                System.out.printf("[time]cluster instance graphs: %f s\n", (step_end - step_start) / 1000.0);
+                                if (combinedGraphs.size() > 1) {
+                                    System.out.printf("[warn]extracted pattern not single, size:%d\n", combinedGraphs.size());
+                                    //continue;
+                                }
+                                for (Pattern pat : combinedGraphs) {
+                                    // abstract pattern
+                                    step_start = System.currentTimeMillis();
+                                    PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
+                                    abs.abstractPattern(pat);
+                                    step_end = System.currentTimeMillis();
+                                    System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
+                                    // locate the buggy line
+                                    BugLocator detector = new BugLocator(0.6);
+                                    String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
+                                    step_start = System.currentTimeMillis();
+                                    detector.applyPattern(pat, target_ag, patchPath);
+                                    step_end = System.currentTimeMillis();
+                                    System.out.printf("[time]apply pattern: %f s\n", (step_end - step_start) / 1000.0);
+                                }
+                                System.out.println("[finished]" + path);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("[error]Unknown exception");
+                        } catch (Error e) {
+                            System.out.println("[error]Unknown error");
                         }
-                        System.out.println("[finished]"+target_ag.getFileName());
+                        return "";
+                    });
+
+                    executor.execute(future);
+                    try {
+                        // 取得结果，同时设置超时执行时间默认为10秒。同样可以用future.get()，不设置执行超时时间取得结果
+                        future.get(10, TimeUnit.MINUTES);
+                    } catch (Exception e) {
+                        System.out.println("[error]Timeout");
+                        future.cancel(true);
+                    } finally {
+                        executor.shutdown();
                     }
                 }
             }
