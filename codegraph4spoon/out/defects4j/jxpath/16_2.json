@@ -1,0 +1,426 @@
+{
+	"/Users/yumeng/JavaProjects/FixGen/data/d4j-info-2.0/buggy_fix/buggy/jxpath/jxpath_16_buggy/src/java/org/apache/commons/jxpath/ri/model/jdom/JDOMNodePointer.java":[
+		{
+			"vertexes":[
+				870,
+				237,
+				239,
+				238
+			],
+			"edges":[
+				[
+					"",
+					"Action",
+					"",
+					""
+				],
+				[
+					"Action",
+					"",
+					"",
+					"AST"
+				],
+				[
+					"",
+					"",
+					"",
+					"AST"
+				],
+				[
+					"",
+					"AST",
+					"AST",
+					""
+				]
+			],
+			"vertex_label":[
+				1,
+				1,
+				1,
+				1
+			],
+			"attribute_label":[
+				{
+					"870":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"237":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"239":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"238":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				}
+			],
+			"attributes":[
+				{
+					"870":{
+						"locationInParent":"ACTION",
+						"value2":"",
+						"valueType":"no type",
+						"nodeType":"class model.actions.Delete",
+						"value":"DELETE"
+					}
+				},
+				{
+					"237":{
+						"locationInParent":"EXPRESSION",
+						"value2":"(java.lang.Object instanceof org.jdom.Element) || (java.lang.Object instanceof org.jdom.Document)",
+						"valueType":"boolean",
+						"nodeType":"class spoon.support.reflect.code.CtBinaryOperatorImpl",
+						"value":"(node instanceof Element) || (node instanceof Document)"
+					}
+				},
+				{
+					"239":{
+						"locationInParent":"CASE",
+						"value2":"case java.lang.Compiler. :\n    return (java.lang.Object instanceof org.jdom.Element) || (java.lang.Object instanceof org.jdom.Document);",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCaseImpl",
+						"value":"case Compiler.NODE_TYPE_NODE :\n    return (node instanceof Element) || (node instanceof Document);"
+					}
+				},
+				{
+					"238":{
+						"locationInParent":"STATEMENT",
+						"value2":"return (java.lang.Object instanceof org.jdom.Element) || (java.lang.Object instanceof org.jdom.Document)",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtReturnImpl",
+						"value":"return (node instanceof Element) || (node instanceof Document)"
+					}
+				}
+			],
+			"edge_label":[
+				[
+					0,
+					1,
+					0,
+					0
+				],
+				[
+					1,
+					0,
+					0,
+					1
+				],
+				[
+					0,
+					0,
+					0,
+					1
+				],
+				[
+					0,
+					1,
+					1,
+					0
+				]
+			]
+		},
+		{
+			"vertexes":[
+				871,
+				238,
+				216,
+				289,
+				239,
+				873,
+				872
+			],
+			"edges":[
+				[
+					"",
+					"Action",
+					"",
+					"",
+					"",
+					"Action",
+					""
+				],
+				[
+					"Action",
+					"",
+					"Control Dep",
+					"",
+					"AST",
+					"",
+					""
+				],
+				[
+					"",
+					"Control Dep",
+					"",
+					"AST",
+					"Control Dep",
+					"Control Dep",
+					""
+				],
+				[
+					"",
+					"",
+					"AST",
+					"",
+					"AST",
+					"",
+					""
+				],
+				[
+					"",
+					"AST",
+					"Control Dep",
+					"AST",
+					"",
+					"",
+					""
+				],
+				[
+					"Action",
+					"",
+					"Control Dep",
+					"",
+					"",
+					"",
+					"AST"
+				],
+				[
+					"",
+					"",
+					"",
+					"",
+					"",
+					"AST",
+					""
+				]
+			],
+			"vertex_label":[
+				1,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"attribute_label":[
+				{
+					"871":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"238":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"216":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"289":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"239":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"873":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"872":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				}
+			],
+			"attributes":[
+				{
+					"871":{
+						"locationInParent":"ACTION",
+						"value2":"",
+						"valueType":"no type",
+						"nodeType":"class model.actions.Insert",
+						"value":"INSERT"
+					}
+				},
+				{
+					"238":{
+						"locationInParent":"STATEMENT",
+						"value2":"return (java.lang.Object instanceof org.jdom.Element) || (java.lang.Object instanceof org.jdom.Document)",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtReturnImpl",
+						"value":"return (node instanceof Element) || (node instanceof Document)"
+					}
+				},
+				{
+					"216":{
+						"locationInParent":"EXPRESSION",
+						"value2":"((org.apache.commons.jxpath.ri.compiler.NodeTypeTest) (org.apache.commons.jxpath.ri.compiler.NodeTest)).getNodeType()",
+						"valueType":"null type",
+						"nodeType":"class spoon.support.reflect.code.CtInvocationImpl",
+						"value":"((NodeTypeTest) (test)).getNodeType()"
+					}
+				},
+				{
+					"289":{
+						"locationInParent":"STATEMENT",
+						"value2":"exceed MAX_TOKEN_LENGTH:29 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtSwitchImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:29 tokens"
+					}
+				},
+				{
+					"239":{
+						"locationInParent":"CASE",
+						"value2":"case java.lang.Compiler. :\n    return (java.lang.Object instanceof org.jdom.Element) || (java.lang.Object instanceof org.jdom.Document);",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCaseImpl",
+						"value":"case Compiler.NODE_TYPE_NODE :\n    return (node instanceof Element) || (node instanceof Document);"
+					}
+				},
+				{
+					"873":{
+						"locationInParent":"EXPRESSION",
+						"value2":"java.lang.Boolean",
+						"valueType":"boolean",
+						"nodeType":"class spoon.support.reflect.code.CtLiteralImpl",
+						"value":"true"
+					}
+				},
+				{
+					"872":{
+						"locationInParent":"TYPE",
+						"value2":"boolean",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.reference.CtTypeReferenceImpl",
+						"value":"boolean"
+					}
+				}
+			],
+			"edge_label":[
+				[
+					0,
+					1,
+					0,
+					0,
+					0,
+					1,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					0,
+					1,
+					0,
+					0
+				],
+				[
+					0,
+					1,
+					0,
+					1,
+					1,
+					1,
+					0
+				],
+				[
+					0,
+					0,
+					1,
+					0,
+					1,
+					0,
+					0
+				],
+				[
+					0,
+					1,
+					1,
+					1,
+					0,
+					0,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					0,
+					0,
+					0,
+					1
+				],
+				[
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0
+				]
+			]
+		}
+	]
+}

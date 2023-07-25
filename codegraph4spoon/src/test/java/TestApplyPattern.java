@@ -5,7 +5,9 @@ import org.junit.Test;
 import utils.DotGraph;
 
 import java.io.File;
-import java.time.LocalDateTime;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -60,6 +62,19 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3(){
         boolean INCLUE_INSTANCE_ITSELF = true;
         boolean SKIP_IF_EXIST = true;
+        boolean OUTPUT_TO_FILE = true;
+
+        if (OUTPUT_TO_FILE) {
+            FileOutputStream puts = null;
+            try {
+                puts = new FileOutputStream(TestConfig.LOG_PATH,true);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            PrintStream out = new PrintStream(puts);
+            System.setOut(out);
+        }
+
         //String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
         String[] projects = {"drjava", "ant", "swt"};
         String base = TestConfig.MAC_BASE;

@@ -1,0 +1,798 @@
+{
+	"/Users/yumeng/JavaProjects/FixGen/data/d4j-info-2.0/buggy_fix/buggy/math/math_50_buggy/src/main/java/org/apache/commons/math/analysis/solvers/BaseSecantSolver.java":[
+		{
+			"vertexes":[
+				1561,
+				349,
+				244,
+				351
+			],
+			"edges":[
+				[
+					"",
+					"Action",
+					"",
+					""
+				],
+				[
+					"Action",
+					"",
+					"Control Dep",
+					"AST"
+				],
+				[
+					"",
+					"Control Dep",
+					"",
+					"Control Dep"
+				],
+				[
+					"",
+					"AST",
+					"Control Dep",
+					""
+				]
+			],
+			"vertex_label":[
+				1,
+				1,
+				1,
+				1
+			],
+			"attribute_label":[
+				{
+					"1561":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"349":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"244":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"351":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				}
+			],
+			"attributes":[
+				{
+					"1561":{
+						"locationInParent":"ACTION",
+						"value2":"",
+						"valueType":"no type",
+						"nodeType":"class model.actions.Delete",
+						"value":"DELETE"
+					}
+				},
+				{
+					"349":{
+						"locationInParent":"STATEMENT",
+						"value2":"exceed MAX_TOKEN_LENGTH:18 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtIfImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:18 tokens"
+					}
+				},
+				{
+					"244":{
+						"locationInParent":"EXPRESSION",
+						"value2":"org.apache.commons.math.analysis.solvers.BaseSecantSolver$Method",
+						"valueType":"org.apache.commons.math.analysis.solvers.BaseSecantSolver$Method",
+						"nodeType":"class spoon.support.reflect.code.CtFieldReadImpl",
+						"value":"method"
+					}
+				},
+				{
+					"351":{
+						"locationInParent":"CASE",
+						"value2":"exceed MAX_TOKEN_LENGTH:21 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCaseImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:21 tokens"
+					}
+				}
+			],
+			"edge_label":[
+				[
+					0,
+					1,
+					0,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					1
+				],
+				[
+					0,
+					1,
+					0,
+					1
+				],
+				[
+					0,
+					1,
+					1,
+					0
+				]
+			]
+		},
+		{
+			"vertexes":[
+				1562,
+				350,
+				244,
+				351
+			],
+			"edges":[
+				[
+					"",
+					"Action",
+					"",
+					""
+				],
+				[
+					"Action",
+					"",
+					"Control Dep",
+					"AST"
+				],
+				[
+					"",
+					"Control Dep",
+					"",
+					"Control Dep"
+				],
+				[
+					"",
+					"AST",
+					"Control Dep",
+					""
+				]
+			],
+			"vertex_label":[
+				1,
+				1,
+				1,
+				1
+			],
+			"attribute_label":[
+				{
+					"1562":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"350":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"244":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"351":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				}
+			],
+			"attributes":[
+				{
+					"1562":{
+						"locationInParent":"ACTION",
+						"value2":"",
+						"valueType":"no type",
+						"nodeType":"class model.actions.Delete",
+						"value":"DELETE"
+					}
+				},
+				{
+					"350":{
+						"locationInParent":"STATEMENT",
+						"value2":"break",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtBreakImpl",
+						"value":"break"
+					}
+				},
+				{
+					"244":{
+						"locationInParent":"EXPRESSION",
+						"value2":"org.apache.commons.math.analysis.solvers.BaseSecantSolver$Method",
+						"valueType":"org.apache.commons.math.analysis.solvers.BaseSecantSolver$Method",
+						"nodeType":"class spoon.support.reflect.code.CtFieldReadImpl",
+						"value":"method"
+					}
+				},
+				{
+					"351":{
+						"locationInParent":"CASE",
+						"value2":"exceed MAX_TOKEN_LENGTH:21 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCaseImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:21 tokens"
+					}
+				}
+			],
+			"edge_label":[
+				[
+					0,
+					1,
+					0,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					1
+				],
+				[
+					0,
+					1,
+					0,
+					1
+				],
+				[
+					0,
+					1,
+					1,
+					0
+				]
+			]
+		},
+		{
+			"vertexes":[
+				1563,
+				351,
+				244,
+				359,
+				349,
+				1565,
+				1564
+			],
+			"edges":[
+				[
+					"",
+					"Action",
+					"",
+					"",
+					"",
+					"Action",
+					""
+				],
+				[
+					"Action",
+					"",
+					"Control Dep",
+					"AST",
+					"AST",
+					"",
+					""
+				],
+				[
+					"",
+					"Control Dep",
+					"",
+					"AST",
+					"Control Dep",
+					"Control Dep",
+					""
+				],
+				[
+					"",
+					"AST",
+					"AST",
+					"",
+					"",
+					"",
+					""
+				],
+				[
+					"",
+					"AST",
+					"Control Dep",
+					"",
+					"",
+					"",
+					""
+				],
+				[
+					"Action",
+					"",
+					"Control Dep",
+					"",
+					"",
+					"",
+					"AST"
+				],
+				[
+					"",
+					"",
+					"",
+					"",
+					"",
+					"AST",
+					""
+				]
+			],
+			"vertex_label":[
+				1,
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"attribute_label":[
+				{
+					"1563":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"351":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"244":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"359":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"349":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"1565":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"1564":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				}
+			],
+			"attributes":[
+				{
+					"1563":{
+						"locationInParent":"ACTION",
+						"value2":"",
+						"valueType":"no type",
+						"nodeType":"class model.actions.Insert",
+						"value":"INSERT"
+					}
+				},
+				{
+					"351":{
+						"locationInParent":"CASE",
+						"value2":"exceed MAX_TOKEN_LENGTH:21 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCaseImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:21 tokens"
+					}
+				},
+				{
+					"244":{
+						"locationInParent":"EXPRESSION",
+						"value2":"org.apache.commons.math.analysis.solvers.BaseSecantSolver$Method",
+						"valueType":"org.apache.commons.math.analysis.solvers.BaseSecantSolver$Method",
+						"nodeType":"class spoon.support.reflect.code.CtFieldReadImpl",
+						"value":"method"
+					}
+				},
+				{
+					"359":{
+						"locationInParent":"STATEMENT",
+						"value2":"exceed MAX_TOKEN_LENGTH:39 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtSwitchImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:39 tokens"
+					}
+				},
+				{
+					"349":{
+						"locationInParent":"STATEMENT",
+						"value2":"exceed MAX_TOKEN_LENGTH:18 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtIfImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:18 tokens"
+					}
+				},
+				{
+					"1565":{
+						"locationInParent":"STATEMENT",
+						"value2":"// Nothing.\nbreak",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtBreakImpl",
+						"value":"// Nothing.\nbreak"
+					}
+				},
+				{
+					"1564":{
+						"locationInParent":"COMMENT",
+						"value2":"// Nothing.",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCommentImpl",
+						"value":"// Nothing."
+					}
+				}
+			],
+			"edge_label":[
+				[
+					0,
+					1,
+					0,
+					0,
+					0,
+					1,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					1,
+					1,
+					0,
+					0
+				],
+				[
+					0,
+					1,
+					0,
+					1,
+					1,
+					1,
+					0
+				],
+				[
+					0,
+					1,
+					1,
+					0,
+					0,
+					0,
+					0
+				],
+				[
+					0,
+					1,
+					1,
+					0,
+					0,
+					0,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					0,
+					0,
+					0,
+					1
+				],
+				[
+					0,
+					0,
+					0,
+					0,
+					0,
+					1,
+					0
+				]
+			]
+		},
+		{
+			"vertexes":[
+				1566,
+				348,
+				349,
+				1565,
+				1564,
+				351
+			],
+			"edges":[
+				[
+					"",
+					"Action",
+					"",
+					"",
+					"Action",
+					""
+				],
+				[
+					"Action",
+					"",
+					"AST",
+					"",
+					"",
+					""
+				],
+				[
+					"",
+					"AST",
+					"",
+					"",
+					"",
+					"AST"
+				],
+				[
+					"",
+					"",
+					"",
+					"",
+					"AST",
+					""
+				],
+				[
+					"Action",
+					"",
+					"",
+					"AST",
+					"",
+					""
+				],
+				[
+					"",
+					"",
+					"AST",
+					"",
+					"",
+					""
+				]
+			],
+			"vertex_label":[
+				1,
+				1,
+				1,
+				1,
+				1,
+				1
+			],
+			"attribute_label":[
+				{
+					"1566":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"348":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"349":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"1565":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"1564":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				},
+				{
+					"351":{
+						"locationInParent":1,
+						"value2":1,
+						"valueType":1,
+						"nodeType":1,
+						"value":1
+					}
+				}
+			],
+			"attributes":[
+				{
+					"1566":{
+						"locationInParent":"ACTION",
+						"value2":"",
+						"valueType":"no type",
+						"nodeType":"class model.actions.Move",
+						"value":"MOVE"
+					}
+				},
+				{
+					"348":{
+						"locationInParent":"COMMENT",
+						"value2":"// Nothing.",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCommentImpl",
+						"value":"// Nothing."
+					}
+				},
+				{
+					"349":{
+						"locationInParent":"STATEMENT",
+						"value2":"exceed MAX_TOKEN_LENGTH:18 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtIfImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:18 tokens"
+					}
+				},
+				{
+					"1565":{
+						"locationInParent":"STATEMENT",
+						"value2":"// Nothing.\nbreak",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtBreakImpl",
+						"value":"// Nothing.\nbreak"
+					}
+				},
+				{
+					"1564":{
+						"locationInParent":"COMMENT",
+						"value2":"// Nothing.",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCommentImpl",
+						"value":"// Nothing."
+					}
+				},
+				{
+					"351":{
+						"locationInParent":"CASE",
+						"value2":"exceed MAX_TOKEN_LENGTH:21 tokens",
+						"valueType":"no type",
+						"nodeType":"class spoon.support.reflect.code.CtCaseImpl",
+						"value":"exceed MAX_TOKEN_LENGTH:21 tokens"
+					}
+				}
+			],
+			"edge_label":[
+				[
+					0,
+					1,
+					0,
+					0,
+					1,
+					0
+				],
+				[
+					1,
+					0,
+					1,
+					0,
+					0,
+					0
+				],
+				[
+					0,
+					1,
+					0,
+					0,
+					0,
+					1
+				],
+				[
+					0,
+					0,
+					0,
+					0,
+					1,
+					0
+				],
+				[
+					1,
+					0,
+					0,
+					1,
+					0,
+					0
+				],
+				[
+					0,
+					0,
+					1,
+					0,
+					0,
+					0
+				]
+			]
+		}
+	]
+}
