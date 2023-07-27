@@ -26,42 +26,91 @@ public class ReplaceNameVisitor extends DefaultJavaPrettyPrinter {
         if (literal.getValue() == null)
             printer.writeLiteral("null");
         else
-            printer.writeLiteral(literal.getValue().getClass().getName());
+            try {
+                printer.writeLiteral(literal.getValue().getClass().getName());
+            } catch (NullPointerException e) {
+                System.err.println("[Error] NullPointerException in : " +
+                        Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                        Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                        Thread.currentThread().getStackTrace()[1].getLineNumber());
+            }
         exitCtExpression(literal);
     }
 
     @Override
     public <T> void visitCtLocalVariableReference(CtLocalVariableReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getQualifiedName());
+        try{
+            printer.writeIdentifier(reference.getType().getQualifiedName());
+        } catch (NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
     }
 
     @Override
     public <T> void visitCtCatchVariableReference(CtCatchVariableReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getQualifiedName());
+        try {
+            printer.writeIdentifier(reference.getType().getQualifiedName());
+        } catch (NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
     }
 
     @Override
     public <T> void visitCtParameterReference(CtParameterReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getQualifiedName());
+        try {
+            printer.writeIdentifier(reference.getType().getQualifiedName());
+        } catch (NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
     }
 
     @Override
     public <T> void visitCtVariableRead(CtVariableRead<T> variableRead) {
         enterCtExpression(variableRead);
-        printer.writeIdentifier(variableRead.getVariable().getType().getQualifiedName());
+        try {
+            printer.writeIdentifier(variableRead.getVariable().getType().getQualifiedName());
+        } catch(NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
         exitCtExpression(variableRead);
     }
 
     @Override
     public <T> void visitCtVariableWrite(CtVariableWrite<T> variableWrite) {
         enterCtExpression(variableWrite);
-        printer.writeIdentifier(variableWrite.getVariable().getType().getQualifiedName());
+        try {
+            printer.writeIdentifier(variableWrite.getVariable().getType().getQualifiedName());
+        } catch(NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
         exitCtExpression(variableWrite);
     }
 
     @Override
     public <T> void visitCtUnboundVariableReference(CtUnboundVariableReference<T> reference) {
-        printer.writeIdentifier(reference.getType().getQualifiedName());
+        try {
+            printer.writeIdentifier(reference.getType().getQualifiedName());
+        } catch(NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
     }
 
     @Override

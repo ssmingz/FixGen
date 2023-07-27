@@ -14,6 +14,7 @@ import spoon.reflect.declaration.CtElement;
 import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
+import spoon.reflect.reference.CtTypeReference;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.*;
 import spoon.support.reflect.reference.*;
@@ -64,12 +65,15 @@ public class CodeGraph implements Serializable {
         if (ctNode == null) {
             return;
         }
+
         // check whether already parsed
         for (CtElementImpl c : _traversed) {
-            if (ObjectUtil.equals(c, (CtElementImpl) ctNode)) {
+            //if (ObjectUtil.equals(c, (CtElementImpl) ctNode)) {
+            if (c==ctNode) {
                 return;
             }
         }
+
         _traversed.add((CtElementImpl) ctNode);
         /* The structural part contains the declarations of the program elements, such as interface, class, variable, method, annotation, and enum declarations. */
         if (ctNode instanceof CtMethodImpl) {
@@ -446,8 +450,14 @@ public class CodeGraph implements Serializable {
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "CATCH_VAR_NAME");
         updateCGId(name);
+
         // type
-        buildNode(ctNode.getType(), control, scope);
+        for (Object type : ctNode.getMultiTypes()) {
+            buildNode(type, control, scope);
+        }
+
+//        buildNode(ctNode.getType(), control, scope);
+
         // initializer
         buildNode(ctNode.getDefaultExpression(), control, scope);
     }

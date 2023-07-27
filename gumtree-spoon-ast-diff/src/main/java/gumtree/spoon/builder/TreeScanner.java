@@ -17,6 +17,7 @@ import spoon.reflect.declaration.CtElement;
 import spoon.reflect.path.CtRole;
 import spoon.reflect.reference.CtReference;
 import spoon.reflect.visitor.CtScanner;
+import spoon.support.reflect.reference.CtPackageReferenceImpl;
 
 public class TreeScanner extends CtScanner {
 	public static final String NOTYPE = "<notype>";
@@ -89,7 +90,6 @@ public class TreeScanner extends CtScanner {
 		if (element instanceof CtLiteral<?> && element.getParent() instanceof CtAnnotation) {
 			return true;
 		}
-
 		return element.isImplicit() || element instanceof CtReference;
 	}
 
