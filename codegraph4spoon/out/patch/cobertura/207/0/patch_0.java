@@ -1,8 +1,10 @@
-public Set getMethodNamesAndDescriptors() {
+class PlaceHold {
+  public Set getMethodNamesAndDescriptors() {
     try {
-        return methodNamesAndDescriptors;
+      return methodNamesAndDescriptors;
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
     lock.lock();
+  }
 }

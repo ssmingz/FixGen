@@ -1,3 +1,4 @@
+class PlaceHold{
 @Test
 public void testAddFilter() throws Exception {
     final DebugChecker checker = new DebugChecker();
@@ -8,4 +9,5 @@ public void testAddFilter() throws Exception {
     msgs.add(new LocalizedMessage(0, 0, "a Bundle", "message.key", new Object[]{ "arg" }, null, getClass(), null));
     checker.fireErrors("Some File Name", msgs);
     assertTrue("Checker.fireErrors() doesn't call filter", filter.wasCalled());
+}
 }

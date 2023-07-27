@@ -1,3 +1,5 @@
-public final String getSeverity() {
+class PlaceHold {
+  public final String getSeverity() {
     return getName();
+  }
 }

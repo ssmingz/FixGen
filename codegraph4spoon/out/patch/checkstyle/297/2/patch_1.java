@@ -1,3 +1,4 @@
+class PlaceHold{
 public void testProtest() throws Exception {
     checkConfig.setClassname(JavadocTypeCheck.class.getName());
     .addAttribute(null, PROTECTED.getName());
@@ -6,4 +7,5 @@ public void testProtest() throws Exception {
     final String[] expected = new String[]{ "7: Missing a Javadoc comment.", "29: Missing a Javadoc comment.", "38: Missing a Javadoc comment." };
     verify(c, fname, expected);
     DefaultConfiguration  = createCheckConfig(.);
+}
 }

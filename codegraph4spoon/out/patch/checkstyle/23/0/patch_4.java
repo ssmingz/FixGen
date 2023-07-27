@@ -1,8 +1,10 @@
-private void checkLParen() {
+class PlaceHold {
+  private void checkLParen() {
     DetailAST lparen = getMainAst();
     int columnNo = expandedTabsColumnNo(lparen);
     if (getLevel().accept(columnNo) || (!startsLine(lparen))) {
-        return;
+      return;
     }
     logError(lparen, "lparen", columnNo);
+  }
 }

@@ -1,8 +1,10 @@
-@Override
-public DetailNode[] getChildren() {
+class PlaceHold {
+  @Override
+  public DetailNode[] getChildren() {
     if (children == null) {
-        return null;
+      return null;
     } else {
-        return Arrays.copyOf(children, length);
+      return Arrays.copyOf(children, length);
     }
+  }
 }

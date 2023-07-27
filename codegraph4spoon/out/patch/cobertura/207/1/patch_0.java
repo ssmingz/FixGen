@@ -1,8 +1,10 @@
-public String getMethodName() {
+class PlaceHold {
+  public String getMethodName() {
     try {
-        return methodName;
+      return methodName;
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
     lock.lock();
+  }
 }

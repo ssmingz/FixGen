@@ -1,3 +1,4 @@
+class SummaryXMLReport{
 public SummaryXMLReport(ProjectData projectData, File destinationDir, FileFinder finder, ComplexityCalculator complexity) throws IOException {
     File file = new File(destinationDir, "coverage-summary.xml");
     setPrintWriter(IOUtil.getPrintWriter(file));
@@ -18,4 +19,5 @@ public SummaryXMLReport(ProjectData projectData, File destinationDir, FileFinder
     } finally {
         close();
     }
+}
 }

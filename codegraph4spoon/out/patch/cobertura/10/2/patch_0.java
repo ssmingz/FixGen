@@ -1,3 +1,4 @@
+class PlaceHold{
 public void execute() throws BuildException {
     CommandLineBuilder builder = null;
     try {
@@ -50,4 +51,5 @@ public void execute() throws BuildException {
         throw new BuildException("Error instrumenting classes. See messages above.");
     }
     builder.dispose();
+}
 }

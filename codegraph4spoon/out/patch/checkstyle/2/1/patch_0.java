@@ -1,3 +1,5 @@
-int getTotal() {
+class PlaceHold {
+  int getTotal() {
     return total;
+  }
 }

@@ -1,3 +1,5 @@
-protected String getName() {
+class PlaceHold {
+  protected String getName() {
     return getName();
+  }
 }

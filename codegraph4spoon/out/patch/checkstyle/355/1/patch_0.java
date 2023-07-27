@@ -1,3 +1,4 @@
+class PlaceHold{
 public IClass resolveType(SymTabAST expr, Scope location, IClass context, boolean referencePhase) {
     IClass result = null;
     SymTabAST nameNode = ((SymTabAST) (expr.getFirstChild()));
@@ -7,4 +8,5 @@ public IClass resolveType(SymTabAST expr, Scope location, IClass context, boolea
         result = resolveClassIdent(nameNode, location, context, referencePhase);
     }
     return result;
+}
 }

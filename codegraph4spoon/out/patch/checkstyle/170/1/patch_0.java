@@ -1,3 +1,4 @@
+class PlaceHold{
 private void checkLParen() {
     DetailAST lparen = getMainAst();
     int columnNo = expandedTabsColumnNo(lparen);
@@ -8,4 +9,5 @@ private void checkLParen() {
         return;
     }
     logError(lparen, "lparen", columnNo);
+}
 }

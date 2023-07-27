@@ -1,3 +1,5 @@
-private void starting() {
+class PlaceHold {
+  private void starting() {
     fStartNanos = currentNanoTime();
+  }
 }

@@ -1,3 +1,5 @@
-public String getParamPat() {
+class PlaceHold {
+  public String getParamPat() {
     return getPatternProperty();
+  }
 }

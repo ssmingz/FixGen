@@ -1,3 +1,5 @@
-public String getMethodPat() {
+class PlaceHold {
+  public String getMethodPat() {
     return getPatternProperty();
+  }
 }

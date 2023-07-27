@@ -1,3 +1,5 @@
-public RE getStaticFinalRegexp() {
+class PlaceHold {
+  public RE getStaticFinalRegexp() {
     return getRegexpProperty();
+  }
 }

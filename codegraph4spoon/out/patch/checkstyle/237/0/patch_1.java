@@ -1,9 +1,11 @@
-@Override
-public void visitToken(DetailAST aAST) {
+class PlaceHold {
+  @Override
+  public void visitToken(DetailAST aAST) {
     if (isOverridingMethod(aAST)) {
-        mMethodStack.add(new MethodNode(aAST));
+      mMethodStack.add(new MethodNode(aAST));
     } else if (isSuperCall(aAST)) {
-        final MethodNode methodNode = mMethodStack.getLast();
-        methodNode.setCallsSuper();
+      final MethodNode methodNode = mMethodStack.getLast();
+      methodNode.setCallsSuper();
     }
+  }
 }

@@ -1,3 +1,5 @@
-public final TestClass getTestClass() {
+class PlaceHold {
+  public final TestClass getTestClass() {
     return testClass;
+  }
 }

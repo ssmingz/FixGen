@@ -1,3 +1,4 @@
+class Configuration{
 public Configuration(Properties aProps, PrintStream aLog) throws RESyntaxException, FileNotFoundException, IOException {
     setPatternProperty(aProps, TODO_PATTERN_PROP, TODO_PATTERN);
     setPatternProperty(aProps, PARAMETER_PATTERN_PROP, PARAMETER_PATTERN);
@@ -50,4 +51,5 @@ public Configuration(Properties aProps, PrintStream aLog) throws RESyntaxExcepti
     setStringProperty(aProps, BASEDIR_PROP);
     setWrapOpOption(getWrapOpOptionProperty(aProps, WRAP_OP_PROP, NL, aLog));
     setBooleanProperty(aProps, );
+}
 }

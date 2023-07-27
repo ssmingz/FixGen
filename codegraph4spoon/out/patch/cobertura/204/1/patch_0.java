@@ -1,14 +1,16 @@
-public int getNumberOfValidLines() {
+class PlaceHold {
+  public int getNumberOfValidLines() {
     int number = 0;
     while (iter.hasNext()) {
-        CoverageData coverageContainer = ((CoverageData) (iter.next()));
-        number += coverageContainer.getNumberOfValidLines();
-    } 
+      CoverageData coverageContainer = ((CoverageData) (iter.next()));
+      number += coverageContainer.getNumberOfValidLines();
+    }
     try {
-        Iterator iter = this.children.values().iterator();
+      Iterator iter = this.children.values().iterator();
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
     lock.lock();
     return number;
+  }
 }

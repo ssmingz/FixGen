@@ -4,36 +4,6 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="393237f9-9862-4d49-9f87-f97d938342c7" name="Changes" comment="add timeout setting">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/fr_inria_gforge_spoon_labs_gumtree_ast_diff.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_16__18_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_3_16__18_24__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_11__15_38__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_11__15_38__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_22__22_41__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_22__22_41__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_29__17_59__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_29__17_59__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8__21_21__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_5_8__21_21__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_6_25__10_13__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023_6_25__10_13__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase__Changes_1.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/GraphBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/model/CodeGraph.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ASTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ASTUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ReflectUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/main/java/utils/ReflectUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" beforeDir="false" afterPath="$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternAbstractor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/LabelFinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/LabelFinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/NodeCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/NodeCreator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/TreeScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/src/main/java/gumtree/spoon/builder/TreeScanner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/LabelFinder.class" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/LabelFinder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/NodeCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/NodeCreator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/TreeScanner.class" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/classes/gumtree/spoon/builder/TreeScanner.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/gumtree-spoon-ast-diff/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/ReplaceNameVisitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/spoon-core/src/main/java/codegraph/visitor/TokenVisitor.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,20 +108,6 @@
       <recent name="model.actions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestSerializationOnServer.testPattern2Json">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="builder.Main" />
-      <module name="codegraph4spoon" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="builder.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="Miner" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="de.parmol.FFSM.Miner" />
       <module name="HFFSM" />
@@ -166,16 +122,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestApplyPattern.testApplyPatternOnC3" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestApplyPattern" />
-      <option name="METHOD_NAME" value="testApplyPatternOnC3" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TestApplyPattern.testApplyPatternOnC3_debug" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
@@ -186,21 +132,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="TestDefects4J.testAll" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="codegraph4spoon" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestPatternFeature2Json" />
-      <option name="METHOD_NAME" value="testWriteFeatJsonFromMultiplePairsToSingleFile" />
+      <option name="MAIN_CLASS_NAME" value="TestDefects4J" />
+      <option name="METHOD_NAME" value="testAll" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestSerializationOnServer.testPattern2Json" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="codegraph4spoon" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestSerializationOnServer" />
-      <option name="METHOD_NAME" value="testPattern2Json" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -208,19 +154,10 @@
     </configuration>
     <list>
       <item itemvalue="Application.Miner" />
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile" />
-      <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3_debug" />
-      <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3" />
-      <item itemvalue="JUnit.TestSerializationOnServer.testPattern2Json" />
-    </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="JUnit.TestSerializationOnServer.testPattern2Json" />
-        <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3" />
         <item itemvalue="JUnit.TestApplyPattern.testApplyPatternOnC3_debug" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="JUnit.TestPatternFeature2Json.testWriteFeatJsonFromMultiplePairsToSingleFile" />
+        <item itemvalue="JUnit.TestInteractWithPattern.testModelResult_d4j" />
+        <item itemvalue="JUnit.TestPatchCorrectness.testPatchCorrectness2" />
+        <item itemvalue="JUnit.TestDefects4J.testAll" />
       </list>
     </recent_temporary>
   </component>
@@ -232,20 +169,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1665371441595</updated>
-    </task>
-    <task id="LOCAL-00010" summary="change jdk version from 1.8 to 11">
-      <created>1676947302989</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1676947302990</updated>
-    </task>
-    <task id="LOCAL-00011" summary="add actions on codegraph">
-      <created>1677216984670</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1677216984670</updated>
     </task>
     <task id="LOCAL-00012" summary="delete some unused files and add APImisuse data">
       <created>1677230085083</created>
@@ -576,7 +499,6 @@
       <option name="project" value="LOCAL" />
       <updated>1690187952606</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -591,7 +513,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fix graph-building:&quot;insert.source different type for gumtree and spoon node&quot; bug" />
     <MESSAGE value="fix bugs for patchnode extension and connection" />
     <MESSAGE value="add TokenVisitor and ReplaceNameVisitor" />
     <MESSAGE value="finish serialization for CodeGraph and Pattern" />
@@ -616,7 +537,8 @@
     <MESSAGE value="fix bugs for parsing CtVirtualElement" />
     <MESSAGE value="fix bugs for role searching that returns null" />
     <MESSAGE value="add timeout setting" />
-    <option name="LAST_COMMIT_MESSAGE" value="add timeout setting" />
+    <MESSAGE value="add defects4j dataset and tests for d4j" />
+    <option name="LAST_COMMIT_MESSAGE" value="add defects4j dataset and tests for d4j" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -823,13 +745,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/Main.java</url>
-          <line>72</line>
+          <line>74</line>
           <option name="timeStamp" value="1267" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/codegraph4spoon/src/main/java/builder/InteractPattern.java</url>
-          <line>29</line>
-          <option name="timeStamp" value="1271" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/codegraph4spoon/src/test/java/TestPatternFeature2Json.java</url>

@@ -1,3 +1,4 @@
+class PlaceHold{
 @Test
 public void testRemoveFilter() throws Exception {
     final DebugChecker checker = new DebugChecker();
@@ -12,4 +13,5 @@ public void testRemoveFilter() throws Exception {
     checker.fireErrors("Some File Name", msgs);
     assertTrue("Checker.fireErrors() doesn't call filter", f2.wasCalled());
     assertFalse("Checker.fireErrors() does call removed filter", filter.wasCalled());
+}
 }

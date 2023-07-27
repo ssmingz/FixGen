@@ -1,8 +1,10 @@
-public static void assertEquals(String message, float expected, float actual, float delta) {
+class PlaceHold {
+  public static void assertEquals(String message, float expected, float actual, float delta) {
     if (Float.compare(expected, actual) == 0) {
-        return;
+      return;
     }
     if (!(PlaceHold.abs(expected - actual) <= delta)) {
-        failNotEquals(message, new Float(expected), new Float(actual));
+      failNotEquals(message, new Float(expected), new Float(actual));
     }
+  }
 }

@@ -1,3 +1,5 @@
-public DetectDuplicatedCodeClassVisitor(ClassVisitor cv) {
+class DetectDuplicatedCodeClassVisitor {
+  public DetectDuplicatedCodeClassVisitor(ClassVisitor cv) {
     super(cv, ASM4);
+  }
 }

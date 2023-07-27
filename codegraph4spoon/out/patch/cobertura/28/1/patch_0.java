@@ -1,3 +1,4 @@
+class PlaceHold{
 public void merge(CoverageData coverageData) {
     ProjectData projectData = ((ProjectData) (coverageData));
     getBothLocks(projectData);
@@ -16,4 +17,5 @@ public void merge(CoverageData coverageData) {
         lock.unlock();
         projectData.lock.unlock();
     }
+}
 }

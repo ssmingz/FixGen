@@ -1,3 +1,4 @@
+class PlaceHold{
 public void testProtected() throws Exception {
     .addAttribute(null, PROTECTED.getName());
     final Checker c = createChecker(checkConfig);
@@ -5,4 +6,5 @@ public void testProtected() throws Exception {
     final String[] expected = new String[]{ "7: Missing a Javadoc comment." };
     verify(c, fname, expected);
     DefaultConfiguration  = createCheckConfig(.);
+}
 }

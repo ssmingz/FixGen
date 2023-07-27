@@ -1,13 +1,15 @@
-@Override
-public void visitToken(DetailAST ast) {
+class PlaceHold {
+  @Override
+  public void visitToken(DetailAST ast) {
     if (isInContext(ast, ALLOWED_ASSIGMENT_CONTEXT)) {
-        return;
+      return;
     }
     if (isInNoBraceControlStatement(ast)) {
-        return;
+      return;
     }
     if (isInWhileIdiom(ast)) {
-        return;
+      return;
     }
     log(ast.getLineNo(), ast.getColumnNo(), MSG_KEY);
+  }
 }

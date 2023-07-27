@@ -1,4 +1,6 @@
-protected final BigInteger popValue() {
+class PlaceHold {
+  protected final BigInteger popValue() {
     mCurrentValue = valueStack.pop();
     return mCurrentValue;
+  }
 }

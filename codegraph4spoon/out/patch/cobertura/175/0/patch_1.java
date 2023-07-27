@@ -1,3 +1,4 @@
+class PlaceHold{
 public static void saveGlobalProjectData() {
     globalProjectData = new ProjectData();
     try {
@@ -24,4 +25,5 @@ public static void saveGlobalProjectData() {
         .unlock();
     }
     ProjectData  = null;
+}
 }

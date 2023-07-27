@@ -1,4 +1,5 @@
-public void testBranch() {
+class PlaceHold {
+  public void testBranch() {
     assertFalse(a.hasBranch(2));
     a.addLineJump(2, 0);
     assertFalse(a.hasBranch(2));
@@ -16,4 +17,5 @@ public void testBranch() {
     assertEquals(14, b.getNumberOfValidBranches());
     assertTrue(branches.contains(new Integer(2)));
     assertTrue(branches.contains(new Integer(4)));
+  }
 }

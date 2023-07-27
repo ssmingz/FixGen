@@ -9,21 +9,31 @@ import model.pattern.PatternNode;
 
 public class InteractPattern {
 
-    public static void abstractByJSONObject(Pattern pattern, JSONObject label, String cgName) {
-        JSONArray vertexes = (JSONArray) label.get("vertexes");
-        JSONArray vertex_label = (JSONArray) label.get("vertex_label");
-        JSONArray attributes = (JSONArray) label.get("attributes");
-        JSONArray attribute_labels = (JSONArray) label.get("attribute_label");
-        JSONArray edges = (JSONArray) label.get("edges");
-        JSONArray edge_label = (JSONArray) label.get("edge_label");
+    public static void abstractByJSONObject(Pattern pattern, JSONObject oris, JSONObject labels, String cgName) {
+        // ids
+        JSONArray vertexes = oris.getJSONArray("vertexes");
+        JSONArray edges = oris.getJSONArray("edges");
+        JSONArray attributes = oris.getJSONArray("attributes");
+        // labels
+        JSONArray vertex_label = labels.getJSONArray("node");
+        JSONArray edge_label = labels.getJSONArray("edge");
+
         for (int vi=0; vi<vertexes.size(); vi++) {
             int id = (int) vertexes.get(vi);
             int lab = (int) vertex_label.get(vi);
             InteractPattern.abstractVertex(pattern, id, lab, cgName);
 
             JSONObject attrs = attributes.getJSONObject(vi).getJSONObject(String.valueOf(id));
-            JSONObject attr_labs = attribute_labels.getJSONObject(vi).getJSONObject(String.valueOf(id));
-            InteractPattern.abstractAttribute(pattern, id, attrs, attr_labs, cgName);
+            int finalVi = vi;
+            JSONObject attr_labels = new JSONObject(){{
+                put("locationInParent", labels.getJSONArray("location").getInteger(finalVi));
+                put("nodeType", labels.getJSONArray("type").getInteger(finalVi));
+                put("value", labels.getJSONArray("attrvalue").getInteger(finalVi));
+                // TODO: to be added
+                put("value2", labels.containsKey("attrvalue2") && labels.getJSONArray("attrvalue2").size() > finalVi ? labels.getJSONArray("attrvalue2").getInteger(finalVi) : 1);
+                put("valueType", labels.containsKey("valuetype") && labels.getJSONArray("valuetype").size() > finalVi ? labels.getJSONArray("valuetype").getInteger(finalVi) : 1);
+            }};
+            InteractPattern.abstractAttribute(pattern, id, attrs, attr_labels, cgName);
 
             JSONArray es = edges.getJSONArray(vi);
             JSONArray e_labs = edge_label.getJSONArray(vi);

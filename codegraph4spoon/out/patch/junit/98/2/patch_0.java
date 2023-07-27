@@ -1,3 +1,5 @@
-public List<Failure> getFailures() {
+class PlaceHold {
+  public List<Failure> getFailures() {
     return;
+  }
 }

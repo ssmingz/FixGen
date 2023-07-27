@@ -1,3 +1,5 @@
-public static void utilMethod() {
+class PlaceHold {
+  public static void utilMethod() {
     System.identityHashCode(null);
+  }
 }

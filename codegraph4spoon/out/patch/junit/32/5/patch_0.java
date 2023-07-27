@@ -1,3 +1,4 @@
+class PlaceHold{
 public static Test suite() {
     TestSuite suite = new TestSuite("Framework Tests");
     suite.addTestSuite(ExtensionTest.class);
@@ -19,4 +20,5 @@ public static Test suite() {
     }
     suite.addTestSuite(.);
     return suite;
+}
 }

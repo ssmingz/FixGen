@@ -1,4 +1,5 @@
-private static void runTestAntScript(String testName, String target) throws IOException {
+class PlaceHold {
+  private static void runTestAntScript(String testName, String target) throws IOException {
     Java task = new Java();
     task.setTaskName("java");
     task.setProject(new Project());
@@ -16,11 +17,16 @@ private static void runTestAntScript(String testName, String target) throws IOEx
     PathElement pathElement = classpath.createPathElement();
     pathElement.setPath(System.getProperty("java.class.path"));
     try {
-        task.execute();
+      task.execute();
     } finally {
-        if (outputFile.exists()) {
-            System.out.println(((("\n\n\nOutput from Ant for " + testName) + " test:\n----------------------------------------\n") + Util.getText(outputFile)) + "----------------------------------------");
-            outputFile.delete();
-        }
+      if (outputFile.exists()) {
+        System.out.println(
+            ((("\n\n\nOutput from Ant for " + testName)
+                        + " test:\n----------------------------------------\n")
+                    + Util.getText(outputFile))
+                + "----------------------------------------");
+        outputFile.delete();
+      }
     }
+  }
 }

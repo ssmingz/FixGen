@@ -1,4 +1,6 @@
-@Override
-public int[] getRequiredTokens() {
+class PlaceHold {
+  @Override
+  public int[] getRequiredTokens() {
     return getDefaultTokens();
+  }
 }

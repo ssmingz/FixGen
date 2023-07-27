@@ -1,3 +1,4 @@
+class Configuration{
 public Configuration(Properties aProps, PrintStream aLog) throws RESyntaxException, FileNotFoundException, IOException {
     setParamPat(aProps.getProperty(PARAMETER_PATTERN_PROP, PARAMETER_PATTERN));
     setStaticPat(aProps.getProperty(STATIC_PATTERN_PROP, STATIC_PATTERN));
@@ -30,4 +31,5 @@ public Configuration(Properties aProps, PrintStream aLog) throws RESyntaxExcepti
         setHeaderFile(fname);
     }
     (getLeftCurlyOptionProperty(aProps, , EOL, aLog));
+}
 }

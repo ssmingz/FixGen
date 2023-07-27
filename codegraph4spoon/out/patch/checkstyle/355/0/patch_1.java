@@ -1,3 +1,4 @@
+class PlaceHold{
 private IClass resolveTypecast(SymTabAST node, Scope location, IClass context, boolean referencePhase) {
     SymTabAST typeNode = ((SymTabAST) (node.getFirstChild()));
     SymTabAST exprNode = ((SymTabAST) (typeNode.getNextSibling()));
@@ -16,4 +17,5 @@ private IClass resolveTypecast(SymTabAST node, Scope location, IClass context, b
         ((SymTabAST) (typeNode.getFirstChild())).setDefinition(type, location, referencePhase);
     }
     return type;
+}
 }

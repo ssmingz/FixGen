@@ -1,3 +1,5 @@
-public RE getIgnoreLineLengthRegexp() {
+class PlaceHold {
+  public RE getIgnoreLineLengthRegexp() {
     return getRegexpProperty();
+  }
 }

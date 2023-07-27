@@ -1,4 +1,5 @@
-protected JFrame createUI(String suiteName) {
+class PlaceHold {
+  protected JFrame createUI(String suiteName) {
     JFrame frame = createFrame("JUnit");
     JMenuBar mb = new JMenuBar();
     createMenus(mb);
@@ -16,7 +17,11 @@ protected JFrame createUI(String suiteName) {
     fTestViewTab = createTestRunViews();
     JPanel failedPanel = createFailedPanel();
     fFailureView = createFailureDetailView();
-    JScrollPane tracePane = new JScrollPane(fFailureView.getComponent(), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+    JScrollPane tracePane =
+        new JScrollPane(
+            fFailureView.getComponent(),
+            JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+            JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
     fStatusLine = createStatusLine();
     fQuitButton = createQuitButton();
     fLogo = createLogo();
@@ -39,4 +44,5 @@ protected JFrame createUI(String suiteName) {
     frame.pack();
     frame.setLocation(200, 200);
     return frame;
+  }
 }

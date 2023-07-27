@@ -1,3 +1,4 @@
+class PlaceHold{
 @Test
 public void testImproperFileExtension() throws Exception {
     final DefaultConfiguration checkConfig = createCheckConfig(ConstantNameCheck.class);
@@ -10,4 +11,5 @@ public void testImproperFileExtension() throws Exception {
     try (  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.StandardCharsets.UTF_8))) {
         writer.write(content);
     }
+}
 }

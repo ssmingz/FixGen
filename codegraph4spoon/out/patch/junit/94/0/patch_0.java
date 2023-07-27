@@ -1,3 +1,4 @@
+class PlaceHold{
 public static Test suite() {
     TestSuite suite = new TestSuite("Framework Tests");
     suite.addTestSuite(TestCaseTest.class);
@@ -10,4 +11,5 @@ public static Test suite() {
     suite.addTestSuite(DoublePrecisionAssertTest.class);
     suite.addTestSuite(.);
     return suite;
+}
 }

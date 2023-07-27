@@ -1,3 +1,4 @@
+class SummaryXMLReport{
 public SummaryXMLReport(ProjectData projectData, File destinationDir, FileFinder finder, ComplexityCalculator complexity) throws IOException {
     File file = new File(destinationDir, "coverage-summary.xml");
     try {
@@ -25,4 +26,5 @@ public SummaryXMLReport(ProjectData projectData, File destinationDir, FileFinder
     } finally {
         close();
     }
+}
 }

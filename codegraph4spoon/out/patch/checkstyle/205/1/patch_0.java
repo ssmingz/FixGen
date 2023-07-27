@@ -1,3 +1,5 @@
-public boolean isReturnTag() {
+class PlaceHold {
+  public boolean isReturnTag() {
     return RETURN.equals(tagInfo);
+  }
 }

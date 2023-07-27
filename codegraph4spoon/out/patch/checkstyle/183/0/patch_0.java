@@ -1,3 +1,4 @@
+class PlaceHold{
 public int process(List<File> aFiles) {
     fireAuditStarted();
     for (final FileSetCheck fsc : mFileSetChecks) {
@@ -29,4 +30,5 @@ public int process(List<File> aFiles) {
     final int errorCount = mCounter.getCount();
     fireAuditFinished();
     return errorCount;
+}
 }

@@ -1,3 +1,4 @@
+class PlaceHold{
 @Test
 public void testCustomMessageWithParameters() throws Exception {
     DefaultConfiguration config = createCheckConfig(emptyCheck.getClass());
@@ -9,4 +10,5 @@ public void testCustomMessageWithParameters() throws Exception {
     SortedSet<LocalizedMessage><LocalizedMessage> messages = collector.getMessages();
     Assert.assertTrue(messages.size() == 1);
     Assert.assertEquals("This is a custom message with TestParam.", messages.first().getMessage());
+}
 }

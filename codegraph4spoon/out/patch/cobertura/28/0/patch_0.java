@@ -1,3 +1,4 @@
+class PlaceHold{
 public static double getCCN(File file, boolean recursive) {
     int ccnAccumulator = 0;
     Vector files = getListOfFiles(file, recursive);
@@ -19,4 +20,5 @@ public static double getCCN(File file, boolean recursive) {
         }
     } 
     return ((double) (ccnAccumulator)) / functionMetrics.size();
+}
 }

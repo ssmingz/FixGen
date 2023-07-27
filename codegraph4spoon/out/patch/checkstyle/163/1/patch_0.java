@@ -1,3 +1,4 @@
+class PlaceHold{
 public void checkIndentation() {
     DetailAST methodName = ((DetailAST) (getMainAst().getFirstChild()));
     checkExpressionSubtree(methodName, getLevel(), false, false);
@@ -8,4 +9,5 @@ public void checkIndentation() {
         checkExpressionSubtree(getMainAst().findFirstToken(ELIST), getLevel() + , false, true);
         checkRParen();
     }
+}
 }

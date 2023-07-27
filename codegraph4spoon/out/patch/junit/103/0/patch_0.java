@@ -1,4 +1,6 @@
-@Override
-public Description getDescription() {
+class PlaceHold {
+  @Override
+  public Description getDescription() {
     return Description.createSuiteDescription(clazz);
+  }
 }

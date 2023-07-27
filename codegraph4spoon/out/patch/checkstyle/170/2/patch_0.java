@@ -1,3 +1,4 @@
+class PlaceHold{
 private void checkRParen() {
     DetailAST rparen = getMainAst().findFirstToken(RPAREN);
     int columnNo = expandedTabsColumnNo(rparen);
@@ -8,4 +9,5 @@ private void checkRParen() {
         return;
     }
     logError(rparen, "rparen", columnNo);
+}
 }

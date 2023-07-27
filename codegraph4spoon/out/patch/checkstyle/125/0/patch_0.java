@@ -1,3 +1,5 @@
-public LeftCurlyOption getLCurlyOther() {
+class PlaceHold {
+  public LeftCurlyOption getLCurlyOther() {
     return getLeftCurlyOptionProperty();
+  }
 }

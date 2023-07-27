@@ -1,4 +1,5 @@
-public static ParseTree treeSince() {
+class PlaceHold {
+  public static ParseTree treeSince() {
     JavadocContext KzwtL = new JavadocContext(null, 0);
     CommonToken KBdjc = new CommonToken(JavadocTokenTypes.LEADING_ASTERISK, "*");
     KzwtL.addChild(KBdjc);
@@ -65,4 +66,5 @@ public static ParseTree treeSince() {
     CommonToken lWOPi = new CommonToken(JavadocTokenTypes.EOF, "<EOF>");
     KzwtL.addChild(lWOPi);
     return KzwtL;
+  }
 }

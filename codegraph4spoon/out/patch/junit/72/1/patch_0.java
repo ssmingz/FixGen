@@ -1,4 +1,5 @@
-public static Test suite() {
+class PlaceHold {
+  public static Test suite() {
     TestSuite suite = new TestSuite("Suite Tests");
     suite.addTest(new SuiteTest("testNoTestCaseClass"));
     suite.addTest(new SuiteTest("testNoTestCases"));
@@ -11,4 +12,5 @@ public static Test suite() {
     suite.addTest(new SuiteTest("testAddTestSuite"));
     suite.addTest(new SuiteTest(null));
     return suite;
+  }
 }

@@ -1,3 +1,4 @@
+class PlaceHold{
 public static void close(Closeable closeable) {
     if (closeable == null) {
         return;
@@ -7,4 +8,5 @@ public static void close(Closeable closeable) {
     } catch (IOException ) {
         throw new IllegalStateException("Cannot close the stream", e);
     }
+}
 }
