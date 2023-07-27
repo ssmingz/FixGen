@@ -1,4 +1,5 @@
-public void testXMLReportWithNonSourceLines() throws Exception {
+class PlaceHold {
+  public void testXMLReportWithNonSourceLines() throws Exception {
     ProjectData projectData = new ProjectData();
     ClassData cd = projectData.getOrCreateClassData(XMLReport.class.getName());
     cd.touch(7777, null);
@@ -12,4 +13,5 @@ public void testXMLReportWithNonSourceLines() throws Exception {
     JUnitXMLHelper.readXmlFile(coverageFile, true);
     coverageFile.delete();
     reportDir.delete();
+  }
 }

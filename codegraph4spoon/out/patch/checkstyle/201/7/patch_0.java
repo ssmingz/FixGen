@@ -1,3 +1,4 @@
+class PlaceHold{
 @Test
 public void testDestroy() throws Exception {
     final DebugChecker checker = new DebugChecker();
@@ -15,4 +16,5 @@ public void testDestroy() throws Exception {
     checker.fireErrors("Some File Name", msgs);
     assertFalse("Checker.destroy() doesn't remove listeners.", auditAdapter.wasCalled());
     assertFalse("Checker.destroy() doesn't remove filters.", filter.wasCalled());
+}
 }

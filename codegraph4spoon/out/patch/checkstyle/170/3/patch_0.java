@@ -1,3 +1,4 @@
+class PlaceHold{
 public void checkIndentation() {
     checkModifiers();
     LineSet lines = new LineSet();
@@ -17,4 +18,5 @@ public void checkIndentation() {
     }
     checkLinesIndent(ident.getLineNo(), lines.lastLine(), getLevel());
     super.checkIndentation();
+}
 }

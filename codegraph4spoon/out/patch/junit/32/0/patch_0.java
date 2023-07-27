@@ -1,3 +1,4 @@
+class PlaceHold{
 public static Test suite() {
     TestSuite suite = new TestSuite("Framework Tests");
     suite.addTestSuite(StackFilterTest.class);
@@ -7,4 +8,5 @@ public static Test suite() {
     suite.addTestSuite(TextRunnerTest.class);
     suite.addTestSuite(.);
     return suite;
+}
 }

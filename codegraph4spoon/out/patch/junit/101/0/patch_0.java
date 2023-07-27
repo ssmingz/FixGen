@@ -1,3 +1,5 @@
-private void stopping() {
+class PlaceHold {
+  private void stopping() {
     fEndNanos = currentNanoTime();
+  }
 }

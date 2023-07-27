@@ -1,3 +1,4 @@
+class PlaceHold{
 private void logIOException(IOException ex, File file) {
     String[] args = null;
     String key = "general.fileNotFound";
@@ -10,4 +11,5 @@ private void logIOException(IOException ex, File file) {
     messages.add(message);
     getMessageDispatcher().fireErrors(file.getPath(), messages);
     Utils.getExceptionLogger().debug("IOException occured.", ex);
+}
 }

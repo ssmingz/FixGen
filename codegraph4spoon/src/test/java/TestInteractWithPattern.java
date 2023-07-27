@@ -1,6 +1,4 @@
 import builder.*;
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import model.CodeGraph;
 import model.pattern.Pattern;
 import org.junit.Test;
@@ -12,7 +10,7 @@ import java.util.List;
 
 public class TestInteractWithPattern {
     @Test
-    public void testModelResult() {
+    public void testInteract() {
         String testPro = "ant";
         int testId = 13;
         int targetNo = 0;
@@ -34,13 +32,10 @@ public class TestInteractWithPattern {
 
         // load element label
         String key = "/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/src/test/resources/c3/ant/13/0/before.java";
-        JSONArray labels = (JSONArray) ((JSONObject) ObjectUtil.readJsonFromFile("/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/out/c3_ant_13_0.json")).get(key);
         // modify the pattern according to the label
         for (int i=0; i<patterns.size(); i++) {
             Pattern pattern = patterns.get(i);
             PatternAbstractor.buildWithoutAbstract(pattern);
-            JSONObject label = labels.getJSONObject(i);
-            InteractPattern.abstractByJSONObject(pattern, label, key);
             // save the pattern
             String patternPath = String.format("%s/out/pattern_temp_%d.dat", System.getProperty("user.dir"), i);
             ObjectUtil.writeObjectToFile(pattern, patternPath);

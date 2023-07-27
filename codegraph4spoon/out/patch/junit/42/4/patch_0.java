@@ -1,3 +1,5 @@
-public void fireTestFailure(Failure failure) {
+class PlaceHold {
+  public void fireTestFailure(Failure failure) {
     listeners.fireTestFailures(asList(failure));
+  }
 }

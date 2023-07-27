@@ -1,18 +1,20 @@
-protected Frame createUI(String suiteName) {
+class PlaceHold {
+  protected Frame createUI(String suiteName) {
     Frame frame = new Frame("JUnit");
     Image icon = loadFrameIcon();
     if (icon != null) {
-        frame.setIconImage(icon);
+      frame.setIconImage(icon);
     }
     frame.setLayout(new BorderLayout(0, 0));
     frame.setBackground(control);
     final Frame finalFrame = frame;
-    frame.addWindowListener(new WindowAdapter() {
-        public void windowClosing(WindowEvent e) {
+    frame.addWindowListener(
+        new WindowAdapter() {
+          public void windowClosing(WindowEvent e) {
             finalFrame.dispose();
             System.exit(0);
-        }
-    });
+          }
+        });
     MenuBar mb = new MenuBar();
     createMenus(mb);
     frame.setMenuBar(mb);
@@ -22,28 +24,31 @@ protected Frame createUI(String suiteName) {
     fSuiteField.requestFocus();
     fSuiteField.setFont(PLAIN_FONT);
     fSuiteField.setColumns(40);
-    fSuiteField.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    fSuiteField.addActionListener(
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
             runSuite();
-        }
-    });
-    fSuiteField.addTextListener(new TextListener() {
-        public void textValueChanged(TextEvent e) {
+          }
+        });
+    fSuiteField.addTextListener(
+        new TextListener() {
+          public void textValueChanged(TextEvent e) {
             fRun.setEnabled(fSuiteField.getText().length() > 0);
             fStatusLine.setText("");
-        }
-    });
+          }
+        });
     fRun = new Button("Run");
     fRun.setEnabled(false);
-    fRun.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    fRun.addActionListener(
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
             runSuite();
-        }
-    });
+          }
+        });
     boolean useLoader = useReloadingTestSuiteLoader();
     fUseLoadingRunner = new Checkbox("Reload classes every run", useLoader);
     if (inVAJava()) {
-        fUseLoadingRunner.setVisible(false);
+      fUseLoadingRunner.setVisible(false);
     }
     fProgressIndicator = new ProgressBar();
     fNumberOfErrors = new Label("0000", Label.RIGHT);
@@ -64,18 +69,20 @@ protected Frame createUI(String suiteName) {
     numbersPanel.add(fNumberOfFailures);
     Label failureLabel = new Label("Errors and Failures:");
     fFailureList = new List(5);
-    fFailureList.addItemListener(new ItemListener() {
-        public void itemStateChanged(ItemEvent e) {
+    fFailureList.addItemListener(
+        new ItemListener() {
+          public void itemStateChanged(ItemEvent e) {
             failureSelected();
-        }
-    });
+          }
+        });
     fRerunButton = new Button("Run");
     fRerunButton.setEnabled(false);
-    fRerunButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    fRerunButton.addActionListener(
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
             rerun();
-        }
-    });
+          }
+        });
     Panel failedPanel = new Panel(new GridLayout(0, 1, 0, 2));
     failedPanel.add(fRerunButton);
     fTraceArea = new TextArea();
@@ -86,11 +93,12 @@ protected Frame createUI(String suiteName) {
     fStatusLine.setEditable(false);
     fStatusLine.setForeground(red);
     fQuitButton = new Button("Exit");
-    fQuitButton.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
+    fQuitButton.addActionListener(
+        new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
             System.exit(0);
-        }
-    });
+          }
+        });
     fLogo = new Logo();
     Panel panel = new Panel(new GridBagLayout());
     addGrid(panel, suiteLabel, 0, 0, 2, NONE, 1.0, WEST);
@@ -109,4 +117,5 @@ protected Frame createUI(String suiteName) {
     frame.add(panel, BorderLayout.CENTER);
     frame.pack();
     return frame;
+  }
 }

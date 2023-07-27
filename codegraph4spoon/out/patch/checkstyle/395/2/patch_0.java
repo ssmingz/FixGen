@@ -1,3 +1,5 @@
-public SeverityLevel getSeverityLevel() {
+class PlaceHold {
+  public SeverityLevel getSeverityLevel() {
     return severityLevel;
+  }
 }

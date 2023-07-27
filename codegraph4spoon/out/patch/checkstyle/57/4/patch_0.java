@@ -1,3 +1,5 @@
-public static void main() {
+class PlaceHold {
+  public static void main() {
     System.identityHashCode(null);
+  }
 }

@@ -1,3 +1,4 @@
+class Configuration{
 public Configuration(Properties aProps, PrintStream aLog) throws RESyntaxException, FileNotFoundException, IOException {
     setParamPat(aProps.getProperty(PARAMETER_PATTERN_PROP, PARAMETER_PATTERN));
     setStaticPat(aProps.getProperty(STATIC_PATTERN_PROP, STATIC_PATTERN));
@@ -32,4 +33,5 @@ public Configuration(Properties aProps, PrintStream aLog) throws RESyntaxExcepti
     setLCurlyMethod(getLeftCurlyOptionProperty(aProps, LCURLY_METHOD_PROP, EOL, aLog));
     setLCurlyType(getLeftCurlyOptionProperty(aProps, LCURLY_TYPE_PROP, EOL, aLog));
     (getLeftCurlyOptionProperty(aProps, , EOL, aLog));
+}
 }

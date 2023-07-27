@@ -1,3 +1,4 @@
+class PlaceHold{
 public void testScopeAnonInnerPrivate() throws Exception {
     .addAttribute(null, .getName());
     checkConfig.addProperty("scope", PRIVATE.getName());
@@ -6,4 +7,5 @@ public void testScopeAnonInnerPrivate() throws Exception {
     final String[] expected = new String[]{  };
     verify(c, fname, expected);
     DefaultConfiguration  = createCheckConfig(JavadocMethodCheck.JavadocMethodCheck.class);
+}
 }

@@ -1,3 +1,4 @@
+class PlaceHold{
 @Override
 public void destroy() {
     for (Check check : ordinaryChecks) {
@@ -14,4 +15,5 @@ public void destroy() {
         }
     }
     super.destroy();
+}
 }

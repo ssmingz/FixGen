@@ -1,3 +1,4 @@
+class PlaceHold{
 static DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
     final Iterator<DetailAST> it = modifiers.iterator();
     DetailAST modifier;
@@ -24,4 +25,5 @@ static DetailAST checkOrderSuggestedByJLS(List<DetailAST> modifiers) {
         }
     } 
     return modifier;
+}
 }

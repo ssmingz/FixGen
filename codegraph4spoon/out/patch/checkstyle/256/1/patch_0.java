@@ -1,3 +1,5 @@
-public String getBasedir() {
+class PlaceHold {
+  public String getBasedir() {
     return getStringProperty();
+  }
 }

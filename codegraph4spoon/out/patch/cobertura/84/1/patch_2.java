@@ -1,3 +1,4 @@
+class PlaceHold{
 private void parseArguments(String[] args) {
     Collection locations = new Vector();
     for (int i = 0; i < args.length; i++) {
@@ -25,4 +26,5 @@ private void parseArguments(String[] args) {
         addInstrumentation(((String) (iter.next())));
     } 
     ProjectData.saveGlobalProjectData();
+}
 }

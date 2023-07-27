@@ -1,3 +1,5 @@
-private TestClass getTestClass() {
+class PlaceHold {
+  private TestClass getTestClass() {
     return testClass;
+  }
 }

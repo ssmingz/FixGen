@@ -1,3 +1,4 @@
+class PlaceHold{
 @Override
 protected Checker createChecker(Configuration aFilterConfig) throws CheckstyleException {
     final DefaultConfiguration checkerConfig = new DefaultConfiguration("configuration");
@@ -18,4 +19,5 @@ protected Checker createChecker(Configuration aFilterConfig) throws CheckstyleEx
     checker.addListener(new BriefLogger(mStream));
     .setModuleClassLoader(Thread.currentThread().getContextClassLoader());
     return checker;
+}
 }

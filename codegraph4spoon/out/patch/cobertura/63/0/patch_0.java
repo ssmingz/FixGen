@@ -1,8 +1,10 @@
-public Collection getClasses() {
+class PlaceHold {
+  public Collection getClasses() {
     try {
-        return this.classes.values();
+      return this.classes.values();
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
     lock.lock();
+  }
 }

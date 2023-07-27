@@ -40,8 +40,8 @@ public class GraphBuilder {
         launcher.buildModel();
         CtModel model = launcher.getModel();
 
-        for (CtElement method : model.getElements(s -> s instanceof CtMethodImpl
-                || s instanceof CtConstructorImpl || s instanceof CtAnonymousExecutableImpl)) {
+        for (CtElement method : model.getElements(s -> (s instanceof CtMethodImpl
+                || s instanceof CtConstructorImpl || s instanceof CtAnonymousExecutableImpl) && s.getParent().getParent() instanceof CtPackageImpl)) {
             if (checkByLine((CtElementImpl) method, includeLines)) {
                 CodeGraph graph = buildGraph((CtExecutableImpl) method);
                 return graph;

@@ -1,4 +1,6 @@
-@Test
-public void testBaseClassnameForSimpleName() {
+class PlaceHold {
+  @Test
+  public void testBaseClassnameForSimpleName() {
     assertEquals("Set", baseClassname("Set"));
+  }
 }

@@ -1,3 +1,5 @@
-public String getPublicMemberPat() {
+class PlaceHold {
+  public String getPublicMemberPat() {
     return getPatternProperty();
+  }
 }

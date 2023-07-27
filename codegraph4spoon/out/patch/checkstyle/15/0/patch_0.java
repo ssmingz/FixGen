@@ -1,3 +1,5 @@
-public final String[] getLines() {
+class PlaceHold {
+  public final String[] getLines() {
     return fileContents.getLines();
+  }
 }

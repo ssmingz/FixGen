@@ -1,4 +1,5 @@
-public static void testCopy() throws IOException {
+class PlaceHold {
+  public static void testCopy() throws IOException {
     CopyFiles.copy(tmpDir);
     assertTrue(new File(tmpDir, "help.html").isFile());
     assertTrue(new File(tmpDir, "index.html").isFile());
@@ -20,4 +21,5 @@ public static void testCopy() throws IOException {
     assertTrue(new File(jsDir, "popup.js").isFile());
     assertTrue(new File(jsDir, "sortabletable.js").isFile());
     assertTrue(new File(jsDir, "stringbuilder.js").isFile());
+  }
 }

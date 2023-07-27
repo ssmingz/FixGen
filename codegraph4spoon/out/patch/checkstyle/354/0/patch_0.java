@@ -1,4 +1,5 @@
-public static ParseTree treeLinkInlineTags() {
+class PlaceHold {
+  public static ParseTree treeLinkInlineTags() {
     JavadocContext qUDSi = new JavadocContext(null, 0);
     JavadocInlineTagContext qrmKv = new JavadocInlineTagContext(qUDSi, 0);
     CommonToken nyjfF = new CommonToken(JavadocTokenTypes.JAVADOC_INLINE_TAG_START, "{");
@@ -69,4 +70,5 @@ public static ParseTree treeLinkInlineTags() {
     CommonToken NyyJM = new CommonToken(JavadocTokenTypes.EOF, "<EOF>");
     qUDSi.addChild(NyyJM);
     return qUDSi;
+  }
 }

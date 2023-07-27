@@ -1,3 +1,4 @@
+class PlaceHold{
 @Override
 public final SortedSet<LocalizedMessage><LocalizedMessage> process(File file, List<String> lines) {
     getMessageCollector().reset();
@@ -5,4 +6,5 @@ public final SortedSet<LocalizedMessage><LocalizedMessage> process(File file, Li
         processFiltered(file, lines);
     }
     return getMessageCollector().getMessages();
+}
 }

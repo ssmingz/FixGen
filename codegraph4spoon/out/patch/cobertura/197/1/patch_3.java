@@ -1,3 +1,4 @@
+class PlaceHold{
 public void addLineSwitch(int lineNumber, int switchNumber, int[] keys) {
     if (lineData != null) {
         lineData.addSwitch(switchNumber, keys);
@@ -19,4 +20,5 @@ public void addLineSwitch(int lineNumber, int switchNumber, int[] keys) {
         unlock();
     }
     lock.lock();
+}
 }

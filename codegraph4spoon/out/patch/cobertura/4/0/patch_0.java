@@ -1,3 +1,4 @@
+class PlaceHold{
 public boolean equals(Object obj) {
     if (this == obj) {
         return true;
@@ -14,4 +15,5 @@ public boolean equals(Object obj) {
     }
     getBothLocks();
     return super.equals(obj) && this.name.equals(sourceFileData.name);
+}
 }

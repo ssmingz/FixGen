@@ -1,3 +1,4 @@
+class PlaceHold{
 public static void savePreferences() throws IOException {
     FileOutputStream fos = new FileOutputStream(getPreferencesFile());
     try {
@@ -5,4 +6,5 @@ public static void savePreferences() throws IOException {
     } finally {
         fos.close();
     }
+}
 }

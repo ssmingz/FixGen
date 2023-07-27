@@ -1,4 +1,5 @@
-public static void copy(File destinationDir) throws IOException {
+class PlaceHold {
+  public static void copy(File destinationDir) throws IOException {
     File cssOutputDir = new File(destinationDir, "css");
     File imagesOutputDir = new File(destinationDir, "images");
     File jsOutputDir = new File(destinationDir, "js");
@@ -20,4 +21,5 @@ public static void copy(File destinationDir) throws IOException {
     copyResourceFromJar("stringbuilder.js", jsOutputDir);
     copyResourceFromJar("help.html", destinationDir);
     copyResourceFromJar("index.html", destinationDir);
+  }
 }

@@ -59,13 +59,15 @@ public class Main {
         // 4. build pattern from model output
         String key = "/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/src/test/resources/c3/ant/13/0/before.java";
         String modelResult = String.format("%s/c3_%s_%d_%d_predict.json", outDir, testPro, testId, targetNo);
+        JSONArray oris = (JSONArray) ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).get(key);
         JSONArray labels = (JSONArray) ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).get(key);
         // modify the pattern according to the label
         for (int i=0; i<patterns.size(); i++) {
             Pattern pattern = patterns.get(i);
             PatternAbstractor.buildWithoutAbstract(pattern);
+            JSONObject ori = oris.getJSONObject(i);
             JSONObject label = labels.getJSONObject(i);
-            InteractPattern.abstractByJSONObject(pattern, label, key);
+            InteractPattern.abstractByJSONObject(pattern, ori.getJSONArray(key).getJSONObject(i), label, key);
             // save the pattern
             String patternPath = String.format("%s/pattern_c3_%s_%d_%d_%d_predict.dat", outDir, testPro, testId, targetNo, i);
             ObjectUtil.writeObjectToFile(pattern, patternPath);

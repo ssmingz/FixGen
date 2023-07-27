@@ -1,7 +1,9 @@
-public void setMemberModifiers(String modifiers) {
+class PlaceHold {
+  public void setMemberModifiers(String modifiers) {
     final List<Integer> modifiersList = new ArrayList<>();
     for (String modifier : modifiers.split(",")) {
-        modifiersList.add(Utils.getTokenId(modifier.trim()));
+      modifiersList.add(Utils.getTokenId(modifier.trim()));
     }
     this.memberModifiers = modifiersList;
+  }
 }

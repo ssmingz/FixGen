@@ -52,15 +52,17 @@ public class TestWholeProcess {
         // 4. build pattern from model output
         String key = "/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/src/test/resources/c3/ant/13/0/before.java";
         String modelResult = System.getProperty("user.dir") + String.format("/out/c3_%s_%d_%d_predict.json", testPro, testId, targetNo);
+        JSONArray oris = (JSONArray) ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).get(key);
         JSONArray labels = (JSONArray) ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).get(key);
         // modify the pattern according to the label
         for (int i=0; i<patterns.size(); i++) {
             Pattern pattern = patterns.get(i);
             PatternAbstractor.buildWithoutAbstract(pattern);
             JSONObject label = labels.getJSONObject(i);
-            InteractPattern.abstractByJSONObject(pattern, label, key);
+            JSONObject ori = oris.getJSONObject(i);
+            InteractPattern.abstractByJSONObject(pattern, ori.getJSONArray(key).getJSONObject(i), label, key);
             // save the pattern
-            String patternPath = String.format("%s/out/pattern_c3_%s_%d_%d_predict.dat", System.getProperty("user.dir"), testPro, testId, targetNo, i);
+            String patternPath = String.format("%s/out/pattern_c3_%s_%d_%d_%d_predict.dat", System.getProperty("user.dir"), testPro, testId, targetNo, i);
             ObjectUtil.writeObjectToFile(pattern, patternPath);
         }
         // 5. apply pattern to source file

@@ -1,8 +1,10 @@
-private void checkRParen() {
+class PlaceHold {
+  private void checkRParen() {
     DetailAST rparen = getMainAst().findFirstToken(RPAREN);
     int columnNo = expandedTabsColumnNo(rparen);
     if (!startsLine(rparen)) {
-        return;
+      return;
     }
     logError(rparen, "rparen", columnNo);
+  }
 }

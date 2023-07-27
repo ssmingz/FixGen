@@ -1,4 +1,5 @@
-public static ParseTree treeComments() {
+class PlaceHold {
+  public static ParseTree treeComments() {
     JavadocContext kbtaA = new JavadocContext(null, 0);
     CommonToken Tiacl = new CommonToken(JavadocTokenTypes.LEADING_ASTERISK, " *");
     kbtaA.addChild(Tiacl);
@@ -111,4 +112,5 @@ public static ParseTree treeComments() {
     CommonToken jHAfX = new CommonToken(JavadocTokenTypes.EOF, "<EOF>");
     kbtaA.addChild(jHAfX);
     return kbtaA;
+  }
 }

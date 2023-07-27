@@ -1,3 +1,4 @@
+class XMLReport{
 public XMLReport(ProjectData projectData, File destinationDir, FileFinder finder, ComplexityCalculator complexity) throws IOException {
     this.complexity = complexity;
     this.finder = finder;
@@ -21,4 +22,5 @@ public XMLReport(ProjectData projectData, File destinationDir, FileFinder finder
     } finally {
         close();
     }
+}
 }

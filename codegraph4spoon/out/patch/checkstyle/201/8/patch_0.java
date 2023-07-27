@@ -1,3 +1,4 @@
+class PlaceHold{
 @Test
 public void testIOException() throws Exception {
     final UniquePropertiesCheck check = new UniquePropertiesCheck();
@@ -10,4 +11,5 @@ public void testIOException() throws Exception {
     final String retrievedMessage = messages.iterator().next().getKey();
     Assert.assertEquals(("Message key '" + retrievedMessage) + "' is not valid", retrievedMessage, "unable.open.cause");
     Assert.assertEquals(("Message '" + message.getMessage()) + "' is not valid", message.getMessage(), getCheckMessage(IO_EXCEPTION_KEY, fileName, getFileNotFoundDetail(file)));
+}
 }

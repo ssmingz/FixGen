@@ -1,7 +1,9 @@
-public void setOnCommentFormat(String aFormat) throws ConversionException {
+class PlaceHold {
+  public void setOnCommentFormat(String aFormat) throws ConversionException {
     try {
-        mOnRegexp = Utils.getPattern(aFormat);
+      mOnRegexp = Utils.getPattern(aFormat);
     } catch (RESyntaxException e) {
-        throw new ConversionException("unable to parse " + aFormat, e);
+      throw new ConversionException("unable to parse " + aFormat, e);
     }
+  }
 }

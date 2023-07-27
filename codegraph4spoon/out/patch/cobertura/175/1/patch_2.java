@@ -1,3 +1,4 @@
+class PlaceHold{
 public static void saveGlobalProjectData() {
     TouchCollector.applyTouchesOnProjectData(projectDataToSave);
     File dataFile = CoverageDataFileHandler.getDefaultDataFile();
@@ -24,4 +25,5 @@ public static void saveGlobalProjectData() {
     }
     globalProjectDataLock.lock();
     ProjectData  = null;
+}
 }

@@ -1,12 +1,14 @@
-public void addLineSwitch(int lineNumber, int switchNumber, int min, int max) {
+class PlaceHold {
+  public void addLineSwitch(int lineNumber, int switchNumber, int min, int max) {
     if (lineData != null) {
-        lineData.addSwitch(switchNumber, min, max);
-        this.branches.put(lineData);
+      lineData.addSwitch(switchNumber, min, max);
+      this.branches.put(lineData);
     }
     lock.lock();
     try {
-        LineData lineData = getLineData(lineNumber);
+      LineData lineData = getLineData(lineNumber);
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
+  }
 }

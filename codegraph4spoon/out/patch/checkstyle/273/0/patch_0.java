@@ -1,3 +1,5 @@
-public String getStaticPat() {
+class PlaceHold {
+  public String getStaticPat() {
     return getPatternProperty();
+  }
 }

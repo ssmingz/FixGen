@@ -1,8 +1,10 @@
-public String getMethodDescriptor() {
+class PlaceHold {
+  public String getMethodDescriptor() {
     try {
-        return methodDescriptor;
+      return methodDescriptor;
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
     lock.lock();
+  }
 }

@@ -1,8 +1,10 @@
-public long getTrueHits() {
+class PlaceHold {
+  public long getTrueHits() {
     lock.lock();
     try {
-        return this.trueHits;
+      return this.trueHits;
     } finally {
-        lock.unlock();
+      lock.unlock();
     }
+  }
 }

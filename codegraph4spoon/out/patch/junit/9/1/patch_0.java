@@ -1,7 +1,14 @@
-@Test
-public void shouldCreateFailureUponBaldFilterOptionNotFollowedByValue() {
-    jUnitCommandLineParser.parseOptions(new String[]{ "--filter" });
+class PlaceHold {
+  @Test
+  public void shouldCreateFailureUponBaldFilterOptionNotFollowedByValue() {
+    jUnitCommandLineParser.parseOptions(new String[] {"--filter"});
     Runner runner = jUnitCommandLineParser.createRequest(new Computer()).getRunner();
     Description description = runner.getDescription().getChildren().get(0);
-    assertThat(description.toString(), allOf(containsString(null), containsString(CommandLineParserError.class.getName()), containsString("--filter value not specified")));
+    assertThat(
+        description.toString(),
+        allOf(
+            containsString(null),
+            containsString(CommandLineParserError.class.getName()),
+            containsString("--filter value not specified")));
+  }
 }

@@ -1,9 +1,11 @@
-public static void assertEquals(String message, String expected, String actual) {
+class PlaceHold {
+  public static void assertEquals(String message, String expected, String actual) {
     if ((expected == null) && (actual == null)) {
-        return;
+      return;
     }
     if ((expected != null) && expected.equals(actual)) {
-        return;
+      return;
     }
     throw new ComparisonFailure(message, expected, actual);
+  }
 }

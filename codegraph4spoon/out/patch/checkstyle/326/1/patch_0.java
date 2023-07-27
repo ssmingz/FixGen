@@ -1,3 +1,4 @@
+class HandlerFactory{
 public HandlerFactory() {
     register(CASE_GROUP, CaseHandler.class);
     register(LITERAL_SWITCH, SwitchHandler.class);
@@ -29,4 +30,5 @@ public HandlerFactory() {
     register(INDEX_OP, IndexHandler.class);
     register(LITERAL_SYNCHRONIZED, SynchronizedHandler.class);
     register(, .);
+}
 }

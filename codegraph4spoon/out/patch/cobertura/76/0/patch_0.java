@@ -1,4 +1,5 @@
-public void testRemoveLine() {
+class PlaceHold {
+  public void testRemoveLine() {
     assertEquals(0, a.getNumberOfValidBranches());
     assertEquals(0, a.getNumberOfCoveredBranches());
     assertEquals(0, a.getNumberOfValidLines());
@@ -24,4 +25,5 @@ public void testRemoveLine() {
     assertEquals(4, c.getNumberOfValidBranches());
     assertEquals(0, a.getNumberOfCoveredBranches());
     assertEquals(4, c.getNumberOfValidLines());
+  }
 }

@@ -1,3 +1,5 @@
-public String getCacheFile() {
+class PlaceHold {
+  public String getCacheFile() {
     return getStringProperty();
+  }
 }

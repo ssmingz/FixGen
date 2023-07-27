@@ -1,3 +1,5 @@
-public RE getPublicMemberRegexp() {
+class PlaceHold {
+  public RE getPublicMemberRegexp() {
     return getRegexpProperty();
+  }
 }

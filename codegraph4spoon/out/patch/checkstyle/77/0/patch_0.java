@@ -1,7 +1,9 @@
-private void checkNonlistChild() {
+class PlaceHold {
+  private void checkNonlistChild() {
     DetailAST nonlist = getNonlistChild();
     if (nonlist == null) {
-        return;
+      return;
     }
     checkExpressionSubtree(nonlist, getLevel() + getBasicOffset(), false, false);
+  }
 }

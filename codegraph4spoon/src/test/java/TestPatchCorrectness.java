@@ -26,10 +26,11 @@ public class TestPatchCorrectness {
 
     @Test
     public void testPatchCorrectness2() {
-        String[] projects = {"junit"};
+        String[] projects = {"junit","checkstyle","cobertura","drjava","ant","swt"};
         String base_gt = TestConfig.MAC_BASE;
         String base_patch = "/Users/yumeng/JavaProjects/FixGen/codegraph4spoon/out/patch/";
         int targetCounter = 0, correctCounter = 0;
+        int targetCounter_single = 0, correctCounter_single = 0;
         for (int i=0; i<projects.length; i++) {
             File dir = new File(base_gt + "dataset/" + projects[i]);
             for (File group : dir.listFiles()) {
@@ -42,6 +43,8 @@ public class TestPatchCorrectness {
                         File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
                         if (!patchDir.exists())
                             continue;
+                        if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+                            targetCounter_single++;
                         targetCounter++;
                         for (File patch : patchDir.listFiles()) {
                             if (patch.getName().endsWith(".java")) {
@@ -52,6 +55,8 @@ public class TestPatchCorrectness {
                                 List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
                                 boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
                                 correctCounter += correctness ? 1 : 0;
+                                if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+                                    correctCounter_single += correctness ? 1 : 0;
                                 System.out.printf("[%b]%s%n", correctness, patchPath);
                                 if (correctness)
                                     break;
@@ -61,9 +66,14 @@ public class TestPatchCorrectness {
                 }
             }
         }
+        System.out.println("======== All ========");
         System.out.println("[stat]target bug instance number: "+targetCounter);
         System.out.println("[stat]patch correct number: "+correctCounter);
         System.out.println("[stat]patch correct %: "+(correctCounter*1.0/targetCounter));
+        System.out.println("======== Single Pattern ========");
+        System.out.println("[stat]target bug instance number: "+targetCounter_single);
+        System.out.println("[stat]patch correct number: "+correctCounter_single);
+        System.out.println("[stat]patch correct %: "+(correctCounter_single*1.0/targetCounter_single));
     }
 
     public boolean isPatchCorrect(List<String> groundtruth, List<String> patch) {

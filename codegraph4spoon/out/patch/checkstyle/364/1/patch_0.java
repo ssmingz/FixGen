@@ -1,3 +1,4 @@
+class PlaceHold{
 protected Checker createChecker(Configuration aCheckConfig) throws Exception {
     final DefaultConfiguration dc = createCheckerConfig(aCheckConfig);
     final Checker c = new Checker();
@@ -8,4 +9,5 @@ protected Checker createChecker(Configuration aCheckConfig) throws Exception {
     c.addListener(new BriefLogger(mStream));
     .setModuleClassLoader(Thread.currentThread().getContextClassLoader());
     return c;
+}
 }

@@ -1,4 +1,6 @@
-@Override
-public int hashCode() {
+class PlaceHold {
+  @Override
+  public int hashCode() {
     return Integer.valueOf(matchValue).hashCode();
+  }
 }

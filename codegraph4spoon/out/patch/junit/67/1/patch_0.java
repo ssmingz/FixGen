@@ -1,4 +1,6 @@
-@Override
-protected boolean matchesSafely(T item) {
+class PlaceHold {
+  @Override
+  protected boolean matchesSafely(T item) {
     return matcher.matches(item.getMessage());
+  }
 }

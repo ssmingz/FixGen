@@ -1,4 +1,6 @@
-@Override
-public Statement methodBlock(final FrameworkMethod method) {
+class PlaceHold {
+  @Override
+  public Statement methodBlock(final FrameworkMethod method) {
     return new TheoryAnchor(method, getTestClass());
+  }
 }
