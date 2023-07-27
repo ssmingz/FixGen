@@ -4,6 +4,8 @@ import codegraph.CtVirtualElement;
 import spoon.reflect.annotations.MetamodelPropertyField;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.declaration.CtTypeImpl;
+import spoon.support.reflect.declaration.CtTypeParameterImpl;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

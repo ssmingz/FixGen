@@ -112,7 +112,7 @@ public class TestPatternAbstractor {
         String pro = "drjava";
         int group = 927;
         List<CodeGraph> ags = new ArrayList<>();
-        String base = String.format("%s/dataset/%s/%d", TestConfig.MAC_BASE, pro, group);
+        String base = String.format("%s/dataset/%s/%d", TestConfig.WIN_BASE, pro, group);
         int size = new File(base).listFiles(File::isDirectory).length;
         for (int i=0; i<size; i++) {
             String srcPath = String.format("%s/%d/before.java", base, i);
@@ -146,7 +146,7 @@ public class TestPatternAbstractor {
         String pro = "FindBugs-DM_DEFAULT_ENCODING";
         int group = 2;
         List<CodeGraph> ags = new ArrayList<>();
-        String base = String.format("%s/%s/%d", TestConfig.FIXBENCH_MAC_BASE, pro, group);
+        String base = String.format("%s/%s/%d", TestConfig.FIXBENCH_WIN_BASE, pro, group);
         File[] ins = new File(base).listFiles(File::isDirectory);
         int size = ins.length;
         for (File i : ins) {

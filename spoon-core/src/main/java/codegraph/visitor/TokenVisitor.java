@@ -131,7 +131,14 @@ public class TokenVisitor extends CtScanner {
 
     @Override
     public <T> void visitCtLocalVariable(final CtLocalVariable<T> localVariable) {
-        tokens.add(localVariable.getType().getSimpleName());
+        try {
+            tokens.add(localVariable.getType().getSimpleName());
+        } catch(NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
         tokens.add(localVariable.getSimpleName());
         super.visitCtLocalVariable(localVariable);
     }
@@ -150,7 +157,14 @@ public class TokenVisitor extends CtScanner {
     @Override
     public <T> void visitCtMethod(final CtMethod<T> m) {
         tokens.addAll(m.getModifiers().stream().map(ModifierKind::toString).collect(Collectors.toList()));
-        tokens.add(m.getType().getSimpleName());  // return type
+        try{
+            tokens.add(m.getType().getSimpleName());  // return type
+        } catch(NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
         tokens.add(m.getSimpleName());  // method name
         super.visitCtMethod(m);
     }
@@ -158,7 +172,14 @@ public class TokenVisitor extends CtScanner {
     @Override
     public <T> void visitCtParameter(final CtParameter<T> parameter) {
         tokens.add(parameter.getSimpleName());
-        tokens.add(parameter.getType().getSimpleName());
+        try{
+            tokens.add(parameter.getType().getSimpleName());
+        } catch(NullPointerException e) {
+            System.err.println("[Error] NullPointerException in : " +
+                    Thread.currentThread().getStackTrace()[1].getFileName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getMethodName() + " : " +
+                    Thread.currentThread().getStackTrace()[1].getLineNumber());
+        }
     }
 
     public void visitCtVirtual(final CtVirtualElement virtual) {

@@ -44,6 +44,7 @@ import spoon.reflect.reference.CtTypeReference;
 import spoon.reflect.visitor.CtInheritanceScanner;
 import spoon.support.reflect.CtExtendedModifier;
 import spoon.support.reflect.cu.position.SourcePositionImpl;
+import spoon.support.reflect.declaration.CtMethodImpl;
 
 /**
  * responsible to add additional nodes only overrides scan* to add new nodes

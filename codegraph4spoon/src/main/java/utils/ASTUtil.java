@@ -44,7 +44,7 @@ public class ASTUtil {
                             for (Integer i : linelist) {
                                 lineArray[counter++] = i;
                             }
-                            result.put(file, lineArray);
+                            result.put(file.split("/")[file.split("/").length - 1], lineArray);
                             linelist.clear();
                         }
                         file = line.split(" ")[1].replaceFirst("a", "");
