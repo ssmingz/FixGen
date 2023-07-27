@@ -1,4 +1,7 @@
 /gumtree-spoon-ast-diff/target/
 /codegraph/target/
 /codegraph4spoon/target/
+/codegraph4spoon/out/
 /spoon-core/target/
+.idea
+.vscode
