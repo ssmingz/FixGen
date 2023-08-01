@@ -27,11 +27,11 @@ public class InteractPattern {
             int finalVi = vi;
             JSONObject attr_labels = new JSONObject(){{
                 put("locationInParent", labels.getJSONArray("location").getInteger(finalVi));
-                put("nodeType", labels.getJSONArray("type").getInteger(finalVi));
-                put("value", labels.getJSONArray("attrvalue").getInteger(finalVi));
+                put("nodeType", labels.getJSONArray("node_type").getInteger(finalVi));
+                put("value", labels.getJSONArray("value").getInteger(finalVi));
                 // TODO: to be added
-                put("value2", labels.containsKey("attrvalue2") && labels.getJSONArray("attrvalue2").size() > finalVi ? labels.getJSONArray("attrvalue2").getInteger(finalVi) : 1);
-                put("valueType", labels.containsKey("valuetype") && labels.getJSONArray("valuetype").size() > finalVi ? labels.getJSONArray("valuetype").getInteger(finalVi) : 1);
+                put("value2", labels.containsKey("value2") && labels.getJSONArray("value2").size() > finalVi ? labels.getJSONArray("value2").getInteger(finalVi) : 1);
+                put("valueType", labels.containsKey("value_type") && labels.getJSONArray("value_type").size() > finalVi ? labels.getJSONArray("value_type").getInteger(finalVi) : 1);
             }};
             InteractPattern.abstractAttribute(pattern, id, attrs, attr_labels, cgName);
 

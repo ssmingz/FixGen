@@ -580,12 +580,9 @@ public class PatternExtractor {
                     comp = Attribute.computeValueType(cgn);
                     break;
             }
-            if (Objects.equals(a.getTag(), comp))
-                scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
-            else {
-                scores.clear();  // all attributes must be satisfied, or else will not be considered as mapped
-                break;
-            }
+
+            scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
+
         }
         return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n->n).average().getAsDouble();
     }
