@@ -82,6 +82,9 @@ public class GraphBuilder {
     private static boolean checkLineAppearedInMethod(CtElementImpl method, int[] includeLines) {
         if (!method.getPosition().isValidPosition())
             return false;
+        if (includeLines.length == 0) {
+            return true;
+        }
         int start = method.getPosition().getLine();
         int end = method.getPosition().getEndLine();
         for (int line : includeLines) {

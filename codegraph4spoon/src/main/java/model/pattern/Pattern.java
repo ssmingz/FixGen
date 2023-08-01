@@ -11,6 +11,7 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Pattern implements Serializable {
+    private String _patternName = "Pattern";
     private Set<PatternNode> _patternNodes = new LinkedHashSet<>();
     private Set<PatternEdge> _patternEdges = new LinkedHashSet<>();
     private PatternNode _start;
@@ -78,7 +79,11 @@ public class Pattern implements Serializable {
 
     // TODO: set name for a pattern
     public String getPatternName() {
-        return "Pattern";
+        return _patternName;
+    }
+
+    public void setPatternName(String patternName) {
+        _patternName =patternName;
     }
 
     public List<PatternNode> getNodes() {
@@ -124,7 +129,7 @@ public class Pattern implements Serializable {
         Map<PatternNode, Map<CtWrapper, Double>> orderBySimScore = PatternExtractor.calSimScorePattern(_patternNodes, aGraph.getNodes());
         Map<PatternNode, CtWrapper> mapping = new LinkedHashMap<>();
         double score = PatternExtractor.matchBySimScorePattern(Arrays.asList(_patternNodes.toArray(new PatternNode[0])), 0, aGraph.getNodes(), 0, mapping, orderBySimScore);
-        return new Pair<>(mapping, score/mapping.size());
+        return new Pair<>(mapping, score / _patternNodes.size());
     }
 
     public PatternNode getPatternNodeByCGNode(CtWrapper n) {

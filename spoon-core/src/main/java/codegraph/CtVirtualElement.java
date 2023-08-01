@@ -7,6 +7,7 @@ import spoon.reflect.path.CtRole;
 import spoon.reflect.visitor.CtVisitor;
 import spoon.support.reflect.code.CtCodeElementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.visitor.HashcodeVisitor;
 
 public class CtVirtualElement extends CtCodeElementImpl {
     private static final long serialVersionUID = 1L;
@@ -64,5 +65,10 @@ public class CtVirtualElement extends CtCodeElementImpl {
     @Override
     public SourcePosition getPosition() {
         return parent.getPosition();
+    }
+
+    @Override
+    public int hashCode() {
+        return label.hashCode();
     }
 }

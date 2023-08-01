@@ -206,6 +206,10 @@ public class TestOpenSourceProjects {
                                     diffResultDir.resolve(String.format("%s__pattern__%d.dat", methodSignature, Patterns.indexOf(pattern))).toString()
                             );  // save
 
+                            Pattern patternLoad = (Pattern) ObjectUtil.readObjectFromFile(
+                                    diffResultDir.resolve(String.format("%s__pattern__%d.dat", methodSignature, Patterns.indexOf(pattern))).toString()
+                            );
+
                         }
 
                     }
@@ -249,6 +253,7 @@ public class TestOpenSourceProjects {
 
                 for (String patternName : patternNames) {
                     Pattern pattern = (Pattern) ObjectUtil.readObjectFromFile(diffPatterns.resolve(patternName + ".dat").toString());
+                    pattern.setPatternName(diffPatterns.resolve(patternName + ".dat").toString());
                     if(pattern == null) {
                         continue;
                     }
@@ -261,7 +266,12 @@ public class TestOpenSourceProjects {
                                 .getJSONObject(0);
                         JSONObject label = (JSONObject) ((JSONObject) ObjectUtil.readJsonFromFile(afterAbstractPattern.resolve(patternName + ".json").toString()))
                                 .get(key);
-                        InteractPattern.abstractByJSONObject(pattern, id, label, key);
+                        InteractPattern.abstractByJSONObject(pattern, id, label, key.replace("$$0", ""));
+
+                        Path diffLogDir = logPath.resolve(Path.of(projectName, diff));
+                        DotGraph dot = new DotGraph(pattern, 0, true, false);
+                        dot.toDotFile(diffLogDir.resolve(pattern.getPatternName().replace(".dat", "__abstract.dot")).toFile());
+
                         patternLib.add(pattern);
                     } catch (Exception e) {
 //                        System.err.println("[error] cannot read jsonObj");
@@ -278,7 +288,7 @@ public class TestOpenSourceProjects {
     }
 
     @Test
-    public void testBuildPatternLib4OneJavaFile() throws IOException {
+    public void testBuildPatternLib4OneProject() throws IOException {
         String projectName = "beam";
         List<Pattern> patternLib = new ArrayList<>();
 
@@ -296,60 +306,74 @@ public class TestOpenSourceProjects {
 
             Path afterAbstractPattern = afterAbstractPatternsPath.resolve(Path.of(diff));
             for (String patternName : patternNames) {
+                System.out.println(diffPatterns + File.separator + patternName);
                 Pattern pattern = (Pattern) ObjectUtil.readObjectFromFile(diffPatterns.resolve(patternName + ".dat").toString());
                 if(pattern == null) {
                     continue;
                 }
 
                 String key = diffFilePath.resolve(Path.of(projectName, diff, "buggy_version", patternName.substring(0, patternName.indexOf(".java") + 5) + "$$0")).toString();
-                System.out.println(key);
                 try{
                     JSONObject id = (JSONObject) ((JSONObject) ObjectUtil.readJsonFromFile(diffPatterns.resolve(patternName + ".json").toString()))
                             .getJSONArray(key.replace("$$0", ""))
                             .getJSONObject(0);
                     JSONObject label = (JSONObject) ((JSONObject) ObjectUtil.readJsonFromFile(afterAbstractPattern.resolve(patternName + ".json").toString()))
                             .get(key);
-                    InteractPattern.abstractByJSONObject(pattern, id, label, key);
+                    InteractPattern.abstractByJSONObject(pattern, id, label, key.replace("$$0", ""));
                     patternLib.add(pattern);
                 } catch (Exception e) {
-//                        System.err.println("[error] cannot read jsonObj");
                     e.printStackTrace();
                 }
             }
         }
-
-
     }
 
     private void locateFaultOnPatternLib(Path projectPath, List<Pattern> patternLib) throws IOException {
         List<Path> alljavaFiles = Files.walk(projectPath)
                 .filter(file -> file.toString().endsWith(".java"))
+//                .filter(file -> !file.toString().contains(File.separator + "test" + File.separator))
                 .filter(file -> !file.toString().contains(File.separator + ".")) // filtrate the stuff in the hidden files
                 .collect(Collectors.toList());
 
         alljavaFiles.forEach(System.out::println);
 
-        int canMatchPatternCount = 0;
+        int canMatchMethodCount = 0;
+        Map<String, Integer> matchedPatternCount = new HashMap<>();
+        int totalMethodCount = 0;
         for (Path javaFile : alljavaFiles) {
-
-
             List<CodeGraph> methodsCodeGraph = GraphBuilder.buildMethodGraphs(javaFile.toString(), new String[] {}, 8, new int[] {});
-            System.out.println(methodsCodeGraph.size());
+            totalMethodCount += methodsCodeGraph.size();
             for (CodeGraph methodCodeGraph : methodsCodeGraph) {
-                boolean ismatchPattern = false;
-                BugLocator detector = new BugLocator(0.6);
+                List<Pattern> matchedPatterns = new ArrayList<>();
+                BugLocator detector = new BugLocator(0.8);
                 for (Pattern pattern : patternLib) {
                     String result = detector.locateFaultByPattern(pattern, methodCodeGraph);
                     if(!"FAILED".equals(result)) {
-                        ismatchPattern = true;
-                        canMatchPatternCount ++;
-                        System.out.println(result);
+                        matchedPatterns.add(pattern);
                     }
                 }
+
+                if(! matchedPatterns.isEmpty()) {
+                    canMatchMethodCount++;
+                }
+                System.out.println("cg: " + methodCodeGraph.getGraphName());
+
+                matchedPatterns.forEach(pattern -> {
+                    matchedPatternCount.compute(pattern.getPatternName(), (k, v) -> v == null ? 1 : v + 1);
+                });
+
             }
+
         }
 
-        System.out.println(String.format("bug location count: %d/%d", canMatchPatternCount, alljavaFiles.size()));
+        List<Map.Entry<String, Integer>> sortedMatchedPattern = new ArrayList<>(matchedPatternCount.entrySet());
+        Collections.sort(sortedMatchedPattern, (v1, v2) -> v2.getValue() - v1.getValue());
+
+        for (Map.Entry<String, Integer> matchedPattern : sortedMatchedPattern) {
+            System.out.println(matchedPattern.getKey() + ":" + matchedPattern.getValue());
+        }
+
+        System.out.println(String.format("bug location count: %d/%d", canMatchMethodCount, totalMethodCount));
     }
 
 
@@ -358,8 +382,8 @@ public class TestOpenSourceProjects {
     @Test
     public void testAbstractPattern4OneJavaFile() throws IOException {
         String projectName = "beam";
-        String diff = "0b4a11c78b_a2210f218d";
-        String javaFileName = "BeamFileSystemArtifactServicesTest.java";
+        String diff = "d08675cd59_80be89e4fa";
+        String javaFileName = "TransformTranslator.java";
 
         Path diffLogDir = debugLogPath.resolve(Path.of(projectName, diff));
         Path diffResultDir = debugResultPath.resolve(Path.of(projectName, diff));
@@ -433,15 +457,13 @@ public class TestOpenSourceProjects {
                             .getJSONObject(0);
                     JSONObject label = (JSONObject) ((JSONObject) ObjectUtil.readJsonFromFile(afterAbstractPattern.resolve(patternName + ".json").toString()))
                             .get(key);
-                    InteractPattern.abstractByJSONObject(pattern, id, label, key);
+                    InteractPattern.abstractByJSONObject(pattern, id, label, key.replace("$$0", ""));
                     System.out.println("method 1");
-                    InteractPattern.abstractByJSONObject(patternLoad, id, label, key);
+                    InteractPattern.abstractByJSONObject(patternLoad, id, label, key.replace("$$0", ""));
                     System.out.println("method 2");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-
 
             }
 
