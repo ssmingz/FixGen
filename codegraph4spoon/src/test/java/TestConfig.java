@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class TestConfig {
     static String WIN_BASE = "E:\\dataset\\FixBench\\c3";
-    static String MAC_BASE = "/Users/yumeng/PycharmProjects/c3/";
+    static String MAC_BASE = "/Users/yangchen/Desktop/fixgen_c3/";
     static String FIXBENCH_MAC_BASE = "/Users/yumeng/PycharmProjects/FixBench/WithinSingleMethod/";
     static String FIXBENCH_WIN_BASE = "E:\\dataset\\FixBench\\WithinSingleMethod";
     static String BENCHMARK_WIN_BASE = "E:\\dataset\\FixBench\\fixBenchTest";

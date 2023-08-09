@@ -1,6 +1,7 @@
 import builder.*;
 import model.CodeGraph;
 import model.pattern.Pattern;
+import model.pattern.PatternNode;
 import org.junit.Test;
 import utils.DotGraph;
 
@@ -8,16 +9,20 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class TestApplyPattern {
     @Test
-    public void testApplyPattern(){
+    public void testApplyPattern() {
         String testPro = "ant";
         int testId = 13;
         List<CodeGraph> ags = new ArrayList<>();
@@ -27,26 +32,26 @@ public class TestApplyPattern {
         // build for the target
         int targetNo = 0;
         CodeGraph target_ag = GraphBuilder.buildGraph(
-                String.format("%s/%d/before.java", base, targetNo), new String[] {}, 8, new int[] {});
+                String.format("%s/%d/before.java", base, targetNo), new String[]{}, 8, new int[]{});
         GraphConfiguration config = new GraphConfiguration();
         DotGraph dot3 = new DotGraph(target_ag, config, 0);
         File dir3 = new File(System.getProperty("user.dir") + "/out/cg_temp.dot");
         dot3.toDotFile(dir3);
 
         // build for the pattern
-        for (int i=0; i<size; i++) {
-            if (i==targetNo) continue;
+        for (int i = 0; i < size; i++) {
+            if (i == targetNo) continue;
             String srcPath = String.format("%s/%d/before.java", base, i);
             String tarPath = String.format("%s/%d/after.java", base, i);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
             ags.add(ag);
         }
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
         for (Pattern pat : combinedGraphs) {
             // abstract pattern
-            PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size*0.8));
+            PatternAbstractor abs = new PatternAbstractor((int) Math.floor(size * 0.8));
             abs.abstractPattern(pat);
             DotGraph dot = new DotGraph(pat, 0, true, false);
             File dir = new File(String.format("%s/out/pattern_temp_%d.dot", System.getProperty("user.dir"), combinedGraphs.indexOf(pat)));
@@ -59,7 +64,7 @@ public class TestApplyPattern {
     }
 
     @Test
-    public void testApplyPatternOnC3(){
+    public void testApplyPatternOnC3() {
         boolean INCLUE_INSTANCE_ITSELF = true;
         boolean SKIP_IF_EXIST = true;
         boolean OUTPUT_TO_FILE = true;
@@ -67,7 +72,7 @@ public class TestApplyPattern {
         if (OUTPUT_TO_FILE) {
             FileOutputStream puts = null;
             try {
-                puts = new FileOutputStream(TestConfig.LOG_PATH,true);
+                puts = new FileOutputStream(TestConfig.LOG_PATH, true);
             } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -75,12 +80,14 @@ public class TestApplyPattern {
             System.setOut(out);
         }
 
-        //String[] projects = {"junit", "checkstyle", "cobertura", "drjava", "ant", "swt"};
-        String[] projects = {"drjava", "ant", "swt"};
+//        String[] projects = {"drjava", "ant", "swt"};
+        String[] projects = {"junit", "checkstyle"};
+//        String[] projects = {"cobertura"};
+        String runType = "new";
         String base = TestConfig.MAC_BASE;
         AtomicInteger targetCounter = new AtomicInteger();
         long start = System.currentTimeMillis();
-        for (int i=0; i<projects.length; i++) {
+        for (int i = 0; i < projects.length; i++) {
             File dir = new File(base + "dataset/" + projects[i]);
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
@@ -109,10 +116,22 @@ public class TestApplyPattern {
                                 CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
                                 ags.add(ag);
                             }
+                            List<CodeGraph> ags_temp = new ArrayList<>();
+                            for (int k = 0; k < size; k++) {
+                                ags_temp.add(ags.get(k));
+                            }
+                            List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp, runType);
                             long step_end = System.currentTimeMillis();
                             System.out.printf("[time]build all instance action graphs: %f s\n", (step_end - step_start) / 1000.0);
+
                             // each as target
                             for (int targetNo = 0; targetNo < size; targetNo++) {
+                                // exclude the cases where more than one pattern are generated
+                                if (combinedGraphs.size() > 1) {
+                                    System.out.printf("[warn]extracted pattern not single, size:%d\n", combinedGraphs.size());
+                                    continue;
+                                }
+
                                 targetCounter.getAndIncrement();
                                 // build for the target
                                 String path = String.format("%s/%d/before.java", baseDir, targetNo);
@@ -122,35 +141,41 @@ public class TestApplyPattern {
                                 step_end = System.currentTimeMillis();
                                 System.out.printf("[time]build target codegraph: %f s\n", (step_end - step_start) / 1000.0);
 
-                                // build for the pattern
-                                List<CodeGraph> ags_temp = new ArrayList<>();
-                                for (int k = 0; k < size; k++) {
-                                    if (!INCLUE_INSTANCE_ITSELF && k == targetNo) continue;
-                                    ags_temp.add(ags.get(k));
-                                }
+//                                 build for the pattern
+//                                List<CodeGraph> ags_temp = new ArrayList<>();
+//                                for (int k = 0; k < size; k++) {
+//                                    if (!INCLUE_INSTANCE_ITSELF && k == targetNo) continue;
+//                                    ags_temp.add(ags.get(k));
+//                                }
                                 // extract pattern from more-than-one graphs
-                                step_start = System.currentTimeMillis();
-                                List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp);
-                                step_end = System.currentTimeMillis();
-                                System.out.printf("[time]cluster instance graphs: %f s\n", (step_end - step_start) / 1000.0);
-                                if (combinedGraphs.size() > 1) {
-                                    System.out.printf("[warn]extracted pattern not single, size:%d\n", combinedGraphs.size());
-                                    //continue;
-                                }
+//                                step_start = System.currentTimeMillis();
+//                                List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp, runType);
+//                                step_end = System.currentTimeMillis();
+//                                System.out.printf("[time]cluster instance graphs: %f s\n", (step_end - step_start) / 1000.0);
+
                                 for (Pattern pat : combinedGraphs) {
-                                    // abstract pattern
-                                    step_start = System.currentTimeMillis();
-                                    PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
-                                    abs.abstractPattern(pat);
-                                    step_end = System.currentTimeMillis();
-                                    System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
-                                    // locate the buggy line
-                                    BugLocator detector = new BugLocator(0.6);
-                                    String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
-                                    step_start = System.currentTimeMillis();
-                                    detector.applyPattern(pat, target_ag, patchPath);
-                                    step_end = System.currentTimeMillis();
-                                    System.out.printf("[time]apply pattern: %f s\n", (step_end - step_start) / 1000.0);
+                                    Set<PatternNode> actionNodes = pat.getNodeSet().stream()
+                                            .filter(PatternNode::isActionRelated)
+                                            .collect(Collectors.toSet());
+                                    // filter out the cases where not all modifications are the same within a group
+                                    if (actionNodes.stream().allMatch(node -> node.getInstance().keySet().size() == size)) {
+                                        step_start = System.currentTimeMillis();
+                                        PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
+                                        abs.abstractPattern(pat);
+                                        step_end = System.currentTimeMillis();
+                                        System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
+
+                                        BugLocator detector = new BugLocator(0.6);
+                                        String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
+
+                                        step_start = System.currentTimeMillis();
+                                        detector.applyPattern(pat, target_ag, patchPath, runType);
+                                        step_end = System.currentTimeMillis();
+                                        System.out.printf("[time]apply pattern: %f s\n", (step_end - step_start) / 1000.0);
+                                    } else {
+                                        System.out.println("[warn]instance size not equal to all instances");
+                                        break;
+                                    }
                                 }
                                 System.out.println("[finished]" + path);
                             }
@@ -165,7 +190,7 @@ public class TestApplyPattern {
                     executor.execute(future);
                     try {
                         // 取得结果，同时设置超时执行时间默认为10秒。同样可以用future.get()，不设置执行超时时间取得结果
-                        future.get(10, TimeUnit.MINUTES);
+                        future.get(1, TimeUnit.MINUTES);
                     } catch (Exception e) {
                         System.out.println("[error]Timeout");
                         future.cancel(true);
@@ -176,46 +201,49 @@ public class TestApplyPattern {
             }
         }
         long end = System.currentTimeMillis();
-        double time = (end-start)/1000.0;
+        double time = (end - start) / 1000.0;
         System.out.printf("[stat]total time: %f  (in second)\n", time);
-        System.out.println("[stat]target bug instance number: "+targetCounter);
+        System.out.println("[stat]target bug instance number: " + targetCounter);
     }
 
     @Test
-    public void testApplyPatternOnC3_debug(){
+    public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 104;
-        int targetNo = 0;
+        int testId = 42;
+        int targetNo = 1;
+        String runType = "new";
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);
         int size = (int) Arrays.stream(new File(baseDir).listFiles()).filter(File::isDirectory).count();
 
         // build for the target
         CodeGraph target_ag = GraphBuilder.buildGraph(
-                String.format("%s/%d/before.java", baseDir, targetNo), new String[] {}, 8, new int[] {});
-
+                String.format("%s/%d/before.java", baseDir, targetNo), new String[]{}, 8, new int[]{});
+        DotGraph tttdot = new DotGraph(target_ag, new GraphConfiguration(), 0);
+        File tttdir = new File(String.format("%s/out/codegraph_base_%d.dot", System.getProperty("user.dir"), targetNo));
+        tttdot.toDotFile(tttdir);
         // build for the pattern
         List<CodeGraph> ags = new ArrayList<>();
-        for (int k=0; k<size; k++) {
-            if (!INCLUE_INSTANCE_ITSELF && k==targetNo) continue;
+        for (int k = 0; k < size; k++) {
+            if (!INCLUE_INSTANCE_ITSELF && k == targetNo) continue;
             String srcPath = String.format("%s/%d/before.java", baseDir, k);
             String tarPath = String.format("%s/%d/after.java", baseDir, k);
             // build action graph
-            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[] {});
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
             ags.add(ag);
             DotGraph dot = new DotGraph(ag, new GraphConfiguration(), 0);
-            File dir = new File(String.format("%s/out/codegraph_temp_%d.dot", System.getProperty("user.dir"),k));
+            File dir = new File(String.format("%s/out/codegraph_temp_%d.dot", System.getProperty("user.dir"), k));
             dot.toDotFile(dir);
         }
         // extract pattern from more-than-one graphs
-        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags);
+        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags, runType);
         for (Pattern pat : combinedGraphs) {
             DotGraph dot = new DotGraph(pat, 0, false, false);
             File dir = new File(String.format("%s/out/pattern_temp_%d.dot", System.getProperty("user.dir"), combinedGraphs.indexOf(pat)));
             dot.toDotFile(dir);
             // abstract pattern
-            PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size*0.8));
+            PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
             abs.abstractPattern(pat);
             DotGraph dot2 = new DotGraph(pat, 0, true, false);
             File dir2 = new File(String.format("%s/out/pattern_abstract_temp_%d.dot", System.getProperty("user.dir"), combinedGraphs.indexOf(pat)));
@@ -223,8 +251,8 @@ public class TestApplyPattern {
             // locate the buggy line
             BugLocator detector = new BugLocator(0.6);
             String patchPath = String.format("%s/out/patch_%s_%d_%d_%d.java", System.getProperty("user.dir"), pro, testId, targetNo, combinedGraphs.indexOf(pat));
-            detector.applyPattern(pat, target_ag, patchPath);
+            detector.applyPattern(pat, target_ag, patchPath, runType);
         }
-        System.out.println("[finished]"+target_ag.getFileName());
+        System.out.println("[finished]" + target_ag.getFileName());
     }
 }

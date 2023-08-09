@@ -1,11 +1,9 @@
 package builder;
 
-import codegraph.ASTEdge;
 import codegraph.CtVirtualElement;
 import codegraph.Edge;
 import model.CodeGraph;
 import model.CtWrapper;
-import model.actions.ActionEdge;
 import model.actions.ActionNode;
 import model.pattern.Attribute;
 import model.pattern.Pattern;
@@ -13,21 +11,14 @@ import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections4.SetUtils;
-import org.checkerframework.checker.units.qual.C;
-import org.eclipse.jdt.core.dom.AST;
-import org.javatuples.Triplet;
-import spoon.reflect.reference.CtTypeReference;
+import org.javatuples.Pair;
 import spoon.support.reflect.code.CtBlockImpl;
 import spoon.support.reflect.code.CtCodeElementImpl;
-import spoon.support.reflect.code.CtLocalVariableImpl;
-import spoon.support.reflect.code.CtStatementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;
-import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
 import spoon.support.reflect.reference.CtReferenceImpl;
 import spoon.support.reflect.reference.CtTypeReferenceImpl;
 import utils.ObjectUtil;
 
-import javax.swing.text.html.StyleSheet;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -37,7 +28,8 @@ public class PatternExtractor {
     static Map<CtWrapper, PatternNode> _nodeMap = new LinkedHashMap<>();
     static Map<Map<CtWrapper, CtWrapper>, Double> _mappingsByScore = new LinkedHashMap<>();
 
-    public static List<Pattern> combineGraphs(List<CodeGraph> ags) {
+
+    public static List<Pattern> combineGraphs(List<CodeGraph> ags, String runType) {
         List<Pattern> patternList = new ArrayList<>();
         if (ags == null || ags.isEmpty()) {
             return patternList;
@@ -49,7 +41,7 @@ public class PatternExtractor {
             Pattern pat = new Pattern(start, l.get(0));
             start.setPattern(pat);
             patternList.add(pat);
-            for (int i=1; i<l.size(); i++) {
+            for (int i = 1; i < l.size(); i++) {
                 CtWrapper n = l.get(i);
                 PatternNode pn = new PatternNode(n, ags.get(0));
                 pn.setPattern(pat);
@@ -59,34 +51,48 @@ public class PatternExtractor {
                 for (Edge e : n.getCtElementImpl()._inEdges) {
                     PatternNode srcPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getSource())));
                     PatternNode tarPN = pat.getNodeMapping().get(n);
-                    if (srcPN != null && tarPN!=null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
+                    if (srcPN != null && tarPN != null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
                         pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, ags.get(0));
                     }
                 }
                 for (Edge e : n.getCtElementImpl()._outEdges) {
                     PatternNode srcPN = pat.getNodeMapping().get(n);
                     PatternNode tarPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getTarget())));
-                    if (srcPN != null && tarPN!=null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
+                    if (srcPN != null && tarPN != null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
                         pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, ags.get(0));
                     }
                 }
             }
         }
 
-        for(int i=1; i<ags.size(); i++) {
+        for (int i = 1; i < ags.size(); i++) {
             CodeGraph aGraph = ags.get(i);
             List<List<CtWrapper>> nodeListsComps = getActionLinks(aGraph);
-            for (List<CtWrapper> nodeList: nodeLists) {
+            for (List<CtWrapper> nodeList : nodeLists) {
                 _mappingsByScore.clear();
                 double[] scores = new double[nodeListsComps.size()];
-                for (int j=0; j<nodeListsComps.size(); j++) {
+                for (int j = 0; j < nodeListsComps.size(); j++) {
                     List<CtWrapper> nodeListComp = nodeListsComps.get(j);
+
+                    // Begin the traversal from the parent nodes
+                    Collections.reverse(nodeList);
+                    Collections.reverse(nodeListComp);
                     // calculate similarity score for each pair
                     Map<CtWrapper, Map<CtWrapper, Double>> orderBySimScore = calSimScore(nodeList, nodeListComp);
-                    scores[j] = matchBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
-//                    match(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>());
-                    // group by ags.get(0)
+
+                    if (runType.equals("old")) {
+                        scores[j] = matchBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+                    } else if (runType.equals("new")) {
+                        Set<Pair<Map<CtWrapper, CtWrapper>, Double>> resScores = matchTiedNodeBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+
+                        List<Pair<Map<CtWrapper, CtWrapper>, Double>> scoresList = new ArrayList<>(resScores);
+                        scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
+                        scores[j] = scoresList.get(0).getValue1() / nodeList.size();
+                        _mappingsByScore.put(scoresList.get(0).getValue0(), scores[j]);
+                    }
+
                 }
+
                 if (_mappingsByScore.size() > 0) {
                     double maxScore = 0.0;
                     int maxIndex = -1;
@@ -100,7 +106,7 @@ public class PatternExtractor {
                             result = entry.getKey();
                         }
                     }
-                    if (result==null) continue;
+                    if (result == null) continue;
                     // add to pattern
                     Pattern pat = patternList.get(nodeLists.indexOf(nodeList));
                     for (Map.Entry<CtWrapper, CtWrapper> entry : result.entrySet()) {
@@ -111,14 +117,145 @@ public class PatternExtractor {
                         for (Edge e : cNode.getCtElementImpl()._inEdges) {
                             PatternNode srcPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getSource())));
                             PatternNode tarPN = pat.getNodeMapping().get(oNode);
-                            if (srcPN != null && tarPN!=null) {
+                            if (srcPN != null && tarPN != null) {
                                 pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, aGraph);
                             }
                         }
                         for (Edge e : cNode.getCtElementImpl()._outEdges) {
                             PatternNode srcPN = pat.getNodeMapping().get(oNode);
                             PatternNode tarPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getTarget())));
-                            if (srcPN != null && tarPN!=null) {
+                            if (srcPN != null && tarPN != null) {
+                                pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, aGraph);
+                            }
+                        }
+                    }
+                    // extra not mapped
+                    Map<CtWrapper, CtWrapper> finalResult = result;
+                    Set<CtWrapper> notMapped = nodeListsComps.get(maxIndex).stream().filter(s -> !finalResult.containsValue(s)).collect(Collectors.toSet());
+                    for (CtWrapper n : notMapped) {
+                        // build node
+                        PatternNode pnNew = new PatternNode(n, aGraph);
+                        pnNew.setPattern(pat);
+                        pat.addNode(pnNew, n);
+                    }
+                    for (CtWrapper n : notMapped) {
+                        PatternNode pn = pat.getNodeMapping().get(n);
+                        // add edges
+                        for (Edge e : n.getCtElementImpl()._inEdges) {
+                            CtElementImpl src = e.getSource();
+                            CtWrapper findKey = ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(src));
+                            if (findKey != null) {
+                                pat.addEdge(pat.getNodeMapping().get(findKey), pn, PatternEdge.getEdgeType(e.type), e, aGraph);
+                            }
+                        }
+                        for (Edge e : n.getCtElementImpl()._outEdges) {
+                            CtElementImpl tar = e.getTarget();
+                            CtWrapper findKey = ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(tar));
+                            if (findKey != null) {
+                                pat.addEdge(pn, pat.getNodeMapping().get(findKey), PatternEdge.getEdgeType(e.type), e, aGraph);
+                            }
+                        }
+                    }
+                    nodeList.addAll(notMapped);
+                }
+            }
+        }
+        return patternList;
+    }
+
+
+    public static List<Pattern> combineGraphs(List<CodeGraph> ags) {
+        List<Pattern> patternList = new ArrayList<>();
+        if (ags == null || ags.isEmpty()) {
+            return patternList;
+        }
+        List<List<CtWrapper>> nodeLists = getActionLinks(ags.get(0));
+        // init patterns
+        for (List<CtWrapper> l : nodeLists) {
+            PatternNode start = new PatternNode(l.get(0), ags.get(0));
+            Pattern pat = new Pattern(start, l.get(0));
+            start.setPattern(pat);
+            patternList.add(pat);
+            for (int i = 1; i < l.size(); i++) {
+                CtWrapper n = l.get(i);
+                PatternNode pn = new PatternNode(n, ags.get(0));
+                pn.setPattern(pat);
+                pat.addNode(pn, n);
+            }
+            for (CtWrapper n : l) {
+                for (Edge e : n.getCtElementImpl()._inEdges) {
+                    PatternNode srcPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getSource())));
+                    PatternNode tarPN = pat.getNodeMapping().get(n);
+                    if (srcPN != null && tarPN != null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
+                        pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, ags.get(0));
+                    }
+                }
+                for (Edge e : n.getCtElementImpl()._outEdges) {
+                    PatternNode srcPN = pat.getNodeMapping().get(n);
+                    PatternNode tarPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getTarget())));
+                    if (srcPN != null && tarPN != null && !pat.hasEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type))) {
+                        pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, ags.get(0));
+                    }
+                }
+            }
+        }
+
+        for (int i = 1; i < ags.size(); i++) {
+            CodeGraph aGraph = ags.get(i);
+            List<List<CtWrapper>> nodeListsComps = getActionLinks(aGraph);
+            for (List<CtWrapper> nodeList : nodeLists) {
+                _mappingsByScore.clear();
+                double[] scores = new double[nodeListsComps.size()];
+                for (int j = 0; j < nodeListsComps.size(); j++) {
+                    List<CtWrapper> nodeListComp = nodeListsComps.get(j);
+                    // calculate similarity score for each pair
+                    Map<CtWrapper, Map<CtWrapper, Double>> orderBySimScore = calSimScore(nodeList, nodeListComp);
+
+
+//                    scores[j] = matchBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+
+                    Set<Pair<Map<CtWrapper, CtWrapper>, Double>> resScores = matchTiedNodeBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+
+                    List<Pair<Map<CtWrapper, CtWrapper>, Double>> scoresList = new ArrayList<>(resScores);
+                    scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
+
+                    scores[j] = scoresList.get(0).getValue1();
+                    _mappingsByScore.put(scoresList.get(0).getValue0(), scoresList.get(0).getValue1());
+
+                }
+
+                if (_mappingsByScore.size() > 0) {
+                    double maxScore = 0.0;
+                    int maxIndex = -1;
+                    int counter = -1;
+                    Map<CtWrapper, CtWrapper> result = null;
+                    for (Map.Entry<Map<CtWrapper, CtWrapper>, Double> entry : _mappingsByScore.entrySet()) {
+                        counter++;
+                        if (entry.getValue() > maxScore) {
+                            maxScore = entry.getValue();
+                            maxIndex = counter;
+                            result = entry.getKey();
+                        }
+                    }
+                    if (result == null) continue;
+                    // add to pattern
+                    Pattern pat = patternList.get(nodeLists.indexOf(nodeList));
+                    for (Map.Entry<CtWrapper, CtWrapper> entry : result.entrySet()) {
+                        CtWrapper oNode = entry.getKey();
+                        CtWrapper cNode = entry.getValue();
+                        pat.getNodeMapping().get(oNode).addInstance(cNode, aGraph);
+                        // add edges
+                        for (Edge e : cNode.getCtElementImpl()._inEdges) {
+                            PatternNode srcPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getSource())));
+                            PatternNode tarPN = pat.getNodeMapping().get(oNode);
+                            if (srcPN != null && tarPN != null) {
+                                pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, aGraph);
+                            }
+                        }
+                        for (Edge e : cNode.getCtElementImpl()._outEdges) {
+                            PatternNode srcPN = pat.getNodeMapping().get(oNode);
+                            PatternNode tarPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getTarget())));
+                            if (srcPN != null && tarPN != null) {
                                 pat.addEdge(srcPN, tarPN, PatternEdge.getEdgeType(e.type), e, aGraph);
                             }
                         }
@@ -202,11 +339,11 @@ public class PatternExtractor {
     private static List<CtWrapper> extendLinks(CtWrapper node, int extendLevel, Set<CtWrapper> traversed, CodeGraph cg, Set<CtWrapper> extendFromControlDep) {
         List<CtWrapper> nodes = new ArrayList<>();
         boolean isPatch = node.getCtElementImpl().isActionRelated() && !(node.getCtElementImpl() instanceof ActionNode);
-        if (ObjectUtil.findCtKeyInSet(traversed, node)!=null || (!isPatch && extendLevel > MAX_EXTEND_LEVEL))
+        if (ObjectUtil.findCtKeyInSet(traversed, node) != null || (!isPatch && extendLevel > MAX_EXTEND_LEVEL))
             return nodes;
 
         // Find the mapping one in srcGraph if is the dstGraph node. If cannot find, add only if it is in srcGraph.allNodes, or else skip.
-        if (cg.getNodes().stream().anyMatch(e->e.getCtElementImpl() == node.getCtElementImpl())) {
+        if (cg.getNodes().stream().anyMatch(e -> e.getCtElementImpl() == node.getCtElementImpl())) {
             nodes.add(node);
         } else {
             CtElementImpl nodeInSrc = ObjectUtil.findMappedNodeInSrcGraph(node.getCtElementImpl(), cg);
@@ -225,14 +362,14 @@ public class PatternExtractor {
                 continue;
             if (ObjectUtil.findCtKeyInSet(extendFromControlDep, new CtWrapper(node.getCtElementImpl())) != null)
                 extendFromControlDep.add(new CtWrapper(ie.getSource()));
-            nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel+1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel + 1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
         }
         for (Edge oe : node.getCtElementImpl()._outEdges) {
             // continue extending target
             if (ObjectUtil.findCtKeyInSet(extendFromControlDep, new CtWrapper(node.getCtElementImpl())) != null
                     || oe.type == Edge.EdgeType.CONTROL_DEP)
                 extendFromControlDep.add(new CtWrapper(oe.getTarget()));
-            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel+1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
+            nodes.addAll(extendLinks(new CtWrapper(oe.getTarget()), extendLevel + 1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
         }
         return nodes;
     }
@@ -242,6 +379,7 @@ public class PatternExtractor {
      */
     public static double matchBySimScore(List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
         if (index == nodeList.size()) {
+            score = score / nodeList.size();
             _mappingsByScore.put(mapping, score);
             return score;
         }
@@ -266,19 +404,78 @@ public class PatternExtractor {
                 simScoreMap.remove(bestSim);
                 // remove related
                 Iterator<Map.Entry<CtWrapper, Map<CtWrapper, Double>>> iterator = simScoreMap.entrySet().iterator();
-                while(iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<CtWrapper, Double> scoreMap = iterator.next().getValue();
                     scoreMap.remove(bestSim);
                     if (scoreMap.isEmpty()) {
                         iterator.remove();
                     }
                 }
-                return matchBySimScore(nodeList, index+1, nodeListCopy, score+simScore, mappingNew, simScoreMap);
+                return matchBySimScore(nodeList, index + 1, nodeListCopy, score + simScore, mappingNew, simScoreMap);
             } else {
-                return matchBySimScore(nodeList, index+1, nodeListComp, score, mapping, simScoreMap);
+                return matchBySimScore(nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
             }
         } else {
-            return matchBySimScore(nodeList, index+1, nodeListComp, score, mapping, simScoreMap);
+            return matchBySimScore(nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
+        }
+    }
+
+    public static Set<Pair<Map<CtWrapper, CtWrapper>, Double>> matchTiedNodeBySimScore(List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
+        if (index == nodeList.size()) {
+//            _mappingsByScore.put(mapping, score);
+            return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
+//            return score;
+        }
+        CtWrapper node = nodeList.get(index);
+        if (simScoreMap.containsKey(node)) {
+            List<CtWrapper> topNCandidates = new ArrayList<>();
+            double highestScore = -1;
+            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                double simScore = simScoreMap.get(node).get(candidate);
+                if (simScore <= 0) {
+                    break;
+                }
+                if (simScore > highestScore) {
+                    highestScore = simScore;
+                }
+            }
+
+            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                double simScore = simScoreMap.get(node).get(candidate);
+                if (simScore <= 0) {
+                    break;
+                }
+                if (simScore == highestScore && isMatch(node, candidate, mapping)) {
+                    topNCandidates.add(candidate);
+                }
+            }
+
+            Set<Pair<Map<CtWrapper, CtWrapper>, Double>> allPairs = new HashSet<>();
+            if (!topNCandidates.isEmpty()) {
+                for (CtWrapper bestSim : topNCandidates) {
+                    List<CtWrapper> nodeListCopy = new ArrayList<>(nodeListComp);
+                    Map<CtWrapper, CtWrapper> mappingCopy = new HashMap<>(mapping);
+                    Map<CtWrapper, Map<CtWrapper, Double>> simScoreMapCopy = deepCopyCtSimScoreMap(simScoreMap);
+
+                    double simScore = simScoreMap.get(node).get(bestSim);
+
+                    nodeListCopy.remove(bestSim);
+                    mappingCopy.put(node, bestSim);
+                    simScoreMapCopy.remove(node);
+
+                    for (Map<CtWrapper, Double> scoreMap : simScoreMapCopy.values()) {
+                        scoreMap.remove(bestSim);
+                    }
+
+                    allPairs.addAll(matchTiedNodeBySimScore(nodeList, index + 1, nodeListComp, score + simScore, mappingCopy, simScoreMapCopy));
+                }
+                return allPairs;
+            } else {
+                return matchTiedNodeBySimScore(nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
+            }
+
+        } else {
+            return matchTiedNodeBySimScore(nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
         }
     }
 
@@ -308,20 +505,97 @@ public class PatternExtractor {
                 simScoreMap.remove(bestSim);
                 // remove related
                 Iterator<Map.Entry<PatternNode, Map<CtWrapper, Double>>> iterator = simScoreMap.entrySet().iterator();
-                while(iterator.hasNext()) {
+                while (iterator.hasNext()) {
                     Map<CtWrapper, Double> scoreMap = iterator.next().getValue();
                     scoreMap.remove(bestSim);
                     if (scoreMap.isEmpty()) {
                         iterator.remove();
                     }
                 }
-                return matchBySimScorePattern(pnList, index+1, nodeListCopy, score+simScore, mapping, simScoreMap);
+                return matchBySimScorePattern(pnList, index + 1, nodeListCopy, score + simScore, mapping, simScoreMap);
             } else {
-                return matchBySimScorePattern(pnList, index+1, cgList, score, mapping, simScoreMap);
+                return matchBySimScorePattern(pnList, index + 1, cgList, score, mapping, simScoreMap);
             }
         } else {
-            return matchBySimScorePattern(pnList, index+1, cgList, score, mapping, simScoreMap);
+            return matchBySimScorePattern(pnList, index + 1, cgList, score, mapping, simScoreMap);
         }
+    }
+
+
+    public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern(List<PatternNode> pnList, int index, List<CtWrapper> cgList, double score, Map<PatternNode, CtWrapper> mapping, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
+        if (index == pnList.size()) {
+            return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
+        }
+
+        PatternNode node = pnList.get(index);
+        if (simScoreMap.containsKey(node)) {
+
+            List<CtWrapper> topNCandidates = new ArrayList<>();
+            double highestScore = -1;
+            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                double simScore = simScoreMap.get(node).get(candidate);
+                if (simScore <= 0) {
+                    break;
+                }
+                if (simScore > highestScore) {
+                    highestScore = simScore;
+                }
+            }
+
+            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                double simScore = simScoreMap.get(node).get(candidate);
+                if (simScore <= 0) {
+                    break;
+                }
+                if (simScore == highestScore && isMatch(node, candidate, mapping)) {
+                    topNCandidates.add(candidate);
+                }
+            }
+
+            Set<Pair<Map<PatternNode, CtWrapper>, Double>> allPairs = new HashSet<>();
+            if (!topNCandidates.isEmpty()) {
+                for (CtWrapper bestSim : topNCandidates) {
+                    List<CtWrapper> nodeListCopy = new ArrayList<>(cgList);
+                    Map<PatternNode, CtWrapper> mappingCopy = new HashMap<>(mapping);
+                    Map<PatternNode, Map<CtWrapper, Double>> simScoreMapCopy = deepCopySimScoreMap(simScoreMap);
+
+                    double simScore = simScoreMap.get(node).get(bestSim);
+
+                    nodeListCopy.remove(bestSim);
+                    mappingCopy.put(node, bestSim);
+                    simScoreMapCopy.remove(node);
+
+                    for (Map<CtWrapper, Double> scoreMap : simScoreMapCopy.values()) {
+                        scoreMap.remove(bestSim);
+                    }
+
+                    allPairs.addAll(matchTopTiedNodeBySimScorePattern(pnList, index + 1, nodeListCopy, score + simScore, mappingCopy, simScoreMapCopy));
+                }
+                return allPairs;
+            } else {
+                return matchTopTiedNodeBySimScorePattern(pnList, index + 1, cgList, score, mapping, simScoreMap);
+            }
+        } else {
+            return matchTopTiedNodeBySimScorePattern(pnList, index + 1, cgList, score, mapping, simScoreMap);
+        }
+    }
+
+
+    // Helper function to create a deep copy of the simScoreMap
+    private static Map<PatternNode, Map<CtWrapper, Double>> deepCopySimScoreMap(Map<PatternNode, Map<CtWrapper, Double>> original) {
+        Map<PatternNode, Map<CtWrapper, Double>> copy = new HashMap<>();
+        for (Map.Entry<PatternNode, Map<CtWrapper, Double>> entry : original.entrySet()) {
+            copy.put(entry.getKey(), new HashMap<>(entry.getValue()));
+        }
+        return copy;
+    }
+
+    private static Map<CtWrapper, Map<CtWrapper, Double>> deepCopyCtSimScoreMap(Map<CtWrapper, Map<CtWrapper, Double>> original) {
+        Map<CtWrapper, Map<CtWrapper, Double>> copy = new HashMap<>();
+        for (Map.Entry<CtWrapper, Map<CtWrapper, Double>> entry : original.entrySet()) {
+            copy.put(entry.getKey(), new HashMap<>(entry.getValue()));
+        }
+        return copy;
     }
 
 
@@ -336,7 +610,7 @@ public class PatternExtractor {
         if (!sameType(nodeA, nodeB))
             return false;
         if (nodeA.isVirtual() && nodeB.isVirtual() &&
-                !Objects.equals(((CtVirtualElement)nodeA.getCtElementImpl()).getLocationInParent(), ((CtVirtualElement)nodeB.getCtElementImpl()).getLocationInParent()))
+                !Objects.equals(((CtVirtualElement) nodeA.getCtElementImpl()).getLocationInParent(), ((CtVirtualElement) nodeB.getCtElementImpl()).getLocationInParent()))
             return false;
         if (nodeA.getCtElementImpl() instanceof CtTypeReferenceImpl && nodeB.getCtElementImpl() instanceof CtTypeReferenceImpl &&
                 !Objects.equals((nodeA.getCtElementImpl()).getRoleInParent(), (nodeB.getCtElementImpl()).getRoleInParent()))
@@ -362,7 +636,7 @@ public class PatternExtractor {
 
     private static boolean isMatch(PatternNode pn, CtWrapper cgn, Map<PatternNode, CtWrapper> mapping) {
         // compare type
-        Class pType = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag():null;
+        Class pType = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag() : null;
         Class gType = Attribute.computeNodeType(cgn);
         if (!sameType(pn, cgn) || (pType.equals(CtBlockImpl.class)) != (gType.equals(CtBlockImpl.class)))
             return false;
@@ -418,7 +692,7 @@ public class PatternExtractor {
     }
 
     public static boolean sameType(PatternNode pn, CtWrapper cgn) {
-        Class a = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag():null;
+        Class a = (pn.getAttribute("nodeType") != null) ? (Class) pn.getAttribute("nodeType").getTag() : null;
         Class b = Attribute.computeNodeType(cgn);
         if (a.equals(b))
             return true;
@@ -456,7 +730,7 @@ public class PatternExtractor {
             bClassList.add(b);
             b = (Class<? extends CtElementImpl>) b.getSuperclass();
         }
-        return CollectionUtils.intersection(aClassList, bClassList).size()>0;
+        return CollectionUtils.intersection(aClassList, bClassList).size() > 0;
     }
 
     private static boolean isVar(Object ct) {
@@ -517,7 +791,7 @@ public class PatternExtractor {
         for (CtWrapper nodeA : nodeList) {
             if (!result.containsKey(nodeA)) {
                 result.put(nodeA, new LinkedHashMap<>());
-            } else if (result.get(nodeA).size() == nodeListComp.size()){
+            } else if (result.get(nodeA).size() == nodeListComp.size()) {
                 continue;
             }
             for (CtWrapper nodeB : nodeListComp) {
@@ -534,12 +808,12 @@ public class PatternExtractor {
         return result;
     }
 
-    public static Map<PatternNode, Map<CtWrapper, Double>> calSimScorePattern(Set<PatternNode> pNodeList, List<CtWrapper> cgNodeList) {
+    public static Map<PatternNode, Map<CtWrapper, Double>> calSimScorePattern(List<PatternNode> pNodeList, List<CtWrapper> cgNodeList) {
         Map<PatternNode, Map<CtWrapper, Double>> result = new LinkedHashMap<>();
         for (PatternNode nodeA : pNodeList) {
             if (!result.containsKey(nodeA)) {
                 result.put(nodeA, new LinkedHashMap<>());
-            } else if (result.get(nodeA).size() == cgNodeList.size()){
+            } else if (result.get(nodeA).size() == cgNodeList.size()) {
                 continue;
             }
             for (CtWrapper nodeB : cgNodeList) {
@@ -584,7 +858,7 @@ public class PatternExtractor {
             scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
 
         }
-        return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n->n).average().getAsDouble();
+        return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n -> n).average().getAsDouble();
     }
 
     private static double calContextSim(String a, String b) {

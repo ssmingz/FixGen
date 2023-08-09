@@ -27,13 +27,21 @@ public class Pattern implements Serializable {
         addNode(pNode, node);
     }
 
-    public HashMap<Integer, Object> getIdPattern() { return _idPattern; }
+    public HashMap<Integer, Object> getIdPattern() {
+        return _idPattern;
+    }
 
-    public Set<PatternNode> getNodeSet() { return _patternNodes; }
+    public Set<PatternNode> getNodeSet() {
+        return _patternNodes;
+    }
 
-    public Set<PatternEdge> getEdgeSet() { return _patternEdges; }
+    public Set<PatternEdge> getEdgeSet() {
+        return _patternEdges;
+    }
 
-    public Set<PatternNode> getActionSet() { return _actions; }
+    public Set<PatternNode> getActionSet() {
+        return _actions;
+    }
 
     public void addNode(PatternNode pNode, CtWrapper node) {
         _patternNodes.add(pNode);
@@ -83,7 +91,7 @@ public class Pattern implements Serializable {
     }
 
     public void setPatternName(String patternName) {
-        _patternName =patternName;
+        _patternName = patternName;
     }
 
     public List<PatternNode> getNodes() {
@@ -96,18 +104,18 @@ public class Pattern implements Serializable {
 
     public void deleteActionRelated() {
         Iterator<PatternNode> nItr = _patternNodes.iterator();
-        while(nItr.hasNext()) {
+        while (nItr.hasNext()) {
             PatternNode pn = nItr.next();
             // set new pattern.start
-            if(pn.isPatternStart()) {
-                for(PatternEdge ie : pn.inEdges()) {
+            if (pn.isPatternStart()) {
+                for (PatternEdge ie : pn.inEdges()) {
                     if (ie.type == PatternEdge.EdgeType.ACTION) {
                         _start = ie.getSource();
                         break;
                     }
                 }
             }
-            if(pn.isActionRelated()) {
+            if (pn.isActionRelated()) {
 //                // delete edges
 //                Iterator<PatternEdge> eItr = pn.inEdges().iterator();
 //                while(eItr.hasNext()) {
@@ -125,11 +133,39 @@ public class Pattern implements Serializable {
         }
     }
 
-    public Pair<Map<PatternNode, CtWrapper>, Double> compareCG(CodeGraph aGraph) {
-        Map<PatternNode, Map<CtWrapper, Double>> orderBySimScore = PatternExtractor.calSimScorePattern(_patternNodes, aGraph.getNodes());
+    public List<Pair<Map<PatternNode, CtWrapper>, Double>> compareCG(CodeGraph aGraph, String type) {
+        // begin the traversal from the parent nodes
+        List<CtWrapper> ctNodes = aGraph.getNodes();
+        List<PatternNode> patternNodes = Arrays.asList(_patternNodes.toArray(new PatternNode[0]));
+        Collections.reverse(ctNodes);
+        Collections.reverse(patternNodes);
+        Map<PatternNode, Map<CtWrapper, Double>> orderBySimScore = PatternExtractor.calSimScorePattern(patternNodes, ctNodes);
         Map<PatternNode, CtWrapper> mapping = new LinkedHashMap<>();
-        double score = PatternExtractor.matchBySimScorePattern(Arrays.asList(_patternNodes.toArray(new PatternNode[0])), 0, aGraph.getNodes(), 0, mapping, orderBySimScore);
-        return new Pair<>(mapping, score / _patternNodes.size());
+        if (type.equals("old")) {
+            double score = PatternExtractor.matchBySimScorePattern(patternNodes, 0, ctNodes, 0, mapping, orderBySimScore);
+            List<Pair<Map<PatternNode, CtWrapper>, Double>> scoresList = new ArrayList<>();
+            scoresList.add(new Pair<>(mapping, score / _patternNodes.size()));
+            return scoresList;
+        } else if(type.equals("new")) {
+            Set<Pair<Map<PatternNode, CtWrapper>, Double>> scores = PatternExtractor.matchTopTiedNodeBySimScorePattern(patternNodes, 0, ctNodes, 0, mapping, orderBySimScore);
+
+//            double normalizationFactor = _patternNodes.size();
+//            return scores.stream()
+//                    .map(pair -> new Pair<>(pair.getValue0(), pair.getValue1() / normalizationFactor))
+//                    .max(Comparator.comparingDouble(Pair::getValue1))
+//                    .orElse(null);
+
+            List<Pair<Map<PatternNode, CtWrapper>, Double>> scoresList = new ArrayList<>();
+            for (Pair<Map<PatternNode, CtWrapper>, Double> pair : scores) {
+                double normalizedScore = pair.getValue1() / _patternNodes.size();
+                scoresList.add(new Pair<>(pair.getValue0(), normalizedScore));
+            }
+            scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
+            List<Pair<Map<PatternNode, CtWrapper>, Double>> resList = new ArrayList<>();
+            resList.add(scoresList.get(0));
+            return resList;
+        }
+        return null;
     }
 
     public PatternNode getPatternNodeByCGNode(CtWrapper n) {
@@ -168,7 +204,7 @@ public class Pattern implements Serializable {
             for (Edge n : pe.getInstance().keySet()) {
                 if (n._graphName.equals(graphName) &&
                         ((n.getSource()._graphId == v1 && n.getTarget()._graphId == v2) ||
-                        (n.getTarget()._graphId == v1 && n.getSource()._graphId == v2)))
+                                (n.getTarget()._graphId == v1 && n.getSource()._graphId == v2)))
                     return pe;
             }
         }
