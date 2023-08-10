@@ -159,25 +159,25 @@ public class TestApplyPattern {
                                             .filter(PatternNode::isActionRelated)
                                             .collect(Collectors.toSet());
                                     // filter out the cases where not all modifications are the same within a group
-                                    if (actionNodes.stream().allMatch(node -> node.getInstance().keySet().size() == size)) {
+//                                    if (actionNodes.stream().allMatch(node -> node.getInstance().keySet().size() == size)) {
                                         total.getAndIncrement();
                                         step_start = System.currentTimeMillis();
-                                        PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
+                                        PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 0.6));
                                         abs.abstractPattern(pat);
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
 
-                                        BugLocator detector = new BugLocator(0.0);
+                                        BugLocator detector = new BugLocator(0.6);
                                         String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
 
                                         step_start = System.currentTimeMillis();
                                         detector.applyPattern(pat, target_ag, patchPath, runType);
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]apply pattern: %f s\n", (step_end - step_start) / 1000.0);
-                                    } else {
-                                        System.out.println("[warn]instance size not equal to all instances");
-                                        break;
-                                    }
+//                                    } else {
+//                                        System.out.println("[warn]instance size not equal to all instances");
+//                                        break;
+//                                    }
                                 }
                                 System.out.println("[finished]" + path);
                             }
@@ -213,10 +213,10 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 6;
+        int testId = 37;
         int targetNo = 0;
         String runType = "new";
-        String base = TestConfig.WIN_BASE;
+        String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);
         int size = (int) Arrays.stream(new File(baseDir).listFiles()).filter(File::isDirectory).count();
 

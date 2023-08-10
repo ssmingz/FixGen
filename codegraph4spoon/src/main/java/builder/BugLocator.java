@@ -92,29 +92,66 @@ public class BugLocator {
                     }
                 }
             }
-            try {
-                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+//            try {
+//                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+//                    PatternNode action = pair.getValue0();
+//                    CtElementImpl oriNode = pair.getValue1();
+//                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+//                        applyDelete(action, oriNode, target);
+//                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+//                        applyUpdate(action, oriNode, target, mapping, target.getMapping());
+//                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+//                        applyInsert(action, oriNode, target, mapping, target.getMapping());
+//                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+//                        applyMove(action, oriNode, target, mapping);
+//                    } else {
+//                        System.out.println("[warn]Invalid action nodeType");
+//                    }
+//                }
+//                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+                int currentIndex = 0;
+                while (!temp.isEmpty()) {
+                    if (currentIndex >= temp.size()) {
+                        currentIndex = 0; // Wrap around to the beginning
+                    }
+
+                    boolean actionSucceeded = true;
+
+                    Pair<PatternNode, CtElementImpl> pair = temp.get(currentIndex);
                     PatternNode action = pair.getValue0();
                     CtElementImpl oriNode = pair.getValue1();
-                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-                        applyDelete(action, oriNode, target);
-                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-                        applyUpdate(action, oriNode, target, mapping, target.getMapping());
-                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
-                        applyInsert(action, oriNode, target, mapping, target.getMapping());
-                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
-                        applyMove(action, oriNode, target, mapping);
-                    } else {
-                        System.out.println("[warn]Invalid action nodeType");
+                    try {
+                        if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+                            actionSucceeded = applyDelete(action, oriNode, target, mapping);
+                        } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                            actionSucceeded = applyUpdate(action, oriNode, target, mapping, target.getMapping());
+                        } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+                            actionSucceeded = applyInsert(action, oriNode, target, mapping, target.getMapping());
+                        } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+                            actionSucceeded = applyMove(action, oriNode, target, mapping);
+                        } else {
+                            System.out.println("[warn]Invalid action nodeType");
+                        }
+                        if (actionSucceeded) {
+                            temp.remove(currentIndex);
+                        } else if (temp.size() == 1) {
+                            throw new IllegalStateException();
+                        } else {
+                            currentIndex++;
+                        }
+                    }
+                    catch (Exception e) {
+                        System.out.printf("[error]Generate patch failed due to node building error : %s in action %s\n", target.getFileName(), action.getAttribute("nodeType").getTag());
+                        temp.remove(currentIndex);
                     }
                 }
                 ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
-            } catch (IllegalStateException se) {
-                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
             }
-        }
+//            catch (IllegalStateException se) {
+//                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
+//            }
 //        }
-
+//        }
     }
 
 
@@ -156,7 +193,7 @@ public class BugLocator {
                     PatternNode action = pair.getValue0();
                     CtElementImpl oriNode = pair.getValue1();
                     if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-                        applyDelete(action, oriNode, target);
+                        applyDelete(action, oriNode, target, mapping);
                     } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
                         applyUpdate(action, oriNode, target, mapping, target.getMapping());
                     } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
@@ -176,7 +213,17 @@ public class BugLocator {
 
     }
 
-    private void applyDelete(PatternNode action, CtElementImpl oriNode, CodeGraph target) {
+    private boolean applyDelete(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping4pattern) {
+        PatternNode toBeDeleted = null;
+        for (PatternEdge oe : action.inEdges()) {
+            if (oe.type == PatternEdge.EdgeType.ACTION) {
+                toBeDeleted = oe.getSource();
+                break;
+            }
+        }
+        if (!mapping4pattern.containsKey(toBeDeleted)) {
+            return false;
+        }
         // TODO: remove if in list, or else replace by null
         Iterator<CtWrapper> itr = target.getNodes().iterator();
         while (itr.hasNext()) {
@@ -188,9 +235,28 @@ public class BugLocator {
         }
         target.deleteCGId(oriNode);
         oriNode.delete();
+        return true;
     }
 
-    private void applyMove(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping) {
+    private boolean applyMove(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping) {
+        PatternNode moveSource = null;
+        PatternNode moveTarget = null;
+        for (PatternEdge oe : action.inEdges()) {
+            if (oe.type == PatternEdge.EdgeType.ACTION) {
+                moveSource = oe.getSource();
+                break;
+            }
+        }
+        for(PatternEdge oe : action.outEdges()) {
+            if(oe.type == PatternEdge.EdgeType.ACTION) {
+                moveTarget = oe.getTarget();
+                break;
+            }
+        }
+        if(!mapping.containsKey(moveSource) || !mapping.containsKey(moveTarget)) {
+//            System.out.println("[error]Cannot find mapped MOVE.source or MOVE.target in target code graph: " + target.getFileName());
+            return false;
+        }
         // find move.target in pattern
         CtElementImpl moveDstTarget = null;
         for (PatternEdge oe : action.outEdges()) {
@@ -201,7 +267,7 @@ public class BugLocator {
                     moveDstTarget = mapping.get(moveDstPattern).getCtElementImpl();
                 } else {
                     System.out.println("[error]Cannot find mapped MOVE.target in target code graph: " + target.getFileName());
-                    return;
+                    return false;
                 }
             }
         }
@@ -216,9 +282,22 @@ public class BugLocator {
             roles.add(Pair.with(moveDstTarget.getRoleInParent(), moveDstTarget.getClass()));
         }
         modifyValueByRole((CtElementImpl) moveDstTarget.getParent(), roles, oriNode, moveDstTarget);
+        return true;
     }
 
-    private void applyUpdate(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
+    private boolean applyUpdate(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
+        PatternNode updateSource = null;
+        for (PatternEdge oe : action.inEdges()) {
+            if (oe.type == PatternEdge.EdgeType.ACTION) {
+                updateSource = oe.getSource();
+                break;
+            }
+        }
+        if (!mapping4pattern.containsKey(updateSource)) {
+//            System.out.println("[error]Cannot find mapped UPDATE.source in target code graph: " + target.getFileName());
+            return false;
+        }
+
         PatternNode newInPattern = null;
         for (PatternEdge oe : action.outEdges()) {
             if (oe.type == PatternEdge.EdgeType.ACTION) {
@@ -254,9 +333,22 @@ public class BugLocator {
         } else {
             System.out.println("[error]Cannot find UPDATE.target in pattern: " + target.getFileName());
         }
+        return true;
     }
 
-    private void applyInsert(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
+    private boolean applyInsert(PatternNode action, CtElementImpl oriNode, CodeGraph target, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
+        PatternNode insertSource = null;
+        for (PatternEdge oe : action.inEdges()) {
+            if (oe.type == PatternEdge.EdgeType.ACTION) {
+                insertSource = oe.getSource();
+                break;
+            }
+        }
+        if(!mapping4pattern.containsKey(insertSource)) {
+//            System.out.println("[error]Cannot find mapped INSERT.source in target code graph: " + target.getFileName());
+            return false;
+        }
+
         // insert.target is the new node to be created
         PatternNode newInPattern = null;
         for (PatternEdge oe : action.outEdges()) {
@@ -283,6 +375,7 @@ public class BugLocator {
         } else {
             System.out.println("[error]Cannot find INSERT.target in pattern: " + target.getFileName());
         }
+        return true;
     }
 
     private Map<PatternNode, CtWrapper> addMapping4Child(PatternNode pn, CtElementImpl cte) {
