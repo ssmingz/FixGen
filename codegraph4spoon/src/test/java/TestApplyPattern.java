@@ -81,13 +81,14 @@ public class TestApplyPattern {
         }
 
 //        String[] projects = {"drjava", "ant", "swt"};
-        String[] projects = {"junit"};
+        String[] projects = {"cobertura"};
 //        String[] projects = {"cobertura"};
         String runType = "new";
         String base = TestConfig.MAC_BASE;
         AtomicInteger targetCounter = new AtomicInteger();
         long start = System.currentTimeMillis();
         for (int i = 0; i < projects.length; i++) {
+            AtomicInteger total = new AtomicInteger();
             File dir = new File(base + "dataset/" + projects[i]);
             for (File group : dir.listFiles()) {
                 if (group.isDirectory()) {
@@ -159,13 +160,14 @@ public class TestApplyPattern {
                                             .collect(Collectors.toSet());
                                     // filter out the cases where not all modifications are the same within a group
                                     if (actionNodes.stream().allMatch(node -> node.getInstance().keySet().size() == size)) {
+                                        total.getAndIncrement();
                                         step_start = System.currentTimeMillis();
                                         PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
                                         abs.abstractPattern(pat);
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
 
-                                        BugLocator detector = new BugLocator(0.2);
+                                        BugLocator detector = new BugLocator(0.0);
                                         String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
 
                                         step_start = System.currentTimeMillis();
@@ -199,6 +201,7 @@ public class TestApplyPattern {
                     }
                 }
             }
+            System.out.println(projects[i] + total.get());
         }
         long end = System.currentTimeMillis();
         double time = (end - start) / 1000.0;
@@ -209,8 +212,8 @@ public class TestApplyPattern {
     @Test
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
-        String pro = "cobertura";
-        int testId = 67;
+        String pro = "junit";
+        int testId = 82;
         int targetNo = 0;
         String runType = "new";
         String base = TestConfig.MAC_BASE;

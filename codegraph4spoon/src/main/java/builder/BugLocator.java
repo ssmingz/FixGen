@@ -137,41 +137,41 @@ public class BugLocator {
         CtElementImpl root = target.getEntryNode();
         Pair<Map<PatternNode, CtWrapper>, Double> mappingScore = mappingScoreList.get(0);
 //        for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : mappingScoreList) {
-            if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
-                Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
-                // pattern.start is the action point, that is also the buggy point
-                List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
-                for (Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
-                    for (Pair<PatternNode, PatternNode> pair : nodeAttachAction) {
-                        if (pair.getValue0() == entry.getKey()) {
-                            // apply action
-                            PatternNode action = pair.getValue1();
-                            CtElementImpl oriNode = entry.getValue().getCtElementImpl();
-                            temp.add(Pair.with(action, oriNode));
-                        }
+        if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
+            Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
+            // pattern.start is the action point, that is also the buggy point
+            List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
+            for (Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
+                for (Pair<PatternNode, PatternNode> pair : nodeAttachAction) {
+                    if (pair.getValue0() == entry.getKey()) {
+                        // apply action
+                        PatternNode action = pair.getValue1();
+                        CtElementImpl oriNode = entry.getValue().getCtElementImpl();
+                        temp.add(Pair.with(action, oriNode));
                     }
-                }
-                try {
-                    for (Pair<PatternNode, CtElementImpl> pair : temp) {
-                        PatternNode action = pair.getValue0();
-                        CtElementImpl oriNode = pair.getValue1();
-                        if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-                            applyDelete(action, oriNode, target);
-                        } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-                            applyUpdate(action, oriNode, target, mapping, target.getMapping());
-                        } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
-                            applyInsert(action, oriNode, target, mapping, target.getMapping());
-                        } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
-                            applyMove(action, oriNode, target, mapping);
-                        } else {
-                            System.out.println("[warn]Invalid action nodeType");
-                        }
-                    }
-                    ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
-                } catch (IllegalStateException se) {
-                    System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
                 }
             }
+            try {
+                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+                    PatternNode action = pair.getValue0();
+                    CtElementImpl oriNode = pair.getValue1();
+                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+                        applyDelete(action, oriNode, target);
+                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                        applyUpdate(action, oriNode, target, mapping, target.getMapping());
+                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+                        applyInsert(action, oriNode, target, mapping, target.getMapping());
+                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+                        applyMove(action, oriNode, target, mapping);
+                    } else {
+                        System.out.println("[warn]Invalid action nodeType");
+                    }
+                }
+                ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+            } catch (IllegalStateException se) {
+                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
+            }
+        }
 //        }
 
     }
@@ -431,7 +431,7 @@ public class BugLocator {
         if (!pnRoot.implicit.isAbstract())
             newly.setImplicit((Boolean) pnRoot.implicit.getTag());
         // check value for name
-        if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null) {
+        if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null || RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.VALUE) != null) {
             // check define-use for name
             PatternNode define = findDefine(pnRoot), use = null;
             if (mapping4pattern.containsKey(define))
@@ -443,11 +443,21 @@ public class BugLocator {
             }
             if (define == null && use == null) {
                 if (!pnRoot.getAttribute("value").isAbstract()) {
-                    String name = (String) pnRoot.getAttribute("value").getTag();
-                    if (SyntaxUtil.checkIdentifierForJLSCorrectness(name, newly.getFactory().getEnvironment().getComplianceLevel()))
-                        newly.setValueByRole(CtRole.NAME, name);
-                    else
-                        System.out.println("[warn]Generated variable name is not syntax-valid");
+                    if (clazz.equals(CtLiteralImpl.class)) {
+                        T value = (T) pnRoot.getAttribute("value").getTag();
+                        ((CtLiteralImpl) newly).setValue(value);
+                    } else {
+                        String name = (String) pnRoot.getAttribute("value").getTag();
+                        if (SyntaxUtil.checkIdentifierForJLSCorrectness(name, newly.getFactory().getEnvironment().getComplianceLevel()))
+                            newly.setValueByRole(CtRole.NAME, name);
+                        else
+                            System.out.println("[warn]Generated variable name is not syntax-valid");
+                    }
+//                    String name = (String) pnRoot.getAttribute("value").getTag();
+//                    if (SyntaxUtil.checkIdentifierForJLSCorrectness(name, newly.getFactory().getEnvironment().getComplianceLevel()))
+//                        newly.setValueByRole(CtRole.NAME, name);
+//                    else
+//                        System.out.println("[warn]Generated variable name is not syntax-valid");
                 } else if (clazz.equals(CtLiteralImpl.class)) {
                     T value = !pnRoot.getAttribute("value").isAbstract() ? (T) pnRoot.getAttribute("value").getTag() : null;
                     ((CtLiteralImpl) newly).setValue(value);
