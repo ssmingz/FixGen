@@ -926,6 +926,10 @@ public class CtTypeReferenceImpl<T> extends CtReferenceImpl implements CtTypeRef
 	@DerivedProperty
 	public boolean isSimplyQualified() {
 		if (pack != null) {
+			// TODO: check correctness!
+			if(!pack.getSimpleName().equals("this") && !pack.getSimpleName().equals("")) {
+				return false;
+			}
 			return pack.isImplicit();
 		} else if (declaringType != null) {
 			return declaringType.isImplicit();

@@ -81,7 +81,7 @@ public class TestApplyPattern {
         }
 
 //        String[] projects = {"drjava", "ant", "swt"};
-        String[] projects = {"cobertura"};
+        String[] projects = {"junit"};
 //        String[] projects = {"cobertura"};
         String runType = "new";
         String base = TestConfig.MAC_BASE;
@@ -167,7 +167,7 @@ public class TestApplyPattern {
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
 
-                                        BugLocator detector = new BugLocator(0.0);
+                                        BugLocator detector = new BugLocator(0.4);
                                         String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
 
                                         step_start = System.currentTimeMillis();
@@ -213,7 +213,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 82;
+        int testId = 79;
         int targetNo = 0;
         String runType = "new";
         String base = TestConfig.MAC_BASE;
@@ -239,6 +239,7 @@ public class TestApplyPattern {
             File dir = new File(String.format("%s/out/codegraph_temp_%d.dot", System.getProperty("user.dir"), k));
             dot.toDotFile(dir);
         }
+
         // extract pattern from more-than-one graphs
         List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags, runType);
         for (Pattern pat : combinedGraphs) {

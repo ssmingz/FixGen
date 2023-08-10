@@ -68,8 +68,6 @@ public abstract class CtReferenceImpl extends CtElementImpl implements CtReferen
 	}
 
 
-
-
 	@UnsettableProperty
 	@Override
 	public <E extends CtElement> E setComments(List<CtComment> comments) {
