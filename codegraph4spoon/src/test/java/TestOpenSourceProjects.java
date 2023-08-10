@@ -35,7 +35,6 @@ public class TestOpenSourceProjects {
     private static Path debugResultPath = debugBasePath.resolve("Results");
 
 
-
     @Test
     public void testPattern2Json4OneJavaFile() throws IOException {
         Files.createDirectories(debugLogPath);

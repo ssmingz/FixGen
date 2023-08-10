@@ -1,6 +1,7 @@
 package model;
 
 import codegraph.CtVirtualElement;
+import spoon.reflect.path.CtRole;
 import spoon.support.reflect.declaration.CtElementImpl;
 
 import java.io.Serializable;

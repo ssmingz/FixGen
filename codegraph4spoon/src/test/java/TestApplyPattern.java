@@ -213,10 +213,10 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 79;
+        int testId = 6;
         int targetNo = 0;
         String runType = "new";
-        String base = TestConfig.MAC_BASE;
+        String base = TestConfig.WIN_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);
         int size = (int) Arrays.stream(new File(baseDir).listFiles()).filter(File::isDirectory).count();
 

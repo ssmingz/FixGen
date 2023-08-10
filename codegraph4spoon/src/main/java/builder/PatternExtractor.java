@@ -208,6 +208,10 @@ public class PatternExtractor {
                 double[] scores = new double[nodeListsComps.size()];
                 for (int j = 0; j < nodeListsComps.size(); j++) {
                     List<CtWrapper> nodeListComp = nodeListsComps.get(j);
+                    // getActionLinks is a recursive function, so nodes are down up, reverse for to match them up down
+                    Collections.reverse(nodeList);
+                    Collections.reverse(nodeListsComps);
+
                     // calculate similarity score for each pair
                     Map<CtWrapper, Map<CtWrapper, Double>> orderBySimScore = calSimScore(nodeList, nodeListComp);
 
