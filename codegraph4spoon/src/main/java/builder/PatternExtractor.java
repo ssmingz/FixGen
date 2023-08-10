@@ -733,7 +733,7 @@ public class PatternExtractor {
         return CollectionUtils.intersection(aClassList, bClassList).size() > 0;
     }
 
-    private static boolean isVar(Object ct) {
+    public static boolean isVar(Object ct) {
         boolean isVirtualName = isVirtualName(ct);
         String clazz = ct.getClass().getSimpleName();
         String[] varRelate = {
@@ -756,7 +756,7 @@ public class PatternExtractor {
         return isVirtualName;
     }
 
-    private static boolean isVarRef(Object ct) {
+    public static boolean isVarRef(Object ct) {
         boolean isVirtualName = isVirtualName(ct);
         String clazz = ct.getClass().getSimpleName();
         String[] varRelate = {

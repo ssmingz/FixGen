@@ -81,7 +81,7 @@ public class TestApplyPattern {
         }
 
 //        String[] projects = {"drjava", "ant", "swt"};
-        String[] projects = {"junit", "checkstyle"};
+        String[] projects = {"junit"};
 //        String[] projects = {"cobertura"};
         String runType = "new";
         String base = TestConfig.MAC_BASE;
@@ -165,7 +165,7 @@ public class TestApplyPattern {
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
 
-                                        BugLocator detector = new BugLocator(0.6);
+                                        BugLocator detector = new BugLocator(0.2);
                                         String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
 
                                         step_start = System.currentTimeMillis();
@@ -209,9 +209,9 @@ public class TestApplyPattern {
     @Test
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
-        String pro = "junit";
-        int testId = 42;
-        int targetNo = 1;
+        String pro = "cobertura";
+        int testId = 67;
+        int targetNo = 0;
         String runType = "new";
         String base = TestConfig.MAC_BASE;
         String baseDir = String.format("%s/dataset/%s/%d", base, pro, testId);

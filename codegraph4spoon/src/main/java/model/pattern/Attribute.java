@@ -1,5 +1,6 @@
 package model.pattern;
 
+import builder.PatternExtractor;
 import codegraph.CtVirtualElement;
 import codegraph.visitor.ReplaceNameVisitor;
 import codegraph.visitor.TokenVisitor;
@@ -64,9 +65,13 @@ public class Attribute implements Serializable {
         return _numByValues.keySet();
     }
 
-    public boolean isAbstract() { return isAbstract; }
+    public boolean isAbstract() {
+        return isAbstract;
+    }
 
-    public void setAbstract(boolean abs) { isAbstract = abs; }
+    public void setAbstract(boolean abs) {
+        isAbstract = abs;
+    }
 
     public void clear() {
         _numByValues.clear();
@@ -100,7 +105,7 @@ public class Attribute implements Serializable {
     }
 
     public Map<Object, Integer> sort() {
-        return  _numByValues
+        return _numByValues
                 .entrySet()
                 .stream()
                 .sorted(Collections.reverseOrder(comparingByValue()))
@@ -146,9 +151,11 @@ public class Attribute implements Serializable {
             return (T) ((CtExecutableReferenceImpl<?>) n.getCtElementImpl()).getSimpleName();
         } else if (n.getCtElementImpl() instanceof CtLiteralImpl) {
             return (T) ((CtLiteralImpl<?>) n.getCtElementImpl()).getValue();
-        } else {
-            return (T) n.toLabelString();
+        } else if (PatternExtractor.isVar(n.getCtElementImpl()) || PatternExtractor.isVarRef(n.getCtElementImpl())) {
+            if (RoleHandlerHelper.getOptionalRoleHandler(n.getCtElementImpl().getClass(), CtRole.NAME) != null)
+                return n.getCtElementImpl().getValueByRole(CtRole.NAME);
         }
+        return (T) n.toLabelString();
     }
 
     /**
@@ -236,7 +243,7 @@ public class Attribute implements Serializable {
 
     public static String computeValueType(CtWrapper n) {
         CtElementImpl cte = n.getCtElementImpl();
-        if (RoleHandlerHelper.getOptionalRoleHandler(cte.getClass(), CtRole.TYPE) != null ) {
+        if (RoleHandlerHelper.getOptionalRoleHandler(cte.getClass(), CtRole.TYPE) != null) {
             CtTypeReferenceImpl vType = cte.getValueByRole(CtRole.TYPE);
             return vType == null ? "null type" : vType.getQualifiedName();
         }

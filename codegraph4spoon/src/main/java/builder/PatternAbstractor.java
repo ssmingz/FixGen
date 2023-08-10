@@ -60,7 +60,12 @@ public class PatternAbstractor {
             pn.setComparedAttribute(attr2);
             pn.setComparedAttribute(attr3);
             pn.setComparedAttribute(attr4);
-            pn.setComparedAttribute(attr5);}
+            pn.setComparedAttribute(attr5);
+//            pn.setComparedAttribute(pn.position);
+//            pn.setComparedAttribute(pn.listSize);
+//            pn.setComparedAttribute(pn.listIndex);
+//            pn.setComparedAttribute(pn.implicit);
+        }
     }
 
     /**

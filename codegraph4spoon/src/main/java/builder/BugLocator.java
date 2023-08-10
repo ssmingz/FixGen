@@ -243,7 +243,6 @@ public class BugLocator {
             List<Pair<CtRole, Class>> roles;
             if (!action.position.isAbstract()) {
 //                roles = (List<Pair<CtRole, Class>>) action.position.getTag();
-//                roles = (List<Pair<CtRole, Class>>)(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
                 roles = new ArrayList<>();
                 roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
             } else {
