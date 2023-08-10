@@ -1947,7 +1947,7 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
 
 	private boolean printQualified(CtTypeReference<?> ref) {
 		return ignoreImplicit || !ref.isSimplyQualified();
-		}
+	}
 
 
 	@Override
@@ -2012,6 +2012,7 @@ public class DefaultJavaPrettyPrinter implements CtVisitor, PrettyPrinter {
 			}
 		} else {
 			if (ref.getPackage() != null && printQualified(ref)) {
+//				&& ref.getDeclaringType() != null
 				if (!ref.getPackage().isUnnamedPackage()) {
 					scan(ref.getPackage());
 					printer.writeSeparator(CtPackage.PACKAGE_SEPARATOR);

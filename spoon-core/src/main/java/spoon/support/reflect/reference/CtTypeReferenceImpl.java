@@ -927,7 +927,8 @@ public class CtTypeReferenceImpl<T> extends CtReferenceImpl implements CtTypeRef
 	public boolean isSimplyQualified() {
 		if (pack != null) {
 			// TODO: check correctness!
-			if(!pack.getSimpleName().equals("this") && !pack.getSimpleName().equals("")) {
+			if(pack.getActualPackage()==null) {
+//				&& !pack.getQualifiedName().contains("java.")
 				return false;
 			}
 			return pack.isImplicit();

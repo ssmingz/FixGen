@@ -167,7 +167,7 @@ public class TestApplyPattern {
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
 
-                                        BugLocator detector = new BugLocator(0.4);
+                                        BugLocator detector = new BugLocator(0.0);
                                         String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
 
                                         step_start = System.currentTimeMillis();
