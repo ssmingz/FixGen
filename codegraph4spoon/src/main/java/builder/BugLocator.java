@@ -291,7 +291,7 @@ public class BugLocator {
             roles = new ArrayList<>();
             roles.add(Pair.with(moveDstTarget.getRoleInParent(), moveDstTarget.getClass()));
         }
-        modifyValueByRole((CtElementImpl) moveDstTarget.getParent(), roles, oriNode, moveDstTarget);
+        modifyValueByRole((CtElementImpl) moveDstTarget.getParent(), roles, moveTarget, oriNode, moveDstTarget);
         return true;
     }
 
@@ -338,7 +338,7 @@ public class BugLocator {
                 roles = new ArrayList<>();
                 roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
             }
-            modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, update, oriNode);
+            modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, newInPattern, update, oriNode);
             oriNode.delete();
         } else {
             System.out.println("[error]Cannot find UPDATE.target in pattern: " + target.getFileName());
@@ -379,7 +379,7 @@ public class BugLocator {
             mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
             // insert.source is the parent, which is oriNode
             // TODO: insert to where, the concrete position of insert.source
-            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), insert, null);
+            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), newInPattern,  insert, null);
             // update codegraph node set
             target.nodeSetAdd(insert);
         } else {
@@ -414,8 +414,9 @@ public class BugLocator {
         return childMap;
     }
 
-    private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, CtElementImpl child, CtElementImpl replacement) {
+    private void modifyValueByRole(CtElementImpl parent, List<Pair<CtRole, Class>> roles, PatternNode pn, CtElementImpl child, CtElementImpl replacement) {
         CtRole pre = null;
+        int listIndex = pn.listIndex.isAbstract() ? -1 : (int) pn.listIndex.getTag();
         for (Pair<CtRole, Class> pair : roles) {
             if (pair.getValue0() == null)
                 continue;
@@ -433,13 +434,13 @@ public class BugLocator {
                         if (init.contains(replacement))
                             Collections.replaceAll(init, replacement, child);
                         else
-                            addNewElement(init, child);
+                            addNewElement(init, child, listIndex);
                         parent.setValueByRole(pair.getValue0(), Collections.unmodifiableList(init));
                     } else {
                         if (((List<?>) ori).contains(replacement))
                             Collections.replaceAll((List<CtElementImpl>) ori, replacement, child);
                         else
-                            addNewElement((List<CtElementImpl>) ori, child);
+                            addNewElement((List<CtElementImpl>) ori, child, listIndex);
                     }
                 } else {
                     if (pre != null) {
@@ -454,13 +455,13 @@ public class BugLocator {
                                 if (init.contains(replacement))
                                     Collections.replaceAll(init, replacement, child);
                                 else
-                                    addNewElement(init, child);
+                                    addNewElement(init, child, listIndex);
                                 parent.setValueByRole(pre, init);
                             } else {
                                 if (((List<CtElementImpl>) ((CtElementImpl) ori).getValueByRole(pre)).contains(replacement))
                                     Collections.replaceAll(((CtElementImpl) ori).getValueByRole(pre), replacement, child);
                                 else
-                                    addNewElement(((CtElementImpl) ori).getValueByRole(pre), child);
+                                    addNewElement(((CtElementImpl) ori).getValueByRole(pre), child, listIndex);
                             }
                         } else {
                             ((CtElementImpl) ori).setValueByRole(pre, child);
@@ -477,11 +478,15 @@ public class BugLocator {
         }
     }
 
-    private void addNewElement(List<CtElementImpl> list, CtElementImpl child) {
-        if (!list.isEmpty() && isEndStmt(list.get(list.size() - 1)))
-            list.add(list.size() - 1, child);
-        else
-            list.add(child);
+    private void addNewElement(List<CtElementImpl> list, CtElementImpl child, int pos) {
+        if (pos == -1) {
+            if (!list.isEmpty() && isEndStmt(list.get(list.size() - 1)))
+                list.add(list.size() - 1, child);
+            else
+                list.add(child);
+        } else {
+            list.add(pos, child);
+        }
     }
 
     private boolean isEndStmt(CtElementImpl ctElement) {
