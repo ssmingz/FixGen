@@ -1,5 +1,0 @@
-class SafeNotifier {
-  SafeNotifier() {
-    this();
-  }
-}

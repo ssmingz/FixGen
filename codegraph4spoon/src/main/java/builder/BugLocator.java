@@ -199,6 +199,7 @@ public class BugLocator {
             }
             try {
                 for (Pair<PatternNode, CtElementImpl> pair : temp) {
+                    System.out.println(pair.getValue0().getAttribute("nodeType").getTag());
                     PatternNode action = pair.getValue0();
                     CtElementImpl oriNode = pair.getValue1();
                     if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {

@@ -628,6 +628,11 @@ public class PatternExtractor {
             Map<PatternNode, CtWrapper> track = choice.track;
             double score = choice.score;
 
+            if (traversed.size() == pnList.size() - 1) {
+                result.add(new Pair<>(track, score));
+                continue;
+            }
+
             List<PatternNode> tempPatternNodes = pnList.stream()
                     .filter(patternNode -> !traversed.contains(patternNode))
                     .collect(Collectors.toList());
@@ -663,7 +668,6 @@ public class PatternExtractor {
                     }
                 }
 
-
                 if (!topNCandidates.isEmpty()) {
                     for (CtWrapper bestSim : topNCandidates) {
 
@@ -672,21 +676,15 @@ public class PatternExtractor {
                         double simScore = simScoreMap.get(node).get(bestSim);
 
                         traversed.add(node);
-
                         track.put(node, bestSim);
-                        stack.push(new Choice(traversed, bestSim, new HashMap<>(track), score + simScore));
+                        stack.push(new Choice(new HashSet<>(traversed), bestSim, new HashMap<>(track), score + simScore));
                         track.remove(node, bestSim);
+                        traversed.remove(node);
 
                     }
+                } else {
+                    stack.push(new Choice(traversed, null, new HashMap<>(track), score));
                 }
-            }
-
-            if (traversed.size() == pnList.size()) {
-                while (!stack.isEmpty()) {
-                    Choice choice1 = stack.pop();
-                    result.add(new Pair<>(choice1.track, choice1.score));
-                }
-                return result;
             }
 
         }
@@ -718,6 +716,7 @@ public class PatternExtractor {
             List<CtWrapper> topNCandidates = new ArrayList<>();
 
             simScoreMap.replace(node, sortByValue(simScoreMap.get(node)));
+
             double bestScore = -1;
             for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
                 double simScore = simScoreMap.get(node).get(candidate);
