@@ -213,7 +213,7 @@ public class TestApplyPattern {
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
         String pro = "junit";
-        int testId = 55;
+        int testId = 77;
         int targetNo = 0;
         String runType = "new";
         String base = TestConfig.MAC_BASE;

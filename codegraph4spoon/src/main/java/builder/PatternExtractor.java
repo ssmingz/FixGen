@@ -463,7 +463,7 @@ public class PatternExtractor {
                 if (simScore <= 0 || simScore < bestSimScore) {
                     break;
                 }
-                if (node.toLabelString().equals("!fails.fTornDown") && candidate.toLabelString().equals("fails.fTornDown") && !isMatch(node, candidate, mapping)){
+                if (node.toLabelString().equals("!fails.fTornDown") && candidate.toLabelString().equals("fails.fTornDown") && !isMatch(node, candidate, mapping)) {
                     isMatch(node, candidate, mapping);
                     System.out.println("debug");
                 }
@@ -598,6 +598,100 @@ public class PatternExtractor {
         }
     }
 
+    public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern2(List<PatternNode> pnList, List<CtWrapper> cgList, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
+        class Choice {
+            Set<PatternNode> traveledNodes;
+            CtWrapper cgNode;
+            Map<PatternNode, CtWrapper> track;
+
+            double score;
+
+            Choice(Set<PatternNode> traveledNodes, CtWrapper cgNode, Map<PatternNode, CtWrapper> track, double score) {
+                this.traveledNodes = traveledNodes;
+                this.cgNode = cgNode;
+                this.track = track;
+                this.score = score;
+            }
+
+        }
+
+        Set<Pair<Map<PatternNode, CtWrapper>, Double>> result = new HashSet<>();
+
+
+        Stack<Choice> stack = new Stack<>();
+        stack.push(new Choice(new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
+
+        while (!stack.isEmpty()) {
+            Choice choice = stack.pop();
+
+            Set<PatternNode> traversed = choice.traveledNodes;
+            Map<PatternNode, CtWrapper> track = choice.track;
+            double score = choice.score;
+
+            List<PatternNode> tempPatternNodes = pnList.stream()
+                    .filter(patternNode -> !traversed.contains(patternNode))
+                    .collect(Collectors.toList());
+
+            int index = 0;
+            PatternNode node = null;
+            while (!traversed.contains(node)) {
+                node = tempPatternNodes.get(index);
+                // 如果一个node的parent没有遍历过，先遍历他的parent
+                if (ObjectUtil.findPtKeyInSet(simScoreMap.keySet(), node.getParent()) != null && ObjectUtil.findPtKeyInSet(traversed, node.getParent()) == null) {
+                    index = (++index) % tempPatternNodes.size();
+                    continue;
+                }
+                traversed.add(node);
+            }
+
+            // 当前patternNode存在多个可匹配CtWrapper
+            if (simScoreMap.containsKey(node)) {
+                List<CtWrapper> topNCandidates = new ArrayList<>();
+
+                // 已经排好序了
+                simScoreMap.replace(node, sortByValue(simScoreMap.get(node)));
+                double bestScore = -1;
+                for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                    double simScore = simScoreMap.get(node).get(candidate);
+                    if (simScore <= 0 || simScore < bestScore) {
+                        break;
+                    }
+
+                    if (simScore >= bestScore && isMatch(node, candidate, track)) {
+                        topNCandidates.add(candidate);
+                        bestScore = simScore;
+                    }
+                }
+
+
+                if (!topNCandidates.isEmpty()) {
+                    for (CtWrapper bestSim : topNCandidates) {
+
+                        Map<PatternNode, CtWrapper> mapping = new HashMap<>();
+                        mapping.put(node, bestSim);
+                        double simScore = simScoreMap.get(node).get(bestSim);
+
+                        traversed.add(node);
+
+                        track.put(node, bestSim);
+                        stack.push(new Choice(traversed, bestSim, new HashMap<>(track), score + simScore));
+                        track.remove(node, bestSim);
+
+                    }
+                }
+            }
+
+            if (traversed.size() == pnList.size()) {
+                while (!stack.isEmpty()) {
+                    Choice choice1 = stack.pop();
+                    result.add(new Pair<>(choice1.track, choice1.score));
+                }
+                return result;
+            }
+
+        }
+        return result;
+    }
 
     public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern(Set<PatternNode> traversed, List<PatternNode> pnList, int index, List<CtWrapper> cgList, double score, Map<PatternNode, CtWrapper> mapping, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
         if (traversed.size() == pnList.size())
