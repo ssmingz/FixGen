@@ -6,6 +6,7 @@ import model.pattern.Attribute;
 import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
+import spoon.support.reflect.reference.CtVariableReferenceImpl;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,6 +51,10 @@ public class PatternAbstractor {
                 attr3.addValue(Attribute.computeValue(n), g);
                 attr4.addValue(Attribute.computeValue2(n), g);
                 attr5.addValue(Attribute.computeValueType(n), g);
+
+//                if(n.getCtElementImpl().toString().equals("fResult")) {
+//                    System.out.printf("debug");
+//                }
 
                 pn.position.addValue(Attribute.computePosition(n), g);
                 pn.listSize.addValue(Attribute.computeListSize(n), g);
@@ -107,23 +112,73 @@ public class PatternAbstractor {
             if (pn.getAttribute("nodeType").isAbstract()) {
                 Attribute nodeTypeAttr = pn.getAttribute("nodeType");
                 nodeTypeAttr.clear();
+
+                List<List<Class>> allSuperClasses = new ArrayList<>();
+                for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
+                    CtWrapper n = entry.getKey();
+                    List<Class> superClasses = Attribute.getAllSuperTypes(n);
+                    allSuperClasses.add(superClasses);
+                }
+                Map<Class, Integer> elementFrequency = new HashMap<>();
+                for(List<Class> superClasses : allSuperClasses) {
+                    for(Class superClass : superClasses) {
+                        elementFrequency.put(superClass, elementFrequency.getOrDefault(superClass, 0) + 1);
+                    }
+                }
+
+                Map<Class, Integer> elementRank = new HashMap<>();
+                for(List<Class> superClasses : allSuperClasses) {
+                    for(int i = 0; i < superClasses.size(); i++) {
+                        if(elementRank.containsKey(superClasses.get(i))) {
+                            if(i < elementRank.get(superClasses.get(i))) {
+                                elementRank.put(superClasses.get(i), i);
+                            }
+                        } else {
+                            elementRank.put(superClasses.get(i), i);
+                        }
+                    }
+                }
+
+                int maxFrequency = 0;
+                int minRank = Integer.MAX_VALUE;
+                Class mostFrequentClass = null;
+
+                for (Map.Entry<Class, Integer> entry : elementFrequency.entrySet()) {
+                    if (entry.getValue() > maxFrequency) {
+                        maxFrequency = entry.getValue();
+                    }
+                }
+
+                for (Map.Entry<Class, Integer> entry : elementFrequency.entrySet()) {
+                    if (entry.getValue() == maxFrequency && elementRank.get(entry.getKey()) < minRank) {
+                        mostFrequentClass = entry.getKey();
+                        minRank = elementRank.get(entry.getKey());
+                    }
+                }
+
+//                if(mostFrequentClass == CtVariableReferenceImpl.class) {
+//                    System.out.println("debug");
+//                }
                 for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
                     CtWrapper n = entry.getKey();
                     CodeGraph g = entry.getValue();
-                    nodeTypeAttr.addValue(Attribute.computeNodeType2(n), g);
+                    nodeTypeAttr.addValue(mostFrequentClass, g);
                 }
+//                    if(n.getCtElementImpl().getClass())
+//                    nodeTypeAttr.addValue(Attribute.computeNodeType2(n), g);
+
                 vote4Attribute(nodeTypeAttr);
-                if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold) {
-                    nodeTypeAttr.clear();
-                    for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
-                        CtWrapper n = entry.getKey();
-                        CodeGraph g = entry.getValue();
-                        nodeTypeAttr.addValue(Attribute.computeNodeType3(n), g);
-                    }
-                    vote4Attribute(nodeTypeAttr);
+//                if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold) {
+//                    nodeTypeAttr.clear();
+//                    for (Map.Entry<CtWrapper, CodeGraph> entry : pn.getInstance().entrySet()) {
+//                        CtWrapper n = entry.getKey();
+//                        CodeGraph g = entry.getValue();
+//                        nodeTypeAttr.addValue(Attribute.computeNodeType3(n), g);
+//                    }
+//                    vote4Attribute(nodeTypeAttr);
                     if (nodeTypeAttr.getSupport(nodeTypeAttr.getTag())<threshold)
                         nodeTypeAttr.setAbstract(true);
-                }
+//                }
             }
             if (pn.getComparedAttributes().stream().allMatch(Attribute::isAbstract)) {
                 Iterator<PatternEdge> eItr = pn.inEdges().iterator();

@@ -10,6 +10,9 @@ import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.javatuples.Pair;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AssignableTypeFilter;
 import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.meta.RoleHandler;
@@ -17,10 +20,13 @@ import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
+import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
+import spoon.support.reflect.reference.CtVariableReferenceImpl;
 import utils.ObjectUtil;
 import utils.ReflectUtil;
 import utils.SyntaxUtil;
 
+import java.lang.reflect.Modifier;
 import java.util.*;
 
 public class BugLocator {
@@ -110,44 +116,46 @@ public class BugLocator {
 //                    }
 //                }
 ////                for (Pair<PatternNode, CtElementImpl> pair : temp) {
-                int currentIndex = 0;
-                while (!temp.isEmpty()) {
-                    if (currentIndex >= temp.size()) {
-                        currentIndex = 0; // Wrap around to the beginning
-                    }
-
-                    boolean actionSucceeded = true;
-
-                    Pair<PatternNode, CtElementImpl> pair = temp.get(currentIndex);
-                    PatternNode action = pair.getValue0();
-                    CtElementImpl oriNode = pair.getValue1();
-                    try {
-                        if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-                            actionSucceeded = applyDelete(action, oriNode, target, mapping);
-                        } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-                            actionSucceeded = applyUpdate(action, oriNode, target, mapping, target.getMapping());
-                        } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
-                            actionSucceeded = applyInsert(action, oriNode, target, mapping, target.getMapping());
-                        } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
-                            actionSucceeded = applyMove(action, oriNode, target, mapping);
-                        } else {
-                            System.out.println("[warn]Invalid action nodeType");
-                        }
-                        if (actionSucceeded) {
-                            temp.remove(currentIndex);
-                        } else if (temp.size() == 1) {
-                            throw new IllegalStateException();
-                        } else {
-                            currentIndex++;
-                        }
-                    }
-                    catch (Exception e) {
-                        System.out.printf("[error]Generate patch failed due to node building error : %s in action %s\n", target.getFileName(), action.getAttribute("nodeType").getTag());
-                        temp.remove(currentIndex);
-                    }
+            int currentIndex = 0;
+            while (!temp.isEmpty()) {
+                if (currentIndex >= temp.size()) {
+                    currentIndex = 0; // Wrap around to the beginning
                 }
-                ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+
+                boolean actionSucceeded = true;
+
+                Pair<PatternNode, CtElementImpl> pair = temp.get(currentIndex);
+                PatternNode action = pair.getValue0();
+                CtElementImpl oriNode = pair.getValue1();
+
+
+                System.out.println(action.getAttribute("nodeType").getTag());
+                try {
+                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+                        actionSucceeded = applyDelete(action, oriNode, target, mapping);
+                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                        actionSucceeded = applyUpdate(action, oriNode, target, mapping, target.getMapping());
+                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+                        actionSucceeded = applyInsert(action, oriNode, target, mapping, target.getMapping());
+                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+                        actionSucceeded = applyMove(action, oriNode, target, mapping);
+                    } else {
+                        System.out.println("[warn]Invalid action nodeType");
+                    }
+                    if (actionSucceeded) {
+                        temp.remove(currentIndex);
+                    } else if (temp.size() == 1) {
+                        throw new IllegalStateException();
+                    } else {
+                        currentIndex++;
+                    }
+                } catch (Exception e) {
+                    temp.remove(currentIndex);
+                    System.out.printf("[error]Generate patch failed due to node building error : %s in action %s\n", target.getFileName(), action.getAttribute("nodeType").getTag());
+                }
             }
+            ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+        }
 //            catch (IllegalStateException se) {
 //                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
 //            }
@@ -249,13 +257,13 @@ public class BugLocator {
                 break;
             }
         }
-        for(PatternEdge oe : action.outEdges()) {
-            if(oe.type == PatternEdge.EdgeType.ACTION) {
+        for (PatternEdge oe : action.outEdges()) {
+            if (oe.type == PatternEdge.EdgeType.ACTION) {
                 moveTarget = oe.getTarget();
                 break;
             }
         }
-        if(!mapping.containsKey(moveSource) || !mapping.containsKey(moveTarget)) {
+        if (!mapping.containsKey(moveSource) || !mapping.containsKey(moveTarget)) {
 //            System.out.println("[error]Cannot find mapped MOVE.source or MOVE.target in target code graph: " + target.getFileName());
             return false;
         }
@@ -346,8 +354,8 @@ public class BugLocator {
                 break;
             }
         }
-        if(!mapping4pattern.containsKey(insertSource)) {
-//            System.out.println("[error]Cannot find mapped INSERT.source in target code graph: " + target.getFileName());
+        if (!mapping4pattern.containsKey(insertSource)) {
+            System.out.println("[error]Cannot find mapped INSERT.source in target code graph: " + target.getFileName());
             return false;
         }
 
@@ -493,29 +501,70 @@ public class BugLocator {
     public <T> CtElementImpl createSpoonNodeRecursively(PatternNode pnRoot, Map<PatternNode, CtWrapper> mapping4pattern, Map<CtWrapper, CtWrapper> mapping4diff) {
         // nodeType
         Class clazz = !pnRoot.getAttribute("nodeType").isAbstract() ? (Class) pnRoot.getAttribute("nodeType").getTag() : null;
+
         if (clazz == null) {
             System.out.println("[error]Create new spoon node failed: pattern node does not have node type attribute");
             throw new IllegalStateException();
         }
+
         CtElementImpl newly = null;
         try {
             newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
         } catch (InstantiationException e) {
             System.out.println("[warn]failed to directly use class name to create instance");
             // if is update.target
-            for (PatternEdge ie : pnRoot.inEdges()) {
-                if (!ie.isAbstract() && ie.type == PatternEdge.EdgeType.ACTION && !ie.getSource().getAttribute("nodeType").isAbstract()
-                        && ie.getSource().getAttribute("nodeType").getTag().equals(Update.class)) {
-                    for (PatternEdge ie2 : ie.getSource().inEdges()) {
-                        if (!ie2.isAbstract() && ie2.type == PatternEdge.EdgeType.ACTION && mapping4pattern.containsKey(ie2.getSource())) {
-                            try {
+            try {
+                boolean createFlag = false;
+                for (PatternEdge ie : pnRoot.inEdges()) {
+                    if (!ie.isAbstract() && ie.type == PatternEdge.EdgeType.ACTION && !ie.getSource().getAttribute("nodeType").isAbstract()
+                            && ie.getSource().getAttribute("nodeType").getTag().equals(Update.class)) {
+                        for (PatternEdge ie2 : ie.getSource().inEdges()) {
+                            if (!ie2.isAbstract() && ie2.type == PatternEdge.EdgeType.ACTION && mapping4pattern.containsKey(ie2.getSource())) {
                                 clazz = mapping4pattern.get(ie2.getSource()).getCtElementImpl().getClass();
                                 newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
-                            } catch (InstantiationException ex) {
-                                ex.printStackTrace();
+                                createFlag = true;
                             }
                         }
                     }
+                }
+                if (newly == null) {
+                    throw new IllegalStateException();
+                }
+            } catch (Exception ex) {
+                try {
+                    if (clazz.equals(CtVariableAccessImpl.class)) {
+                        clazz = CtVariableReadImpl.class;
+                    }
+                    else if (clazz.equals(CtVariableReferenceImpl.class)) {
+                        clazz = CtLocalVariableReferenceImpl.class;
+                    } else {
+                        if (Modifier.isAbstract(clazz.getModifiers())) {
+                            ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
+                            scanner.addIncludeFilter(new AssignableTypeFilter(clazz));
+
+                            List<Class<?>> subclasses = new ArrayList<>();
+                            String basePackage = clazz.getPackage().getName();
+                            Set<BeanDefinition> components = scanner.findCandidateComponents(basePackage);
+                            for (BeanDefinition component : components) {
+                                try {
+                                    Class<?> subclazz = Class.forName(component.getBeanClassName());
+                                    subclasses.add(subclazz);
+                                } catch (ClassNotFoundException clse) {
+                                    System.out.println("sub class not found");
+                                }
+                            }
+                            for (Class<?> subclazz : subclasses) {
+                                if (!Modifier.isAbstract(subclazz.getModifiers()) && subclazz.getName().contains("Read") && subclazz.getName().contains("Variable")) {
+                                    clazz = subclazz;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    newly = (CtElementImpl) ReflectUtil.createInstance(clazz);
+                } catch (InstantiationException e1) {
+                    System.out.println("[error]Create new spoon node failed: createInstance() return null");
+                    throw new IllegalStateException();
                 }
             }
         }
@@ -523,6 +572,7 @@ public class BugLocator {
             System.out.println("[error]Create new spoon node failed: createInstance() return null");
             throw new IllegalStateException();
         }
+
         if (!pnRoot.implicit.isAbstract())
             newly.setImplicit((Boolean) pnRoot.implicit.getTag());
         // check value for name

@@ -212,8 +212,8 @@ public class TestApplyPattern {
     @Test
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
-        String pro = "checkstyle";
-        int testId = 138;
+        String pro = "junit";
+        int testId = 55;
         int targetNo = 0;
         String runType = "new";
         String base = TestConfig.MAC_BASE;

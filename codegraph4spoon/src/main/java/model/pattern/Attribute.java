@@ -212,6 +212,18 @@ public class Attribute implements Serializable {
         return clazz;
     }
 
+    public static List<Class> getAllSuperTypes(CtWrapper n) {
+        Class clazz = n.getCtElementImpl().getClass();
+        List<Class> list = new ArrayList<>();
+        while (clazz != null && !rootTypes.contains(clazz)) {
+            list.add(clazz);
+            clazz = clazz.getSuperclass();
+        }
+        return list;
+    }
+
+
+
     public static List<Pair<CtRole, Class>> computePosition(CtWrapper n) {
         if (n.getCtElementImpl() instanceof ActionNode) {
             ActionNode node = (ActionNode) n.getCtElementImpl();

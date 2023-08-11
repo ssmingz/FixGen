@@ -83,7 +83,7 @@ public class PatternExtractor {
                     if (runType.equals("old")) {
                         scores[j] = matchBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
                     } else if (runType.equals("new")) {
-                        Set<Pair<Map<CtWrapper, CtWrapper>, Double>> resScores = matchTiedNodeBySimScore(new HashSet<>(),nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+                        Set<Pair<Map<CtWrapper, CtWrapper>, Double>> resScores = matchTiedNodeBySimScore(new HashSet<>(), nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
 
                         List<Pair<Map<CtWrapper, CtWrapper>, Double>> scoresList = new ArrayList<>(resScores);
                         scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
@@ -463,8 +463,11 @@ public class PatternExtractor {
                 if (simScore <= 0 || simScore < bestSimScore) {
                     break;
                 }
-//                if(node.toLabelString().equals("MoneyBag")&&candidate.toLabelString().equals("MoneyBag")&&!isMatch(node, candidate, mapping))
-//                    System.out.println("debug");
+                if (node.toLabelString().equals("!fails.fTornDown") && candidate.toLabelString().equals("fails.fTornDown") && !isMatch(node, candidate, mapping)){
+                    isMatch(node, candidate, mapping);
+                    System.out.println("debug");
+                }
+
                 if (simScore >= bestSimScore && isMatch(node, candidate, mapping)) {
                     //if (simScore == highestScore && isMatch(node, candidate, mapping)) {
                     topNCandidates.add(candidate);
@@ -660,7 +663,6 @@ public class PatternExtractor {
             return matchTopTiedNodeBySimScorePattern(traversed, pnList, index + 1, cgList, score, mapping, simScoreMap);
         }
     }
-
 
 
     public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern(List<PatternNode> pnList, int index, List<CtWrapper> cgList, double score, Map<PatternNode, CtWrapper> mapping, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
