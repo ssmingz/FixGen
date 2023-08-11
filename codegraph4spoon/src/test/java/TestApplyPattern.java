@@ -162,7 +162,7 @@ public class TestApplyPattern {
 //                                    if (actionNodes.stream().allMatch(node -> node.getInstance().keySet().size() == size)) {
                                         total.getAndIncrement();
                                         step_start = System.currentTimeMillis();
-                                        PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 0.6));
+                                        PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
                                         abs.abstractPattern(pat);
                                         step_end = System.currentTimeMillis();
                                         System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
@@ -212,8 +212,8 @@ public class TestApplyPattern {
     @Test
     public void testApplyPatternOnC3_debug() {
         boolean INCLUE_INSTANCE_ITSELF = true;
-        String pro = "junit";
-        int testId = 37;
+        String pro = "checkstyle";
+        int testId = 138;
         int targetNo = 0;
         String runType = "new";
         String base = TestConfig.MAC_BASE;

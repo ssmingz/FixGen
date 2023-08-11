@@ -83,7 +83,7 @@ public class PatternExtractor {
                     if (runType.equals("old")) {
                         scores[j] = matchBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
                     } else if (runType.equals("new")) {
-                        Set<Pair<Map<CtWrapper, CtWrapper>, Double>> resScores = matchTiedNodeBySimScore(nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
+                        Set<Pair<Map<CtWrapper, CtWrapper>, Double>> resScores = matchTiedNodeBySimScore(new HashSet<>(),nodeList, 0, nodeListComp, 0, new LinkedHashMap<>(), orderBySimScore);      //两种匹配方法
 
                         List<Pair<Map<CtWrapper, CtWrapper>, Double>> scoresList = new ArrayList<>(resScores);
                         scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
@@ -424,13 +424,25 @@ public class PatternExtractor {
         }
     }
 
-    public static Set<Pair<Map<CtWrapper, CtWrapper>, Double>> matchTiedNodeBySimScore(List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
-        if (index == nodeList.size()) {
-//            _mappingsByScore.put(mapping, score);
+    public static Set<Pair<Map<CtWrapper, CtWrapper>, Double>> matchTiedNodeBySimScore(Set<CtWrapper> traversed, List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
+        if (traversed.size() == nodeList.size())
             return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
+        //if (index == nodeList.size()) {
+//            _mappingsByScore.put(mapping, score);
+        //    return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
 //            return score;
-        }
+        //}
+        index = index % nodeList.size();
         CtWrapper node = nodeList.get(index);
+        while (ObjectUtil.findCtKeyInSet(traversed, node) != null) {
+            index++;
+            index = index % nodeList.size();
+            node = nodeList.get(index);
+        }
+        if (ObjectUtil.findCtKeyInSet(simScoreMap.keySet(), new CtWrapper((CtElementImpl) node.getCtElementImpl().getParent())) != null
+                && ObjectUtil.findCtKeyInSet(traversed, new CtWrapper((CtElementImpl) node.getCtElementImpl().getParent())) == null)
+            return matchTiedNodeBySimScore(traversed, nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
+        traversed.add(node);
         if (simScoreMap.containsKey(node)) {
             List<CtWrapper> topNCandidates = new ArrayList<>();
             double highestScore = -1;
@@ -444,13 +456,71 @@ public class PatternExtractor {
                 }
             }
 
+            simScoreMap.replace(node, sortByValue(simScoreMap.get(node)));
+            double bestSimScore = -1;
             for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
                 double simScore = simScoreMap.get(node).get(candidate);
-                if (simScore <= 0) {
+                if (simScore <= 0 || simScore < bestSimScore) {
                     break;
                 }
-                if (simScore == highestScore && isMatch(node, candidate, mapping)) {
+//                if(node.toLabelString().equals("MoneyBag")&&candidate.toLabelString().equals("MoneyBag")&&!isMatch(node, candidate, mapping))
+//                    System.out.println("debug");
+                if (simScore >= bestSimScore && isMatch(node, candidate, mapping)) {
+                    //if (simScore == highestScore && isMatch(node, candidate, mapping)) {
                     topNCandidates.add(candidate);
+                    bestSimScore = simScore;
+                }
+            }
+
+            Set<Pair<Map<CtWrapper, CtWrapper>, Double>> allPairs = new HashSet<>();
+            if (!topNCandidates.isEmpty()) {
+                for (CtWrapper bestSim : topNCandidates) {
+                    List<CtWrapper> nodeListCopy = new ArrayList<>(nodeListComp);
+                    Map<CtWrapper, CtWrapper> mappingCopy = new HashMap<>(mapping);
+                    Map<CtWrapper, Map<CtWrapper, Double>> simScoreMapCopy = deepCopyCtSimScoreMap(simScoreMap);
+
+                    double simScore = simScoreMap.get(node).get(bestSim);
+
+                    nodeListCopy.remove(bestSim);
+                    mappingCopy.put(node, bestSim);
+                    simScoreMapCopy.remove(node);
+
+                    for (Map<CtWrapper, Double> scoreMap : simScoreMapCopy.values()) {
+                        scoreMap.remove(bestSim);
+                    }
+
+                    allPairs.addAll(matchTiedNodeBySimScore(traversed, nodeList, index + 1, nodeListCopy, score + simScore, mappingCopy, simScoreMapCopy));
+                }
+                return allPairs;
+            } else {
+                return matchTiedNodeBySimScore(traversed, nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
+            }
+
+        } else {
+            return matchTiedNodeBySimScore(traversed, nodeList, index + 1, nodeListComp, score, mapping, simScoreMap);
+        }
+    }
+
+    public static Set<Pair<Map<CtWrapper, CtWrapper>, Double>> matchTiedNodeBySimScore(List<CtWrapper> nodeList, int index, List<CtWrapper> nodeListComp, double score, Map<CtWrapper, CtWrapper> mapping, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
+        if (index == nodeList.size()) {
+//            _mappingsByScore.put(mapping, score);
+            return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
+//            return score;
+        }
+        CtWrapper node = nodeList.get(index);
+        if (simScoreMap.containsKey(node)) {
+            List<CtWrapper> topNCandidates = new ArrayList<>();
+
+            simScoreMap.replace(node, sortByValue(simScoreMap.get(node)));
+            double bestScore = -1;
+            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                double simScore = simScoreMap.get(node).get(candidate);
+                if (simScore <= 0 || simScore < bestScore) {
+                    break;
+                }
+                if (simScore >= bestScore && isMatch(node, candidate, mapping)) {
+                    topNCandidates.add(candidate);
+                    bestScore = simScore;
                 }
             }
 
@@ -526,6 +596,73 @@ public class PatternExtractor {
     }
 
 
+    public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern(Set<PatternNode> traversed, List<PatternNode> pnList, int index, List<CtWrapper> cgList, double score, Map<PatternNode, CtWrapper> mapping, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
+        if (traversed.size() == pnList.size())
+            return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
+        //if (index == nodeList.size()) {
+//            _mappingsByScore.put(mapping, score);
+        //    return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
+//            return score;
+        //}
+        index = index % pnList.size();
+        PatternNode node = pnList.get(index);
+
+        while (ObjectUtil.findPtKeyInSet(traversed, node) != null) {
+            index++;
+            index = index % pnList.size();
+            node = pnList.get(index);
+        }
+        if (ObjectUtil.findPtKeyInSet(simScoreMap.keySet(), node.getParent()) != null && ObjectUtil.findPtKeyInSet(traversed, node.getParent()) == null)
+            return matchTopTiedNodeBySimScorePattern(traversed, pnList, index + 1, cgList, score, mapping, simScoreMap);
+        traversed.add(node);
+
+        if (simScoreMap.containsKey(node)) {
+
+            List<CtWrapper> topNCandidates = new ArrayList<>();
+
+            simScoreMap.replace(node, sortByValue(simScoreMap.get(node)));
+            double bestScore = -1;
+            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
+                double simScore = simScoreMap.get(node).get(candidate);
+                if (simScore <= 0 || simScore < bestScore) {
+                    break;
+                }
+                if (simScore >= bestScore && isMatch(node, candidate, mapping)) {
+                    topNCandidates.add(candidate);
+                    bestScore = simScore;
+                }
+            }
+
+            Set<Pair<Map<PatternNode, CtWrapper>, Double>> allPairs = new HashSet<>();
+            if (!topNCandidates.isEmpty()) {
+                for (CtWrapper bestSim : topNCandidates) {
+                    List<CtWrapper> nodeListCopy = new ArrayList<>(cgList);
+                    Map<PatternNode, CtWrapper> mappingCopy = new HashMap<>(mapping);
+                    Map<PatternNode, Map<CtWrapper, Double>> simScoreMapCopy = deepCopySimScoreMap(simScoreMap);
+
+                    double simScore = simScoreMap.get(node).get(bestSim);
+
+                    nodeListCopy.remove(bestSim);
+                    mappingCopy.put(node, bestSim);
+                    simScoreMapCopy.remove(node);
+
+                    for (Map<CtWrapper, Double> scoreMap : simScoreMapCopy.values()) {
+                        scoreMap.remove(bestSim);
+                    }
+
+                    allPairs.addAll(matchTopTiedNodeBySimScorePattern(traversed, pnList, index + 1, nodeListCopy, score + simScore, mappingCopy, simScoreMapCopy));
+                }
+                return allPairs;
+            } else {
+                return matchTopTiedNodeBySimScorePattern(traversed, pnList, index + 1, cgList, score, mapping, simScoreMap);
+            }
+        } else {
+            return matchTopTiedNodeBySimScorePattern(traversed, pnList, index + 1, cgList, score, mapping, simScoreMap);
+        }
+    }
+
+
+
     public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern(List<PatternNode> pnList, int index, List<CtWrapper> cgList, double score, Map<PatternNode, CtWrapper> mapping, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
         if (index == pnList.size()) {
             return Collections.singleton(new Pair<>(new HashMap<>(mapping), score));
@@ -535,24 +672,17 @@ public class PatternExtractor {
         if (simScoreMap.containsKey(node)) {
 
             List<CtWrapper> topNCandidates = new ArrayList<>();
-            double highestScore = -1;
-            for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
-                double simScore = simScoreMap.get(node).get(candidate);
-                if (simScore <= 0) {
-                    break;
-                }
-                if (simScore > highestScore) {
-                    highestScore = simScore;
-                }
-            }
 
+            simScoreMap.replace(node, sortByValue(simScoreMap.get(node)));
+            double bestScore = -1;
             for (CtWrapper candidate : simScoreMap.get(node).keySet()) {
                 double simScore = simScoreMap.get(node).get(candidate);
-                if (simScore <= 0) {
+                if (simScore <= 0 || simScore < bestScore) {
                     break;
                 }
-                if (simScore == highestScore && isMatch(node, candidate, mapping)) {
+                if (simScore >= bestScore && isMatch(node, candidate, mapping)) {
                     topNCandidates.add(candidate);
+                    bestScore = simScore;
                 }
             }
 

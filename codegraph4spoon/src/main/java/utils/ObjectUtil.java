@@ -40,6 +40,15 @@ public class ObjectUtil {
         return null;
     }
 
+    public static PatternNode findPtKeyInSet(Set<PatternNode> ctSet, PatternNode target) {
+        for (PatternNode e : ctSet) {
+            if (e.equals(target))
+                return e;
+        }
+        return null;
+    }
+
+
     /**
      *
      * @param addFlag : whether append

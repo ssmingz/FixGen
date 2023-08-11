@@ -96,8 +96,9 @@ public class BugLocator {
 //                for (Pair<PatternNode, CtElementImpl> pair : temp) {
 //                    PatternNode action = pair.getValue0();
 //                    CtElementImpl oriNode = pair.getValue1();
+//                    System.out.println(action.getAttribute("nodeType").getTag());
 //                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-//                        applyDelete(action, oriNode, target);
+//                        applyDelete(action, oriNode, target, mapping);
 //                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
 //                        applyUpdate(action, oriNode, target, mapping, target.getMapping());
 //                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
@@ -108,7 +109,7 @@ public class BugLocator {
 //                        System.out.println("[warn]Invalid action nodeType");
 //                    }
 //                }
-//                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+////                for (Pair<PatternNode, CtElementImpl> pair : temp) {
                 int currentIndex = 0;
                 while (!temp.isEmpty()) {
                     if (currentIndex >= temp.size()) {
@@ -222,6 +223,7 @@ public class BugLocator {
             }
         }
         if (!mapping4pattern.containsKey(toBeDeleted)) {
+
             return false;
         }
         // TODO: remove if in list, or else replace by null

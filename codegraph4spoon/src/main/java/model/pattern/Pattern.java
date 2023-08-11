@@ -147,7 +147,7 @@ public class Pattern implements Serializable {
             scoresList.add(new Pair<>(mapping, score / _patternNodes.size()));
             return scoresList;
         } else if(type.equals("new")) {
-            Set<Pair<Map<PatternNode, CtWrapper>, Double>> scores = PatternExtractor.matchTopTiedNodeBySimScorePattern(patternNodes, 0, ctNodes, 0, mapping, orderBySimScore);
+            Set<Pair<Map<PatternNode, CtWrapper>, Double>> scores = PatternExtractor.matchTopTiedNodeBySimScorePattern(new HashSet<>(), patternNodes, 0, ctNodes, 0, mapping, orderBySimScore);
 
 //            double normalizationFactor = _patternNodes.size();
 //            return scores.stream()
