@@ -154,6 +154,8 @@ public class Attribute implements Serializable {
         } else if (PatternExtractor.isVar(n.getCtElementImpl()) || PatternExtractor.isVarRef(n.getCtElementImpl())) {
             if (RoleHandlerHelper.getOptionalRoleHandler(n.getCtElementImpl().getClass(), CtRole.NAME) != null)
                 return n.getCtElementImpl().getValueByRole(CtRole.NAME);
+        } else if(n.getCtElementImpl() instanceof CtTypeReferenceImpl) {
+            return (T) ((CtTypeReferenceImpl<?>) n.getCtElementImpl()).getSimpleName();
         }
         return (T) n.toLabelString();
     }
