@@ -386,7 +386,7 @@ public class BugLocator {
             mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
             // insert.source is the parent, which is oriNode
             // TODO: insert to where, the concrete position of insert.source
-            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), newInPattern,  insert, null);
+            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), newInPattern, insert, null);
             // update codegraph node set
             target.nodeSetAdd(insert);
         } else {
@@ -546,8 +546,7 @@ public class BugLocator {
                 try {
                     if (clazz.equals(CtVariableAccessImpl.class)) {
                         clazz = CtVariableReadImpl.class;
-                    }
-                    else if (clazz.equals(CtVariableReferenceImpl.class)) {
+                    } else if (clazz.equals(CtVariableReferenceImpl.class)) {
                         clazz = CtLocalVariableReferenceImpl.class;
                     } else {
                         if (Modifier.isAbstract(clazz.getModifiers())) {
