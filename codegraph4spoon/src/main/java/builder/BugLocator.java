@@ -130,7 +130,6 @@ public class BugLocator {
                 PatternNode action = pair.getValue0();
                 CtElementImpl oriNode = pair.getValue1();
 
-
                 System.out.println(action.getAttribute("nodeType").getTag());
                 try {
                     if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
@@ -341,6 +340,11 @@ public class BugLocator {
                 roles = new ArrayList<>();
                 roles.add(Pair.with(oriNode.getRoleInParent(), oriNode.getClass()));
             }
+
+            if(oriNode.getParent().getClass().equals(CtThisAccessImpl.class)) {
+                oriNode = (CtElementImpl) oriNode.getParent();
+            }
+
             modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, newInPattern, update, oriNode);
             oriNode.delete();
         } else {
