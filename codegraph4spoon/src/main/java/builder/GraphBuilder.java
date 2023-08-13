@@ -21,8 +21,10 @@ import spoon.reflect.declaration.CtElement;
 import spoon.support.reflect.declaration.*;
 import utils.ASTUtil;
 import utils.CtChildScanner;
+import utils.DotGraph;
 import utils.ObjectUtil;
 
+import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -308,6 +310,7 @@ public class GraphBuilder {
         // code graph
         CodeGraph cg1 = GraphBuilder.buildGraph(srcPath, new String[] {}, 8, includeLines);
         CodeGraph cg2 = GraphBuilder.buildGraph(tarPath, new String[] {}, 8, includeLines);
+
         // gumtree diff
         AstComparator diff = new AstComparator();
         Diff editScript = diff.compare(cg1.getEntryNode(), cg2.getEntryNode());

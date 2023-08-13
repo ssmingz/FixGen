@@ -21,6 +21,8 @@ import spoon.reflect.path.CtRole;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
+import spoon.support.reflect.reference.CtReferenceImpl;
+import spoon.support.reflect.reference.CtTypeReferenceImpl;
 import spoon.support.reflect.reference.CtVariableReferenceImpl;
 import utils.ObjectUtil;
 import utils.ReflectUtil;

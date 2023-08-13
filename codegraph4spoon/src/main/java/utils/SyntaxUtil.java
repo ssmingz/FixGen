@@ -2,10 +2,7 @@ package utils;
 
 import spoon.reflect.declaration.CtField;
 import spoon.support.reflect.code.*;
-import spoon.support.reflect.reference.CtCatchVariableReferenceImpl;
-import spoon.support.reflect.reference.CtFieldReferenceImpl;
-import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
-import spoon.support.reflect.reference.CtParameterReferenceImpl;
+import spoon.support.reflect.reference.*;
 
 import java.util.Collection;
 import java.util.Collections;

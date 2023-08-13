@@ -1148,6 +1148,7 @@ public class PatternExtractor {
 
     private static double calContextSimPattern(PatternNode pn, CtWrapper cgn) {
         List<Double> scores = new ArrayList<>();
+
         for (Attribute a : pn.getComparedAttributes()) {
             if (a.isAbstract())
                 continue;
@@ -1174,11 +1175,19 @@ public class PatternExtractor {
                     comp = Attribute.computeValueType(cgn);
                     break;
             }
-
             scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
-
         }
-        return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n -> n).average().getAsDouble();
+
+        if(! scores.isEmpty()) {
+            // 当patternNode中有过多属性被抽象掉时，剩余的属性和cgn的属性比较将没有太大意义
+            pn.getInstance().keySet().forEach(ctWrapper -> {
+                double score = calSimScore(ctWrapper.getCtElementImpl(), cgn.getCtElementImpl());
+                scores.add(score);
+            });
+            return scores.stream().mapToDouble(n -> n).average().getAsDouble();
+        } else {
+            return 0.0;
+        }
     }
 
     private static double calContextSim(String a, String b) {
