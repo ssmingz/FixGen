@@ -447,6 +447,13 @@ public class CodeGraph implements Serializable {
         ctNode.setControlDependency(control);
         scope.addDefine(ctNode.getSimpleName(), ctNode);
         ctNode.setScope(scope);
+
+        // modifiers, ModifierKind (enum type)
+        for (Object mf : ctNode.getModifiers()) {
+            CtVirtualElement modifier = new CtVirtualElement(ctNode, mf.toString(), "MODIFIER");
+            updateCGId(modifier);
+        }
+
         // name
         CtVirtualElement name = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "CATCH_VAR_NAME");
         updateCGId(name);

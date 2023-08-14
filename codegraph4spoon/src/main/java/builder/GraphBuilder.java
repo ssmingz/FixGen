@@ -11,20 +11,15 @@ import model.actions.Delete;
 import model.actions.Insert;
 import model.actions.Move;
 import model.actions.Update;
-import org.apache.bcel.classfile.Code;
-import org.apache.commons.lang3.StringUtils;
 import org.javatuples.Triplet;
-import org.javatuples.Tuple;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtElement;
 import spoon.support.reflect.declaration.*;
 import utils.ASTUtil;
 import utils.CtChildScanner;
-import utils.DotGraph;
 import utils.ObjectUtil;
 
-import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -396,12 +391,31 @@ public class GraphBuilder {
                 if (!flag) {
 //                    System.out.println("[warn]Not find the CtElement.parent mapping in src/dst graph: " + insSrc.prettyprint());
                 }
+
+                if (insTar instanceof gumtree.spoon.builder.CtVirtualElement) {
+                    CtElementImpl insTarParent = (CtElementImpl) insTar.getParent();
+                    String insRole = insTar.getRoleInParent().name();
+                    for(Object insTarChild: ((gumtree.spoon.builder.CtVirtualElement) insTar).getChildren()) {
+                        for (Edge ie : insTarParent._outEdges) {
+                            if (ie.type == Edge.EdgeType.AST && ie.getTarget() instanceof CtVirtualElement) {
+                                CtVirtualElement child = (CtVirtualElement) ie.getTarget();
+                                String childRole = child.getLocationInParent();
+                                if (childRole.equals(insRole) && insTarChild.toString().equals(child.toString())) {
+                                    insTar = child;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
                 // step2. create insert node and connect the three nodes
                 Insert ins = new Insert(insTar, insSrc, insTar.getRoleInParent(), op);
                 cg1.updateCGId(ins);
                 // step3. recursively add insTar.children (including insTar)
+
                 CtChildScanner scanner = new CtChildScanner();
                 scanner.scan(insTar);
+
                 for (CtWrapper child : scanner.childList) {
                     child.getCtElementImpl().setActionRelated(true);
                     cg1.updateCGId(child.getCtElementImpl());

@@ -15,9 +15,12 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.core.type.filter.AssignableTypeFilter;
 import spoon.reflect.code.BinaryOperatorKind;
 import spoon.reflect.cu.SourcePosition;
+import spoon.reflect.declaration.ModifierKind;
 import spoon.reflect.meta.RoleHandler;
 import spoon.reflect.meta.impl.RoleHandlerHelper;
 import spoon.reflect.path.CtRole;
+import spoon.reflect.reference.CtLocalVariableReference;
+import spoon.support.reflect.CtModifierHandler;
 import spoon.support.reflect.code.*;
 import spoon.support.reflect.declaration.CtElementImpl;
 import spoon.support.reflect.reference.CtLocalVariableReferenceImpl;
@@ -371,20 +374,43 @@ public class BugLocator {
             }
         }
         if (newInPattern != null) {
-            // TODO: follow the subtree of insert.target to create a new CtElementImpl
-            CtElementImpl insert = createSpoonNodeRecursively(newInPattern, mapping4pattern, mapping4diff);
-            if (insert == null) {
-                System.out.println("[error]Create new spoon node failed return null");
-                throw new IllegalStateException();
+            if(! newInPattern.getAttribute("locationInParent").isAbstract() &&
+                    ! newInPattern.getAttribute("value").isAbstract() &&
+                    newInPattern.getAttribute("locationInParent").getTag().equals("MODIFIER")) {
+
+                Map<String, ModifierKind> modifierKindMap = new HashMap<>();
+                Arrays.stream(ModifierKind.values()).forEach(modifierKind -> {
+                    modifierKindMap.put(modifierKind.name().toLowerCase(Locale.ROOT), modifierKind);
+                });
+
+                String modifier = newInPattern.getAttribute("value").getTag().toString();
+                if(RoleHandlerHelper.getOptionalRoleHandler(oriNode.getClass(), CtRole.MODIFIER) != null) {
+                    CtModifierHandler handler = new CtModifierHandler(oriNode);
+                    Set<ModifierKind> copyModifiers = new HashSet<>(handler.getModifiers());
+                    copyModifiers.add(modifierKindMap.get(modifier));
+                    oriNode.setValueByRole(CtRole.MODIFIER, copyModifiers);
+
+//                    if(oriNode.getValueByRole(CtRole.) instanceof Set<?>) {
+//                        ((Set<ModifierKind>) oriNode.getValueByRole(CtRole.MODIFIER)).add(ModifierKind.FINAL);
+//                    }
+                }
+
+            } else {
+                // TODO: follow the subtree of insert.target to create a new CtElementImpl
+                CtElementImpl insert = createSpoonNodeRecursively(newInPattern, mapping4pattern, mapping4diff);
+                if (insert == null) {
+                    System.out.println("[error]Create new spoon node failed return null");
+                    throw new IllegalStateException();
+                }
+                // add new mapping
+                mapping4pattern.put(newInPattern, new CtWrapper(insert));
+                mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
+                // insert.source is the parent, which is oriNode
+                // TODO: insert to where, the concrete position of insert.source
+                modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), newInPattern, insert, null);
+                // update codegraph node set
+                target.nodeSetAdd(insert);
             }
-            // add new mapping
-            mapping4pattern.put(newInPattern, new CtWrapper(insert));
-            mapping4pattern.putAll(addMapping4Child(newInPattern, insert));
-            // insert.source is the parent, which is oriNode
-            // TODO: insert to where, the concrete position of insert.source
-            modifyValueByRole(oriNode, (List<Pair<CtRole, Class>>) action.position.getTag(), newInPattern, insert, null);
-            // update codegraph node set
-            target.nodeSetAdd(insert);
         } else {
             System.out.println("[error]Cannot find INSERT.target in pattern: " + target.getFileName());
         }
