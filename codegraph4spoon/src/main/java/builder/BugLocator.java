@@ -100,24 +100,16 @@ public class BugLocator {
                     }
                 }
             }
-//            try {
-//                for (Pair<PatternNode, CtElementImpl> pair : temp) {
-//                    PatternNode action = pair.getValue0();
-//                    CtElementImpl oriNode = pair.getValue1();
-//                    System.out.println(action.getAttribute("nodeType").getTag());
-//                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-//                        applyDelete(action, oriNode, target, mapping);
-//                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-//                        applyUpdate(action, oriNode, target, mapping, target.getMapping());
-//                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
-//                        applyInsert(action, oriNode, target, mapping, target.getMapping());
-//                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
-//                        applyMove(action, oriNode, target, mapping);
-//                    } else {
-//                        System.out.println("[warn]Invalid action nodeType");
-//                    }
-//                }
-////                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+
+            List<CtElementImpl> updateOriNode = new ArrayList<>();
+            for (Pair<PatternNode, CtElementImpl> pair : temp) {
+                PatternNode action = pair.getValue0();
+                CtElementImpl oriNode = pair.getValue1();
+                if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                    updateOriNode.add(oriNode);
+                }
+            }
+
             int currentIndex = 0;
             while (!temp.isEmpty()) {
                 if (currentIndex >= temp.size()) {
@@ -154,6 +146,10 @@ public class BugLocator {
                     temp.remove(currentIndex);
                     System.out.printf("[error]Generate patch failed due to node building error : %s in action %s\n", target.getFileName(), action.getAttribute("nodeType").getTag());
                 }
+            }
+            for(CtElementImpl updateNode: updateOriNode) {
+                target.deleteCGId(updateNode);
+                updateNode.delete();
             }
             ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
         }
@@ -327,7 +323,7 @@ public class BugLocator {
             mapping4pattern.put(newInPattern, new CtWrapper(update));
             mapping4pattern.putAll(addMapping4Child(newInPattern, update));
             // update codegraph node set
-            target.deleteCGId(oriNode);
+//            target.deleteCGId(oriNode);
             target.nodeSetAdd(update);
             // TODO: replace oriNode with the new node in the old tree
 //            oriNode.replace(update);
@@ -346,7 +342,7 @@ public class BugLocator {
             }
 
             modifyValueByRole((CtElementImpl) oriNode.getParent(), roles, newInPattern, update, oriNode);
-            oriNode.delete();
+//            oriNode.delete();
         } else {
             System.out.println("[error]Cannot find UPDATE.target in pattern: " + target.getFileName());
         }
