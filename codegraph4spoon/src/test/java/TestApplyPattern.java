@@ -3,16 +3,14 @@ import model.CodeGraph;
 import model.pattern.Pattern;
 import model.pattern.PatternNode;
 import org.junit.Test;
+import utils.ASTUtil;
 import utils.DotGraph;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
@@ -280,6 +278,103 @@ public class TestApplyPattern {
 
             BugLocator detector = new BugLocator(0.5);
             String patchPath = String.format("%s/out/patch_%s_%d_%d_%d.java", System.getProperty("user.dir"), pro, testId, targetNo, combinedGraphs.indexOf(pat));
+            detector.applyPattern(pat, target_ag, patchPath, runType);
+
+            step_end = System.currentTimeMillis();
+            System.out.printf("[time]apply pattern: %f s\n", (step_end - step_start) / 1000.0);
+        }
+        System.out.println("[finished]" + target_ag.getFileName());
+    }
+
+    @Test
+    public void testApplyPatternOnFixbench_debug() {
+        boolean INCLUE_INSTANCE_ITSELF = true;
+        String runType = "new";
+        String pro = "FindBugs-DM_DEFAULT_ENCODING";
+        int group = 0;
+        String targetCase = "FBViolation#28076";
+        String base = String.format("%s/%s/%d", TestConfig.FIXBENCH_MAC_BASE, pro, group);
+        File[] cases = new File(base).listFiles(File::isDirectory);
+        int size = cases.length;
+
+        // build for the target
+        long step_start = System.currentTimeMillis();
+
+        CodeGraph target_ag = null;
+        for (File i : cases) {
+            if (targetCase.equals(i.getName())) {
+                String diffFile = String.format("%s/diff.diff", i.getAbsolutePath());
+                Map<String, int[]> map = ASTUtil.getDiffLinesInBuggyFile(diffFile);
+                for (Map.Entry<String, int[]> entry : map.entrySet()) {
+                    String srcPath = String.format("%s/old/%s", i.getAbsolutePath(), entry.getKey());
+                    String tarPath = String.format("%s/new/%s", i.getAbsolutePath(), entry.getKey());
+                    // build action graph
+                    target_ag = GraphBuilder.buildActionGraph(srcPath, tarPath, entry.getValue());
+                }
+            }
+        }
+
+        long step_end = System.currentTimeMillis();
+        System.out.printf("[time]build target code graph: %f s\n", (step_end - step_start) / 1000.0);
+
+        // build for the pattern
+        step_start = System.currentTimeMillis();
+
+        List<CodeGraph> ags = new ArrayList<>();
+        for (File i : cases) {
+            if (!INCLUE_INSTANCE_ITSELF && !targetCase.equals(i.getName())) continue;
+
+            String diffFile = String.format("%s/diff.diff", i.getAbsolutePath());
+            Map<String, int[]> map = ASTUtil.getDiffLinesInBuggyFile(diffFile);
+            for (Map.Entry<String, int[]> entry : map.entrySet()) {
+                String srcPath = String.format("%s/old/%s", i.getAbsolutePath(), entry.getKey());
+                String tarPath = String.format("%s/new/%s", i.getAbsolutePath(), entry.getKey());
+                // build action graph
+                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, entry.getValue());
+                System.out.println("[ok]finish parsing source file:" + i.getAbsolutePath());
+                ags.add(ag);
+                // draw dot graph
+                GraphConfiguration config = new GraphConfiguration();
+                int nodeIndexCounter = 0;
+                DotGraph dg = new DotGraph(ag, config, nodeIndexCounter);
+                File dir = new File(System.getProperty("user.dir") + "/out/" + String.format("fixbench_%s_%d_%s_action.dot", pro, group, i.getName()));
+                dg.toDotFile(dir);
+            }
+        }
+        step_end = System.currentTimeMillis();
+        System.out.printf("[time]build all action graphs: %f s\n", (step_end - step_start) / 1000.0);
+
+
+
+        // extract pattern from more-than-one graphs
+        step_start = System.currentTimeMillis();
+        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags, runType);
+        step_end = System.currentTimeMillis();
+        System.out.printf("[time]build patterns: %f s\n", (step_end - step_start) / 1000.0);
+
+        for (Pattern pat : combinedGraphs) {
+            DotGraph dot = new DotGraph(pat, 0, false, false);
+            File dir = new File(System.getProperty("user.dir") + String.format("/out/fixbench_%s_%d_pattern_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
+            dot.toDotFile(dir);
+
+            // abstract pattern
+            step_start = System.currentTimeMillis();
+            PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
+            abs.abstractPattern(pat);
+
+            step_end = System.currentTimeMillis();
+            System.out.printf("[time]abstract patterns: %f s\n", (step_end - step_start) / 1000.0);
+
+
+            DotGraph dot2 = new DotGraph(pat, 0, true, false);
+            File dir2 = new File(System.getProperty("user.dir") + String.format("/out/fixbench_%s_%d_pattern_abstract_%d.dot", pro, group, combinedGraphs.indexOf(pat)));
+            dot2.toDotFile(dir2);
+
+            // locate the buggy line
+            step_start = System.currentTimeMillis();
+
+            BugLocator detector = new BugLocator(0.03);
+            String patchPath = String.format("%s/out/patch_%s_%d_%s_%d.java", System.getProperty("user.dir"), pro, group, targetCase, combinedGraphs.indexOf(pat));
             detector.applyPattern(pat, target_ag, patchPath, runType);
 
             step_end = System.currentTimeMillis();
