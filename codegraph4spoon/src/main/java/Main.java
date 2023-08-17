@@ -255,87 +255,87 @@ public class Main {
     }
 
 
-    public static void testModelPatches(String modelResult, String runType, String dataBase) {
+    public static void testModelPatches(String modelResult, String runType, String dataBase, String key) {
         // modelResult : xxx.json
         // load the json file and iterate all keys and values in it
         JSONObject jsonObject = (JSONObject) ObjectUtil.readJsonFromFile(modelResult);
-        for (String key : jsonObject.keySet()) {
-            try {
-                // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
-                String[] keySplit = key.split("/");
-                String project = keySplit[keySplit.length - 4];
-                String groupID = keySplit[keySplit.length - 3];
-                String targetID = keySplit[keySplit.length - 2];
-                //            String project = "ant";
-                //            String groupID = "488";
-                //            String targetID = "1";
-                //            String key = String.format("/data02/hanjiachen/yc_fixgen/dataset/%s/%s/%s/before.java$$0", project, groupID, targetID);
+//        for (String key : jsonObject.keySet()) {
+        try {
+            // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
+            String[] keySplit = key.split("/");
+            String project = keySplit[keySplit.length - 4];
+            String groupID = keySplit[keySplit.length - 3];
+            String targetID = keySplit[keySplit.length - 2];
+            //            String project = "ant";
+            //            String groupID = "488";
+            //            String targetID = "1";
+            //            String key = String.format("/data02/hanjiachen/yc_fixgen/dataset/%s/%s/%s/before.java$$0", project, groupID, targetID);
 
-                String patchDir = String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"), project, groupID);
+            String patchDir = String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"), project, groupID);
 
-                String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
-                String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
+            String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
+            String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
 
 
-                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
 
-                // 3. json file as model input
-                // init the pattern
-                List<Pattern> patterns = PatternExtractor.combineGraphs(new ArrayList<>() {
-                    {
-                        add(ag);
+            // 3. json file as model input
+            // init the pattern
+            List<Pattern> patterns = PatternExtractor.combineGraphs(new ArrayList<>() {
+                {
+                    add(ag);
+                }
+            }, runType);
+//                if (patterns.size() > 1) {
+//                    continue;
+//                }
+            Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+            for (Pattern pat : patterns) {
+                // abstract pattern
+                PatternAbstractor abs = new PatternAbstractor(1);
+                pat = abs.abstractPattern(pat);
+                // get feature json object
+                List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                for (Pair<String, JSONObject> pair : patternByID) {
+                    if (!patternsByID.containsKey(pair.getValue0())) {
+                        patternsByID.put(pair.getValue0(), new JSONArray());
                     }
-                }, runType);
-                if (patterns.size() > 1) {
-                    continue;
+                    patternsByID.get(pair.getValue0()).add(pair.getValue1());
                 }
-                Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
-                for (Pattern pat : patterns) {
-                    // abstract pattern
-                    PatternAbstractor abs = new PatternAbstractor(1);
-                    pat = abs.abstractPattern(pat);
-                    // get feature json object
-                    List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
-                    for (Pair<String, JSONObject> pair : patternByID) {
-                        if (!patternsByID.containsKey(pair.getValue0())) {
-                            patternsByID.put(pair.getValue0(), new JSONArray());
-                        }
-                        patternsByID.get(pair.getValue0()).add(pair.getValue1());
-                    }
-                }
-                // write json object to file
-                String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/c3_%s_%s_%s.json", project, groupID, targetID);
-                ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
-
-                String cg_name = ag.getFileName();
-                for (int i = 0; i < patterns.size(); i++) {
-                    Pattern pattern = patterns.get(i);
-                    PatternAbstractor.buildWithoutAbstract(pattern);
-
-                    JSONObject label = ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).getJSONObject(key);
-                    JSONObject ori = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(cg_name).getJSONObject(i);
-                    InteractPattern.abstractByJSONObject(pattern, ori, label, cg_name);
-                    // save the pattern
-                    String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
-                    ObjectUtil.writeObjectToFile(pattern, patternPath);
-                }
-                // 5. apply pattern to source file
-                // build for the target
-                CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
-
-                for (int i = 0; i < patterns.size(); i++) {
-                    Pattern pattern = patterns.get(i);
-                    // locate the buggy line
-                    BugLocator detector = new BugLocator(0.6);
-
-                    String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
-                    detector.applyPattern(pattern, target_ag, patchPath, runType);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                continue;
             }
+            // write json object to file
+            String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/c3_%s_%s_%s.json", project, groupID, targetID);
+            ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+
+            String cg_name = ag.getFileName();
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+                PatternAbstractor.buildWithoutAbstract(pattern);
+
+                JSONObject label = ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).getJSONObject(key);
+                JSONObject ori = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(cg_name).getJSONObject(i);
+                InteractPattern.abstractByJSONObject(pattern, ori, label, cg_name);
+                // save the pattern
+                String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
+                ObjectUtil.writeObjectToFile(pattern, patternPath);
+            }
+            // 5. apply pattern to source file
+            // build for the target
+            CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
+
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+                // locate the buggy line
+                BugLocator detector = new BugLocator(0.6);
+
+                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+                detector.applyPattern(pattern, target_ag, patchPath, runType);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+//                continue;
         }
+//        }
     }
 
     public static void main(String[] args) {
@@ -346,6 +346,7 @@ public class Main {
         String patchBase = String.format("%s/out/patch/", System.getProperty("user.dir"));
 //        String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"))
         String modelResult = "";
+        String key = "";
 
 //        String pythonScript = String.format("%s/reformat_patch.py", System.getProperty("user.dir"));
 
@@ -367,6 +368,8 @@ public class Main {
                 modelResult = arg.substring("--model_res=".length());
             } else if (arg.startsWith("--patch_base=")) {
                 patchBase = arg.substring("--patch_base=".length());
+            } else if (arg.startsWith("--key=")) {
+                key = arg.substring("--key=".length());
             } else {
                 System.out.println("Unknown command-line argument: " + arg);
                 return;
@@ -443,7 +446,7 @@ public class Main {
         } else if (type.equals("generateTraining")) {
             generatePatches(projects, runType, base, true, 1);
         } else if (type.equals("testModel")) {
-            testModelPatches(modelResult, runType, base);
+            testModelPatches(modelResult, runType, base, key);
         }
     }
 }
