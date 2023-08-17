@@ -1,7 +1,4 @@
-import builder.BugLocator;
-import builder.GraphBuilder;
-import builder.PatternAbstractor;
-import builder.PatternExtractor;
+import builder.*;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import model.CodeGraph;
@@ -257,12 +254,98 @@ public class Main {
         }
     }
 
+
+    public static void testModelPatches(String modelResult, String runType, String dataBase) {
+        // modelResult : xxx.json
+        // load the json file and iterate all keys and values in it
+        JSONObject jsonObject = (JSONObject) ObjectUtil.readJsonFromFile(modelResult);
+        for (String key : jsonObject.keySet()) {
+            try {
+                // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
+                String[] keySplit = key.split("/");
+                String project = keySplit[keySplit.length - 4];
+                String groupID = keySplit[keySplit.length - 3];
+                String targetID = keySplit[keySplit.length - 2];
+                //            String project = "ant";
+                //            String groupID = "488";
+                //            String targetID = "1";
+                //            String key = String.format("/data02/hanjiachen/yc_fixgen/dataset/%s/%s/%s/before.java$$0", project, groupID, targetID);
+
+                String patchDir = String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"), project, groupID);
+
+                String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
+                String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
+
+
+                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+
+                // 3. json file as model input
+                // init the pattern
+                List<Pattern> patterns = PatternExtractor.combineGraphs(new ArrayList<>() {
+                    {
+                        add(ag);
+                    }
+                }, runType);
+                if (patterns.size() > 1) {
+                    continue;
+                }
+                Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+                for (Pattern pat : patterns) {
+                    // abstract pattern
+                    PatternAbstractor abs = new PatternAbstractor(1);
+                    pat = abs.abstractPattern(pat);
+                    // get feature json object
+                    List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                    for (Pair<String, JSONObject> pair : patternByID) {
+                        if (!patternsByID.containsKey(pair.getValue0())) {
+                            patternsByID.put(pair.getValue0(), new JSONArray());
+                        }
+                        patternsByID.get(pair.getValue0()).add(pair.getValue1());
+                    }
+                }
+                // write json object to file
+                String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/c3_%s_%s_%s.json", project, groupID, targetID);
+                ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+
+                String cg_name = ag.getFileName();
+                for (int i = 0; i < patterns.size(); i++) {
+                    Pattern pattern = patterns.get(i);
+                    PatternAbstractor.buildWithoutAbstract(pattern);
+
+                    JSONObject label = ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).getJSONObject(key);
+                    JSONObject ori = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(cg_name).getJSONObject(i);
+                    InteractPattern.abstractByJSONObject(pattern, ori, label, cg_name);
+                    // save the pattern
+                    String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
+                    ObjectUtil.writeObjectToFile(pattern, patternPath);
+                }
+                // 5. apply pattern to source file
+                // build for the target
+                CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
+
+                for (int i = 0; i < patterns.size(); i++) {
+                    Pattern pattern = patterns.get(i);
+                    // locate the buggy line
+                    BugLocator detector = new BugLocator(0.6);
+
+                    String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+                    detector.applyPattern(pattern, target_ag, patchPath, runType);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         String project = "";
         String base = "";
         String type = "";
         String id = "";
         String patchBase = String.format("%s/out/patch/", System.getProperty("user.dir"));
+//        String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"))
+        String modelResult = "";
 
 //        String pythonScript = String.format("%s/reformat_patch.py", System.getProperty("user.dir"));
 
@@ -280,17 +363,26 @@ public class Main {
                 type = arg.substring("--type=".length());
             } else if (arg.startsWith("--id=")) {
                 id = arg.substring("--id=".length());
+            } else if (arg.startsWith("--model_res=")) {
+                modelResult = arg.substring("--model_res=".length());
+            } else if (arg.startsWith("--patch_base=")) {
+                patchBase = arg.substring("--patch_base=".length());
+            } else {
+                System.out.println("Unknown command-line argument: " + arg);
+                return;
             }
         }
 
         String runLogPath = String.format("%s/log/%s/%s.log", System.getProperty("user.dir"), project, id);
         String checkLogPath = String.format("%s/log/%s/check.log", System.getProperty("user.dir"), project);
         String generateTrainingDataPath = String.format("%s/model_log/%s.log", System.getProperty("user.dir"), project);
+        String testModelPath = String.format("%s/model_log/progress.log", System.getProperty("user.dir"));
 
         List<String> allLogFiles = new ArrayList<>();
         allLogFiles.add(runLogPath);
         allLogFiles.add(checkLogPath);
         allLogFiles.add(generateTrainingDataPath);
+        allLogFiles.add(testModelPath);
 
         for (String singleFile : allLogFiles) {
             File tmpLog = new File(singleFile);
@@ -311,9 +403,8 @@ public class Main {
             logFile = checkLogPath;
         } else if (type.equals("generateTraining")) {
             logFile = generateTrainingDataPath;
-        } else {
-            System.out.println("Wrong type");
-            return;
+        } else if (type.equals("testModel")) {
+            logFile = testModelPath;
         }
 
         System.getProperty("user.dir");
@@ -351,116 +442,8 @@ public class Main {
             testPatchCorrectness2(project, base, patchBase);
         } else if (type.equals("generateTraining")) {
             generatePatches(projects, runType, base, true, 1);
+        } else if (type.equals("testModel")) {
+            testModelPatches(modelResult, runType, base);
         }
     }
 }
-
-
-//
-//    AtomicInteger targetCounter = new AtomicInteger();
-//    long start = System.currentTimeMillis();
-//
-//        for (int i = 0; i < projects.length; i++) {
-//        System.out.println(project);
-//
-//        AtomicInteger total = new AtomicInteger();
-//        File dir = new File(base + "dataset/" + projects[i]);
-//
-//
-//        int testId = Integer.parseInt(id);
-//        String baseDir = String.format("%s/%d", dir, testId);
-//        int size = (int) Arrays.stream(new File(baseDir).listFiles()).filter(File::isDirectory).count();
-//
-//        String patchDir = String.format("%s/out/patch/%s/%s", System.getProperty("user.dir"), projects[i], testId);
-//        System.out.println(patchDir);
-//        if (SKIP_IF_EXIST && new File(patchDir).exists())
-//        continue;
-//
-//        ExecutorService executor = Executors.newCachedThreadPool();
-//
-//        // 使用Callable接口作为构造参数
-//        int finalI = i;
-//        FutureTask<String> future = new FutureTask<>(() -> {
-//        // 真正的任务代码在这里执行，返回值为你需要的类型
-//        try {
-//        // all action graph
-//        long step_start = System.currentTimeMillis();
-//        List<CodeGraph> ags = new ArrayList<>();
-//        for (int k = 0; k < size; k++) {
-//        String srcPath = String.format("%s/%d/before.java", baseDir, k);
-//        String tarPath = String.format("%s/%d/after.java", baseDir, k);
-//        // build action graph
-//        System.out.printf("[prepare]build action graph: %s %d %d\n", projects[finalI], testId, k);
-//        CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
-//        ags.add(ag);
-//        }
-//        List<CodeGraph> ags_temp = new ArrayList<>();
-//        for (int k = 0; k < size; k++) {
-//        ags_temp.add(ags.get(k));
-//        }
-//        List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags_temp, runType);
-//        long step_end = System.currentTimeMillis();
-//        System.out.printf("[time]build all instance action graphs: %f s\n", (step_end - step_start) / 1000.0);
-//
-//        // each as target
-//        for (int targetNo = 0; targetNo < size; targetNo++) {
-//        // exclude the cases where more than one pattern are generated
-//        if (combinedGraphs.size() > 1) {
-//        System.out.printf("[warn]extracted pattern not single, size:%d\n", combinedGraphs.size());
-//        continue;
-//        }
-//
-//        targetCounter.getAndIncrement();
-//        // build for the target
-//        String path = String.format("%s/%d/before.java", baseDir, targetNo);
-//        System.out.println("[start]" + path);
-//        step_start = System.currentTimeMillis();
-//        CodeGraph target_ag = GraphBuilder.buildGraph(path, new String[]{}, 8, new int[]{});
-//        step_end = System.currentTimeMillis();
-//        System.out.printf("[time]build target codegraph: %f s\n", (step_end - step_start) / 1000.0);
-//
-//        for (Pattern pat : combinedGraphs) {
-//        total.getAndIncrement();
-//        step_start = System.currentTimeMillis();
-//        PatternAbstractor abs = new PatternAbstractor((int) Math.ceil(size * 1.0));
-//        abs.abstractPattern(pat);
-//        step_end = System.currentTimeMillis();
-//        System.out.printf("[time]abstract pattern: %f s\n", (step_end - step_start) / 1000.0);
-//
-//        BugLocator detector = new BugLocator(0.6);
-//        String patchPath = String.format("%s/%d/patch_%d.java", patchDir, targetNo, combinedGraphs.indexOf(pat));
-//
-//        step_start = System.currentTimeMillis();
-//        detector.applyPattern(pat, target_ag, patchPath, runType);
-//        step_end = System.currentTimeMillis();
-//        System.out.printf("[time]apply pattern: %f s\n", (step_end - step_start) / 1000.0);
-//        System.out.println("[patch]" + patchPath);
-//        }
-//        System.out.println("[finished]" + path);
-//        }
-//        } catch (Exception e) {
-//        System.out.println("[error]Unknown exception");
-//        } catch (Error e) {
-//        System.out.println("[error]Unknown error");
-//        }
-//        return "";
-//        });
-//
-//        executor.execute(future);
-//        try {
-//        // 取得结果，同时设置超时执行时间默认为10秒。同样可以用future.get()，不设置执行超时时间取得结果
-//        future.get(1, TimeUnit.MINUTES);
-//        } catch (Exception e) {
-//        System.out.println("[error]Timeout");
-//        future.cancel(true);
-//        } finally {
-//        executor.shutdown();
-//        }
-//
-//        System.out.println(projects[i] + total.get());
-//        }
-//        long end = System.currentTimeMillis();
-//        double time = (end - start) / 1000.0;
-//        System.out.printf("[stat]total time: %f  (in second)\n", time);
-//        System.out.println("[stat]target bug instance number: " + targetCounter);
-//

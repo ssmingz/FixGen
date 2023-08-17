@@ -14,8 +14,8 @@ import model.pattern.Pattern;
 import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.apache.commons.lang3.StringUtils;
-import spoon.support.reflect.declaration.CtElementImpl;
 import org.javatuples.Pair;
+import spoon.support.reflect.declaration.CtElementImpl;
 
 import java.io.*;
 import java.util.*;
@@ -50,7 +50,6 @@ public class ObjectUtil {
 
 
     /**
-     *
      * @param addFlag : whether append
      */
     public static void writeToCsv(String headLabel, List<String> dataList, String filePath, boolean addFlag) {
@@ -109,7 +108,7 @@ public class ObjectUtil {
     }
 
     public static List<Pair<String, JSONObject>> getFeatureJsonObj(Pattern pat, HashMap<Integer, Object> idPatternBeforeAbs) {
-        List<Pair<String, JSONObject>> result =  new ArrayList<>();
+        List<Pair<String, JSONObject>> result = new ArrayList<>();
 
         Map<CodeGraph, CGObject> cgObjects = new LinkedHashMap<>();
         for (Map.Entry<Integer, Object> entry : idPatternBeforeAbs.entrySet()) {
@@ -165,17 +164,17 @@ public class ObjectUtil {
             int vSize = cgObj.vertexes.size();
             String[][] edgeMatrix = new String[vSize][vSize];
             int[][] edgeMatrix2 = new int[vSize][vSize];
-            for (int i=0; i<vSize; i++) {
+            for (int i = 0; i < vSize; i++) {
                 List<String> edgeType = new ArrayList<>();
                 List<Integer> edgeLabel = new ArrayList<>();
-                for (int j=0; j<vSize; j++) {
+                for (int j = 0; j < vSize; j++) {
                     CtWrapper src = cgObj.vertexMap.get(cgObj.vertexes.get(i));
                     CtWrapper tar = cgObj.vertexMap.get(cgObj.vertexes.get(j));
                     if (ObjectUtil.hasEdge(src.getCtElementImpl(), tar.getCtElementImpl())) {
                         Set<Edge> edges = ObjectUtil.findAllEdges(src.getCtElementImpl(), tar.getCtElementImpl());
                         for (Edge e : edges) {
                             edgeMatrix[i][j] = e.getLabel();
-                            edgeMatrix2[i][j] = cgObj.edgeMap.get(e)?1:0;
+                            edgeMatrix2[i][j] = cgObj.edgeMap.get(e) ? 1 : 0;
                         }
                         if (edges.size() > 1)
                             System.out.println("[warn]More than one edge between two nodes : " + entry.getKey().getFileName());
@@ -330,6 +329,17 @@ public class ObjectUtil {
 
     public static void writeObjectToFile(Object obj, String filePath) {
         File file = new File(filePath);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         try {
             FileOutputStream out = new FileOutputStream(file);
             ObjectOutputStream objOut = new ObjectOutputStream(out);
@@ -390,8 +400,7 @@ public class ObjectUtil {
             in.read(bytes);
             in.close();
             return new String(bytes);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
