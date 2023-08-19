@@ -196,20 +196,52 @@ public class Main {
         for (int i = 0; i < projects.length; i++) {
             Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
             int graphCounter = 0, groupCounter = 0, groupBuffer = 0;
-            File dir = new File(String.format(base + "dataset/" + projects[i]));
-            for (File group : dir.listFiles()) {
-                if (SKIP_EXIST_OUTPUT && new File(String.format("%s/out/json/%s/%s.json", System.getProperty("user.dir"), projects[i], group.getName())).exists())
-                    continue;
+            File dir;
+            if ("SysEdit".equals(projects[i]))
+                dir = new File(String.format(base + projects[i]));
+            else
+                dir = new File(String.format(base + "dataset/" + projects[i]));
+            File[] dirs = dir.listFiles();
+            if ("SysEdit".equals(projects[i])) {
+                List<File> temp = new ArrayList<>();
+                Arrays.stream(dirs).forEach(f -> {
+                    if (f.isDirectory()) {
+                        temp.add(new File(f.getAbsolutePath() + "/l/"));
+                        temp.add(new File(f.getAbsolutePath() + "/r/"));
+                    }
+                });
+                dirs = temp.toArray(new File[temp.size()]);
+            }
+            for (File group : dirs) {
+                if (SKIP_EXIST_OUTPUT) {
+                    if ("SysEdit".equals(projects[i])) {
+                        String id = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 2];
+                        String prefix = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 1];
+                        if (new File(String.format("%s/out/json/%s/%s_%s.json", System.getProperty("user.dir"), projects[i], id, prefix)).exists())
+                            continue;
+                    } else {
+                        if (new File(String.format("%s/out/json/%s/%s.json", System.getProperty("user.dir"), projects[i], group.getName())).exists())
+                           continue;
+                    }
+                }
                 if (group.isDirectory()) {
                     try {
                         List<CodeGraph> ags = new ArrayList<>();
-                        for (File pair : group.listFiles()) {
-                            if (pair.isDirectory()) {
-                                String srcPath = pair.getAbsolutePath() + "/before.java";
-                                String tarPath = pair.getAbsolutePath() + "/after.java";
-                                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
-                                ags.add(ag);
-                                graphCounter++;
+                        if ("SysEdit".equals(projects[i])) {
+                            String srcPath = group.getAbsolutePath() + "/before.java";
+                            String tarPath = group.getAbsolutePath() + "/after.java";
+                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+                            ags.add(ag);
+                            graphCounter++;
+                        } else {
+                            for (File pair : group.listFiles()) {
+                                if (pair.isDirectory()) {
+                                    String srcPath = pair.getAbsolutePath() + "/before.java";
+                                    String tarPath = pair.getAbsolutePath() + "/after.java";
+                                    CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+                                    ags.add(ag);
+                                    graphCounter++;
+                                }
                             }
                         }
                         // extract pattern from more-than-one graphs
@@ -238,6 +270,12 @@ public class Main {
                         String jsonPath;
 
                         jsonPath = System.getProperty("user.dir") + String.format("/out/json/%s/%s.json", projects[i], group.getName());
+                        if ("SysEdit".equals(projects[i])) {
+                            String id = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 2];
+                            String prefix = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 1];
+                            jsonPath = String.format("%s/out/json/%s/%s_%s.json", System.getProperty("user.dir"), projects[i], id, prefix);
+                        }
+
                         File file = new File(jsonPath);
                         if (!file.getParentFile().exists()) {
                             file.getParentFile().mkdirs();
