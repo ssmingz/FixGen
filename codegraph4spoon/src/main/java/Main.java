@@ -3,8 +3,11 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import model.CodeGraph;
 import model.pattern.Pattern;
+import model.pattern.PatternEdge;
+import model.pattern.PatternNode;
 import org.javatuples.Pair;
 import utils.DiffUtil;
+import utils.DotGraph;
 import utils.ObjectUtil;
 
 import java.io.File;
@@ -17,6 +20,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -304,6 +308,7 @@ public class Main {
                 String project = keySplit[keySplit.length - 4];
                 String groupID = keySplit[keySplit.length - 3];
                 String targetID = keySplit[keySplit.length - 2];
+
                 //            String project = "ant";
                 //            String groupID = "488";
                 //            String targetID = "1";
@@ -356,6 +361,10 @@ public class Main {
                     // save the pattern
                     String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
                     ObjectUtil.writeObjectToFile(pattern, patternPath);
+
+                    DotGraph dot2 = new DotGraph(pattern, 0, true, false);
+                    File dir2 = new File(String.format("%s/graph/pattern_c3_%s_%s_%s_%s.dot", System.getProperty("user.dir"), project, groupID, targetID, i));
+                    dot2.toDotFile(dir2);
                 }
                 // 5. apply pattern to source file
                 // build for the target
@@ -363,6 +372,30 @@ public class Main {
 
                 for (int i = 0; i < patterns.size(); i++) {
                     Pattern pattern = patterns.get(i);
+
+                    // check whether all actions are abstracted
+                    if (pattern.getActionSet().stream().allMatch(n -> n.isAbstract())) {
+                        System.out.println(String.format("[error]all abstracted actions: %s %s %s", project, groupID, targetID));
+                        continue;
+                    }
+
+                    // check action source and target whether valid
+                    boolean abstractValid = true;
+                    for (PatternNode action : pattern.getActionSet().stream().filter(n -> !n.isAbstract()).collect(Collectors.toSet())) {
+                        for (PatternEdge ie : action.inEdges()) {
+                            if (ie.isAbstract() || ie.getSource().isAbstract())
+                                abstractValid = false;
+                        }
+                        for (PatternEdge oe : action.outEdges()) {
+                            if (oe.isAbstract() || oe.getTarget().isAbstract())
+                                abstractValid = false;
+                        }
+                    }
+                    if (!abstractValid) {
+                        System.out.println(String.format("[error]action node has invalid-abstracted source or target: %s %s %s", project, groupID, targetID));
+                        continue;
+                    }
+
                     // locate the buggy line
                     BugLocator detector = new BugLocator(0.6);
 
@@ -454,7 +487,7 @@ public class Main {
 
         boolean INCLUE_INSTANCE_ITSELF = true;
         boolean SKIP_IF_EXIST = true;
-        boolean OUTPUT_TO_FILE = true;
+        boolean OUTPUT_TO_FILE = false;
 
 
         if (OUTPUT_TO_FILE) {
@@ -475,7 +508,6 @@ public class Main {
 
         if (type.equals("run")) {
             runAllCases(projects, runType, base, id, SKIP_IF_EXIST);
-
         } else if (type.equals("check")) {
             testPatchCorrectness2(project, base, patchBase);
         } else if (type.equals("generateTraining")) {

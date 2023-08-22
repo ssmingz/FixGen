@@ -465,10 +465,6 @@ public class PatternExtractor {
                 if (simScore <= 0 || simScore < bestSimScore) {
                     break;
                 }
-                if (node.toLabelString().equals("!fails.fTornDown") && candidate.toLabelString().equals("fails.fTornDown") && !isMatch(node, candidate, mapping)) {
-                    isMatch(node, candidate, mapping);
-                    System.out.println("debug");
-                }
 
                 if (simScore >= bestSimScore && isMatch(node, candidate, mapping)) {
                     //if (simScore == highestScore && isMatch(node, candidate, mapping)) {
