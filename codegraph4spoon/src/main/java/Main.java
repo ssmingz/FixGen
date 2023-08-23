@@ -316,6 +316,10 @@ public class Main {
 
                 String patchDir = String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"), project, groupID);
 
+                // use l and r in SysEdit in a cross way
+                if (project.equals("SysEdit"))
+                    targetID = targetID.equals("l") ? "r" : "l";
+
                 String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
                 String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
 
