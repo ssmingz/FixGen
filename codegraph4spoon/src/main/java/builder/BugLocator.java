@@ -155,6 +155,8 @@ public class BugLocator {
                 updateNode.delete();
             }
             ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+        } else {
+            System.out.printf("[warn]Not satisfy SIMILARITY_THRESHOLD: %s\n", target.getFileName());
         }
 //            catch (IllegalStateException se) {
 //                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());

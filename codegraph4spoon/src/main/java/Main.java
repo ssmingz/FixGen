@@ -302,13 +302,12 @@ public class Main {
         // load the json file and iterate all keys and values in it
         JSONObject jsonObject = (JSONObject) ObjectUtil.readJsonFromFile(modelResult);
         for (String key : jsonObject.keySet()) {
+            // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
+            String[] keySplit = key.split("/");
+            String project = keySplit[keySplit.length - 4];
+            String groupID = keySplit[keySplit.length - 3];
+            String targetID = keySplit[keySplit.length - 2];
             try {
-                // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
-                String[] keySplit = key.split("/");
-                String project = keySplit[keySplit.length - 4];
-                String groupID = keySplit[keySplit.length - 3];
-                String targetID = keySplit[keySplit.length - 2];
-
                 //            String project = "ant";
                 //            String groupID = "488";
                 //            String targetID = "1";
@@ -334,6 +333,7 @@ public class Main {
                     }
                 }, runType);
                 if (patterns.size() > 1) {
+                    System.out.printf("[warn]More than one pattern: %s %s %s\n", project, groupID, targetID);
                     continue;
                 }
                 Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
@@ -378,8 +378,8 @@ public class Main {
                     Pattern pattern = patterns.get(i);
 
                     // check whether all actions are abstracted
-                    if (pattern.getActionSet().stream().allMatch(n -> n.isAbstract())) {
-                        System.out.println(String.format("[error]all abstracted actions: %s %s %s", project, groupID, targetID));
+                    if (pattern.getActionSet().stream().allMatch(PatternNode::isAbstract)) {
+                        System.out.printf("[error]all abstracted actions: %s %s %s\n", project, groupID, targetID);
                         continue;
                     }
 
@@ -396,19 +396,20 @@ public class Main {
                         }
                     }
                     if (!abstractValid) {
-                        System.out.println(String.format("[error]action node has invalid-abstracted source or target: %s %s %s", project, groupID, targetID));
+                        System.out.printf("[error]action node has invalid-abstracted source or target: %s %s %s\n", project, groupID, targetID);
                         continue;
                     }
 
                     // locate the buggy line
-                    BugLocator detector = new BugLocator(0.6);
+                    BugLocator detector = new BugLocator(1.0);
 
                     String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
                     detector.applyPattern(pattern, target_ag, patchPath, runType);
                 }
+            } catch (IndexOutOfBoundsException e2) {
+                System.out.printf("[error]Pattern and json result not match: %s %s %s\n", project, groupID, targetID);
             } catch (Exception e) {
                 e.printStackTrace();
-                continue;
             }
         }
     }
