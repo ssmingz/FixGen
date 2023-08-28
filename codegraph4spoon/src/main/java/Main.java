@@ -378,25 +378,21 @@ public class Main {
                     Pattern pattern = patterns.get(i);
 
                     // check whether all actions are abstracted
-                    if (pattern.getActionSet().stream().allMatch(PatternNode::isAbstract)) {
+                    if (pattern.getActionSet().stream().allMatch(n -> !n.isActionRelated() && n.isAbstract())) {
                         System.out.printf("[error]all abstracted actions: %s %s %s\n", project, groupID, targetID);
                         continue;
                     }
 
-                    // check action source and target whether valid
+                    // check action source whether valid
                     boolean abstractValid = true;
                     for (PatternNode action : pattern.getActionSet().stream().filter(n -> !n.isAbstract()).collect(Collectors.toSet())) {
                         for (PatternEdge ie : action.inEdges()) {
                             if (ie.isAbstract() || ie.getSource().isAbstract())
                                 abstractValid = false;
                         }
-                        for (PatternEdge oe : action.outEdges()) {
-                            if (oe.isAbstract() || oe.getTarget().isAbstract())
-                                abstractValid = false;
-                        }
                     }
                     if (!abstractValid) {
-                        System.out.printf("[error]action node has invalid-abstracted source or target: %s %s %s\n", project, groupID, targetID);
+                        System.out.printf("[error]action node has invalid-abstracted source: %s %s %s\n", project, groupID, targetID);
                         continue;
                     }
 
@@ -492,7 +488,7 @@ public class Main {
 
         boolean INCLUE_INSTANCE_ITSELF = true;
         boolean SKIP_IF_EXIST = true;
-        boolean OUTPUT_TO_FILE = false;
+        boolean OUTPUT_TO_FILE = true;
 
 
         if (OUTPUT_TO_FILE) {
