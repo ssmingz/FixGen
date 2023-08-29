@@ -304,7 +304,8 @@ public class Main {
         JSONObject jsonObject = (JSONObject) ObjectUtil.readJsonFromFile(modelResult);
         for (String key : jsonObject.keySet()) {
             // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
-            String[] keySplit = key.split("/");
+            String regex = java.util.regex.Pattern.quote(System.getProperty("file.separator"));
+            String[] keySplit = key.split(regex);
             String project = keySplit[keySplit.length - 4];
             String groupID = keySplit[keySplit.length - 3];
             String targetID = keySplit[keySplit.length - 2];
