@@ -1,8 +1,0 @@
-digraph "Pattern" {
-0 [label="##ActionPoint##\nlocationInParent:action\nnodeType:INSERT" shape=ellipse]
-1 [label="locationInParent:thenStatement\nnodeType:Block\nnodeTypeHighLevel:statement" shape=ellipse]
-2 [label="locationInParent:statements\nnodeType:ExpressionStatement\nnodeTypeHighLevel:statement" shape=ellipse]
-3 [label="locationInParent:condition\nnodeType:CtBinaryOperatorImpl\nnodeTypeHighLevel:expression\nvalueType:boolean" shape=ellipse]
-0 -> 3 [label="Action:2"];
-1 -> 2 [label="AST:2"];
-}

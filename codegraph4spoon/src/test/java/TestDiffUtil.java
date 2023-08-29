@@ -3,6 +3,7 @@ import utils.ASTUtil;
 import utils.DiffUtil;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
@@ -43,6 +44,30 @@ public class TestDiffUtil {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    @Test
+    public void testDiffOnFixBench() {
+        File dir = new File(TestConfig.SYSEDIT_WIN_BASE);
+        for (File group : dir.listFiles()) {
+            if (group.isDirectory()) {
+                String srcPath = group.getAbsolutePath()+"/l/before.java";
+                String tarPath = group.getAbsolutePath()+"/l/after.java";
+                String diffPath = group.getAbsolutePath()+"/l/diff.diff";
+                // write diff to file
+                DiffUtil.writeDiffFile(srcPath, tarPath, diffPath);
+                assertTrue((new File(diffPath)).exists());
+
+                System.out.println(diffPath + ": generate diff ok");
+                srcPath = group.getAbsolutePath()+"/r/before.java";
+                tarPath = group.getAbsolutePath()+"/r/after.java";
+                diffPath = group.getAbsolutePath()+"/r/diff.diff";
+                // write diff to file
+                DiffUtil.writeDiffFile(srcPath, tarPath, diffPath);
+                assertTrue((new File(diffPath)).exists());
+                System.out.println(diffPath + ": generate diff ok");
             }
         }
     }

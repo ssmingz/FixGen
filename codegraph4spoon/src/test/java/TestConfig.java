@@ -8,6 +8,8 @@ public class TestConfig {
     static String FIXBENCH_WIN_BASE = "E:\\dataset\\FixBench\\WithinSingleMethod";
     static String BENCHMARK_WIN_BASE = "E:\\dataset\\FixBench\\fixBenchTest";
 
+    static String SYSEDIT_WIN_BASE = "D:\\expdata\\c3\\SysEdit";
+
     static int MAX_GROUP = 1;
     static boolean SKIP_EXIST_OUTPUT = true;
 

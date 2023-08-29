@@ -1,3 +1,0 @@
-digraph "Pattern" {
-0 [label="locationInParent:statements\nnodeTypeHighLevel:statement" shape=ellipse]
-}

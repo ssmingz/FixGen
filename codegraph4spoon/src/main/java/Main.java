@@ -216,11 +216,12 @@ public class Main {
                 });
                 dirs = temp.toArray(new File[temp.size()]);
             }
+            String regex = java.util.regex.Pattern.quote(System.getProperty("file.separator"));
             for (File group : dirs) {
                 if (SKIP_EXIST_OUTPUT) {
                     if ("SysEdit".equals(projects[i])) {
-                        String id = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 2];
-                        String prefix = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 1];
+                        String id = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 2];
+                        String prefix = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 1];
                         if (new File(String.format("%s/out/json/%s/%s_%s.json", System.getProperty("user.dir"), projects[i], id, prefix)).exists())
                             continue;
                     } else {
@@ -275,8 +276,8 @@ public class Main {
 
                         jsonPath = System.getProperty("user.dir") + String.format("/out/json/%s/%s.json", projects[i], group.getName());
                         if ("SysEdit".equals(projects[i])) {
-                            String id = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 2];
-                            String prefix = group.getAbsolutePath().split("/")[group.getAbsolutePath().split("/").length - 1];
+                            String id = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 2];
+                            String prefix = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 1];
                             jsonPath = String.format("%s/out/json/%s/%s_%s.json", System.getProperty("user.dir"), projects[i], id, prefix);
                         }
 
