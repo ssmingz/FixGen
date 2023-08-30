@@ -1174,16 +1174,7 @@ public class PatternExtractor {
             scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
         }
 
-        if(! scores.isEmpty()) {
-            // 当patternNode中有过多属性被抽象掉时，剩余的属性和cgn的属性比较将没有太大意义
-            pn.getInstance().keySet().forEach(ctWrapper -> {
-                double score = calSimScore(ctWrapper.getCtElementImpl(), cgn.getCtElementImpl());
-                scores.add(score);
-            });
-            return scores.stream().mapToDouble(n -> n).average().getAsDouble();
-        } else {
-            return 0.0;
-        }
+        return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n -> n).average().getAsDouble();
     }
 
     private static double calContextSim(String a, String b) {

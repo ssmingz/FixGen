@@ -52,9 +52,12 @@ public class Main {
                     for (int targetNo = 0; targetNo < size; targetNo++) {
                         File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
                         if (!patchDir.exists()) continue;
-                        if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+
+                        // name format: patch_PATTERNindex#PATCHindex.java
+                        if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
                             targetCounter_single++;
                         targetCounter++;
+
                         for (File patch : patchDir.listFiles()) {
                             if (patch.getName().endsWith(".java")) {
                                 String patchPath = patch.getAbsolutePath();
@@ -64,7 +67,7 @@ public class Main {
                                 List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
                                 boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
                                 correctCounter += correctness ? 1 : 0;
-                                if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+                                if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
                                     correctCounter_single += correctness ? 1 : 0;
 //                                if (!correctness) {
                                 System.out.printf("[%b]%s%n", correctness, patchPath);

@@ -33,6 +33,7 @@ import utils.SyntaxUtil;
 
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BugLocator {
     public double SIMILARITY_THRESHOLD = 1.0;
@@ -87,82 +88,89 @@ public class BugLocator {
         List<Pair<Map<PatternNode, CtWrapper>, Double>> mappingScoreList = pat.compareCG(target, runType);
         // record the original root node
         CtElementImpl root = target.getEntryNode();
-        Pair<Map<PatternNode, CtWrapper>, Double> mappingScore = mappingScoreList.get(0);
-//        for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : mappingScoreList) {
-        if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
-            Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
-            // pattern.start is the action point, that is also the buggy point
-            List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
-            for (Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
-                for (Pair<PatternNode, PatternNode> pair : nodeAttachAction) {
-                    if (pair.getValue0() == entry.getKey()) {
-                        // apply action
-                        PatternNode action = pair.getValue1();
-                        CtElementImpl oriNode = entry.getValue().getCtElementImpl();
-                        temp.add(Pair.with(action, oriNode));
-                    }
-                }
-            }
 
-            List<CtElementImpl> updateOriNode = new ArrayList<>();
-            for (Pair<PatternNode, CtElementImpl> pair : temp) {
-                PatternNode action = pair.getValue0();
-                CtElementImpl oriNode = pair.getValue1();
-                if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-                    updateOriNode.add(oriNode);
-                }
-            }
-
-            int currentIndex = 0;
-            while (!temp.isEmpty()) {
-                if (currentIndex >= temp.size()) {
-                    currentIndex = 0; // Wrap around to the beginning
-                }
-
-                boolean actionSucceeded = true;
-
-                Pair<PatternNode, CtElementImpl> pair = temp.get(currentIndex);
-                PatternNode action = pair.getValue0();
-                CtElementImpl oriNode = pair.getValue1();
-
-                System.out.println(action.getAttribute("nodeType").getTag());
-                try {
-                    if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
-                        actionSucceeded = applyDelete(action, oriNode, target, mapping);
-                    } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
-                        actionSucceeded = applyUpdate(action, oriNode, target, mapping, target.getMapping());
-                    } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
-                        actionSucceeded = applyInsert(action, oriNode, target, mapping, target.getMapping());
-                    } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
-                        actionSucceeded = applyMove(action, oriNode, target, mapping);
-                    } else {
-                        System.out.println("[warn]Invalid action nodeType");
-                    }
-                    if (actionSucceeded) {
-                        temp.remove(currentIndex);
-                    } else if (temp.size() == 1) {
-                        throw new IllegalStateException();
-                    } else {
-                        currentIndex++;
-                    }
-                } catch (Exception e) {
-                    temp.remove(currentIndex);
-                    System.out.printf("[error]Generate patch failed due to node building error : %s in action %s\n", target.getFileName(), action.getAttribute("nodeType").getTag());
-                }
-            }
-            for(CtElementImpl updateNode: updateOriNode) {
-                target.deleteCGId(updateNode);
-                updateNode.delete();
-            }
-            ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
-        } else {
+        Double maxScore = mappingScoreList.get(0).getValue1();
+        if (maxScore < SIMILARITY_THRESHOLD) {
             System.out.printf("[warn]Not satisfy SIMILARITY_THRESHOLD: %s\n", target.getFileName());
+            return;
         }
+
+        List<Pair<Map<PatternNode, CtWrapper>, Double>> maxList = mappingScoreList.stream().filter(p -> Objects.equals(p.getValue1(), maxScore)).collect(Collectors.toList());
+        for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : maxList) {
+            if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
+                Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
+                // pattern.start is the action point, that is also the buggy point
+                List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
+                for (Map.Entry<PatternNode, CtWrapper> entry : mapping.entrySet()) {
+                    for (Pair<PatternNode, PatternNode> pair : nodeAttachAction) {
+                        if (pair.getValue0() == entry.getKey()) {
+                            // apply action
+                            PatternNode action = pair.getValue1();
+                            CtElementImpl oriNode = entry.getValue().getCtElementImpl();
+                            temp.add(Pair.with(action, oriNode));
+                        }
+                    }
+                }
+
+                List<CtElementImpl> updateOriNode = new ArrayList<>();
+                for (Pair<PatternNode, CtElementImpl> pair : temp) {
+                    PatternNode action = pair.getValue0();
+                    CtElementImpl oriNode = pair.getValue1();
+                    if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                        updateOriNode.add(oriNode);
+                    }
+                }
+
+                int currentIndex = 0;
+                while (!temp.isEmpty()) {
+                    if (currentIndex >= temp.size()) {
+                        currentIndex = 0; // Wrap around to the beginning
+                    }
+
+                    boolean actionSucceeded = true;
+
+                    Pair<PatternNode, CtElementImpl> pair = temp.get(currentIndex);
+                    PatternNode action = pair.getValue0();
+                    CtElementImpl oriNode = pair.getValue1();
+
+                    System.out.println(action.getAttribute("nodeType").getTag());
+                    try {
+                        if (action.getAttribute("nodeType").getTag().equals(Delete.class)) {
+                            actionSucceeded = applyDelete(action, oriNode, target, mapping);
+                        } else if (action.getAttribute("nodeType").getTag().equals(Update.class)) {
+                            actionSucceeded = applyUpdate(action, oriNode, target, mapping, target.getMapping());
+                        } else if (action.getAttribute("nodeType").getTag().equals(Insert.class)) {
+                            actionSucceeded = applyInsert(action, oriNode, target, mapping, target.getMapping());
+                        } else if (action.getAttribute("nodeType").getTag().equals(Move.class)) {
+                            actionSucceeded = applyMove(action, oriNode, target, mapping);
+                        } else {
+                            System.out.println("[warn]Invalid action nodeType");
+                        }
+                        if (actionSucceeded) {
+                            temp.remove(currentIndex);
+                        } else if (temp.size() == 1) {
+                            throw new IllegalStateException();
+                        } else {
+                            currentIndex++;
+                        }
+                    } catch (Exception e) {
+                        temp.remove(currentIndex);
+                        System.out.printf("[error]Generate patch failed due to node building error : %s in action %s\n", target.getFileName(), action.getAttribute("nodeType").getTag());
+                    }
+                }
+                for(CtElementImpl updateNode: updateOriNode) {
+                    target.deleteCGId(updateNode);
+                    updateNode.delete();
+                }
+
+                filePath = filePath.split("\\.")[0] + "#" + maxList.indexOf(mappingScore) + ".java";
+
+                ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
+            }
 //            catch (IllegalStateException se) {
 //                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
 //            }
-//        }
-//        }
+        }
     }
 
 
