@@ -49,30 +49,58 @@ public class Main {
                     String baseDir = String.format("%s/%d", dir, testId);
                     int size = (int) Arrays.stream(new File(baseDir).listFiles()).filter(File::isDirectory).count();
                     // each as target
-                    for (int targetNo = 0; targetNo < size; targetNo++) {
-                        File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
-                        if (!patchDir.exists()) continue;
+                    if (projects[i].equals("SysEdit")) {
+                        for (String targetNo : new String[]{"l", "r"}) {
+                            File patchDir = new File(String.format("%s/%s/%d/%s", base_patch, projects[i], testId, targetNo));
+                            if (!patchDir.exists()) continue;
 
-                        // name format: patch_PATTERNindex#PATCHindex.java
-                        if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
-                            targetCounter_single++;
-                        targetCounter++;
+                            // name format: patch_PATTERNindex#PATCHindex.java
+                            if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
+                                targetCounter_single++;
+                            targetCounter++;
 
-                        for (File patch : patchDir.listFiles()) {
-                            if (patch.getName().endsWith(".java")) {
-                                String patchPath = patch.getAbsolutePath();
-                                String beforePath = String.format("%s/dataset/%s/%d/%d/before.java", base_gt, projects[i], testId, targetNo);
-                                String afterPath = String.format("%s/dataset/%s/%d/%d/after.java", base_gt, projects[i], testId, targetNo);
-                                List<String> beforePatch = DiffUtil.getDiff(beforePath, patchPath);
-                                List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
-                                boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
-                                correctCounter += correctness ? 1 : 0;
-                                if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
-                                    correctCounter_single += correctness ? 1 : 0;
+                            for (File patch : patchDir.listFiles()) {
+                                if (patch.getName().endsWith(".java")) {
+                                    String patchPath = patch.getAbsolutePath();
+                                    String beforePath = String.format("%s/dataset/%s/%d/%s/before.java", base_gt, projects[i], testId, targetNo);
+                                    String afterPath = String.format("%s/dataset/%s/%d/%s/after.java", base_gt, projects[i], testId, targetNo);
+                                    List<String> beforePatch = DiffUtil.getDiff(beforePath, patchPath);
+                                    List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
+                                    boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
+                                    correctCounter += correctness ? 1 : 0;
+                                    if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
+                                        correctCounter_single += correctness ? 1 : 0;
+                                    System.out.printf("[%b]%s%n", correctness, patchPath);
+                                    if (correctness) break;
+                                }
+                            }
+                        }
+                    } else {
+                        for (int targetNo = 0; targetNo < size; targetNo++) {
+                            File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
+                            if (!patchDir.exists()) continue;
+
+                            // name format: patch_PATTERNindex#PATCHindex.java
+                            if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
+                                targetCounter_single++;
+                            targetCounter++;
+
+                            for (File patch : patchDir.listFiles()) {
+                                if (patch.getName().endsWith(".java")) {
+                                    String patchPath = patch.getAbsolutePath();
+                                    String beforePath = String.format("%s/dataset/%s/%d/%d/before.java", base_gt, projects[i], testId, targetNo);
+                                    String afterPath = String.format("%s/dataset/%s/%d/%d/after.java", base_gt, projects[i], testId, targetNo);
+                                    List<String> beforePatch = DiffUtil.getDiff(beforePath, patchPath);
+                                    List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
+                                    boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
+                                    correctCounter += correctness ? 1 : 0;
+                                    if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
+                                        correctCounter_single += correctness ? 1 : 0;
 //                                if (!correctness) {
-                                System.out.printf("[%b]%s%n", correctness, patchPath);
+                                    System.out.printf("[%b]%s%n", correctness, patchPath);
 //                                }
-                                if (correctness) break;
+                                    if (correctness) break;
+                                }
                             }
                         }
                     }
@@ -402,7 +430,7 @@ public class Main {
                     }
 
                     // locate the buggy line
-                    BugLocator detector = new BugLocator(1.0);
+                    BugLocator detector = new BugLocator(0.6);
 
                     String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
                     detector.applyPattern(pattern, target_ag, patchPath, runType);
