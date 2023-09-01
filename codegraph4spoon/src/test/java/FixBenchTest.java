@@ -5,6 +5,8 @@ import builder.PatternExtractor;
 import codegraph.ASTEdge;
 import codegraph.CtVirtualElement;
 import codegraph.Edge;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.github.gumtreediff.tree.Tree;
 import gumtree.spoon.AstComparator;
 import gumtree.spoon.diff.Diff;
@@ -16,6 +18,7 @@ import model.actions.Insert;
 import model.actions.Move;
 import model.actions.Update;
 import model.pattern.Pattern;
+import org.javatuples.Pair;
 import org.javatuples.Triplet;
 import org.junit.Test;
 import spoon.Launcher;
@@ -28,6 +31,9 @@ import utils.DotGraph;
 import utils.ObjectUtil;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -171,4 +177,73 @@ public class FixBenchTest {
                 .collect(Collectors.toList()).forEach(ele -> sorted.put(ele.getKey(), ele.getValue()));
         return sorted;
     }
+
+    @Test
+    public void generateFixBenchFeatures() {
+        String runType = "new";
+        String base = TestConfig.FIXBENCH_WIN_BASE;
+        List<String> projects = List.of("FindBugs-DM_CONVERT_CASE", "FindBugs-DM_DEFAULT_ENCODING", "Genesis-NP", "Genesis-OOB");
+        Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+        int groupCounter = 0;
+
+        for (String project : projects) {
+            Path path = Paths.get(base + project);
+            File[] groups = Objects.requireNonNull(path.toFile().listFiles(File::isDirectory));
+
+            for (File group : groups) {
+                groupCounter++;
+                List<File> cases = List.of(Objects.requireNonNull(group.listFiles(new FileFilter() {
+                    @Override
+                    public boolean accept(File file) {
+                        return file.isDirectory() && file.getName().matches("\\d+");
+                    }
+                })));
+
+                List<CodeGraph> ags = new ArrayList<>();
+                for (File c : cases) {
+                    Path srcPath = c.toPath().resolve("before.java");
+                    Path tarPath = c.toPath().resolve("after.java");
+                    System.out.println("source: " + srcPath);
+                    long start = System.currentTimeMillis();
+                    CodeGraph ag = GraphBuilder.buildActionGraph(srcPath.toString(), tarPath.toString(), new int[]{});
+                    long end = System.currentTimeMillis();
+                    System.out.println("build graph time: " + (end - start) + "ms");
+                    ags.add(ag);
+                }
+                long start = System.currentTimeMillis();
+                List<Pattern> combinedGraphs = PatternExtractor.combineGraphs(ags, runType);
+                long end = System.currentTimeMillis();
+                System.out.println("extractor pattern time: " + (end - start) + "ms");
+                for (Pattern pat : combinedGraphs) {
+                    // abstract pattern
+                    PatternAbstractor abs = new PatternAbstractor(Objects.requireNonNull(group.listFiles(File::isDirectory)).length);
+                    pat = abs.abstractPattern(pat);
+                    // get feature json object
+                    List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                    for (Pair<String, JSONObject> pair : patternByID) {
+                        if (!patternsByID.containsKey(pair.getValue0())) {
+                            patternsByID.put(pair.getValue0(), new JSONArray());
+                        }
+                        patternsByID.get(pair.getValue0()).add(pair.getValue1());
+                    }
+                }
+
+                String jsonPath = System.getProperty("user.dir") + String.format("/out/json/fixBench/%s/%s.json", project, group.getName());
+
+                File file = new File(jsonPath);
+                if (!file.getParentFile().exists()) {
+                    file.getParentFile().mkdirs();
+                }
+
+                ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+                patternsByID.clear();
+
+            }
+
+            System.out.printf("Total group instances: %d\n", groupCounter);
+
+        }
+
+    }
+
 }
