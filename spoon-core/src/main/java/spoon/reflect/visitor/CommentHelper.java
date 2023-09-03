@@ -36,6 +36,8 @@ public class CommentHelper {
 
 	static void printComment(PrinterHelper printer, CtComment comment) {
 		CtComment.CommentType commentType = comment.getCommentType();
+		if (commentType == null)
+			return;
 		String content = comment.getContent();
 		// prefix
 		switch (commentType) {

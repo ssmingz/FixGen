@@ -192,12 +192,14 @@ public class Main {
     }
 
 
-    public static void generatePatches(String[] projects, String runType, String base, boolean SKIP_EXIST_OUTPUT, int MAX_GROUP) {
+    public static void generatePatches(String[] projects, String runType, String base, String groupID, boolean SKIP_EXIST_OUTPUT, int MAX_GROUP) {
         for (int i = 0; i < projects.length; i++) {
             Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
             int graphCounter = 0, groupCounter = 0, groupBuffer = 0;
             File dir = new File(String.format(base + "dataset/" + projects[i]));
-            for (File group : dir.listFiles()) {
+            String baseDir = String.format("%s/%s", dir, groupID);
+            File group = new File(baseDir);
+//            for (File group : dir.listFiles()) {
                 if (SKIP_EXIST_OUTPUT && new File(String.format("%s/out/json/%s/%s.json", System.getProperty("user.dir"), projects[i], group.getName())).exists())
                     continue;
                 if (group.isDirectory()) {
@@ -248,7 +250,7 @@ public class Main {
                         patternsByID.clear();
                     }
                 }
-            }
+//            }
             System.out.printf("Total codegraph instances: %d\n", graphCounter);
             System.out.printf("Total group instances: %d\n", (groupBuffer - 1) * MAX_GROUP + groupCounter);
         }
@@ -266,6 +268,7 @@ public class Main {
             String project = keySplit[keySplit.length - 4];
             String groupID = keySplit[keySplit.length - 3];
             String targetID = keySplit[keySplit.length - 2];
+
             //            String project = "ant";
             //            String groupID = "488";
             //            String targetID = "1";
@@ -275,6 +278,26 @@ public class Main {
 
             String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
             String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
+
+            List<String> candidates = new ArrayList<>();
+            // get all dirs under a path
+            File dir = new File(dataBase + "dataset/" + project + "/" + groupID);
+            File[] files = dir.listFiles();
+            for (File file : files != null ? files : new File[0]) {
+                if (file.isDirectory()) {
+                    String name = file.getName();
+                    if(!name.equals(targetID)) {
+                        candidates.add(name);
+                    }
+                }
+            }
+
+            // randomly select one from the cancdiates
+            Random random = new Random();
+            int index = random.nextInt(candidates.size());
+            String testTargetID = candidates.get(index);
+
+            String testSrcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + testTargetID + "/before.java";
 
 
             CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
@@ -321,14 +344,16 @@ public class Main {
             }
             // 5. apply pattern to source file
             // build for the target
-            CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
+//            CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
+            CodeGraph target_ag = GraphBuilder.buildGraph(testSrcPath, new String[]{}, 8, new int[]{});
 
             for (int i = 0; i < patterns.size(); i++) {
                 Pattern pattern = patterns.get(i);
                 // locate the buggy line
                 BugLocator detector = new BugLocator(0.6);
 
-                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+//                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, testTargetID, i);
                 detector.applyPattern(pattern, target_ag, patchPath, runType);
             }
         } catch (Exception e) {
@@ -444,7 +469,7 @@ public class Main {
         } else if (type.equals("check")) {
             testPatchCorrectness2(project, base, patchBase);
         } else if (type.equals("generateTraining")) {
-            generatePatches(projects, runType, base, true, 1);
+            generatePatches(projects, runType, base, id, true, 1);
         } else if (type.equals("testModel")) {
             testModelPatches(modelResult, runType, base, key);
         }

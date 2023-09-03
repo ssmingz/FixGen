@@ -21,6 +21,10 @@ public class InteractPattern {
         for (int vi=0; vi<vertexes.size(); vi++) {
             int id = (int) vertexes.get(vi);
             int lab = (int) vertex_label.get(vi);
+
+            if (isActionRelatedNode(pattern, cgName, id))
+                continue;
+
             InteractPattern.abstractVertex(pattern, id, lab, cgName);
 
             JSONObject attrs = attributes.getJSONObject(vi).getJSONObject(String.valueOf(id));
@@ -39,10 +43,28 @@ public class InteractPattern {
             JSONArray e_labs = edge_label.getJSONArray(vi);
             for (int ei=0; ei<es.size(); ei++) {
                 int tid = (int) vertexes.get(ei);
+
+                if (isActionRelatedEdge(pattern, cgName, id, tid))
+                    continue;
+
                 if (!es.getString(ei).equals(""))
                     InteractPattern.abstractEdge(pattern, id, tid, e_labs.getInteger(ei), cgName);
             }
         }
+    }
+
+    private static boolean isActionRelatedNode(Pattern pattern, String graphName, int id) {
+        PatternNode pn = pattern.getPatternNodeByCGElementId(graphName, id);
+        if (pn != null)
+            return pn.isActionRelated();
+        return false;
+    }
+
+    private static boolean isActionRelatedEdge(Pattern pattern, String graphName, int srcId, int tarId) {
+        PatternEdge pe = pattern.getPatternEdgeByCGElementId(graphName, srcId, tarId);
+        if (pe != null)
+            return pe.getSource().isActionRelated() || pe.getTarget().isActionRelated();
+        return false;
     }
 
     public static PatternNode abstractVertex(Pattern pattern, int id, int label, String graphName) {

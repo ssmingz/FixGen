@@ -27,7 +27,7 @@ public class TestPatchCorrectness {
     @Test
     public void testPatchCorrectness2() {
 //        String[] projects = {"junit","checkstyle","cobertura","drjava","ant","swt"};
-        String[] projects = {"junit"};
+        String[] projects = {"checkstyle"};
         String base_gt = TestConfig.WIN_BASE;
         String base_patch = "D:\\workspace\\FixGen\\codegraph4spoon\\out\\patch";
         int targetCounter = 0, correctCounter = 0;

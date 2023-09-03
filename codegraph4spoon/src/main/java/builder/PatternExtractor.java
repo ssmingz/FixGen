@@ -465,10 +465,6 @@ public class PatternExtractor {
                 if (simScore <= 0 || simScore < bestSimScore) {
                     break;
                 }
-                if (node.toLabelString().equals("!fails.fTornDown") && candidate.toLabelString().equals("fails.fTornDown") && !isMatch(node, candidate, mapping)) {
-                    isMatch(node, candidate, mapping);
-                    System.out.println("debug");
-                }
 
                 if (simScore >= bestSimScore && isMatch(node, candidate, mapping)) {
                     //if (simScore == highestScore && isMatch(node, candidate, mapping)) {
@@ -604,13 +600,16 @@ public class PatternExtractor {
     public static Set<Pair<Map<CtWrapper, CtWrapper>, Double>> matchTiedNodeBySimScore2(List<CtWrapper> nodeList, List<CtWrapper> nodeListComp, Map<CtWrapper, Map<CtWrapper, Double>> simScoreMap) {
         class Choice {
             Set<CtWrapper> traveledNodes;
+
+            Set<CtWrapper> hasMatchedNodes;
             CtWrapper cgNode;
             Map<CtWrapper, CtWrapper> track;
 
             double score;
 
-            Choice(Set<CtWrapper> traveledNodes, CtWrapper cgNode, Map<CtWrapper, CtWrapper> track, double score) {
+            Choice(Set<CtWrapper> traveledNodes, Set<CtWrapper> hasMatchedNodes, CtWrapper cgNode, Map<CtWrapper, CtWrapper> track, double score) {
                 this.traveledNodes = traveledNodes;
+                this.hasMatchedNodes = hasMatchedNodes;
                 this.cgNode = cgNode;
                 this.track = track;
                 this.score = score;
@@ -620,11 +619,12 @@ public class PatternExtractor {
 
 
         Stack<Choice> stack = new Stack<>();
-        stack.push(new Choice(new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
+        stack.push(new Choice(new HashSet<>(), new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
         while (!stack.isEmpty()) {
             Choice choice = stack.pop();
 
             Set<CtWrapper> traversed = choice.traveledNodes;
+            Set<CtWrapper> hasMatchedNodes = choice.hasMatchedNodes;
             Map<CtWrapper, CtWrapper> track = choice.track;
             double score = choice.score;
 
@@ -662,7 +662,7 @@ public class PatternExtractor {
                         break;
                     }
 
-                    if (simScore >= bestScore && isMatch(node, candidate, track)) {
+                    if (simScore >= bestScore && isMatch(node, candidate, track) && !hasMatchedNodes.contains(candidate)) {
                         topNCandidates.add(candidate);
                         bestScore = simScore;
                     }
@@ -676,13 +676,15 @@ public class PatternExtractor {
                         double simScore = simScoreMap.get(node).get(bestSim);
 
                         traversed.add(node);
+                        hasMatchedNodes.add(bestSim);
                         track.put(node, bestSim);
-                        stack.push(new Choice(new HashSet<>(traversed), bestSim, new HashMap<>(track), score + simScore));
+                        stack.push(new Choice(new HashSet<>(traversed), new HashSet<>(hasMatchedNodes), bestSim, new HashMap<>(track), score + simScore));
                         track.remove(node, bestSim);
                         traversed.remove(node);
+                        hasMatchedNodes.remove(bestSim);
                     }
                 } else {
-                    stack.push(new Choice(traversed, null, new HashMap<>(track), score));
+                    stack.push(new Choice(traversed, hasMatchedNodes, null, new HashMap<>(track), score));
                 }
             }
         }
@@ -692,13 +694,15 @@ public class PatternExtractor {
     public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern2(List<PatternNode> pnList, List<CtWrapper> cgList, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
         class Choice {
             Set<PatternNode> traveledNodes;
+            Set<CtWrapper> hasMatchedNodes;
             CtWrapper cgNode;
             Map<PatternNode, CtWrapper> track;
 
             double score;
 
-            Choice(Set<PatternNode> traveledNodes, CtWrapper cgNode, Map<PatternNode, CtWrapper> track, double score) {
+            Choice(Set<PatternNode> traveledNodes, Set<CtWrapper> hasMatchedNodes, CtWrapper cgNode, Map<PatternNode, CtWrapper> track, double score) {
                 this.traveledNodes = traveledNodes;
+                this.hasMatchedNodes = hasMatchedNodes;
                 this.cgNode = cgNode;
                 this.track = track;
                 this.score = score;
@@ -710,12 +714,14 @@ public class PatternExtractor {
 
 
         Stack<Choice> stack = new Stack<>();
-        stack.push(new Choice(new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
+        stack.push(new Choice(new HashSet<>(), new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
 
         while (!stack.isEmpty()) {
             Choice choice = stack.pop();
 
             Set<PatternNode> traversed = choice.traveledNodes;
+            Set<CtWrapper> hasMatchedNodes = choice.hasMatchedNodes;
+
             Map<PatternNode, CtWrapper> track = choice.track;
             double score = choice.score;
 
@@ -753,7 +759,7 @@ public class PatternExtractor {
                         break;
                     }
 
-                    if (simScore >= bestScore && isMatch(node, candidate, track)) {
+                    if (simScore >= bestScore && isMatch(node, candidate, track) && !hasMatchedNodes.contains(candidate)) {
                         topNCandidates.add(candidate);
                         bestScore = simScore;
                     }
@@ -761,20 +767,20 @@ public class PatternExtractor {
 
                 if (!topNCandidates.isEmpty()) {
                     for (CtWrapper bestSim : topNCandidates) {
-
                         Map<PatternNode, CtWrapper> mapping = new HashMap<>();
                         mapping.put(node, bestSim);
                         double simScore = simScoreMap.get(node).get(bestSim);
 
                         traversed.add(node);
+                        hasMatchedNodes.add(bestSim);
                         track.put(node, bestSim);
-                        stack.push(new Choice(new HashSet<>(traversed), bestSim, new HashMap<>(track), score + simScore));
+                        stack.push(new Choice(new HashSet<>(traversed), new HashSet<>(hasMatchedNodes), bestSim, new HashMap<>(track), score + simScore));
                         track.remove(node, bestSim);
                         traversed.remove(node);
-
+                        hasMatchedNodes.remove(bestSim);
                     }
                 } else {
-                    stack.push(new Choice(traversed, null, new HashMap<>(track), score));
+                    stack.push(new Choice(traversed, hasMatchedNodes, null, new HashMap<>(track), score));
                 }
             }
 
@@ -1178,16 +1184,7 @@ public class PatternExtractor {
             scores.add(calContextSim(String.valueOf(a.getTag()), comp == null ? null : String.valueOf(comp)));
         }
 
-        if(! scores.isEmpty()) {
-            // 当patternNode中有过多属性被抽象掉时，剩余的属性和cgn的属性比较将没有太大意义
-            pn.getInstance().keySet().forEach(ctWrapper -> {
-                double score = calSimScore(ctWrapper.getCtElementImpl(), cgn.getCtElementImpl());
-                scores.add(score);
-            });
-            return scores.stream().mapToDouble(n -> n).average().getAsDouble();
-        } else {
-            return 0.0;
-        }
+        return scores.isEmpty() ? 0.0 : scores.stream().mapToDouble(n -> n).average().getAsDouble();
     }
 
     private static double calContextSim(String a, String b) {

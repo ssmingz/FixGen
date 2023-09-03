@@ -33,6 +33,7 @@ import utils.SyntaxUtil;
 
 import java.lang.reflect.Modifier;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BugLocator {
     public double SIMILARITY_THRESHOLD = 1.0;
@@ -48,7 +49,7 @@ public class BugLocator {
         // compare with the target
         List<Pair<Map<PatternNode, CtWrapper>, Double>> mappingScoreList = pat.compareCG(target, "origin");
         for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : mappingScoreList) {
-            if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
+            if (mappingScore.getValue1() >= SIMILARITY_THRESHOLD) {
                 // pattern.start is the action point, that is also the buggy point
                 for (Map.Entry<PatternNode, CtWrapper> entry : mappingScore.getValue0().entrySet()) {
                     if (entry.getKey().equals(pat.getStart())) {
@@ -87,9 +88,15 @@ public class BugLocator {
         List<Pair<Map<PatternNode, CtWrapper>, Double>> mappingScoreList = pat.compareCG(target, runType);
         // record the original root node
         CtElementImpl root = target.getEntryNode();
-        Pair<Map<PatternNode, CtWrapper>, Double> mappingScore = mappingScoreList.get(0);
-//        for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : mappingScoreList) {
-        if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
+
+        Double maxScore = mappingScoreList.get(0).getValue1();
+        if (maxScore < SIMILARITY_THRESHOLD) {
+            System.out.printf("[warn]Not satisfy SIMILARITY_THRESHOLD: %s\n", target.getFileName());
+            return;
+        }
+
+        List<Pair<Map<PatternNode, CtWrapper>, Double>> maxList = mappingScoreList.stream().filter(p -> Objects.equals(p.getValue1(), maxScore)).collect(Collectors.toList());
+        for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : maxList) {
             Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
             // pattern.start is the action point, that is also the buggy point
             List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
@@ -154,13 +161,11 @@ public class BugLocator {
                 target.deleteCGId(updateNode);
                 updateNode.delete();
             }
+
+            filePath = filePath.split("\\.")[0] + "#" + maxList.indexOf(mappingScore) + ".java";
+
             ObjectUtil.writeStringToFile(root.prettyprint(), filePath);
         }
-//            catch (IllegalStateException se) {
-//                System.out.printf("[error]Generate patch failed due to node building error : %s\n", target.getFileName());
-//            }
-//        }
-//        }
     }
 
 
@@ -183,7 +188,7 @@ public class BugLocator {
         CtElementImpl root = target.getEntryNode();
         Pair<Map<PatternNode, CtWrapper>, Double> mappingScore = mappingScoreList.get(0);
 //        for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : mappingScoreList) {
-        if (mappingScore.getValue1() > SIMILARITY_THRESHOLD) {
+        if (mappingScore.getValue1() >= SIMILARITY_THRESHOLD) {
             Map<PatternNode, CtWrapper> mapping = mappingScore.getValue0();
             // pattern.start is the action point, that is also the buggy point
             List<Pair<PatternNode, CtElementImpl>> temp = new ArrayList<>();
