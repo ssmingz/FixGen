@@ -55,11 +55,8 @@ public class InteractPattern {
 
     private static boolean isActionRelatedNode(Pattern pattern, String graphName, int id) {
         PatternNode pn = pattern.getPatternNodeByCGElementId(graphName, id);
-        if (pn != null) {
-            return pn.isActionRelated() ||
-                    pn.inEdges().stream().anyMatch(e -> e.type == PatternEdge.EdgeType.ACTION) ||
-                    pn.outEdges().stream().anyMatch(e -> e.type == PatternEdge.EdgeType.ACTION);
-        }
+        if (pn != null)
+            return pn.isActionRelated();
         return false;
     }
 

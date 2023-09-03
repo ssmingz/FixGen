@@ -3,11 +3,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import model.CodeGraph;
 import model.pattern.Pattern;
-import model.pattern.PatternEdge;
-import model.pattern.PatternNode;
 import org.javatuples.Pair;
 import utils.DiffUtil;
-import utils.DotGraph;
 import utils.ObjectUtil;
 
 import java.io.File;
@@ -20,7 +17,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 
 public class Main {
@@ -49,58 +45,27 @@ public class Main {
                     String baseDir = String.format("%s/%d", dir, testId);
                     int size = (int) Arrays.stream(new File(baseDir).listFiles()).filter(File::isDirectory).count();
                     // each as target
-                    if (projects[i].equals("SysEdit")) {
-                        for (String targetNo : new String[]{"l", "r"}) {
-                            File patchDir = new File(String.format("%s/%s/%d/%s", base_patch, projects[i], testId, targetNo));
-                            if (!patchDir.exists()) continue;
-
-                            // name format: patch_PATTERNindex#PATCHindex.java
-                            if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
-                                targetCounter_single++;
-                            targetCounter++;
-
-                            for (File patch : patchDir.listFiles()) {
-                                if (patch.getName().endsWith(".java")) {
-                                    String patchPath = patch.getAbsolutePath();
-                                    String beforePath = String.format("%s/dataset/%s/%d/%s/before.java", base_gt, projects[i], testId, targetNo);
-                                    String afterPath = String.format("%s/dataset/%s/%d/%s/after.java", base_gt, projects[i], testId, targetNo);
-                                    List<String> beforePatch = DiffUtil.getDiff(beforePath, patchPath);
-                                    List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
-                                    boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
-                                    correctCounter += correctness ? 1 : 0;
-                                    if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
-                                        correctCounter_single += correctness ? 1 : 0;
-                                    System.out.printf("[%b]%s%n", correctness, patchPath);
-                                    if (correctness) break;
-                                }
-                            }
-                        }
-                    } else {
-                        for (int targetNo = 0; targetNo < size; targetNo++) {
-                            File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
-                            if (!patchDir.exists()) continue;
-
-                            // name format: patch_PATTERNindex#PATCHindex.java
-                            if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
-                                targetCounter_single++;
-                            targetCounter++;
-
-                            for (File patch : patchDir.listFiles()) {
-                                if (patch.getName().endsWith(".java")) {
-                                    String patchPath = patch.getAbsolutePath();
-                                    String beforePath = String.format("%s/dataset/%s/%d/%d/before.java", base_gt, projects[i], testId, targetNo);
-                                    String afterPath = String.format("%s/dataset/%s/%d/%d/after.java", base_gt, projects[i], testId, targetNo);
-                                    List<String> beforePatch = DiffUtil.getDiff(beforePath, patchPath);
-                                    List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
-                                    boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
-                                    correctCounter += correctness ? 1 : 0;
-                                    if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
-                                        correctCounter_single += correctness ? 1 : 0;
+                    for (int targetNo = 0; targetNo < size; targetNo++) {
+                        File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
+                        if (!patchDir.exists()) continue;
+                        if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+                            targetCounter_single++;
+                        targetCounter++;
+                        for (File patch : patchDir.listFiles()) {
+                            if (patch.getName().endsWith(".java")) {
+                                String patchPath = patch.getAbsolutePath();
+                                String beforePath = String.format("%s/dataset/%s/%d/%d/before.java", base_gt, projects[i], testId, targetNo);
+                                String afterPath = String.format("%s/dataset/%s/%d/%d/after.java", base_gt, projects[i], testId, targetNo);
+                                List<String> beforePatch = DiffUtil.getDiff(beforePath, patchPath);
+                                List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
+                                boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
+                                correctCounter += correctness ? 1 : 0;
+                                if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+                                    correctCounter_single += correctness ? 1 : 0;
 //                                if (!correctness) {
-                                    System.out.printf("[%b]%s%n", correctness, patchPath);
+                                System.out.printf("[%b]%s%n", correctness, patchPath);
 //                                }
-                                    if (correctness) break;
-                                }
+                                if (correctness) break;
                             }
                         }
                     }
@@ -227,57 +192,26 @@ public class Main {
     }
 
 
-    public static void generatePatches(String[] projects, String runType, String base, boolean SKIP_EXIST_OUTPUT, int MAX_GROUP) {
+    public static void generatePatches(String[] projects, String runType, String base, String groupID, boolean SKIP_EXIST_OUTPUT, int MAX_GROUP) {
         for (int i = 0; i < projects.length; i++) {
             Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
             int graphCounter = 0, groupCounter = 0, groupBuffer = 0;
-            File dir;
-            if ("SysEdit".equals(projects[i]))
-                dir = new File(String.format(base + projects[i]));
-            else
-                dir = new File(String.format(base + "dataset/" + projects[i]));
-            File[] dirs = dir.listFiles();
-            if ("SysEdit".equals(projects[i])) {
-                List<File> temp = new ArrayList<>();
-                Arrays.stream(dirs).forEach(f -> {
-                    if (f.isDirectory()) {
-                        temp.add(new File(f.getAbsolutePath() + "/l/"));
-                        temp.add(new File(f.getAbsolutePath() + "/r/"));
-                    }
-                });
-                dirs = temp.toArray(new File[temp.size()]);
-            }
-            String regex = java.util.regex.Pattern.quote(System.getProperty("file.separator"));
-            for (File group : dirs) {
-                if (SKIP_EXIST_OUTPUT) {
-                    if ("SysEdit".equals(projects[i])) {
-                        String id = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 2];
-                        String prefix = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 1];
-                        if (new File(String.format("%s/out/json/%s/%s_%s.json", System.getProperty("user.dir"), projects[i], id, prefix)).exists())
-                            continue;
-                    } else {
-                        if (new File(String.format("%s/out/json/%s/%s.json", System.getProperty("user.dir"), projects[i], group.getName())).exists())
-                           continue;
-                    }
-                }
+            File dir = new File(String.format(base + "dataset/" + projects[i]));
+            String baseDir = String.format("%s/%s", dir, groupID);
+            File group = new File(baseDir);
+//            for (File group : dir.listFiles()) {
+                if (SKIP_EXIST_OUTPUT && new File(String.format("%s/out/json/%s/%s.json", System.getProperty("user.dir"), projects[i], group.getName())).exists())
+                    continue;
                 if (group.isDirectory()) {
                     try {
                         List<CodeGraph> ags = new ArrayList<>();
-                        if ("SysEdit".equals(projects[i])) {
-                            String srcPath = group.getAbsolutePath() + "/before.java";
-                            String tarPath = group.getAbsolutePath() + "/after.java";
-                            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
-                            ags.add(ag);
-                            graphCounter++;
-                        } else {
-                            for (File pair : group.listFiles()) {
-                                if (pair.isDirectory()) {
-                                    String srcPath = pair.getAbsolutePath() + "/before.java";
-                                    String tarPath = pair.getAbsolutePath() + "/after.java";
-                                    CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
-                                    ags.add(ag);
-                                    graphCounter++;
-                                }
+                        for (File pair : group.listFiles()) {
+                            if (pair.isDirectory()) {
+                                String srcPath = pair.getAbsolutePath() + "/before.java";
+                                String tarPath = pair.getAbsolutePath() + "/after.java";
+                                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+                                ags.add(ag);
+                                graphCounter++;
                             }
                         }
                         // extract pattern from more-than-one graphs
@@ -306,12 +240,6 @@ public class Main {
                         String jsonPath;
 
                         jsonPath = System.getProperty("user.dir") + String.format("/out/json/%s/%s.json", projects[i], group.getName());
-                        if ("SysEdit".equals(projects[i])) {
-                            String id = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 2];
-                            String prefix = group.getAbsolutePath().split(regex)[group.getAbsolutePath().split(regex).length - 1];
-                            jsonPath = String.format("%s/out/json/%s/%s_%s.json", System.getProperty("user.dir"), projects[i], id, prefix);
-                        }
-
                         File file = new File(jsonPath);
                         if (!file.getParentFile().exists()) {
                             file.getParentFile().mkdirs();
@@ -322,125 +250,117 @@ public class Main {
                         patternsByID.clear();
                     }
                 }
-            }
+//            }
             System.out.printf("Total codegraph instances: %d\n", graphCounter);
             System.out.printf("Total group instances: %d\n", (groupBuffer - 1) * MAX_GROUP + groupCounter);
         }
     }
 
 
-    public static void testModelPatches(String modelResult, String runType, String dataBase) {
+    public static void testModelPatches(String modelResult, String runType, String dataBase, String key) {
         // modelResult : xxx.json
         // load the json file and iterate all keys and values in it
         JSONObject jsonObject = (JSONObject) ObjectUtil.readJsonFromFile(modelResult);
-        for (String key : jsonObject.keySet()) {
+//        for (String key : jsonObject.keySet()) {
+        try {
             // "/data02/hanjiachen/yc_fixgen/dataset/ant/403/1/before.java$$0" parse the string to get 'ant', '403', '1'
-            String regex = java.util.regex.Pattern.quote(System.getProperty("file.separator"));
-            String[] keySplit = key.split(regex);
+            String[] keySplit = key.split("/");
             String project = keySplit[keySplit.length - 4];
             String groupID = keySplit[keySplit.length - 3];
             String targetID = keySplit[keySplit.length - 2];
-            try {
-                //            String project = "ant";
-                //            String groupID = "488";
-                //            String targetID = "1";
-                //            String key = String.format("/data02/hanjiachen/yc_fixgen/dataset/%s/%s/%s/before.java$$0", project, groupID, targetID);
 
-                String patchDir = String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"), project, groupID);
+            //            String project = "ant";
+            //            String groupID = "488";
+            //            String targetID = "1";
+            //            String key = String.format("/data02/hanjiachen/yc_fixgen/dataset/%s/%s/%s/before.java$$0", project, groupID, targetID);
 
-                // use l and r in SysEdit in a cross way
-                if (project.equals("SysEdit"))
-                    targetID = targetID.equals("l") ? "r" : "l";
+            String patchDir = String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"), project, groupID);
 
-                String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
-                String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
+            String srcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/before.java";
+            String tarPath = dataBase + "dataset/" + project + "/" + groupID + "/" + targetID + "/after.java";
 
-
-                CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
-
-                // 3. json file as model input
-                // init the pattern
-                List<Pattern> patterns = PatternExtractor.combineGraphs(new ArrayList<>() {
-                    {
-                        add(ag);
-                    }
-                }, runType);
-                if (patterns.size() > 1) {
-                    System.out.printf("[warn]More than one pattern: %s %s %s\n", project, groupID, targetID);
-                    continue;
-                }
-                Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
-                for (Pattern pat : patterns) {
-                    // abstract pattern
-                    PatternAbstractor abs = new PatternAbstractor(1);
-                    pat = abs.abstractPattern(pat);
-                    // get feature json object
-                    List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
-                    for (Pair<String, JSONObject> pair : patternByID) {
-                        if (!patternsByID.containsKey(pair.getValue0())) {
-                            patternsByID.put(pair.getValue0(), new JSONArray());
-                        }
-                        patternsByID.get(pair.getValue0()).add(pair.getValue1());
+            List<String> candidates = new ArrayList<>();
+            // get all dirs under a path
+            File dir = new File(dataBase + "dataset/" + project + "/" + groupID);
+            File[] files = dir.listFiles();
+            for (File file : files != null ? files : new File[0]) {
+                if (file.isDirectory()) {
+                    String name = file.getName();
+                    if(!name.equals(targetID)) {
+                        candidates.add(name);
                     }
                 }
-                // write json object to file
-                String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/c3_%s_%s_%s.json", project, groupID, targetID);
-                ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
-
-                String cg_name = ag.getFileName();
-                for (int i = 0; i < patterns.size(); i++) {
-                    Pattern pattern = patterns.get(i);
-                    PatternAbstractor.buildWithoutAbstract(pattern);
-
-                    JSONObject label = ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).getJSONObject(key);
-                    JSONObject ori = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(cg_name).getJSONObject(i);
-                    InteractPattern.abstractByJSONObject(pattern, ori, label, cg_name);
-                    // save the pattern
-                    String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
-                    ObjectUtil.writeObjectToFile(pattern, patternPath);
-
-                    DotGraph dot2 = new DotGraph(pattern, 0, true, false);
-                    File dir2 = new File(String.format("%s/graph/pattern_c3_%s_%s_%s_%s.dot", System.getProperty("user.dir"), project, groupID, targetID, i));
-                    dot2.toDotFile(dir2);
-                }
-                // 5. apply pattern to source file
-                // build for the target
-                CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
-
-                for (int i = 0; i < patterns.size(); i++) {
-                    Pattern pattern = patterns.get(i);
-
-                    // check whether all actions are abstracted
-                    if (pattern.getActionSet().stream().allMatch(n -> !n.isActionRelated() && n.isAbstract())) {
-                        System.out.printf("[error]all abstracted actions: %s %s %s\n", project, groupID, targetID);
-                        continue;
-                    }
-
-                    // check action source whether valid
-                    boolean abstractValid = true;
-                    for (PatternNode action : pattern.getActionSet().stream().filter(n -> !n.isAbstract()).collect(Collectors.toSet())) {
-                        for (PatternEdge ie : action.inEdges()) {
-                            if (ie.isAbstract() || ie.getSource().isAbstract())
-                                abstractValid = false;
-                        }
-                    }
-                    if (!abstractValid) {
-                        System.out.printf("[error]action node has invalid-abstracted source: %s %s %s\n", project, groupID, targetID);
-                        continue;
-                    }
-
-                    // locate the buggy line
-                    BugLocator detector = new BugLocator(0.6);
-
-                    String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
-                    detector.applyPattern(pattern, target_ag, patchPath, runType);
-                }
-            } catch (IndexOutOfBoundsException e2) {
-                System.out.printf("[error]Pattern and json result not match: %s %s %s\n", project, groupID, targetID);
-            } catch (Exception e) {
-                e.printStackTrace();
             }
+
+            // randomly select one from the cancdiates
+            Random random = new Random();
+            int index = random.nextInt(candidates.size());
+            String testTargetID = candidates.get(index);
+
+            String testSrcPath = dataBase + "dataset/" + project + "/" + groupID + "/" + testTargetID + "/before.java";
+
+
+            CodeGraph ag = GraphBuilder.buildActionGraph(srcPath, tarPath, new int[]{});
+
+            // 3. json file as model input
+            // init the pattern
+            List<Pattern> patterns = PatternExtractor.combineGraphs(new ArrayList<>() {
+                {
+                    add(ag);
+                }
+            }, runType);
+//                if (patterns.size() > 1) {
+//                    continue;
+//                }
+            Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+            for (Pattern pat : patterns) {
+                // abstract pattern
+                PatternAbstractor abs = new PatternAbstractor(1);
+                pat = abs.abstractPattern(pat);
+                // get feature json object
+                List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                for (Pair<String, JSONObject> pair : patternByID) {
+                    if (!patternsByID.containsKey(pair.getValue0())) {
+                        patternsByID.put(pair.getValue0(), new JSONArray());
+                    }
+                    patternsByID.get(pair.getValue0()).add(pair.getValue1());
+                }
+            }
+            // write json object to file
+            String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/c3_%s_%s_%s.json", project, groupID, targetID);
+            ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+
+            String cg_name = ag.getFileName();
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+                PatternAbstractor.buildWithoutAbstract(pattern);
+
+                JSONObject label = ((JSONObject) ObjectUtil.readJsonFromFile(modelResult)).getJSONObject(key);
+                JSONObject ori = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(cg_name).getJSONObject(i);
+                InteractPattern.abstractByJSONObject(pattern, ori, label, cg_name);
+                // save the pattern
+                String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
+                ObjectUtil.writeObjectToFile(pattern, patternPath);
+            }
+            // 5. apply pattern to source file
+            // build for the target
+//            CodeGraph target_ag = GraphBuilder.buildGraph(srcPath, new String[]{}, 8, new int[]{});
+            CodeGraph target_ag = GraphBuilder.buildGraph(testSrcPath, new String[]{}, 8, new int[]{});
+
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+                // locate the buggy line
+                BugLocator detector = new BugLocator(0.6);
+
+//                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, testTargetID, i);
+                detector.applyPattern(pattern, target_ag, patchPath, runType);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+//                continue;
         }
+//        }
     }
 
     public static void main(String[] args) {
@@ -451,6 +371,7 @@ public class Main {
         String patchBase = String.format("%s/out/patch/", System.getProperty("user.dir"));
 //        String.format("%s/out/model_patch/%s/%s", System.getProperty("user.dir"))
         String modelResult = "";
+        String key = "";
 
 //        String pythonScript = String.format("%s/reformat_patch.py", System.getProperty("user.dir"));
 
@@ -472,6 +393,8 @@ public class Main {
                 modelResult = arg.substring("--model_res=".length());
             } else if (arg.startsWith("--patch_base=")) {
                 patchBase = arg.substring("--patch_base=".length());
+            } else if (arg.startsWith("--key=")) {
+                key = arg.substring("--key=".length());
             } else {
                 System.out.println("Unknown command-line argument: " + arg);
                 return;
@@ -542,12 +465,13 @@ public class Main {
 
         if (type.equals("run")) {
             runAllCases(projects, runType, base, id, SKIP_IF_EXIST);
+
         } else if (type.equals("check")) {
             testPatchCorrectness2(project, base, patchBase);
         } else if (type.equals("generateTraining")) {
-            generatePatches(projects, runType, base, true, 1);
+            generatePatches(projects, runType, base, id, true, 1);
         } else if (type.equals("testModel")) {
-            testModelPatches(modelResult, runType, base);
+            testModelPatches(modelResult, runType, base, key);
         }
     }
 }
