@@ -182,7 +182,8 @@ public class FixBenchTest {
     public void generateFixBenchFeatures() {
         String runType = "new";
         String base = TestConfig.FIXBENCH_WIN_BASE;
-        List<String> projects = List.of("FindBugs-DM_CONVERT_CASE", "FindBugs-DM_DEFAULT_ENCODING", "Genesis-NP", "Genesis-OOB");
+//        List<String> projects = List.of("FindBugs-DM_CONVERT_CASE", "FindBugs-DM_DEFAULT_ENCODING", "Genesis-NP", "Genesis-OOB");
+        List<String> projects = List.of("FindBugs-DM_CONVERT_CASE");
         Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
         int groupCounter = 0;
 
@@ -203,11 +204,13 @@ public class FixBenchTest {
                 for (File c : cases) {
                     Path srcPath = c.toPath().resolve("before.java");
                     Path tarPath = c.toPath().resolve("after.java");
-                    System.out.println("source: " + srcPath);
                     long start = System.currentTimeMillis();
                     CodeGraph ag = GraphBuilder.buildActionGraph(srcPath.toString(), tarPath.toString(), new int[]{});
                     long end = System.currentTimeMillis();
-                    System.out.println("build graph time: " + (end - start) + "ms");
+                    DotGraph dot = new DotGraph(ag, new GraphConfiguration(), 0);
+                    File dir = new File(String.format("%s/out/codegraph_temp_%d.dot", System.getProperty("user.dir"), cases.indexOf(c)));
+                    dot.toDotFile(dir);
+//                    System.out.println("build graph time: " + (end - start) + "ms");
                     ags.add(ag);
                 }
                 long start = System.currentTimeMillis();
@@ -215,9 +218,18 @@ public class FixBenchTest {
                 long end = System.currentTimeMillis();
                 System.out.println("extractor pattern time: " + (end - start) + "ms");
                 for (Pattern pat : combinedGraphs) {
+                    DotGraph dot = new DotGraph(pat, 0, false, false);
+                    File dir = new File(String.format("%s/out/pattern_temp_%d_%d.dot", System.getProperty("user.dir"), Arrays.asList(groups).indexOf(group), combinedGraphs.indexOf(pat)));
+                    dot.toDotFile(dir);
+
                     // abstract pattern
                     PatternAbstractor abs = new PatternAbstractor(Objects.requireNonNull(group.listFiles(File::isDirectory)).length);
                     pat = abs.abstractPattern(pat);
+
+                    DotGraph dot1 = new DotGraph(pat, 0, false, false);
+                    File dir1 = new File(String.format("%s/out/pattern_ab_%d_%d.dot", System.getProperty("user.dir"), Arrays.asList(groups).indexOf(group), combinedGraphs.indexOf(pat)));
+                    dot1.toDotFile(dir1);
+
                     // get feature json object
                     List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
                     for (Pair<String, JSONObject> pair : patternByID) {
