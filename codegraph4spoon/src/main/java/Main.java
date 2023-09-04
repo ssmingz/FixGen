@@ -3,6 +3,8 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import model.CodeGraph;
 import model.pattern.Pattern;
+import model.pattern.PatternEdge;
+import model.pattern.PatternNode;
 import org.javatuples.Pair;
 import utils.DiffUtil;
 import utils.ObjectUtil;
@@ -17,6 +19,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -48,7 +51,9 @@ public class Main {
                     for (int targetNo = 0; targetNo < size; targetNo++) {
                         File patchDir = new File(String.format("%s/%s/%d/%d", base_patch, projects[i], testId, targetNo));
                         if (!patchDir.exists()) continue;
-                        if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+//                        if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+//                            targetCounter_single++;
+                        if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
                             targetCounter_single++;
                         targetCounter++;
                         for (File patch : patchDir.listFiles()) {
@@ -60,7 +65,9 @@ public class Main {
                                 List<String> beforeAfter = DiffUtil.getDiff(beforePath, afterPath);
                                 boolean correctness = isPatchCorrect(beforeAfter, beforePatch);
                                 correctCounter += correctness ? 1 : 0;
-                                if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+//                                if (Arrays.stream(patchDir.listFiles()).filter(f -> f.getName().endsWith(".java")).count() == 1)
+//                                    correctCounter_single += correctness ? 1 : 0;
+                                if (Arrays.stream(patchDir.listFiles()).allMatch(f -> f.getName().endsWith(".java") && f.getName().startsWith("patch_0#")))
                                     correctCounter_single += correctness ? 1 : 0;
 //                                if (!correctness) {
                                 System.out.printf("[%b]%s%n", correctness, patchPath);
@@ -190,7 +197,6 @@ public class Main {
         System.out.println("[stat]target bug instance number: " + targetCounter);
 
     }
-
 
     public static void generatePatches(String[] projects, String runType, String base, String groupID, boolean SKIP_EXIST_OUTPUT, int MAX_GROUP) {
         for (int i = 0; i < projects.length; i++) {
@@ -349,6 +355,26 @@ public class Main {
 
             for (int i = 0; i < patterns.size(); i++) {
                 Pattern pattern = patterns.get(i);
+
+                // check whether all actions are abstracted
+                if (pattern.getActionSet().stream().allMatch(n -> !n.isActionRelated() && n.isAbstract())) {
+                    System.out.printf("[error]all abstracted actions: %s %s %s\n", project, groupID, targetID);
+                    continue;
+                }
+
+                // check action source whether valid
+                boolean abstractValid = true;
+                for (PatternNode action : pattern.getActionSet().stream().filter(n -> !n.isAbstract()).collect(Collectors.toSet())) {
+                    for (PatternEdge ie : action.inEdges()) {
+                        if (ie.isAbstract() || ie.getSource().isAbstract())
+                            abstractValid = false;
+                    }
+                }
+                if (!abstractValid) {
+                    System.out.printf("[error]action node has invalid-abstracted source: %s %s %s\n", project, groupID, targetID);
+                    continue;
+                }
+
                 // locate the buggy line
                 BugLocator detector = new BugLocator(0.6);
 
