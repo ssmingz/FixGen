@@ -1,7 +1,4 @@
-import builder.GraphBuilder;
-import builder.GraphConfiguration;
-import builder.PatternAbstractor;
-import builder.PatternExtractor;
+import builder.*;
 import codegraph.ASTEdge;
 import codegraph.CtVirtualElement;
 import codegraph.Edge;
@@ -18,6 +15,8 @@ import model.actions.Insert;
 import model.actions.Move;
 import model.actions.Update;
 import model.pattern.Pattern;
+import model.pattern.PatternEdge;
+import model.pattern.PatternNode;
 import org.javatuples.Pair;
 import org.javatuples.Triplet;
 import org.junit.Test;
@@ -37,6 +36,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class FixBenchTest {
@@ -255,6 +255,250 @@ public class FixBenchTest {
             System.out.printf("Total group instances: %d\n", groupCounter);
 
         }
+    }
+
+    @Test
+    public void ConvertPatternDotFile() {
+        Path Dats = Paths.get("E:\\dataset\\FixBench\\pattern_out");
+        File[] dats = Objects.requireNonNull(Dats.toFile().listFiles(file -> file.getName().endsWith(".dat")));
+
+        for (File datFile : dats) {
+            String patternName = datFile.getName().replace(".dat", ".dot");
+            Pattern pat_reload = (Pattern) ObjectUtil.readObjectFromFile(datFile.getAbsolutePath());
+            File dir = new File(Dats.toString(), patternName);
+            System.out.println("dot file: " + dir.toString());
+            try{
+                DotGraph dot = new DotGraph(pat_reload, 0, false, false);
+                dot.toDotFile(dir);
+            } catch (Exception e) {
+                System.out.println("error in: " + dir.toString());
+                e.printStackTrace();
+            }
+
+        }
+
+    }
+
+    @Test
+    public void testAllModelPatternAndGeneratePatch() {
+        Random random = new Random(42);
+        List<String> projects = List.of("FindBugs-DM_CONVERT_CASE", "FindBugs-DM_DEFAULT_ENCODING", "Genesis-NP", "Genesis-OOB");
+        Path fixBenchCodeRoot = Paths.get("E:\\dataset\\FixBench\\WithinSingleMethod");
+        Path modelPredictionJson = Paths.get("E:\\dataset\\FixBench\\output_fixbench");
+        Path patchRoot = Paths.get(System.getProperty("user.dir")).resolve("out").resolve("model_patch");
+
+        for (String project : projects) {
+            Path fixBenchCodeProjectRoot = fixBenchCodeRoot.resolve(project);
+            File[] groups = fixBenchCodeProjectRoot.toFile().listFiles();
+            for (File group : groups) {
+                String groupID = group.getName();
+                Path fixBenchCodeGroupRoot = fixBenchCodeProjectRoot.resolve(group.getName());
+                Path modelPredictionGroupJson = modelPredictionJson.resolve(project).resolve(groupID + ".json");
+                try{
+                    Map<String, JSONObject> modelPrediction = (Map<String, JSONObject>) ObjectUtil.readJsonFromFile(modelPredictionGroupJson.toString());
+
+                    // 遍历每一个case
+                    for (String key : modelPrediction.keySet()) {
+                        String[] keySplit = key.split("/");
+                        assertEquals(project, keySplit[keySplit.length - 4]);
+                        assertEquals(groupID, keySplit[keySplit.length - 3]);
+                        String patternCaseNum = keySplit[keySplit.length - 2];
+
+                        Path patternBeforePath = fixBenchCodeGroupRoot.resolve(patternCaseNum).resolve("before.java");
+                        Path patternAfterPath = fixBenchCodeGroupRoot.resolve(patternCaseNum).resolve("after.java");
+
+                        List<String> subjectCaseCandidates = Arrays.stream(Objects.requireNonNull(fixBenchCodeGroupRoot.toFile().listFiles()))
+                                .map(File::getName)
+                                .filter(name -> !name.equals(patternCaseNum))
+                                .collect(Collectors.toList());
+
+                        int index = random.nextInt(subjectCaseCandidates.size());
+                        String subjectCaseNum = subjectCaseCandidates.get(index);
+                        Path subjectBeforePath = fixBenchCodeGroupRoot.resolve(subjectCaseNum).resolve("before.java");
+
+                        CodeGraph ag = GraphBuilder.buildActionGraph(patternBeforePath.toString(), patternAfterPath.toString(), new int[]{});
+                        List<Pattern> patterns = PatternExtractor.combineGraphs(List.of(ag), "new");
+
+                        CodeGraph SubjectActionGraph = GraphBuilder.buildGraph(subjectBeforePath.toString(), new String[]{}, 8, new int[]{});
+
+                        Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+                        for (Pattern pat : patterns) {
+                            // abstract pattern
+                            PatternAbstractor abs = new PatternAbstractor(1);
+                            pat = abs.abstractPattern(pat);
+                            // get feature json object
+                            List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                            for (Pair<String, JSONObject> pair : patternByID) {
+                                if (!patternsByID.containsKey(pair.getValue0())) {
+                                    patternsByID.put(pair.getValue0(), new JSONArray());
+                                }
+                                patternsByID.get(pair.getValue0()).add(pair.getValue1());
+                            }
+                        }
+                        // write json object to file
+                        String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/%s_%s_%s.json", project, groupID, patternCaseNum);
+                        ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+
+                        for (int i = 0; i < patterns.size(); i++) {
+                            Pattern pattern = patterns.get(i);
+                            PatternAbstractor.buildWithoutAbstract(pattern);
+
+                            JSONObject labelJson = modelPrediction.get(key);
+                            JSONObject oriJson = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(ag.getFileName()).getJSONObject(i);
+                            InteractPattern.abstractByJSONObject(pattern, oriJson, labelJson, ag.getFileName());
+                        }
+
+                        // 多个pattern
+                        for (int i = 0; i < patterns.size(); i++) {
+                            Pattern pattern = patterns.get(i);
+
+                            // check whether all actions are abstracted
+                            if (pattern.getActionSet().stream().allMatch(n -> !n.isActionRelated() && n.isAbstract())) {
+                                System.out.printf("[error]all abstracted actions: %s %s %s\n", project, groupID, patternCaseNum);
+                                continue;
+                            }
+
+                            // check action source whether valid
+                            boolean abstractValid = true;
+                            for (PatternNode action : pattern.getActionSet().stream().filter(n -> !n.isAbstract()).collect(Collectors.toSet())) {
+                                for (PatternEdge ie : action.inEdges()) {
+                                    if (ie.isAbstract() || ie.getSource().isAbstract())
+                                        abstractValid = false;
+                                }
+                            }
+                            if (!abstractValid) {
+                                System.out.printf("[error]action node has invalid-abstracted source: %s %s %s\n", project, groupID, patternCaseNum);
+                                continue;
+                            }
+                            // locate the buggy line
+                            BugLocator detector = new BugLocator(0.6);
+
+                            DotGraph dot = new DotGraph(pattern, 0, true, false);
+                            File dotFile = new File(String.format("%s/out/pattern_out/%s_%s_patternCaseNum_%s_subjectCaseNum_%s_patternNum_%s_predict.dot",
+                                    System.getProperty("user.dir"), project, groupID, patternCaseNum, subjectCaseNum, i));
+                            dot.toDotFile(dotFile);
+
+                            String patchPath = String.format("%s/%s/%s/%s/patch_%d.java", patchRoot, project, groupID, subjectCaseNum, i);
+                            detector.applyPattern(pattern, SubjectActionGraph, patchPath, "new");
+                        }
+
+
+
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
+
+    }
+
+    @Test
+    public void testOneModelPatternAndGeneratePatch() {
+        Random random = new Random(42);
+        String current_project = "FindBugs-DM_DEFAULT_ENCODING";
+        String groupID = "1";
+        Path fixBenchCodeRoot = Paths.get("E:\\dataset\\FixBench\\WithinSingleMethod").resolve(current_project).resolve(groupID);
+        Path modelPredictionJson = Paths.get("E:\\dataset\\FixBench\\output_fixbench").resolve(current_project).resolve(String.format("%s.json", groupID));
+        Path patchRoot = Paths.get(System.getProperty("user.dir")).resolve("out").resolve("model_patch");
+
+        System.out.println("model result: " + modelPredictionJson);
+        System.out.println("code root: " + fixBenchCodeRoot);
+
+        // load model prediction
+        Map<String, JSONObject> modelPrediction = (Map<String, JSONObject>) ObjectUtil.readJsonFromFile(modelPredictionJson.toString());
+
+        // 遍历每一个case
+        for (String key : modelPrediction.keySet()) {
+            String[] keySplit = key.split("/");
+            assertEquals(current_project, keySplit[keySplit.length - 4]);
+            assertEquals(groupID, keySplit[keySplit.length - 3]);
+            String patternCaseNum = keySplit[keySplit.length - 2];
+
+            Path patternBeforePath = fixBenchCodeRoot.resolve(patternCaseNum).resolve("before.java");
+            Path patternAfterPath = fixBenchCodeRoot.resolve(patternCaseNum).resolve("after.java");
+
+            List<String> subjectCaseCandidates = Arrays.stream(Objects.requireNonNull(fixBenchCodeRoot.toFile().listFiles()))
+                    .map(File::getName)
+                    .filter(name -> !name.equals(patternCaseNum))
+                    .collect(Collectors.toList());
+
+            int index = random.nextInt(subjectCaseCandidates.size());
+            String subjectCaseNum = subjectCaseCandidates.get(index);
+            Path subjectBeforePath = fixBenchCodeRoot.resolve(subjectCaseNum).resolve("before.java");
+
+            CodeGraph ag = GraphBuilder.buildActionGraph(patternBeforePath.toString(), patternAfterPath.toString(), new int[]{});
+            List<Pattern> patterns = PatternExtractor.combineGraphs(List.of(ag), "new");
+
+            CodeGraph SubjectActionGraph = GraphBuilder.buildGraph(subjectBeforePath.toString(), new String[]{}, 8, new int[]{});
+
+            Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
+            for (Pattern pat : patterns) {
+                // abstract pattern
+                PatternAbstractor abs = new PatternAbstractor(1);
+                pat = abs.abstractPattern(pat);
+                // get feature json object
+                List<Pair<String, JSONObject>> patternByID = ObjectUtil.getFeatureJsonObj(pat, pat.getIdPattern());
+                for (Pair<String, JSONObject> pair : patternByID) {
+                    if (!patternsByID.containsKey(pair.getValue0())) {
+                        patternsByID.put(pair.getValue0(), new JSONArray());
+                    }
+                    patternsByID.get(pair.getValue0()).add(pair.getValue1());
+                }
+            }
+            // write json object to file
+            String jsonPath = System.getProperty("user.dir") + String.format("/test_json_out/%s_%s_%s.json", current_project, groupID, patternCaseNum);
+            ObjectUtil.writeFeatureJsonObjToFile(patternsByID, jsonPath);
+
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+                PatternAbstractor.buildWithoutAbstract(pattern);
+
+                JSONObject labelJson = modelPrediction.get(key);
+                JSONObject oriJson = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(ag.getFileName()).getJSONObject(i);
+                InteractPattern.abstractByJSONObject(pattern, oriJson, labelJson, ag.getFileName());
+            }
+
+            // 多个pattern
+            for (int i = 0; i < patterns.size(); i++) {
+                Pattern pattern = patterns.get(i);
+
+                // check whether all actions are abstracted
+                if (pattern.getActionSet().stream().allMatch(n -> !n.isActionRelated() && n.isAbstract())) {
+                    System.out.printf("[error]all abstracted actions: %s %s %s\n", current_project, groupID, patternCaseNum);
+                    continue;
+                }
+
+                // check action source whether valid
+                boolean abstractValid = true;
+                for (PatternNode action : pattern.getActionSet().stream().filter(n -> !n.isAbstract()).collect(Collectors.toSet())) {
+                    for (PatternEdge ie : action.inEdges()) {
+                        if (ie.isAbstract() || ie.getSource().isAbstract())
+                            abstractValid = false;
+                    }
+                }
+                if (!abstractValid) {
+                    System.out.printf("[error]action node has invalid-abstracted source: %s %s %s\n", current_project, groupID, patternCaseNum);
+                    continue;
+                }
+                // locate the buggy line
+                BugLocator detector = new BugLocator(0.6);
+
+//                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+
+                DotGraph dot = new DotGraph(pattern, 0, true, false);
+                File dotFile = new File(String.format("%s/out/pattern_out/%s_%s_patternCaseNum_%s_subjectCaseNum_%s_patternNum_%s_predict.dot",
+                        System.getProperty("user.dir"), current_project, groupID, patternCaseNum, subjectCaseNum, i));
+                dot.toDotFile(dotFile);
+
+                String patchPath = String.format("%s/%s/%s/%s/patch_%d.java", patchRoot, current_project, groupID, subjectCaseNum, i);
+                detector.applyPattern(pattern, SubjectActionGraph, patchPath, "new");
+            }
+
+
+        }
+
 
     }
 

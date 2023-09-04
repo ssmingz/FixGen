@@ -7,6 +7,7 @@ import model.pattern.PatternEdge;
 import model.pattern.PatternNode;
 import org.javatuples.Pair;
 import utils.DiffUtil;
+import utils.DotGraph;
 import utils.ObjectUtil;
 
 import java.io.File;
@@ -347,6 +348,8 @@ public class Main {
                 // save the pattern
                 String patternPath = String.format("%s/pattern_out/pattern_c3_%s_%s_%s_%s_predict.dat", System.getProperty("user.dir"), project, groupID, targetID, i);
                 ObjectUtil.writeObjectToFile(pattern, patternPath);
+
+
             }
             // 5. apply pattern to source file
             // build for the target
@@ -379,6 +382,11 @@ public class Main {
                 BugLocator detector = new BugLocator(0.6);
 
 //                String patchPath = String.format("%s/%s/patch_%d.java", patchDir, targetID, i);
+
+                DotGraph dot = new DotGraph(pattern, 0, true, false);
+                File dotFile = new File(String.format("%s/pattern_out/target_pattern_%s_%s_%s_%s_target_%s_predict.dot", System.getProperty("user.dir"), project, groupID, targetID, testTargetID, i));
+                dot.toDotFile(dotFile);
+
                 String patchPath = String.format("%s/%s/patch_%d.java", patchDir, testTargetID, i);
                 detector.applyPattern(pattern, target_ag, patchPath, runType);
             }

@@ -1034,7 +1034,6 @@ public class PatternExtractor {
         } else if (isVarRef(pn) && isVarRef(cgn)) {
             return true;
         } else {
-            // special case
             String aStr = pn.getAttribute("value") != null ? pn.getAttribute("value").getTag().toString() : null;
             String bStr = cgn.toLabelString();
             return ("==".equals(aStr) && "!=".equals(bStr)) || ("!=".equals(aStr) && "==".equals(bStr));

@@ -9,6 +9,7 @@ import org.javatuples.Pair;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Pattern implements Serializable {
     private String _patternName = "Pattern";
@@ -136,7 +137,11 @@ public class Pattern implements Serializable {
     public List<Pair<Map<PatternNode, CtWrapper>, Double>> compareCG(CodeGraph aGraph, String type) {
         // begin the traversal from the parent nodes
         List<CtWrapper> ctNodes = aGraph.getNodes();
-        List<PatternNode> patternNodes = Arrays.asList(_patternNodes.toArray(new PatternNode[0]));
+
+        List<PatternNode> patternNodes = Arrays.asList(_patternNodes.stream().
+                filter(patternNode -> !patternNode.isAbstract())
+                .collect(Collectors.toList())
+                .toArray(new PatternNode[0]));
         Collections.reverse(ctNodes);
         Collections.reverse(patternNodes);
         Map<PatternNode, Map<CtWrapper, Double>> orderBySimScore = PatternExtractor.calSimScorePattern(patternNodes, ctNodes);
@@ -144,7 +149,7 @@ public class Pattern implements Serializable {
         if (type.equals("old")) {
             double score = PatternExtractor.matchBySimScorePattern(patternNodes, 0, ctNodes, 0, mapping, orderBySimScore);
             List<Pair<Map<PatternNode, CtWrapper>, Double>> scoresList = new ArrayList<>();
-            scoresList.add(new Pair<>(mapping, score / _patternNodes.size()));
+            scoresList.add(new Pair<>(mapping, score / patternNodes.size()));
             return scoresList;
         } else if(type.equals("new")) {
 //            Set<Pair<Map<PatternNode, CtWrapper>, Double>> scores = PatternExtractor.matchTopTiedNodeBySimScorePattern(new HashSet<>(), patternNodes, 0, ctNodes, 0, mapping, orderBySimScore);
@@ -157,7 +162,7 @@ public class Pattern implements Serializable {
 
             List<Pair<Map<PatternNode, CtWrapper>, Double>> scoresList = new ArrayList<>();
             for (Pair<Map<PatternNode, CtWrapper>, Double> pair : scores) {
-                double normalizedScore = pair.getValue1() / _patternNodes.size();
+                double normalizedScore = pair.getValue1() / patternNodes.size();
                 scoresList.add(new Pair<>(pair.getValue0(), normalizedScore));
             }
             scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
