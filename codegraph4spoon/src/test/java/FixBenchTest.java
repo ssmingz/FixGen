@@ -579,8 +579,8 @@ public class FixBenchTest {
 
     @Test
     public void testOneModelPatternAndGeneratePatch() {
-        String current_project = "Genesis-NP";
-        String groupID = "12";
+        String current_project = "FindBugs-DM_DEFAULT_ENCODING";
+        String groupID = "0";
         String targetSubjectCaseNum = "1";
         String targetPatternCaseNum = "0";
         Path fixBenchCodeGroupRoot = Paths.get("E:\\dataset\\FixBench\\WithinSingleMethod").resolve(current_project).resolve(groupID);

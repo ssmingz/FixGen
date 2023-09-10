@@ -327,6 +327,25 @@ public class ObjectUtil {
         return ieSourceInSrcGraph;
     }
 
+    public static CtElementImpl findMappedNodeInNewGraph(CtElementImpl ieSourceInDstGraph, CodeGraph cg1) {
+        CtElementImpl ieSourceInSrcGraph = null;
+        for (Map.Entry<CtWrapper, CtWrapper> entry : cg1.getMapping().entrySet()) {
+            if (entry.getValue().getCtElementImpl().equals(ieSourceInDstGraph)) {
+                ieSourceInSrcGraph = entry.getKey().getCtElementImpl();
+                break;
+            }
+        }
+        if (ieSourceInSrcGraph == null) {
+            for (CtWrapper c : cg1.getNodes()) {
+                if (c.getCtElementImpl().equals(ieSourceInDstGraph)) {
+                    ieSourceInSrcGraph = c.getCtElementImpl();
+                    break;
+                }
+            }
+        }
+        return ieSourceInSrcGraph;
+    }
+
     public static void writeObjectToFile(Object obj, String filePath) {
         File file = new File(filePath);
         if (!file.getParentFile().exists()) {
