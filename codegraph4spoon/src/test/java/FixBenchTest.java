@@ -286,7 +286,7 @@ public class FixBenchTest {
                 File[] patchCases = patchGroupRoot.toFile().listFiles();
                 for (File patchCase : patchCases) {
                     String patchCaseID = patchCase.getName();
-                    if(project.equals("FindBugs-DM_DEFAULT_ENCODING") && groupID.equals("2") && patchCaseID.equals("1")) {
+                    if(project.equals("Genesis-OOB") && groupID.equals("0") && patchCaseID.equals("0")) {
                         System.out.println("here");
                     }
                     totalCases ++;
@@ -579,7 +579,7 @@ public class FixBenchTest {
 
     @Test
     public void testOneModelPatternAndGeneratePatch() {
-        String current_project = "Genesis-OOB";
+        String current_project = "Genesis-NP";
         String groupID = "0";
         String targetSubjectCaseNum = "0";
         String targetPatternCaseNum = "1";
