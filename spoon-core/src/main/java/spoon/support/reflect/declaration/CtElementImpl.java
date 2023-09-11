@@ -114,7 +114,7 @@ public abstract class CtElementImpl implements CtElement {
 	/** this field `factory` must be transient in order to allow proper serialization
 	 * the factory is restored in all AST nodes in {@link spoon.support.SerializationModelStreamer}
 	 */
-	protected transient Factory factory;
+	protected Factory factory;
 
 	protected CtElement parent;
 

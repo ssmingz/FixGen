@@ -286,7 +286,7 @@ public class FixBenchTest {
                 File[] patchCases = patchGroupRoot.toFile().listFiles();
                 for (File patchCase : patchCases) {
                     String patchCaseID = patchCase.getName();
-                    if(project.equals("Genesis-OOB") && groupID.equals("1") && patchCaseID.equals("0")) {
+                    if(project.equals("FindBugs-DM_DEFAULT_ENCODING") && groupID.equals("2") && patchCaseID.equals("1")) {
                         System.out.println("here");
                     }
                     totalCases ++;
@@ -579,10 +579,10 @@ public class FixBenchTest {
 
     @Test
     public void testOneModelPatternAndGeneratePatch() {
-        String current_project = "FindBugs-DM_DEFAULT_ENCODING";
+        String current_project = "Genesis-OOB";
         String groupID = "0";
-        String targetSubjectCaseNum = "1";
-        String targetPatternCaseNum = "0";
+        String targetSubjectCaseNum = "0";
+        String targetPatternCaseNum = "1";
         Path fixBenchCodeGroupRoot = Paths.get("E:\\dataset\\FixBench\\WithinSingleMethod").resolve(current_project).resolve(groupID);
         Path patchRoot = Paths.get(System.getProperty("user.dir")).resolve("out").resolve("debug_model_patch");
         System.out.println("code root: " + fixBenchCodeGroupRoot);

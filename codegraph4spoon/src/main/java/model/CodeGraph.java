@@ -79,7 +79,7 @@ public class CodeGraph implements Serializable {
         if (ctNode instanceof CtMethodImpl) {
             visit((CtMethodImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtAnonymousExecutableImpl) {
-            // do not handle
+            visit((CtAnonymousExecutableImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtConstructorImpl) {
             visit((CtConstructorImpl) ctNode, control, scope);
         } else if (ctNode instanceof CtEnumImpl) {
@@ -275,6 +275,37 @@ public class CodeGraph implements Serializable {
         // method name
         CtVirtualElement mname = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "METHOD_DEC_NAME");
         updateCGId(mname);
+        // arguments
+        for (Object para : ctNode.getParameters()) {
+            buildNode(para, control, scope);
+        }
+        // throws type
+        for (Object throwt : ctNode.getThrownTypes()) {
+            buildNode(throwt, control, scope);
+        }
+        // method body
+        if (ctNode.getBody() != null) {
+            buildNode(ctNode.getBody(), control, scope);
+        }
+    }
+
+    private void visit(CtAnonymousExecutableImpl ctNode, CtElementImpl control, Scope scope) {
+        ctNode.setControlDependency(control);
+        ctNode.setScope(scope);
+        // modifiers, ModifierKind (enum type)
+        for (Object mf : ctNode.getModifiers()) {
+            CtVirtualElement modifier = new CtVirtualElement(ctNode, mf.toString(), "MODIFIER");
+            updateCGId(modifier);
+        }
+        // return type
+//        if (ctNode.getType() != null) {
+//            buildNode(ctNode.getType(), control, scope);
+//        }
+
+        // method name
+        CtVirtualElement mname = new CtVirtualElement(ctNode, ctNode.getSimpleName(), "METHOD_DEC_NAME");
+        updateCGId(mname);
+
         // arguments
         for (Object para : ctNode.getParameters()) {
             buildNode(para, control, scope);
