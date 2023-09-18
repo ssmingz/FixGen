@@ -22,6 +22,7 @@ import utils.ObjectUtil;
 import java.lang.reflect.Type;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class PatternExtractor {
     static int MAX_EXTEND_LEVEL = 3;  // default is 3
@@ -34,7 +35,8 @@ public class PatternExtractor {
         if (ags == null || ags.isEmpty()) {
             return patternList;
         }
-        List<List<CtWrapper>> nodeLists = getActionLinks(ags.get(0));
+        CodeGraph originalGraph = ags.get(0);
+        List<List<CtWrapper>> nodeLists = getActionLinks(originalGraph);
         // init patterns
         for (List<CtWrapper> l : nodeLists) {
             PatternNode start = new PatternNode(l.get(0), ags.get(0));
@@ -47,6 +49,8 @@ public class PatternExtractor {
                 pn.setPattern(pat);
                 pat.addNode(pn, n);
             }
+
+
             for (CtWrapper n : l) {
                 for (Edge e : n.getCtElementImpl()._inEdges) {
                     PatternNode srcPN = pat.getNodeMapping().get(ObjectUtil.findCtKeyInSet(pat.getNodeMapping().keySet(), new CtWrapper(e.getSource())));
@@ -363,6 +367,10 @@ public class PatternExtractor {
         // update traversed
         traversed.add(node);
         for (Edge ie : node.getCtElementImpl()._inEdges) {
+            if (isPatch && ie.type == Edge.EdgeType.DEF_USE) {
+                nodes.add(new CtWrapper(ie.getSource()));
+                continue;
+            }
             // continue extending source
             if (isPatch && ie.type == Edge.EdgeType.AST)  // do not extend AST relationship in dst tree (already add it in action graph building)
                 continue;
@@ -371,6 +379,10 @@ public class PatternExtractor {
             nodes.addAll(extendLinks(new CtWrapper(ie.getSource()), extendLevel + 1, traversed, cg, extendFromControlDep).stream().filter(n -> !nodes.contains(n)).collect(Collectors.toList()));
         }
         for (Edge oe : node.getCtElementImpl()._outEdges) {
+            if (isPatch && oe.type == Edge.EdgeType.DEF_USE) {
+                nodes.add(new CtWrapper(oe.getTarget()));
+                continue;
+            }
             // continue extending target
             if (ObjectUtil.findCtKeyInSet(extendFromControlDep, new CtWrapper(node.getCtElementImpl())) != null
                     || oe.type == Edge.EdgeType.CONTROL_DEP)

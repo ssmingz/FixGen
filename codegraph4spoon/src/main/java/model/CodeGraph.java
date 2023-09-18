@@ -23,6 +23,8 @@ import utils.ReflectUtil;
 
 import java.io.Serializable;
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class CodeGraph implements Serializable {
     private String _name;
@@ -57,6 +59,10 @@ public class CodeGraph implements Serializable {
         int elementId = idCG.getOrDefault(e, -1);
         if (e instanceof CtWrapper) {
             elementId = idCG.getOrDefault(ObjectUtil.findCtKeyInSet(new HashSet<>(_allNodes), (CtWrapper) e), -1);
+        }
+        if (elementId == -1) {
+            elementId = idCG.getOrDefault(ObjectUtil.findCtKeyInSet(new HashSet<>(_allNodes), (CtWrapper) e), -1);
+            System.out.println("ERROR: cannot find element id for " + e.toString());
         }
         return elementId;
     }
@@ -945,4 +951,13 @@ public class CodeGraph implements Serializable {
         }
         return null;
     }
+
+    public List<Edge> getAllEdges() {
+        List<Edge> edges = idCG.keySet().stream()
+                .filter(key -> key instanceof Edge)
+                .map(key -> (Edge) key)
+                .collect(Collectors.toList());
+        return edges;
+    }
+
 }

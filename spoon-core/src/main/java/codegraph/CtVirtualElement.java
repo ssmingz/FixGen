@@ -4,6 +4,7 @@ import codegraph.visitor.ReplaceNameVisitor;
 import codegraph.visitor.TokenVisitor;
 import spoon.reflect.cu.SourcePosition;
 import spoon.reflect.path.CtRole;
+import spoon.reflect.visitor.CtBiScannerDefault;
 import spoon.reflect.visitor.CtVisitor;
 import spoon.support.reflect.code.CtCodeElementImpl;
 import spoon.support.reflect.declaration.CtElementImpl;

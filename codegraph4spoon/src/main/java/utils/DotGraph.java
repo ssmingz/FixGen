@@ -17,6 +17,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DotGraph {
     public static final String SHAPE_ELLIPSE = "ellipse";
@@ -87,7 +89,8 @@ public class DotGraph {
             idByNode.put(node, id);
             String label = isAbstract ? node.toLabelAfterAbstract() : node.toLabel();
             String style = node.isAbstract() ? "dashed" : null;
-            graph.append(addNode(id, idByNode.get(node)+"#\n"+label, SHAPE_ELLIPSE, style, null, null));
+            Map<Object, Integer> PatternId = pat.getIdPattern().entrySet().stream().collect(Collectors.toMap(Map.Entry::getValue, Map.Entry::getKey));
+            graph.append(addNode(id, PatternId.get(node)+"#\n"+label, SHAPE_ELLIPSE, style, null, null));
             id++;
         }
         // add edges

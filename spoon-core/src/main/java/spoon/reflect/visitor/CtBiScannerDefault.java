@@ -6,6 +6,9 @@
  * Spoon is available either under the terms of the MIT License (see LICENSE-MIT.txt) of the Cecill-C License (see LICENSE-CECILL-C.txt). You as the user are entitled to choose the terms under which to adopt Spoon.
  */
 package spoon.reflect.visitor;
+
+import codegraph.CtVirtualElement;
+
 /**
  * This visitor implements a deep-search scan on the model for 2 elements.
  *
@@ -1079,4 +1082,5 @@ public class CtBiScannerDefault extends spoon.reflect.visitor.CtAbstractBiScanne
 		biScan(spoon.reflect.path.CtRole.COMMENT, recordType.getComments(), other.getComments());
 		exit(recordType);
 	}
+
 }

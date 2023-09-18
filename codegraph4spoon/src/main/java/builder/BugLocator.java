@@ -615,7 +615,8 @@ public class BugLocator {
         if (!pnRoot.implicit.isAbstract())
             newly.setImplicit((Boolean) pnRoot.implicit.getTag());
         // check value for name
-        if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null || RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.VALUE) != null) {
+        if (RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.NAME) != null ||
+                RoleHandlerHelper.getOptionalRoleHandler(newly.getClass(), CtRole.VALUE) != null) {
             // check define-use for name
             PatternNode define = findDefine(pnRoot), use = null;
             if (mapping4pattern.containsKey(define))

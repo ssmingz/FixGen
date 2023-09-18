@@ -70,6 +70,7 @@ public class PatternAbstractor {
 //            pn.setComparedAttribute(pn.listSize);
 //            pn.setComparedAttribute(pn.listIndex);
 //            pn.setComparedAttribute(pn.implicit);
+
         }
     }
 

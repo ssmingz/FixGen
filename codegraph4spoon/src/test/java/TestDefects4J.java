@@ -271,7 +271,17 @@ public class TestDefects4J {
                 JSONObject labelJson = modelPrediction.get(key);
                 JSONObject oriJson = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(ag.getFileName()).getJSONObject(i);
                 InteractPattern.abstractByJSONObject(pattern, oriJson, labelJson, ag.getFileName());
+
+
+//                InteractPattern.abstractVertex(pattern, 11, 1, ag.getFileName());
+//                InteractPattern.abstractAttribute(pattern, 11, "nodeType", 1, ag.getFileName());
+//                InteractPattern.abstractAttribute(pattern, 11, "locationInParent", 1, ag.getFileName());
+//                InteractPattern.abstractVertex(pattern, 8, 1, ag.getFileName());
+//                InteractPattern.abstractAttribute(pattern, 8, "nodeType", 1, ag.getFileName());
+//                InteractPattern.abstractAttribute(pattern, 8, "locationInParent", 1, ag.getFileName());
+
             }
+
 
 
             Path subjectBeforePath = d4jCodeGroupRoot.resolve("apply").resolve("before.java");
@@ -301,15 +311,15 @@ public class TestDefects4J {
                 // locate the buggy line
                 BugLocator detector = new BugLocator(0.5);
 
-                DotGraph dot = new DotGraph(pattern, 0, true, false);
+                DotGraph dot = new DotGraph(pattern, 0, true, true);
                 File dotFile = new File(String.format("%s/out/d4j_pattern_out/currentProject_%s_bugId_%s_patch_predict_%s.dot",
                         System.getProperty("user.dir"), current_project, bugId, i));
                 dot.toDotFile(dotFile);
 
                 for (CodeGraph subjectActionGraph : subjectActionGraphs) {
                     DotGraph dot_cg = new DotGraph(subjectActionGraph, new GraphConfiguration(), 0);
-                    File dotcgFile = new File(String.format("%s/out/d4j_graph_out/currentProject_%s_bugId_%s.dot",
-                            System.getProperty("user.dir"), current_project, bugId));
+                    File dotcgFile = new File(String.format("%s/out/d4j_graph_out/currentProject_%s_bugId_%s_%d.dot",
+                            System.getProperty("user.dir"), current_project, bugId, subjectActionGraphs.indexOf(subjectActionGraph)));
                     dot_cg.toDotFile(dotcgFile);
 
                     String patchPath = String.format("%s/%s/%s/pattern%d_patch_%d.java", patchRoot, current_project, bugId, i, subjectActionGraphs.indexOf(subjectActionGraph));
