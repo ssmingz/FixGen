@@ -27,7 +27,7 @@ public class InteractPattern {
                 continue;
 
             // 不处理与def-use相关的节点
-            if(isDefinUseEdge(pattern, cgName, id, id))
+            if(isDefineUseEdge(pattern, cgName, id, id))
                 continue;
 
             InteractPattern.abstractVertex(pattern, id, lab, cgName);
@@ -52,7 +52,7 @@ public class InteractPattern {
                 if (isActionRelatedEdge(pattern, cgName, id, tid))
                     continue;
 
-                if(isDefinUseEdge(pattern, cgName, id, tid))
+                if(isDefineUseEdge(pattern, cgName, id, tid))
                     continue;
 
                 if (!es.getString(ei).equals(""))
@@ -78,7 +78,7 @@ public class InteractPattern {
         return false;
     }
 
-    private static boolean isDefinUseNode(Pattern pattern, String graphName, int id) {
+    private static boolean isDefineUseNode(Pattern pattern, String graphName, int id) {
         PatternNode pn = pattern.getPatternNodeByCGElementId(graphName, id);
         if (pn != null) {
             return pn.outEdges().stream().anyMatch(edge -> edge.type == PatternEdge.EdgeType.DEF_USE) ||
@@ -87,7 +87,7 @@ public class InteractPattern {
         return false;
     }
 
-    private static boolean isDefinUseEdge(Pattern pattern, String graphName, int srcId, int tarId) {
+    private static boolean isDefineUseEdge(Pattern pattern, String graphName, int srcId, int tarId) {
         PatternEdge pe = pattern.getPatternEdgeByCGElementId(graphName, srcId, tarId);
         if (pe != null)
             return pe.type == PatternEdge.EdgeType.DEF_USE;

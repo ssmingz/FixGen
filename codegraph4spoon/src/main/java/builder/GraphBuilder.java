@@ -15,6 +15,8 @@ import org.javatuples.Triplet;
 import spoon.Launcher;
 import spoon.reflect.CtModel;
 import spoon.reflect.declaration.CtElement;
+import spoon.reflect.visitor.filter.TypeFilter;
+import spoon.support.compiler.VirtualFile;
 import spoon.support.reflect.declaration.*;
 import utils.ASTUtil;
 import utils.CtChildScanner;

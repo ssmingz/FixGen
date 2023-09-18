@@ -174,7 +174,9 @@ public class PatternNode implements Serializable {
 
     public boolean isAbstract() { return isAbstract; }
 
-    public void setAbstract(boolean abs) { isAbstract = abs; }
+    public void setAbstract(boolean abs) {
+        isAbstract = abs;
+    }
 
     public PatternNode getParent() {
         for (PatternEdge ie : _inEdges) {

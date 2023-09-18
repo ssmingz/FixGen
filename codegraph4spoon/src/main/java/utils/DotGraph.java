@@ -87,7 +87,7 @@ public class DotGraph {
             idByNode.put(node, id);
             String label = isAbstract ? node.toLabelAfterAbstract() : node.toLabel();
             String style = node.isAbstract() ? "dashed" : null;
-            graph.append(addNode(id, label, SHAPE_ELLIPSE, style, null, null));
+            graph.append(addNode(id, idByNode.get(node)+"#\n"+label, SHAPE_ELLIPSE, style, null, null));
             id++;
         }
         // add edges

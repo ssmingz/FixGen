@@ -168,7 +168,7 @@ public class Pattern implements Serializable {
             scoresList.sort((p1, p2) -> Double.compare(p2.getValue1(), p1.getValue1()));
             List<Pair<Map<PatternNode, CtWrapper>, Double>> resList = new ArrayList<>();
 //            resList.add(scoresList.get(0));
-            resList.addAll(scoresList.stream().filter(pair -> pair.getValue1() >= 0.5).collect(Collectors.toList()));
+            resList.addAll(scoresList);
             return resList;
         }
         return null;

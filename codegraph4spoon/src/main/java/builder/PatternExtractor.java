@@ -1034,7 +1034,14 @@ public class PatternExtractor {
         } else if (isVarRef(pn) && isVarRef(cgn)) {
             return true;
         } else {
-            String aStr = pn.getAttribute("value") != null ? pn.getAttribute("value").getTag().toString() : null;
+            String aStr = null;
+            if (!pn.getAttribute("value").isAbstract()) {
+                if (pn.getAttribute("value").getTag() == null)
+                    aStr = "null";
+                    //
+                else
+                    aStr = pn.getAttribute("value") != null && pn.getAttribute("value").getValueSet().size() != 0 ? pn.getAttribute("value").getTag().toString() : null;
+            }
             String bStr = cgn.toLabelString();
             return ("==".equals(aStr) && "!=".equals(bStr)) || ("!=".equals(aStr) && "==".equals(bStr));
         }
@@ -1171,7 +1178,8 @@ public class PatternExtractor {
                     }
                     break;
                 case "value":
-                    comp = Attribute.computeValue(cgn);
+                    if (!pn.getAttribute("nodeType").isAbstract() && pn.getAttribute("nodeType").getTag().toString().contains("CtLiteralImpl"))
+                        comp = Attribute.computeValue(cgn);
                     break;
                 case "value2":
                     comp = Attribute.computeValue2(cgn);
