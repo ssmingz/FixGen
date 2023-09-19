@@ -27,7 +27,7 @@ public class InteractPattern {
                 continue;
 
             // 不处理与def-use相关的节点
-            if(isDefineUseEdge(pattern, cgName, id, id))
+            if(isDefineUseNode(pattern, cgName, id))
                 continue;
 
             InteractPattern.abstractVertex(pattern, id, lab, cgName);

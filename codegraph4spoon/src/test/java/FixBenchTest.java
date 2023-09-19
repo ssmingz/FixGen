@@ -579,7 +579,7 @@ public class FixBenchTest {
 
     @Test
     public void testOneModelPatternAndGeneratePatch() {
-        String current_project = "Genesis-NP";
+        String current_project = "Genesis-OOB";
         String groupID = "0";
         String targetSubjectCaseNum = "0";
         String targetPatternCaseNum = "1";

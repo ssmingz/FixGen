@@ -705,12 +705,12 @@ public class PatternExtractor {
 
     public static Set<Pair<Map<PatternNode, CtWrapper>, Double>> matchTopTiedNodeBySimScorePattern2(List<PatternNode> pnList, List<CtWrapper> cgList, Map<PatternNode, Map<CtWrapper, Double>> simScoreMap) {
         class Choice {
-            Set<PatternNode> traveledNodes;
-            Set<CtWrapper> hasMatchedNodes;
-            CtWrapper cgNode;
-            Map<PatternNode, CtWrapper> track;
+            final Set<PatternNode> traveledNodes;
+            final Set<CtWrapper> hasMatchedNodes;
+            final CtWrapper cgNode;
+            final Map<PatternNode, CtWrapper> track;
 
-            double score;
+            final double score;
 
             Choice(Set<PatternNode> traveledNodes, Set<CtWrapper> hasMatchedNodes, CtWrapper cgNode, Map<PatternNode, CtWrapper> track, double score) {
                 this.traveledNodes = traveledNodes;
@@ -725,11 +725,11 @@ public class PatternExtractor {
         Set<Pair<Map<PatternNode, CtWrapper>, Double>> result = new HashSet<>();
 
 
-        Stack<Choice> stack = new Stack<>();
-        stack.push(new Choice(new HashSet<>(), new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
+        Queue<Choice> queue = new ArrayDeque<>();
+        queue.add(new Choice(new HashSet<>(), new HashSet<>(), null, new HashMap<>(), 0)); // 初始化
 
-        while (!stack.isEmpty()) {
-            Choice choice = stack.pop();
+        while (!queue.isEmpty()) {
+            Choice choice = queue.remove();
 
             Set<PatternNode> traversed = choice.traveledNodes;
             Set<CtWrapper> hasMatchedNodes = choice.hasMatchedNodes;
@@ -739,6 +739,9 @@ public class PatternExtractor {
 
             if (traversed.size() == pnList.size()) {
                 result.add(new Pair<>(track, score));
+                if(result.size() > 200) {
+                    return result;
+                }
                 continue;
             }
 
@@ -786,13 +789,20 @@ public class PatternExtractor {
                         traversed.add(node);
                         hasMatchedNodes.add(bestSim);
                         track.put(node, bestSim);
-                        stack.push(new Choice(new HashSet<>(traversed), new HashSet<>(hasMatchedNodes), bestSim, new HashMap<>(track), score + simScore));
+                        queue.add(new Choice(new HashSet<>(traversed), new HashSet<>(hasMatchedNodes), bestSim, new HashMap<>(track), score + simScore));
                         track.remove(node, bestSim);
                         traversed.remove(node);
                         hasMatchedNodes.remove(bestSim);
                     }
                 } else {
-                    stack.push(new Choice(traversed, hasMatchedNodes, null, new HashMap<>(track), score));
+                    if (traversed.size() == pnList.size()) {
+                        result.add(new Pair<>(track, score));
+                        if(result.size() > 200) {
+                            return result;
+                        }
+                        continue;
+                    }
+                    queue.add(new Choice(traversed, hasMatchedNodes, null, new HashMap<>(track), score));
                 }
             }
 
@@ -1190,11 +1200,14 @@ public class PatternExtractor {
                     }
                     break;
                 case "value":
+                    // 如果是常量再算
                     if (!pn.getAttribute("nodeType").isAbstract() && pn.getAttribute("nodeType").getTag().toString().contains("CtLiteralImpl"))
                         comp = Attribute.computeValue(cgn);
                     break;
                 case "value2":
-                    comp = Attribute.computeValue2(cgn);
+                    // 如果value2被替换了才算
+                    if (!pn.getAttribute("value").getTag().equals(pn.getAttribute("value2").getTag()))
+                        comp = Attribute.computeValue2(cgn);
                     break;
                 case "valueType":
                     comp = Attribute.computeValueType(cgn);

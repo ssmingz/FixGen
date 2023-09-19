@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class TestDefects4J {
+public class Defects4JTest {
     @Test
     public void testAll_ExtractJson() {
         boolean OUTPUT_TO_FILE = true;
@@ -271,18 +271,7 @@ public class TestDefects4J {
                 JSONObject labelJson = modelPrediction.get(key);
                 JSONObject oriJson = ((JSONObject) ObjectUtil.readJsonFromFile(jsonPath)).getJSONArray(ag.getFileName()).getJSONObject(i);
                 InteractPattern.abstractByJSONObject(pattern, oriJson, labelJson, ag.getFileName());
-
-
-//                InteractPattern.abstractVertex(pattern, 11, 1, ag.getFileName());
-//                InteractPattern.abstractAttribute(pattern, 11, "nodeType", 1, ag.getFileName());
-//                InteractPattern.abstractAttribute(pattern, 11, "locationInParent", 1, ag.getFileName());
-//                InteractPattern.abstractVertex(pattern, 8, 1, ag.getFileName());
-//                InteractPattern.abstractAttribute(pattern, 8, "nodeType", 1, ag.getFileName());
-//                InteractPattern.abstractAttribute(pattern, 8, "locationInParent", 1, ag.getFileName());
-
             }
-
-
 
             Path subjectBeforePath = d4jCodeGroupRoot.resolve("apply").resolve("before.java");
             List<CodeGraph> subjectActionGraphs = GraphBuilder.buildMethodGraphs(subjectBeforePath.toString(), new String[]{}, 8, new int[]{});
@@ -309,7 +298,7 @@ public class TestDefects4J {
                     continue;
                 }
                 // locate the buggy line
-                BugLocator detector = new BugLocator(0.5);
+                BugLocator detector = new BugLocator(0.6);
 
                 DotGraph dot = new DotGraph(pattern, 0, true, true);
                 File dotFile = new File(String.format("%s/out/d4j_pattern_out/currentProject_%s_bugId_%s_patch_predict_%s.dot",

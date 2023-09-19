@@ -351,6 +351,7 @@ public class GraphBuilder {
                 }
                 for (CtWrapper child : scanner.childList) {
                     List<Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType>> newEdges = new ArrayList<>();
+                    Set<Edge> toDel = new HashSet<>();
                     for (Edge ie : child.getCtElementImpl()._inEdges) {
                         CtElementImpl ieSourceInDstGraph = ie.getSource();
                         if (ie.type == Edge.EdgeType.DEF_USE || ie.type == Edge.EdgeType.CONTROL_DEP) {
@@ -360,6 +361,7 @@ public class GraphBuilder {
                             } else {
 //                                System.out.printf("[warn]Unable to find %s Edge.source in srcGraph for:%s\n", ie.getLabel(), child.getCtElementImpl().prettyprint());
                             }
+                            toDel.add(ie);
                         }
                     }
                     for (Edge oe : child.getCtElementImpl()._outEdges) {
@@ -371,8 +373,10 @@ public class GraphBuilder {
                             } else {
 //                                System.out.printf("[warn]Unable to find %s Edge.target in srcGraph for:%s\n", oe.getLabel(), child.getCtElementImpl().prettyprint());
                             }
+                            toDel.add(oe);
                         }
                     }
+                    toDel.forEach(Edge::delete);
                     for (Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType> tri : newEdges) {
                         ObjectUtil.newEdge(tri.getValue0(), tri.getValue1(), tri.getValue2());
                     }
@@ -429,6 +433,7 @@ public class GraphBuilder {
                 }
                 for (CtWrapper child : scanner.childList) {
                     List<Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType>> newEdges = new ArrayList<>();
+                    Set<Edge> toDel = new HashSet<>();
                     for (Edge ie : child.getCtElementImpl()._inEdges) {
                         CtElementImpl ieSourceInDstGraph = ie.getSource();
                         if (ie.type == Edge.EdgeType.DEF_USE || ie.type == Edge.EdgeType.CONTROL_DEP) {
@@ -438,6 +443,7 @@ public class GraphBuilder {
                             } else {
 //                                System.out.printf("[warn]Unable to find %s Edge.source in srcGraph for:%s\n", ie.getLabel(), child.getCtElementImpl().prettyprint());
                             }
+                            toDel.add(ie);
                         }
                     }
                     for (Edge oe : child.getCtElementImpl()._outEdges) {
@@ -449,11 +455,13 @@ public class GraphBuilder {
                             } else {
 //                                System.out.printf("[warn]Unable to find %s Edge.target in srcGraph for:%s\n", oe.getLabel(), child.getCtElementImpl().prettyprint());
                             }
+                            toDel.add(oe);
                         }
                     }
                     for (Triplet<CtElementImpl, CtElementImpl, Edge.EdgeType> tri : newEdges) {
                         ObjectUtil.newEdge(tri.getValue0(), tri.getValue1(), tri.getValue2());
                     }
+                    toDel.forEach(Edge::delete);
                 }
             } else if (op instanceof MoveOperation) {
                 CtElementImpl movedInSrc = (CtElementImpl) op.getSrcNode();

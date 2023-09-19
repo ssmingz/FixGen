@@ -89,7 +89,7 @@ public class BugLocator {
         List<Pair<Map<PatternNode, CtWrapper>, Double>> mappingScoreList = pat.compareCG(target, runType);
 
 //        List<Pair<Map<PatternNode, CtWrapper>, Double>> maxList = mappingScoreList.stream().filter(p -> Objects.equals(p.getValue1(), maxScore)).collect(Collectors.toList());
-        List<Pair<Map<PatternNode, CtWrapper>, Double>> maxList = new ArrayList<>(mappingScoreList);
+        List<Pair<Map<PatternNode, CtWrapper>, Double>> maxList = mappingScoreList.stream().limit(10).collect(Collectors.toList());
         for (Pair<Map<PatternNode, CtWrapper>, Double> mappingScore : maxList) {
             if (mappingScore.getValue1() < SIMILARITY_THRESHOLD) {
                 System.out.printf("[warn]Not satisfy SIMILARITY_THRESHOLD: %s %d\n", target.getFileName(), maxList.indexOf(mappingScore));
