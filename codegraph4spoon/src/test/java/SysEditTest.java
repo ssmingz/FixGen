@@ -86,7 +86,8 @@ public class SysEditTest {
         Random random = new Random(42);
         Path sysEditCodeRoot = Paths.get("E:\\dataset\\FixBench\\SysEdit-c3");
         Path patchRoot = Paths.get(System.getProperty("user.dir")).resolve("out").resolve("model_patch");
-        File[] groups = sysEditCodeRoot.toFile().listFiles();
+        File[] groups = Arrays.stream(Objects.requireNonNull(sysEditCodeRoot.toFile().listFiles())).filter(File::isDirectory).toArray(File[]::new);
+        int moreThanOnePattern = 0;
         for (File group : groups) {
             String groupID = group.getName();
             Path sysEditCodeGroupRoot = sysEditCodeRoot.resolve(group.getName());
@@ -101,6 +102,12 @@ public class SysEditTest {
                     Path patternAfterPath = sysEditCodeGroupRoot.resolve(patternCaseNum).resolve("after.java");
                     CodeGraph ag = GraphBuilder.buildActionGraph(patternBeforePath.toString(), patternAfterPath.toString(), new int[]{});
                     List<Pattern> patterns = PatternExtractor.combineGraphs(List.of(ag), "new");
+
+                    if(patterns.size() > 1) {
+                        moreThanOnePattern += 1;
+                        System.out.println("more than one pattern: " + patternBeforePath);
+                        continue;
+                    }
 
                     // 存储json
                     Map<String, JSONArray> patternsByID = new LinkedHashMap<>();
@@ -203,6 +210,10 @@ public class SysEditTest {
 
             }
         }
+
+        System.out.println("more than one pattern: " + moreThanOnePattern);
+
+
 
     }
 
