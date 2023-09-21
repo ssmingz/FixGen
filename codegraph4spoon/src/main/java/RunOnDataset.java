@@ -23,7 +23,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RunOnDataset {
-    private final static Logger logger = LoggerFactory.getLogger(Main.class);
+    private final static Logger logger = LoggerFactory.getLogger(RunOnDataset.class);
 
     public static void main(String[] args) {
         Option option = processArgs(args);
@@ -31,13 +31,13 @@ public class RunOnDataset {
         run(option);
     }
 
-    public static void run(Option option) {
+    private static void run(Option option) {
         Path projectRootPath = Paths.get(option.testOnDataset.datasetPath);
         Path patchRootPath = Paths.get(option.testOnDataset.patchPath);
         File[] groups = Arrays.stream(Objects.requireNonNull(projectRootPath.toFile().listFiles())).filter(File::isDirectory).toArray(File[]::new);
         for (File group : groups) {
             String groupID = group.getName();
-            Path projectCodeGroupRoot = projectRootPath.resolve(group.getName());
+            Path projectCodeGroupRoot = projectRootPath.resolve(groupID);
             List<String> cases = Arrays.stream(Objects.requireNonNull(projectCodeGroupRoot.toFile().listFiles()))
                     .filter(File::isDirectory)
                     .map(File::getName)

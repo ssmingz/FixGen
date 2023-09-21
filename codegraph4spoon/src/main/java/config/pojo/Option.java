@@ -30,23 +30,31 @@ public class Option {
     }
 
     public static class extractPattern {
+        public String datasetName;
         public String dataPath;
+        public String patternPath;
 
         @Override
         public String toString() {
             return "extractPattern {\n" +
+                    "\t\tdatasetName= " + datasetName + '\n' +
                     "\t\tdataPath= " + dataPath + '\n' +
+                    "\t\tpatternPath= " + patternPath + '\n' +
                     "\t}\n";
         }
     }
 
     public static class defectFaults {
+        public String patternPath;
         public String projectPath;
+        public String resultsPath;
 
         @Override
         public String toString() {
             return "defectFaults {\n" +
+                    "\t\tpatternPath= " + patternPath + '\n' +
                     "\t\tprojectPath= " + projectPath + '\n' +
+                    "\t\tresultsPath= " + resultsPath + '\n' +
                     "\t}\n";
         }
     }

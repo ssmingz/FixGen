@@ -20,11 +20,15 @@ testOnDataset:
 
 # about extract patterns
 extractPattern:
+  datasetName: c3-junit
   dataPath: E:/dataset/FixBench/c3/dataset/junit
+  patternPath: D:/workspace/FixGen/codegraph4spoon/patterns
 
 # about defect faults
 defectFaults:
+  patternPath: D:/workspace/FixGen/codegraph4spoon/patterns
   projectPath: E:/dataset/FixBench/fixBenchTest/project-repos/arthas
+  resultsPath: D:/workspace/FixGen/codegraph4spoon/out/faults_results
 
 
 
