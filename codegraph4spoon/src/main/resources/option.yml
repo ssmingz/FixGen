@@ -2,6 +2,7 @@ description: generate pattern to defect potential defects or generate patches
 
 # model
 pythonCmd: E:/Anaconda3/envs/fix_graph_2/python.exe
+modelWorkPath: D:/workspace/fix_graph_1
 modelPath: D:/workspace/fix_graph_1/run.py
 jsonBefore: D:/workspace/FixGen/codegraph4spoon/test_json_out
 jsonAfter: D:/workspace/FixGen/codegraph4spoon/model_json_out

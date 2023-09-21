@@ -201,8 +201,8 @@ public class Defects4JTest {
 
     @Test
     public void testOneModelPatternAndGeneratePatch() {
-        String current_project = "mockito";
-        String bugId = "22";
+        String current_project = "math";
+        String bugId = "79";
         Path d4jCodeGroupRoot = Paths.get("E:/dataset/d4j").resolve(current_project).resolve(bugId);
         Path patchRoot = Paths.get(System.getProperty("user.dir")).resolve("out").resolve("d4j_model_patch");
         System.out.println("code root: " + d4jCodeGroupRoot);
