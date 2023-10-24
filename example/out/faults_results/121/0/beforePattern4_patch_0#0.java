@@ -1,0 +1,7 @@
+@Test
+public void shouldCreateFailureUponUncreatedFilter() throws Exception {
+    jUnitCommandLineParser.parseOptions(new String[]{ "--filter=" + JUnitCommandLineParserTest.FilterFactoryStub.class.getName() });
+    Runner runner = jUnitCommandLineParser.createRequest(new Computer()).getRunner();
+    Description description = runner.getDescription().getChildren().get(0);
+    assertThat(description.toString(), allOf(containsString("initializationError: "), createSuiteRequest(), containsString("stub")));
+}

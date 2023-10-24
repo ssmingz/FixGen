@@ -7,7 +7,6 @@ public class Option {
     public String modelPath;
     public String jsonBefore;
     public String jsonAfter;
-
     public String codeGraphPath;
     public String patternGraphPath;
 
@@ -46,6 +45,7 @@ public class Option {
 
     public static class defectFaults {
         public String patternPath;
+        public double threshold;
         public String projectPath;
         public String resultsPath;
 
@@ -53,6 +53,7 @@ public class Option {
         public String toString() {
             return "defectFaults {\n" +
                     "\t\tpatternPath= " + patternPath + '\n' +
+                    "\t\tthreshold= " + threshold + '\n' +
                     "\t\tprojectPath= " + projectPath + '\n' +
                     "\t\tresultsPath= " + resultsPath + '\n' +
                     "\t}\n";

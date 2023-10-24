@@ -35,6 +35,7 @@ public class DefectFaults {
         Path projectPath = Paths.get(option.defectFaults.projectPath);
         Path patternPath = Paths.get(option.defectFaults.patternPath);
         Path resultsPath = Paths.get(option.defectFaults.resultsPath);
+        double threshold = option.defectFaults.threshold;
 
         if(! resultsPath.toFile().exists()) {
             resultsPath.toFile().mkdirs();
@@ -54,7 +55,7 @@ public class DefectFaults {
                     List<CodeGraph> subjectActionGraphs = GraphBuilder.buildMethodGraphs(path.toString(), new String[]{}, 8, new int[]{});
                     for (int i = 0; i < patterns.size(); i++) {
                         Pattern pattern = patterns.get(i);
-                        BugLocator detector = new BugLocator(1.0);
+                        BugLocator detector = new BugLocator(threshold);
                         for (CodeGraph subjectActionGraph : subjectActionGraphs) {
                             String patchPath = String.format("%s%sPattern%d_patch_%d.java", resultsPath, relativePath, i, subjectActionGraphs.indexOf(subjectActionGraph));
                             detector.applyPattern(pattern, subjectActionGraph, patchPath, "new");

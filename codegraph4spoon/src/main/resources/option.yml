@@ -1,13 +1,19 @@
 description: generate pattern to defect potential defects or generate patches
 
 # model
+# python interpreter path
 pythonCmd: E:/Anaconda3/envs/fix_graph_2/python.exe
+# python project path
 modelWorkPath: D:/workspace/fix_graph_1
+# python script
 modelPath: D:/workspace/fix_graph_1/run.py
+# model input path, related to variable in run.py
 jsonBefore: D:/workspace/FixGen/codegraph4spoon/test_json_out
+# model output path, related to variable in run.py
 jsonAfter: D:/workspace/FixGen/codegraph4spoon/model_json_out
 
 # running info
+# pattern graph in dot file
 codeGraphPath: D:/workspace/FixGen/codegraph4spoon/out/code_graph_out
 patternGraphPath: D:/workspace/FixGen/codegraph4spoon/out/pattern_out
 
@@ -16,7 +22,7 @@ testOnDataset:
   datasetName: c3-junit
   datasetPath: E:/dataset/FixBench/c3/junit
   # store patch in patchPath
-  patchPath: D:/workspace/FixGen/codegraph4spoon/out/model_patch
+  patchPath: D:/workspace/FixGen/example/model_patch
 
 # about extract patterns
 extractPattern:
@@ -30,6 +36,8 @@ extractPattern:
 defectFaults:
   # patterns path, same with extractPattern/patternPath
   patternPath: D:/workspace/FixGen/example/patterns
+  # the threshold to apply pattern
+  threshold: 0.6
   # the project to scan root path
 #  projectPath: E:/dataset/FixBench/fixBenchTest/project-repos/arthas
   projectPath: E:/dataset/FixBench/c3/junit
