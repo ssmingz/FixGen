@@ -101,6 +101,7 @@ public class SysEditTest {
                     Path patternBeforePath = sysEditCodeGroupRoot.resolve(patternCaseNum).resolve("before.java");
                     Path patternAfterPath = sysEditCodeGroupRoot.resolve(patternCaseNum).resolve("after.java");
                     CodeGraph ag = GraphBuilder.buildActionGraph(patternBeforePath.toString(), patternAfterPath.toString(), new int[]{});
+
                     List<Pattern> patterns = PatternExtractor.combineGraphs(List.of(ag), "new");
 
                     if(patterns.size() > 1) {

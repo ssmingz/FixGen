@@ -32,4 +32,64 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
 
+    <build>
+        <!-- 指定最后构建打包成功的压缩包的名字 -->
+        <finalName>fixgen-maven-java</finalName>
+
+        <plugins>
+            <!-- 1.maven 打包时跳过测试 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId> <!-- 测试使用到的插件 -->
+                <configuration>
+                    <skip>true</skip><!-- 声明跳过测试 -->
+                </configuration>
+
+            </plugin>
+
+            <!-- 2.1 maven 打包时指定main方法 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <classesDirectory>target/classes</classesDirectory>
+                    <archive>
+                        <manifest>
+                            <mainClass>Main</mainClass>
+                            <useUniqueVersions>false</useUniqueVersions>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>libs/</classpathPrefix>
+                        </manifest>
+                        <manifestEntries>
+                            <Class-Path>.</Class-Path>
+                        </manifestEntries>
+                    </archive>
+                    <outputDirectory>target</outputDirectory>
+                </configuration>
+            </plugin>
+            <!--  2.2 maven 打包时处理依赖的第三方jar包，解决 运行时 ClassNotFoundException 的异常  -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <type>jar</type>
+                            <includeTypes>jar</includeTypes>
+                            <outputDirectory>
+                                target/libs
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+
 </project>

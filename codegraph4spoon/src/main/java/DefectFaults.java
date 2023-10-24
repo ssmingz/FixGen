@@ -31,7 +31,7 @@ public class DefectFaults {
         run(option);
     }
 
-    private static void run(Option option) {
+    private static void run(Option option){
         Path projectPath = Paths.get(option.defectFaults.projectPath);
         Path patternPath = Paths.get(option.defectFaults.patternPath);
         Path resultsPath = Paths.get(option.defectFaults.resultsPath);
@@ -49,24 +49,25 @@ public class DefectFaults {
         try(Stream<Path> stream = Files.walk(projectPath)) {
             List<Path> javaFiles = stream.filter(path -> path.toString().endsWith(".java")).collect(Collectors.toList());
             javaFiles.forEach(path -> {
-                String relativePath = path.toString().replace(projectPath.toString(), "").replace(".java", "").replaceAll("\\\\", "/");
-                List<CodeGraph> subjectActionGraphs = GraphBuilder.buildMethodGraphs(path.toString(), new String[]{}, 8, new int[]{});
-                for (int i = 0; i < patterns.size(); i++) {
-                    Pattern pattern = patterns.get(i);
-                    BugLocator detector = new BugLocator(1.0);
-                    for (CodeGraph subjectActionGraph : subjectActionGraphs) {
-                        String patchPath = String.format("%s%sPattern%d_patch_%d.java", resultsPath, relativePath, i, subjectActionGraphs.indexOf(subjectActionGraph));
-                        detector.applyPattern(pattern, subjectActionGraph, patchPath, "new");
+                try{
+                    String relativePath = path.toString().replace(projectPath.toString(), "").replace(".java", "").replaceAll("\\\\", "/");
+                    List<CodeGraph> subjectActionGraphs = GraphBuilder.buildMethodGraphs(path.toString(), new String[]{}, 8, new int[]{});
+                    for (int i = 0; i < patterns.size(); i++) {
+                        Pattern pattern = patterns.get(i);
+                        BugLocator detector = new BugLocator(1.0);
+                        for (CodeGraph subjectActionGraph : subjectActionGraphs) {
+                            String patchPath = String.format("%s%sPattern%d_patch_%d.java", resultsPath, relativePath, i, subjectActionGraphs.indexOf(subjectActionGraph));
+                            detector.applyPattern(pattern, subjectActionGraph, patchPath, "new");
+                        }
                     }
+                } catch (Exception e) {
+                    logger.error("error in buildGraph", e);
                 }
-
             });
+
         } catch (IOException e) {
             logger.error("error in walk projectPath", e);
-        } catch (Exception e) {
-            logger.error("error in buildGraph", e);
         }
-
 
     }
 

@@ -15,13 +15,13 @@ patternGraphPath: D:/workspace/FixGen/codegraph4spoon/out/pattern_out
 # test on dataset
 testOnDataset:
   datasetName: c3-junit
-  datasetPath: E:/dataset/FixBench/c3/dataset/junit
+  datasetPath: E:/dataset/FixBench/c3/junit
   patchPath: D:/workspace/FixGen/codegraph4spoon/out/model_patch
 
 # about extract patterns
 extractPattern:
   datasetName: c3-junit
-  dataPath: E:/dataset/FixBench/c3/dataset/junit
+  dataPath: E:/dataset/FixBench/c3/junit
   patternPath: D:/workspace/FixGen/codegraph4spoon/patterns
 
 # about defect faults

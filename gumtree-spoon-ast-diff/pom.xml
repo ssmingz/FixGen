@@ -91,7 +91,17 @@
     </dependencies>
 
     <build>
+        <finalName>gumtree-maven-java</finalName>
+
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId> <!-- 测试使用到的插件 -->
+                <configuration>
+                    <skip>true</skip><!-- 声明跳过测试 -->
+                </configuration>
+            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
