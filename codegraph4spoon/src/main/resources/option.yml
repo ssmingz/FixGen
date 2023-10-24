@@ -11,27 +11,28 @@ jsonAfter: D:/workspace/FixGen/codegraph4spoon/model_json_out
 codeGraphPath: D:/workspace/FixGen/codegraph4spoon/out/code_graph_out
 patternGraphPath: D:/workspace/FixGen/codegraph4spoon/out/pattern_out
 
-
 # test on dataset
 testOnDataset:
   datasetName: c3-junit
   datasetPath: E:/dataset/FixBench/c3/junit
+  # store patch in patchPath
   patchPath: D:/workspace/FixGen/codegraph4spoon/out/model_patch
 
 # about extract patterns
 extractPattern:
   datasetName: c3-junit
+  # from where to extract patterns
   dataPath: E:/dataset/FixBench/c3/junit
-  patternPath: D:/workspace/FixGen/codegraph4spoon/patterns
+  # store patterns in patternPath
+  patternPath: D:/workspace/FixGen/example/patterns
 
 # about defect faults
 defectFaults:
-  patternPath: D:/workspace/FixGen/codegraph4spoon/patterns
-  projectPath: E:/dataset/FixBench/fixBenchTest/project-repos/arthas
-  resultsPath: D:/workspace/FixGen/codegraph4spoon/out/faults_results
-
-
-
-
-
+  # patterns path, same with extractPattern/patternPath
+  patternPath: D:/workspace/FixGen/example/patterns
+  # the project to scan root path
+#  projectPath: E:/dataset/FixBench/fixBenchTest/project-repos/arthas
+  projectPath: E:/dataset/FixBench/c3/junit
+  # store patch in resultsPath
+  resultsPath: D:/workspace/FixGen/example/out/faults_results
 
