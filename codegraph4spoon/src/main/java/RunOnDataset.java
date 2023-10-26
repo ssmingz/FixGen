@@ -32,6 +32,8 @@ public class RunOnDataset {
     }
 
     private static void run(Option option) {
+        long startTime;
+        long currentTime;
         Path projectRootPath = Paths.get(option.testOnDataset.datasetPath);
         Path patchRootPath = Paths.get(option.testOnDataset.patchPath);
         File[] groups = Arrays.stream(Objects.requireNonNull(projectRootPath.toFile().listFiles())).filter(File::isDirectory).toArray(File[]::new);
@@ -45,10 +47,13 @@ public class RunOnDataset {
 
             for (String patternCaseNum : cases) {
                 try{
+                    startTime = System.currentTimeMillis();
                     Path patternBeforePath = projectCodeGroupRoot.resolve(patternCaseNum).resolve("before.java");
                     Path patternAfterPath = projectCodeGroupRoot.resolve(patternCaseNum).resolve("after.java");
                     CodeGraph ag = GraphBuilder.buildActionGraph(patternBeforePath.toString(), patternAfterPath.toString(), new int[]{});
                     List<Pattern> patterns = PatternExtractor.combineGraphs(List.of(ag), "new");
+                    currentTime = System.currentTimeMillis();
+                    System.out.println("extract pattern time: " + (currentTime - startTime));
 
                     if(patterns.size() > 1) {
                         logger.info("more than one pattern: {}", patternBeforePath);
@@ -69,6 +74,8 @@ public class RunOnDataset {
                             patternsByID.get(pair.getValue0()).add(pair.getValue1());
                         }
                     }
+
+                    startTime = System.currentTimeMillis();
 
                     // write json object to file
                     String jsonFileName = String.format("%s_%s_%s.json", option.testOnDataset.datasetName, groupID, patternCaseNum);
@@ -105,11 +112,15 @@ public class RunOnDataset {
                         InteractPattern.abstractByJSONObject(pattern, oriJson, labelJson, ag.getFileName());
                     }
 
+                    currentTime = System.currentTimeMillis();
+                    System.out.println("abstract pattern time: " + (currentTime - startTime));
+
                     List<String> subjectCaseCandidates = cases.stream()
                             .filter(name -> !name.equals(patternCaseNum))
                             .collect(Collectors.toList());
 
                     for (String subjectCaseNum : subjectCaseCandidates) {
+                        startTime = System.currentTimeMillis();
                         Path subjectBeforePath = projectCodeGroupRoot.resolve(subjectCaseNum).resolve("before.java");
                         CodeGraph SubjectActionGraph = GraphBuilder.buildGraph(subjectBeforePath.toString(), new String[]{}, 8, new int[]{});
 
@@ -144,6 +155,8 @@ public class RunOnDataset {
 
                             String patchPath = String.format("%s/%s/%s/%s/%s_patch_%d.java", patchRootPath, option.testOnDataset.datasetName, groupID, subjectCaseNum, patternCaseNum, i);
                             detector.applyPattern(pattern, SubjectActionGraph, patchPath, "new");
+                            currentTime = System.currentTimeMillis();
+                            System.out.println("apply pattern time: " + (currentTime - startTime));
                         }
                     }
 
