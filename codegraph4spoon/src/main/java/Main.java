@@ -5,6 +5,7 @@ public class Main {
             System.err.println("\t--test : test on datasets.");
             System.err.println("\t--extract : extract patterns.");
             System.err.println("\t--defect : defect faults on project.");
+            System.err.println("\t--correct : check correct in c3.");
             System.exit(1);
         }
 
@@ -17,6 +18,9 @@ public class Main {
                 break;
             case "--defect":
                 DefectFaults.main(args);
+                break;
+            case "--correct":
+                CorrectCal.main(args);
                 break;
             default:
                 System.err.println("Please given the arguments [test, extract, defect]");

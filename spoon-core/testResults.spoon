@@ -1,0 +1,38 @@
+executionFinished: spoon.CompilationUnitPrintTest#test with result: SUCCESSFUL in duration: 5080 ms
+executionFinished: spoon.FluentLauncherTest#testSettings with result: SUCCESSFUL in duration: 545 ms
+executionFinished: spoon.FluentLauncherTest#testSimpleUsage with result: SUCCESSFUL in duration: 124 ms
+executionFinished: spoon.FluentLauncherTest#testProcessor with result: SUCCESSFUL in duration: 456 ms
+executionFinished: spoon.FluentLauncherTest#testConsistency with result: SUCCESSFUL in duration: 90 ms
+executionFinished: spoon.FluentLauncherTest#testMavenLauncher with result: SUCCESSFUL in duration: 74768 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#intersectionTypeIdentifierTest with result: SUCCESSFUL in duration: 386 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#correctIdentifer with result: SUCCESSFUL in duration: 2 ms
+executionSkipped: spoon.generating.CorrectIdentifierTest#keyWord in duration: 0 ms with reason: public void spoon.generating.CorrectIdentifierTest.keyWord() is @Disabled
+executionFinished: spoon.generating.CorrectIdentifierTest#wrongIdentiferWithIgnoreFlag with result: SUCCESSFUL in duration: 9 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#correctIdentiferUtfFrench with result: SUCCESSFUL in duration: 2 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#correctSquareBrackets with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#wrongIdentifer2 with result: SUCCESSFUL in duration: 3 ms
+executionSkipped: spoon.generating.CorrectIdentifierTest#keyWord2 in duration: 0 ms with reason: public void spoon.generating.CorrectIdentifierTest.keyWord2() is @Disabled
+executionSkipped: spoon.generating.CorrectIdentifierTest#keyWord3 in duration: 0 ms with reason: public void spoon.generating.CorrectIdentifierTest.keyWord3() is @Disabled
+executionFinished: spoon.generating.CorrectIdentifierTest#correctIdentifer2 with result: SUCCESSFUL in duration: 1 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#wrongIdentifer with result: SUCCESSFUL in duration: 1 ms
+executionFinished: spoon.generating.CorrectIdentifierTest#correctIdentiferUtfChinese with result: SUCCESSFUL in duration: 2 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 26 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 1 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 1 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 1 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 1 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.javadoc.internal.JavadocInlineTagTest#testTagNameCaseInsensitiveTypeParsing with result: SUCCESSFUL in duration: 0 ms
+executionFinished: spoon.LauncherTest#testInitEnvironment with result: SUCCESSFUL in duration: 440 ms
+executionFinished: spoon.LauncherTest#testLLauncherBuildModelReturnAModel with result: SUCCESSFUL in duration: 34 ms
+executionFinished: spoon.LauncherTest#testClasspathURLWithSpaces with result: SUCCESSFUL in duration: 48 ms
+executionFinished: spoon.LauncherTest#testInitEnvironmentDefault with result: SUCCESSFUL in duration: 3 ms

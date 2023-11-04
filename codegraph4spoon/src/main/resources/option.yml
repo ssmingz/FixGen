@@ -2,29 +2,29 @@ description: generate pattern to defect potential defects or generate patches
 
 # model
 # python interpreter path
-pythonCmd: E:/Anaconda3/envs/fix_graph_2/python.exe
+pythonCmd: /root/anaconda3/envs/fix_graph/bin/python
 # python project path
-modelWorkPath: D:/workspace/fix_graph_1
+modelWorkPath: /data02/hanjiachen/FixGen/fix_graph_1
 # python script
-modelPath: D:/workspace/fix_graph_1/run.py
+modelPath: /data02/hanjiachen/FixGen/fix_graph_1/run.py
 # model input path, related to variable in run.py
-jsonBefore: D:/workspace/FixGen/codegraph4spoon/test_json_out
+jsonBefore: /data02/hanjiachen/FixGen/intermediate/json_input
 # model output path, related to variable in run.py
-jsonAfter: D:/workspace/FixGen/codegraph4spoon/model_json_out
+jsonAfter: /data02/hanjiachen/FixGen/intermediate/json_output
 
 # running info
 # pattern graph in dot file
-codeGraphPath: D:/workspace/FixGen/codegraph4spoon/out/code_graph_out
-patternGraphPath: D:/workspace/FixGen/codegraph4spoon/out/pattern_out
+codeGraphPath: /data02/hanjiachen/FixGen/out/code_graph_out
+patternGraphPath: /data02/hanjiachen/FixGen/out/pattern_out
 
 # test on dataset
 testOnDataset:
-  datasetName: c3-junit
-  datasetPath: E:/dataset/FixBench/c3/junit
+  datasetName: c3
+  datasetPath: /data02/hanjiachen/FixGen/dataset/c3
   # example data path
   # datasetPath: example/dataset/c3/ant
   # store patch in patchPath
-  patchPath: D:/workspace/FixGen/example/model_patch
+  patchPath: /data02/hanjiachen/FixGen/out/model_patch/c3
 
 # about extract patterns
 extractPattern:
@@ -43,7 +43,7 @@ defectFaults:
   # the threshold to apply pattern
   threshold: 0.9
   # the project to scan root path
-#  projectPath: E:/dataset/FixBench/fixBenchTest/project-repos/arthas
+  #  projectPath: E:/dataset/FixBench/fixBenchTest/project-repos/arthas
   projectPath: E:/dataset/FixBench/c3/junit
   # store patch in resultsPath
   resultsPath: D:/workspace/FixGen/example/out/faults_results

@@ -1,16 +1,13 @@
 import builder.BugLocator;
 import builder.GraphBuilder;
-import builder.GraphConfiguration;
 import config.Options;
 import config.pojo.Option;
 import model.CodeGraph;
 import model.pattern.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import utils.DotGraph;
 import utils.ObjectUtil;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
