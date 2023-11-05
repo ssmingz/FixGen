@@ -70,14 +70,14 @@ we package this project as a jar file named `fixgen-maven-java.jar` in artifacts
 and all its dependencies are packaged into `libs` folder.
 to run this, you can use the following command:
 ```
-    java -cp libs/*.jar:FixGen.jar Main --test
+    java -jar fixgen-maven-java.jar --test
 ```
 and the result will be saved in result folder as you configure in `option.yml`.
 
 ### Extract Patterns
 same as test on datasets, please add `--extract` as the only argument.
 ```
-    java -cp libs/*.jar:FixGen.jar Main --extract
+    java -jar fixgen-maven-java.jar --extract
 ```
 ### Defect Potential Faults on Projects
 
@@ -89,7 +89,7 @@ Please add `--extract` to extract patterns from historical modification and save
 
 Then add `--defect` to detect potential faults on projects using the extracted patterns.
 ```
-    java -cp libs/*.jar:FixGen.jar Main --defect
+    java -jar fixgen-maven-java.jar --defect
 ```
 
 you can control the threshold of similarity between patterns and code changes 

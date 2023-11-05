@@ -52,10 +52,6 @@ public class CorrectCal {
                         Path beforePath = projectRootPath.resolve(groupID).resolve(patchCaseID).resolve("before.java");
                         Path afterPath = projectRootPath.resolve(groupID).resolve(patchCaseID).resolve("after.java");
 
-                        if(groupID.equals("36") && patchCaseID.equals("0")) {
-                            System.out.println("here");
-                        }
-
                         List<String> beforeAfter = DiffUtil.getDiff(beforePath.toString(), afterPath.toString());
                         Path patchCaseRoot = patchGroupRoot.resolve(patchCaseID);
                         File[] patches = patchCaseRoot.toFile().listFiles();
